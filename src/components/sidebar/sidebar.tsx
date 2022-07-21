@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
 import { FC } from "react";
-const HomePage: FC = () => {
+const Sidebar: FC = () => {
 	return (
 		<>
-			<Typography>Home</Typography>
+			<Typography>Sidebar</Typography>
 		</>
 	);
 };
 
-export default HomePage;
+export default Sidebar;
