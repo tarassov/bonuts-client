@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useLocationTyped } from "../../hooks/use-location-typed";
 
 interface ISwithRoutesProps {
 	routes: Array<TRoute>;
@@ -7,8 +8,11 @@ interface ISwithRoutesProps {
 }
 
 const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes, redirects }) => {
+	const location = useLocationTyped();
+	const background = location.state && location.state.background;
+	//const from = location.state?.from?.pathname || "/";
 	return (
-		<Routes>
+		<Routes location={background || location}>
 			{routes &&
 				routes.map((route, key) => {
 					return (
