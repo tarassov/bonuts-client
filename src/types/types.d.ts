@@ -11,4 +11,6 @@ type TRoute = {
 type TRedirect = {
 	from: TRoute;
 	to: TRoute;
+	authenticated: boolean;
+	attached?: boolean;
 };
