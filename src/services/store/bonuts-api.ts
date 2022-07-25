@@ -108,7 +108,8 @@ export type GetDonutsApiResponse = /** status 200 success */ {
 			comments: {
 				id: number;
 				content: string;
-				likes: any[];
+				liked?: boolean;
+				likes: number;
 				public: boolean;
 				user_avatar: {
 					url: string;
@@ -198,7 +199,55 @@ export type PostConfirmEmailApiArg = {
 		token: string;
 	};
 };
-export type PostAuthenticateApiResponse = unknown;
+export type PostAuthenticateApiResponse = /** status 200 success */ {
+	tenants: {
+		id: number;
+		name: string;
+		caption: string;
+		active: boolean;
+		created_at: string;
+		updated_at: string;
+		domain: string;
+		demo: boolean;
+		logo: {
+			url: string;
+			thumb: {
+				url: string;
+			};
+		};
+		welcome_points: number;
+		welcome_donuts: number;
+		email_notification: boolean;
+		birthday_donuts: number;
+		join_to_project_donuts: number;
+		join_to_company_donuts: number;
+		use_departments: boolean;
+	}[];
+	auth_token: string;
+	current_tenant?: {
+		id: number;
+		name: string;
+		caption: string;
+		active: boolean;
+		created_at: string;
+		updated_at: string;
+		domain: string;
+		demo: boolean;
+		logo: {
+			url: string;
+			thumb: {
+				url: string;
+			};
+		};
+		welcome_points: number;
+		welcome_donuts: number;
+		email_notification: boolean;
+		birthday_donuts: number;
+		join_to_project_donuts: number;
+		join_to_company_donuts: number;
+		use_departments: boolean;
+	};
+};
 export type PostAuthenticateApiArg = {
 	body: {
 		email: string;
