@@ -1,6 +1,7 @@
-import { ThemeOptions } from "@mui/material";
+import { red } from "@mui/material/colors";
+import { createTheme } from "@mui/material/styles";
 
-export const themeOptions: ThemeOptions = {
+const theme = createTheme({
 	palette: {
 		primary: {
 			main: "#5a985f",
@@ -12,5 +13,10 @@ export const themeOptions: ThemeOptions = {
 			dark: "#c44e0d",
 			light: "#e6ad57",
 		},
+		error: {
+			main: red.A400,
+		},
 	},
-};
+});
+
+export default theme;
