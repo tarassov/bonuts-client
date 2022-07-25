@@ -82,12 +82,81 @@ const injectedRtkApi = api.injectEndpoints({
 	overrideExisting: false,
 });
 export { injectedRtkApi as bonutsApi };
-export type GetDonutsApiResponse = unknown;
+export type GetDonutsApiResponse = /** status 200 success */ {
+	data: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			price: number;
+			id: number;
+			active: boolean;
+			logo: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			};
+			description: string;
+			liked: boolean;
+			likes: number;
+			has_remains: boolean;
+			on_stock: number;
+			supply_days: number;
+			expiration_date: string;
+			created_at: string;
+			comments: {
+				id: number;
+				content: string;
+				likes: any[];
+				public: boolean;
+				user_avatar: {
+					url: string;
+					thumb: {
+						url: string;
+					};
+					preview: {
+						url: string;
+					};
+				};
+				user_name: string;
+				date_string: string;
+			}[];
+		};
+	}[];
+};
 export type GetDonutsApiArg = {
 	tenant?: string;
 	all?: string;
 };
-export type GetEventsApiResponse = unknown;
+export type GetEventsApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			content: string;
+			extra_content?: string;
+			id: number;
+			date_string: string;
+			user_id: number;
+			user_name: string;
+			comments: null;
+			comment_count?: number;
+			user_avatar: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+				preview: {
+					url: string;
+				};
+			};
+			liked: boolean;
+			likes: number;
+			public: boolean;
+		};
+	}[];
+};
 export type GetEventsApiArg = {
 	tenant?: string;
 	showMine?: string;

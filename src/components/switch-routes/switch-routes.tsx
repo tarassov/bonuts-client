@@ -4,7 +4,7 @@ import { useLocationTyped } from "../../hooks/use-location-typed";
 
 interface ISwithRoutesProps {
 	routes: Array<TRoute>;
-	redirects: Array<TRedirect>;
+	redirects?: Array<TRedirect>;
 }
 
 const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes, redirects }) => {
@@ -20,15 +20,16 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes, redirects }) => {
 					);
 				})}
 
-			{redirects.map((redirect, key) => {
-				return (
-					<Route
-						path={redirect.from.path}
-						key={key}
-						element={<Navigate to={redirect.to.path} />}
-					/>
-				);
-			})}
+			{redirects &&
+				redirects.map((redirect, key) => {
+					return (
+						<Route
+							path={redirect.from.path}
+							key={key}
+							element={<Navigate to={redirect.to.path} />}
+						/>
+					);
+				})}
 		</Routes>
 	);
 };
