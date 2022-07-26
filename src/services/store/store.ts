@@ -8,6 +8,7 @@ import {
 	useSelector as selectorHook,
 } from "react-redux";
 import { emptySplitApi as api } from "./empty-api";
+import authSlice from "../redux/auth-slice";
 
 const { createReduxHistory, routerMiddleware, routerReducer } =
 	createReduxHistoryContext({ history: createBrowserHistory() });
@@ -19,6 +20,7 @@ export const createStore = (
 		reducer: {
 			router: routerReducer,
 			[api.reducerPath]: api.reducer,
+			auth: authSlice,
 		},
 		devTools: process.env.NODE_ENV !== "production",
 		middleware: (getDefaultMiddleware) =>
