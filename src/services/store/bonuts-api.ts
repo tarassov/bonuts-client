@@ -17,6 +17,16 @@ const injectedRtkApi = api.injectEndpoints({
 				},
 			}),
 		}),
+		putEventsById: build.mutation<
+			PutEventsByIdApiResponse,
+			PutEventsByIdApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/events/${queryArg.id}`,
+				method: "PUT",
+				body: queryArg.body,
+			}),
+		}),
 		postInvitationsByIdAccept: build.mutation<
 			PostInvitationsByIdAcceptApiResponse,
 			PostInvitationsByIdAcceptApiArg
@@ -112,12 +122,12 @@ export type GetDonutsApiResponse = /** status 200 success */ {
 				likes: number;
 				public: boolean;
 				user_avatar: {
-					url: string;
+					url: string | null;
 					thumb: {
-						url: string;
+						url: string | null;
 					};
 					preview: {
-						url: string;
+						url: string | null;
 					};
 				};
 				user_name: string;
@@ -136,7 +146,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 		type: string;
 		attributes: {
 			content: string;
-			extra_content?: string;
+			extra_content?: string | null;
 			id: number;
 			date_string: string;
 			user_id: number;
@@ -144,16 +154,22 @@ export type GetEventsApiResponse = /** status 200 success */ {
 			comments: null;
 			comment_count?: number;
 			user_avatar: {
-				url: string;
+				url: string | null;
 				thumb: {
-					url: string;
+					url: string | null;
 				};
 				preview: {
-					url: string;
+					url: string | null;
 				};
 			};
 			liked: boolean;
-			likes: number;
+			likes: {
+				id: number;
+				profile_id: number;
+				created_at?: string;
+				likeable_type?: string;
+				likeable_id?: number;
+			}[];
 			public: boolean;
 		};
 	}[];
@@ -162,6 +178,47 @@ export type GetEventsApiArg = {
 	tenant?: string;
 	showMine?: string;
 	page?: number;
+};
+export type PutEventsByIdApiResponse = /** status 200 event liked */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			content: string;
+			extra_content?: string | null;
+			id: number;
+			date_string: string;
+			user_id: number;
+			user_name: string;
+			comments: null;
+			comment_count?: number;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			liked: boolean;
+			likes: {
+				id: number;
+				profile_id: number;
+				created_at?: string;
+				likeable_type?: string;
+				likeable_id?: number;
+			}[];
+			public: boolean;
+		};
+	};
+};
+export type PutEventsByIdApiArg = {
+	id: string;
+	body: {
+		like: boolean;
+		tenant: string;
+	};
 };
 export type PostInvitationsByIdAcceptApiResponse = unknown;
 export type PostInvitationsByIdAcceptApiArg = {
@@ -257,6 +314,7 @@ export type PostAuthenticateApiArg = {
 export const {
 	useGetDonutsQuery,
 	useGetEventsQuery,
+	usePutEventsByIdMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsMutation,
 	useGetProfilesQuery,
