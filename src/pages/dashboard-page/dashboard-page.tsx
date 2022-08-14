@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { FC } from "react";
-import { useGetEventsQuery } from "../../services/store/bonuts-api";
+import { useGetEventsQuery } from "../../services/api/bonuts-api";
 
 const EventCard: FC<{ content: string }> = ({ content }) => {
 	return <div>{content}</div>;

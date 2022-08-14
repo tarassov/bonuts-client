@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { bonutsApi } from "../store/bonuts-api";
+import { bonutsApi } from "../api/bonuts-api";
 import { RootState } from "../store/store";
 
 const initialState = {

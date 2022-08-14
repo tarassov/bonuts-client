@@ -7,7 +7,7 @@ import {
 	TypedUseSelectorHook,
 	useSelector as selectorHook,
 } from "react-redux";
-import { emptySplitApi as api } from "./empty-api";
+import { emptySplitApi as api } from "../api/empty-api";
 import authSlice from "../redux/auth-slice";
 
 const { createReduxHistory, routerMiddleware, routerReducer } =

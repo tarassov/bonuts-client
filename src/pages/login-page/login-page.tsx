@@ -12,7 +12,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import { FC, SyntheticEvent, useState } from "react";
-import { usePostAuthenticateMutation } from "../../services/store/bonuts-api";
+import { usePostAuthenticateMutation } from "../../services/api/bonuts-api";
 import styles from "./login-page.module.css";
 //import { useLocationTyped } from "../../hooks/use-location-typed";
 const LoginPage: FC = () => {
