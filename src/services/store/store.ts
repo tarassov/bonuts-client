@@ -9,6 +9,7 @@ import {
 } from "react-redux";
 import { emptySplitApi as api } from "../api/empty-api";
 import authSlice from "../redux/auth-slice";
+import { rtkQueryErrorHandler } from "../middlewares/rtkQueryErrorHandler";
 
 const { createReduxHistory, routerMiddleware, routerReducer } =
 	createReduxHistoryContext({ history: createBrowserHistory() });
@@ -24,7 +25,11 @@ export const createStore = (
 		},
 		devTools: process.env.NODE_ENV !== "production",
 		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware().concat(routerMiddleware, api.middleware),
+			getDefaultMiddleware().concat(
+				routerMiddleware,
+				api.middleware,
+				rtkQueryErrorHandler
+			),
 		...options,
 	});
 export const store = createStore();

@@ -1,75 +1,63 @@
-import { AsyncThunk, SerializedError, unwrapResult } from "@reduxjs/toolkit";
+// import { AsyncThunk, SerializedError, unwrapResult } from "@reduxjs/toolkit";
 
-import { useNavigate } from "react-router-dom";
-// import { IReposnse, ILoginRequest, IRegisterRequest } from "../api/types";
+// import { useNavigate } from "react-router-dom";
+// // import { IReposnse, ILoginRequest, IRegisterRequest } from "../api/types";
 // import { fireError } from "../services/actions/system-actions";
-import { usePostAuthenticateMutation } from "../services/api/bonuts-api";
-import { useAppDispatch, useAppSelector } from "../services/store/store";
+import {
+	PostAuthenticateApiArg,
+	PostRegisterApiArg,
+	usePostAuthenticateMutation,
+	usePostRegisterMutation,
+} from "../services/api/bonuts-api";
+// import { useAppDispatch, useAppSelector } from "../services/store/store";
 import { useStorage } from "./use-storage";
 
-const MAX_RETRY_NUMBER = 3;
+// const MAX_RETRY_NUMBER = 3;
 
 export function useAuth() {
-	const dispatch = useAppDispatch();
-	const user = useAppSelector((store) => store.user);
-	const [postAuthenticate, { isLoading }] = usePostAuthenticateMutation();
+	// const dispatch = useAppDispatch();
+	// const auth = useAppSelector((store) => store.auth);
+	const [postAuthenticate, { isLoading, error }] =
+		usePostAuthenticateMutation();
+	const [postRegister, { isLoading: isPostingRegister, error: registerError }] =
+		usePostRegisterMutation();
 	const { getValue, setValue } = useStorage();
 
-	const navigate = useNavigate();
-	const dismissErrors = () => {
-		if (user.error) dispatch(dismissErrorsAction());
-	};
+	// const navigate = useNavigate();
+	// const dismissErrors = () => {
+	// 	if (user.error) dispatch(dismissErrorsAction());
+	// };
 
-	const saveToken = (token: string) => {
-		setValue<string>("token", token);
-	};
 	const getToken = () => {
-		return getValue("token");
+		return getValue("auth_token");
 	};
 
-	const signIn = async (credentials: { email: string; password: string }) => {
-		postAuthenticate({ body: credentials });
+	const signIn = async (credentials: PostAuthenticateApiArg) => {
+		try {
+			const payload = await postAuthenticate(credentials).unwrap();
+			setValue<string>("auth_token", payload.auth_token);
+			setValue<string>("tenant", payload.current_tenant?.name || "");
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const signOut = async () => {
 		setValue("token", null);
 	};
 
-	const register = async (credentials: IRegisterRequest) => {
-		return dispatch(registerAction(credentials))
-			.then(unwrapResult)
-			.then(saveTokens)
-			.catch((e: SerializedError) => console.log(e.message));
-	};
-
-	const checkAuth = async () => {
-		if (savedToken()) {
-			dispatch(authenticate(true));
-			if (accessToken()) {
-				refreshToken(false).then((result) => {
-					if (result.error) {
-						setSavedToken("");
-						dispatch(authenticate(false));
-						navigate("/login");
-					} else {
-						saveTokens(result);
-					}
-				});
-			}
-		} else {
-			dispatch(authenticate(false));
-		}
+	const register = async (credentials: PostRegisterApiArg) => {
+		postRegister(credentials);
 	};
 
 	return {
 		isLoading,
-		user,
-		checkAuth,
+		isPostingRegister,
+		registerError,
+		error,
 		signIn,
 		signOut,
 		register,
-		dismissErrors,
-		secureDispatch,
-		accessToken,
+		getToken,
 	};
 }

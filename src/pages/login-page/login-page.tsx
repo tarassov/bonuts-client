@@ -12,13 +12,14 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import { FC, SyntheticEvent, useState } from "react";
-import { usePostAuthenticateMutation } from "../../services/api/bonuts-api";
 import styles from "./login-page.module.css";
+import { useAuth } from "../../hooks/use-auth";
 //import { useLocationTyped } from "../../hooks/use-location-typed";
 const LoginPage: FC = () => {
 	//const location = useLocationTyped();
 	//	const from = location.state?.from?.pathname || "/";
-	const [postAuthenticate, { isLoading }] = usePostAuthenticateMutation();
+
+	const { signIn, isLoading } = useAuth();
 
 	const [credentials, setValue] = useState({
 		email: "",
@@ -30,7 +31,7 @@ const LoginPage: FC = () => {
 	};
 	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
-		postAuthenticate({ body: credentials });
+		signIn({ body: credentials });
 	};
 
 	if (isLoading) {
