@@ -52,7 +52,8 @@ export function usePaginator<
 		endpoint,
 		result,
 		pages,
-		isLoading: result.isFetching && pages === undefined,
+		isLoading: result.isFetching && currentPage === 1,
 		fetchNext,
+		currentPage,
 	};
 }
