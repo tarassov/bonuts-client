@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import { store, history } from "../../services/store/store";
-import { HistoryRouter as Router } from "redux-first-history/rr6";
+import { HistoryRouter } from "redux-first-history/rr6";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
@@ -15,14 +15,14 @@ function App() {
 		<div className="App">
 			<ThemeProvider theme={theme}>
 				<Provider store={store}>
-					<Router history={history}>
+					<HistoryRouter history={history}>
 						<CssBaseline />
 						<header className="App-header"></header>
 						<Container component="main" maxWidth="md">
 							Bonuts
 							<SwitchRoutes routes={routes} />
 						</Container>
-					</Router>
+					</HistoryRouter>
 				</Provider>
 			</ThemeProvider>
 		</div>

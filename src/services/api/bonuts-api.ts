@@ -1,6 +1,16 @@
 import { emptySplitApi as api } from "./empty-api";
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		postAccountOperations: build.mutation<
+			PostAccountOperationsApiResponse,
+			PostAccountOperationsApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/account_operations`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts`,
@@ -44,6 +54,12 @@ const injectedRtkApi = api.injectEndpoints({
 				url: `/invitations`,
 				method: "POST",
 				body: queryArg.body,
+			}),
+		}),
+		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
+			query: (queryArg) => ({
+				url: `/profile`,
+				params: { tenant: queryArg.tenant },
 			}),
 		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
@@ -92,6 +108,20 @@ const injectedRtkApi = api.injectEndpoints({
 	overrideExisting: false,
 });
 export { injectedRtkApi as bonutsApi };
+export type PostAccountOperationsApiResponse = unknown;
+export type PostAccountOperationsApiArg = {
+	body: {
+		tenant: string;
+		amount: number;
+		from_profile_id?: string;
+		to_profile_ids: string[];
+		comment: string;
+		share_for_all?: boolean;
+		is_for_distrib?: boolean;
+		burn_old?: boolean;
+		to_self_account?: boolean;
+	};
+};
 export type GetDonutsApiResponse = /** status 200 success */ {
 	data: {
 		id: string;
@@ -102,14 +132,20 @@ export type GetDonutsApiResponse = /** status 200 success */ {
 			id: number;
 			active: boolean;
 			logo: {
-				url: string;
-				thumb: {
-					url: string;
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
 				};
 			};
 			description: string;
 			liked: boolean;
-			likes: number;
+			likes: {
+				id: number;
+				profile_id: number;
+				created_at?: string;
+				likeable_type?: string;
+				likeable_id?: number;
+			}[];
 			has_remains: boolean;
 			on_stock: number;
 			supply_days: number;
@@ -151,7 +187,24 @@ export type GetEventsApiResponse = /** status 200 success */ {
 			date_string: string;
 			user_id: number;
 			user_name: string;
-			comments: null;
+			comments: {
+				id: number;
+				content: string;
+				liked?: boolean;
+				likes: number;
+				public: boolean;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				user_name: string;
+				date_string: string;
+			}[];
 			comment_count?: number;
 			user_avatar: {
 				url: string | null;
@@ -190,7 +243,24 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 			date_string: string;
 			user_id: number;
 			user_name: string;
-			comments: null;
+			comments: {
+				id: number;
+				content: string;
+				liked?: boolean;
+				likes: number;
+				public: boolean;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				user_name: string;
+				date_string: string;
+			}[];
 			comment_count?: number;
 			user_avatar: {
 				url: string | null;
@@ -233,6 +303,10 @@ export type PostInvitationsApiArg = {
 		tenant?: string;
 	};
 };
+export type GetProfileApiResponse = unknown;
+export type GetProfileApiArg = {
+	tenant?: string;
+};
 export type GetProfilesApiResponse = unknown;
 export type GetProfilesApiArg = {
 	tenant?: string;
@@ -260,7 +334,7 @@ export type PostAuthenticateApiResponse = /** status 200 success */ {
 	tenants: {
 		id: number;
 		name: string;
-		caption: string;
+		caption?: string | null;
 		active: boolean;
 		created_at: string;
 		updated_at: string;
@@ -284,7 +358,7 @@ export type PostAuthenticateApiResponse = /** status 200 success */ {
 	current_tenant?: {
 		id: number;
 		name: string;
-		caption: string;
+		caption?: string | null;
 		active: boolean;
 		created_at: string;
 		updated_at: string;
@@ -312,11 +386,13 @@ export type PostAuthenticateApiArg = {
 	};
 };
 export const {
+	usePostAccountOperationsMutation,
 	useGetDonutsQuery,
 	useGetEventsQuery,
 	usePutEventsByIdMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsMutation,
+	useGetProfileQuery,
 	useGetProfilesQuery,
 	usePostTenantsByTenantNameJoinMutation,
 	usePostRegisterMutation,

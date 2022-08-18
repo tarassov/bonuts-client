@@ -19,7 +19,7 @@ const LoginPage: FC = () => {
 	//const location = useLocationTyped();
 	//	const from = location.state?.from?.pathname || "/";
 
-	const { signIn, isLoading } = useAuth();
+	const { signIn, isLogging } = useAuth();
 
 	const [credentials, setValue] = useState({
 		email: "",
@@ -34,7 +34,7 @@ const LoginPage: FC = () => {
 		signIn({ body: credentials });
 	};
 
-	if (isLoading) {
+	if (isLogging) {
 		return <div>Logging in...</div>;
 	}
 

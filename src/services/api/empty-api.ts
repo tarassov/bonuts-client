@@ -1,6 +1,8 @@
 // Or from '@reduxjs/toolkit/query' if not using the auto-generated hooks
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { useStorage } from "../../hooks/use-storage";
 import { RootState } from "../store/store";
+const { getValue } = useStorage();
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
@@ -8,9 +10,9 @@ const baseQuery = fetchBaseQuery({
 	//baseUrl: "http://localhost:3000/api/v1/",
 	prepareHeaders: (headers, { getState }) => {
 		// By default, if we have a token in the store, let's use that for authenticated requests
-		const token = (getState() as RootState).auth.token;
-		if (token) {
-			headers.set("Authorization", `Bearer ${token}`);
+		const isAuthenticated = (getState() as RootState).auth.isAuthenticated;
+		if (isAuthenticated) {
+			headers.set("Authorization", `Bearer ${getValue("auth_token")}`);
 		}
 		return headers;
 	},
