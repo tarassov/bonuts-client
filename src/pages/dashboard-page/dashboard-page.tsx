@@ -3,8 +3,12 @@ import { FC, SyntheticEvent, useEffect } from "react";
 import { usePaginator } from "../../hooks/use-paginator";
 import { extendedApi } from "../../services/api/extended-api";
 
-const EventCard: FC<{ content: string }> = ({ content }) => {
-	return <div>{content}</div>;
+const EventCard: FC<{ content: string; id: string }> = ({ content, id }) => {
+	return (
+		<div>
+			{id}::{content}
+		</div>
+	);
 };
 
 const DashboardPage: FC = () => {
@@ -47,7 +51,11 @@ const DashboardPage: FC = () => {
 						page?.data &&
 						page?.data?.map((item) => {
 							return (
-								<EventCard key={item.id} content={item.attributes.content} />
+								<EventCard
+									key={item.id}
+									content={item.attributes.content}
+									id={item.id}
+								/>
 							);
 						})
 					);

@@ -24,6 +24,15 @@ export function usePaginator<
 	const [pages, setPages] = useState<Array<GetResultType<Endpoint>>>([]);
 	const [currentPage, setCurrentPage] = useState(0);
 	const [trigger, result] = endpoint.useLazyQuery();
+	const { data, isLoading, isSuccess } = endpoint.useQuery(
+		{
+			...args,
+			page: 1,
+		},
+		{
+			pollingInterval: 5000,
+		}
+	);
 
 	useEffect(() => {
 		setCurrentPage(args.page);
@@ -34,7 +43,7 @@ export function usePaginator<
 	};
 
 	useEffect(() => {
-		if (currentPage > 0) {
+		if (currentPage > 1) {
 			trigger({ ...args, page: currentPage });
 		}
 	}, [currentPage]);
@@ -48,11 +57,23 @@ export function usePaginator<
 		setPages([...pages, result.data]);
 	}, [result.data]);
 
+	useEffect(() => {
+		if (isSuccess) {
+			console.log(data);
+			const newPages =
+				pages.length === 0
+					? [data]
+					: [data, ...pages.splice(1, pages.length - 1)];
+			console.log(newPages);
+			setPages(newPages);
+		}
+	}, [data, isSuccess]);
+
 	return {
 		endpoint,
 		result,
 		pages,
-		isLoading: result.isFetching && currentPage === 1,
+		isLoading: isLoading && currentPage === 1,
 		fetchNext,
 		currentPage,
 	};
