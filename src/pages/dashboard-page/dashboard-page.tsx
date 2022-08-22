@@ -12,24 +12,16 @@ const EventCard: FC<{ content: string; id: string }> = ({ content, id }) => {
 };
 
 const DashboardPage: FC = () => {
-	const { pages, isLoading, fetchNext } = usePaginator(
+	const { pages, isLoading, fetchNext, hasNew, applyUpdates } = usePaginator(
 		extendedApi.endpoints.getEvents,
 		{
 			tenant: "demo",
 			showMine: "false",
 			page: 1,
-		}
+		},
+		10000
 	);
-	// const { data: events, isLoading } = useGetEventsQuery(
-	// 	{
-	// 		tenant: "demo",
-	// 		showMine: "false",
-	// 		page: 1,
-	// 	},
-	// 	{
-	// 		pollingInterval: 10000,
-	// 	}
-	// );
+
 	useEffect(() => {
 		extendedApi.endpoints.getEvents;
 	}, []);
@@ -45,6 +37,7 @@ const DashboardPage: FC = () => {
 	return (
 		<>
 			<Typography>Dashboard</Typography>
+			{hasNew && <Button onClick={applyUpdates}>Обновить</Button>}
 			{pages &&
 				pages.map((page) => {
 					return (

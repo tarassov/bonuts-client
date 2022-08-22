@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ApiEndpointQuery } from "@reduxjs/toolkit/dist/query/core/module";
 import { QueryHooks } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import { QueryDefinition } from "@reduxjs/toolkit/dist/query";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type GetResultType<T> = T extends ApiEndpointQuery<
 	QueryDefinition<any, any, string, infer ResultType, string>,
@@ -20,9 +21,15 @@ type GetArgsType<T> = T extends ApiEndpointQuery<
 export function usePaginator<
 	Endpoint extends ApiEndpointQuery<any, any> &
 		QueryHooks<QueryDefinition<any, any, string, GetResultType<Endpoint>>>
->(endpoint: Endpoint, args: GetArgsType<Endpoint>) {
+>(
+	endpoint: Endpoint,
+	args: GetArgsType<Endpoint>,
+	pollingInterval: number | undefined
+) {
 	const [pages, setPages] = useState<Array<GetResultType<Endpoint>>>([]);
+	const [temp, setTemp] = useState<GetResultType<Endpoint>>();
 	const [currentPage, setCurrentPage] = useState(0);
+	const [hasNew, setHasNew] = useState(false);
 	const [trigger, result] = endpoint.useLazyQuery();
 	const { data, isLoading, isSuccess } = endpoint.useQuery(
 		{
@@ -30,7 +37,7 @@ export function usePaginator<
 			page: 1,
 		},
 		{
-			pollingInterval: 5000,
+			pollingInterval: pollingInterval !== undefined ? 0 : 5000,
 		}
 	);
 
@@ -59,15 +66,32 @@ export function usePaginator<
 
 	useEffect(() => {
 		if (isSuccess) {
-			console.log(data);
-			const newPages =
-				pages.length === 0
-					? [data]
-					: [data, ...pages.splice(1, pages.length - 1)];
-			console.log(newPages);
-			setPages(newPages);
+			//if only one page is loaded then update immediately
+			if (pages.length <= 1) {
+				const newPages =
+					pages.length === 0
+						? [data]
+						: [data, ...pages.splice(1, pages.length - 1)];
+				setPages(newPages);
+			} else {
+				//if other pages are loaded then save updates and mark hasNew as true
+				setTemp(data);
+				setHasNew(true);
+			}
 		}
 	}, [data, isSuccess]);
+
+	useEffect(() => {
+		if (!temp) setHasNew(false);
+	}, [temp]);
+
+	const applyUpdates = useCallback(() => {
+		if (temp) {
+			setCurrentPage(1);
+			setPages([temp]);
+			setTemp(undefined);
+		}
+	}, [pages, temp]);
 
 	return {
 		endpoint,
@@ -76,5 +100,7 @@ export function usePaginator<
 		isLoading: isLoading && currentPage === 1,
 		fetchNext,
 		currentPage,
+		hasNew,
+		applyUpdates,
 	};
 }
