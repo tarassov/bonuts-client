@@ -3,6 +3,7 @@ import {
 	dashBoardRoute,
 	homeRoute,
 	loginRoute,
+	peopleRoute,
 	profileRoute,
 	settingsRoute,
 } from "./routes";
@@ -13,6 +14,7 @@ const appRoutes: Array<TRoute> = [
 	dashBoardRoute,
 	settingsRoute,
 	profileRoute,
+	peopleRoute,
 ];
 
 export const getRoutes = (): Array<TRoute> => {

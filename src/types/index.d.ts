@@ -13,6 +13,7 @@ type TRoute = {
 	redirect?: TRoute;
 	modal?: boolean;
 	authenticatedRedirect?: TRoute;
+	parentRoute?: TRoute;
 };
 
 type TRedirect = {
