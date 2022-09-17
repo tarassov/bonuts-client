@@ -1,3 +1,4 @@
+import { getRedirects } from "./redirects";
 import {
 	dashBoardRoute,
 	homeRoute,
@@ -6,7 +7,7 @@ import {
 	settingsRoute,
 } from "./routes";
 
-export const routes: Array<TRoute> = [
+const appRoutes: Array<TRoute> = [
 	homeRoute,
 	loginRoute,
 	dashBoardRoute,
@@ -14,4 +15,12 @@ export const routes: Array<TRoute> = [
 	profileRoute,
 ];
 
-export const loginRedirect = loginRoute;
+export const getRoutes = (): Array<TRoute> => {
+	const redirects = getRedirects();
+	return appRoutes.map((route) => {
+		const redirect = redirects.find(
+			(r) => r.authenticated && r.from.path === route.path
+		);
+		return { ...route, authenticatedRedirect: redirect?.to };
+	});
+};

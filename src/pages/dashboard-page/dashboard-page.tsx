@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import { FC, SyntheticEvent, useEffect } from "react";
+import { FC, SyntheticEvent } from "react";
 import { usePaginator } from "../../hooks/use-paginator";
 import { extendedApi } from "../../services/api/extended-api";
 
@@ -21,10 +21,6 @@ const DashboardPage: FC = () => {
 		},
 		10000
 	);
-
-	useEffect(() => {
-		extendedApi.endpoints.getEvents;
-	}, []);
 
 	const onNext = (e: SyntheticEvent) => {
 		e.preventDefault();

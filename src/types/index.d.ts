@@ -12,6 +12,7 @@ type TRoute = {
 	navbarName: string;
 	redirect?: TRoute;
 	modal?: boolean;
+	authenticatedRedirect?: TRoute;
 };
 
 type TRedirect = {

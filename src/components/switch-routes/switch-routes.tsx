@@ -3,11 +3,23 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 import { useLocationTyped } from "../../hooks/use-location-typed";
 import { loginRoute } from "../../routes/routes";
+import { TAuthState } from "../../services/redux/auth-slice";
 
 interface ISwithRoutesProps {
 	routes: Array<TRoute>;
 	redirects?: Array<TRedirect>;
 }
+
+const getRoute = (route: TRoute, auth: TAuthState): JSX.Element => {
+	if (auth.isAuthenticated && route.authenticatedRedirect) {
+		return <Navigate to={route.authenticatedRedirect.path} />;
+	}
+	return auth.isAuthenticated || route.anonymous ? (
+		route.component
+	) : (
+		<Navigate to={route.redirect?.path || loginRoute.path} />
+	);
+};
 
 const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 	const location = useLocationTyped();
@@ -20,12 +32,17 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 	//const from = location.state?.from?.pathname || "/";
 
 	const authenticatedRoutes = useMemo(() => {
-		return routes.filter((r) => r.authenticated);
-	}, [routes]);
+		const aroutes = routes.filter((r) => r.authenticated);
+		console.log(aroutes);
+		return aroutes;
+	}, [routes, auth]);
 
 	const anonymousRoutes = useMemo(() => {
-		return routes.filter((r) => !r.authenticated);
-	}, [routes]);
+		console.log(auth);
+		const aroutes = routes.filter((r) => !r.authenticated);
+		console.log(aroutes);
+		return aroutes;
+	}, [routes, auth]);
 
 	if (isAuthLoading) {
 		return <div>Checking auth...</div>;
@@ -34,26 +51,24 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 	return (
 		<Routes location={background || location}>
 			{authenticatedRoutes &&
-				authenticatedRoutes.map((route, key) => {
+				authenticatedRoutes.map((route) => {
 					return (
 						<Route
 							path={route.path}
-							element={
-								auth.isAuthenticated ? (
-									route.component
-								) : (
-									<Navigate to={route.redirect?.path || loginRoute.path} />
-								)
-							}
-							key={key}
+							element={getRoute(route, auth)}
+							key={route.path}
 						/>
 					);
 				})}
 
 			{anonymousRoutes &&
-				anonymousRoutes.map((route, key) => {
+				anonymousRoutes.map((route) => {
 					return (
-						<Route path={route.path} element={route.component} key={key} />
+						<Route
+							path={route.path}
+							element={getRoute(route, auth)}
+							key={route.path}
+						/>
 					);
 				})}
 		</Routes>
