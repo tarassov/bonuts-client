@@ -9,7 +9,7 @@ type TRoute = {
 	anonymous: boolean;
 	authenticated: boolean;
 	hideInMenu: boolean;
-	navbarName: string;
+	navbarName?: string;
 	redirect?: TRoute;
 	modal?: boolean;
 	authenticatedRedirect?: TRoute;
