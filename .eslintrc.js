@@ -21,7 +21,7 @@ module.exports = {
 	plugins: ["react", "@typescript-eslint", "prettier"],
 	rules: {
 		"no-unused-vars": "off",
-		"@typescript-eslint/no-unused-vars": ["error"],
+		"@typescript-eslint/no-unused-vars": "off",
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
 		"react/no-deprecated": "off",
