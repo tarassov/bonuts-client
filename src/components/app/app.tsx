@@ -16,7 +16,7 @@ import { AppContextType } from "../../types/context";
 import { AppContext } from "../../context";
 import Drawer from "../drawer";
 import { BNTDrawerHeader } from "../../base/BNTDrawer";
-import { BNTToolbar } from "../../base/BNTToolbar/BNTToolbar";
+import { BNTToolbar } from "../../base/BNTToolbar";
 
 const mock_profile: TProfile = {
 	first_name: "Alex",

@@ -15,6 +15,8 @@ import { BNTDrawer, BNTDrawerHeader } from "../../base/BNTDrawer";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { AppContext } from "../../context";
+import { ReactSVG } from "react-svg";
+import { logoFull } from "../../constants/icons";
 
 const Drawer: FC = () => {
 	const { isDrawerOpen, toggleDrawer } = useContext(AppContext);
@@ -23,6 +25,7 @@ const Drawer: FC = () => {
 	return (
 		<BNTDrawer variant="permanent" open={isDrawerOpen}>
 			<BNTDrawerHeader>
+				<ReactSVG src={logoFull} />
 				<IconButton onClick={toggleDrawer}>
 					{theme.direction === "rtl" ? <ChevronLeft /> : <ChevronLeft />}
 				</IconButton>

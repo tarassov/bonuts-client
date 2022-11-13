@@ -1,8 +1,7 @@
 import { styled } from "@mui/material/styles";
 
 import AppBar, { AppBarProps } from "@mui/material/AppBar";
-
-const drawerWidth = 240;
+import { DRAWER_WIDTH } from "../../constants/layout";
 
 interface BNTAppBarProps extends AppBarProps {
 	open?: boolean;
@@ -19,8 +18,8 @@ export const BNTAppBar = styled(AppBar, {
 		duration: theme.transitions.duration.leavingScreen,
 	}),
 	...(open && {
-		marginLeft: drawerWidth,
-		width: `calc(100% - ${drawerWidth}px)`,
+		marginLeft: DRAWER_WIDTH,
+		width: `calc(100% - ${DRAWER_WIDTH}px)`,
 		transition: theme.transitions.create(["width", "margin"], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen,
