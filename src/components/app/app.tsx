@@ -3,22 +3,20 @@ import { store, history } from "../../services/store/store";
 import { HistoryRouter } from "redux-first-history/rr6";
 
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
 
 import SwitchRoutes from "../switch-routes/switch-routes";
 import { getRoutes } from "../../routes";
-import theme from "../../themes/main-theme";
-import {
-	AppBar,
-	Box,
-	Container,
-	IconButton,
-	Toolbar,
-	Typography,
-} from "@mui/material";
+
+import { Box, Container } from "@mui/material";
 import { BTNHeader } from "../header/header";
 import { TProfile } from "../../types/model/profile";
-import MenuIcon from "@mui/icons-material/Menu";
+import { BNTThemeProvider } from "../../themes/theme-provider";
+import { useState } from "react";
+import { AppContextType } from "../../types/context";
+import { AppContext } from "../../context";
+import Drawer from "../drawer";
+import { BNTDrawerHeader } from "../../base/BNTDrawer";
+import { BNTToolbar } from "../../base/BNTToolbar/BNTToolbar";
 
 const mock_profile: TProfile = {
 	first_name: "Alex",
@@ -27,20 +25,31 @@ const mock_profile: TProfile = {
 };
 
 function App() {
-	return (
-		<div className="App">
-			<ThemeProvider theme={theme}>
-				<Provider store={store}>
-					<HistoryRouter history={history}>
-						<BTNHeader profile={mock_profile} />
+	const [isDrawerOpen, setDrawerOpen] = useState(false);
 
-						<Container component="main">
-							<SwitchRoutes routes={getRoutes()} />
-						</Container>
-					</HistoryRouter>
-				</Provider>
-			</ThemeProvider>
-		</div>
+	const toggleDrawer = () => {
+		setDrawerOpen(!isDrawerOpen);
+	};
+
+	const contextValue: AppContextType = { isDrawerOpen, toggleDrawer };
+	return (
+		<BNTThemeProvider>
+			<Provider store={store}>
+				<HistoryRouter history={history}>
+					<AppContext.Provider value={contextValue}>
+						<Box sx={{ display: "flex" }}>
+							<CssBaseline />
+							<BTNHeader profile={mock_profile} />
+							<Drawer />
+							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+								<BNTDrawerHeader />
+								<SwitchRoutes routes={getRoutes()} />
+							</Box>
+						</Box>
+					</AppContext.Provider>
+				</HistoryRouter>
+			</Provider>
+		</BNTThemeProvider>
 	);
 }
 
