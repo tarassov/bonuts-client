@@ -1,4 +1,4 @@
-import { RequestPage, RestorePage } from "@mui/icons-material";
+import { Dashboard, RequestPage, RestorePage } from "@mui/icons-material";
 import ActiveRequestsPage from "../pages/requests/active-requests-page.tsx/active-requests-page";
 import ClosedRequestsPage from "../pages/requests/closed-requests-page/closed-request-page";
 import DashboardPage from "../pages/dashboard-page/dashboard-page";
@@ -17,6 +17,7 @@ import LogOutPage from "../pages/logout-page/logout-page";
 import RegistrationPage from "../pages/registration-page/registration-page";
 import RecoverPage from "../pages/recover-page/recover-page";
 import NotFoundPage from "../pages/not-found-page/not-found-page";
+// import Dashboard from "@material-ui/icons/Dashboard";
 
 export const notFoundRoute: TRoute = {
 	path: "/404",
@@ -79,6 +80,7 @@ export const dashBoardRoute: TRoute = {
 	hideInMenu: false,
 	component: <DashboardPage />,
 	redirect: loginRoute,
+	icon: <Dashboard />,
 };
 
 export const settingsRoute: TRoute = {

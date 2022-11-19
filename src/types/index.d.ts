@@ -14,6 +14,7 @@ type TRoute = {
 	modal?: boolean;
 	authenticatedRedirect?: TRoute;
 	parentRoute?: TRoute;
+	icon?: JSX.Element;
 };
 
 type TRedirect = {

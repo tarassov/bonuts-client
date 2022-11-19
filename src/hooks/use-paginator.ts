@@ -3,6 +3,7 @@ import { ApiEndpointQuery } from "@reduxjs/toolkit/dist/query/core/module";
 import { QueryHooks } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import { QueryDefinition } from "@reduxjs/toolkit/dist/query";
 import { useCallback, useEffect, useState } from "react";
+import { USE_POLLING_INTERVAL } from "../config";
 
 type GetResultType<T> = T extends ApiEndpointQuery<
 	QueryDefinition<any, any, string, infer ResultType, string>,
@@ -37,7 +38,11 @@ export function usePaginator<
 			page: 1,
 		},
 		{
-			pollingInterval: pollingInterval !== undefined ? 0 : 5000,
+			pollingInterval: !USE_POLLING_INTERVAL
+				? 0
+				: pollingInterval !== undefined
+				? pollingInterval
+				: 5000,
 		}
 	);
 
