@@ -1,43 +1,36 @@
-import { ChevronLeft } from "@mui/icons-material";
-import {
-	Divider,
-	IconButton,
-	List,
-	ListItem,
-	ListItemButton,
-	ListItemIcon,
-	ListItemText,
-	Typography,
-	useTheme,
-} from "@mui/material";
-import { FC, useContext, useState } from "react";
+import { Divider, useMediaQuery } from "@mui/material";
+import { FC, useContext } from "react";
 import { BNTDrawer, BNTDrawerHeader } from "../../base/BNTDrawer";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { AppContext } from "../../context";
 import { ReactSVG } from "react-svg";
 import { logoFull } from "../../constants/icons";
 import { BNTMainMenu } from "../main-menu";
+import { Theme } from "@mui/material/styles";
 
 type BNTSidebarProps = {
 	routes: Array<TRoute>;
 };
 
 const BNTSidebar: FC<BNTSidebarProps> = ({ routes }) => {
-	const { isDrawerOpen, toggleDrawer } = useContext(AppContext);
-	const theme = useTheme();
+	const { isDrawerOpen } = useContext(AppContext);
+	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.up("sm"));
 
 	return (
-		<BNTDrawer variant="permanent" open={isDrawerOpen}>
-			<BNTDrawerHeader>
-				<ReactSVG src={logoFull} />
-				<IconButton onClick={toggleDrawer}>
-					{theme.direction === "rtl" ? <ChevronLeft /> : <ChevronLeft />}
-				</IconButton>
-			</BNTDrawerHeader>
-			<Divider />
-			<BNTMainMenu routes={routes} showFullName={isDrawerOpen} />
-		</BNTDrawer>
+		<>
+			{matches && (
+				<BNTDrawer variant="permanent" open={isDrawerOpen}>
+					<BNTDrawerHeader>
+						<ReactSVG src={logoFull} />
+					</BNTDrawerHeader>
+					<Divider />
+					<BNTMainMenu
+						routes={routes}
+						showFullName={isDrawerOpen}
+						showTooltip={!isDrawerOpen}
+					/>
+				</BNTDrawer>
+			)}
+		</>
 	);
 };
 

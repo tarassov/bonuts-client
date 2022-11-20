@@ -1,4 +1,10 @@
-import { Dashboard, RequestPage, RestorePage } from "@mui/icons-material";
+import {
+	Dashboard,
+	RequestPage,
+	RestorePage,
+	Settings,
+	Person,
+} from "@mui/icons-material";
 import ActiveRequestsPage from "../pages/requests/active-requests-page.tsx/active-requests-page";
 import ClosedRequestsPage from "../pages/requests/closed-requests-page/closed-request-page";
 import DashboardPage from "../pages/dashboard-page/dashboard-page";
@@ -91,6 +97,7 @@ export const settingsRoute: TRoute = {
 	hideInMenu: false,
 	component: <SettingsPage />,
 	redirect: loginRoute,
+	icon: <Settings />,
 };
 
 export const profileRoute: TRoute = {
@@ -101,6 +108,7 @@ export const profileRoute: TRoute = {
 	hideInMenu: false,
 	component: <ProfilePage />,
 	redirect: loginRoute,
+	icon: <Person />,
 };
 export const peopleRoute: TRoute = {
 	path: "/people",

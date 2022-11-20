@@ -5,24 +5,28 @@ import { DRAWER_WIDTH } from "../../constants/layout";
 
 interface BNTAppBarProps extends AppBarProps {
 	open?: boolean;
+	fullwidth?: boolean;
 }
 
 export const BNTAppBar = styled(AppBar, {
-	shouldForwardProp: (prop) => prop !== "open",
-})<BNTAppBarProps>(({ theme, open }) => ({
-	zIndex: theme.zIndex.drawer + 1,
-	backgroundColor: theme.palette.background.default,
-	color: theme.palette.getContrastText(theme.palette.background.default),
-	transition: theme.transitions.create(["width", "margin"], {
-		easing: theme.transitions.easing.sharp,
-		duration: theme.transitions.duration.leavingScreen,
-	}),
-	...(open && {
-		marginLeft: DRAWER_WIDTH,
-		width: `calc(100% - ${DRAWER_WIDTH}px)`,
+	shouldForwardProp: (prop) => prop !== "open" && prop !== "fullwidth",
+})<BNTAppBarProps>(({ theme, open, fullwidth }) => {
+	return {
+		zIndex: theme.zIndex.drawer + 1,
+		backgroundColor: theme.palette.background.default,
+		color: theme.palette.getContrastText(theme.palette.background.default),
 		transition: theme.transitions.create(["width", "margin"], {
 			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
+			duration: theme.transitions.duration.leavingScreen,
 		}),
-	}),
-}));
+		...(open &&
+			!fullwidth && {
+				marginLeft: DRAWER_WIDTH,
+				width: `calc(100% - ${DRAWER_WIDTH}px)`,
+				transition: theme.transitions.create(["width", "margin"], {
+					easing: theme.transitions.easing.sharp,
+					duration: theme.transitions.duration.enteringScreen,
+				}),
+			}),
+	};
+});
