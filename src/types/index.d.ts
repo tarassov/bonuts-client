@@ -1,11 +1,20 @@
+type TAuth = {
+	token: string | null;
+	tenant: string | null;
+};
+
 type TRoute = {
 	path: string;
 	component: JSX.Element;
 	anonymous: boolean;
 	authenticated: boolean;
 	hideInMenu: boolean;
-	navbarName: string;
+	navbarName?: string;
+	redirect?: TRoute;
 	modal?: boolean;
+	authenticatedRedirect?: TRoute;
+	parentRoute?: TRoute;
+	icon?: JSX.Element;
 };
 
 type TRedirect = {

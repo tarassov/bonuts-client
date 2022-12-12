@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
 import { FC } from "react";
-const Sidebar: FC = () => {
+const RecoverPage: FC = () => {
 	return (
 		<>
-			<Typography>Sidebar</Typography>
+			<Typography>RecoverPage</Typography>
 		</>
 	);
 };
 
-export default Sidebar;
+export default RecoverPage;

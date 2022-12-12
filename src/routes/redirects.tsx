@@ -1,7 +1,14 @@
 import { dashBoardRoute, loginRoute } from "./routes";
 
-export const loginRedirect: TRedirect = {
-	from: loginRoute,
-	to: dashBoardRoute,
-	authenticated: true,
+/**
+ * returns array of redirects
+ */
+export const getRedirects = (): Array<TRedirect> => {
+	return [
+		{
+			from: loginRoute,
+			to: dashBoardRoute,
+			authenticated: true,
+		},
+	];
 };
