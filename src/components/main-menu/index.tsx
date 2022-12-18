@@ -8,20 +8,13 @@ import {
 } from "@mui/material";
 import React, { FC, useContext } from "react";
 
-import { BNTRouteMenuButton } from "./route-menu-button";
 import { ChevronLeft, Menu } from "@mui/icons-material";
 import { AppContext } from "../../context";
+import { BNTRoutesMenu } from "./routes-menu";
 
-type BNTMainMenuProps = {
-	routes: Array<TRoute>;
-	showFullName: boolean;
-	showTooltip: boolean;
-};
-export const BNTMainMenu: FC<BNTMainMenuProps> = ({
-	routes,
-	showFullName,
-	showTooltip,
-}) => {
+export const BNTMainMenu: FC<BNTRoutesMenuProps> = (props) => {
+	const { showFullName } = props;
+
 	const { toggleDrawer } = useContext(AppContext);
 	const theme = useTheme();
 
@@ -53,19 +46,7 @@ export const BNTMainMenu: FC<BNTMainMenuProps> = ({
 					</ListItemIcon>
 				</ListItemButton>
 			</ListItem>
-			{routes.map((route) => (
-				<ListItem
-					key={route.navbarName}
-					disablePadding
-					sx={{ display: "block" }}
-				>
-					<BNTRouteMenuButton
-						route={route}
-						showFullName={showFullName}
-						showTooltip={showTooltip}
-					/>
-				</ListItem>
-			))}
+			<BNTRoutesMenu {...props} />
 		</List>
 	);
 };

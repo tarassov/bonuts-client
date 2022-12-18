@@ -8,11 +8,6 @@ import React, { FC } from "react";
 import { push } from "redux-first-history";
 import { useAppDispatch } from "../../services/store/store";
 
-type BNTRouteMenuButtonProps = {
-	route: TRoute;
-	showFullName: boolean;
-	showTooltip?: boolean;
-};
 export const BNTRouteMenuButton: FC<BNTRouteMenuButtonProps> = ({
 	route,
 	showFullName,

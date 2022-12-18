@@ -7,9 +7,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import SwitchRoutes from "../switch-routes/switch-routes";
 import { getRoutes } from "../../routes";
 
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { BTNHeader } from "../header";
-import { TProfile } from "../../types/model/profile";
+import { TProfile } from "../../types/model";
 import { BNTThemeProvider } from "../../themes/theme-provider";
 import { useMemo, useState } from "react";
 import { AppContextType } from "../../types/context";
@@ -17,7 +17,6 @@ import { AppContext } from "../../context";
 import { BNTDrawerHeader } from "../../base/BNTDrawer";
 
 import BNTSidebar from "../sidebar";
-import { useAuth } from "../../hooks/use-auth";
 
 const mock_profile: TProfile = {
 	first_name: "Alex",
@@ -32,11 +31,16 @@ function App() {
 		setDrawerOpen(!isDrawerOpen);
 	};
 
-	const contextValue: AppContextType = { isDrawerOpen, toggleDrawer };
 	const routes = useMemo(() => getRoutes(), []);
 	const menuRoutes = useMemo(() => {
 		return routes.filter((x) => !x.hideInMenu && x.navbarName);
 	}, [routes]);
+	const contextValue: AppContextType = {
+		isDrawerOpen,
+		toggleDrawer,
+		routes: menuRoutes,
+	};
+
 	return (
 		<BNTThemeProvider>
 			<Provider store={store}>
@@ -45,7 +49,7 @@ function App() {
 						<Box sx={{ display: "flex" }}>
 							<CssBaseline />
 							<BTNHeader profile={mock_profile} />
-							<BNTSidebar routes={menuRoutes} />
+							<BNTSidebar />
 							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 								<BNTDrawerHeader />
 								<SwitchRoutes routes={routes} />

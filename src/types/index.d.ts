@@ -23,3 +23,14 @@ type TRedirect = {
 	authenticated: boolean;
 	attached?: boolean;
 };
+
+type BNTRoutesMenuProps = {
+	showFullName: boolean;
+	showTooltip?: boolean;
+};
+
+type BNTRouteMenuButtonProps = {
+	route: TRoute;
+	showFullName: boolean;
+	showTooltip?: boolean;
+};
