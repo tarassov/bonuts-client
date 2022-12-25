@@ -19,6 +19,7 @@ import { BNTDrawerHeader } from "../../base/BNTDrawer";
 import BNTSidebar from "../sidebar";
 
 const mock_profile: TProfile = {
+	admin: true,
 	first_name: "Alex",
 	last_name: "T",
 	position: "developer",

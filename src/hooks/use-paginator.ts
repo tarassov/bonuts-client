@@ -2,8 +2,9 @@
 import { ApiEndpointQuery } from "@reduxjs/toolkit/dist/query/core/module";
 import { QueryHooks } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import { QueryDefinition } from "@reduxjs/toolkit/dist/query";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { USE_POLLING_INTERVAL } from "../config";
+import { TPageable } from "../types/api";
 
 type GetResultType<T> = T extends ApiEndpointQuery<
 	QueryDefinition<any, any, string, infer ResultType, string>,
@@ -98,10 +99,15 @@ export function usePaginator<
 		}
 	}, [pages, temp]);
 
+	const paginatedPages = useMemo(() => {
+		return pages as Array<TPageable<GetResultType<Endpoint>>>;
+	}, [pages]);
+
 	return {
 		endpoint,
 		result,
 		pages,
+		paginatedPages,
 		isLoading: isLoading && currentPage === 1,
 		fetchNext,
 		currentPage,

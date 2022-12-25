@@ -1,9 +1,6 @@
 import { FetchBaseQueryMeta } from "@reduxjs/toolkit/dist/query";
 import { bonutsApi, GetEventsApiResponse } from "./bonuts-api";
-export type TPaginator = {
-	perPage: number;
-	totalPages: number;
-};
+import { TPageable, TPaginator } from "../../types/api";
 
 const getPaginator = (meta: FetchBaseQueryMeta | undefined): TPaginator => {
 	return {
@@ -11,15 +8,13 @@ const getPaginator = (meta: FetchBaseQueryMeta | undefined): TPaginator => {
 		totalPages: Number(meta?.response?.headers.get("Total")),
 	};
 };
+// noinspection TypeScriptValidateJSTypes
 export const extendedApi = bonutsApi.enhanceEndpoints({
 	addTagTypes: ["Event"],
 	endpoints: {
 		getEvents: {
 			providesTags: ["Event"],
-			transformResponse: (
-				response: GetEventsApiResponse & { paginator: TPaginator },
-				meta
-			) => {
+			transformResponse(response: TPageable<GetEventsApiResponse>, meta) {
 				response.paginator = getPaginator(meta);
 				return response;
 			},

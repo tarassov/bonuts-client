@@ -7,7 +7,7 @@ import {
 } from "@mui/icons-material";
 import ActiveRequestsPage from "../pages/requests/active-requests-page.tsx/active-requests-page";
 import ClosedRequestsPage from "../pages/requests/closed-requests-page/closed-request-page";
-import DashboardPage from "../pages/dashboard-page/dashboard-page";
+import Index from "../pages/dashboard-page";
 import HomePage from "../pages/home-page/home-page";
 import IncomingRequestsPage from "../pages/requests/incoming-requests-page/incomig-requests-page";
 import LoginPage from "../pages/login-page/login-page";
@@ -84,7 +84,7 @@ export const dashBoardRoute: TRoute = {
 	authenticated: true,
 	navbarName: "Dashboard",
 	hideInMenu: false,
-	component: <DashboardPage />,
+	component: <Index />,
 	redirect: loginRoute,
 	icon: <Dashboard />,
 };
