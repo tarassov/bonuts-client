@@ -12,9 +12,9 @@ export const BNTAppBar = styled(AppBar, {
 	shouldForwardProp: (prop) => prop !== "open" && prop !== "fullwidth",
 })<BNTAppBarProps>(({ theme, open, fullwidth }) => {
 	return {
-		zIndex: theme.zIndex.drawer + 1,
 		backgroundColor: theme.palette.background.default,
 		color: theme.palette.getContrastText(theme.palette.background.default),
+		boxShadow: "none",
 		transition: theme.transitions.create(["width", "margin"], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,

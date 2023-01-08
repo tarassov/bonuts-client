@@ -15,6 +15,7 @@ import { useMemo, useState } from "react";
 import { AppContextType } from "../../types/context";
 import { AppContext } from "../../context";
 import { BNTDrawerHeader } from "../../base/BNTDrawer";
+import "./app.scss";
 
 import BNTSidebar from "../sidebar";
 

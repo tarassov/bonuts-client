@@ -10,7 +10,7 @@ export const BNTStyledCardHeader = styled(
 	{}
 )(({ theme }) => {
 	return {
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: theme.palette.background.paper,
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		position: "relative",
 		paddingBottom: "15px",

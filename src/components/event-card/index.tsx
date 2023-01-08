@@ -17,7 +17,7 @@ export const BNTStyledEventCard = styled(
 )(({ theme }) => {
 	return {
 		zIndex: theme.zIndex.drawer + 1,
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: theme.palette.background.paper,
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		maxWidth: 700,
 		transition: theme.transitions.create(["width", "margin"], {
@@ -32,6 +32,7 @@ export const BNTStyledEventCard = styled(
 		},
 		[cl(EVENT_CARD_CLASSES.cardActions)]: {
 			display: "flex",
+			marginRight: "5px",
 		},
 		[cl(EVENT_CARD_CLASSES.cardDateCaption)]: {
 			marginLeft: "auto",

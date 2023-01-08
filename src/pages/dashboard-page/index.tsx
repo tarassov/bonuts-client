@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { FC, SyntheticEvent, useEffect } from "react";
 import { usePaginator } from "../../hooks/use-paginator";
 import { extendedApi } from "../../services/api/extended-api";
@@ -47,21 +47,30 @@ const Index: FC = () => {
 	}
 
 	return (
-		<>
-			<Typography>Dashboard</Typography>
+		<Box ml={2} mt={2}>
 			{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
-			{pages &&
-				pages.map((page) => {
-					const data = apiTranslator.toPosts(page);
-					return (
-						data &&
-						data.map((post) => {
-							return <BNTStyledEventCard key={post.id} post={post} />;
-						})
-					);
-				})}
+			<Grid
+				container
+				rowSpacing={{ xs: 2 }}
+				columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+			>
+				{pages &&
+					pages.map((page) => {
+						const data = apiTranslator.toPosts(page);
+						return (
+							data &&
+							data.map((post) => {
+								return (
+									<Grid item key={post.id} xs={12} sm={12} md={6}>
+										<BNTStyledEventCard post={post} />
+									</Grid>
+								);
+							})
+						);
+					})}
+			</Grid>
 			<Button onClick={onNext}>Next</Button>
-		</>
+		</Box>
 	);
 };
 
