@@ -224,6 +224,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 				likeable_id?: number;
 			}[];
 			public: boolean;
+			position: string;
 		};
 	}[];
 };
@@ -280,6 +281,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 				likeable_id?: number;
 			}[];
 			public: boolean;
+			position: string;
 		};
 	};
 };

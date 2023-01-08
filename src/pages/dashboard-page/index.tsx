@@ -8,7 +8,8 @@ import {
 	GetEventsApiResponse,
 } from "../../services/api/bonuts-api";
 import { apiTranslator } from "../../services/translator";
-import { BNTEventCard } from "../../components/event-card";
+import { BNTEventCard } from "../../components/event-card/event-card";
+import { BNTStyledEventCard } from "../../components/event-card";
 
 const EventCard: FC<{ content: string; id: string }> = ({ content, id }) => {
 	return (
@@ -55,8 +56,7 @@ const Index: FC = () => {
 					return (
 						data &&
 						data.map((post) => {
-							console.log(post);
-							return <BNTEventCard key={post.id} post={post} />;
+							return <BNTStyledEventCard key={post.id} post={post} />;
 						})
 					);
 				})}

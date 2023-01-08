@@ -1,4 +1,4 @@
-import { red } from "@mui/material/colors";
+import { blue, grey, red } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 const lightTheme = {
@@ -16,6 +16,16 @@ const lightTheme = {
 		},
 		error: {
 			main: red.A400,
+		},
+		neutral: {
+			main: grey["A200"],
+			dark: grey["A400"],
+			light: grey["A100"],
+		},
+		info: {
+			main: blue["A200"],
+			dark: blue["A400"],
+			light: blue["A100"],
 		},
 	},
 };
