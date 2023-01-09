@@ -19,6 +19,9 @@ export const extendedApi = bonutsApi.enhanceEndpoints({
 				return response;
 			},
 		},
+		putEventsById: {
+			invalidatesTags: ["Event"],
+		},
 	},
 });
 

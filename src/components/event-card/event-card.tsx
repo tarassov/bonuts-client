@@ -25,9 +25,10 @@ import {
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Dictionary } from "../../constants/dictionary";
-import { BNTStyledCardHeader } from "./styled-card-header";
+import { BNTStyledCardHeader } from "./event-card-header";
 import classNames from "classnames";
 import { EVENT_CARD_CLASSES } from "./index";
+import { useLikeEvent } from "../../hooks/logic/useLikeEvent";
 
 export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,
@@ -43,16 +44,18 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 		likeable,
 		comments_count,
 		likes,
+		liked,
 		date_string,
 	} = post;
 	const { user_name, avatar_url, position, admin } = profile;
 	const { t } = useTranslation();
 	const [edit, setEdit] = useState(false);
 	const [expanded, setExpanded] = useState(false);
+	const toggleLike = useLikeEvent();
 
 	const handleContentChange = (e: any) => {};
 	const handleSubmitEdit = (e: any) => {};
-	const handleLike = (e: any) => {};
+	const handleLike = (e: any) => toggleLike(post);
 	const handleComment = (e: any) => {};
 	const handleEdit = (e: any) => {};
 	const handleExpandClick = () => {
@@ -114,7 +117,13 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 
 			<CardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
 				{(commentable || likeable) && (
-					<IconButton aria-label="Add to favorites" onClick={handleLike}>
+					<IconButton
+						aria-label="Add to favorites"
+						onClick={handleLike}
+						className={classNames({
+							[EVENT_CARD_CLASSES.liked]: liked,
+						})}
+					>
 						<Favorite />
 						{likes.length > 0 && likes.length}
 					</IconButton>

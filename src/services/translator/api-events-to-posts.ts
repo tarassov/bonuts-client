@@ -16,6 +16,7 @@ export const apiEventsToPosts = (
 			comments_count: target.attributes.comments_count,
 			likeable: true,
 			likes: target.attributes.likes,
+			liked: target.attributes.liked,
 			profile: {
 				first_name: "",
 				last_name: "",

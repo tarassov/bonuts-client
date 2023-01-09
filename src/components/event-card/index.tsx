@@ -16,7 +16,6 @@ export const BNTStyledEventCard = styled(
 	{}
 )(({ theme }) => {
 	return {
-		zIndex: theme.zIndex.drawer + 1,
 		backgroundColor: theme.palette.background.paper,
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		maxWidth: 700,

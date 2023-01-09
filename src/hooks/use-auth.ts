@@ -65,8 +65,14 @@ export function useAuth() {
 	const signIn = async (credentials: PostAuthenticateApiArg) => {
 		try {
 			const payload = await postAuthenticate(credentials).unwrap();
+			let current_tenant = "";
+			if (payload.current_tenant) {
+				current_tenant = payload.current_tenant.name;
+			} else if (payload.tenants.length === 1) {
+				current_tenant = payload.tenants[0].name;
+			}
 			setValue<string>("auth_token", payload.auth_token);
-			setValue<string>("tenant", payload.current_tenant?.name || "");
+			setValue<string>("tenant", current_tenant);
 		} catch (err) {
 			console.log(err);
 		}

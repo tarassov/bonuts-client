@@ -14,6 +14,7 @@ export type TCommentable = {
 export type TLikeable = {
 	likeable: boolean;
 	likes: Array<TLike>;
+	liked: boolean;
 };
 
 export type TTitled = {
