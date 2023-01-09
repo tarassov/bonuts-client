@@ -13,7 +13,7 @@ export const apiEventsToPosts = (
 			id: Number(target.id),
 			commentable: true,
 			comments: target.attributes.comments,
-			comments_count: target.attributes.comment_count,
+			comments_count: target.attributes.comments_count,
 			likeable: true,
 			likes: target.attributes.likes,
 			profile: {

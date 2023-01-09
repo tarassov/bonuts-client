@@ -205,7 +205,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 				user_name: string;
 				date_string: string;
 			}[];
-			comment_count?: number;
+			comments_count: number;
 			user_avatar: {
 				url: string | null;
 				thumb: {
@@ -262,7 +262,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 				user_name: string;
 				date_string: string;
 			}[];
-			comment_count?: number;
+			comments_count: number;
 			user_avatar: {
 				url: string | null;
 				thumb: {
