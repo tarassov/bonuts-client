@@ -116,25 +116,37 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 			</CardContent>
 
 			<CardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
-				{(commentable || likeable) && (
-					<IconButton
-						aria-label="Add to favorites"
-						onClick={handleLike}
-						className={classNames({
-							[EVENT_CARD_CLASSES.liked]: liked,
-						})}
-					>
-						<Favorite />
-						{likes.length > 0 && likes.length}
-					</IconButton>
+				{likeable && (
+					<>
+						<IconButton
+							aria-label="Add to favorites"
+							onClick={handleLike}
+							className={classNames({
+								[EVENT_CARD_CLASSES.liked]: liked,
+							})}
+						>
+							<Favorite />
+						</IconButton>
+						<Box
+							className={classNames(EVENT_CARD_CLASSES.iconCaption, {
+								[EVENT_CARD_CLASSES.liked]: liked,
+							})}
+						>
+							{likes.length > 0 && likes.length}
+						</Box>
+					</>
 				)}
 				{commentable && (
-					<IconButton aria-label="Comment" onClick={handleComment}>
-						<Comment />
-						{comments_count !== undefined &&
-							comments_count !== 0 &&
-							comments_count}
-					</IconButton>
+					<>
+						<IconButton aria-label="Comment" onClick={handleComment}>
+							<Comment />
+						</IconButton>
+						<Box className={classNames(EVENT_CARD_CLASSES.iconCaption)}>
+							{comments_count !== undefined &&
+								comments_count !== 0 &&
+								comments_count}
+						</Box>
+					</>
 				)}
 				{profile !== undefined && profile.admin && (
 					<IconButton onClick={handleEdit} aria-label="edit">

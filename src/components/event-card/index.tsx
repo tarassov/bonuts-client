@@ -9,7 +9,10 @@ export const EVENT_CARD_CLASSES = {
 	cardDateCaption: "card-date-caption",
 	expand: "expand",
 	expandOpened: "expand-opened",
+	iconCaption: "icon-caption",
 };
+
+const iconFontSize = "16px";
 
 export const BNTStyledEventCard = styled(
 	BNTEventCard,
@@ -28,6 +31,12 @@ export const BNTStyledEventCard = styled(
 		},
 		[cl(EVENT_CARD_CLASSES.liked)]: {
 			color: theme.palette.info.light,
+		},
+		[cl(EVENT_CARD_CLASSES.iconCaption)]: {
+			width: "10px",
+			paddingTop: "4px",
+			fontSize: iconFontSize,
+			color: theme.palette.grey.A700,
 		},
 		[cl(EVENT_CARD_CLASSES.cardActions)]: {
 			display: "flex",

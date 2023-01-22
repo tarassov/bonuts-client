@@ -1,6 +1,6 @@
 export type TPaginator = {
 	perPage: number;
-	totalPages: number;
+	total: number;
 };
 
 export type TPageable<T> = T & { paginator: TPaginator };

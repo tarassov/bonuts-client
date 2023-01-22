@@ -11,16 +11,8 @@ import { apiTranslator } from "../../services/translator";
 import { BNTEventCard } from "../../components/event-card/event-card";
 import { BNTStyledEventCard } from "../../components/event-card";
 
-const EventCard: FC<{ content: string; id: string }> = ({ content, id }) => {
-	return (
-		<div>
-			{id}::{content}
-		</div>
-	);
-};
-
 const Index: FC = () => {
-	const { paginatedPages, pages, isLoading, fetchNext, hasNew, applyUpdates } =
+	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } =
 		usePaginator(
 			extendedApi.endpoints.getEvents,
 			{
@@ -32,7 +24,7 @@ const Index: FC = () => {
 		);
 	useEffect(() => {
 		if (!pages) return;
-		pages.forEach((p) => {
+		Object.values(pages).forEach((p) => {
 			const items = p.data || [];
 			items.forEach((i) => {});
 		});
@@ -55,7 +47,7 @@ const Index: FC = () => {
 				columnSpacing={{ xs: 1, sm: 2, md: 3 }}
 			>
 				{pages &&
-					pages.map((page) => {
+					Object.values(pages).map((page) => {
 						const data = apiTranslator.toPosts(page);
 						return (
 							data &&
@@ -69,7 +61,7 @@ const Index: FC = () => {
 						);
 					})}
 			</Grid>
-			<Button onClick={onNext}>Next</Button>
+			{hasNext && <Button onClick={onNext}>Next</Button>}
 		</Box>
 	);
 };
