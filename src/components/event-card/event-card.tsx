@@ -140,12 +140,12 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 					</Typography>
 				)}
 				{edit && (
-					<form
-						// component="form"
+					<Box
+						component={"form"}
 						onSubmit={handleSubmitEdit}
-						// sx={{
-						// 	"& .MuiTextField-root": { m: 1, width: "25ch" },
-						// }}
+						sx={{
+							"& .MuiTextField-root": { m: 1, width: "90%" },
+						}}
 						noValidate
 						autoComplete="off"
 					>
@@ -162,9 +162,9 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 							inputRef={inputRef}
 						/>
 						<Button type="submit" color="primary">
-							Submit
+							{t("Submit")}
 						</Button>
-					</form>
+					</Box>
 				)}
 			</CardContent>
 
