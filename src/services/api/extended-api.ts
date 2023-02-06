@@ -38,7 +38,8 @@ export const extendedApi = bonutsApi.enhanceEndpoints({
 							endpointName,
 							originalArgs,
 							(draft) => {
-								const dataArr = response?.data?.data;
+								const data = response?.data?.data;
+								const dataArr = Array.isArray(data) ? data : [data];
 								Array.isArray(dataArr) &&
 									dataArr.forEach((el) => {
 										if (draft.data) {
