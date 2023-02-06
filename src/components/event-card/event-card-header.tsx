@@ -1,9 +1,5 @@
 import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import { BNTEventCard } from "./event-card";
-import { DRAWER_WIDTH } from "../../constants/layout";
 import { CardHeader, darken } from "@mui/material";
-import { grey, yellow } from "@mui/material/colors";
 
 export const BNTStyledCardHeader = styled(
 	CardHeader,

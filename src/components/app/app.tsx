@@ -19,10 +19,12 @@ import "./app.scss";
 
 import BNTSidebar from "../sidebar";
 
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../services/localization/i18n";
+
 const mock_profile: TProfile = {
 	admin: true,
-	first_name: "Alex",
-	last_name: "T",
+	user_name: "Alex T",
 	position: "developer",
 };
 
@@ -45,21 +47,23 @@ function App() {
 
 	return (
 		<BNTThemeProvider>
-			<Provider store={store}>
-				<HistoryRouter history={history}>
-					<AppContext.Provider value={contextValue}>
-						<Box sx={{ display: "flex" }}>
-							<CssBaseline />
-							<BTNHeader profile={mock_profile} />
-							<BNTSidebar />
-							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-								<BNTDrawerHeader />
-								<SwitchRoutes routes={routes} />
+			<I18nextProvider i18n={i18n}>
+				<Provider store={store}>
+					<HistoryRouter history={history}>
+						<AppContext.Provider value={contextValue}>
+							<Box sx={{ display: "flex" }}>
+								<CssBaseline />
+								<BTNHeader profile={mock_profile} />
+								<BNTSidebar />
+								<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+									<BNTDrawerHeader />
+									<SwitchRoutes routes={routes} />
+								</Box>
 							</Box>
-						</Box>
-					</AppContext.Provider>
-				</HistoryRouter>
-			</Provider>
+						</AppContext.Provider>
+					</HistoryRouter>
+				</Provider>
+			</I18nextProvider>
 		</BNTThemeProvider>
 	);
 }

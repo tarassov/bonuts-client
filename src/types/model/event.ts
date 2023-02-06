@@ -5,4 +5,5 @@ export type TEvent = TBaseModel & {
 	content?: string;
 	extra_content?: string;
 	date_string?: string;
+	editable?: boolean;
 };

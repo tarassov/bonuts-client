@@ -1,5 +1,6 @@
 import { GetEventsApiResponse } from "../api/bonuts-api";
 import { TPost } from "../../types/model/post";
+import { DealType } from "../../types/model/deal_type";
 
 export const apiEventsToPosts = (
 	response: GetEventsApiResponse
@@ -9,27 +10,34 @@ export const apiEventsToPosts = (
 	if (!data) return [];
 
 	return data.map((target) => {
+		const { attributes, id } = target;
 		return {
-			id: Number(target.id),
+			id: Number(id),
 			commentable: true,
-			comments: target.attributes.comments,
-			comments_count: target.attributes.comments_count,
+			comments: attributes.comments,
+			comments_count: attributes.comments_count,
 			likeable: true,
-			likes: target.attributes.likes,
-			liked: target.attributes.liked,
+			likes: attributes.likes,
+			liked: attributes.liked,
+			editable: attributes.editable,
 			profile: {
 				first_name: "",
 				last_name: "",
-				user_name: target.attributes.user_name,
-				position: target.attributes.position,
+				user_name: attributes.user_name,
+				position: attributes.position,
 				admin: false,
-				user_avatar: target.attributes.user_avatar,
+				user_avatar: attributes.user_avatar,
 			},
-			title: target.attributes.user_name,
-			content: target.attributes.content,
-			extra_content: target.attributes.extra_content || "",
-			date_string: target.attributes.date_string,
-			public: target.attributes.public,
+			title: attributes.user_name,
+			content: attributes.content,
+			extra_content: attributes.extra_content || "",
+			date_string: attributes.date_string,
+			public: attributes.public,
+			operation: {
+				...attributes.operation,
+				deal_type: attributes.operation?.deal_type as DealType,
+				created_at: target.attributes.date_string,
+			},
 		};
 	});
 };

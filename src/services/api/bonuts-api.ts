@@ -215,6 +215,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 					url: string | null;
 				};
 			};
+			editable?: boolean;
 			liked: boolean;
 			likes: {
 				id: number;
@@ -225,6 +226,28 @@ export type GetEventsApiResponse = /** status 200 success */ {
 			}[];
 			public: boolean;
 			position: string;
+			operation?: {
+				id?: number;
+				direction?: number;
+				amount?: number;
+				deal_type?: string;
+				created_at?: string;
+				to_user_name?: string;
+				to_profile?: {
+					id: number;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+					position?: string;
+				};
+			};
 		};
 	}[];
 };
@@ -235,21 +258,35 @@ export type GetEventsApiArg = {
 };
 export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 	data?: {
-		id: string;
-		type: string;
-		attributes: {
-			content: string;
-			extra_content?: string | null;
-			id: number;
-			date_string: string;
-			user_id: number;
-			user_name: string;
-			comments: {
-				id: number;
+		data?: {
+			id: string;
+			type: string;
+			attributes: {
 				content: string;
-				liked?: boolean;
-				likes: number;
-				public: boolean;
+				extra_content?: string | null;
+				id: number;
+				date_string: string;
+				user_id: number;
+				user_name: string;
+				comments: {
+					id: number;
+					content: string;
+					liked?: boolean;
+					likes: number;
+					public: boolean;
+					user_avatar: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+					user_name: string;
+					date_string: string;
+				}[];
+				comments_count: number;
 				user_avatar: {
 					url: string | null;
 					thumb: {
@@ -259,30 +296,41 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 						url: string | null;
 					};
 				};
-				user_name: string;
-				date_string: string;
-			}[];
-			comments_count: number;
-			user_avatar: {
-				url: string | null;
-				thumb: {
-					url: string | null;
-				};
-				preview: {
-					url: string | null;
+				editable?: boolean;
+				liked: boolean;
+				likes: {
+					id: number;
+					profile_id: number;
+					created_at?: string;
+					likeable_type?: string;
+					likeable_id?: number;
+				}[];
+				public: boolean;
+				position: string;
+				operation?: {
+					id?: number;
+					direction?: number;
+					amount?: number;
+					deal_type?: string;
+					created_at?: string;
+					to_user_name?: string;
+					to_profile?: {
+						id: number;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+						position?: string;
+					};
 				};
 			};
-			liked: boolean;
-			likes: {
-				id: number;
-				profile_id: number;
-				created_at?: string;
-				likeable_type?: string;
-				likeable_id?: number;
-			}[];
-			public: boolean;
-			position: string;
-		};
+		}[];
 	};
 };
 export type PutEventsByIdApiArg = {

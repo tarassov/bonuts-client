@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { TPost } from "../../types/model/post";
 import {
 	Android,
@@ -28,7 +28,10 @@ import { Dictionary } from "../../constants/dictionary";
 import { BNTStyledCardHeader } from "./event-card-header";
 import classNames from "classnames";
 import { EVENT_CARD_CLASSES } from "./index";
-import { useLikeEvent } from "../../hooks/logic/useLikeEvent";
+import { useEventLogic } from "../../hooks/logic/useEventLogic";
+import { BNTOperationText } from "../opearation-text/operation-text";
+import { BNTStyledOperationText } from "../opearation-text";
+import { focusInput } from "../../helpers/focus-input";
 
 export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,
@@ -46,28 +49,61 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 		likes,
 		liked,
 		date_string,
+		editable,
 	} = post;
-	const { user_name, avatar_url, position, admin } = profile;
+	const { user_name, user_avatar, position, admin } = profile;
 	const { t } = useTranslation();
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
 	const [expanded, setExpanded] = useState(false);
-	const toggleLike = useLikeEvent();
+	const { toggleLike, updateEvent } = useEventLogic();
 
 	const handleContentChange = (e: any) => {};
-	const handleSubmitEdit = (e: any) => {};
+	const handleSubmitEdit = (e: any) => {
+		updateEvent(post, { content: e.target.content.value });
+		setEdit(false);
+		e.preventDefault();
+	};
 	const handleLike = (e: any) => toggleLike(post);
 	const handleComment = (e: any) => {};
-	const handleEdit = (e: any) => {};
+	const handleEdit = (e: any) => {
+		e.preventDefault();
+		setEdit(() => !edit);
+	};
+
+	const onBlur = () => {
+		setTimeout(() => {
+			setEdit(false);
+		}, 100);
+	};
+
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
+
+	useEffect(() => {
+		if (edit && inputRef?.current) {
+			const timeout = setTimeout(() => {
+				focusInput(inputRef.current);
+			}, 100);
+
+			return () => {
+				clearTimeout(timeout);
+			};
+		}
+	}, [edit]);
 
 	return (
 		<Card className={className}>
 			<BNTStyledCardHeader
 				avatar={
 					<>
-						{isPublic && <Avatar src={avatar_url} alt={user_name} />}
+						{isPublic && (
+							<Avatar
+								src={user_avatar?.thumb?.url || undefined}
+								alt={user_name}
+							/>
+						)}
 						{!isPublic && (
 							<Avatar>
 								<Android />
@@ -95,20 +131,37 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 			/>
 
 			<CardContent>
-				{/*<OperationContainer receiver operation={post.operation} />*/}
-				{!edit && <Typography component="p">{content}</Typography>}
+				{post.operation && (
+					<BNTStyledOperationText operation={post.operation} />
+				)}
+				{!edit && (
+					<Typography variant="body2" component="p">
+						{content}
+					</Typography>
+				)}
 				{edit && (
-					<form onSubmit={handleSubmitEdit} noValidate autoComplete="off">
+					<form
+						// component="form"
+						onSubmit={handleSubmitEdit}
+						// sx={{
+						// 	"& .MuiTextField-root": { m: 1, width: "25ch" },
+						// }}
+						noValidate
+						autoComplete="off"
+					>
 						<TextField
 							autoFocus
 							margin="dense"
 							id="content_value"
-							onChange={handleContentChange}
-							value={content}
+							name="content"
+							//onChange={handleContentChange}
+							defaultValue={content}
 							fullWidth
+							///	onBlur={onBlur}
 							multiline
+							inputRef={inputRef}
 						/>
-						<Button type="submit" color="primary" autoFocus>
+						<Button type="submit" color="primary">
 							Submit
 						</Button>
 					</form>
@@ -148,7 +201,7 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 						</Box>
 					</>
 				)}
-				{profile !== undefined && profile.admin && (
+				{editable && (
 					<IconButton onClick={handleEdit} aria-label="edit">
 						<Edit />
 					</IconButton>

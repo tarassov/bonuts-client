@@ -1,6 +1,6 @@
 import { Avatar, Box, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { FC, useContext, useState, MouseEvent } from "react";
-import { BNTAppBar } from "../../base/BNTAppBar/BNTAppBar";
+import { BNTAppBar } from "../../base/menu/app-bar";
 import { BNTToolbar } from "../../base/BNTToolbar";
 import { BNTTypography } from "../../base/BNTTypography/BNTTypography";
 import { TProfile } from "../../types/model";
@@ -58,7 +58,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 					>
 						<div>
 							<BNTTypography variant="button">
-								{profile.first_name + " " + profile.last_name}
+								{profile.user_name}
 							</BNTTypography>
 							<br />
 							<BNTTypography variant="caption" display="block" gutterBottom>
@@ -73,7 +73,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 							aria-label="Avatar"
 							onClick={handleClick}
 						>
-							<Avatar alt={`${profile.first_name} ${profile.last_name}`} />
+							<Avatar alt={`${profile.user_name}`} />
 						</IconButton>
 						<Menu
 							anchorEl={anchorEl}

@@ -31,19 +31,25 @@ export const extendedApi = bonutsApi.enhanceEndpoints({
 					endpointName,
 					originalArgs,
 				} of extendedApi.util.selectInvalidatedBy(getState(), ["Event"])) {
-					// we only want to update `getPosts` here
+					// we only want to update `getEvents` here
 					if (endpointName !== "getEvents") continue;
 					dispatch(
 						bonutsApi.util.updateQueryData(
 							endpointName,
 							originalArgs,
 							(draft) => {
-								if (draft.data) {
-									const event = draft.data.find((event) => event.id === id);
-									if (event) {
-										Object.assign(event, response.data.data);
-									}
-								}
+								const dataArr = response?.data?.data;
+								Array.isArray(dataArr) &&
+									dataArr.forEach((el) => {
+										if (draft.data) {
+											const event = draft.data.find(
+												(event) => event.id === el.id
+											);
+											if (event) {
+												Object.assign(event, el);
+											}
+										}
+									});
 							}
 						)
 					);
