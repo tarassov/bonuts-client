@@ -15,6 +15,7 @@ type TRoute = {
 	authenticatedRedirect?: TRoute;
 	parentRoute?: TRoute;
 	icon?: JSX.Element;
+	index?: number;
 };
 
 type TRedirect = {
@@ -33,4 +34,6 @@ type BNTRouteMenuButtonProps = {
 	route: TRoute;
 	showFullName: boolean;
 	showTooltip?: boolean;
+
+	onBeforeClick?: () => { redirect: boolean };
 };

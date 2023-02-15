@@ -2,15 +2,17 @@ import React, { FC, useContext } from "react";
 import { ListItem } from "@mui/material";
 import { BNTRouteMenuButton } from "./route-menu-button";
 import { AppContext } from "../../context";
+import { useAuth } from "../../hooks/use-auth";
 
 export const BNTRoutesMenu: FC<BNTRoutesMenuProps> = ({
 	showFullName,
 	showTooltip,
 }) => {
-	const { routes } = useContext(AppContext);
+	const { menuRoutes } = useContext(AppContext);
+	const { auth, signOut } = useAuth();
 	return (
 		<>
-			{routes.map((route) => (
+			{menuRoutes.map((route) => (
 				<ListItem
 					key={route.navbarName}
 					disablePadding

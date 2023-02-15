@@ -45,10 +45,12 @@ const appRoutes: Array<TRoute> = [
 
 export const getRoutes = (): Array<TRoute> => {
 	const redirects = getRedirects();
-	return appRoutes.map((route) => {
-		const redirect = redirects.find(
-			(r) => r.authenticated && r.from.path === route.path
-		);
-		return { ...route, authenticatedRedirect: redirect?.to };
-	});
+	return appRoutes
+		.sort((a, b) => (a.index || 0) - (b.index || 0))
+		.map((route) => {
+			const redirect = redirects.find(
+				(r) => r.authenticated && r.from.path === route.path
+			);
+			return { ...route, authenticatedRedirect: redirect?.to };
+		});
 };

@@ -12,10 +12,14 @@ export const BNTRouteMenuButton: FC<BNTRouteMenuButtonProps> = ({
 	route,
 	showFullName,
 	showTooltip,
+	onBeforeClick = () => {
+		return { redirect: true };
+	},
 }) => {
 	const dispatch = useAppDispatch();
-	const onClick = () => {
-		dispatch(push(route.path));
+	const onRouteClick = () => {
+		const { redirect } = onBeforeClick();
+		redirect && dispatch(push(route.path));
 	};
 
 	return (
@@ -26,7 +30,7 @@ export const BNTRouteMenuButton: FC<BNTRouteMenuButtonProps> = ({
 					justifyContent: showFullName ? "initial" : "center",
 					px: 2.5,
 				}}
-				onClick={onClick}
+				onClick={onRouteClick}
 			>
 				<ListItemIcon
 					sx={{

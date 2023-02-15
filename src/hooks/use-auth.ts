@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { push } from "redux-first-history";
 import {
+	bonutsApi,
 	PostAuthenticateApiArg,
 	PostRegisterApiArg,
 	useGetProfileQuery,
@@ -80,6 +81,7 @@ export function useAuth() {
 
 	const signOut = async () => {
 		setValue("token", null);
+		dispatch(bonutsApi.util.resetApiState());
 		dispatch(logout());
 	};
 

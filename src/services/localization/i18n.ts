@@ -21,6 +21,7 @@ i18n.use(LanguageDetector).init({
 				"name has been taken": "NAME HAS BEEN TAKEN",
 				"Log in": "Log in",
 				Sign_In: "Sign In",
+				Sign_Out: "Sign Out",
 				Sign_Up: "Sign Up",
 				"Recover password": "Recover password",
 
@@ -216,6 +217,7 @@ i18n.use(LanguageDetector).init({
 				Settings: "Настройки",
 				Schedule: "Расписание",
 				Schedulers: "Расписания",
+				Sign_Out: "Выход",
 				Sign_In: "Войти",
 				Sign_Up: "Регистрация",
 				Statistic: "Статистика",

@@ -4,6 +4,7 @@ import {
 	RestorePage,
 	Settings,
 	Person,
+	LogoutOutlined,
 } from "@mui/icons-material";
 import ActiveRequestsPage from "../pages/requests/active-requests-page.tsx/active-requests-page";
 import ClosedRequestsPage from "../pages/requests/closed-requests-page/closed-request-page";
@@ -62,11 +63,13 @@ export const restoreRoute: TRoute = {
 };
 export const logoutRoute: TRoute = {
 	path: "/logout",
-	anonymous: true,
-	authenticated: false,
+	anonymous: false,
+	authenticated: true,
 	navbarName: "Exit",
-	hideInMenu: true,
+	hideInMenu: false,
 	component: <LogOutPage />,
+	icon: <LogoutOutlined />,
+	index: 100,
 };
 
 export const homeRoute: TRoute = {
