@@ -14,8 +14,13 @@ const baseQuery = fetchBaseQuery({
 		if (isAuthenticated) {
 			headers.set("Authorization", `Bearer ${getValue("auth_token")}`);
 		}
+
+		headers.set("Accept", "application/json");
+		headers.set("Content-Type", "application/json");
 		return headers;
 	},
+	mode: "cors",
+	credentials: "include",
 });
 
 // initialize an empty api service that we'll inject endpoints into later as needed

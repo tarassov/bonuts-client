@@ -1,8 +1,3 @@
-// import { AsyncThunk, SerializedError, unwrapResult } from "@reduxjs/toolkit";
-
-// import { useNavigate } from "react-router-dom";
-// // import { IReposnse, ILoginRequest, IRegisterRequest } from "../api/types";
-// import { fireError } from "../services/actions/system-actions";
 import { useState, useEffect } from "react";
 import { push } from "redux-first-history";
 import {
@@ -19,6 +14,7 @@ import { useStorage } from "./use-storage";
 
 // const MAX_RETRY_NUMBER = 3;
 
+//TODO: now we use localStorage for saving auth_token. We should remove it as soon as new backend wiil be deployed since it is unsave and we should use only cookie for jwt
 export function useAuth() {
 	const dispatch = useAppDispatch();
 	const auth = useAppSelector((store) => store.auth);
@@ -80,7 +76,8 @@ export function useAuth() {
 	};
 
 	const signOut = async () => {
-		setValue("token", null);
+		setValue<string | null>("auth_token", null);
+		setValue<string | null>("tenant", null);
 		dispatch(bonutsApi.util.resetApiState());
 		dispatch(logout());
 	};
