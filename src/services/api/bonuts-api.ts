@@ -11,6 +11,13 @@ const injectedRtkApi = api.injectEndpoints({
 				body: queryArg.body,
 			}),
 		}),
+		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
+			query: (queryArg) => ({
+				url: `/avatars`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts`,
@@ -62,6 +69,16 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
+		putProfilesById: build.mutation<
+			PutProfilesByIdApiResponse,
+			PutProfilesByIdApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/profiles/${queryArg.id}`,
+				method: "PUT",
+				body: queryArg.body,
+			}),
+		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
 			query: (queryArg) => ({
 				url: `/profiles`,
@@ -104,6 +121,12 @@ const injectedRtkApi = api.injectEndpoints({
 				body: queryArg.body,
 			}),
 		}),
+		postRefreshToken: build.mutation<
+			PostRefreshTokenApiResponse,
+			PostRefreshTokenApiArg
+		>({
+			query: () => ({ url: `/refresh_token`, method: "POST" }),
+		}),
 	}),
 	overrideExisting: false,
 });
@@ -120,6 +143,85 @@ export type PostAccountOperationsApiArg = {
 		is_for_distrib?: boolean;
 		burn_old?: boolean;
 		to_self_account?: boolean;
+	};
+};
+export type PostAvatarsApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			user_id?: number;
+			active?: boolean;
+			admin?: boolean;
+			attached?: boolean;
+			roles?: string[];
+			default?: boolean;
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			first_name?: string;
+			last_name?: string;
+			email?: string;
+			sex?: string;
+			name?: string;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+		relationships?: {
+			user?: {
+				data: {
+					id: string;
+					type: string;
+				};
+			};
+		};
+	};
+	included?: {
+		id: string;
+		type: "user";
+		attributes: {
+			id: number;
+			email: string;
+			last_name: string;
+			first_name: string;
+			sex: string;
+			notes?: (string | null) | null;
+			email_confirmed: boolean;
+			name: string;
+		};
+	}[];
+};
+export type PostAvatarsApiArg = {
+	body: {
+		id: number;
+		tenant: string;
+		uploaded_image: any;
 	};
 };
 export type GetDonutsApiResponse = /** status 200 success */ {
@@ -353,11 +455,216 @@ export type PostInvitationsApiArg = {
 		tenant?: string;
 	};
 };
-export type GetProfileApiResponse = unknown;
+export type GetProfileApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			user_id?: number;
+			active?: boolean;
+			admin?: boolean;
+			attached?: boolean;
+			roles?: string[];
+			default?: boolean;
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			first_name?: string;
+			last_name?: string;
+			email?: string;
+			sex?: string;
+			name?: string;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+		relationships?: {
+			user?: {
+				data: {
+					id: string;
+					type: string;
+				};
+			};
+		};
+	};
+	included?: {
+		id: string;
+		type: "user";
+		attributes: {
+			id: number;
+			email: string;
+			last_name: string;
+			first_name: string;
+			sex: string;
+			notes?: (string | null) | null;
+			email_confirmed: boolean;
+			name: string;
+		};
+	}[];
+};
 export type GetProfileApiArg = {
 	tenant?: string;
 };
-export type GetProfilesApiResponse = unknown;
+export type PutProfilesByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			user_id?: number;
+			active?: boolean;
+			admin?: boolean;
+			attached?: boolean;
+			roles?: string[];
+			default?: boolean;
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			first_name?: string;
+			last_name?: string;
+			email?: string;
+			sex?: string;
+			name?: string;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+		relationships?: {
+			user?: {
+				data: {
+					id: string;
+					type: string;
+				};
+			};
+		};
+	};
+	included?: {
+		id: string;
+		type: "user";
+		attributes: {
+			id: number;
+			email: string;
+			last_name: string;
+			first_name: string;
+			sex: string;
+			notes?: (string | null) | null;
+			email_confirmed: boolean;
+			name: string;
+		};
+	}[];
+};
+export type PutProfilesByIdApiArg = {
+	id: string;
+	body: {
+		email?: string;
+		first_name?: string;
+		last_name?: string;
+		department_id?: number | null;
+		position?: string;
+		admin?: boolean;
+		active?: boolean;
+		tenant?: string;
+	};
+};
+export type GetProfilesApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			user_id?: number;
+			active?: boolean;
+			admin?: boolean;
+			attached?: boolean;
+			roles?: string[];
+			default?: boolean;
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			first_name?: string;
+			last_name?: string;
+			email?: string;
+			sex?: string;
+			name?: string;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+	}[];
+};
 export type GetProfilesApiArg = {
 	tenant?: string;
 };
@@ -400,12 +707,26 @@ export type PostAuthenticateApiResponse = /** status 200 success */ {
 		welcome_donuts: number;
 		email_notification: boolean;
 		birthday_donuts: number;
+		birthday_points: number;
 		join_to_project_donuts: number;
 		join_to_company_donuts: number;
+		join_to_project_points: number;
+		join_to_company_points: number;
 		use_departments: boolean;
+		test?: boolean;
 	}[];
 	auth_token: string;
-	current_tenant?: {
+	username?: string | null;
+	currentTenant?: (string | null) | null;
+};
+export type PostAuthenticateApiArg = {
+	body: {
+		email: string;
+		password: string;
+	};
+};
+export type PostRefreshTokenApiResponse = /** status 200 success */ {
+	tenants: {
 		id: number;
 		name: string;
 		caption?: string | null;
@@ -424,28 +745,33 @@ export type PostAuthenticateApiResponse = /** status 200 success */ {
 		welcome_donuts: number;
 		email_notification: boolean;
 		birthday_donuts: number;
+		birthday_points: number;
 		join_to_project_donuts: number;
 		join_to_company_donuts: number;
+		join_to_project_points: number;
+		join_to_company_points: number;
 		use_departments: boolean;
-	};
+		test?: boolean;
+	}[];
+	auth_token: string;
+	username?: string | null;
+	currentTenant?: (string | null) | null;
 };
-export type PostAuthenticateApiArg = {
-	body: {
-		email: string;
-		password: string;
-	};
-};
+export type PostRefreshTokenApiArg = void;
 export const {
 	usePostAccountOperationsMutation,
+	usePostAvatarsMutation,
 	useGetDonutsQuery,
 	useGetEventsQuery,
 	usePutEventsByIdMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsMutation,
 	useGetProfileQuery,
+	usePutProfilesByIdMutation,
 	useGetProfilesQuery,
 	usePostTenantsByTenantNameJoinMutation,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
 	usePostAuthenticateMutation,
+	usePostRefreshTokenMutation,
 } = injectedRtkApi;

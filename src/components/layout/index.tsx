@@ -11,19 +11,19 @@ import { TProfile } from "../../types/model";
 import "../app/app.scss";
 import { history } from "../../services/store/store";
 import { HistoryRouter } from "redux-first-history/rr6";
-const mock_profile: TProfile = {
-	admin: true,
-	user_name: "Alex T",
-	position: "developer",
-};
+import { BNTModalLoader } from "../../base/loader/modal-loader";
+import { useProfileLogic } from "../../hooks/logic/useProfileLogic";
+
 export const BNTLayout = () => {
 	const { auth } = useAuth();
 	const { routes } = useContext(AppContext);
+	const { profile, isLoading } = useProfileLogic();
 
 	return (
 		<Box sx={{ display: "flex" }}>
 			<CssBaseline />
-			{auth.isAuthenticated && <BTNHeader profile={mock_profile} />}
+			<BNTModalLoader loading={isLoading} />
+			{auth.isAuthenticated && <BTNHeader profile={profile} />}
 			{auth.isAuthenticated && <BNTSidebar />}
 			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 				{auth.isAuthenticated && <BNTDrawerHeader />}

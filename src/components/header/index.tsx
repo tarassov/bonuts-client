@@ -11,7 +11,7 @@ import { Theme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import { BNTRoutesMenu } from "../main-menu/routes-menu";
 type BTNHeaderProps = {
-	profile: TProfile;
+	profile?: TProfile | null;
 };
 
 export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
@@ -58,11 +58,11 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 					>
 						<div>
 							<BNTTypography variant="button">
-								{profile.user_name}
+								{profile?.user_name}
 							</BNTTypography>
 							<br />
 							<BNTTypography variant="caption" display="block" gutterBottom>
-								{profile.position}W
+								{profile?.position}
 							</BNTTypography>
 						</div>
 					</Box>
@@ -73,7 +73,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 							aria-label="Avatar"
 							onClick={handleClick}
 						>
-							<Avatar alt={`${profile.user_name}`} />
+							<Avatar alt={`${profile?.user_name}`} />
 						</IconButton>
 						<Menu
 							anchorEl={anchorEl}

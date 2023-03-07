@@ -44,7 +44,7 @@ export function useAuth() {
 		} else {
 			setSkip(true);
 		}
-	}, [auth]);
+	}, [auth.token]);
 
 	const getAuth = (): TAuth => {
 		return {
@@ -63,10 +63,10 @@ export function useAuth() {
 		try {
 			const payload = await postAuthenticate(credentials).unwrap();
 			let current_tenant = "";
-			if (payload.current_tenant) {
-				current_tenant = payload.current_tenant.name;
+			if (payload.currentTenant) {
+				current_tenant = payload.currentTenant;
 			} else if (payload.tenants.length === 1) {
-				current_tenant = payload.tenants[0].name;
+				current_tenant = payload.tenants[0]?.name || "";
 			}
 			setValue<string>("auth_token", payload.auth_token);
 			setValue<string>("tenant", current_tenant);

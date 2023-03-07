@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { BNTEventCard } from "../event-card/event-card";
+import { BNTEventCard } from "../event/event-card/event-card";
 import { cl } from "../../themes/helper";
 import { BNTOperationText } from "./operation-text";
 

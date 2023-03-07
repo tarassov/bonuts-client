@@ -20,13 +20,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../../services/localization/i18n";
 
 import { BNTLayout } from "../layout";
-import BNTSidebar from "../sidebar";
-import { BNTDrawerHeader } from "../../base/BNTDrawer";
-const mock_profile: TProfile = {
-	admin: true,
-	user_name: "Alex T",
-	position: "developer",
-};
+
 function App() {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
 	const toggleDrawer = () => {

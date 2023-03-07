@@ -3,8 +3,8 @@ import { TUser } from "./user";
 export type TProfile = {
 	id?: number;
 	user_id?: number;
-	position?: string;
-	user_name?: string;
+	position?: string | null;
+	user_name?: string | null;
 	admin?: boolean;
 	user_avatar?: {
 		url?: string | null;

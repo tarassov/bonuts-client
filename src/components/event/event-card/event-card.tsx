@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { TPost } from "../../types/model/post";
+import { TPost } from "../../../types/model/post";
 import {
 	Android,
 	Comment,
@@ -24,14 +24,14 @@ import {
 	Box,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { Dictionary } from "../../constants/dictionary";
+import { Dictionary } from "../../../constants/dictionary";
 import { BNTStyledCardHeader } from "./event-card-header";
 import classNames from "classnames";
-import { EVENT_CARD_CLASSES } from "./index";
-import { useEventLogic } from "../../hooks/logic/useEventLogic";
-import { BNTOperationText } from "../opearation-text/operation-text";
-import { BNTStyledOperationText } from "../opearation-text";
-import { focusInput } from "../../helpers/focus-input";
+import { EVENT_CARD_CLASSES } from "./event-card-styled";
+import { useEventLogic } from "../../../hooks/logic/useEventLogic";
+import { BNTOperationText } from "../../opearation-text/operation-text";
+import { BNTStyledOperationText } from "../../opearation-text";
+import { focusInput } from "../../../helpers/focus-input";
 
 export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,
@@ -101,7 +101,7 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 						{isPublic && (
 							<Avatar
 								src={user_avatar?.thumb?.url || undefined}
-								alt={user_name}
+								alt={user_name || undefined}
 							/>
 						)}
 						{!isPublic && (

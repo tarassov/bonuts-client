@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { BNTEventCard } from "./event-card";
-import { cl } from "../../themes/helper";
+import { cl } from "../../../themes/helper";
 
 export const EVENT_CARD_CLASSES = {
 	cardPrivate: "card-private",
