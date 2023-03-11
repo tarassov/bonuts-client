@@ -4,4 +4,6 @@ export enum Dictionary {
 	REFRESH = "Refresh",
 
 	SIGN_OUT = "Sign_Out",
+	SUBMIT = "Submit",
+	DISCARD = "Discard",
 }

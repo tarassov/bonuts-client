@@ -57,6 +57,7 @@ export function usePaginator<
 				: pollingInterval !== undefined
 				? pollingInterval
 				: 5000,
+			refetchOnMountOrArgChange: true,
 		}
 	);
 

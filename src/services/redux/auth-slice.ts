@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { bonutsApi } from "../api/bonuts-api";
 import { RootState } from "../store/store";
 import { TProfile, TUser } from "../../types/model";
+import _ from "lodash";
 
 export type TAuthState = {
 	token: string | null;
@@ -28,8 +29,8 @@ const slice = createSlice({
 			state.tenant = action.payload.tenant;
 		},
 		setProfile: (state: TAuthState, action: PayloadAction<TProfile>) => {
-			console.log(action.payload);
-			state.profile = action.payload;
+			if (!_.isEqual(state.profile, action.payload))
+				state.profile = action.payload;
 		},
 	},
 	extraReducers: (builder) => {

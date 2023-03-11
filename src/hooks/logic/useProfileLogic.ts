@@ -1,5 +1,8 @@
 import { useAppDispatch, useAppSelector } from "../../services/store/store";
-import { useGetProfileQuery } from "../../services/api/bonuts-api";
+import {
+	useGetProfileQuery,
+	usePutProfilesByIdMutation,
+} from "../../services/api/bonuts-api";
 import { useEffect } from "react";
 import {
 	authProfileSelector,
@@ -7,8 +10,10 @@ import {
 	setProfile,
 } from "../../services/redux/auth-slice";
 import { apiProfileToProfile } from "../../services/translator/api-profile-to-profile";
+import { TProfile } from "../../types/model";
 
 export const useProfileLogic = () => {
+	const [putProfile] = usePutProfilesByIdMutation();
 	const authProfile = useAppSelector(authProfileSelector);
 	const authTenant = useAppSelector(authTenantSelector);
 	const dispatch = useAppDispatch();
@@ -26,5 +31,15 @@ export const useProfileLogic = () => {
 		}
 	}, [data]);
 
-	return { profile: authProfile, isLoading };
+	const updateProfile = (profile: TProfile, values: Record<string, any>) => {
+		profile?.id;
+		if (profile.id && authTenant) {
+			putProfile({
+				id: profile?.id.toString(),
+				body: { ...values, tenant: authTenant },
+			});
+		}
+	};
+
+	return { profile: authProfile, isLoading, error, updateProfile };
 };

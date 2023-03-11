@@ -1,3 +1,9 @@
+@import 'mixins.scss';
+
 body {
   //background-color: darkgrey;
+}
+
+.position-relative {
+  position: relative;
 }

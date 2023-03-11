@@ -1,0 +1,29 @@
+@mixin mb-mixin($size) {
+  margin-bottom: $size  + px;
+}
+@mixin m-mixin($size) {
+  margin: $size  + px;
+}
+@mixin mt-mixin($size) {
+  margin-top: $size  + px;
+}
+@mixin ml-mixin($size) {
+  margin-left: $size  + px;
+}
+@mixin mr-mixin($size) {
+  margin-right: $size  + px;
+}
+
+@mixin right-mixin($size) {
+  position: absolute;
+  right: $size  + px;;
+}
+
+@for $i from 1 through 20 {
+  .mb-#{$i} { @include mb-mixin($i); }
+  .mt-#{$i} { @include mt-mixin($i); }
+  .mr-#{$i} { @include mr-mixin($i); }
+  .ml-#{$i} { @include ml-mixin($i); }
+  .m-#{$i} { @include m-mixin($i); }
+  .right-#{$i}{ @include right-mixin($i); }
+}

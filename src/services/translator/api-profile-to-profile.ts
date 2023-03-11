@@ -15,6 +15,9 @@ export const apiProfileToProfile = (
 		user_name: response.data.attributes?.name,
 		admin: response.data.attributes?.admin,
 		user_avatar: response.data.attributes?.user_avatar,
+		email: response.data.attributes?.email,
+		first_name: response.data.attributes?.first_name,
+		last_name: response.data.attributes?.last_name,
 	};
 	return res;
 };

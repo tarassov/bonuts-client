@@ -10,6 +10,7 @@ import {
 import { CloudUpload } from "@mui/icons-material";
 import { usePostAvatarsMutation } from "../../services/api/form-data-api";
 import { extendedApi } from "../../services/api/extended-api";
+import { BntProfileForm } from "../../components/profile/profile-form";
 
 const ProfilePage: React.FC = () => {
 	const [postAvatars] = usePostAvatarsMutation();
@@ -62,6 +63,8 @@ const ProfilePage: React.FC = () => {
 		formPayLoad.append("id", "1");
 		postAvatars(formPayLoad);
 	};
+
+	return <BntProfileForm />;
 
 	return (
 		<Card
