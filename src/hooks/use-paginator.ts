@@ -80,7 +80,7 @@ export function usePaginator<
 		return () => {
 			results.forEach((result) => result.unsubscribe());
 		};
-	}, []);
+	}, [results]);
 
 	const fetchNext = () => {
 		setCurrentPage(currentPage + 1);
@@ -108,7 +108,7 @@ export function usePaginator<
 			}
 			if (Object.keys(newPages).length) setPages({ ...pages, ...newPages });
 		}
-	}, [queries]);
+	}, [queries, results]);
 
 	useEffect(() => {
 		if (isSuccess) {
