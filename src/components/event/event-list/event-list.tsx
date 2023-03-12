@@ -3,8 +3,10 @@ import { FC, SyntheticEvent } from "react";
 import { BNTStyledEventCard } from "../event-card/event-card-styled";
 import { Dictionary } from "../../../constants/dictionary";
 import { useEventListLogic } from "../../../hooks/logic/useEventListLogic";
+import { useBntTranslate } from "../../../hooks/useBntTranslate";
 
 export const BNTEventList: FC = () => {
+	const { translate } = useBntTranslate();
 	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } =
 		useEventListLogic();
 
@@ -38,7 +40,9 @@ export const BNTEventList: FC = () => {
 						);
 					})}
 			</Grid>
-			{hasNext && pages.length && <Button onClick={onNext}>Next</Button>}
+			{hasNext && pages.length && (
+				<Button onClick={onNext}>{translate(Dictionary.MORE)}</Button>
+			)}
 		</Box>
 	);
 };

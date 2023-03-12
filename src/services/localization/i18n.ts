@@ -91,6 +91,7 @@ i18n.use(LanguageDetector).init({
 				"Donut name": "Название плюшки",
 				"Donut added": "Пончик добавлен",
 				"Share donuts": "Перевести пончики",
+				Discard: "Отменить изменения",
 				Donut: "Пончик",
 				Donuts: "Пончики",
 				"Donut description": "Описание пончика",
@@ -198,6 +199,7 @@ i18n.use(LanguageDetector).init({
 				records: "записей",
 				"Refresh or activate": "Обновить или активировать",
 				Rollback: "Вернуть",
+				Roles: "Роли",
 				rows: "строк",
 				//S
 				saved: "сохранено",
@@ -227,6 +229,7 @@ i18n.use(LanguageDetector).init({
 				"Something went wrong.": "Что-то пошло не так.",
 				Surname: "Фамилия",
 				"Submit values": "Отправить",
+				Submit: "Подтвердить",
 
 				//T
 				"Team settings": "Настройки команды",

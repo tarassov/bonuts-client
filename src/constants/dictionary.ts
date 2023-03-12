@@ -6,4 +6,7 @@ export enum Dictionary {
 	SIGN_OUT = "Sign_Out",
 	SUBMIT = "Submit",
 	DISCARD = "Discard",
+	NEXT = "Next",
+	MORE = "More",
+	NO_OPTIONS = "No options",
 }

@@ -1,4 +1,4 @@
-import { TFormField } from "../types/bnt-form";
+import { TFormField, TFormValue } from "./types/bnt-form";
 import { ChangeEvent, FC } from "react";
 import { Grid } from "@mui/material";
 import { BntImage } from "./bnt-image";
@@ -8,10 +8,8 @@ export const BntFormItem: FC<{
 	field: TFormField;
 	value?: any;
 	formId: string;
-	onChange: (e: ChangeEvent<any>) => void;
 	id: string;
-}> = ({ field, value, formId, onChange, id }) => {
-	console.log(field);
+}> = ({ field, value, formId, id }) => {
 	const field_xs = field.xs ? field.xs : 12;
 	const field_sm = field.sm ? field.sm : field_xs;
 	const field_md = field.md ? field.md : field_sm;
@@ -29,13 +27,7 @@ export const BntFormItem: FC<{
 				<BntImage src={value.url} alt="not found" />
 			)}
 			{!field.image && (
-				<BntFormField
-					id={id}
-					field={field}
-					value={value}
-					formId={formId}
-					onChange={onChange}
-				/>
+				<BntFormField id={id} field={field} value={value} formId={formId} />
 			)}
 		</Grid>
 	);

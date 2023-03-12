@@ -21,14 +21,12 @@ const style = {
 
 export const BNTModalLoader: FC<{ loading: boolean }> = ({ loading }) => {
 	return (
-		<Modal
-			aria-labelledby="modal-loader-title"
-			aria-describedby="modal-loader-description"
+		<Backdrop
+			sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
 			open={loading}
+			onClick={() => {}}
 		>
-			<Box sx={style}>
-				<CircularProgress />
-			</Box>
-		</Modal>
+			<CircularProgress color="inherit" />
+		</Backdrop>
 	);
 };

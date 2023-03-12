@@ -31,13 +31,17 @@ export const useProfileLogic = () => {
 		}
 	}, [data]);
 
-	const updateProfile = (profile: TProfile, values: Record<string, any>) => {
+	const updateProfile = async (
+		profile: TProfile,
+		values: Record<string, any>
+	) => {
 		profile?.id;
 		if (profile.id && authTenant) {
-			putProfile({
+			const res = await putProfile({
 				id: profile?.id.toString(),
 				body: { ...values, tenant: authTenant },
 			});
+			return res;
 		}
 	};
 

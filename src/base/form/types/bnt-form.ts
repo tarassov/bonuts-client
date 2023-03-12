@@ -7,8 +7,13 @@ export enum TFieldSize {
 
 export enum TFieldType {
 	password = "password",
+	tags = "tags",
 }
-export type TFormFieldSource = Array<any>;
+export type TFormPrimitiveValue = string | number | boolean | null;
+export type TFormValueArray = Array<TFormPrimitiveValue>;
+export type TFormValue = TFormPrimitiveValue | TFormValueArray;
+export type TFormFieldSourceItem = { key: string | number; label?: string };
+export type TFormFieldSource = Array<TFormFieldSourceItem>;
 export type TFormField = {
 	name: string;
 	label: string;
@@ -29,9 +34,12 @@ export type TFormProps = {
 	hasInitial?: boolean;
 	initialValues?: Record<string, any> | null;
 	formId: string;
-	fields: Array<TFormField>;
+	fields?: Array<TFormField>;
 	submitCaption?: string;
 	onLoad?: () => void;
-	onSubmit?: (values: Record<string, any>) => void;
+	onSubmit?: (
+		values: Record<string, any>
+	) => Promise<{ data?: any; error?: any } | undefined> | undefined;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
+	children?: JSX.Element | JSX.Element[];
 };
