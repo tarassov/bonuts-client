@@ -3,6 +3,7 @@ import { TextField } from "@mui/material";
 import { ChangeEvent, useContext } from "react";
 import { BntFormContext } from "../context/bnt-form-context";
 import { useBntForm } from "../hooks/use-bnt-form";
+import { useBntTranslate } from "../../../hooks/useBntTranslate";
 
 export function BntTextField(props: {
 	name: string;
@@ -17,6 +18,7 @@ export function BntTextField(props: {
 }) {
 	const { name } = props;
 	const { onChange } = useBntForm();
+	const { translate } = useBntTranslate();
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		onChange(name, e.target.value);
 	};
@@ -24,8 +26,8 @@ export function BntTextField(props: {
 		<TextField
 			name={props.name}
 			id={props.id}
-			placeholder={props.placeholder}
-			label={props.label}
+			placeholder={translate(props.placeholder)}
+			label={translate(props.label)}
 			type={props.type}
 			value={props.value}
 			onChange={handleChange}

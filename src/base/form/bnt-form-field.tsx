@@ -1,8 +1,9 @@
-import { TFieldType, TFormField, TFormValue } from "./types/bnt-form";
-import { ChangeEvent, FC } from "react";
+import { TFieldType, TFormField } from "./types/bnt-form";
+import { FC } from "react";
 import { BntTextField } from "./fields/bnt-text-field";
 import { useBntTranslate } from "../../hooks/useBntTranslate";
 import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
+import { BntImageUpload } from "./fields/bnt-image-upload";
 
 export const BntFormField: FC<{
 	field: TFormField;
@@ -13,6 +14,8 @@ export const BntFormField: FC<{
 	const { translate } = useBntTranslate();
 	if (field.type === TFieldType.tags) {
 		return <BntTagAutocomplete id={id} field={field} value={value} />;
+	} else if (field.type === TFieldType.imageUpload) {
+		return <BntImageUpload id={id} field={field} value={value} />;
 	}
 	return (
 		<BntTextField

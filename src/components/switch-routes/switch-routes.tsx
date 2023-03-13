@@ -33,14 +33,11 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 
 	const authenticatedRoutes = useMemo(() => {
 		const aroutes = routes.filter((r) => r.authenticated);
-		console.log(aroutes);
 		return aroutes;
 	}, [routes, auth]);
 
 	const anonymousRoutes = useMemo(() => {
-		console.log(auth);
 		const aroutes = routes.filter((r) => !r.authenticated);
-		console.log(aroutes);
 		return aroutes;
 	}, [routes, auth]);
 

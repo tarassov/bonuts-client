@@ -1,4 +1,5 @@
 export enum Dictionary {
+	EDIT = "Edit",
 	PROFILE = "Profile",
 	ONLY_YOU_CAN_SEE_IT = "Only you can see it",
 	REFRESH = "Refresh",

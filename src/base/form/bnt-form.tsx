@@ -1,6 +1,6 @@
 import { FC, SyntheticEvent, useCallback, useEffect, useState } from "react";
 import { TFormProps, TFormValue } from "./types/bnt-form";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import { BNTTransparentButton } from "../buttons/transparent-button";
 import { useBntTranslate } from "../../hooks/useBntTranslate";
 import { Dictionary } from "../../constants/dictionary";
@@ -30,11 +30,14 @@ export const BntForm: FC<TFormProps> = ({
 	}, [initialValues]);
 
 	const { translate } = useBntTranslate();
-	const onChange = useCallback((name: string, value: TFormValue) => {
-		const newValues = { ...values, [name]: value };
-		setHasChanges(!_.isEqual(newValues, initials));
-		setValues(newValues);
-	}, []);
+	const onChange = useCallback(
+		(name: string, value: TFormValue) => {
+			const newValues = { ...values, [name]: value };
+			setHasChanges(!_.isEqual(newValues, initials));
+			setValues(newValues);
+		},
+		[initials]
+	);
 	const onSubmitForm = (e: SyntheticEvent) => {
 		e.preventDefault();
 		onSubmit?.({ ...initialValues, ...values })?.then((response) => {
@@ -65,7 +68,12 @@ export const BntForm: FC<TFormProps> = ({
 								</>
 							</BntFormContextProvider>
 						</Grid>
-						<Box className="right-10">
+						<Stack
+							direction="row"
+							justifyContent="center"
+							alignItems="center"
+							spacing={2}
+						>
 							{hasChanges && (
 								<>
 									<BNTTransparentButton
@@ -80,7 +88,7 @@ export const BntForm: FC<TFormProps> = ({
 									</BNTTransparentButton>
 								</>
 							)}
-						</Box>
+						</Stack>
 					</Box>
 				</form>
 			)}

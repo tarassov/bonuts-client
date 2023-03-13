@@ -8,10 +8,22 @@ export enum TFieldSize {
 export enum TFieldType {
 	password = "password",
 	tags = "tags",
+	imageUpload = "imageUpload",
 }
+export type TFormImageValue = {
+	url: string;
+	thumb: { url: string };
+	preview: { url: string };
+};
 export type TFormPrimitiveValue = string | number | boolean | null;
 export type TFormValueArray = Array<TFormPrimitiveValue>;
-export type TFormValue = TFormPrimitiveValue | TFormValueArray;
+export type TFormValue =
+	| TFormPrimitiveValue
+	| TFormValueArray
+	| TFormImageValue
+	| File
+	| null
+	| undefined;
 export type TFormFieldSourceItem = { key: string | number; label?: string };
 export type TFormFieldSource = Array<TFormFieldSourceItem>;
 export type TFormField = {
@@ -23,7 +35,7 @@ export type TFormField = {
 	lg?: number;
 	size: TFieldSize;
 	source?: TFormFieldSource;
-	disabled: boolean;
+	disabled?: boolean;
 	image: boolean;
 	placeholder?: string;
 	type?: TFieldType;

@@ -23,12 +23,7 @@ export const BntFormItem: FC<{
 			md={field_md}
 			lg={field_lg}
 		>
-			{field.image && value !== undefined && (
-				<BntImage src={value.url} alt="not found" />
-			)}
-			{!field.image && (
-				<BntFormField id={id} field={field} value={value} formId={formId} />
-			)}
+			<BntFormField id={id} field={field} value={value} formId={formId} />
 		</Grid>
 	);
 };

@@ -163,6 +163,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			email?: string;
+			tenant?: string;
 			sex?: string;
 			name?: string;
 			created_at?: string;
@@ -208,6 +209,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			email: string;
+			tenant?: string;
 			last_name: string;
 			first_name: string;
 			sex: string;
@@ -473,6 +475,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			email?: string;
+			tenant?: string;
 			sex?: string;
 			name?: string;
 			created_at?: string;
@@ -518,6 +521,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			email: string;
+			tenant?: string;
 			last_name: string;
 			first_name: string;
 			sex: string;
@@ -548,6 +552,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			email?: string;
+			tenant?: string;
 			sex?: string;
 			name?: string;
 			created_at?: string;
@@ -593,6 +598,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			email: string;
+			tenant?: string;
 			last_name: string;
 			first_name: string;
 			sex: string;
@@ -633,6 +639,7 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			email?: string;
+			tenant?: string;
 			sex?: string;
 			name?: string;
 			created_at?: string;

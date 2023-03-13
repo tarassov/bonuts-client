@@ -16,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 			headers.set("Authorization", `Bearer ${getValue("auth_token")}`);
 		}
 
-		if (endpoint === "postAvatars") {
+		if (endpoint === "updateAvatars") {
 			// headers.set("Content-Type", "multipart/form-data");
 			// headers.set("Accept", "*/*");
 		} else {

@@ -19,6 +19,7 @@ export const apiProfileToProfile = (
 		first_name: response.data.attributes?.first_name,
 		last_name: response.data.attributes?.last_name,
 		roles: response.data.attributes?.roles,
+		tenant: response.data.attributes?.tenant,
 	};
 	return res;
 };

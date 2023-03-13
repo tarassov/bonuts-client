@@ -19,4 +19,5 @@ export type TProfile = {
 	first_name?: string | null;
 	last_name?: string | null;
 	roles?: Array<string>;
+	tenant?: string;
 };
