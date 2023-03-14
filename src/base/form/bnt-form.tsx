@@ -36,7 +36,7 @@ export const BntForm: FC<TFormProps> = ({
 			setHasChanges(!_.isEqual(newValues, initials));
 			setValues(newValues);
 		},
-		[initials]
+		[initials, values, setHasChanges]
 	);
 	const onSubmitForm = (e: SyntheticEvent) => {
 		e.preventDefault();
