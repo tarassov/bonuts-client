@@ -9,7 +9,7 @@ import {
 import React, { FC, useContext } from "react";
 
 import { ChevronLeft, Menu } from "@mui/icons-material";
-import { AppContext } from "../../context";
+import { AppContext } from "../../context/app-context";
 import { BNTRoutesMenu } from "./routes-menu";
 
 export const BNTMainMenu: FC<BNTRoutesMenuProps> = (props) => {

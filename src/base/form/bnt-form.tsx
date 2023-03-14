@@ -5,7 +5,7 @@ import { BNTTransparentButton } from "../buttons/transparent-button";
 import { useBntTranslate } from "../../hooks/useBntTranslate";
 import { Dictionary } from "../../constants/dictionary";
 import _ from "lodash";
-import { BntFormContextProvider } from "./context/bnt-form-context";
+import { BntFormContextProvider } from "./context/bnt-form-provider";
 import { BntFormFieldList } from "./bnt-form-field-list";
 
 export const BntForm: FC<TFormProps> = ({

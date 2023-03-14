@@ -6,7 +6,7 @@ import {
 } from "../types/bnt-form";
 import { Box, Button, CardMedia, TextField } from "@mui/material";
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
-import { BntFormContext } from "../context/bnt-form-context";
+import { BntFormProvider } from "../context/bnt-form-provider";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { CloudUpload } from "@mui/icons-material";
 import { BntFormFileInput } from "../bnt-form-file-input";

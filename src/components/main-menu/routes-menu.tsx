@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import { ListItem } from "@mui/material";
 import { BNTRouteMenuButton } from "./route-menu-button";
-import { AppContext } from "../../context";
+import { AppContext } from "../../context/app-context";
 import { useAuth } from "../../hooks/use-auth";
 
 export const BNTRoutesMenu: FC<BNTRoutesMenuProps> = ({

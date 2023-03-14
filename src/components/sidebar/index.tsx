@@ -1,7 +1,7 @@
 import { Divider, IconButton, useMediaQuery } from "@mui/material";
 import { FC, useContext } from "react";
 import { BNTDrawer, BNTDrawerHeader } from "../../base/BNTDrawer";
-import { AppContext } from "../../context";
+import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
 import { logoFull, logoSmall } from "../../constants/icons";
 import { BNTMainMenu } from "../main-menu";

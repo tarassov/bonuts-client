@@ -1,7 +1,7 @@
 import { TFieldType, TFormValue } from "../types/bnt-form";
 import { TextField } from "@mui/material";
 import { ChangeEvent, useContext } from "react";
-import { BntFormContext } from "../context/bnt-form-context";
+import { BntFormProvider } from "../context/bnt-form-provider";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { useBntTranslate } from "../../../hooks/useBntTranslate";
 

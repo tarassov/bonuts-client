@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import {
-	BntFormContext,
+	BntFormProvider,
 	BntFormValuesContext,
-} from "../context/bnt-form-context";
+} from "../context/bnt-form-provider";
 
 export const useBntForm = () => {
-	const onChange = useContext(BntFormContext);
+	const onChange = useContext(BntFormProvider);
 	const values = useContext(BntFormValuesContext);
 
 	return { onChange, values };

@@ -13,13 +13,14 @@ import { TProfile } from "../../types/model";
 import { BNTThemeProvider } from "../../themes/theme-provider";
 import { useMemo, useState } from "react";
 import { AppContextType } from "../../types/context";
-import { AppContext } from "../../context";
+import { AppContext } from "../../context/app-context";
 import "./app.scss";
 
 import { I18nextProvider } from "react-i18next";
 import i18n from "../../services/localization/i18n";
 
 import { BNTLayout } from "../layout";
+import { BntLoadingProvider } from "../../base/loader/loading-provider";
 
 function App() {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -45,7 +46,9 @@ function App() {
 					{/*<BNTLayout />*/}
 					<AppContext.Provider value={contextValue}>
 						<HistoryRouter history={history}>
-							<BNTLayout />
+							<BntLoadingProvider>
+								<BNTLayout />
+							</BntLoadingProvider>
 						</HistoryRouter>
 					</AppContext.Provider>
 				</Provider>

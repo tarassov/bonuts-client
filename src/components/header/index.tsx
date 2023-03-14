@@ -4,7 +4,7 @@ import { BNTAppBar } from "../../base/menu/app-bar";
 import { BNTToolbar } from "../../base/BNTToolbar";
 import { BNTTypography } from "../../base/BNTTypography/BNTTypography";
 import { TProfile } from "../../types/model";
-import { AppContext } from "../../context";
+import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
 import { logoSmall } from "../../constants/icons";
 import { Theme } from "@mui/material/styles";

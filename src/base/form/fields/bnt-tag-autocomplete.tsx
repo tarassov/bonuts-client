@@ -7,7 +7,7 @@ import {
 import { Autocomplete, TextField } from "@mui/material";
 import { useBntTranslate } from "../../../hooks/useBntTranslate";
 import { Dictionary } from "../../../constants/dictionary";
-import { BntFormContext } from "../context/bnt-form-context";
+import { BntFormProvider } from "../context/bnt-form-provider";
 import { useBntForm } from "../hooks/use-bnt-form";
 
 export const BntTagAutocomplete: FC<{
