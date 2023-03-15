@@ -30,7 +30,7 @@ import classNames from "classnames";
 import { EVENT_CARD_CLASSES } from "./event-card-styled";
 import { useEventLogic } from "../../../logic/hooks/useEventLogic";
 import { BntOperationText } from "../../opearation-text/operation-text";
-import { BntStyledOperationText } from "../../opearation-text";
+import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
 import { focusInput } from "../../../utils/focus-input";
 
 export const BntEventCard: FC<{ post: TPost; className?: string }> = ({

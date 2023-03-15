@@ -4,7 +4,7 @@ import { BntDrawer, BntDrawerHeader } from "../../base/drawer";
 import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
 import { logoFull, logoSmall } from "../../constants/icons";
-import { BntMainMenu } from "../main-menu";
+import { BntMainMenu } from "../main-menu/main-menu";
 import { Theme } from "@mui/material/styles";
 
 const BntSidebar: FC = () => {
