@@ -1,22 +1,25 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { FC, SyntheticEvent } from "react";
+import { FC, SyntheticEvent, useEffect } from "react";
 import { BNTStyledEventCard } from "../event-card/event-card-styled";
 import { Dictionary } from "../../../constants/dictionary";
 import { useEventListLogic } from "../../../hooks/logic/useEventListLogic";
 import { useBntTranslate } from "../../../hooks/useBntTranslate";
+import { useLoader } from "../../../base/loader/hooks/use-loader";
 
 export const BNTEventList: FC = () => {
 	const { translate } = useBntTranslate();
 	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } =
 		useEventListLogic();
 
+	const { setLoading } = useLoader();
 	const onNext = (e: SyntheticEvent) => {
 		e.preventDefault();
 		fetchNext();
 	};
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
+
+	useEffect(() => {
+		setLoading(isLoading);
+	}, [isLoading]);
 
 	return (
 		<Box ml={2} mt={2}>
