@@ -1,4 +1,4 @@
-import { usePaginator } from "../use-paginator";
+import { usePaginator } from "../../hooks/use-paginator";
 import { extendedApi } from "../../services/api/extended-api";
 import { useEffect, useState } from "react";
 import { apiTranslator } from "../../services/translator";

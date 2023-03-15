@@ -1,6 +1,6 @@
 import { TProfile } from "../../types/model";
 import { GetProfileApiResponse } from "../api/bonuts-api";
-import { getUserName } from "../logic-helpers/user-helper";
+import { getUserName } from "../../logic/utils/user-helper";
 
 export const apiProfileToProfile = (
 	response: GetProfileApiResponse

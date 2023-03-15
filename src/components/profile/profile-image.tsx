@@ -1,4 +1,4 @@
-import { useProfileLogic } from "../../hooks/logic/useProfileLogic";
+import { useProfileLogic } from "../../logic/hooks/useProfileLogic";
 import {
 	TFieldSize,
 	TFieldType,

@@ -28,10 +28,10 @@ import { Dictionary } from "../../../constants/dictionary";
 import { BNTStyledCardHeader } from "./event-card-header";
 import classNames from "classnames";
 import { EVENT_CARD_CLASSES } from "./event-card-styled";
-import { useEventLogic } from "../../../hooks/logic/useEventLogic";
+import { useEventLogic } from "../../../logic/hooks/useEventLogic";
 import { BNTOperationText } from "../../opearation-text/operation-text";
 import { BNTStyledOperationText } from "../../opearation-text";
-import { focusInput } from "../../../helpers/focus-input";
+import { focusInput } from "../../../utils/focus-input";
 
 export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,

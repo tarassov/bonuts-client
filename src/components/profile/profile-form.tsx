@@ -1,4 +1,4 @@
-import { useProfileLogic } from "../../hooks/logic/useProfileLogic";
+import { useProfileLogic } from "../../logic/hooks/useProfileLogic";
 import {
 	TFieldSize,
 	TFieldType,
@@ -9,7 +9,7 @@ import {
 import { BntForm } from "../../base/form/bnt-form";
 import { useBntTranslate } from "../../hooks/useBntTranslate";
 import { Roles } from "../../constants/roles";
-import { isAdmin, UserLogic } from "../../services/logic-helpers/user-helper";
+import { isAdmin, UserLogic } from "../../logic/utils/user-helper";
 import { getProfileFormFields } from "./utils/get-profile-form-fields";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";

@@ -2,7 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { FC, SyntheticEvent, useEffect } from "react";
 import { BNTStyledEventCard } from "../event-card/event-card-styled";
 import { Dictionary } from "../../../constants/dictionary";
-import { useEventListLogic } from "../../../hooks/logic/useEventListLogic";
+import { useEventListLogic } from "../../../logic/hooks/useEventListLogic";
 import { useBntTranslate } from "../../../hooks/useBntTranslate";
 import { useLoader } from "../../../base/loader/hooks/use-loader";
 

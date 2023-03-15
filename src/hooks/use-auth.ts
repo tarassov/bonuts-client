@@ -14,7 +14,7 @@ import { useStorage } from "./use-storage";
 
 // const MAX_RETRY_NUMBER = 3;
 
-//TODO: now we use localStorage for saving auth_token. We should remove it as soon as new backend wiil be deployed since it is unsave and we should use only cookie for jwt
+//TODO: now we use localStorage for saving auth_token. We should remove it as soon as new backend will be deployed since it is unsave and we should use only cookie for jwt
 export function useAuth() {
 	const dispatch = useAppDispatch();
 	const auth = useAppSelector((store) => store.auth);

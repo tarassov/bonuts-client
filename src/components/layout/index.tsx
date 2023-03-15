@@ -8,7 +8,7 @@ import { useAuth } from "../../hooks/use-auth";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/app-context";
 import "../app/styles/app.scss";
-import { useProfileLogic } from "../../hooks/logic/useProfileLogic";
+import { useProfileLogic } from "../../logic/hooks/useProfileLogic";
 import { useLoader } from "../../base/loader/hooks/use-loader";
 
 export const BNTLayout = () => {

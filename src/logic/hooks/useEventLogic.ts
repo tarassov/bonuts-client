@@ -13,7 +13,7 @@ export const useEventLogic = () => {
 		authTenant &&
 			putEvent({
 				id: event.id.toString(),
-				body: { like: true, tenant: authTenant }, //like true toggles like (backend logic)
+				body: { like: true, tenant: authTenant }, //like true toggles like (backend hooks)
 			});
 	};
 
@@ -21,7 +21,7 @@ export const useEventLogic = () => {
 		authTenant &&
 			putEvent({
 				id: event.id.toString(),
-				body: { ...values, like: false, tenant: authTenant }, //like true toggles like (backend logic)
+				body: { ...values, like: false, tenant: authTenant }, //like true toggles like (backend hooks)
 			});
 	};
 	return { toggleLike, updateEvent };

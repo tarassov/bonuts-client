@@ -4,7 +4,7 @@ import {
 	TFieldType,
 	TFormField,
 } from "../../../base/form/types/bnt-form";
-import { UserLogic } from "../../../services/logic-helpers/user-helper";
+import { UserLogic } from "../../../logic/utils/user-helper";
 import { Roles } from "../../../constants/roles";
 
 export const getProfileFormFields = (

@@ -23,9 +23,9 @@
     ├── config
     ├── constants
     ├── context
-    ├── helpers  #General helpers all stuff excluding business logic
+    ├── utils  #General utils all stuff excluding business hooks
     ├── hooks
-    │   └── logic  #business logic all business operations goes here
+    │   └── hooks  #business hooks all business operations goes here
     ├── pages
     │   ├── account-operations-page
     │   ├── dashboard-page
@@ -52,11 +52,11 @@
     ├── services
     │   ├── api
     │   ├── localization
-    │   ├── logic-helpers  #Business logic helpers
+    │   ├── hooks-utils  #Business hooks utils
     │   ├── middlewares
     │   ├── redux
     │   ├── store
-    │   └── translator   #Holds methods for translating api responses to a client logic model
+    │   └── translator   #Holds methods for translating api responses to a client hooks model
     ├── themes
     └── types
     │   ├── api
