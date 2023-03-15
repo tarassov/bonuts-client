@@ -7,7 +7,7 @@ import {
 	TFormValue,
 } from "../../base/form/types/bnt-form";
 import { BntForm } from "../../base/form/bnt-form";
-import { useBntTranslate } from "../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { Roles } from "../../constants/roles";
 import { isAdmin, UserLogic } from "../../logic/utils/user-helper";
 import { getProfileFormFields } from "./utils/get-profile-form-fields";

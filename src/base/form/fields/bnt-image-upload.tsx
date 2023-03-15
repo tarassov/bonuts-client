@@ -10,7 +10,7 @@ import { BntFormProvider } from "../context/bnt-form-provider";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { CloudUpload } from "@mui/icons-material";
 import { BntFormFileInput } from "../bnt-form-file-input";
-import { useBntTranslate } from "../../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../../hooks/use-bnt-translate";
 
 export function BntImageUpload(props: {
 	field: TFormField;

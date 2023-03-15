@@ -3,7 +3,7 @@ import { FC, SyntheticEvent, useEffect } from "react";
 import { BntStyledEventCard } from "../event-card/event-card-styled";
 import { Dictionary } from "../../../constants/dictionary";
 import { useEventListLogic } from "../../../logic/hooks/useEventListLogic";
-import { useBntTranslate } from "../../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../../hooks/use-bnt-translate";
 import { useLoader } from "../../../base/loader/hooks/use-loader";
 
 export const BntEventList: FC = () => {

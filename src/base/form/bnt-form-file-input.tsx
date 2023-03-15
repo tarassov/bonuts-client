@@ -2,7 +2,7 @@ import { Button, Stack } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
 import React, { FC } from "react";
 import { BntTransparentButton } from "../buttons/transparent-button";
-import { useBntTranslate } from "../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { Dictionary } from "../../constants/dictionary";
 
 export const BntFormFileInput: FC<{

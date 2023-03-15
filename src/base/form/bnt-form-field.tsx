@@ -1,7 +1,7 @@
 import { TFieldType, TFormField } from "./types/bnt-form";
 import { FC } from "react";
 import { BntTextField } from "./fields/bnt-text-field";
-import { useBntTranslate } from "../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
 import { BntImageUpload } from "./fields/bnt-image-upload";
 

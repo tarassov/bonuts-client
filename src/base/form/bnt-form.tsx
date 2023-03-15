@@ -2,7 +2,7 @@ import { FC, SyntheticEvent, useCallback, useEffect, useState } from "react";
 import { TFormProps, TFormValue } from "./types/bnt-form";
 import { Box, Grid, Stack } from "@mui/material";
 import { BntTransparentButton } from "../buttons/transparent-button";
-import { useBntTranslate } from "../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { Dictionary } from "../../constants/dictionary";
 import _ from "lodash";
 import { BntFormContextProvider } from "./context/bnt-form-provider";

@@ -8,7 +8,7 @@ import {
 	TFormValue,
 } from "../../base/form/types/bnt-form";
 import { BntForm } from "../../base/form/bnt-form";
-import { useBntTranslate } from "../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { useUpdateAvatarsMutation } from "../../services/api/form-data-api";
 
 export const BntProfileImage = () => {

@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { ChangeEvent, useContext } from "react";
 import { BntFormProvider } from "../context/bnt-form-provider";
 import { useBntForm } from "../hooks/use-bnt-form";
-import { useBntTranslate } from "../../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../../hooks/use-bnt-translate";
 
 export function BntTextField(props: {
 	name: string;

@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import { TOperation } from "../../types/model/operation";
 import { FC } from "react";
 import { OPERATION_CLASSES } from "./index";
-import { useBntTranslate } from "../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { BntProfileButton } from "../buttons/profile-button";
 import { DealType } from "../../types/model/deal_type";
 import { EMPTY_FUNCTION } from "../../constants/functions";

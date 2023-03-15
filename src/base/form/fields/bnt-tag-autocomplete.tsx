@@ -5,7 +5,7 @@ import {
 	TFormFieldSourceItem,
 } from "../types/bnt-form";
 import { Autocomplete, TextField } from "@mui/material";
-import { useBntTranslate } from "../../../hooks/useBntTranslate";
+import { useBntTranslate } from "../../../hooks/use-bnt-translate";
 import { Dictionary } from "../../../constants/dictionary";
 import { BntFormProvider } from "../context/bnt-form-provider";
 import { useBntForm } from "../hooks/use-bnt-form";
