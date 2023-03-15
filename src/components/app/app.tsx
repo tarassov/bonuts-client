@@ -1,20 +1,12 @@
 import { Provider } from "react-redux";
 import { store, history } from "../../services/store/store";
 import { HistoryRouter } from "redux-first-history/rr6";
-
-import CssBaseline from "@mui/material/CssBaseline";
-
-import SwitchRoutes from "../switch-routes/switch-routes";
 import { getRoutes } from "../../routes";
-
-import { Box } from "@mui/material";
-import { BTNHeader } from "../header";
-import { TProfile } from "../../types/model";
 import { BNTThemeProvider } from "../../themes/theme-provider";
 import { useMemo, useState } from "react";
 import { AppContextType } from "../../types/context";
 import { AppContext } from "../../context/app-context";
-import "./app.scss";
+import "./styles/app.scss";
 
 import { I18nextProvider } from "react-i18next";
 import i18n from "../../services/localization/i18n";

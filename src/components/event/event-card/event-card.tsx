@@ -113,7 +113,11 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 				}
 				action={
 					<Tooltip
-						title={isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t("Profile")}
+						title={
+							isPublic
+								? t(Dictionary.ONLY_YOU_CAN_SEE_IT)
+								: t(Dictionary.PROFILE)
+						}
 					>
 						<IconButton
 							aria-label={

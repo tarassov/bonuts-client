@@ -7,7 +7,7 @@ import SwitchRoutes from "../switch-routes/switch-routes";
 import { useAuth } from "../../hooks/use-auth";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/app-context";
-import "../app/app.scss";
+import "../app/styles/app.scss";
 import { useProfileLogic } from "../../hooks/logic/useProfileLogic";
 import { useLoader } from "../../base/loader/hooks/use-loader";
 
