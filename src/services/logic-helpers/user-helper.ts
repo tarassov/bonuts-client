@@ -7,7 +7,7 @@ export const getUserName = (name?: string, surname?: string) => {
 };
 
 export const isAdmin = (profile: TProfile | null | undefined): boolean => {
-	return profile?.roles?.includes(Roles.admin) || false;
+	return profile?.roles?.includes(Roles.admin) || profile?.admin || false;
 };
 
 export const UserLogic = {
