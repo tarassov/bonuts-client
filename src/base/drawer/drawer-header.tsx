@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 
-export const BNTDrawerHeader = styled("div")(({ theme }) => ({
+export const BntDrawerHeader = styled("div")(({ theme }) => ({
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "space-between",

@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 
-export const BNTTransparentButton = styled(Button, {
+export const BntTransparentButton = styled(Button, {
 	shouldForwardProp: () => true,
 })(({ theme }) => ({
 	boxShadow: "none",

@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { store, history } from "../../services/store/store";
 import { HistoryRouter } from "redux-first-history/rr6";
 import { getRoutes } from "../../routes";
-import { BNTThemeProvider } from "../../themes/theme-provider";
+import { BntThemeProvider } from "../../themes/theme-provider";
 import { useMemo, useState } from "react";
 import { AppContextType } from "../../types/context";
 import { AppContext } from "../../context/app-context";
@@ -11,7 +11,7 @@ import "./styles/app.scss";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../../services/localization/i18n";
 
-import { BNTLayout } from "../layout";
+import { BntLayout } from "../layout";
 import { BntLoadingProvider } from "../../base/loader/loading-provider";
 
 function App() {
@@ -32,20 +32,20 @@ function App() {
 	};
 
 	return (
-		<BNTThemeProvider>
+		<BntThemeProvider>
 			<I18nextProvider i18n={i18n}>
 				<Provider store={store}>
-					{/*<BNTLayout />*/}
+					{/*<BntLayout />*/}
 					<AppContext.Provider value={contextValue}>
 						<HistoryRouter history={history}>
 							<BntLoadingProvider>
-								<BNTLayout />
+								<BntLayout />
 							</BntLoadingProvider>
 						</HistoryRouter>
 					</AppContext.Provider>
 				</Provider>
 			</I18nextProvider>
-		</BNTThemeProvider>
+		</BntThemeProvider>
 	);
 }
 

@@ -8,7 +8,7 @@ import React, { FC } from "react";
 import { push } from "redux-first-history";
 import { useAppDispatch } from "../../services/store/store";
 
-export const BNTRouteMenuButton: FC<BNTRouteMenuButtonProps> = ({
+export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 	route,
 	showFullName,
 	showTooltip,

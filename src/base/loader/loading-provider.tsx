@@ -1,5 +1,5 @@
 import { createContext, FC, useState } from "react";
-import { BNTModalLoader } from "./modal-loader";
+import { BntModalLoader } from "./modal-loader";
 
 export const BntSetLoadingContext = createContext<(value: boolean) => void>(
 	() => {}
@@ -11,7 +11,7 @@ export const BntLoadingProvider: FC<{
 	const [loading, setLoading] = useState(false);
 	return (
 		<BntSetLoadingContext.Provider value={setLoading}>
-			<BNTModalLoader loading={loading} />
+			<BntModalLoader loading={loading} />
 			{children}
 		</BntSetLoadingContext.Provider>
 	);

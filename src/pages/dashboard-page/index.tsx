@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { BNTEventList } from "../../components/event/event-list/event-list";
+import { BntEventList } from "../../components/event/event-list/event-list";
 
-const BNTDashBboardPage: FC = () => {
-	return <BNTEventList />;
+const BntDashBboardPage: FC = () => {
+	return <BntEventList />;
 };
 
-export default BNTDashBboardPage;
+export default BntDashBboardPage;

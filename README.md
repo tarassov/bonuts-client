@@ -4,7 +4,7 @@
 ```bash 
 └── src
     ├── base  #Base components that that could be extracted easily
-    │   ├── BNTDrawer
+    │   ├── drawer
     │   ├── BNTToolbar
     │   ├── BNTTypography
     │   ├── buttons

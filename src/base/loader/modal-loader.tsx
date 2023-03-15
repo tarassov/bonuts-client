@@ -19,7 +19,7 @@ const style = {
 	p: 4,
 };
 
-export const BNTModalLoader: FC<{ loading: boolean }> = ({ loading }) => {
+export const BntModalLoader: FC<{ loading: boolean }> = ({ loading }) => {
 	return (
 		<Backdrop
 			sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}

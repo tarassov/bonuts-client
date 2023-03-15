@@ -1,15 +1,15 @@
 import { Avatar, Box, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { FC, useContext, useState, MouseEvent } from "react";
-import { BNTAppBar } from "../../base/menu/app-bar";
-import { BNTToolbar } from "../../base/BNTToolbar";
-import { BNTTypography } from "../../base/BNTTypography/BNTTypography";
+import { BntAppBar } from "../../base/menu/app-bar";
+import { BntToolbar } from "../../base/toolbar";
+import { BntTypography } from "../../base/typography/typography";
 import { TProfile } from "../../types/model";
 import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
 import { logoSmall } from "../../constants/icons";
 import { Theme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
-import { BNTRoutesMenu } from "../main-menu/routes-menu";
+import { BntRoutesMenu } from "../main-menu/routes-menu";
 type BTNHeaderProps = {
 	profile?: TProfile | null;
 };
@@ -27,8 +27,8 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 	};
 
 	return (
-		<BNTAppBar position="fixed" open={isDrawerOpen && matches}>
-			<BNTToolbar disableGutters={true}>
+		<BntAppBar position="fixed" open={isDrawerOpen && matches}>
+			<BntToolbar disableGutters={true}>
 				<Stack
 					direction="row"
 					justifyContent="space-between"
@@ -57,13 +57,13 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 						}}
 					>
 						<div>
-							<BNTTypography variant="button">
+							<BntTypography variant="button">
 								{profile?.user_name}
-							</BNTTypography>
+							</BntTypography>
 							<br />
-							<BNTTypography variant="caption" display="block" gutterBottom>
+							<BntTypography variant="caption" display="block" gutterBottom>
 								{profile?.position}
-							</BNTTypography>
+							</BntTypography>
 						</div>
 					</Box>
 					<div>
@@ -110,11 +110,11 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 							transformOrigin={{ horizontal: "right", vertical: "top" }}
 							anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 						>
-							<BNTRoutesMenu showFullName />
+							<BntRoutesMenu showFullName />
 						</Menu>
 					</div>
 				</Stack>
-			</BNTToolbar>
-		</BNTAppBar>
+			</BntToolbar>
+		</BntAppBar>
 	);
 };

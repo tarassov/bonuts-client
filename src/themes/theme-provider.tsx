@@ -22,7 +22,7 @@ export const CustomThemeContext = createContext<ThemeContextType>({
 type ThemeProviderProps = {
 	children?: React.ReactNode;
 };
-export const BNTThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
+export const BntThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 	const [theme, changeThemeMethods] = useCustomTheme(themes);
 
 	return (

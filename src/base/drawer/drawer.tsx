@@ -24,7 +24,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
 	},
 });
 
-export const BNTDrawer = styled(MuiDrawer, {
+export const BntDrawer = styled(MuiDrawer, {
 	shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
 	width: DRAWER_WIDTH,

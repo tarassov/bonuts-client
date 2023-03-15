@@ -25,15 +25,15 @@ import {
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Dictionary } from "../../../constants/dictionary";
-import { BNTStyledCardHeader } from "./event-card-header";
+import { BntStyledCardHeader } from "./event-card-header";
 import classNames from "classnames";
 import { EVENT_CARD_CLASSES } from "./event-card-styled";
 import { useEventLogic } from "../../../logic/hooks/useEventLogic";
-import { BNTOperationText } from "../../opearation-text/operation-text";
-import { BNTStyledOperationText } from "../../opearation-text";
+import { BntOperationText } from "../../opearation-text/operation-text";
+import { BntStyledOperationText } from "../../opearation-text";
 import { focusInput } from "../../../utils/focus-input";
 
-export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
+export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,
 	className,
 }) => {
@@ -95,7 +95,7 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 
 	return (
 		<Card className={className}>
-			<BNTStyledCardHeader
+			<BntStyledCardHeader
 				avatar={
 					<>
 						{isPublic && (
@@ -136,7 +136,7 @@ export const BNTEventCard: FC<{ post: TPost; className?: string }> = ({
 
 			<CardContent>
 				{post.operation && (
-					<BNTStyledOperationText operation={post.operation} />
+					<BntStyledOperationText operation={post.operation} />
 				)}
 				{!edit && (
 					<Typography variant="body2" component="p">

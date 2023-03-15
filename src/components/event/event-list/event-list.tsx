@@ -1,12 +1,12 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { FC, SyntheticEvent, useEffect } from "react";
-import { BNTStyledEventCard } from "../event-card/event-card-styled";
+import { BntStyledEventCard } from "../event-card/event-card-styled";
 import { Dictionary } from "../../../constants/dictionary";
 import { useEventListLogic } from "../../../logic/hooks/useEventListLogic";
 import { useBntTranslate } from "../../../hooks/useBntTranslate";
 import { useLoader } from "../../../base/loader/hooks/use-loader";
 
-export const BNTEventList: FC = () => {
+export const BntEventList: FC = () => {
 	const { translate } = useBntTranslate();
 	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } =
 		useEventListLogic();
@@ -36,7 +36,7 @@ export const BNTEventList: FC = () => {
 							page.map((post) => {
 								return (
 									<Grid item key={post.id} xs={12} sm={12} md={6}>
-										<BNTStyledEventCard post={post} />
+										<BntStyledEventCard post={post} />
 									</Grid>
 								);
 							})

@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { TProfile } from "../../types/model";
 import { Avatar, Typography } from "@mui/material";
-import { BNTTransparentButton } from "../../base/buttons/transparent-button";
+import { BntTransparentButton } from "../../base/buttons/transparent-button";
 
-export const BNTProfileButton: FC<{
+export const BntProfileButton: FC<{
 	profile: TProfile;
 	onClick: () => void;
 }> = ({ profile, onClick }) => {
 	return (
-		<BNTTransparentButton
+		<BntTransparentButton
 			onClick={onClick}
 			disableRipple
 			startIcon={
@@ -21,6 +21,6 @@ export const BNTProfileButton: FC<{
 			<Typography variant={"body2"}>
 				{profile.user_name && <span>{profile.user_name}</span>}
 			</Typography>
-		</BNTTransparentButton>
+		</BntTransparentButton>
 	);
 };

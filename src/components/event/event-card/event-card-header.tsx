@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { CardHeader, darken } from "@mui/material";
 
-export const BNTStyledCardHeader = styled(
+export const BntStyledCardHeader = styled(
 	CardHeader,
 	{}
 )(({ theme }) => {

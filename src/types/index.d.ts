@@ -25,12 +25,12 @@ type TRedirect = {
 	attached?: boolean;
 };
 
-type BNTRoutesMenuProps = {
+type BntRoutesMenuProps = {
 	showFullName: boolean;
 	showTooltip?: boolean;
 };
 
-type BNTRouteMenuButtonProps = {
+type BntRouteMenuButtonProps = {
 	route: TRoute;
 	showFullName: boolean;
 	showTooltip?: boolean;

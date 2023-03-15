@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { BNTEventCard } from "./event-card";
+import { BntEventCard } from "./event-card";
 import { cl } from "../../../themes/helper";
 
 export const EVENT_CARD_CLASSES = {
@@ -14,8 +14,8 @@ export const EVENT_CARD_CLASSES = {
 
 const iconFontSize = "16px";
 
-export const BNTStyledEventCard = styled(
-	BNTEventCard,
+export const BntStyledEventCard = styled(
+	BntEventCard,
 	{}
 )(({ theme }) => {
 	return {

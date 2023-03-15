@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent, useCallback, useEffect, useState } from "react";
 import { TFormProps, TFormValue } from "./types/bnt-form";
 import { Box, Grid, Stack } from "@mui/material";
-import { BNTTransparentButton } from "../buttons/transparent-button";
+import { BntTransparentButton } from "../buttons/transparent-button";
 import { useBntTranslate } from "../../hooks/useBntTranslate";
 import { Dictionary } from "../../constants/dictionary";
 import _ from "lodash";
@@ -76,16 +76,16 @@ export const BntForm: FC<TFormProps> = ({
 						>
 							{hasChanges && (
 								<>
-									<BNTTransparentButton
+									<BntTransparentButton
 										color="secondary"
 										onClick={onDiscard}
 										disabled={!hasChanges}
 									>
 										{translate(Dictionary.DISCARD)}
-									</BNTTransparentButton>
-									<BNTTransparentButton type={"submit"} disabled={!hasChanges}>
+									</BntTransparentButton>
+									<BntTransparentButton type={"submit"} disabled={!hasChanges}>
 										{translate(submitCaption || Dictionary.SUBMIT)}
-									</BNTTransparentButton>
+									</BntTransparentButton>
 								</>
 							)}
 						</Stack>

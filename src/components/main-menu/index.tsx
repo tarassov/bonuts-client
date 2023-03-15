@@ -10,9 +10,9 @@ import React, { FC, useContext } from "react";
 
 import { ChevronLeft, Menu } from "@mui/icons-material";
 import { AppContext } from "../../context/app-context";
-import { BNTRoutesMenu } from "./routes-menu";
+import { BntRoutesMenu } from "./routes-menu";
 
-export const BNTMainMenu: FC<BNTRoutesMenuProps> = (props) => {
+export const BntMainMenu: FC<BntRoutesMenuProps> = (props) => {
 	const { showFullName } = props;
 
 	const { toggleDrawer } = useContext(AppContext);
@@ -46,7 +46,7 @@ export const BNTMainMenu: FC<BNTRoutesMenuProps> = (props) => {
 					</ListItemIcon>
 				</ListItemButton>
 			</ListItem>
-			<BNTRoutesMenu {...props} />
+			<BntRoutesMenu {...props} />
 		</List>
 	);
 };

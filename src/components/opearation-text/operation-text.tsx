@@ -4,11 +4,11 @@ import { TOperation } from "../../types/model/operation";
 import { FC } from "react";
 import { OPERATION_CLASSES } from "./index";
 import { useBntTranslate } from "../../hooks/useBntTranslate";
-import { BNTProfileButton } from "../buttons/profile-button";
+import { BntProfileButton } from "../buttons/profile-button";
 import { DealType } from "../../types/model/deal_type";
 import { EMPTY_FUNCTION } from "../../constants/functions";
 
-type BNTOperationTextProps = {
+type BntOperationTextProps = {
 	operation: TOperation;
 	onToProfileClick?: (operation: TOperation) => any;
 	onFromProfileClick?: (operation: TOperation) => any;
@@ -17,7 +17,7 @@ type BNTOperationTextProps = {
 	showDateTime?: boolean;
 };
 
-export const BNTOperationText: FC<BNTOperationTextProps> = ({
+export const BntOperationText: FC<BntOperationTextProps> = ({
 	operation,
 	onToProfileClick = EMPTY_FUNCTION,
 	onFromProfileClick = EMPTY_FUNCTION,
@@ -61,7 +61,7 @@ export const BNTOperationText: FC<BNTOperationTextProps> = ({
 							<span className={OPERATION_CLASSES.operationText}>
 								<Typography variant={"body2"}>{translate("for")}</Typography>
 							</span>
-							<BNTProfileButton profile={to_profile} onClick={toProfileClick} />
+							<BntProfileButton profile={to_profile} onClick={toProfileClick} />
 						</>
 					)}
 					{from_profile && (
@@ -69,7 +69,7 @@ export const BNTOperationText: FC<BNTOperationTextProps> = ({
 							<span className={OPERATION_CLASSES.operationText}>
 								{translate("from")}
 							</span>
-							<BNTProfileButton
+							<BntProfileButton
 								profile={from_profile}
 								onClick={fromProfileClick}
 							/>

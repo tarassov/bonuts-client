@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { BNTEventCard } from "../event/event-card/event-card";
+import { BntEventCard } from "../event/event-card/event-card";
 import { cl } from "../../themes/helper";
-import { BNTOperationText } from "./operation-text";
+import { BntOperationText } from "./operation-text";
 
 export const OPERATION_CLASSES = {
 	operationText: "operation-text",
@@ -13,8 +13,8 @@ export const OPERATION_CLASSES = {
 	iconCaption: "icon-caption",
 	operationContainer: "operation-container",
 };
-export const BNTStyledOperationText = styled(
-	BNTOperationText,
+export const BntStyledOperationText = styled(
+	BntOperationText,
 	{}
 )(({ theme }) => {
 	return {

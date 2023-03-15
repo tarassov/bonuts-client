@@ -1,34 +1,34 @@
 import { Divider, IconButton, useMediaQuery } from "@mui/material";
 import { FC, useContext } from "react";
-import { BNTDrawer, BNTDrawerHeader } from "../../base/BNTDrawer";
+import { BntDrawer, BntDrawerHeader } from "../../base/drawer";
 import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
 import { logoFull, logoSmall } from "../../constants/icons";
-import { BNTMainMenu } from "../main-menu";
+import { BntMainMenu } from "../main-menu";
 import { Theme } from "@mui/material/styles";
 
-const BNTSidebar: FC = () => {
+const BntSidebar: FC = () => {
 	const { isDrawerOpen } = useContext(AppContext);
 	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.up("sm"));
 	const { toggleDrawer } = useContext(AppContext);
 	return (
 		<>
 			{matches && (
-				<BNTDrawer variant="permanent" open={isDrawerOpen}>
-					<BNTDrawerHeader>
+				<BntDrawer variant="permanent" open={isDrawerOpen}>
+					<BntDrawerHeader>
 						<IconButton onClick={toggleDrawer}>
 							<ReactSVG src={isDrawerOpen ? logoFull : logoSmall} />
 						</IconButton>
-					</BNTDrawerHeader>
+					</BntDrawerHeader>
 					<Divider />
-					<BNTMainMenu
+					<BntMainMenu
 						showFullName={isDrawerOpen}
 						showTooltip={!isDrawerOpen}
 					/>
-				</BNTDrawer>
+				</BntDrawer>
 			)}
 		</>
 	);
 };
 
-export default BNTSidebar;
+export default BntSidebar;

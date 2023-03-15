@@ -1,7 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
 import React, { FC } from "react";
-import { BNTTransparentButton } from "../buttons/transparent-button";
+import { BntTransparentButton } from "../buttons/transparent-button";
 import { useBntTranslate } from "../../hooks/useBntTranslate";
 import { Dictionary } from "../../constants/dictionary";
 
@@ -35,14 +35,14 @@ export const BntFormFileInput: FC<{
 				onChange={handleFileInputChange}
 			/>
 			<label htmlFor="raised-button-file">
-				<BNTTransparentButton
+				<BntTransparentButton
 					sx={{ component: "span" }}
 					variant="text"
 					color="primary"
 					onClick={handleButtonClick}
 				>
 					{translate(Dictionary.EDIT)}
-				</BNTTransparentButton>
+				</BntTransparentButton>
 			</label>
 		</Stack>
 	);
