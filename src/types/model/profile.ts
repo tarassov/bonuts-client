@@ -1,4 +1,5 @@
 import { TUser } from "./user";
+import { TPicture } from "./picture";
 
 export type TProfile = {
 	id?: number;
@@ -6,15 +7,7 @@ export type TProfile = {
 	position?: string | null;
 	user_name?: string | null;
 	admin?: boolean;
-	user_avatar?: {
-		url?: string | null;
-		thumb?: {
-			url: string | null;
-		};
-		preview?: {
-			url: string | null;
-		};
-	};
+	user_avatar?: TPicture;
 	email?: string | null;
 	first_name?: string | null;
 	last_name?: string | null;

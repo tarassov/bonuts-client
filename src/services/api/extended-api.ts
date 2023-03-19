@@ -1,6 +1,6 @@
 import { FetchBaseQueryMeta } from "@reduxjs/toolkit/dist/query";
 import { bonutsApi, GetEventsApiResponse } from "./bonuts-api";
-import { TPageable, TPaginator } from "../../types/api";
+import { TPageable, TPaginator } from "../../types/api/api";
 import { bonutsApiOverride } from "./form-data-api";
 
 const getPaginator = (meta: FetchBaseQueryMeta | undefined): TPaginator => {

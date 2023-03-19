@@ -10,4 +10,5 @@ export enum Dictionary {
 	NEXT = "Next",
 	MORE = "More",
 	NO_OPTIONS = "No options",
+	SEARCH_STRING = "Search string",
 }

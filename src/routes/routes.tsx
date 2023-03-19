@@ -5,6 +5,8 @@ import {
 	Settings,
 	Person,
 	LogoutOutlined,
+	DonutSmall,
+	Shop,
 } from "@mui/icons-material";
 import ActiveRequestsPage from "../pages/requests/active-requests-page.tsx/active-requests-page";
 import ClosedRequestsPage from "../pages/requests/closed-requests-page/closed-request-page";
@@ -90,6 +92,7 @@ export const dashBoardRoute: TRoute = {
 	component: <Index />,
 	redirect: loginRoute,
 	icon: <Dashboard />,
+	index: 0,
 };
 
 export const settingsRoute: TRoute = {
@@ -112,6 +115,7 @@ export const profileRoute: TRoute = {
 	component: <ProfilePage />,
 	redirect: loginRoute,
 	icon: <Person />,
+	index: 1,
 };
 export const peopleRoute: TRoute = {
 	path: "/people",
@@ -161,7 +165,7 @@ export const closedRequestsRoute: TRoute = {
 };
 
 export const myRequestsRoute: TRoute = {
-	path: "/my",
+	path: "/my_requests",
 	anonymous: false,
 	authenticated: true,
 	navbarName: "My requests",
@@ -194,6 +198,8 @@ export const donutsRoute: TRoute = {
 	navbarName: "Store",
 	hideInMenu: false,
 	component: <DonutsPage />,
+	icon: <Shop />,
+	index: 2,
 };
 export const accountOperationsRoute: TRoute = {
 	path: "/account/:id",

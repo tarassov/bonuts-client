@@ -8,8 +8,10 @@ import { useAuth } from "../../hooks/use-auth";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/app-context";
 import "../app/styles/app.scss";
-import { useProfileLogic } from "../../logic/hooks/useProfileLogic";
+import { useProfileLogic } from "../../logic/hooks/use-profile-logic";
 import { useLoader } from "../../base/loader/hooks/use-loader";
+import { loginRoute } from "../../routes/routes";
+import { Modules } from "../../constants/modules";
 
 export const BntLayout = () => {
 	const { auth } = useAuth();
@@ -18,7 +20,7 @@ export const BntLayout = () => {
 	const { setLoading } = useLoader();
 
 	useEffect(() => {
-		setLoading(isLoading);
+		setLoading(Modules.Profile, isLoading);
 	}, [isLoading]);
 
 	return (

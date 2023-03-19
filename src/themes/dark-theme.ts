@@ -8,8 +8,8 @@ const darkTheme = {
 		},
 		secondary: teal,
 		neutral: {
-			main: grey["A200"],
-			dark: grey["A400"],
+			main: grey["A400"],
+			dark: grey["800"],
 			light: grey["A100"],
 		},
 		info: {

@@ -12,14 +12,10 @@ export const apiEventsToPosts = (
 	return data.map((target) => {
 		const { attributes, id } = target;
 		return {
+			...attributes,
 			id: Number(id),
 			commentable: true,
-			comments: attributes.comments,
-			comments_count: attributes.comments_count,
 			likeable: true,
-			likes: attributes.likes,
-			liked: attributes.liked,
-			editable: attributes.editable,
 			profile: {
 				first_name: "",
 				last_name: "",
@@ -29,10 +25,8 @@ export const apiEventsToPosts = (
 				user_avatar: attributes.user_avatar,
 			},
 			title: attributes.user_name,
-			content: attributes.content,
 			extra_content: attributes.extra_content || "",
-			date_string: attributes.date_string,
-			public: attributes.public,
+
 			operation: {
 				...attributes.operation,
 				deal_type: attributes.operation?.deal_type as DealType,

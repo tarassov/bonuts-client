@@ -7,6 +7,7 @@ import {
 import React, { FC } from "react";
 import { push } from "redux-first-history";
 import { useAppDispatch } from "../../services/store/store";
+import { useBntTranslate } from "../../hooks/use-bnt-translate";
 
 export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 	route,
@@ -17,13 +18,18 @@ export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 	},
 }) => {
 	const dispatch = useAppDispatch();
+	const { translate } = useBntTranslate();
 	const onRouteClick = () => {
 		const { redirect } = onBeforeClick();
 		redirect && dispatch(push(route.path));
 	};
 
 	return (
-		<Tooltip title={route.navbarName} disableHoverListener={!showTooltip}>
+		<Tooltip
+			placement={"right"}
+			title={translate(route.navbarName)}
+			disableHoverListener={!showTooltip}
+		>
 			<ListItemButton
 				sx={{
 					minHeight: 48,
@@ -42,7 +48,7 @@ export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 					{route.icon}
 				</ListItemIcon>
 				<ListItemText
-					primary={route.navbarName}
+					primary={translate(route.navbarName)}
 					sx={{ opacity: showFullName ? 1 : 0 }}
 				/>
 			</ListItemButton>

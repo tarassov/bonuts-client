@@ -21,8 +21,8 @@ const lightTheme = {
 			main: red.A400,
 		},
 		neutral: {
-			main: grey["A200"],
-			dark: grey["A400"],
+			main: grey["A400"],
+			dark: grey["800"],
 			light: grey["A100"],
 		},
 		info: {

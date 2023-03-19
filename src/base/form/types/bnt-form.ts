@@ -9,6 +9,7 @@ export enum TFieldType {
 	password = "password",
 	tags = "tags",
 	imageUpload = "imageUpload",
+	text = "text",
 }
 export type TFormImageValue = {
 	url: string;

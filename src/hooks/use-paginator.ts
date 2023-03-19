@@ -4,7 +4,7 @@ import { QueryHooks } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import { QueryDefinition } from "@reduxjs/toolkit/dist/query";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { USE_POLLING_INTERVAL } from "../config";
-import { TPageable } from "../types/api";
+
 import {
 	RootState,
 	store,
@@ -12,35 +12,24 @@ import {
 	useAppSelector,
 } from "../services/store/store";
 import { deepEqual } from "fast-equals";
+import {
+	GetArgsType,
+	GetResultType,
+	TEndpoint,
+	TPageable,
+} from "../types/api/api";
 
-type GetResultType<T> = T extends ApiEndpointQuery<
-	QueryDefinition<any, any, string, infer ResultType, string>,
-	any
->
-	? ResultType
-	: never;
-
-type GetArgsType<T> = T extends ApiEndpointQuery<
-	QueryDefinition<infer ArgsType, any, string, any, string>,
-	any
->
-	? ArgsType & { page: number }
-	: never;
-
-export function usePaginator<
-	Endpoint extends ApiEndpointQuery<any, any> &
-		QueryHooks<QueryDefinition<any, any, string, GetResultType<Endpoint>>>
->(
+export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	endpoint: Endpoint,
 	args: GetArgsType<Endpoint>,
 	pollingInterval: number | undefined
 ) {
 	const dispatch = useAppDispatch();
 	const queries = useAppSelector((state: RootState) => state.api.queries);
+
 	const [pages, setPages] = useState<Record<number, GetResultType<Endpoint>>>(
 		[]
 	);
-
 	const [results, setResults] = useState<Array<any>>([]);
 	const [temp, setTemp] = useState<GetResultType<Endpoint>>();
 	const [currentPage, setCurrentPage] = useState(0);

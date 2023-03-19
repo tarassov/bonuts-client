@@ -12,11 +12,8 @@ import {
 import {
 	Avatar,
 	Tooltip,
-	Card,
-	CardHeader,
 	IconButton,
 	CardContent,
-	CardActions,
 	Typography,
 	TextField,
 	Button,
@@ -28,10 +25,13 @@ import { Dictionary } from "../../../constants/dictionary";
 import { BntStyledCardHeader } from "./event-card-header";
 import classNames from "classnames";
 import { EVENT_CARD_CLASSES } from "./event-card-styled";
-import { useEventLogic } from "../../../logic/hooks/useEventLogic";
+import { useEventLogic } from "../../../logic/hooks/use-event-logic";
 import { BntOperationText } from "../../opearation-text/operation-text";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
 import { focusInput } from "../../../utils/focus-input";
+import { BntCard } from "../../../base/card/card";
+import { BntCardContent } from "../../../base/card/card-content";
+import { BntCardActions } from "../../../base/card/card-actions";
 
 export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,
@@ -94,7 +94,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 	}, [edit]);
 
 	return (
-		<Card className={className}>
+		<BntCard className={className}>
 			<BntStyledCardHeader
 				avatar={
 					<>
@@ -134,7 +134,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 				subheader={isPublic && position}
 			/>
 
-			<CardContent>
+			<BntCardContent>
 				{post.operation && (
 					<BntStyledOperationText operation={post.operation} />
 				)}
@@ -170,9 +170,9 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 						</Button>
 					</Box>
 				)}
-			</CardContent>
+			</BntCardContent>
 
-			<CardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
+			<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
 				{likeable && (
 					<>
 						<IconButton
@@ -230,10 +230,10 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 				>
 					{date_string}
 				</Typography>
-			</CardActions>
+			</BntCardActions>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>{extra_content}</CardContent>
 			</Collapse>
-		</Card>
+		</BntCard>
 	);
 };

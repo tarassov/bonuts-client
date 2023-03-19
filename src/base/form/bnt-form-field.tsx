@@ -1,6 +1,6 @@
 import { TFieldType, TFormField } from "./types/bnt-form";
 import { FC } from "react";
-import { BntTextField } from "./fields/bnt-text-field";
+import { BntFormTextField } from "./fields/bnt-form-text-field";
 import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
 import { BntImageUpload } from "./fields/bnt-image-upload";
@@ -18,7 +18,7 @@ export const BntFormField: FC<{
 		return <BntImageUpload id={id} field={field} value={value} />;
 	}
 	return (
-		<BntTextField
+		<BntFormTextField
 			name={field.name}
 			id={id}
 			placeholder={translate(field.placeholder)}

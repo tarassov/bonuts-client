@@ -29,8 +29,8 @@ const appRoutes: Array<TRoute> = [
 	loginRoute,
 	logoutRoute,
 	dashBoardRoute,
-	settingsRoute,
 	profileRoute,
+	donutsRoute,
 	peopleRoute,
 	requestsRoute,
 	activeRequestsRoute,
@@ -38,15 +38,18 @@ const appRoutes: Array<TRoute> = [
 	incomingRequestsRoute,
 	tenantsListRoute,
 	statisticsRoute,
-	donutsRoute,
 	accountOperationsRoute,
 	notFoundRoute,
+	settingsRoute,
 ];
+export const getRouteIndex = (route: TRoute): number => {
+	return route.index !== undefined ? route.index : 100;
+};
 
 export const getRoutes = (): Array<TRoute> => {
 	const redirects = getRedirects();
 	return appRoutes
-		.sort((a, b) => (a.index || 0) - (b.index || 0))
+		.sort((a, b) => getRouteIndex(a) - getRouteIndex(b))
 		.map((route) => {
 			const redirect = redirects.find(
 				(r) => r.authenticated && r.from.path === route.path
