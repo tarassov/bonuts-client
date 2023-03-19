@@ -10,5 +10,15 @@ export enum Dictionary {
 	NEXT = "Next",
 	MORE = "More",
 	NO_OPTIONS = "No options",
+
 	SEARCH_STRING = "Search string",
+}
+
+export enum Sorting {
+	PRICE_ASC = "price asc",
+	PRICE_DESC = "price desc",
+	DATE_ASC = "date asc",
+	NEWEST = "newest",
+	SORT_BY_ALPHABET = "sort by alphabet",
+	NAME_DESC = "name desc",
 }

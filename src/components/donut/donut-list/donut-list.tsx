@@ -8,6 +8,7 @@ import { useLoader } from "../../../base/loader/hooks/use-loader";
 import { Modules } from "../../../constants/modules";
 import { TDonut } from "../../../types/model/donut";
 import { BntDonutsSearch } from "./donuts-search";
+import { DonutsSorter } from "../../../logic/utils/donut-utils";
 
 export const BntDonutsList: FC = () => {
 	const { translate } = useBntTranslate();
@@ -16,10 +17,16 @@ export const BntDonutsList: FC = () => {
 	const [filterFunction, setFilterFunction] = useState<
 		Array<{ (a: TDonut): boolean }>
 	>([]);
+	const [sorter, setSorter] = useState<{
+		(a: TDonut, b: TDonut): number;
+	}>(() => DonutsSorter.sorterByName);
 	const { objects = [], isLoading, isSuccess } = useDonutList();
 
 	const updateFilter = (filters: Array<{ (a: TDonut): boolean }>) => {
 		setFilterFunction(filters);
+	};
+	const updateSorter = (sorter: (a: TDonut, b: TDonut) => number) => {
+		setSorter(() => sorter);
 	};
 
 	useEffect(() => {
@@ -27,15 +34,21 @@ export const BntDonutsList: FC = () => {
 	}, [isLoading]);
 
 	const filteredList = useMemo(() => {
-		return objects.filter(
-			(donut) =>
-				donut.name &&
-				donut.name.toLowerCase().indexOf(search.toLowerCase()) >= 0
-		);
-	}, [search, filterFunction, objects]);
+		return objects
+			.filter(
+				(donut) =>
+					donut.name &&
+					donut.name.toLowerCase().indexOf(search.toLowerCase()) >= 0
+			)
+			.sort(sorter);
+	}, [search, filterFunction, objects, sorter]);
 	return (
 		<>
-			<BntDonutsSearch setSearch={setSearch} setFilter={updateFilter} />
+			<BntDonutsSearch
+				setSearch={setSearch}
+				setFilter={updateFilter}
+				setSorter={updateSorter}
+			/>
 			<Grid container spacing={2}>
 				{filteredList.map((donut) => {
 					return (

@@ -3,7 +3,7 @@ import { TCommentable, TLikeable } from "./type-extension";
 import { TPicture } from "./picture";
 
 export type TDonut = {
-	name?: string;
+	name: string;
 	price?: number;
 	id: number;
 	active: boolean;

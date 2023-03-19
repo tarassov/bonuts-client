@@ -9,7 +9,7 @@ import {
 import { BntForm } from "../../base/form/bnt-form";
 import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { Roles } from "../../constants/roles";
-import { isAdmin, UserLogic } from "../../logic/utils/user-helper";
+import { isAdmin, UserLogic } from "../../logic/utils/user-utils";
 import { getProfileFormFields } from "./utils/get-profile-form-fields";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
@@ -31,7 +31,7 @@ export const BntProfileForm = () => {
 		  >
 		| undefined => {
 		if (profile) {
-			return updateProfile(profile, values);
+			return updateProfile(profile, { ...values, active: true });
 		}
 	};
 	return (
