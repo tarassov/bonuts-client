@@ -29,7 +29,7 @@
     ├── pages
     │   ├── account-operations-page
     │   ├── dashboard-page
-    │   ├── donuts-page
+    │   ├── donut
     │   ├── home-page
     │   ├── login-page
     │   ├── logout-page
@@ -56,7 +56,7 @@
     │   ├── middlewares
     │   ├── redux
     │   ├── store
-    │   └── translator   #Holds methods for translating api responses to a client hooks model
+    │   └── adaptor   #Holds methods for translating api responses to a client hooks model
     ├── themes
     └── types
     │   ├── api

@@ -1,5 +1,5 @@
 import { extendedApi } from "../../services/api/extended-api";
-import { apiTranslator } from "../../services/translator";
+import { apiTranslator } from "../../services/adaptor";
 import { usePagintatedListBase } from "./use-pagintated-list-base";
 
 export const useEventListLogic = ({ showMine = false }) => {

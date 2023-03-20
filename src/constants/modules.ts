@@ -4,4 +4,5 @@ export enum Modules {
 	Events = "event",
 
 	Donuts = "donuts",
+	DonutPreview = "donut_preview",
 }

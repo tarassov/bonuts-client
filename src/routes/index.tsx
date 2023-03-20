@@ -4,6 +4,7 @@ import {
 	activeRequestsRoute,
 	closedRequestsRoute,
 	dashBoardRoute,
+	donutPreviewRoute,
 	donutsRoute,
 	homeRoute,
 	incomingRequestsRoute,
@@ -41,6 +42,7 @@ const appRoutes: Array<TRoute> = [
 	accountOperationsRoute,
 	notFoundRoute,
 	settingsRoute,
+	donutPreviewRoute,
 ];
 export const getRouteIndex = (route: TRoute): number => {
 	return route.index !== undefined ? route.index : 100;

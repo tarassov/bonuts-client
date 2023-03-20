@@ -1,6 +1,6 @@
 import { cleanup } from "@testing-library/react";
 import { GetProfileApiResponse } from "../../services/api/bonuts-api";
-import { apiProfileToProfile } from "../../services/translator/api-profile-to-profile";
+import { apiProfileToProfile } from "../../services/adaptor/api-profile-to-profile";
 import { TProfile } from "../../types/model";
 
 const mockResponse: GetProfileApiResponse = {
@@ -31,7 +31,7 @@ const mockResponse: GetProfileApiResponse = {
 	},
 };
 
-describe("translator: apiProfileToProfile", () => {
+describe("adaptor: apiProfileToProfile", () => {
 	afterAll(() => {
 		cleanup();
 	});

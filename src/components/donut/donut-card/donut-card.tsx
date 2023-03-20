@@ -7,6 +7,8 @@ import { BntCardBody } from "../../../base/card/card-body";
 import { BntTypography } from "../../../base/typography/typography";
 import { Stack } from "@mui/material";
 import { BntStack } from "../../../base/stack/stack";
+import { useAppDispatch } from "../../../services/store/store";
+import { push } from "redux-first-history";
 export const DONUT_CARD_CLASSES = {
 	cardHover: "card-hover",
 	cardHeaderHover: "card-header-hover",
@@ -22,13 +24,18 @@ export const BntDonutCard: FC<{ donut: TDonut; className?: string }> = ({
 	className,
 }) => {
 	const { translate } = useBntTranslate();
-	const handleClick = () => {};
+	const dispatch = useAppDispatch();
+
+	const onShowDonut = () => {
+		dispatch(push("/d/" + donut.id));
+	};
+
 	const { on_stock = 0, logo, price, name } = donut;
 	console.log(donut);
 	return (
 		<BntCard raised className={className}>
 			<BntCardActionArea
-				onClick={handleClick}
+				onClick={onShowDonut}
 				className={DONUT_CARD_CLASSES.cardHover}
 			>
 				<BntCardBody className={`${DONUT_CARD_CLASSES.cardBody} m-10`}>

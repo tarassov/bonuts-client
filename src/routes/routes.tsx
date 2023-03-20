@@ -20,12 +20,13 @@ import SettingsPage from "../pages/settings-page/settings-page";
 import MyRequestsPage from "../pages/requests/my-requests-page/my-requests-page";
 import TenantsListPage from "../pages/tenants-list-page/tenants-list-page";
 import StatisticsPage from "../pages/statistics-page/statistics-page";
-import DonutsPage from "../pages/donuts-page/donuts-page";
+import DonutsPage from "../pages/donut/donuts-page";
 import AccountOperationsPage from "../pages/account-operations-page/account-operations-page";
 import LogOutPage from "../pages/logout-page/logout-page";
 import RegistrationPage from "../pages/registration-page/registration-page";
 import RecoverPage from "../pages/recover-page/recover-page";
 import NotFoundPage from "../pages/not-found-page/not-found-page";
+import BntDonutPreviewPage from "../pages/donut/donut-preview-page";
 // import Dashboard from "@material-ui/icons/Dashboard";
 
 export const notFoundRoute: TRoute = {
@@ -207,4 +208,12 @@ export const accountOperationsRoute: TRoute = {
 	authenticated: true,
 	hideInMenu: false,
 	component: <AccountOperationsPage />,
+};
+
+export const donutPreviewRoute: TRoute = {
+	path: "/d/:id",
+	anonymous: false,
+	authenticated: true,
+	hideInMenu: true,
+	component: <BntDonutPreviewPage />,
 };

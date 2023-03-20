@@ -9,7 +9,7 @@ import {
 	authTenantSelector,
 	setProfile,
 } from "../../services/redux/auth-slice";
-import { apiProfileToProfile } from "../../services/translator/api-profile-to-profile";
+import { apiProfileToProfile } from "../../services/adaptor/api-profile-to-profile";
 import { TProfile } from "../../types/model";
 
 export const useProfileLogic = () => {

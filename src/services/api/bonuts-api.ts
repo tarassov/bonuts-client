@@ -24,6 +24,12 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant, all: queryArg.all },
 			}),
 		}),
+		getDonutsById: build.query<GetDonutsByIdApiResponse, GetDonutsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/donuts/${queryArg.id}`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		getEvents: build.query<GetEventsApiResponse, GetEventsApiArg>({
 			query: (queryArg) => ({
 				url: `/events`,
@@ -280,6 +286,60 @@ export type GetDonutsApiArg = {
 	tenant?: string;
 	all?: string;
 };
+export type GetDonutsByIdApiResponse = /** status 200 sends donut */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			price: number;
+			id: number;
+			active: boolean;
+			logo: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			description: string;
+			liked: boolean;
+			likes: {
+				id: number;
+				profile_id: number;
+				created_at?: string;
+				likeable_type?: string;
+				likeable_id?: number;
+			}[];
+			has_remains: boolean;
+			on_stock: number;
+			supply_days: number;
+			expiration_date: string;
+			created_at: string;
+			comments: {
+				id: number;
+				content: string;
+				liked?: boolean;
+				likes: number;
+				public: boolean;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				user_name: string;
+				date_string: string;
+			}[];
+		};
+	};
+};
+export type GetDonutsByIdApiArg = {
+	id: string;
+	tenant?: string;
+};
 export type GetEventsApiResponse = /** status 200 success */ {
 	data?: {
 		id: string;
@@ -351,7 +411,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 					};
 					position?: string;
 				};
-			};
+			} | null;
 		};
 	}[];
 };
@@ -432,7 +492,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 						};
 						position?: string;
 					};
-				};
+				} | null;
 			};
 		}[];
 	};
@@ -769,6 +829,7 @@ export const {
 	usePostAccountOperationsMutation,
 	usePostAvatarsMutation,
 	useGetDonutsQuery,
+	useGetDonutsByIdQuery,
 	useGetEventsQuery,
 	usePutEventsByIdMutation,
 	usePostInvitationsByIdAcceptMutation,
