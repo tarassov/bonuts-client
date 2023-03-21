@@ -64,7 +64,11 @@ export const BntDonutsSearch: FC<{
 				size="small"
 				sx={{ width: "100%" }}
 			/>
-			<BntStack direction={"row"} className={"mb-20"} spacing={2}>
+			<BntStack
+				direction={{ xs: "column", sm: "row" }}
+				className={"mb-20"}
+				spacing={{ xs: 1, sm: 2 }}
+			>
 				{buttons.map((button) => {
 					return (
 						<BntRoundButton

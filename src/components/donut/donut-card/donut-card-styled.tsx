@@ -11,8 +11,7 @@ export const BntDonutCardStyled = styled(
 )(({ theme }) => {
 	return {
 		backgroundColor: theme.palette.background.paper,
-		minWidth: 300,
-		maxWidth: 500,
+		maxWidth: 700,
 		color: theme.palette.neutral.dark,
 		transition: theme.transitions.create(["width", "margin"], {
 			easing: theme.transitions.easing.sharp,

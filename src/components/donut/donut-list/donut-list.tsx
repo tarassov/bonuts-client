@@ -49,10 +49,14 @@ export const BntDonutsList: FC = () => {
 				setFilter={updateFilter}
 				setSorter={updateSorter}
 			/>
-			<Grid container spacing={2}>
+			<Grid
+				container
+				rowSpacing={{ xs: 2 }}
+				columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+			>
 				{filteredList.map((donut) => {
 					return (
-						<Grid key={donut.id} item>
+						<Grid key={donut.id} item xs={12} sm={12} md={6} lg={3}>
 							<BntDonutCardStyled donut={donut} />
 						</Grid>
 					);
