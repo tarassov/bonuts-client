@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDonutLogic } from "../../../logic/hooks/use-donut-logic";
-import { useLoader } from "../../../base/loader/hooks/use-loader";
+import { useLoader } from "../../../shared/loader/hooks/use-loader";
 import { useEffect } from "react";
 import { Modules } from "../../../constants/modules";
 

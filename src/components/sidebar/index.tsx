@@ -1,6 +1,6 @@
 import { Divider, IconButton, useMediaQuery } from "@mui/material";
 import { FC, useContext } from "react";
-import { BntDrawer, BntDrawerHeader } from "../../base/drawer";
+import { BntDrawer, BntDrawerHeader } from "../../shared/drawer";
 import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
 import { logoFull, logoSmall } from "../../constants/icons";

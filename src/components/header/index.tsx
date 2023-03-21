@@ -1,8 +1,8 @@
 import { Avatar, Box, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { FC, useContext, useState, MouseEvent } from "react";
-import { BntAppBar } from "../../base/menu/app-bar";
-import { BntToolbar } from "../../base/toolbar";
-import { BntTypography } from "../../base/typography/typography";
+import { BntAppBar } from "../../shared/menu/app-bar";
+import { BntToolbar } from "../../shared/toolbar";
+import { BntTypography } from "../../shared/typography/typography";
 import { TProfile } from "../../types/model";
 import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";

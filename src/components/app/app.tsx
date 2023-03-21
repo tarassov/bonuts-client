@@ -12,7 +12,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../../services/localization/i18n";
 
 import { BntLayout } from "../layout/layout";
-import { BntLoadingProvider } from "../../base/loader/loading-provider";
+import { BntLoadingProvider } from "../../shared/loader/loading-provider";
 
 function App() {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);

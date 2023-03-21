@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, useState } from "react";
 import { TDonut } from "../../../types/model/donut";
-import { BntFormTextField } from "../../../base/form/fields/bnt-form-text-field";
+import { BntFormTextField } from "../../../shared/form/fields/bnt-form-text-field";
 import { Dictionary, Sorting } from "../../../constants/dictionary";
-import { TFieldType } from "../../../base/form/types/bnt-form";
-import { BntTextField } from "../../../base/input/text-field";
-import { BntStack } from "../../../base/stack/stack";
-import { BntRoundButton } from "../../../base/buttons/round-button";
+import { TFieldType } from "../../../shared/form/types/bnt-form";
+import { BntTextField } from "../../../shared/input/text-field";
+import { BntStack } from "../../../shared/stack/stack";
+import { BntRoundButton } from "../../../shared/buttons/round-button";
 import { DonutsSorter } from "../../../logic/utils/donut-utils";
 import { useBntTranslate } from "../../../hooks/use-bnt-translate";
 

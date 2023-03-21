@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { TDonut } from "../../../types/model/donut";
-import { BntCard } from "../../../base/card/card";
+import { BntCard } from "../../../shared/card/card";
 import { useBntTranslate } from "../../../hooks/use-bnt-translate";
-import { BntCardActionArea } from "../../../base/card/card-action-area";
-import { BntCardBody } from "../../../base/card/card-body";
-import { BntTypography } from "../../../base/typography/typography";
+import { BntCardActionArea } from "../../../shared/card/card-action-area";
+import { BntCardBody } from "../../../shared/card/card-body";
+import { BntTypography } from "../../../shared/typography/typography";
 import { Stack } from "@mui/material";
-import { BntStack } from "../../../base/stack/stack";
+import { BntStack } from "../../../shared/stack/stack";
 import { useAppDispatch } from "../../../services/store/store";
 import { push } from "redux-first-history";
 export const DONUT_CARD_CLASSES = {

@@ -4,7 +4,7 @@ import { useDonutList } from "../../../logic/hooks/use-donut-list";
 import { BntDonutCard } from "../donut-card/donut-card";
 import { Grid } from "@mui/material";
 import { BntDonutCardStyled } from "../donut-card/donut-card-styled";
-import { useLoader } from "../../../base/loader/hooks/use-loader";
+import { useLoader } from "../../../shared/loader/hooks/use-loader";
 import { Modules } from "../../../constants/modules";
 import { TDonut } from "../../../types/model/donut";
 import { BntDonutsSearch } from "./donuts-search";

@@ -6,8 +6,8 @@ import {
 	TFormImageValue,
 	TFormProps,
 	TFormValue,
-} from "../../base/form/types/bnt-form";
-import { BntForm } from "../../base/form/bnt-form";
+} from "../../shared/form/types/bnt-form";
+import { BntForm } from "../../shared/form/bnt-form";
 import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { useUpdateAvatarsMutation } from "../../services/api/form-data-api";
 

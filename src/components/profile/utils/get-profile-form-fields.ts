@@ -3,7 +3,7 @@ import {
 	TFieldSize,
 	TFieldType,
 	TFormField,
-} from "../../../base/form/types/bnt-form";
+} from "../../../shared/form/types/bnt-form";
 import { UserLogic } from "../../../logic/utils/user-utils";
 import { Roles } from "../../../constants/roles";
 

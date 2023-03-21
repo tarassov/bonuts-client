@@ -29,9 +29,9 @@ import { useEventLogic } from "../../../logic/hooks/use-event-logic";
 import { BntOperationText } from "../../opearation-text/operation-text";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
 import { focusInput } from "../../../utils/focus-input";
-import { BntCard } from "../../../base/card/card";
-import { BntCardContent } from "../../../base/card/card-content";
-import { BntCardActions } from "../../../base/card/card-actions";
+import { BntCard } from "../../../shared/card/card";
+import { BntCardContent } from "../../../shared/card/card-content";
+import { BntCardActions } from "../../../shared/card/card-actions";
 
 export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,

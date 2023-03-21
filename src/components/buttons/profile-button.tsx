@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { TProfile } from "../../types/model";
 import { Avatar, Typography } from "@mui/material";
-import { BntTransparentButton } from "../../base/buttons/transparent-button";
+import { BntTransparentButton } from "../../shared/buttons/transparent-button";
 
 export const BntProfileButton: FC<{
 	profile: TProfile;

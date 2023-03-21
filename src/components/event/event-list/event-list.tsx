@@ -4,7 +4,7 @@ import { BntStyledEventCard } from "../event-card/event-card-styled";
 import { Dictionary } from "../../../constants/dictionary";
 import { useEventListLogic } from "../../../logic/hooks/use-event-list-logic";
 import { useBntTranslate } from "../../../hooks/use-bnt-translate";
-import { useLoader } from "../../../base/loader/hooks/use-loader";
+import { useLoader } from "../../../shared/loader/hooks/use-loader";
 import { Modules } from "../../../constants/modules";
 
 export const BntEventList: FC = () => {

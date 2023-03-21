@@ -3,7 +3,7 @@
 ## Project structure
 ```bash 
 └── src
-    ├── base  #Base components that that could be extracted easily
+    ├── shared  #Base components that that could be extracted easily
     │   ├── drawer
     │   ├── BNTToolbar
     │   ├── BNTTypography
