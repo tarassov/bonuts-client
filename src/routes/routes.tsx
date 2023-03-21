@@ -7,6 +7,7 @@ import {
 	LogoutOutlined,
 	DonutSmall,
 	Shop,
+	ShoppingBag,
 } from "@mui/icons-material";
 import ActiveRequestsPage from "../pages/requests/active-requests-page.tsx/active-requests-page";
 import ClosedRequestsPage from "../pages/requests/closed-requests-page/closed-request-page";
@@ -199,7 +200,7 @@ export const donutsRoute: TRoute = {
 	navbarName: "Store",
 	hideInMenu: false,
 	component: <DonutsPage />,
-	icon: <Shop />,
+	icon: <ShoppingBag />,
 	index: 2,
 };
 export const accountOperationsRoute: TRoute = {
