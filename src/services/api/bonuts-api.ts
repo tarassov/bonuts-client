@@ -91,6 +91,19 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
+		getRequests: build.query<GetRequestsApiResponse, GetRequestsApiArg>({
+			query: (queryArg) => ({
+				url: `/requests`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		postRequests: build.mutation<PostRequestsApiResponse, PostRequestsApiArg>({
+			query: (queryArg) => ({
+				url: `/requests`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		postTenantsByTenantNameJoin: build.mutation<
 			PostTenantsByTenantNameJoinApiResponse,
 			PostTenantsByTenantNameJoinApiArg
@@ -735,6 +748,227 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 export type GetProfilesApiArg = {
 	tenant?: string;
 };
+export type GetRequestsApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id: number;
+			name: string;
+			public_uid?: string;
+			donut_name: string;
+			created_at: string;
+			updated_at: string;
+			status: number;
+			date_used?: (string | null) | null;
+			deleted?: boolean;
+			donut: {
+				name: string;
+				price: number;
+				id: number;
+				active: boolean;
+				logo: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				description: string;
+				liked: boolean;
+				likes: {
+					id: number;
+					profile_id: number;
+					created_at?: string;
+					likeable_type?: string;
+					likeable_id?: number;
+				}[];
+				has_remains: boolean;
+				on_stock: number;
+				supply_days: number;
+				expiration_date: string;
+				created_at: string;
+				comments: {
+					id: number;
+					content: string;
+					liked?: boolean;
+					likes: number;
+					public: boolean;
+					user_avatar: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+					user_name: string;
+					date_string: string;
+				}[];
+			};
+			profile: {
+				id?: number;
+				user_id?: number;
+				active?: boolean;
+				admin?: boolean;
+				attached?: boolean;
+				roles?: string[];
+				default?: boolean;
+				department?: (object | null) | null;
+				position?: (string | null) | null;
+				store_admin?: boolean;
+				first_name?: string;
+				last_name?: string;
+				email?: string;
+				tenant?: string;
+				sex?: string;
+				name?: string;
+				created_at?: string;
+				user_avatar?: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				logo?: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				score_total?: number;
+				self_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+				distrib_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+			};
+			enabled?: (boolean | null) | null;
+		};
+	}[];
+};
+export type GetRequestsApiArg = {
+	tenant?: string;
+};
+export type PostRequestsApiResponse = /** status 201 success */ {
+	id?: string;
+	type?: string;
+	attributes?: {
+		id: number;
+		name: string;
+		public_uid?: string;
+		donut_name: string;
+		created_at: string;
+		updated_at: string;
+		status: number;
+		date_used?: (string | null) | null;
+		deleted?: boolean;
+		donut: {
+			name: string;
+			price: number;
+			id: number;
+			active: boolean;
+			logo: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			description: string;
+			liked: boolean;
+			likes: {
+				id: number;
+				profile_id: number;
+				created_at?: string;
+				likeable_type?: string;
+				likeable_id?: number;
+			}[];
+			has_remains: boolean;
+			on_stock: number;
+			supply_days: number;
+			expiration_date: string;
+			created_at: string;
+			comments: {
+				id: number;
+				content: string;
+				liked?: boolean;
+				likes: number;
+				public: boolean;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				user_name: string;
+				date_string: string;
+			}[];
+		};
+		profile: {
+			id?: number;
+			user_id?: number;
+			active?: boolean;
+			admin?: boolean;
+			attached?: boolean;
+			roles?: string[];
+			default?: boolean;
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			first_name?: string;
+			last_name?: string;
+			email?: string;
+			tenant?: string;
+			sex?: string;
+			name?: string;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+		enabled?: (boolean | null) | null;
+	};
+};
+export type PostRequestsApiArg = {
+	body: {
+		donut_id?: number;
+		tenant?: string;
+	};
+};
 export type PostTenantsByTenantNameJoinApiResponse = unknown;
 export type PostTenantsByTenantNameJoinApiArg = {
 	tenantName: string;
@@ -837,6 +1071,8 @@ export const {
 	useGetProfileQuery,
 	usePutProfilesByIdMutation,
 	useGetProfilesQuery,
+	useGetRequestsQuery,
+	usePostRequestsMutation,
 	usePostTenantsByTenantNameJoinMutation,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
