@@ -43,7 +43,11 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts"
+		"generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts",
+		"eslint": "eslint ./src",
+		"eslint:fix": "eslint ./src --fix",
+		"prettier": "prettier --check src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc",
+		"prettier:fix": "prettier --write src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc"
 	},
 	"eslintConfig": {
 		"extends": [
