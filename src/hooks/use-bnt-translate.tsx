@@ -8,5 +8,5 @@ export const useBntTranslate = () => {
 		return "";
 	};
 
-	return { translate };
+	return { translate, t: translate };
 };

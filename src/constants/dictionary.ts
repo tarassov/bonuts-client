@@ -1,5 +1,8 @@
 export enum Dictionary {
+	Buy = "Buy",
 	EDIT = "Edit",
+	Description = "Description",
+	Delivery_days = "delivery days",
 	DONUTS = "Donuts",
 	PROFILE = "Profile",
 	ONLY_YOU_CAN_SEE_IT = "Only you can see it",
@@ -12,6 +15,8 @@ export enum Dictionary {
 	MORE = "More",
 	NO_OPTIONS = "No options",
 
+	On_stock = "on stock",
+	PTS = "PTS",
 	SEARCH_STRING = "Search string",
 }
 
