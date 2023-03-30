@@ -14,16 +14,37 @@
   margin-right: $size  + px;
 }
 
+@mixin p-mixin($size) {
+  padding: $size  + px;
+}
+@mixin pb-mixin($size) {
+  padding-bottom: $size  + px;
+}
+@mixin pt-mixin($size) {
+  padding-top: $size  + px;
+}
+@mixin pl-mixin($size) {
+  padding-left: $size  + px;
+}
+@mixin pr-mixin($size) {
+  padding-right: $size  + px;
+}
+
 @mixin right-mixin($size) {
   position: absolute;
   right: $size  + px;;
 }
 
-@for $i from 1 through 20 {
+@for $i from 1 through 40 {
   .mb-#{$i} { @include mb-mixin($i); }
   .mt-#{$i} { @include mt-mixin($i); }
   .mr-#{$i} { @include mr-mixin($i); }
   .ml-#{$i} { @include ml-mixin($i); }
   .m-#{$i} { @include m-mixin($i); }
+  .pb-#{$i} { @include pb-mixin($i); }
+  .pt-#{$i} { @include pt-mixin($i); }
+  .pr-#{$i} { @include pr-mixin($i); }
+  .pl-#{$i} { @include p-mixin($i); }
+  .p-#{$i} { @include p-mixin($i); }
   .right-#{$i}{ @include right-mixin($i); }
 }

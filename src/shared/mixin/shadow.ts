@@ -1,7 +1,7 @@
 // SHADOWS
-export const SHADOW_UMBRA = "0.2 !default";
-export const SHADOW_PENUMBRA = "0.14 !default";
-export const SHADOW_AMBIENT = "0.12 !default";
+export const SHADOW_UMBRA = "0.2";
+export const SHADOW_PENUMBRA = "0.14";
+export const SHADOW_AMBIENT = "0.12";
 
 export const Shadows = {
 	big: {

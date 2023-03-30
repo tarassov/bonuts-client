@@ -15,6 +15,9 @@ import { DEFAULT_DONUT_IMAGE } from "../../../constants/images";
 import { BntTypography } from "../../../shared/typography/typography";
 import { useBntTranslate } from "../../../hooks/use-bnt-translate";
 import { BntTransparentButton } from "../../../shared/buttons/transparent-button";
+import { DonutRemainGrey } from "./donut-remain-grey";
+import { DonutPrice } from "./donut-price";
+import { BntRegularButton } from "../../../shared/buttons/regular-button";
 
 export const BntDonutPreview = () => {
 	const { id } = useParams();
@@ -41,14 +44,14 @@ export const BntDonutPreview = () => {
 	return (
 		<>
 			<BntBreadcrumbs items={breadcrumbs} className={"mb-10"} />
-			{donut !== null && donut.name}
 			<BntCard>
 				<BntCardBody>
-					<Grid container>
+					<Grid container className={"m-20"}>
 						<Grid item xs={12} sm={12} md={4} lg={3} xl={2}>
 							<ImagePreview
 								defaultImage={DEFAULT_DONUT_IMAGE}
 								image={donut?.logo?.url}
+								className={"ml-10"}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={6}>
@@ -63,13 +66,13 @@ export const BntDonutPreview = () => {
 
 						<Grid item xs={12} sm={12} md={3}>
 							<BntCard raised>
-								<BntTypography>
+								<DonutPrice className={"ml-20 mt-10"}>
 									{donut?.price} {translate(Dictionary.PTS)}
-								</BntTypography>
+								</DonutPrice>
 								{donut?.on_stock && (
-									<BntTypography>
+									<DonutRemainGrey className={"ml-20"}>
 										{translate(Dictionary.On_stock)}: {donut.on_stock}
-									</BntTypography>
+									</DonutRemainGrey>
 								)}
 								{donut?.on_stock == 0 && donut.supply_days && (
 									<BntTypography>
@@ -77,9 +80,11 @@ export const BntDonutPreview = () => {
 									</BntTypography>
 								)}
 								{donut?.has_remains && (
-									<BntTransparentButton color="primary" onClick={() => {}}>
-										{translate(Dictionary.Buy)}
-									</BntTransparentButton>
+									<div className={"m-20"}>
+										<BntRegularButton onClick={() => {}} className={"width100"}>
+											{translate(Dictionary.Buy)}
+										</BntRegularButton>
+									</div>
 								)}
 							</BntCard>
 						</Grid>

@@ -6,13 +6,14 @@ export const ImagePreview: FC<{
 	image?: string | null;
 	avatar?: string | null;
 	defaultImage: string;
-}> = ({ image, avatar, defaultImage }) => {
+	className?: string;
+}> = ({ image, avatar, defaultImage, className }) => {
 	// const { showModal } = useModal(IMAGE_PREVIEW);
 
 	const previewModal = () => {};
 
 	return (
-		<ImageContainer round={!!avatar}>
+		<ImageContainer round={!!avatar} className={className}>
 			<img src={image || avatar || defaultImage} alt="..." />
 		</ImageContainer>
 	);

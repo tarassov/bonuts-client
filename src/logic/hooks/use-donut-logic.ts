@@ -1,5 +1,6 @@
 import {
 	useGetDonutsByIdQuery,
+	usePostAccountOperationsMutation,
 	usePutEventsByIdMutation,
 } from "../../services/api/bonuts-api";
 import { TEvent } from "../../types/model";
@@ -13,10 +14,20 @@ type TEventUpdate = {
 };
 export const useDonutLogic = (id?: string | null) => {
 	const authTenant = useAppSelector(authTenantSelector);
+	const [buyEvent] = usePostAccountOperationsMutation();
 	const { data, error, isLoading } = useGetDonutsByIdQuery({
 		id: id || "",
 		tenant: authTenant || undefined,
 	});
+
+	const buy = (event: TEvent & TLikeable) => {
+		// authTenant &&
+		// 	buyEvent({
+		// 		id: id,
+		// 		// body: { tenant: authTenant }, //like true toggles like (backend hooks)
+		// 	});
+	};
+
 	const donut = apiDonutToDonut(data);
 	return { donut, isLoading, error };
 };
