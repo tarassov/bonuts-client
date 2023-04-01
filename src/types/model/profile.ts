@@ -1,8 +1,7 @@
-import { TUser } from "./user";
 import { TPicture } from "./picture";
+import { TBaseModel } from "./base-model";
 
-export type TProfile = {
-	id?: number;
+export type TProfile = TBaseModel & {
 	user_id?: number;
 	position?: string | null;
 	user_name?: string | null;

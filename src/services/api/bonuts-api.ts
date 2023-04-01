@@ -362,6 +362,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 			extra_content?: string | null;
 			id: number;
 			date_string: string;
+			profile_id: number;
 			user_id: number;
 			user_name: string;
 			comments: {
@@ -443,6 +444,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 				extra_content?: string | null;
 				id: number;
 				date_string: string;
+				profile_id: number;
 				user_id: number;
 				user_name: string;
 				comments: {

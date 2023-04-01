@@ -7,7 +7,16 @@ body {
 .position-relative {
   position: relative;
 }
+.position-sticky {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+}
 
-.width100 {
+.width-100 {
   width: 100%;
+}
+
+.text-align-center{
+  text-align: center;
 }

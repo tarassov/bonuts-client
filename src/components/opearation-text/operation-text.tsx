@@ -5,7 +5,7 @@ import { FC } from "react";
 import { OPERATION_CLASSES } from "./styled-operation-text";
 import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { BntProfileButton } from "../buttons/profile-button";
-import { DealType } from "../../types/model/deal_type";
+import { DealType } from "../../types/model/deal-type";
 import { EMPTY_FUNCTION } from "../../constants/functions";
 
 type BntOperationTextProps = {

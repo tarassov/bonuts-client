@@ -1,4 +1,4 @@
-import { TBaseModel } from "./type-extension";
+import { TBaseModel } from "./base-model";
 
 export type TEvent = TBaseModel & {
 	public?: boolean;

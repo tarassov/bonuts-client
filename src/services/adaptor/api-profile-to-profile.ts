@@ -5,9 +5,9 @@ import { getUserName } from "../../logic/utils/user-utils";
 export const apiProfileToProfile = (
 	response: GetProfileApiResponse
 ): TProfile | undefined => {
-	if (!response.data) return undefined;
+	if (!response.data || response.data.id) return undefined;
 	const res: TProfile = {
-		id: response?.data.id ? Number(response.data.id) : undefined,
+		id: Number(response.data.id),
 		user_id: response.data.attributes?.user_id
 			? Number(response.data.attributes?.user_id)
 			: undefined,

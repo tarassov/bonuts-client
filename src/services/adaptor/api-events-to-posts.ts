@@ -1,6 +1,6 @@
 import { GetEventsApiResponse } from "../api/bonuts-api";
 import { TPost } from "../../types/model/post";
-import { DealType } from "../../types/model/deal_type";
+import { DealType } from "../../types/model/deal-type";
 
 export const apiEventsToPosts = (
 	response: GetEventsApiResponse
@@ -17,6 +17,7 @@ export const apiEventsToPosts = (
 			commentable: true,
 			likeable: true,
 			profile: {
+				id: attributes.profile_id,
 				first_name: "",
 				last_name: "",
 				user_name: attributes.user_name,

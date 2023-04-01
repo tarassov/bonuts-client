@@ -1,9 +1,4 @@
 import { TLike } from "./like";
-import { TComment } from "./comment";
-
-export type TBaseModel = {
-	id: number;
-};
 
 export type TCommentable = {
 	commentable: boolean;

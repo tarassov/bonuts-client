@@ -1,5 +1,5 @@
 import { TProfile } from "./profile";
-import { DealType } from "./deal_type";
+import { DealType } from "./deal-type";
 
 export type TOperation = {
 	id?: number;
