@@ -13,6 +13,8 @@ import i18n from "../../services/localization/i18n";
 
 import { BntLayout } from "../layout/layout";
 import { BntLoadingProvider } from "../../shared/loader/loading-provider";
+import { BntDialogProvider } from "../../shared/modal/dialog-provider";
+import { modalConfig } from "../modals/modal-config";
 
 function App() {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -39,7 +41,9 @@ function App() {
 					<AppContext.Provider value={contextValue}>
 						<HistoryRouter history={history}>
 							<BntLoadingProvider>
-								<BntLayout />
+								<BntDialogProvider config={modalConfig}>
+									<BntLayout />
+								</BntDialogProvider>
 							</BntLoadingProvider>
 						</HistoryRouter>
 					</AppContext.Provider>

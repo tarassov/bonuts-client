@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDonutLogic } from "../../../logic/hooks/use-donut-logic";
 import { useLoader } from "../../../shared/loader/hooks/use-loader";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Modules } from "../../../constants/modules";
 import { TBntBreadcrumpItem } from "../../../shared/types/breadcrumbs";
 import { Dictionary } from "../../../constants/dictionary";
@@ -19,19 +19,26 @@ import { DonutPrice } from "./donut-price";
 import { BntRegularButton } from "../../../shared/buttons/regular-button";
 import { useRequestLogic } from "../../../logic/hooks/use-request-logic";
 import classNames from "classnames";
+import { BntDialogContext } from "../../../shared/modal/dialog-provider";
+import { ModalNames } from "../../modals/modal-config";
 
 export const BntDonutPreview = () => {
 	const { id } = useParams();
 	const theme = useTheme();
-	const matches = useMediaQuery(theme.breakpoints.down("sm"));
+	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 	const { setLoading } = useLoader();
 	const { donut, isLoading } = useDonutLogic(id);
 	const { createRequest } = useRequestLogic();
 	const { translate } = useBntTranslate();
+	const showDialog = useContext(BntDialogContext);
 
 	useEffect(() => {
 		setLoading(Modules.DonutPreview, isLoading);
 	}, [isLoading]);
+
+	const onClick = () => {
+		showDialog(ModalNames.SimpleText, { text: "Hey World" });
+	};
 	const breadcrumbs: Array<TBntBreadcrumpItem> = [
 		{
 			key: "shop",
@@ -62,12 +69,13 @@ export const BntDonutPreview = () => {
 							md={4}
 							lg={3}
 							xl={2}
-							className={classNames("", { "text-align-center": matches })}
+							className={classNames("", { "text-align-center": matchesDownSm })}
 						>
 							<ImagePreview
 								defaultImage={DEFAULT_DONUT_IMAGE}
 								image={donut?.logo?.url}
 								className={"ml-10"}
+								onClick={onClick}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={7} order={{ xs: 3, md: 2 }}>

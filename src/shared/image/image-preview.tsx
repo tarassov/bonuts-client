@@ -7,14 +7,15 @@ export const ImagePreview: FC<{
 	avatar?: string | null;
 	defaultImage: string;
 	className?: string;
-}> = ({ image, avatar, defaultImage, className }) => {
+	onClick?: () => void;
+}> = ({ image, avatar, defaultImage, className, onClick = () => {} }) => {
 	// const { showModal } = useModal(IMAGE_PREVIEW);
 
 	const previewModal = () => {};
 
 	return (
 		<ImageContainer round={!!avatar} className={className}>
-			<img src={image || avatar || defaultImage} alt="..." />
+			<img src={image || avatar || defaultImage} alt="..." onClick={onClick} />
 		</ImageContainer>
 	);
 };
