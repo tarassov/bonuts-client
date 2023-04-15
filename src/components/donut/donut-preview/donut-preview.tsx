@@ -9,18 +9,16 @@ import { DonutSmall, ShoppingBag } from "@mui/icons-material";
 import { BntBreadcrumbs } from "../../../shared/breadcrumb/breadcrump";
 import { BntCard } from "../../../shared/card/card";
 import { BntCardBody } from "../../../shared/card/card-body";
-import { css, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { ImagePreview } from "../../../shared/image/image-preview";
 import { DEFAULT_DONUT_IMAGE } from "../../../constants/images";
 import { BntTypography } from "../../../shared/typography/typography";
 import { useBntTranslate } from "../../../hooks/use-bnt-translate";
-import { DonutRemainGrey } from "./donut-remain-grey";
-import { DonutPrice } from "./donut-price";
-import { BntRegularButton } from "../../../shared/buttons/regular-button";
 import { useRequestLogic } from "../../../logic/hooks/use-request-logic";
 import classNames from "classnames";
 import { BntDialogContext } from "../../../shared/modal/dialog-provider";
-import { ModalNames } from "../../modals/modal-config";
+import { ModalNames } from "../../../config/modal-config";
+import { DonutPurchaseBlock } from "./donut-purchase-block";
 
 export const BntDonutPreview = () => {
 	const { id } = useParams();
@@ -28,7 +26,6 @@ export const BntDonutPreview = () => {
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 	const { setLoading } = useLoader();
 	const { donut, isLoading } = useDonutLogic(id);
-	const { createRequest } = useRequestLogic();
 	const { translate } = useBntTranslate();
 	const showDialog = useContext(BntDialogContext);
 
@@ -52,9 +49,6 @@ export const BntDonutPreview = () => {
 			icon: <DonutSmall color={"info"} />,
 		},
 	];
-	const onCreateRequest = () => {
-		donut && createRequest({ donut });
-	};
 
 	return (
 		<>
@@ -89,31 +83,7 @@ export const BntDonutPreview = () => {
 						</Grid>
 
 						<Grid item xs={12} sm={4} md={3} lg={2} order={{ xs: 2, md: 3 }}>
-							<BntCard raised>
-								<DonutPrice className={"ml-20 mt-10"}>
-									{donut?.price} {translate(Dictionary.PTS)}
-								</DonutPrice>
-								{donut?.on_stock && (
-									<DonutRemainGrey className={"ml-20"}>
-										{translate(Dictionary.On_stock)}: {donut.on_stock}
-									</DonutRemainGrey>
-								)}
-								{donut?.on_stock == 0 && donut.supply_days && (
-									<BntTypography>
-										{translate(Dictionary.Delivery_days)}: {donut.supply_days}{" "}
-									</BntTypography>
-								)}
-								{donut?.has_remains && (
-									<div className={"m-20"}>
-										<BntRegularButton
-											onClick={onCreateRequest}
-											className={"width-100"}
-										>
-											{translate(Dictionary.Buy)}
-										</BntRegularButton>
-									</div>
-								)}
-							</BntCard>
+							{donut && <DonutPurchaseBlock donut={donut} />}
 						</Grid>
 					</Grid>
 				</BntCardBody>
