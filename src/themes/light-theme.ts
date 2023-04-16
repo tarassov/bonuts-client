@@ -1,10 +1,9 @@
 import { blue, grey, red } from "@mui/material/colors";
-import { createTheme } from "@mui/material/styles";
 
 const lightTheme = {
 	palette: {
 		background: {
-			default: grey["A100"],
+			default: grey.A100,
 			palette: "#FFF",
 		},
 		primary: {
@@ -21,14 +20,14 @@ const lightTheme = {
 			main: red.A400,
 		},
 		neutral: {
-			main: grey["A400"],
+			main: grey.A400,
 			dark: grey["800"],
-			light: grey["A100"],
+			light: grey.A100,
 		},
 		info: {
-			main: blue["A200"],
-			dark: blue["A400"],
-			light: blue["A100"],
+			main: blue.A200,
+			dark: blue.A400,
+			light: blue.A100,
 		},
 	},
 };

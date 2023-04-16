@@ -1,10 +1,8 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { TPost } from "../../../types/model/post";
 import {
 	Android,
 	Comment,
 	Edit,
-	Expand,
 	ExpandMore,
 	Favorite,
 	Lock,
@@ -21,17 +19,17 @@ import {
 	Box,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { Dictionary } from "../../../constants/dictionary";
-import { BntStyledCardHeader } from "./event-card-header";
 import classNames from "classnames";
-import { EVENT_CARD_CLASSES } from "./event-card-styled";
-import { useEventLogic } from "../../../logic/hooks/use-event-logic";
-import { BntOperationText } from "../../opearation-text/operation-text";
+import { Dictionary } from "constants/dictionary";
+import { useEventLogic } from "logic/hooks/use-event-logic";
+import { focusInput } from "utils/focus-input";
+import { BntCard } from "shared/card/card";
+import { BntCardContent } from "shared/card/card-content";
+import { BntCardActions } from "shared/card/card-actions";
+import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
+import { TPost } from "@/types/model/post";
+import { BntStyledCardHeader } from "./event-card-header";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
-import { focusInput } from "../../../utils/focus-input";
-import { BntCard } from "../../../shared/card/card";
-import { BntCardContent } from "../../../shared/card/card-content";
-import { BntCardActions } from "../../../shared/card/card-actions";
 
 export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 	post,
@@ -51,36 +49,37 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 		date_string,
 		editable,
 	} = post;
-	const { user_name, user_avatar, position, admin } = profile;
+	const { user_name, user_avatar, position } = profile;
 	const { t } = useTranslation();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
 	const [expanded, setExpanded] = useState(false);
 	const { toggleLike, updateEvent } = useEventLogic();
 
-	const handleContentChange = (e: any) => {};
+	// const handleContentChange = (e: any) => {};
 	const handleSubmitEdit = (e: any) => {
 		updateEvent(post, { content: e.target.content.value });
 		setEdit(false);
 		e.preventDefault();
 	};
-	const handleLike = (e: any) => toggleLike(post);
-	const handleComment = (e: any) => {};
+	const handleLike = () => toggleLike(post);
+	const handleComment = () => {};
 	const handleEdit = (e: any) => {
 		e.preventDefault();
 		setEdit(() => !edit);
 	};
 
-	const onBlur = () => {
-		setTimeout(() => {
-			setEdit(false);
-		}, 100);
-	};
+	// const onBlur = () => {
+	// 	setTimeout(() => {
+	// 		setEdit(false);
+	// 	}, 100);
+	// };
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
 
+	// eslint-disable-next-line consistent-return
 	useEffect(() => {
 		if (edit && inputRef?.current) {
 			const timeout = setTimeout(() => {
@@ -145,7 +144,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 				)}
 				{edit && (
 					<Box
-						component={"form"}
+						component="form"
 						onSubmit={handleSubmitEdit}
 						sx={{
 							"& .MuiTextField-root": { m: 1, width: "90%" },
@@ -158,7 +157,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 							margin="dense"
 							id="content_value"
 							name="content"
-							//onChange={handleContentChange}
+							// onChange={handleContentChange}
 							defaultValue={content}
 							fullWidth
 							///	onBlur={onBlur}

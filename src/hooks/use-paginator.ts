@@ -1,23 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { ApiEndpointQuery } from "@reduxjs/toolkit/dist/query/core/module";
-import { QueryHooks } from "@reduxjs/toolkit/dist/query/react/buildHooks";
-import { QueryDefinition } from "@reduxjs/toolkit/dist/query";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { USE_POLLING_INTERVAL } from "../config";
-
+import { deepEqual } from "fast-equals";
 import {
 	RootState,
 	store,
 	useAppDispatch,
 	useAppSelector,
-} from "../services/store/store";
-import { deepEqual } from "fast-equals";
+} from "services/store/store";
+import { USE_POLLING_INTERVAL } from "@/config";
+
 import {
 	GetArgsType,
 	GetResultType,
 	TEndpoint,
 	TPageable,
-} from "../types/api/api";
+} from "@/types/api/api";
 
 export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	endpoint: Endpoint,
@@ -41,6 +37,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			page: 1,
 		},
 		{
+			// eslint-disable-next-line no-nested-ternary
 			pollingInterval: !USE_POLLING_INTERVAL
 				? 0
 				: pollingInterval !== undefined
@@ -89,9 +86,11 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			const rootState = store.getState();
 			const newPages: Record<number, GetResultType<Endpoint>> = {};
 			for (let i = 2; i <= currentPage; i++) {
-				const { data } = endpoint.select({ ...args, page: i })(rootState);
+				const { data: pageData } = endpoint.select({ ...args, page: i })(
+					rootState
+				);
 				if (data) {
-					const page = data as GetResultType<Endpoint>;
+					const page = pageData as GetResultType<Endpoint>;
 					if (!deepEqual(pages[i], page)) newPages[i] = page;
 				}
 			}
@@ -101,13 +100,13 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 
 	useEffect(() => {
 		if (isSuccess) {
-			//if only one page is loaded then update immediately
+			// if only one page is loaded then update immediately
 			if (Object.keys(pages).length <= 1) {
 				setPages({ 1: data });
 			} else {
-				//if other pages are loaded then save updates and mark hasNew as true
+				// if other pages are loaded then save updates and mark hasNew as true
 				setPages({ ...pages, 1: data });
-				//setHasNew(true);
+				// setHasNew(true);
 			}
 		}
 	}, [data, isSuccess]);

@@ -1,5 +1,3 @@
-import { MouseEventHandler } from "react";
-
 export type TBntBreadcrumpItem = {
 	link?: string;
 	onClick?: (item: TBntBreadcrumpItem) => void;

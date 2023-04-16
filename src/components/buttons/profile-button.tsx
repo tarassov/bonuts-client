@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { TProfile } from "../../types/model";
 import { Avatar, Typography } from "@mui/material";
-import { BntTransparentButton } from "../../shared/buttons/transparent-button";
+import { BntTransparentButton } from "shared/buttons/transparent-button";
+import { TProfile } from "@/types/model";
 
 export const BntProfileButton: FC<{
 	profile: TProfile;
@@ -18,7 +18,7 @@ export const BntProfileButton: FC<{
 				/>
 			}
 		>
-			<Typography variant={"body2"}>
+			<Typography variant="body2">
 				{profile.user_name && <span>{profile.user_name}</span>}
 			</Typography>
 		</BntTransparentButton>

@@ -1,6 +1,7 @@
 import { FetchBaseQueryMeta } from "@reduxjs/toolkit/dist/query";
-import { bonutsApi, GetEventsApiResponse } from "./bonuts-api";
-import { TPageable, TPaginator } from "../../types/api/api";
+import { updateQueryData } from "services/api/update-query-data";
+import { GetEventsApiResponse } from "./bonuts-api";
+import { TPageable, TPaginator } from "@/types/api/api";
 import { bonutsApiOverride } from "./form-data-api";
 
 const getPaginator = (meta: FetchBaseQueryMeta | undefined): TPaginator => {
@@ -23,37 +24,20 @@ export const extendedApi = bonutsApiOverride.enhanceEndpoints({
 		putEventsById: {
 			// invalidatesTags: ["Event"],
 			async onQueryStarted(
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
 				{ id, ...patch },
 				{ dispatch, queryFulfilled, getState }
 			) {
 				const response = await queryFulfilled;
+				// eslint-disable-next-line no-restricted-syntax
 				for (const {
 					endpointName,
 					originalArgs,
 				} of extendedApi.util.selectInvalidatedBy(getState(), ["Event"])) {
 					// we only want to update `getEvents` here
+					// eslint-disable-next-line no-continue
 					if (endpointName !== "getEvents") continue;
-					dispatch(
-						bonutsApi.util.updateQueryData(
-							endpointName,
-							originalArgs,
-							(draft) => {
-								const data = response?.data?.data;
-								const dataArr = Array.isArray(data) ? data : [data];
-								Array.isArray(dataArr) &&
-									dataArr.forEach((el) => {
-										if (draft.data) {
-											const event = draft.data.find(
-												(event) => event.id === el.id
-											);
-											if (event) {
-												Object.assign(event, el);
-											}
-										}
-									});
-							}
-						)
-					);
+					dispatch(updateQueryData(endpointName, originalArgs, response));
 				}
 			},
 		},

@@ -1,6 +1,7 @@
 import { Dialog, DialogProps } from "@mui/material";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { TBntModal } from "../types/dialog";
+
 export const BntDialog: FC<
 	DialogProps & { modal: TBntModal; handleClose: (modal: TBntModal) => void }
 > = (props) => {

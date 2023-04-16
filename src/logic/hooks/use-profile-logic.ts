@@ -1,16 +1,16 @@
-import { useAppDispatch, useAppSelector } from "../../services/store/store";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "services/store/store";
 import {
 	useGetProfileQuery,
 	usePutProfilesByIdMutation,
-} from "../../services/api/bonuts-api";
-import { useEffect } from "react";
+} from "services/api/bonuts-api";
+import { setProfile } from "services/redux/auth-slice";
+import { apiProfileToProfile } from "services/adaptor/api-profile-to-profile";
 import {
 	authProfileSelector,
 	authTenantSelector,
-	setProfile,
-} from "../../services/redux/auth-slice";
-import { apiProfileToProfile } from "../../services/adaptor/api-profile-to-profile";
-import { TProfile } from "../../types/model";
+} from "services/selectors/auth-selector";
+import { TProfile } from "@/types/model";
 
 export const useProfileLogic = () => {
 	const [putProfile] = usePutProfilesByIdMutation();
@@ -27,7 +27,7 @@ export const useProfileLogic = () => {
 	useEffect(() => {
 		if (data) {
 			const translated = apiProfileToProfile(data);
-			translated && dispatch(setProfile(translated));
+			if (translated) dispatch(setProfile(translated));
 		}
 	}, [data]);
 
@@ -35,7 +35,6 @@ export const useProfileLogic = () => {
 		profile: TProfile,
 		values: Record<string, any>
 	) => {
-		profile?.id;
 		if (profile.id && authTenant) {
 			const res = await putProfile({
 				id: profile?.id.toString(),
@@ -43,6 +42,7 @@ export const useProfileLogic = () => {
 			});
 			return res;
 		}
+		return undefined;
 	};
 
 	return { profile: authProfile, isLoading, error, updateProfile };

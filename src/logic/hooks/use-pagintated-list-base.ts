@@ -1,9 +1,9 @@
-import { usePaginator } from "../../hooks/use-paginator";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../services/store/store";
-import { authTenantSelector } from "../../services/redux/auth-slice";
-import { GetArgsType, GetResultType, TEndpoint } from "../../types/api/api";
 import _ from "lodash";
+import { usePaginator } from "hooks/use-paginator";
+import { useAppSelector } from "services/store/store";
+import { authTenantSelector } from "services/selectors/auth-selector";
+import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
 
 export const usePagintatedListBase = <
 	Endpoint extends TEndpoint<Endpoint>,

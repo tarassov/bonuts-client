@@ -1,6 +1,6 @@
-import { BntFormItem } from "./bnt-form-item";
 import { FC } from "react";
-import { TFormProps, TFormValue } from "./types/bnt-form";
+import { BntFormItem } from "./bnt-form-item";
+import { TFormProps } from "./types/bnt-form";
 import { useBntForm } from "./hooks/use-bnt-form";
 
 export const BntFormFieldList: FC<
@@ -8,6 +8,7 @@ export const BntFormFieldList: FC<
 > = ({ fields, hasInitial, formId }) => {
 	const { values } = useBntForm();
 	return (
+		// eslint-disable-next-line react/jsx-no-useless-fragment
 		<>
 			{fields &&
 				fields.map((field) => {

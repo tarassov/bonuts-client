@@ -1,10 +1,9 @@
 import { Typography } from "@mui/material";
 import { FC } from "react";
+
 const AccountOperationsPage: FC = () => {
 	return (
-		<>
-			<Typography>AccountOperationsPage</Typography>
-		</>
+		<Typography>AccountOperationsPage</Typography>
 	);
 };
 

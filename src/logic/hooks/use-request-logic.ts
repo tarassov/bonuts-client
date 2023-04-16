@@ -1,19 +1,19 @@
-import { usePostRequestsMutation } from "../../services/api/bonuts-api";
+import { usePostRequestsMutation } from "services/api/bonuts-api";
+import { useAppSelector } from "services/store/store";
+import { authTenantSelector } from "services/selectors/auth-selector";
+import { TDonut } from "@/types/model";
 
-import { useAppSelector } from "../../services/store/store";
-import { authTenantSelector } from "../../services/redux/auth-slice";
-import { TDonut } from "../../types/model";
-
-export const useRequestLogic = (id?: string | null) => {
+export const useRequestLogic = () => {
 	const authTenant = useAppSelector(authTenantSelector);
 	const [postRequest] = usePostRequestsMutation();
 
 	const createRequest = (args: { donut: TDonut }) => {
 		const { donut } = args;
-		authTenant &&
+		if (authTenant) {
 			postRequest({
 				body: { donut_id: donut?.id, tenant: authTenant },
 			});
+		}
 	};
 
 	return { createRequest };

@@ -1,18 +1,18 @@
 import { Divider, IconButton, useMediaQuery } from "@mui/material";
 import { FC, useContext } from "react";
-import { BntDrawer, BntDrawerHeader } from "../../shared/drawer";
-import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
-import { logoFull, logoSmall } from "../../constants/icons";
-import { BntMainMenu } from "../main-menu/main-menu";
 import { Theme } from "@mui/material/styles";
+import { BntDrawer, BntDrawerHeader } from "shared/drawer";
+import { AppContext } from "context/app-context";
+import { logoFull, logoSmall } from "constants/icons";
+import { BntMainMenu } from "../main-menu/main-menu";
 
 const BntSidebar: FC = () => {
 	const { isDrawerOpen } = useContext(AppContext);
 	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.up("sm"));
 	const { toggleDrawer } = useContext(AppContext);
 	return (
-		<>
+		<div>
 			{matches && (
 				<BntDrawer variant="permanent" open={isDrawerOpen}>
 					<BntDrawerHeader>
@@ -27,7 +27,7 @@ const BntSidebar: FC = () => {
 					/>
 				</BntDrawer>
 			)}
-		</>
+		</div>
 	);
 };
 

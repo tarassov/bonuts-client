@@ -1,6 +1,4 @@
-import { Theme } from "@mui/material/styles";
-
-export const bounceStyle = (theme: Theme) => {
+export const bounceStyle = () => {
 	return {
 		animation: "bounceEffect 0.5s both ease-in-out",
 		fontSmooth: "subpixel-antialiased",
@@ -50,7 +48,7 @@ export const bounceStyle = (theme: Theme) => {
 	};
 };
 
-export const pulsateStyle = (theme: Theme) => {
+export const pulsateStyle = () => {
 	return {
 		"@keyframes pulsate": {
 			from: {

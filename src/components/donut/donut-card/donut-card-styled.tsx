@@ -1,9 +1,7 @@
 import { styled } from "@mui/material/styles";
+import { cl } from "themes/helper";
 import { BntDonutCard, DONUT_CARD_CLASSES } from "./donut-card";
-import { cl } from "../../../themes/helper";
 import { bounceStyle } from "../../styles/bounce-style";
-
-const iconFontSize = "16px";
 
 export const BntDonutCardStyled = styled(
 	BntDonutCard,
@@ -18,7 +16,7 @@ export const BntDonutCardStyled = styled(
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 		"&:hover": {
-			...bounceStyle(theme),
+			...bounceStyle(),
 			margin: "5px",
 		},
 		[cl(DONUT_CARD_CLASSES.remains)]: {

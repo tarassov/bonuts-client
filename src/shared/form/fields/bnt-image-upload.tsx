@@ -1,33 +1,36 @@
-import {
-	TFieldType,
-	TFormField,
-	TFormImageValue,
-	TFormValue,
-} from "../types/bnt-form";
-import { Box, Button, CardMedia, TextField } from "@mui/material";
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
-import { BntFormProvider } from "../context/bnt-form-provider";
-import { useBntForm } from "../hooks/use-bnt-form";
-import { CloudUpload } from "@mui/icons-material";
-import { BntFormFileInput } from "../bnt-form-file-input";
-import { useBntTranslate } from "../../../hooks/use-bnt-translate";
+import { Box, CardMedia } from "@mui/material";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import React, { useEffect, useState } from "react";
+import { TFormField, TFormImageValue, TFormValue } from "../types/bnt-form";
 
-export function BntImageUpload(props: {
+import { useBntForm } from "../hooks/use-bnt-form";
+import { BntFormFileInput } from "../bnt-form-file-input";
+
+export const BntImageUpload = (props: {
 	field: TFormField;
 	value: TFormValue;
-	id: number | string;
-}) {
+}) => {
 	const { field, value } = props;
 	const { name } = field;
 	const { onChange } = useBntForm();
 	const { translate } = useBntTranslate();
-	const [file, setFile] = useState<File | undefined>();
 	const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
-
 	useEffect(() => {
 		const url = (value as TFormImageValue)?.url;
 		setImagePreviewUrl(url || "");
 	}, [value]);
+
+	const handleFile = (files: FileList) => {
+		const reader = new FileReader();
+		const file = files[0];
+
+		reader.onloadend = () => {
+			setImagePreviewUrl(reader.result as string);
+		};
+
+		reader.readAsDataURL(file);
+		onChange(name, file);
+	};
 
 	const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
@@ -48,20 +51,9 @@ export function BntImageUpload(props: {
 			handleFile(e.dataTransfer.files);
 		}
 	};
-	const handleFile = (files: FileList) => {
-		const reader = new FileReader();
-		const file = files[0];
 
-		reader.onloadend = () => {
-			setFile(file);
-			setImagePreviewUrl(reader.result as string);
-		};
-
-		reader.readAsDataURL(file);
-		onChange(name, file);
-	};
 	return (
-		<>
+		<div>
 			{imagePreviewUrl ? (
 				<>
 					<CardMedia
@@ -90,6 +82,6 @@ export function BntImageUpload(props: {
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
 				</Box>
 			)}
-		</>
+		</div>
 	);
-}
+};

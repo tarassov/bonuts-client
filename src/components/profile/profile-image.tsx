@@ -1,20 +1,17 @@
-import { useProfileLogic } from "../../logic/hooks/use-profile-logic";
+import { useProfileLogic } from "logic/hooks/use-profile-logic";
 import {
 	TFieldSize,
 	TFieldType,
 	TFormField,
-	TFormImageValue,
 	TFormProps,
 	TFormValue,
-} from "../../shared/form/types/bnt-form";
-import { BntForm } from "../../shared/form/bnt-form";
-import { useBntTranslate } from "../../hooks/use-bnt-translate";
-import { useUpdateAvatarsMutation } from "../../services/api/form-data-api";
+} from "shared/form/types/bnt-form";
+import { BntForm } from "shared/form/bnt-form";
+import { useUpdateAvatarsMutation } from "services/api/form-data-api";
 
 export const BntProfileImage = () => {
-	const { profile, updateProfile } = useProfileLogic();
+	const { profile } = useProfileLogic();
 	const [updateAvatars] = useUpdateAvatarsMutation();
-	const { translate } = useBntTranslate();
 	const fields: Array<TFormField> = [
 		{
 			image: true,
@@ -32,21 +29,20 @@ export const BntProfileImage = () => {
 	): Promise<{ data: any } | { error: any } | undefined> | undefined => {
 		if (profile && profile.tenant && profile.id) {
 			const formPayLoad = new FormData();
-			const file = values["user_avatar"] as File;
+			const file = values.user_avatar as File;
 			formPayLoad.append("uploaded_image", file);
 			formPayLoad.append("tenant", profile.tenant);
 			formPayLoad.append("id", profile.id.toString());
 			return updateAvatars(formPayLoad);
 		}
+		return undefined;
 	};
 	return (
-		<>
-			<BntForm
-				hasInitial={true}
-				initialValues={initialValues}
-				{...formProps}
-				onSubmit={onSubmit}
-			/>
-		</>
+		<BntForm
+			hasInitial
+			initialValues={initialValues}
+			{...formProps}
+			onSubmit={onSubmit}
+		/>
 	);
 };

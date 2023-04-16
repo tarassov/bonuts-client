@@ -25,4 +25,4 @@ export const BntStyledBreadcrumb = styled(Chip, {
 			backgroundColor: emphasize(backgroundColor, 0.12),
 		},
 	};
-}); //github.com/Microsoft/TypeScript/issues/26591
+}); // github.com/Microsoft/TypeScript/issues/26591

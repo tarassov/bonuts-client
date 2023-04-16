@@ -1,10 +1,9 @@
-import { TFieldType, TFormValue } from "../types/bnt-form";
 import { ChangeEvent } from "react";
+import { TFieldType, TFormValue } from "../types/bnt-form";
 import { useBntForm } from "../hooks/use-bnt-form";
-import { useBntTranslate } from "../../../hooks/use-bnt-translate";
 import { BntTextField } from "../../input/text-field";
 
-export function BntFormTextField(props: {
+export const BntFormTextField = (props: {
 	name: string;
 	id?: string;
 	placeholder: string | undefined;
@@ -14,26 +13,36 @@ export function BntFormTextField(props: {
 	rows?: number;
 	required?: boolean;
 	disabled?: boolean;
-}) {
-	const { name } = props;
+}) => {
+	const {
+		name,
+		id,
+		placeholder,
+		label,
+		type,
+		value,
+		rows,
+		required,
+		disabled,
+	} = props;
 	const { onChange } = useBntForm();
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		onChange(name, e.target.value);
 	};
 	return (
 		<BntTextField
-			name={props.name}
-			id={props.id}
-			placeholder={props.placeholder}
-			stringLabel={props.label}
-			type={props.type}
-			value={props.value}
+			name={name}
+			id={id}
+			placeholder={placeholder}
+			stringLabel={label}
+			type={type}
+			value={value}
 			onChange={handleChange}
-			multiline={props.type !== TFieldType.password}
-			rows={props.rows}
-			required={props.required}
+			multiline={type !== TFieldType.password}
+			rows={rows}
+			required={required}
 			sx={{ width: "100%" }}
-			disabled={props.disabled}
+			disabled={disabled}
 		/>
 	);
-}
+};

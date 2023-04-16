@@ -6,8 +6,8 @@ import {
 } from "@mui/material";
 import React, { FC } from "react";
 import { push } from "redux-first-history";
-import { useAppDispatch } from "../../services/store/store";
-import { useBntTranslate } from "../../hooks/use-bnt-translate";
+import { useAppDispatch } from "services/store/store";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 
 export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 	route,
@@ -21,12 +21,12 @@ export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 	const { translate } = useBntTranslate();
 	const onRouteClick = () => {
 		const { redirect } = onBeforeClick();
-		redirect && dispatch(push(route.path));
+		if (redirect) dispatch(push(route.path));
 	};
 
 	return (
 		<Tooltip
-			placement={"right"}
+			placement="right"
 			title={translate(route.navbarName)}
 			disableHoverListener={!showTooltip}
 		>

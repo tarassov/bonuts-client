@@ -1,10 +1,10 @@
 import { FC, SyntheticEvent, useCallback, useEffect, useState } from "react";
-import { TFormProps, TFormValue } from "./types/bnt-form";
 import { Box, Grid, Stack } from "@mui/material";
-import { BntTransparentButton } from "../buttons/transparent-button";
-import { useBntTranslate } from "../../hooks/use-bnt-translate";
-import { Dictionary } from "../../constants/dictionary";
 import _ from "lodash";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { Dictionary } from "constants/dictionary";
+import { TFormProps, TFormValue } from "./types/bnt-form";
+import { BntTransparentButton } from "../buttons/transparent-button";
 import { BntFormContextProvider } from "./context/bnt-form-provider";
 import { BntFormFieldList } from "./bnt-form-field-list";
 
@@ -13,10 +13,10 @@ export const BntForm: FC<TFormProps> = ({
 	hasInitial,
 	initialValues,
 	formId,
-	onLoad,
+	// onLoad,
 	submitCaption,
 	onSubmit,
-	onValidate,
+	// onValidate,
 	children,
 }) => {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
@@ -52,11 +52,11 @@ export const BntForm: FC<TFormProps> = ({
 		setHasChanges(false);
 	};
 	return (
-		<>
+		<div>
 			{(!hasInitial || initialValues) && (
 				<form onSubmit={onSubmitForm}>
-					<Box className={"position-relative"}>
-						<Grid container spacing={2} className={"mb-10"}>
+					<Box className="position-relative">
+						<Grid container spacing={2} className="mb-10">
 							<BntFormContextProvider onChange={onChange} values={values}>
 								<>
 									{children}
@@ -83,7 +83,7 @@ export const BntForm: FC<TFormProps> = ({
 									>
 										{translate(Dictionary.DISCARD)}
 									</BntTransparentButton>
-									<BntTransparentButton type={"submit"} disabled={!hasChanges}>
+									<BntTransparentButton type="submit" disabled={!hasChanges}>
 										{translate(submitCaption || Dictionary.SUBMIT)}
 									</BntTransparentButton>
 								</>
@@ -92,6 +92,6 @@ export const BntForm: FC<TFormProps> = ({
 					</Box>
 				</form>
 			)}
-		</>
+		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import { cloneElement, createContext, FC, useMemo, useState } from "react";
+import { createContext, FC, useCallback, useMemo, useState } from "react";
 import {
 	TBntModal,
 	TBntModalConfig,
@@ -17,20 +17,21 @@ export const BntDialogProvider: FC<{
 	children: JSX.Element | Array<JSX.Element>;
 }> = ({ children, config }) => {
 	const [modals, setModal] = useState<TBntModalItems>(config.items);
-	const showDialog = (key: string, data: TBntModalData) => {
-		setModal((modals) => {
-			return { ...modals, [key]: { ...modals[key], isOpen: true, data: data } };
-		});
-	};
 
-	const handleClose = (modal: TBntModal) => {
-		setModal((modals) => {
+	const showDialog = useCallback((key: string, data: TBntModalData) => {
+		setModal((prev) => {
+			return { ...prev, [key]: { ...prev[key], isOpen: true, data } };
+		});
+	}, []);
+
+	const handleClose = useCallback((modal: TBntModal) => {
+		setModal((prev) => {
 			return {
-				...modals,
-				[modal.key]: { ...modals[modal.key], isOpen: false, data: {} },
+				...prev,
+				[modal.key]: { ...prev[modal.key], isOpen: false, data: {} },
 			};
 		});
-	};
+	}, []);
 
 	const modalsArray = useMemo(() => Object.values(modals), [modals]);
 
@@ -38,11 +39,12 @@ export const BntDialogProvider: FC<{
 		<BntDialogContext.Provider value={showDialog}>
 			<BntDialogValueContext.Provider value={modals}>
 				{children}
-				{modalsArray.map((modal) => {
-					if (modal.isOpen) {
+				{modalsArray
+					.filter((x) => x.isOpen)
+					.map((modal) => {
 						return (
 							<BntDialog
-								open={modal.isOpen}
+								open={modal.isOpen || false}
 								key={modal.key}
 								handleClose={handleClose}
 								modal={modal}
@@ -50,8 +52,7 @@ export const BntDialogProvider: FC<{
 								{modal.renderItem(modal)}
 							</BntDialog>
 						);
-					}
-				})}
+					})}
 			</BntDialogValueContext.Provider>
 		</BntDialogContext.Provider>
 	);

@@ -1,5 +1,5 @@
-import { TBntModalConfig } from "../shared/types/dialog";
-import { TextModal } from "../components/modals/text-modal";
+import { TBntModalConfig } from "shared/types/dialog";
+import { TextModal } from "components/modals/text-modal";
 
 export enum ModalNames {
 	SimpleText = "SimpleText",

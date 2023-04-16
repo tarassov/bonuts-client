@@ -25,17 +25,17 @@ i18n.use(LanguageDetector).init({
 				Sign_Up: "Sign Up",
 				"Recover password": "Recover password",
 
-				//CONSTS
+				// CONSTS
 				CONST_GREETINGS:
 					"Fast and simple way to   encourage your colleagues and thank them for their patience and help.",
 			},
 		},
 		ru: {
 			translations: {
-				//CONSTS
+				// CONSTS
 				CONST_GREETINGS:
 					"Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
-				//A
+				// A
 				Account: "Аккаунт",
 				Amount: "Количество",
 				Add: "Добавить",
@@ -47,14 +47,14 @@ i18n.use(LanguageDetector).init({
 				"Already activated": "Уже активировано",
 				"Accepted requests": "Активированные запросы",
 				"All users": "Все пользователи",
-				//B
+				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
 				Buy: "Купить",
 				"Burn old points": "Списывать неиспользованные баллы",
 				"Burn old donuts": "Списывать неиспользованные пончики",
 
-				//C
+				// C
 				Cancel: "Отмена",
 				Caption: "Название",
 				Change: "Изменить",
@@ -75,7 +75,7 @@ i18n.use(LanguageDetector).init({
 				Close: "Закрыть",
 				created: "создан(а)",
 
-				//D
+				// D
 				department: "подразделение",
 				"Day of month": "День месяца",
 				DEMO: "Демо",
@@ -104,23 +104,23 @@ i18n.use(LanguageDetector).init({
 				"Domain not found": "Не найден почтовый домен",
 				Domain: "Домен",
 
-				//E
+				// E
 				Edit: "Редактировать",
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
 				Events: "События",
 				"Expiration date": "Дата окончания",
 
-				//F
+				// F
 				forbidden: "запрещено",
 				for: "для",
 				from: "от",
-				//G
+				// G
 				"Go to shop": "В магазин",
 				"Go to": "Перейти",
 				Goods: "Товары",
 
-				//H
+				// H
 				History: "История",
 				Home: "Главная",
 				"How many points do you want to send":
@@ -129,26 +129,26 @@ i18n.use(LanguageDetector).init({
 					"Сколько пончиков вы хотите отправить",
 				"Hide snow": "Убрать снег",
 
-				//I
+				// I
 				"Incoming requests": "Входящие запросы",
 				"invitation added": "Приглашение отправлено",
-				//J
+				// J
 				Join: "Присоединиться",
 
-				//K
+				// K
 
-				//L
+				// L
 				"Log in": "Войти",
 				"Log Out": "Выйти",
 
-				//M
+				// M
 				"Max donuts": "Макисмальное количество пончиков",
 				message: "сообщение",
 				"My Requests": "Мои запросы",
 				"My spaces": "Мои команды",
 				"My teams": "Мои команды",
 				More: "Ещё",
-				//N
+				// N
 				"new password": "новый пароль",
 				"New points for all users": "Новые баллы для всех пользователей",
 				Name: "Имя",
@@ -159,10 +159,10 @@ i18n.use(LanguageDetector).init({
 				Next: "Вперед",
 				"Not active donuts": "Неактивные пончики",
 
-				//O
+				// O
 				"on stock": "в наличии",
 				"Only you can see it": "Только вы это видите",
-				//P
+				// P
 				Page: "Страница",
 				People: "Сотрудники",
 				"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
@@ -183,9 +183,9 @@ i18n.use(LanguageDetector).init({
 				place: "место",
 				Previous: "Назад",
 				Purchase: "Покупка",
-				//Q
+				// Q
 
-				//R
+				// R
 				"regard added": "Покупка успешно совершена",
 				"request added": "Запрос создан",
 				"Registration Confirmation": "Подтверждение регистрации",
@@ -201,7 +201,7 @@ i18n.use(LanguageDetector).init({
 				Rollback: "Вернуть",
 				Roles: "Роли",
 				rows: "строк",
-				//S
+				// S
 				saved: "сохранено",
 				"Save changes": "Сохранить изменения",
 				"Self account": "Могу потратить",
@@ -231,28 +231,28 @@ i18n.use(LanguageDetector).init({
 				"Submit values": "Отправить",
 				Submit: "Подтвердить",
 
-				//T
+				// T
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",
-				//U
+				// U
 				"Update donut": "Обновить пончик",
 				Update: "Обновить",
 				"Update is available": "Обновление доступно",
-				//V
+				// V
 
-				//W
+				// W
 				"Welcome points": "Приветственные баллы",
 				"Welcome donutss": "Приветственные пончики",
 				"Without depratment": "Без подразделения",
 				"Wrong credetialis": "Не удалось войти с этим именем и паролем",
 				"Withdrawl error. Not enough points": "Ошибка. Недостаточно баллов",
-				//X
+				// X
 
-				//Y
+				// Y
 				"you have to be admin": "Вы должны иметь полномочия администратора",
 				"You have successfully bought a new donut": "Вы успешно купили плюшку",
 				"your comment": "ваш комментарий",
-				//Z
+				// Z
 			},
 		},
 	},

@@ -1,9 +1,8 @@
-import { TFormField, TFormValue } from "./types/bnt-form";
-import { ChangeEvent, FC } from "react";
+import { FC } from "react";
 import { Grid } from "@mui/material";
-import { BntImage } from "./bnt-image";
-import TextField from "@mui/material/TextField";
+import { TFormField } from "./types/bnt-form";
 import { BntFormField } from "./bnt-form-field";
+
 export const BntFormItem: FC<{
 	field: TFormField;
 	value?: any;

@@ -1,10 +1,9 @@
-import { usePaginator } from "../../hooks/use-paginator";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../services/store/store";
-import { authTenantSelector } from "../../services/redux/auth-slice";
-import { GetArgsType, GetResultType, TEndpoint } from "../../types/api/api";
 import _ from "lodash";
-import { USE_POLLING_INTERVAL } from "../../config";
+import { useAppSelector } from "services/store/store";
+import { authTenantSelector } from "services/selectors/auth-selector";
+import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
+import { USE_POLLING_INTERVAL } from "@/config";
 
 export const useListBase = <
 	Endpoint extends TEndpoint<Endpoint>,
@@ -33,6 +32,7 @@ export const useListBase = <
 			tenant: authTenant,
 		},
 		{
+			// eslint-disable-next-line no-nested-ternary
 			pollingInterval: !USE_POLLING_INTERVAL
 				? 0
 				: pollingInterval !== undefined

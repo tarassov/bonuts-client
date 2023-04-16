@@ -1,11 +1,11 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { FC, SyntheticEvent, useEffect } from "react";
+import { Dictionary } from "constants/dictionary";
+import { useEventListLogic } from "logic/hooks/use-event-list-logic";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useLoader } from "shared/loader/hooks/use-loader";
+import { Modules } from "constants/modules";
 import { BntStyledEventCard } from "../event-card/event-card-styled";
-import { Dictionary } from "../../../constants/dictionary";
-import { useEventListLogic } from "../../../logic/hooks/use-event-list-logic";
-import { useBntTranslate } from "../../../hooks/use-bnt-translate";
-import { useLoader } from "../../../shared/loader/hooks/use-loader";
-import { Modules } from "../../../constants/modules";
 
 export const BntEventList: FC = () => {
 	const { translate } = useBntTranslate();

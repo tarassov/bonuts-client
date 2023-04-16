@@ -11,6 +11,6 @@ export const isAdmin = (profile: TProfile | null | undefined): boolean => {
 };
 
 export const UserLogic = {
-	isAdmin: isAdmin,
-	getUserName: getUserName,
+	isAdmin,
+	getUserName,
 };

@@ -5,9 +5,9 @@ import {
 	TextField,
 	TextFieldProps,
 } from "@mui/material";
-import { useBntTranslate } from "../../hooks/use-bnt-translate";
 import { Close } from "@mui/icons-material";
-import { EMPTY_FUNCTION } from "../../constants/functions";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { EMPTY_FUNCTION } from "constants/functions";
 
 /**
  *@param  props: clearable - if true show close icons in the of the string
@@ -26,6 +26,9 @@ export const BntTextField: FC<
 		clearable = false,
 		onClear = EMPTY_FUNCTION,
 		value,
+		stringLabel,
+		placeholder,
+		label,
 	} = props;
 
 	const inputProps = {
@@ -51,8 +54,8 @@ export const BntTextField: FC<
 	return (
 		<TextField
 			{...props}
-			placeholder={translate(props.placeholder)}
-			label={translate(props.stringLabel) || props.label}
+			placeholder={translate(placeholder)}
+			label={translate(stringLabel) || label}
 			InputProps={inputProps}
 		/>
 	);

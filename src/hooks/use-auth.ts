@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { push } from "redux-first-history";
+import { authenticate, logout } from "services/redux/auth-slice";
+import { useAppDispatch, useAppSelector } from "services/store/store";
 import {
 	bonutsApi,
 	PostAuthenticateApiArg,
@@ -8,13 +10,11 @@ import {
 	usePostAuthenticateMutation,
 	usePostRegisterMutation,
 } from "../services/api/bonuts-api";
-import { authenticate, logout } from "../services/redux/auth-slice";
-import { useAppDispatch, useAppSelector } from "../services/store/store";
 import { useStorage } from "./use-storage";
 
 // const MAX_RETRY_NUMBER = 3;
 
-//TODO: now we use localStorage for saving auth_token. We should remove it as soon as new backend will be deployed since it is unsave and we should use only cookie for jwt
+// TODO: now we use localStorage for saving auth_token. We should remove it as soon as new backend will be deployed since it is unsave and we should use only cookie for jwt
 export function useAuth() {
 	const dispatch = useAppDispatch();
 	const auth = useAppSelector((store) => store.auth);
@@ -52,12 +52,8 @@ export function useAuth() {
 			tenant: getValue<string>("tenant") || "",
 		};
 	};
-	const validateAuth = async (auth: TAuth): Promise<boolean> => {
-		if (auth.token) {
-			return true;
-		}
-		return false;
-	};
+	const validateAuth = async (authToValidate: TAuth): Promise<boolean> =>
+		!!authToValidate.token;
 
 	const signIn = async (credentials: PostAuthenticateApiArg) => {
 		try {
@@ -71,6 +67,7 @@ export function useAuth() {
 			setValue<string>("auth_token", payload.auth_token);
 			setValue<string>("tenant", current_tenant);
 		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.log(err);
 		}
 	};
@@ -89,17 +86,16 @@ export function useAuth() {
 	const checkAuth = async () => {
 		setIsAuthLoading(true);
 		try {
-			const savedAuth = getAuth(); //get token from the storage
+			const savedAuth = getAuth(); // get token from the storage
 			if (savedAuth.token) {
-				const checkResult = await validateAuth(savedAuth); //check if token is valid
+				const checkResult = await validateAuth(savedAuth); // check if token is valid
 				if (checkResult) {
-					dispatch(authenticate(savedAuth)); //push token to the store
+					dispatch(authenticate(savedAuth)); // push token to the store
 					return true;
-				} else {
-					setValue<string>("auth_token", "");
-					dispatch(push("/login"));
-					return false;
 				}
+				setValue<string>("auth_token", "");
+				dispatch(push("/login"));
+				return false;
 			}
 			return false;
 		} finally {

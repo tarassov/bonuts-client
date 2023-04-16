@@ -1,15 +1,13 @@
-import { TDonut } from "../../types/model/donut";
+import { TDonut } from "@/types/model";
 
 export const DonutsSorter = {
 	sorterByName: (a: TDonut, b: TDonut) => {
-		console.log("a", a);
 		if (a?.name.toLowerCase() > b?.name.toLowerCase()) {
 			return 1;
 		}
 		if (a?.name.toLowerCase() < b?.name.toLowerCase()) {
 			return -1;
 		}
-		// a должно быть равным b
 		return 0;
 	},
 	sorterByPriceAsc: (a: TDonut, b: TDonut) => (a?.price || 0) - (b?.price || 0),

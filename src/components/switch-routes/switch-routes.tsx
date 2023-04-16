@@ -1,12 +1,13 @@
 import { FC, useEffect, useMemo } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/use-auth";
-import { useLocationTyped } from "../../hooks/use-location-typed";
-import { loginRoute } from "../../routes/routes";
-import { TAuthState } from "../../services/redux/auth-slice";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useAuth } from "hooks/use-auth";
+import { useLocationTyped } from "hooks/use-location-typed";
+import { loginRoute } from "routes/routes";
+import { TAuthState } from "services/redux/auth-slice";
 
 interface ISwithRoutesProps {
 	routes: Array<TRoute>;
+	// eslint-disable-next-line react/no-unused-prop-types
 	redirects?: Array<TRedirect>;
 }
 
@@ -29,16 +30,14 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 	useEffect(() => {
 		checkAuth();
 	}, []);
-	//const from = location.state?.from?.pathname || "/";
+	// const from = location.state?.from?.pathname || "/";
 
 	const authenticatedRoutes = useMemo(() => {
-		const aroutes = routes.filter((r) => r.authenticated);
-		return aroutes;
+		return routes.filter((r) => r.authenticated);
 	}, [routes, auth]);
 
 	const anonymousRoutes = useMemo(() => {
-		const aroutes = routes.filter((r) => !r.authenticated);
-		return aroutes;
+		return routes.filter((r) => !r.authenticated);
 	}, [routes, auth]);
 
 	if (isAuthLoading) {

@@ -1,9 +1,8 @@
-import { Button, Stack } from "@mui/material";
-import { CloudUpload } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 import React, { FC } from "react";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { Dictionary } from "constants/dictionary";
 import { BntTransparentButton } from "../buttons/transparent-button";
-import { useBntTranslate } from "../../hooks/use-bnt-translate";
-import { Dictionary } from "../../constants/dictionary";
 
 export const BntFormFileInput: FC<{
 	handleFileInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

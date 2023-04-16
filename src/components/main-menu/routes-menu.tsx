@@ -1,15 +1,14 @@
 import React, { FC, useContext } from "react";
 import { ListItem } from "@mui/material";
+import { AppContext } from "context/app-context";
 import { BntRouteMenuButton } from "./route-menu-button";
-import { AppContext } from "../../context/app-context";
-import { useAuth } from "../../hooks/use-auth";
 
 export const BntRoutesMenu: FC<BntRoutesMenuProps> = ({
 	showFullName,
 	showTooltip,
 }) => {
 	const { menuRoutes } = useContext(AppContext);
-	const { auth, signOut } = useAuth();
+	// const { auth, signOut } = useAuth();
 	return (
 		<>
 			{menuRoutes.map((route) => (

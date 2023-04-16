@@ -1,1 +1,1 @@
-export const getTitle = (p: any) => p["title"];
+export const getTitle = (p: any) => p.title;

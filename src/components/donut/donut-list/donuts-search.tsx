@@ -1,21 +1,25 @@
 import React, { ChangeEvent, FC, useState } from "react";
-import { TDonut } from "../../../types/model/donut";
-import { BntFormTextField } from "../../../shared/form/fields/bnt-form-text-field";
-import { Dictionary, Sorting } from "../../../constants/dictionary";
-import { TFieldType } from "../../../shared/form/types/bnt-form";
-import { BntTextField } from "../../../shared/input/text-field";
-import { BntStack } from "../../../shared/stack/stack";
-import { BntRoundButton } from "../../../shared/buttons/round-button";
-import { DonutsSorter } from "../../../logic/utils/donut-utils";
-import { useBntTranslate } from "../../../hooks/use-bnt-translate";
+import { Dictionary, Sorting } from "constants/dictionary";
+import { TFieldType } from "shared/form/types/bnt-form";
+import { BntTextField } from "shared/input/text-field";
+import { BntStack } from "shared/stack/stack";
+import { BntRoundButton } from "shared/buttons/round-button";
+import { DonutsSorter } from "logic/utils/donut-utils";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { TDonut } from "@/types/model";
 
 export const BntDonutsSearch: FC<{
 	setSearch: (search: string) => void;
+	// eslint-disable-next-line react/no-unused-prop-types
 	setFilter: (filters: Array<{ (a: TDonut): boolean }>) => void;
 	setSorter: (sorter: (a: TDonut, b: TDonut) => number) => void;
 }> = ({ setSorter, setSearch }) => {
 	const { translate } = useBntTranslate();
 	const [text, setText] = useState<string>("");
+	const setValue = (value: string) => {
+		setSearch(value);
+		setText(value);
+	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value || "");
@@ -23,10 +27,7 @@ export const BntDonutsSearch: FC<{
 	const handleClear = () => {
 		setValue("");
 	};
-	const setValue = (value: string) => {
-		setSearch(value);
-		setText(value);
-	};
+
 	const buttons: Array<{
 		name: Sorting;
 		sorter: (a: TDonut, b: TDonut) => number;
@@ -52,21 +53,21 @@ export const BntDonutsSearch: FC<{
 	return (
 		<>
 			<BntTextField
-				color={"info"}
-				name={"filter-donuts"}
+				color="info"
+				name="filter-donuts"
 				placeholder={Dictionary.SEARCH_STRING}
 				type={TFieldType.text}
 				value={text}
-				clearable={true}
+				clearable
 				onClear={handleClear}
 				onChange={handleChange}
-				className={"mb-10"}
+				className="mb-10"
 				size="small"
 				sx={{ width: "100%" }}
 			/>
 			<BntStack
 				direction={{ xs: "column", sm: "row" }}
-				className={"mb-20"}
+				className="mb-20"
 				spacing={{ xs: 1, sm: 2 }}
 			>
 				{buttons.map((button) => {
@@ -78,7 +79,7 @@ export const BntDonutsSearch: FC<{
 								e.preventDefault();
 								setSorter(button.sorter);
 							}}
-							color={"info"}
+							color="info"
 						>
 							{translate(button.name)}
 						</BntRoundButton>

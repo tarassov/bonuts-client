@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { TDonut } from "../../../types/model/donut";
-import { BntCard } from "../../../shared/card/card";
-import { useBntTranslate } from "../../../hooks/use-bnt-translate";
-import { BntCardActionArea } from "../../../shared/card/card-action-area";
-import { BntCardBody } from "../../../shared/card/card-body";
-import { BntTypography } from "../../../shared/typography/typography";
-import { Stack } from "@mui/material";
-import { BntStack } from "../../../shared/stack/stack";
-import { useAppDispatch } from "../../../services/store/store";
 import { push } from "redux-first-history";
+import { BntCard } from "shared/card/card";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { BntCardActionArea } from "shared/card/card-action-area";
+import { BntCardBody } from "shared/card/card-body";
+import { BntTypography } from "shared/typography/typography";
+import { BntStack } from "shared/stack/stack";
+import { useAppDispatch } from "services/store/store";
+import { TDonut } from "@/types/model";
+
 export const DONUT_CARD_CLASSES = {
 	cardHover: "card-hover",
 	cardHeaderHover: "card-header-hover",
@@ -27,11 +27,10 @@ export const BntDonutCard: FC<{ donut: TDonut; className?: string }> = ({
 	const dispatch = useAppDispatch();
 
 	const onShowDonut = () => {
-		dispatch(push("/d/" + donut.id));
+		dispatch(push(`/d/${donut.id}`));
 	};
 
 	const { on_stock = 0, logo, price, name } = donut;
-	console.log(donut);
 	return (
 		<BntCard raised className={className}>
 			<BntCardActionArea

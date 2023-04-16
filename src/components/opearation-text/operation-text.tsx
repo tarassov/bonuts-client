@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import { Button, Grid, Typography } from "@mui/material";
-import { TOperation } from "../../types/model/operation";
 import { FC } from "react";
-import { OPERATION_CLASSES } from "./styled-operation-text";
-import { useBntTranslate } from "../../hooks/use-bnt-translate";
+import { EMPTY_FUNCTION } from "constants/functions";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { OPERATION_CLASSES } from "components/opearation-text/classes";
+import { TOperation } from "@/types/model/operation";
 import { BntProfileButton } from "../buttons/profile-button";
-import { DealType } from "../../types/model/deal-type";
-import { EMPTY_FUNCTION } from "../../constants/functions";
+import { DealType } from "@/types/model/deal-type";
 
 type BntOperationTextProps = {
 	operation: TOperation;
@@ -16,7 +16,6 @@ type BntOperationTextProps = {
 	className?: string;
 	showDateTime?: boolean;
 };
-
 export const BntOperationText: FC<BntOperationTextProps> = ({
 	operation,
 	onToProfileClick = EMPTY_FUNCTION,
@@ -59,7 +58,7 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 					{to_profile && (
 						<>
 							<span className={OPERATION_CLASSES.operationText}>
-								<Typography variant={"body2"}>{translate("for")}</Typography>
+								<Typography variant="body2">{translate("for")}</Typography>
 							</span>
 							<BntProfileButton profile={to_profile} onClick={toProfileClick} />
 						</>

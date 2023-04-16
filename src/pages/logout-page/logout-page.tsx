@@ -1,12 +1,12 @@
 import { Avatar, Box, Button } from "@mui/material";
 import { FC } from "react";
-import { useAuth } from "../../hooks/use-auth";
 import { useTranslation } from "react-i18next";
-import { Dictionary } from "../../constants/dictionary";
 import { LogoutOutlined } from "@mui/icons-material";
+import { useAuth } from "hooks/use-auth";
+import { Dictionary } from "constants/dictionary";
 
 const LogOutPage: FC = () => {
-	const { auth, signOut } = useAuth();
+	const { signOut } = useAuth();
 	const { t } = useTranslation();
 	const onClick = () => {
 		signOut();

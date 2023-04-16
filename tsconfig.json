@@ -33,7 +33,8 @@
 			"assets/*": ["src/assets/*"],
 			"themes/*": ["src/themes/*"],
 			"utils/*": ["src/utils/*"],
-			"logic/*": ["src/logic/*"]
+			"logic/*": ["src/logic/*"],
+			"layout/*": ["src/layout/*"]
 		}
 	},
 	"include": ["src"],

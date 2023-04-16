@@ -1,4 +1,3 @@
-import { blue, deepPurple, grey, red, teal } from "@mui/material/colors";
 import lightTheme from "./light-theme";
 
 const darkTheme = lightTheme;

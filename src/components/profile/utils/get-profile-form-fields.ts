@@ -1,11 +1,7 @@
-import { TProfile } from "../../../types/model";
-import {
-	TFieldSize,
-	TFieldType,
-	TFormField,
-} from "../../../shared/form/types/bnt-form";
-import { UserLogic } from "../../../logic/utils/user-utils";
-import { Roles } from "../../../constants/roles";
+import { TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { UserLogic } from "logic/utils/user-utils";
+import { Roles } from "constants/roles";
+import { TProfile } from "@/types/model";
 
 export const getProfileFormFields = (
 	profile?: TProfile | null

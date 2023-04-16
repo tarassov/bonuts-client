@@ -1,7 +1,6 @@
 import { cleanup } from "@testing-library/react";
-import { GetProfileApiResponse } from "../../services/api/bonuts-api";
-import { apiProfileToProfile } from "../../services/adaptor/api-profile-to-profile";
-import { TProfile } from "../../types/model";
+import { GetProfileApiResponse } from "services/api/bonuts-api";
+import { apiProfileToProfile } from "services/adaptor/api-profile-to-profile";
 
 const mockResponse: GetProfileApiResponse = {
 	data: {

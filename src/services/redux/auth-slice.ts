@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { bonutsApi } from "../api/bonuts-api";
-import { RootState } from "../store/store";
-import { TProfile, TUser } from "../../types/model";
 import _ from "lodash";
+import { bonutsApi } from "../api/bonuts-api";
+import { TProfile } from "@/types/model";
 
 export type TAuthState = {
 	token: string | null;
@@ -38,6 +37,7 @@ const slice = createSlice({
 			.addMatcher(
 				bonutsApi.endpoints.postAuthenticate.matchPending,
 				(state, action) => {
+					// eslint-disable-next-line no-console
 					console.log("pending login", action);
 				}
 			)
@@ -45,7 +45,7 @@ const slice = createSlice({
 				bonutsApi.endpoints.postAuthenticate.matchFulfilled,
 				(state, action) => {
 					state.token = action.payload.auth_token;
-					if (action.payload.tenants.length == 1) {
+					if (action.payload.tenants.length === 1) {
 						state.tenant = action.payload.tenants[0]?.name || "";
 					}
 					state.isAuthenticated = true;
@@ -53,8 +53,7 @@ const slice = createSlice({
 			)
 			.addMatcher(
 				bonutsApi.endpoints.postAuthenticate.matchRejected,
-				(state, action) => {
-					console.log("rejected", action);
+				(state) => {
 					state.isAuthenticated = false;
 					state.token = null;
 					state.tenant = null;
@@ -66,10 +65,3 @@ const slice = createSlice({
 
 export const { logout, authenticate, setProfile } = slice.actions;
 export default slice.reducer;
-
-export const selectIsAuthenticated = (state: RootState) =>
-	state.auth.isAuthenticated;
-
-export const authTenantSelector = (state: RootState) => state.auth.tenant;
-
-export const authProfileSelector = (state: RootState) => state.auth.profile;

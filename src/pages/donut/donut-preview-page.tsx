@@ -1,6 +1,5 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
-import { BntDonutPreview } from "../../components/donut/donut-preview/donut-preview";
+import { BntDonutPreview } from "components/donut/donut-preview/donut-preview";
 
 const BntDonutPreviewPage: FC = () => {
 	return <BntDonutPreview />;

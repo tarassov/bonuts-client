@@ -1,15 +1,16 @@
 import { Avatar, Box, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { FC, useContext, useState, MouseEvent } from "react";
-import { BntAppBar } from "../../shared/menu/app-bar";
-import { BntToolbar } from "../../shared/toolbar";
-import { BntTypography } from "../../shared/typography/typography";
-import { TProfile } from "../../types/model";
-import { AppContext } from "../../context/app-context";
 import { ReactSVG } from "react-svg";
-import { logoSmall } from "../../constants/icons";
 import { Theme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
+import { BntAppBar } from "shared/menu/app-bar";
+import { BntToolbar } from "shared/toolbar";
+import { BntTypography } from "shared/typography/typography";
+import { AppContext } from "context/app-context";
+import { logoSmall } from "constants/icons";
+import { TProfile } from "@/types/model";
 import { BntRoutesMenu } from "../main-menu/routes-menu";
+
 type BTNHeaderProps = {
 	profile?: TProfile | null;
 };
@@ -28,7 +29,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 
 	return (
 		<BntAppBar position="fixed" open={isDrawerOpen && matches}>
-			<BntToolbar disableGutters={true}>
+			<BntToolbar disableGutters>
 				<Stack
 					direction="row"
 					justifyContent="space-between"

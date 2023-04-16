@@ -1,23 +1,22 @@
 import { useParams } from "react-router-dom";
-import { useDonutLogic } from "../../../logic/hooks/use-donut-logic";
-import { useLoader } from "../../../shared/loader/hooks/use-loader";
+import { useLoader } from "shared/loader/hooks/use-loader";
 import { useContext, useEffect } from "react";
-import { Modules } from "../../../constants/modules";
-import { TBntBreadcrumpItem } from "../../../shared/types/breadcrumbs";
-import { Dictionary } from "../../../constants/dictionary";
+import { Modules } from "constants/modules";
 import { DonutSmall, ShoppingBag } from "@mui/icons-material";
-import { BntBreadcrumbs } from "../../../shared/breadcrumb/breadcrump";
-import { BntCard } from "../../../shared/card/card";
-import { BntCardBody } from "../../../shared/card/card-body";
+import { BntBreadcrumbs } from "shared/breadcrumb/breadcrump";
+import { BntCardBody } from "shared/card/card-body";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
-import { ImagePreview } from "../../../shared/image/image-preview";
-import { DEFAULT_DONUT_IMAGE } from "../../../constants/images";
-import { BntTypography } from "../../../shared/typography/typography";
-import { useBntTranslate } from "../../../hooks/use-bnt-translate";
-import { useRequestLogic } from "../../../logic/hooks/use-request-logic";
 import classNames from "classnames";
-import { BntDialogContext } from "../../../shared/modal/dialog-provider";
-import { ModalNames } from "../../../config/modal-config";
+import { useDonutLogic } from "logic/hooks/use-donut-logic";
+import { TBntBreadcrumpItem } from "shared/types/breadcrumbs";
+import { Dictionary } from "constants/dictionary";
+import { BntCard } from "shared/card/card";
+import { ImagePreview } from "shared/image/image-preview";
+import { DEFAULT_DONUT_IMAGE } from "constants/images";
+import { BntTypography } from "shared/typography/typography";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { BntDialogContext } from "shared/modal/dialog-provider";
+import { ModalNames } from "config/modal-config";
 import { DonutPurchaseBlock } from "./donut-purchase-block";
 
 export const BntDonutPreview = () => {
@@ -41,20 +40,20 @@ export const BntDonutPreview = () => {
 			key: "shop",
 			link: "/donuts",
 			label: Dictionary.DONUTS,
-			icon: <ShoppingBag color={"info"} />,
+			icon: <ShoppingBag color="info" />,
 		},
 		{
 			key: id || "donut",
 			label: donut?.name || "",
-			icon: <DonutSmall color={"info"} />,
+			icon: <DonutSmall color="info" />,
 		},
 	];
 
 	return (
 		<>
-			<BntBreadcrumbs items={breadcrumbs} className={"mb-10"} />
+			<BntBreadcrumbs items={breadcrumbs} className="mb-10" />
 			<BntCard>
-				<BntCardBody className={"m-10 p-10"}>
+				<BntCardBody className="m-10 p-10">
 					<Grid container justifyContent="space-between">
 						<Grid
 							item
@@ -68,7 +67,7 @@ export const BntDonutPreview = () => {
 							<ImagePreview
 								defaultImage={DEFAULT_DONUT_IMAGE}
 								image={donut?.logo?.url}
-								className={"ml-10"}
+								className="ml-10"
 								onClick={onClick}
 							/>
 						</Grid>
@@ -76,7 +75,7 @@ export const BntDonutPreview = () => {
 							<BntTypography variant="h3" display="block">
 								{donut?.name}
 							</BntTypography>
-							<BntTypography variant={"h5"}>
+							<BntTypography variant="h5">
 								{translate(Dictionary.Description)}
 							</BntTypography>
 							<BntTypography paragraph>{donut?.description}</BntTypography>

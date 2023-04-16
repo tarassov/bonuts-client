@@ -1,10 +1,9 @@
 import { Typography } from "@mui/material";
 import { FC } from "react";
+
 const IncomingRequestsPage: FC = () => {
 	return (
-		<>
-			<Typography>IncomingRequestsPage</Typography>
-		</>
+		<Typography>IncomingRequestsPage</Typography>
 	);
 };
 

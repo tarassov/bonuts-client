@@ -1,6 +1,4 @@
-import { Theme } from "@mui/material/styles";
-
-export const cardHoverStyle = (theme: Theme) => {
+export const cardHoverStyle = () => {
 	return {
 		cardHover: {
 			"&:hover": {

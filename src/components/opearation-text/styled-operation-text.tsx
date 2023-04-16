@@ -1,18 +1,8 @@
 import { styled } from "@mui/material/styles";
-import { BntEventCard } from "../event/event-card/event-card";
-import { cl } from "../../themes/helper";
+import { OPERATION_CLASSES } from "components/opearation-text/classes";
+import { cl } from "themes/helper";
 import { BntOperationText } from "./operation-text";
 
-export const OPERATION_CLASSES = {
-	operationText: "operation-text",
-	amountText: "amount-text",
-	plusText: "plus-text",
-	minusText: "minus-text",
-	expand: "expand",
-	expandOpened: "expand-opened",
-	iconCaption: "icon-caption",
-	operationContainer: "operation-container",
-};
 export const BntStyledOperationText = styled(
 	BntOperationText,
 	{}

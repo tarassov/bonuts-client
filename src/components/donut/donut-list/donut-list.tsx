@@ -1,17 +1,14 @@
 import { FC, useEffect, useMemo, useState } from "react";
-import { useBntTranslate } from "../../../hooks/use-bnt-translate";
-import { useDonutList } from "../../../logic/hooks/use-donut-list";
-import { BntDonutCard } from "../donut-card/donut-card";
 import { Grid } from "@mui/material";
+import { DonutsSorter } from "logic/utils/donut-utils";
+import { useDonutList } from "logic/hooks/use-donut-list";
+import { useLoader } from "shared/loader/hooks/use-loader";
+import { Modules } from "constants/modules";
 import { BntDonutCardStyled } from "../donut-card/donut-card-styled";
-import { useLoader } from "../../../shared/loader/hooks/use-loader";
-import { Modules } from "../../../constants/modules";
-import { TDonut } from "../../../types/model/donut";
+import { TDonut } from "@/types/model";
 import { BntDonutsSearch } from "./donuts-search";
-import { DonutsSorter } from "../../../logic/utils/donut-utils";
 
 export const BntDonutsList: FC = () => {
-	const { translate } = useBntTranslate();
 	const { setLoading } = useLoader();
 	const [search, setSearch] = useState<string>("");
 	const [filterFunction, setFilterFunction] = useState<
@@ -20,13 +17,13 @@ export const BntDonutsList: FC = () => {
 	const [sorter, setSorter] = useState<{
 		(a: TDonut, b: TDonut): number;
 	}>(() => DonutsSorter.sorterByName);
-	const { objects = [], isLoading, isSuccess } = useDonutList();
+	const { objects = [], isLoading } = useDonutList();
 
 	const updateFilter = (filters: Array<{ (a: TDonut): boolean }>) => {
 		setFilterFunction(filters);
 	};
-	const updateSorter = (sorter: (a: TDonut, b: TDonut) => number) => {
-		setSorter(() => sorter);
+	const updateSorter = (sorterToUpdate: (a: TDonut, b: TDonut) => number) => {
+		setSorter(() => sorterToUpdate);
 	};
 
 	useEffect(() => {
