@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useLoader } from "shared/loader/hooks/use-loader";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { Modules } from "constants/modules";
 import { DonutSmall, ShoppingBag } from "@mui/icons-material";
 import { BntBreadcrumbs } from "shared/breadcrumb/breadcrump";
@@ -15,8 +15,7 @@ import { ImagePreview } from "shared/image/image-preview";
 import { DEFAULT_DONUT_IMAGE } from "constants/images";
 import { BntTypography } from "shared/typography/typography";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntDialogContext } from "shared/modal/dialog-provider";
-import { ModalNames } from "config/modal-config";
+import { useModal } from "hooks/use-modal";
 import { DonutPurchaseBlock } from "./donut-purchase-block";
 
 export const BntDonutPreview = () => {
@@ -26,14 +25,14 @@ export const BntDonutPreview = () => {
 	const { setLoading } = useLoader();
 	const { donut, isLoading } = useDonutLogic(id);
 	const { translate } = useBntTranslate();
-	const showDialog = useContext(BntDialogContext);
+	const { ImageModal } = useModal();
 
 	useEffect(() => {
 		setLoading(Modules.DonutPreview, isLoading);
 	}, [isLoading]);
 
 	const onClick = () => {
-		showDialog(ModalNames.SimpleText, { text: "Hey World" });
+		ImageModal.show({ url: donut?.logo?.url || "" });
 	};
 	const breadcrumbs: Array<TBntBreadcrumpItem> = [
 		{

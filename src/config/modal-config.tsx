@@ -1,17 +1,23 @@
 import { TBntModalConfig } from "shared/types/dialog";
-import { TextModal } from "components/modals/text-modal";
+import { ImageModal } from "components/modals/image-modal";
 
-export enum ModalNames {
-	SimpleText = "SimpleText",
-}
+export type ModalType = {
+	SimpleTextModal: string;
+	ImageModal: { url: string };
+};
 
-export const modalConfig: TBntModalConfig = {
+export type ModalTypeResponse = {
+	SimpleTextModal: number;
+	ImageModal: void;
+};
+
+export const modalConfig: TBntModalConfig<ModalType> = {
 	items: {
-		[ModalNames.SimpleText]: {
-			key: ModalNames.SimpleText,
-			renderItem: (modal) => {
-				return <TextModal modal={modal} />;
-			},
+		SimpleTextModal: {
+			renderItem: (modal) => <div>{modal.data}</div>,
+		},
+		ImageModal: {
+			renderItem: (modal) => <ImageModal url={modal.data.url} />,
 		},
 	},
 };

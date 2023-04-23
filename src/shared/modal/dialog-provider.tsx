@@ -1,59 +1,76 @@
-import { createContext, FC, useCallback, useMemo, useState } from "react";
+import { FC, ReactNode, useCallback, useMemo, useState } from "react";
+import { ModalType } from "config/modal-config";
+import _uniqueId from "lodash/uniqueId";
 import {
-	TBntModal,
-	TBntModalConfig,
-	TBntModalData,
-	TBntModalItems,
-} from "../types/dialog";
-import { BntDialog } from "./dialog";
-
-export const BntDialogContext = createContext<
-	(key: string, data: TBntModalData) => void
->(() => {});
-export const BntDialogValueContext = createContext<TBntModalItems>({});
+	BntDialogCloseContext,
+	BntDialogContext,
+	BntDialogValueContext,
+} from "shared/modal/dialog-context";
+import { BntDialogContianer } from "shared/modal/dialog-contianer";
+import { TBntModalConfig } from "../types/dialog";
 
 export const BntDialogProvider: FC<{
-	config: TBntModalConfig;
+	config: TBntModalConfig<ModalType>;
 	children: JSX.Element | Array<JSX.Element>;
 }> = ({ children, config }) => {
-	const [modals, setModal] = useState<TBntModalItems>(config.items);
+	type ModalState = Record<
+		string,
+		{
+			name: keyof typeof config.items;
+			data: any;
+			modalKey: string;
+			renderItem: (d: any) => ReactNode | Array<ReactNode>;
+		}
+	>;
 
-	const showDialog = useCallback((key: string, data: TBntModalData) => {
+	const [modals, setModal] = useState<ModalState | null>(null);
+
+	const showDialog = useCallback(
+		<T extends keyof typeof config.items>(
+			name: T,
+			data: ModalType[T],
+			key?: string
+		) => {
+			const modalKey = key || _uniqueId("modal-");
+			setModal((prev) => {
+				return {
+					...prev,
+					[modalKey]: {
+						name,
+						data,
+						modalKey,
+						renderItem:
+							config.items[name]?.renderItem || ((d: T) => <div>{d}</div>),
+					},
+				};
+			});
+		},
+		[]
+	);
+
+	const handleClose = useCallback((key: string) => {
 		setModal((prev) => {
-			return { ...prev, [key]: { ...prev[key], isOpen: true, data } };
+			if (!prev) return null;
+			return Object.keys(prev).reduce((acc, curr) => {
+				if (curr !== key) acc[curr] = prev[curr];
+				return acc;
+			}, {} as ModalState);
 		});
 	}, []);
 
-	const handleClose = useCallback((modal: TBntModal) => {
-		setModal((prev) => {
-			return {
-				...prev,
-				[modal.key]: { ...prev[modal.key], isOpen: false, data: {} },
-			};
-		});
-	}, []);
-
-	const modalsArray = useMemo(() => Object.values(modals), [modals]);
+	const modalsArray = useMemo(
+		() => (modals ? Object.values(modals) : []),
+		[modals]
+	);
 
 	return (
 		<BntDialogContext.Provider value={showDialog}>
-			<BntDialogValueContext.Provider value={modals}>
-				{children}
-				{modalsArray
-					.filter((x) => x.isOpen)
-					.map((modal) => {
-						return (
-							<BntDialog
-								open={modal.isOpen || false}
-								key={modal.key}
-								handleClose={handleClose}
-								modal={modal}
-							>
-								{modal.renderItem(modal)}
-							</BntDialog>
-						);
-					})}
-			</BntDialogValueContext.Provider>
+			<BntDialogCloseContext.Provider value={handleClose}>
+				<BntDialogValueContext.Provider value={modalsArray}>
+					{children}
+					<BntDialogContianer />
+				</BntDialogValueContext.Provider>
+			</BntDialogCloseContext.Provider>
 		</BntDialogContext.Provider>
 	);
 };
