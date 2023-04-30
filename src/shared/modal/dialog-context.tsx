@@ -18,5 +18,6 @@ export const BntDialogValueContext = createContext<
 		data: any;
 		modalKey: string;
 		renderItem: (d: any) => ReactNode | Array<ReactNode>;
+		hasTopMenu: boolean;
 	}>
 >([]);

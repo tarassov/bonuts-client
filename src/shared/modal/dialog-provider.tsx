@@ -6,7 +6,7 @@ import {
 	BntDialogContext,
 	BntDialogValueContext,
 } from "shared/modal/dialog-context";
-import { BntDialogContianer } from "shared/modal/dialog-contianer";
+import { BntDialogContainer } from "shared/modal/dialog-container";
 import { TBntModalConfig } from "../types/dialog";
 
 export const BntDialogProvider: FC<{
@@ -20,6 +20,7 @@ export const BntDialogProvider: FC<{
 			data: any;
 			modalKey: string;
 			renderItem: (d: any) => ReactNode | Array<ReactNode>;
+			hasTopMenu: boolean;
 		}
 	>;
 
@@ -41,6 +42,7 @@ export const BntDialogProvider: FC<{
 						modalKey,
 						renderItem:
 							config.items[name]?.renderItem || ((d: T) => <div>{d}</div>),
+						hasTopMenu: config.items[name]?.hasTopMenu || false,
 					},
 				};
 			});
@@ -68,7 +70,7 @@ export const BntDialogProvider: FC<{
 			<BntDialogCloseContext.Provider value={handleClose}>
 				<BntDialogValueContext.Provider value={modalsArray}>
 					{children}
-					<BntDialogContianer />
+					<BntDialogContainer />
 				</BntDialogValueContext.Provider>
 			</BntDialogCloseContext.Provider>
 		</BntDialogContext.Provider>

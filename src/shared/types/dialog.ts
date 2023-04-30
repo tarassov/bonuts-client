@@ -19,10 +19,14 @@ export type TBntModal<T> = {
 	reposeType?: BntDialogResponse;
 	onSuccess?: (values: Record<string, any>) => void;
 	onCancel?: () => void;
+	hasTopMenu?: boolean;
 };
 
 export type TBntModalItems<T> = {
-	[name in keyof T]: Pick<TBntModal<T[name]>, "renderItem" | "reposeType">;
+	[name in keyof T]: Pick<
+		TBntModal<T[name]>,
+		"renderItem" | "reposeType" | "hasTopMenu"
+	>;
 };
 
 export type TBntModalConfig<T> = {

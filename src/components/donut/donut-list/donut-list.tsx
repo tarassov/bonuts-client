@@ -4,7 +4,7 @@ import { DonutsSorter } from "logic/utils/donut-utils";
 import { useDonutList } from "logic/hooks/use-donut-list";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
-import { BntDonutCardStyled } from "../donut-card/donut-card-styled";
+import { DonutCard } from "../donut-card/donut-card";
 import { TDonut } from "@/types/model";
 import { BntDonutsSearch } from "./donuts-search";
 
@@ -54,7 +54,7 @@ export const BntDonutsList: FC = () => {
 				{filteredList.map((donut) => {
 					return (
 						<Grid key={donut.id} item xs={12} sm={12} md={6} lg={3}>
-							<BntDonutCardStyled donut={donut} />
+							<DonutCard donut={donut} />
 						</Grid>
 					);
 				})}

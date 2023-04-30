@@ -1,5 +1,5 @@
 import { TBntModalConfig } from "shared/types/dialog";
-import { ImageModal } from "components/modals/image-modal";
+import { ModalImage } from "components/modals/modal-image/modal-image";
 
 export type ModalType = {
 	SimpleTextModal: string;
@@ -17,7 +17,8 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 			renderItem: (modal) => <div>{modal.data}</div>,
 		},
 		ImageModal: {
-			renderItem: (modal) => <ImageModal url={modal.data.url} />,
+			renderItem: (modal) => <ModalImage url={modal.data.url} />,
+			hasTopMenu: true,
 		},
 	},
 };
