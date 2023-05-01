@@ -73,6 +73,7 @@ i18n.use(LanguageDetector).init({
 				"Click to select files": "Нажмите, чтобы выбрать фото",
 				"Closed requests": "Завершенные запросы",
 				Close: "Закрыть",
+				close: "закрыть",
 				created: "создан(а)",
 
 				// D

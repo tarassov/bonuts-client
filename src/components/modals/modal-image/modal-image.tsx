@@ -11,11 +11,18 @@ export const ModalImage = styled(
 		fontSize: "0",
 		verticalAlign: "top",
 		maxHeight: "600px",
+		[theme.breakpoints.down("sm")]: {
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center",
+			height: "100%",
+		},
 		[cl(MODAL_IMAGE_CLASSES.modalImage)]: {
 			display: "block",
 			maxWidth: "100%",
-			maxHeight: "100%",
+			maxHeight: "600px",
 			verticalAlign: "top",
+			padding: "5px",
 		},
 	};
 });

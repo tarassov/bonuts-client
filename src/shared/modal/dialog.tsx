@@ -1,4 +1,4 @@
-import { Dialog, DialogProps } from "@mui/material";
+import { Dialog, DialogProps, useTheme, useMediaQuery } from "@mui/material";
 import { FC } from "react";
 import { TBntModal } from "../types/dialog";
 
@@ -9,8 +9,10 @@ export const BntDialog: FC<
 	}
 > = (props) => {
 	const { handleClose, modal, ...sharedProps } = props;
+	const theme = useTheme();
+	const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 	const onClose = () => {
 		handleClose(modal);
 	};
-	return <Dialog {...sharedProps} onClose={onClose} />;
+	return <Dialog {...sharedProps} onClose={onClose} fullScreen={fullScreen} />;
 };
