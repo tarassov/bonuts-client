@@ -1,7 +1,7 @@
 import { useGetDonutsByIdQuery } from "services/api/bonuts-api";
-import { useAppSelector } from "services/store/store";
+import { useAppSelector } from "services/redux/store/store";
 import { apiDonutToDonut } from "services/adaptor/api-donuts-to-donuts";
-import { authTenantSelector } from "services/selectors/auth-selector";
+import { authTenantSelector } from "services/redux/selectors/auth-selector";
 
 export const useDonutLogic = (id?: string | null) => {
 	const authTenant = useAppSelector(authTenantSelector);

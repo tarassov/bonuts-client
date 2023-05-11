@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "hooks/use-auth";
 import { useLocationTyped } from "hooks/use-location-typed";
 import { loginRoute } from "routes/routes";
-import { TAuthState } from "services/redux/auth-slice";
+import { TAuthState } from "services/redux/types/auth-state";
 
 interface ISwithRoutesProps {
 	routes: Array<TRoute>;
@@ -48,24 +48,12 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 		<Routes location={background || location}>
 			{authenticatedRoutes &&
 				authenticatedRoutes.map((route) => {
-					return (
-						<Route
-							path={route.path}
-							element={getRoute(route, auth)}
-							key={route.path}
-						/>
-					);
+					return <Route path={route.path} element={getRoute(route, auth)} key={route.path} />;
 				})}
 
 			{anonymousRoutes &&
 				anonymousRoutes.map((route) => {
-					return (
-						<Route
-							path={route.path}
-							element={getRoute(route, auth)}
-							key={route.path}
-						/>
-					);
+					return <Route path={route.path} element={getRoute(route, auth)} key={route.path} />;
 				})}
 		</Routes>
 	);

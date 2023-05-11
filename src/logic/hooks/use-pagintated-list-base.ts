@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import { usePaginator } from "hooks/use-paginator";
-import { useAppSelector } from "services/store/store";
-import { authTenantSelector } from "services/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
 
-export const usePagintatedListBase = <
-	Endpoint extends TEndpoint<Endpoint>,
-	TModel
->(props: {
+export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props: {
 	endpoint: Endpoint;
 	args: GetArgsType<Endpoint>;
 	pollingInterval: number | undefined;
@@ -18,16 +15,18 @@ export const usePagintatedListBase = <
 		endpoint,
 		args,
 		pollingInterval = 1000,
-		translator = (response: GetResultType<Endpoint>) =>
-			response as Array<TModel>,
+		translator = (response: GetResultType<Endpoint>) => response as Array<TModel>,
 	} = props;
 
 	const [objects, setObjects] = useState<Array<Array<TModel>>>([]);
 
 	const authTenant = useAppSelector(authTenantSelector);
 
-	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } =
-		usePaginator(endpoint, { ...args, tenant: authTenant }, pollingInterval);
+	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } = usePaginator(
+		endpoint,
+		{ ...args, tenant: authTenant },
+		pollingInterval
+	);
 
 	useEffect(() => {
 		if (!pages) setObjects(() => []);

@@ -1,6 +1,6 @@
 import { usePutEventsByIdMutation } from "services/api/bonuts-api";
-import { useAppSelector } from "services/store/store";
-import { authTenantSelector } from "services/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { TEvent } from "@/types/model";
 import { TLikeable } from "@/types/model/type-extension";
 

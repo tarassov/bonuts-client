@@ -1,19 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { deepEqual } from "fast-equals";
-import {
-	RootState,
-	store,
-	useAppDispatch,
-	useAppSelector,
-} from "services/store/store";
+import { RootState, store, useAppDispatch, useAppSelector } from "services/redux/store/store";
 import { USE_POLLING_INTERVAL } from "@/config";
 
-import {
-	GetArgsType,
-	GetResultType,
-	TEndpoint,
-	TPageable,
-} from "@/types/api/api";
+import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/api";
 
 export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	endpoint: Endpoint,
@@ -23,9 +13,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	const dispatch = useAppDispatch();
 	const queries = useAppSelector((state: RootState) => state.api.queries);
 
-	const [pages, setPages] = useState<Record<number, GetResultType<Endpoint>>>(
-		[]
-	);
+	const [pages, setPages] = useState<Record<number, GetResultType<Endpoint>>>([]);
 	const [results, setResults] = useState<Array<any>>([]);
 	const [temp, setTemp] = useState<GetResultType<Endpoint>>();
 	const [currentPage, setCurrentPage] = useState(0);
@@ -50,9 +38,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	useEffect(() => {
 		if (data) {
 			const pageableData = data as TPageable<GetResultType<Endpoint>>;
-			const perPage = pageableData?.paginator?.perPage
-				? pageableData.paginator.perPage
-				: 1;
+			const perPage = pageableData?.paginator?.perPage ? pageableData.paginator.perPage : 1;
 			const total = pageableData?.paginator?.total || 0;
 			setHasNext(currentPage < total / perPage);
 		}
@@ -74,9 +60,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 
 	useEffect(() => {
 		if (currentPage > 1) {
-			const result = dispatch(
-				endpoint.initiate({ ...args, page: currentPage })
-			);
+			const result = dispatch(endpoint.initiate({ ...args, page: currentPage }));
 			setResults([...results, result]);
 		}
 	}, [currentPage]);
@@ -86,9 +70,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			const rootState = store.getState();
 			const newPages: Record<number, GetResultType<Endpoint>> = {};
 			for (let i = 2; i <= currentPage; i++) {
-				const { data: pageData } = endpoint.select({ ...args, page: i })(
-					rootState
-				);
+				const { data: pageData } = endpoint.select({ ...args, page: i })(rootState);
 				if (data) {
 					const page = pageData as GetResultType<Endpoint>;
 					if (!deepEqual(pages[i], page)) newPages[i] = page;

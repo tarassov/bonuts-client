@@ -36,8 +36,8 @@
 		"serve": "vite preview",
 		"test": "vitest",
 		"generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts",
-		"eslint": "eslint ./src",
-		"eslint:fix": "eslint ./src --fix",
+		"lint": "tsc --noEmit && eslint src/**/*.ts{,x} --cache --max-warnings=0",
+		"lint:fix": "tsc --noEmit && eslint src/**/*.ts{,x}  --fix",
 		"prettier": "prettier --check src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc",
 		"prettier:fix": "prettier --write src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc"
 	},

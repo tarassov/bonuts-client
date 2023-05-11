@@ -6,9 +6,8 @@ import { BntFormField } from "./bnt-form-field";
 export const BntFormItem: FC<{
 	field: TFormField;
 	value?: any;
-	formId: string;
 	id: string;
-}> = ({ field, value, formId, id }) => {
+}> = ({ field, value, id }) => {
 	const field_xs = field.xs ? field.xs : 12;
 	const field_sm = field.sm ? field.sm : field_xs;
 	const field_md = field.md ? field.md : field_sm;
@@ -22,7 +21,7 @@ export const BntFormItem: FC<{
 			md={field_md}
 			lg={field_lg}
 		>
-			<BntFormField id={id} field={field} value={value} formId={formId} />
+			<BntFormField id={id} field={field} value={value} />
 		</Grid>
 	);
 };

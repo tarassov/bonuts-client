@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
-import { useAppSelector } from "services/store/store";
-import { authTenantSelector } from "services/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
 import { USE_POLLING_INTERVAL } from "@/config";
 
-export const useListBase = <
-	Endpoint extends TEndpoint<Endpoint>,
-	TModel
->(props: {
+export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props: {
 	endpoint: Endpoint;
 	args?: GetArgsType<Endpoint>;
 	pollingInterval?: number | undefined;
@@ -18,8 +15,7 @@ export const useListBase = <
 		endpoint,
 		args,
 		pollingInterval = 1000,
-		translator = (response: GetResultType<Endpoint>) =>
-			response as Array<TModel>,
+		translator = (response: GetResultType<Endpoint>) => response as Array<TModel>,
 	} = props;
 
 	const [objects, setObjects] = useState<Array<TModel>>([]);

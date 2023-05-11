@@ -1,6 +1,6 @@
 import { usePostRequestsMutation } from "services/api/bonuts-api";
-import { useAppSelector } from "services/store/store";
-import { authTenantSelector } from "services/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { TDonut } from "@/types/model";
 
 export const useRequestLogic = () => {

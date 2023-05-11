@@ -1,10 +1,8 @@
 import { GetEventsApiResponse } from "../api/bonuts-api";
-import { TPost } from "../../types/model/post";
-import { DealType } from "../../types/model/deal-type";
+import { TPost } from "@/types/model/post";
+import { DealType } from "@/types/model/deal-type";
 
-export const apiEventsToPosts = (
-	response: GetEventsApiResponse
-): Array<TPost> => {
+export const apiEventsToPosts = (response: GetEventsApiResponse): Array<TPost> => {
 	const { data } = response;
 
 	if (!data) return [];

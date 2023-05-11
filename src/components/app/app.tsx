@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { HistoryRouter } from "redux-first-history/rr6";
 import { useMemo, useState } from "react";
 import { I18nextProvider } from "react-i18next";
-import { store, history } from "services/store/store";
+import { store, history } from "services/redux/store/store";
 import { BntThemeProvider } from "themes/theme-provider";
 import { AppContext } from "context/app-context";
 import { modalConfig } from "config/modal-config";
