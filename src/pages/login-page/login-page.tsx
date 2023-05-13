@@ -16,7 +16,7 @@ import { useAuth } from "hooks/use-auth";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
-const LoginPage: FC = () => {
+export const LoginPage: FC = () => {
 	// const location = useLocationTyped();
 	//	const from = location.state?.from?.pathname || "/";
 
@@ -74,12 +74,7 @@ const LoginPage: FC = () => {
 					control={<Checkbox value="remember" color="primary" />}
 					label="Remember me"
 				/>
-				<Button
-					type="submit"
-					fullWidth
-					variant="contained"
-					sx={{ mt: 3, mb: 2 }}
-				>
+				<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 					Sign In
 				</Button>
 				<Grid container>
@@ -100,5 +95,3 @@ const LoginPage: FC = () => {
 		</Box>
 	);
 };
-
-export default LoginPage;

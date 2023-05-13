@@ -7,25 +7,28 @@ import {
 	LogoutOutlined,
 	ShoppingBag,
 } from "@mui/icons-material";
-import ActiveRequestsPage from "../pages/requests/active-requests-page.tsx/active-requests-page";
-import ClosedRequestsPage from "../pages/requests/closed-requests-page/closed-request-page";
-import Index from "../pages/dashboard-page";
-import HomePage from "../pages/home-page/home-page";
-import IncomingRequestsPage from "../pages/requests/incoming-requests-page/incomig-requests-page";
-import LoginPage from "../pages/login-page/login-page";
-import PeoplePage from "../pages/people-page/people-page";
-import ProfilePage from "../pages/profile-page/profile-page";
-import SettingsPage from "../pages/settings-page/settings-page";
-import MyRequestsPage from "../pages/requests/my-requests-page/my-requests-page";
-import TenantsListPage from "../pages/tenants-list-page/tenants-list-page";
-import StatisticsPage from "../pages/statistics-page/statistics-page";
-import DonutsPage from "../pages/donut/donuts-page";
-import AccountOperationsPage from "../pages/account-operations-page/account-operations-page";
-import LogOutPage from "../pages/logout-page/logout-page";
-import RegistrationPage from "../pages/registration-page/registration-page";
-import RecoverPage from "../pages/recover-page/recover-page";
-import NotFoundPage from "../pages/not-found-page/not-found-page";
-import BntDonutPreviewPage from "../pages/donut/donut-preview-page";
+import {
+	AccountOperationsPage,
+	ActiveRequestsPage,
+	ClosedRequestsPage,
+	DashboardPage,
+	DonutPreviewPage,
+	DonutsPage,
+	HomePage,
+	IncomingRequestsPage,
+	LoginPage,
+	LogoutPage,
+	MyRequestsPage,
+	NotFoundPage,
+	PeoplePage,
+	ProfilePage,
+	RecoverPage,
+	RegistrationPage,
+	SettingsPage,
+	StatisticsPage,
+	TenantsListPage,
+} from "@/pages";
+
 // import Dashboard from "@material-ui/icons/Dashboard";
 
 export const notFoundRoute: TRoute = {
@@ -33,6 +36,7 @@ export const notFoundRoute: TRoute = {
 	anonymous: true,
 	authenticated: true,
 	hideInMenu: true,
+	// eslint-disable-next-line react/jsx-no-undef
 	component: <NotFoundPage />,
 };
 export const loginRoute: TRoute = {
@@ -69,7 +73,7 @@ export const logoutRoute: TRoute = {
 	authenticated: true,
 	navbarName: "Exit",
 	hideInMenu: false,
-	component: <LogOutPage />,
+	component: <LogoutPage />,
 	icon: <LogoutOutlined />,
 	index: 100,
 };
@@ -89,7 +93,7 @@ export const dashBoardRoute: TRoute = {
 	authenticated: true,
 	navbarName: "Dashboard",
 	hideInMenu: false,
-	component: <Index />,
+	component: <DashboardPage />,
 	redirect: loginRoute,
 	icon: <Dashboard />,
 	index: 0,
@@ -214,5 +218,5 @@ export const donutPreviewRoute: TRoute = {
 	anonymous: false,
 	authenticated: true,
 	hideInMenu: true,
-	component: <BntDonutPreviewPage />,
+	component: <DonutPreviewPage />,
 };

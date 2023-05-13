@@ -5,7 +5,7 @@ import { LogoutOutlined } from "@mui/icons-material";
 import { useAuth } from "hooks/use-auth";
 import { Dictionary } from "constants/dictionary";
 
-const LogOutPage: FC = () => {
+export const LogoutPage: FC = () => {
 	const { signOut } = useAuth();
 	const { t } = useTranslation();
 	const onClick = () => {
@@ -42,5 +42,3 @@ const LogOutPage: FC = () => {
 		</Box>
 	);
 };
-
-export default LogOutPage;

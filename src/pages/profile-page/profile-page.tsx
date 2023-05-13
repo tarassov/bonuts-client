@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid } from "@mui/material";
 
-import { BntProfileForm } from "../../components/profile/profile-form";
-import { BntProfileImage } from "../../components/profile/profile-image";
+import { BntProfileForm } from "components/profile/profile-form";
+import { BntProfileImage } from "components/profile/profile-image";
 
-const ProfilePage: React.FC = () => {
+export const ProfilePage: React.FC = () => {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12} sm={6} lg={4}>
@@ -16,5 +16,3 @@ const ProfilePage: React.FC = () => {
 		</Grid>
 	);
 };
-
-export default ProfilePage;
