@@ -9,11 +9,11 @@ import { modalConfig } from "config/modal-config";
 import { BntLoadingProvider } from "shared/loader/loading-provider";
 import { BntDialogProvider } from "shared/modal/dialog-provider";
 import { BntLayout } from "components/layout/layout";
+import { SnackbarProvider } from "notistack";
 import { getRoutes } from "@/routes";
 import { AppContextType } from "@/types/context";
 import "./styles/app.scss";
 import i18n from "../../services/localization/i18n";
-import { SnackbarProvider } from "notistack";
 
 const App = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);

@@ -28,6 +28,7 @@ export const BntDonutPreview = () => {
 	const { ImageModal } = useModal();
 
 	useEffect(() => {
+		console.log(isLoading);
 		setLoading(Modules.DonutPreview, isLoading);
 	}, [isLoading]);
 
@@ -74,9 +75,7 @@ export const BntDonutPreview = () => {
 							<BntTypography variant="h3" display="block">
 								{donut?.name}
 							</BntTypography>
-							<BntTypography variant="h5">
-								{translate(Dictionary.Description)}
-							</BntTypography>
+							<BntTypography variant="h5">{translate(Dictionary.Description)}</BntTypography>
 							<BntTypography paragraph>{donut?.description}</BntTypography>
 						</Grid>
 

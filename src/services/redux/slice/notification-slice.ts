@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TNotificationState } from "services/redux/types/notification-state";
-import { Severity } from "@/types/system/severity";
+import { ESeverity } from "services/notification/types/severity";
 
 const initialState: TNotificationState = {
 	isOpen: false,
-	severity: Severity.Success,
+	severity: ESeverity.Success,
 	message: "",
 };
 export const notificationSlice = createSlice({
@@ -18,7 +18,7 @@ export const notificationSlice = createSlice({
 		},
 		clearNotification: (state) => {
 			state.isOpen = false;
-			state.severity = Severity.Success;
+			state.severity = ESeverity.Success;
 			state.message = "";
 		},
 	},

@@ -6,18 +6,10 @@ const injectedRtkApi = api.injectEndpoints({
 			PostAccountOperationsApiResponse,
 			PostAccountOperationsApiArg
 		>({
-			query: (queryArg) => ({
-				url: `/account_operations`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/account_operations`, method: "POST", body: queryArg.body }),
 		}),
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
-			query: (queryArg) => ({
-				url: `/avatars`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/avatars`, method: "POST", body: queryArg.body }),
 		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
@@ -26,60 +18,30 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		getDonutsById: build.query<GetDonutsByIdApiResponse, GetDonutsByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/donuts/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
-			}),
+			query: (queryArg) => ({ url: `/donuts/${queryArg.id}`, params: { tenant: queryArg.tenant } }),
 		}),
 		getEvents: build.query<GetEventsApiResponse, GetEventsApiArg>({
 			query: (queryArg) => ({
 				url: `/events`,
-				params: {
-					tenant: queryArg.tenant,
-					showMine: queryArg.showMine,
-					page: queryArg.page,
-				},
+				params: { tenant: queryArg.tenant, showMine: queryArg.showMine, page: queryArg.page },
 			}),
 		}),
-		putEventsById: build.mutation<
-			PutEventsByIdApiResponse,
-			PutEventsByIdApiArg
-		>({
-			query: (queryArg) => ({
-				url: `/events/${queryArg.id}`,
-				method: "PUT",
-				body: queryArg.body,
-			}),
+		putEventsById: build.mutation<PutEventsByIdApiResponse, PutEventsByIdApiArg>({
+			query: (queryArg) => ({ url: `/events/${queryArg.id}`, method: "PUT", body: queryArg.body }),
 		}),
 		postInvitationsByIdAccept: build.mutation<
 			PostInvitationsByIdAcceptApiResponse,
 			PostInvitationsByIdAcceptApiArg
 		>({
-			query: (queryArg) => ({
-				url: `/invitations/${queryArg.id}/accept`,
-				method: "POST",
-			}),
+			query: (queryArg) => ({ url: `/invitations/${queryArg.id}/accept`, method: "POST" }),
 		}),
-		postInvitations: build.mutation<
-			PostInvitationsApiResponse,
-			PostInvitationsApiArg
-		>({
-			query: (queryArg) => ({
-				url: `/invitations`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+		postInvitations: build.mutation<PostInvitationsApiResponse, PostInvitationsApiArg>({
+			query: (queryArg) => ({ url: `/invitations`, method: "POST", body: queryArg.body }),
 		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
-			query: (queryArg) => ({
-				url: `/profile`,
-				params: { tenant: queryArg.tenant },
-			}),
+			query: (queryArg) => ({ url: `/profile`, params: { tenant: queryArg.tenant } }),
 		}),
-		putProfilesById: build.mutation<
-			PutProfilesByIdApiResponse,
-			PutProfilesByIdApiArg
-		>({
+		putProfilesById: build.mutation<PutProfilesByIdApiResponse, PutProfilesByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/profiles/${queryArg.id}`,
 				method: "PUT",
@@ -87,64 +49,30 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
-			query: (queryArg) => ({
-				url: `/profiles`,
-				params: { tenant: queryArg.tenant },
-			}),
+			query: (queryArg) => ({ url: `/profiles`, params: { tenant: queryArg.tenant } }),
 		}),
 		getRequests: build.query<GetRequestsApiResponse, GetRequestsApiArg>({
-			query: (queryArg) => ({
-				url: `/requests`,
-				params: { tenant: queryArg.tenant },
-			}),
+			query: (queryArg) => ({ url: `/requests`, params: { tenant: queryArg.tenant } }),
 		}),
 		postRequests: build.mutation<PostRequestsApiResponse, PostRequestsApiArg>({
-			query: (queryArg) => ({
-				url: `/requests`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/requests`, method: "POST", body: queryArg.body }),
 		}),
 		postTenantsByTenantNameJoin: build.mutation<
 			PostTenantsByTenantNameJoinApiResponse,
 			PostTenantsByTenantNameJoinApiArg
 		>({
-			query: (queryArg) => ({
-				url: `/tenants/${queryArg.tenantName}/join`,
-				method: "POST",
-			}),
+			query: (queryArg) => ({ url: `/tenants/${queryArg.tenantName}/join`, method: "POST" }),
 		}),
 		postRegister: build.mutation<PostRegisterApiResponse, PostRegisterApiArg>({
-			query: (queryArg) => ({
-				url: `/register`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/register`, method: "POST", body: queryArg.body }),
 		}),
-		postConfirmEmail: build.mutation<
-			PostConfirmEmailApiResponse,
-			PostConfirmEmailApiArg
-		>({
-			query: (queryArg) => ({
-				url: `/confirm_email`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+		postConfirmEmail: build.mutation<PostConfirmEmailApiResponse, PostConfirmEmailApiArg>({
+			query: (queryArg) => ({ url: `/confirm_email`, method: "POST", body: queryArg.body }),
 		}),
-		postAuthenticate: build.mutation<
-			PostAuthenticateApiResponse,
-			PostAuthenticateApiArg
-		>({
-			query: (queryArg) => ({
-				url: `/authenticate`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+		postAuthenticate: build.mutation<PostAuthenticateApiResponse, PostAuthenticateApiArg>({
+			query: (queryArg) => ({ url: `/authenticate`, method: "POST", body: queryArg.body }),
 		}),
-		postRefreshToken: build.mutation<
-			PostRefreshTokenApiResponse,
-			PostRefreshTokenApiArg
-		>({
+		postRefreshToken: build.mutation<PostRefreshTokenApiResponse, PostRefreshTokenApiArg>({
 			query: () => ({ url: `/refresh_token`, method: "POST" }),
 		}),
 	}),
@@ -862,50 +790,82 @@ export type GetRequestsApiArg = {
 	tenant?: string;
 };
 export type PostRequestsApiResponse = /** status 201 success */ {
-	id?: string;
-	type?: string;
-	attributes?: {
-		id: number;
-		name: string;
-		public_uid?: string;
-		donut_name: string;
-		created_at: string;
-		updated_at: string;
-		status: number;
-		date_used?: (string | null) | null;
-		deleted?: boolean;
-		donut: {
-			name: string;
-			price: number;
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
 			id: number;
-			active: boolean;
-			logo: {
-				url?: string | null;
-				thumb?: {
-					url?: string | null;
-				};
-			};
-			description: string;
-			liked: boolean;
-			likes: {
-				id: number;
-				profile_id: number;
-				created_at?: string;
-				likeable_type?: string;
-				likeable_id?: number;
-			}[];
-			has_remains: boolean;
-			on_stock: number;
-			supply_days: number;
-			expiration_date: string;
+			name: string;
+			public_uid?: string;
+			donut_name: string;
 			created_at: string;
-			comments: {
+			updated_at: string;
+			status: number;
+			date_used?: (string | null) | null;
+			deleted?: boolean;
+			donut: {
+				name: string;
+				price: number;
 				id: number;
-				content: string;
-				liked?: boolean;
-				likes: number;
-				public: boolean;
-				user_avatar: {
+				active: boolean;
+				logo: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				description: string;
+				liked: boolean;
+				likes: {
+					id: number;
+					profile_id: number;
+					created_at?: string;
+					likeable_type?: string;
+					likeable_id?: number;
+				}[];
+				has_remains: boolean;
+				on_stock: number;
+				supply_days: number;
+				expiration_date: string;
+				created_at: string;
+				comments: {
+					id: number;
+					content: string;
+					liked?: boolean;
+					likes: number;
+					public: boolean;
+					user_avatar: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+					user_name: string;
+					date_string: string;
+				}[];
+			};
+			profile: {
+				id?: number;
+				user_id?: number;
+				active?: boolean;
+				admin?: boolean;
+				attached?: boolean;
+				roles?: string[];
+				default?: boolean;
+				department?: (object | null) | null;
+				position?: (string | null) | null;
+				store_admin?: boolean;
+				first_name?: string;
+				last_name?: string;
+				email?: string;
+				tenant?: string;
+				sex?: string;
+				name?: string;
+				created_at?: string;
+				user_avatar?: {
 					url: string | null;
 					thumb: {
 						url: string | null;
@@ -914,57 +874,27 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 						url: string | null;
 					};
 				};
-				user_name: string;
-				date_string: string;
-			}[];
-		};
-		profile: {
-			id?: number;
-			user_id?: number;
-			active?: boolean;
-			admin?: boolean;
-			attached?: boolean;
-			roles?: string[];
-			default?: boolean;
-			department?: (object | null) | null;
-			position?: (string | null) | null;
-			store_admin?: boolean;
-			first_name?: string;
-			last_name?: string;
-			email?: string;
-			tenant?: string;
-			sex?: string;
-			name?: string;
-			created_at?: string;
-			user_avatar?: {
-				url: string | null;
-				thumb: {
-					url: string | null;
-				};
-				preview: {
-					url: string | null;
-				};
-			};
-			logo?: {
-				url?: string | null;
-				thumb?: {
+				logo?: {
 					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				score_total?: number;
+				self_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+				distrib_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
 				};
 			};
-			score_total?: number;
-			self_account?: {
-				id?: number;
-				tenant_id?: number;
-				profile_id?: number;
-			};
-			distrib_account?: {
-				id?: number;
-				tenant_id?: number;
-				profile_id?: number;
-			};
+			enabled?: (boolean | null) | null;
 		};
-		enabled?: (boolean | null) | null;
-	};
+	}[];
 };
 export type PostRequestsApiArg = {
 	body: {

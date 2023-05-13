@@ -1,7 +1,7 @@
-import { Severity } from "@/types/system/severity";
+import { ESeverity } from "services/notification/types/ESeverity";
 
 export type TNotificationState = {
 	isOpen: boolean;
-	severity: Severity;
+	severity: ESeverity;
 	message: string;
 };

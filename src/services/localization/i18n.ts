@@ -33,8 +33,7 @@ i18n.use(LanguageDetector).init({
 		ru: {
 			translations: {
 				// CONSTS
-				CONST_GREETINGS:
-					"Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
+				CONST_GREETINGS: "Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
 				// A
 				Account: "Аккаунт",
 				Amount: "Количество",
@@ -62,10 +61,8 @@ i18n.use(LanguageDetector).init({
 				"Change password": "Сменить пароль",
 				Confirm: "Подтвердить почтовый адрес",
 				"Confirmation dialog": "Подтверждение",
-				"Confirmation email was sent to":
-					"Подтвердите адрес электронной почты ",
-				"Confirm your email first":
-					"Для продолжнеия подтвердите адрес электронной почты ",
+				"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
+				"Confirm your email first": "Для продолжнеия подтвердите адрес электронной почты ",
 				"Connect to space": "Присоединиться к пространству",
 				code: "код",
 				Comment: "Комментарий",
@@ -109,6 +106,7 @@ i18n.use(LanguageDetector).init({
 				Edit: "Редактировать",
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
+				error: "ошибка",
 				Events: "События",
 				"Expiration date": "Дата окончания",
 
@@ -124,10 +122,8 @@ i18n.use(LanguageDetector).init({
 				// H
 				History: "История",
 				Home: "Главная",
-				"How many points do you want to send":
-					"Сколько баллов вы хотите отправить",
-				"How many donuts do you want to send":
-					"Сколько пончиков вы хотите отправить",
+				"How many points do you want to send": "Сколько баллов вы хотите отправить",
+				"How many donuts do you want to send": "Сколько пончиков вы хотите отправить",
 				"Hide snow": "Убрать снег",
 
 				// I
@@ -180,7 +176,8 @@ i18n.use(LanguageDetector).init({
 				"price asc": "сначала самые дешевые",
 				"price desc": "сначала самые дорогие",
 				Profile: "Профиль",
-				pts: "$",
+				pts: "бон.",
+				PTS: "БОН.",
 				place: "место",
 				Previous: "Назад",
 				Purchase: "Покупка",
