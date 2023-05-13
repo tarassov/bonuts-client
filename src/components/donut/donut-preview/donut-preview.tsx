@@ -28,7 +28,6 @@ export const BntDonutPreview = () => {
 	const { ImageModal } = useModal();
 
 	useEffect(() => {
-		console.log(isLoading);
 		setLoading(Modules.DonutPreview, isLoading);
 	}, [isLoading]);
 
