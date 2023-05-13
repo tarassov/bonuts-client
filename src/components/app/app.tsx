@@ -13,6 +13,7 @@ import { getRoutes } from "@/routes";
 import { AppContextType } from "@/types/context";
 import "./styles/app.scss";
 import i18n from "../../services/localization/i18n";
+import { SnackbarProvider } from "notistack";
 
 const App = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -37,18 +38,20 @@ const App = () => {
 	return (
 		<BntThemeProvider>
 			<I18nextProvider i18n={i18n}>
-				<Provider store={store}>
-					{/* <BntLayout /> */}
-					<AppContext.Provider value={contextValue}>
-						<HistoryRouter history={history}>
-							<BntLoadingProvider>
-								<BntDialogProvider config={modalConfig}>
-									<BntLayout />
-								</BntDialogProvider>
-							</BntLoadingProvider>
-						</HistoryRouter>
-					</AppContext.Provider>
-				</Provider>
+				<SnackbarProvider>
+					<Provider store={store}>
+						{/* <BntLayout /> */}
+						<AppContext.Provider value={contextValue}>
+							<HistoryRouter history={history}>
+								<BntLoadingProvider>
+									<BntDialogProvider config={modalConfig}>
+										<BntLayout />
+									</BntDialogProvider>
+								</BntLoadingProvider>
+							</HistoryRouter>
+						</AppContext.Provider>
+					</Provider>
+				</SnackbarProvider>
 			</I18nextProvider>
 		</BntThemeProvider>
 	);
