@@ -40,6 +40,7 @@ i18n.use(LanguageDetector).init({
 				Add: "Добавить",
 				Activate: "Активировать",
 				Active: "Активен",
+				"Active requests": "Запросы в работе",
 				"Active donuts": "Активные пончики",
 				"Already used regards": "Уже использованные награды",
 				"Activate regard code": "Активация кода награды",
@@ -106,9 +107,11 @@ i18n.use(LanguageDetector).init({
 				Edit: "Редактировать",
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
+				Employees: "Сотрудники",
 				error: "ошибка",
 				Events: "События",
 				"Expiration date": "Дата окончания",
+				Exit: "Выход",
 
 				// F
 				forbidden: "запрещено",
@@ -144,6 +147,7 @@ i18n.use(LanguageDetector).init({
 				"My Requests": "Мои запросы",
 				"My spaces": "Мои команды",
 				"My teams": "Мои команды",
+				"My tenants": "Мои команды",
 				More: "Ещё",
 				// N
 				"new password": "новый пароль",

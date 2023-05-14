@@ -1,12 +1,17 @@
 import {
-	Dashboard,
-	RequestPage,
-	RestorePage,
-	Settings,
-	Person,
 	LogoutOutlined,
-	ShoppingBag,
+	ForwardToInboxOutlined,
+	PeopleAltOutlined,
+	PersonOutlined,
+	SettingsOutlined,
+	ShoppingBagOutlined,
+	DashboardOutlined,
+	LeaderboardOutlined,
+	Diversity2Outlined,
+	InboxOutlined,
+	ArchiveOutlined,
 } from "@mui/icons-material";
+
 import {
 	AccountOperationsPage,
 	ActiveRequestsPage,
@@ -24,6 +29,8 @@ import {
 	ProfilePage,
 	RecoverPage,
 	RegistrationPage,
+	RequestsPage,
+	RestorePasswordPage,
 	SettingsPage,
 	StatisticsPage,
 	TenantsListPage,
@@ -65,7 +72,7 @@ export const restoreRoute: TRoute = {
 	anonymous: true,
 	authenticated: false,
 	hideInMenu: true,
-	component: <RestorePage />,
+	component: <RestorePasswordPage />,
 };
 export const logoutRoute: TRoute = {
 	path: "/logout",
@@ -95,7 +102,7 @@ export const dashBoardRoute: TRoute = {
 	hideInMenu: false,
 	component: <DashboardPage />,
 	redirect: loginRoute,
-	icon: <Dashboard />,
+	icon: <DashboardOutlined />,
 	index: 0,
 };
 
@@ -107,7 +114,7 @@ export const settingsRoute: TRoute = {
 	hideInMenu: false,
 	component: <SettingsPage />,
 	redirect: loginRoute,
-	icon: <Settings />,
+	icon: <SettingsOutlined />,
 };
 
 export const profileRoute: TRoute = {
@@ -118,7 +125,7 @@ export const profileRoute: TRoute = {
 	hideInMenu: false,
 	component: <ProfilePage />,
 	redirect: loginRoute,
-	icon: <Person />,
+	icon: <PersonOutlined />,
 	index: 1,
 };
 export const peopleRoute: TRoute = {
@@ -128,6 +135,7 @@ export const peopleRoute: TRoute = {
 	navbarName: "Employees",
 	hideInMenu: false,
 	component: <PeoplePage />,
+	icon: <PeopleAltOutlined />,
 };
 
 export const requestsRoute: TRoute = {
@@ -136,7 +144,8 @@ export const requestsRoute: TRoute = {
 	authenticated: true,
 	navbarName: "Requests",
 	hideInMenu: false,
-	component: <RequestPage />,
+	component: <RequestsPage />,
+	icon: <ForwardToInboxOutlined />,
 };
 
 export const incomingRequestsRoute: TRoute = {
@@ -146,7 +155,9 @@ export const incomingRequestsRoute: TRoute = {
 	navbarName: "Incoming requests",
 	hideInMenu: false,
 	component: <IncomingRequestsPage />,
+	icon: <ForwardToInboxOutlined />,
 	parentRoute: requestsRoute,
+	index: 0,
 };
 export const activeRequestsRoute: TRoute = {
 	path: "/active_requests",
@@ -155,7 +166,9 @@ export const activeRequestsRoute: TRoute = {
 	navbarName: "Active requests",
 	hideInMenu: false,
 	component: <ActiveRequestsPage />,
+	icon: <InboxOutlined />,
 	parentRoute: requestsRoute,
+	index: 1,
 };
 
 export const closedRequestsRoute: TRoute = {
@@ -166,6 +179,8 @@ export const closedRequestsRoute: TRoute = {
 	hideInMenu: false,
 	component: <ClosedRequestsPage />,
 	parentRoute: requestsRoute,
+	icon: <ArchiveOutlined />,
+	index: 2,
 };
 
 export const myRequestsRoute: TRoute = {
@@ -184,6 +199,7 @@ export const tenantsListRoute: TRoute = {
 	navbarName: "My tenants",
 	hideInMenu: false,
 	component: <TenantsListPage />,
+	icon: <Diversity2Outlined />,
 };
 
 export const statisticsRoute: TRoute = {
@@ -193,6 +209,7 @@ export const statisticsRoute: TRoute = {
 	navbarName: "Statistic",
 	hideInMenu: false,
 	component: <StatisticsPage />,
+	icon: <LeaderboardOutlined />,
 };
 
 export const donutsRoute: TRoute = {
@@ -202,7 +219,7 @@ export const donutsRoute: TRoute = {
 	navbarName: "Store",
 	hideInMenu: false,
 	component: <DonutsPage />,
-	icon: <ShoppingBag />,
+	icon: <ShoppingBagOutlined />,
 	index: 2,
 };
 export const accountOperationsRoute: TRoute = {

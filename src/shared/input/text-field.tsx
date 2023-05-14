@@ -1,10 +1,5 @@
 import { FC, SyntheticEvent } from "react";
-import {
-	IconButton,
-	InputAdornment,
-	TextField,
-	TextFieldProps,
-} from "@mui/material";
+import { IconButton, InputAdornment, TextField, TextFieldProps } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { EMPTY_FUNCTION } from "constants/functions";
@@ -20,16 +15,9 @@ export const BntTextField: FC<
 	}
 > = (props) => {
 	const { translate } = useBntTranslate();
+	const { stringLabel, onClear = EMPTY_FUNCTION, clearable = false, ...rest } = props;
 
-	const {
-		InputProps = {},
-		clearable = false,
-		onClear = EMPTY_FUNCTION,
-		value,
-		stringLabel,
-		placeholder,
-		label,
-	} = props;
+	const { InputProps = {}, value, placeholder, label } = rest;
 
 	const inputProps = {
 		...InputProps,
@@ -53,7 +41,7 @@ export const BntTextField: FC<
 
 	return (
 		<TextField
-			{...props}
+			{...rest}
 			placeholder={translate(placeholder)}
 			label={translate(stringLabel) || label}
 			InputProps={inputProps}

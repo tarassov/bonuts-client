@@ -5,36 +5,24 @@ import { BntCardActionArea } from "shared/card/card-action-area";
 import { BntCardBody } from "shared/card/card-body";
 import { BntTypography } from "shared/typography/typography";
 import { BntStack } from "shared/stack/stack";
-import { useDonutUi } from "logic/ui/use-donut-ui";
 import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
 import { texts_o } from "services/localization/texts/texts_o";
+import classNames from "classnames";
 import { TDonut } from "@/types/model";
 
-export const DonutCardComponent: FC<{
+export const DonutCardPure: FC<{
 	donut: TDonut;
+	onDonutClick: VoidFunction;
 	className?: string;
-}> = ({ donut, className }) => {
+}> = ({ donut, className, onDonutClick }) => {
 	const { translate } = useBntTranslate();
-	const { showDonut } = useDonutUi(donut);
-
-	const onShowDonut = () => {
-		showDonut();
-	};
 
 	const { on_stock = 0, logo, price, name } = donut;
 	return (
-		<BntCard raised className={className}>
-			<BntCardActionArea
-				onClick={onShowDonut}
-				className={DONUT_CARD_CLASSES.cardHover}
-			>
+		<BntCard raised className={classNames(DONUT_CARD_CLASSES.donutCard, className)}>
+			<BntCardActionArea onClick={onDonutClick} className={DONUT_CARD_CLASSES.cardHover}>
 				<BntCardBody className={`${DONUT_CARD_CLASSES.cardBody} m-10`}>
-					<BntStack
-						direction="column"
-						justifyContent="center"
-						alignItems="center"
-						spacing={2}
-					>
+					<BntStack direction="column" justifyContent="center" alignItems="center" spacing={2}>
 						<div className={DONUT_CARD_CLASSES.cardHeaderHover}>
 							<img
 								src={logo?.thumb?.url || undefined}

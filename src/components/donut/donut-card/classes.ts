@@ -1,4 +1,5 @@
 export const DONUT_CARD_CLASSES = {
+	donutCard: "donut-card",
 	cardHover: "card-hover",
 	cardHeaderHover: "card-header-hover",
 	cardActions: "card-actions",

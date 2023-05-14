@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
+import { ChildPathMenu } from "components/child-path";
+import { settingsRoute } from "routes/routes";
 
 export const SettingsPage: FC = () => {
-	return <Typography>Settings page</Typography>;
+	return <ChildPathMenu route={settingsRoute} />;
 };

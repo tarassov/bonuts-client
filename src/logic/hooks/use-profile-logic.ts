@@ -11,7 +11,7 @@ export const useProfileLogic = () => {
 	const authProfile = useAppSelector(authProfileSelector);
 	const authTenant = useAppSelector(authTenantSelector);
 	const dispatch = useAppDispatch();
-	const { data, error, isLoading } = useGetProfileQuery(
+	const { data, error, isLoading, refetch } = useGetProfileQuery(
 		{
 			tenant: authTenant || undefined,
 		},
@@ -31,6 +31,7 @@ export const useProfileLogic = () => {
 				id: profile?.id.toString(),
 				body: { ...values, tenant: authTenant },
 			});
+			refetch();
 			return res;
 		}
 		return undefined;

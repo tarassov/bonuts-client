@@ -97,6 +97,9 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 		if (!temp) setHasNew(false);
 	}, [temp]);
 
+	/*
+	 * Apply new data from server. Resets pages to the first only
+	 * */
 	const applyUpdates = useCallback(() => {
 		if (temp) {
 			setCurrentPage(1);
