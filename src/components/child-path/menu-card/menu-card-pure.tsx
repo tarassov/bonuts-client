@@ -6,9 +6,10 @@ import classNames from "classnames";
 import { BntCardBody } from "shared/card/card-body";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntTypography } from "shared/typography/typography";
+import { BntRoutes } from "routes/config/routes";
 
 export type MenuCardPureProps = {
-	route: TRoute;
+	route: TRoute<BntRoutes>;
 	onCardClick: VoidFunction;
 	className?: string;
 };

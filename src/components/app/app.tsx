@@ -9,29 +9,29 @@ import { BntLoadingProvider } from "shared/loader/loading-provider";
 import { BntDialogProvider } from "shared/modal/dialog-provider";
 import { BntLayout } from "components/layout/layout";
 import { SnackbarProvider } from "notistack";
-import { useBntRoutes } from "hooks/use-bnt-routes";
+import { getMenuRoutes } from "routes/get-menu-routes";
+import { routesConfig } from "routes/config/routes-config";
 import { AppContextType } from "@/types/context";
 import "./styles/app.scss";
 import i18n from "../../services/localization/i18n";
 
 const App = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
-	const { getRoutes, getMenuRoutes } = useBntRoutes();
 	const toggleDrawer = () => {
 		setDrawerOpen(!isDrawerOpen);
 	};
 
-	const routes = useMemo(() => getRoutes(), [getRoutes]);
-	const menuRoutes = useMemo(() => getMenuRoutes(), [getMenuRoutes]);
+	const menuRoutes = useMemo(() => getMenuRoutes(routesConfig), [routesConfig]);
 
 	const contextValue: AppContextType = useMemo(() => {
 		return {
 			isDrawerOpen,
 			toggleDrawer,
 			menuRoutes,
-			routes,
+			routes: routesConfig.routes,
+			redirects: routesConfig.redirects.redirects,
 		};
-	}, [isDrawerOpen, routes, menuRoutes]);
+	}, [isDrawerOpen, routesConfig, menuRoutes]);
 
 	return (
 		<BntThemeProvider>

@@ -1,7 +1,10 @@
 import { FC } from "react";
 import { ChildPathMenu } from "components/child-path";
-import { settingsRoute } from "routes/routes";
+import { useBntRoutes } from "hooks/use-bnt-routes";
+import { getChildrenRoutes } from "routes/get-children-routes";
 
 export const SettingsPage: FC = () => {
-	return <ChildPathMenu route={settingsRoute} />;
+	const { routes } = useBntRoutes();
+	const childrenRoutes = getChildrenRoutes(routes.Settings);
+	return <ChildPathMenu routes={childrenRoutes} />;
 };

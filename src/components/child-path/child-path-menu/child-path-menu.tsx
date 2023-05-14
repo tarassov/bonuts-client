@@ -1,12 +1,10 @@
 import { FC } from "react";
-import { useBntRoutes } from "hooks/use-bnt-routes";
-import { ChildPathMenuPure } from "components/child-path/child-path-menu/child-path-menu-pure";
+import { ChildPathMenuStyled } from "components/child-path/child-path-menu/child-path-menu-styled";
+import { BntRoutes } from "routes/config/routes";
 
 export type ChildPathMenuProps = {
-	route?: TRoute;
+	routes?: Array<TRoute<BntRoutes>>;
 };
-export const ChildPathMenu: FC<ChildPathMenuProps> = ({ route }) => {
-	const { getChildRoutes } = useBntRoutes();
-	const childRoutes = getChildRoutes(route);
-	return <ChildPathMenuPure routes={childRoutes} />;
+export const ChildPathMenu: FC<ChildPathMenuProps> = ({ routes = [] }) => {
+	return <ChildPathMenuStyled routes={routes} />;
 };

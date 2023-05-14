@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
+import { texts_u } from "services/localization/texts/texts_u";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -234,11 +235,13 @@ i18n.use(LanguageDetector).init({
 				Submit: "Подтвердить",
 
 				// T
+				Tenant: "Команда",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",
 				// U
 				"Update donut": "Обновить пончик",
 				Update: "Обновить",
+				[texts_u.under_construct]: "В разработке",
 				"Update is available": "Обновление доступно",
 				// V
 

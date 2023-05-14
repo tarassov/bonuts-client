@@ -1,7 +1,10 @@
 import { FC } from "react";
 import { ChildPathMenu } from "components/child-path";
-import { requestsRoute } from "routes/routes";
+import { useBntRoutes } from "hooks/use-bnt-routes";
+import { getChildrenRoutes } from "routes/get-children-routes";
 
 export const RequestsPage: FC = () => {
-	return <ChildPathMenu route={requestsRoute} />;
+	const { routes } = useBntRoutes();
+	const childrenRoutes = getChildrenRoutes(routes.Requests);
+	return <ChildPathMenu routes={childrenRoutes} />;
 };

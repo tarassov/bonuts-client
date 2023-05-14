@@ -19,3 +19,4 @@ export { RestorePasswordPage } from "pages/restore-password-page/restore-passwor
 export { SettingsPage } from "pages/settings-page/settings-page";
 export { StatisticsPage } from "pages/statistics-page/statistics-page";
 export { TenantsListPage } from "pages/tenants-list-page/tenants-list-page";
+export { StorePage } from "pages/store-page/store-page";

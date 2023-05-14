@@ -10,15 +10,13 @@ export const DonutCardStyled = styled(
 )(({ theme }) => {
 	return {
 		backgroundColor: theme.palette.background.paper,
-		maxWidth: 700,
+		maxWidth: 370,
 		color: theme.palette.neutral.dark,
-		transition: theme.transitions.create(["width", "margin"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
+		margin: "auto",
 		"&:hover": {
 			...bounceStyle(),
-			margin: "5px",
+			outline: "2px solid",
+			outlineColor: theme.palette.secondary.light,
 		},
 		[cl(DONUT_CARD_CLASSES.remains)]: {
 			position: "absolute",

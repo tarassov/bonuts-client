@@ -2,23 +2,24 @@ import { FC, useEffect, useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "hooks/use-auth";
 import { useLocationTyped } from "hooks/use-location-typed";
-import { loginRoute } from "routes/routes";
 import { TAuthState } from "services/redux/types/auth-state";
+import { routesPath } from "routes/config/routes-path";
+import { BntRoutes } from "routes/config/routes";
 
 interface ISwithRoutesProps {
-	routes: Array<TRoute>;
+	routes: Array<TRoute<any>>;
 	// eslint-disable-next-line react/no-unused-prop-types
 	redirects?: Array<TRedirect>;
 }
 
-const getRoute = (route: TRoute, auth: TAuthState): JSX.Element => {
+const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 	if (auth.isAuthenticated && route.authenticatedRedirect) {
-		return <Navigate to={route.authenticatedRedirect.path} />;
+		return <Navigate to={route.authenticatedRedirect} />;
 	}
 	return auth.isAuthenticated || route.anonymous ? (
 		route.component
 	) : (
-		<Navigate to={route.redirect?.path || loginRoute.path} />
+		<Navigate to={route.redirect || routesPath[BntRoutes.Login]} />
 	);
 };
 

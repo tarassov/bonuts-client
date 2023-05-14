@@ -14,17 +14,19 @@ export const MenuCardStyled = styled(
 		verticalAlign: "middle",
 		margin: "auto",
 		textAlign: "center",
-		transition: theme.transitions.create(["width", "margin"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
+		// transition: theme.transitions.create(["width", "margin"], {
+		// 	easing: theme.transitions.easing.sharp,
+		// 	duration: theme.transitions.duration.leavingScreen,
+		// }),
 		"& svg": {
 			width: "50px",
 			height: "50px",
 		},
 		"&:hover": {
-			transform: "translate3d(0, -2px, 10px)",
-			transition: "all 400ms cubic-bezier(0.34, 1.61, 0.7, 1)",
+			outline: "2px solid",
+			outlineColor: theme.palette.primary.main,
+			// transform: "translate3d(0, -2px, 10px)",
+			// transition: "all 400ms cubic-bezier(0.34, 1.61, 0.7, 1)",
 			"& svg": {
 				transform: "translate3d(0, -20px, 10px)",
 				transition: "all 400ms cubic-bezier(0.34, 1.61, 0.7, 1)",
