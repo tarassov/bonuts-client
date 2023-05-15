@@ -31,6 +31,7 @@ export const apiProfilesToProfiles = (response: GetProfilesApiResponse): Array<T
 		const { attributes, id } = target;
 		return {
 			...attributes,
+			email: attributes?.email || "",
 			id: Number(id),
 		};
 	});
