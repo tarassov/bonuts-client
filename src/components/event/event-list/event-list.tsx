@@ -1,7 +1,7 @@
 import { Box, Button, Grid } from "@mui/material";
 import { FC, SyntheticEvent, useEffect } from "react";
 import { Dictionary } from "constants/dictionary";
-import { useEventListLogic } from "logic/hooks/use-event-list-logic";
+import { useEventListLogic } from "logic/hooks/event/use-event-list-logic";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
@@ -9,8 +9,9 @@ import { BntStyledEventCard } from "../event-card/event-card-styled";
 
 export const BntEventList: FC = () => {
 	const { translate } = useBntTranslate();
-	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } =
-		useEventListLogic({ showMine: false });
+	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } = useEventListLogic({
+		showMine: false,
+	});
 
 	const { setLoading } = useLoader();
 	const onNext = (e: SyntheticEvent) => {
@@ -25,11 +26,7 @@ export const BntEventList: FC = () => {
 	return (
 		<Box ml={2} mt={2}>
 			{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
-			<Grid
-				container
-				rowSpacing={{ xs: 2 }}
-				columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-			>
+			<Grid container rowSpacing={{ xs: 2 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 				{pages.length > 0 &&
 					Object.values(pages).map((page) => {
 						return (

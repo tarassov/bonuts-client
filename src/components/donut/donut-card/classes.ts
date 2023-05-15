@@ -7,4 +7,5 @@ export const DONUT_CARD_CLASSES = {
 	remains: "remains",
 	logo: "logo",
 	cardTitle: "card-title",
+	captions: "captions",
 };

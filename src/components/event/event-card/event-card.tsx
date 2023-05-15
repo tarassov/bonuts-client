@@ -1,12 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import {
-	Android,
-	Comment,
-	Edit,
-	ExpandMore,
-	Favorite,
-	Lock,
-} from "@mui/icons-material";
+import { Android, Comment, Edit, ExpandMore, Favorite, Lock } from "@mui/icons-material";
 import {
 	Avatar,
 	Tooltip,
@@ -21,7 +14,7 @@ import {
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Dictionary } from "constants/dictionary";
-import { useEventLogic } from "logic/hooks/use-event-logic";
+import { useEventLogic } from "logic/hooks/event/use-event-logic";
 import { focusInput } from "utils/focus-input";
 import { BntCard } from "shared/card/card";
 import { BntCardContent } from "shared/card/card-content";
@@ -31,10 +24,7 @@ import { TPost } from "@/types/model/post";
 import { BntStyledCardHeader } from "./event-card-header";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
 
-export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
-	post,
-	className,
-}) => {
+export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, className }) => {
 	const {
 		profile,
 		public: isPublic,
@@ -98,10 +88,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 				avatar={
 					<>
 						{isPublic && (
-							<Avatar
-								src={user_avatar?.thumb?.url || undefined}
-								alt={user_name || undefined}
-							/>
+							<Avatar src={user_avatar?.thumb?.url || undefined} alt={user_name || undefined} />
 						)}
 						{!isPublic && (
 							<Avatar>
@@ -111,18 +98,11 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 					</>
 				}
 				action={
-					<Tooltip
-						title={
-							isPublic
-								? t(Dictionary.ONLY_YOU_CAN_SEE_IT)
-								: t(Dictionary.PROFILE)
-						}
-					>
+					<Tooltip title={isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)}>
 						<IconButton
 							aria-label={
-								(!isPublic
-									? t(Dictionary.ONLY_YOU_CAN_SEE_IT)
-									: t(Dictionary.PROFILE)) || Dictionary.PROFILE
+								(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) ||
+								Dictionary.PROFILE
 							}
 						>
 							{!isPublic && <Lock />}
@@ -134,9 +114,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 			/>
 
 			<BntCardContent>
-				{post.operation && (
-					<BntStyledOperationText operation={post.operation} />
-				)}
+				{post.operation && <BntStyledOperationText operation={post.operation} />}
 				{!edit && (
 					<Typography variant="body2" component="p">
 						{content}
@@ -198,9 +176,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({
 							<Comment />
 						</IconButton>
 						<Box className={classNames(EVENT_CARD_CLASSES.iconCaption)}>
-							{comments_count !== undefined &&
-								comments_count !== 0 &&
-								comments_count}
+							{comments_count !== undefined && comments_count !== 0 && comments_count}
 						</Box>
 					</>
 				)}

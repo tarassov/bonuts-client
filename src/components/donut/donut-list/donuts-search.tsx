@@ -4,7 +4,7 @@ import { TFieldType } from "shared/form/types/bnt-form";
 import { BntTextField } from "shared/input/text-field";
 import { BntStack } from "shared/stack/stack";
 import { BntRoundButton } from "shared/buttons/round-button";
-import { DonutsSorter } from "logic/utils/donut-utils";
+import { DonutSorter } from "logic/utils/sorter/donut-sorter";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { TDonut } from "@/types/model";
 
@@ -34,19 +34,19 @@ export const BntDonutsSearch: FC<{
 	}> = [
 		{
 			name: Sorting.PRICE_ASC,
-			sorter: DonutsSorter.sorterByPriceAsc,
+			sorter: DonutSorter.sorterByPriceAsc,
 		},
 		{
 			name: Sorting.PRICE_DESC,
-			sorter: DonutsSorter.sorterByPriceDesc,
+			sorter: DonutSorter.sorterByPriceDesc,
 		},
 		{
 			name: Sorting.SORT_BY_ALPHABET,
-			sorter: DonutsSorter.sorterByName,
+			sorter: DonutSorter.sorterByName,
 		},
 		{
 			name: Sorting.NEWEST,
-			sorter: DonutsSorter.sorterByDate,
+			sorter: DonutSorter.sorterByDate,
 		},
 	];
 

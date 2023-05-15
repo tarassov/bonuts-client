@@ -1,24 +1,37 @@
 import { TProfile } from "@/types/model";
-import { GetProfileApiResponse } from "../api/bonuts-api";
+import { GetProfileApiResponse, GetProfilesApiResponse } from "../api/bonuts-api";
 
-export const apiProfileToProfile = (
-	response: GetProfileApiResponse
-): TProfile | undefined => {
-	if (!response.data || !response.data.id) return undefined;
+const dataToProfile = (data: any) => {
 	const res: TProfile = {
-		id: Number(response.data.id),
-		user_id: response.data.attributes?.user_id
-			? Number(response.data.attributes?.user_id)
-			: undefined,
-		position: response.data.attributes?.position,
-		user_name: response.data.attributes?.name,
-		admin: response.data.attributes?.admin,
-		user_avatar: response.data.attributes?.user_avatar,
-		email: response.data.attributes?.email,
-		first_name: response.data.attributes?.first_name,
-		last_name: response.data.attributes?.last_name,
-		roles: response.data.attributes?.roles,
-		tenant: response.data.attributes?.tenant,
+		id: Number(data.id),
+		user_id: data.attributes?.user_id ? Number(data.attributes?.user_id) : undefined,
+		position: data.attributes?.position,
+		user_name: data.attributes?.name,
+		admin: data.attributes?.admin,
+		user_avatar: data.attributes?.user_avatar,
+		email: data.attributes?.email,
+		first_name: data.attributes?.first_name,
+		last_name: data.attributes?.last_name,
+		roles: data.attributes?.roles,
+		tenant: data.attributes?.tenant,
 	};
 	return res;
+};
+export const apiProfileToProfile = (response: GetProfileApiResponse): TProfile | undefined => {
+	if (!response.data || !response.data.id) return undefined;
+	const res: TProfile = dataToProfile(response.data);
+	return res;
+};
+export const apiProfilesToProfiles = (response: GetProfilesApiResponse): Array<TProfile> => {
+	const { data } = response;
+
+	if (!data) return [];
+
+	return data.map((target) => {
+		const { attributes, id } = target;
+		return {
+			...attributes,
+			id: Number(id),
+		};
+	});
 };

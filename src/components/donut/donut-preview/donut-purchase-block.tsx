@@ -4,7 +4,7 @@ import { BntCard } from "shared/card/card";
 import { Dictionary } from "constants/dictionary";
 import { BntTypography } from "shared/typography/typography";
 import { BntRegularButton } from "shared/buttons/regular-button";
-import { useRequestLogic } from "logic/hooks/use-request-logic";
+import { useRequestLogic } from "logic/hooks/request/use-request-logic";
 import { texts_o } from "services/localization/texts/texts_o";
 import { DonutRemainGrey } from "./donut-remain-grey";
 import { DonutPrice } from "./donut-price";

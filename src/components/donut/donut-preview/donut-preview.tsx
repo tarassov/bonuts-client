@@ -7,7 +7,7 @@ import { BntBreadcrumbs } from "shared/breadcrumb/breadcrump";
 import { BntCardBody } from "shared/card/card-body";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
-import { useDonutLogic } from "logic/hooks/use-donut-logic";
+import { useDonutLogic } from "logic/hooks/donut/use-donut-logic";
 import { TBntBreadcrumpItem } from "shared/types/breadcrumbs";
 import { Dictionary } from "constants/dictionary";
 import { BntCard } from "shared/card/card";

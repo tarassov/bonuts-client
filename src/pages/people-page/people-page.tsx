@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
+import { EmployeeList } from "components/employee/employee-list/employee-list";
 
 export const PeoplePage: FC = () => {
-	return <Typography>People</Typography>;
+	return <EmployeeList />;
 };

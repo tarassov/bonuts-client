@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useState } from "react";
 import { Grid } from "@mui/material";
-import { DonutsSorter } from "logic/utils/donut-utils";
-import { useDonutList } from "logic/hooks/use-donut-list";
+import { DonutSorter } from "logic/utils/sorter/donut-sorter";
+import { useDonutList } from "logic/hooks/donut/use-donut-list";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { DonutCard } from "components/donut/donut-card/donut-card";
@@ -15,7 +15,7 @@ export const BntDonutsList: FC = () => {
 	const [filterFunction, setFilterFunction] = useState<Array<{ (a: TDonut): boolean }>>([]);
 	const [sorter, setSorter] = useState<{
 		(a: TDonut, b: TDonut): number;
-	}>(() => DonutsSorter.sorterByName);
+	}>(() => DonutSorter.sorterByName);
 	const { objects = [], isLoading } = useDonutList();
 
 	const updateFilter = (filters: Array<{ (a: TDonut): boolean }>) => {

@@ -22,7 +22,12 @@ export const DonutCardPure: FC<{
 		<BntCard raised className={classNames(DONUT_CARD_CLASSES.donutCard, className)}>
 			<BntCardActionArea onClick={onDonutClick} className={DONUT_CARD_CLASSES.cardHover}>
 				<BntCardBody className={`${DONUT_CARD_CLASSES.cardBody} m-10`}>
-					<BntStack direction="column" justifyContent="center" alignItems="center" spacing={2}>
+					<BntStack
+						direction="column"
+						justifyContent="space-between"
+						alignItems="center"
+						spacing={3}
+					>
 						<div className={DONUT_CARD_CLASSES.cardHeaderHover}>
 							<img
 								src={logo?.thumb?.url || undefined}
@@ -30,10 +35,12 @@ export const DonutCardPure: FC<{
 								className={DONUT_CARD_CLASSES.logo}
 							/>
 						</div>
-						<BntTypography variant="h6">
-							{translate("Price")}: {price}
-						</BntTypography>
-						<BntTypography variant="h6">{name}</BntTypography>
+						<div className={DONUT_CARD_CLASSES.captions}>
+							<BntTypography>
+								{translate("Price")}: {price}
+							</BntTypography>
+							<BntTypography>{name}</BntTypography>
+						</div>
 					</BntStack>
 					{on_stock > 0 && (
 						<div className={DONUT_CARD_CLASSES.remains}>

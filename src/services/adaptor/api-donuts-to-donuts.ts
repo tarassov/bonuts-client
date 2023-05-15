@@ -1,12 +1,7 @@
-import {
-	GetDonutsApiResponse,
-	GetDonutsByIdApiResponse,
-} from "../api/bonuts-api";
-import { TDonut } from "../../types/model/donut";
+import { GetDonutsApiResponse, GetDonutsByIdApiResponse } from "../api/bonuts-api";
+import { TDonut } from "@/types/model";
 
-export const apiDonutsToDonuts = (
-	response: GetDonutsApiResponse
-): Array<TDonut> => {
+export const apiDonutsToDonuts = (response: GetDonutsApiResponse): Array<TDonut> => {
 	const { data } = response;
 
 	if (!data) return [];
