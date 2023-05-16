@@ -17,6 +17,9 @@ export default defineConfig({
 		setupFiles: ["./src/__tests__/config/setup.ts"],
 		environment: "jsdom",
 		globals: true,
+		coverage: {
+			reporter: ["text", "json", "html"],
+		},
 		transformMode: {
 			web: [/\.[jt]sx$/],
 		},
