@@ -1,65 +1,56 @@
-import { Provider } from "react-redux";
-import { store, history } from "../../services/store/store";
 import { HistoryRouter } from "redux-first-history/rr6";
-
-import CssBaseline from "@mui/material/CssBaseline";
-
-import SwitchRoutes from "../switch-routes/switch-routes";
-import { getRoutes } from "../../routes";
-
-import { Box } from "@mui/material";
-import { BTNHeader } from "../header";
-import { TProfile } from "../../types/model";
-import { BNTThemeProvider } from "../../themes/theme-provider";
 import { useMemo, useState } from "react";
-import { AppContextType } from "../../types/context";
-import { AppContext } from "../../context";
-import { BNTDrawerHeader } from "../../base/BNTDrawer";
+import { I18nextProvider } from "react-i18next";
+import { history } from "services/redux/store/store";
+import { BntThemeProvider } from "themes/theme-provider";
+import { AppContext } from "context/app-context";
+import { modalConfig } from "config/modal-config";
+import { BntLoadingProvider } from "shared/loader/loading-provider";
+import { BntDialogProvider } from "shared/modal/dialog-provider";
+import { BntLayout } from "components/layout/layout";
+import { SnackbarProvider } from "notistack";
+import { getMenuRoutes } from "routes/get-menu-routes";
+import { routesConfig } from "routes/config/routes-config";
+import { AppContextType } from "@/types/context";
+import "./styles/app.scss";
+import i18n from "../../services/localization/i18n";
 
-import BNTSidebar from "../sidebar";
-
-const mock_profile: TProfile = {
-	first_name: "Alex",
-	last_name: "T",
-	position: "developer",
-};
-
-function App() {
+const App = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
-
 	const toggleDrawer = () => {
 		setDrawerOpen(!isDrawerOpen);
 	};
 
-	const routes = useMemo(() => getRoutes(), []);
-	const menuRoutes = useMemo(() => {
-		return routes.filter((x) => !x.hideInMenu && x.navbarName);
-	}, [routes]);
-	const contextValue: AppContextType = {
-		isDrawerOpen,
-		toggleDrawer,
-		routes: menuRoutes,
-	};
+	const menuRoutes = useMemo(() => getMenuRoutes(routesConfig), [routesConfig]);
+
+	const contextValue: AppContextType = useMemo(() => {
+		return {
+			isDrawerOpen,
+			toggleDrawer,
+			menuRoutes,
+			routes: routesConfig.routes,
+			redirects: routesConfig.redirects.redirects,
+		};
+	}, [isDrawerOpen, routesConfig, menuRoutes]);
 
 	return (
-		<BNTThemeProvider>
-			<Provider store={store}>
-				<HistoryRouter history={history}>
+		<BntThemeProvider>
+			<I18nextProvider i18n={i18n}>
+				<SnackbarProvider>
+					{/* <BntLayout /> */}
 					<AppContext.Provider value={contextValue}>
-						<Box sx={{ display: "flex" }}>
-							<CssBaseline />
-							<BTNHeader profile={mock_profile} />
-							<BNTSidebar />
-							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-								<BNTDrawerHeader />
-								<SwitchRoutes routes={routes} />
-							</Box>
-						</Box>
+						<HistoryRouter history={history}>
+							<BntLoadingProvider>
+								<BntDialogProvider config={modalConfig}>
+									<BntLayout />
+								</BntDialogProvider>
+							</BntLoadingProvider>
+						</HistoryRouter>
 					</AppContext.Provider>
-				</HistoryRouter>
-			</Provider>
-		</BNTThemeProvider>
+				</SnackbarProvider>
+			</I18nextProvider>
+		</BntThemeProvider>
 	);
-}
+};
 
 export default App;

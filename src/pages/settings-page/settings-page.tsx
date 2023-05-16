@@ -1,11 +1,10 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
-const SettingsPage: FC = () => {
-	return (
-		<>
-			<Typography>Settings page</Typography>
-		</>
-	);
-};
+import { ChildPathMenu } from "components/child-path";
+import { useBntRoutes } from "hooks/use-bnt-routes";
+import { getChildrenRoutes } from "routes/get-children-routes";
 
-export default SettingsPage;
+export const SettingsPage: FC = () => {
+	const { routes } = useBntRoutes();
+	const childrenRoutes = getChildrenRoutes(routes.Settings);
+	return <ChildPathMenu routes={childrenRoutes} />;
+};

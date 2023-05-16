@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
+import { texts_u } from "services/localization/texts/texts_u";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -21,39 +22,40 @@ i18n.use(LanguageDetector).init({
 				"name has been taken": "NAME HAS BEEN TAKEN",
 				"Log in": "Log in",
 				Sign_In: "Sign In",
+				Sign_Out: "Sign Out",
 				Sign_Up: "Sign Up",
 				"Recover password": "Recover password",
 
-				//CONSTS
+				// CONSTS
 				CONST_GREETINGS:
 					"Fast and simple way to   encourage your colleagues and thank them for their patience and help.",
 			},
 		},
 		ru: {
 			translations: {
-				//CONSTS
-				CONST_GREETINGS:
-					"Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
-				//A
+				// CONSTS
+				CONST_GREETINGS: "Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
+				// A
 				Account: "Аккаунт",
 				Amount: "Количество",
 				Add: "Добавить",
 				Activate: "Активировать",
 				Active: "Активен",
+				"Active requests": "Запросы в работе",
 				"Active donuts": "Активные пончики",
 				"Already used regards": "Уже использованные награды",
 				"Activate regard code": "Активация кода награды",
 				"Already activated": "Уже активировано",
 				"Accepted requests": "Активированные запросы",
 				"All users": "Все пользователи",
-				//B
+				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
 				Buy: "Купить",
 				"Burn old points": "Списывать неиспользованные баллы",
 				"Burn old donuts": "Списывать неиспользованные пончики",
 
-				//C
+				// C
 				Cancel: "Отмена",
 				Caption: "Название",
 				Change: "Изменить",
@@ -61,10 +63,8 @@ i18n.use(LanguageDetector).init({
 				"Change password": "Сменить пароль",
 				Confirm: "Подтвердить почтовый адрес",
 				"Confirmation dialog": "Подтверждение",
-				"Confirmation email was sent to":
-					"Подтвердите адрес электронной почты ",
-				"Confirm your email first":
-					"Для продолжнеия подтвердите адрес электронной почты ",
+				"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
+				"Confirm your email first": "Для продолжнеия подтвердите адрес электронной почты ",
 				"Connect to space": "Присоединиться к пространству",
 				code: "код",
 				Comment: "Комментарий",
@@ -72,9 +72,10 @@ i18n.use(LanguageDetector).init({
 				"Click to select files": "Нажмите, чтобы выбрать фото",
 				"Closed requests": "Завершенные запросы",
 				Close: "Закрыть",
+				close: "закрыть",
 				created: "создан(а)",
 
-				//D
+				// D
 				department: "подразделение",
 				"Day of month": "День месяца",
 				DEMO: "Демо",
@@ -90,6 +91,7 @@ i18n.use(LanguageDetector).init({
 				"Donut name": "Название плюшки",
 				"Donut added": "Пончик добавлен",
 				"Share donuts": "Перевести пончики",
+				Discard: "Отменить изменения",
 				Donut: "Пончик",
 				Donuts: "Пончики",
 				"Donut description": "Описание пончика",
@@ -102,51 +104,53 @@ i18n.use(LanguageDetector).init({
 				"Domain not found": "Не найден почтовый домен",
 				Domain: "Домен",
 
-				//E
+				// E
 				Edit: "Редактировать",
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
+				Employees: "Сотрудники",
+				error: "ошибка",
 				Events: "События",
 				"Expiration date": "Дата окончания",
+				Exit: "Выход",
 
-				//F
+				// F
 				forbidden: "запрещено",
 				for: "для",
 				from: "от",
-				//G
+				// G
 				"Go to shop": "В магазин",
 				"Go to": "Перейти",
 				Goods: "Товары",
 
-				//H
+				// H
 				History: "История",
 				Home: "Главная",
-				"How many points do you want to send":
-					"Сколько баллов вы хотите отправить",
-				"How many donuts do you want to send":
-					"Сколько пончиков вы хотите отправить",
+				"How many points do you want to send": "Сколько баллов вы хотите отправить",
+				"How many donuts do you want to send": "Сколько пончиков вы хотите отправить",
 				"Hide snow": "Убрать снег",
 
-				//I
+				// I
 				"Incoming requests": "Входящие запросы",
 				"invitation added": "Приглашение отправлено",
-				//J
+				// J
 				Join: "Присоединиться",
 
-				//K
+				// K
 
-				//L
+				// L
 				"Log in": "Войти",
 				"Log Out": "Выйти",
 
-				//M
+				// M
 				"Max donuts": "Макисмальное количество пончиков",
 				message: "сообщение",
 				"My Requests": "Мои запросы",
 				"My spaces": "Мои команды",
 				"My teams": "Мои команды",
+				"My tenants": "Мои команды",
 				More: "Ещё",
-				//N
+				// N
 				"new password": "новый пароль",
 				"New points for all users": "Новые баллы для всех пользователей",
 				Name: "Имя",
@@ -157,10 +161,10 @@ i18n.use(LanguageDetector).init({
 				Next: "Вперед",
 				"Not active donuts": "Неактивные пончики",
 
-				//O
+				// O
 				"on stock": "в наличии",
 				"Only you can see it": "Только вы это видите",
-				//P
+				// P
 				Page: "Страница",
 				People: "Сотрудники",
 				"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
@@ -177,13 +181,14 @@ i18n.use(LanguageDetector).init({
 				"price asc": "сначала самые дешевые",
 				"price desc": "сначала самые дорогие",
 				Profile: "Профиль",
-				pts: "$",
+				pts: "бон.",
+				PTS: "БОН.",
 				place: "место",
 				Previous: "Назад",
 				Purchase: "Покупка",
-				//Q
+				// Q
 
-				//R
+				// R
 				"regard added": "Покупка успешно совершена",
 				"request added": "Запрос создан",
 				"Registration Confirmation": "Подтверждение регистрации",
@@ -197,8 +202,9 @@ i18n.use(LanguageDetector).init({
 				records: "записей",
 				"Refresh or activate": "Обновить или активировать",
 				Rollback: "Вернуть",
+				Roles: "Роли",
 				rows: "строк",
-				//S
+				// S
 				saved: "сохранено",
 				"Save changes": "Сохранить изменения",
 				"Self account": "Могу потратить",
@@ -216,6 +222,7 @@ i18n.use(LanguageDetector).init({
 				Settings: "Настройки",
 				Schedule: "Расписание",
 				Schedulers: "Расписания",
+				Sign_Out: "Выход",
 				Sign_In: "Войти",
 				Sign_Up: "Регистрация",
 				Statistic: "Статистика",
@@ -225,29 +232,32 @@ i18n.use(LanguageDetector).init({
 				"Something went wrong.": "Что-то пошло не так.",
 				Surname: "Фамилия",
 				"Submit values": "Отправить",
+				Submit: "Подтвердить",
 
-				//T
+				// T
+				Tenant: "Команда",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",
-				//U
+				// U
 				"Update donut": "Обновить пончик",
 				Update: "Обновить",
+				[texts_u.under_construct]: "В разработке",
 				"Update is available": "Обновление доступно",
-				//V
+				// V
 
-				//W
+				// W
 				"Welcome points": "Приветственные баллы",
 				"Welcome donutss": "Приветственные пончики",
 				"Without depratment": "Без подразделения",
 				"Wrong credetialis": "Не удалось войти с этим именем и паролем",
 				"Withdrawl error. Not enough points": "Ошибка. Недостаточно баллов",
-				//X
+				// X
 
-				//Y
+				// Y
 				"you have to be admin": "Вы должны иметь полномочия администратора",
 				"You have successfully bought a new donut": "Вы успешно купили плюшку",
 				"your comment": "ваш комментарий",
-				//Z
+				// Z
 			},
 		},
 	},

@@ -1,11 +1,6 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
-const PeoplePage: FC = () => {
-	return (
-		<>
-			<Typography>People</Typography>
-		</>
-	);
-};
+import { EmployeeList } from "components/employee/employee-list/employee-list";
 
-export default PeoplePage;
+export const PeoplePage: FC = () => {
+	return <EmployeeList />;
+};

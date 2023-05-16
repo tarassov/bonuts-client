@@ -10,13 +10,14 @@ import {
 	Link,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-
 import { FC, SyntheticEvent, useState } from "react";
-import styles from "./login-page.module.css";
-import { useAuth } from "../../hooks/use-auth";
-//import { useLocationTyped } from "../../hooks/use-location-typed";
-const LoginPage: FC = () => {
-	//const location = useLocationTyped();
+import { useAuth } from "hooks/use-auth";
+// @ts-ignore
+import styles from "./login-page.module.scss";
+
+// import { useLocationTyped } from "../../hooks/use-location-typed";
+export const LoginPage: FC = () => {
+	// const location = useLocationTyped();
 	//	const from = location.state?.from?.pathname || "/";
 
 	const { signIn, isLogging } = useAuth();
@@ -73,23 +74,20 @@ const LoginPage: FC = () => {
 					control={<Checkbox value="remember" color="primary" />}
 					label="Remember me"
 				/>
-				<Button
-					type="submit"
-					fullWidth
-					variant="contained"
-					sx={{ mt: 3, mb: 2 }}
-				>
+				<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 					Sign In
 				</Button>
 				<Grid container>
 					<Grid item xs>
+						{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 						<Link href="#" variant="body2">
 							Forgot password?
 						</Link>
 					</Grid>
 					<Grid item>
+						{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 						<Link href="#" variant="body2">
-							{"Don't have an account? Sign Up"}
+							Don&apos;t have an account? Sign Up
 						</Link>
 					</Grid>
 				</Grid>
@@ -97,5 +95,3 @@ const LoginPage: FC = () => {
 		</Box>
 	);
 };
-
-export default LoginPage;

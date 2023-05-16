@@ -1,17 +1,18 @@
 import { Avatar, Box, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { FC, useContext, useState, MouseEvent } from "react";
-import { BNTAppBar } from "../../base/BNTAppBar/BNTAppBar";
-import { BNTToolbar } from "../../base/BNTToolbar";
-import { BNTTypography } from "../../base/BNTTypography/BNTTypography";
-import { TProfile } from "../../types/model";
-import { AppContext } from "../../context";
 import { ReactSVG } from "react-svg";
-import { logoSmall } from "../../constants/icons";
 import { Theme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
-import { BNTRoutesMenu } from "../main-menu/routes-menu";
+import { BntAppBar } from "shared/menu/app-bar";
+import { BntToolbar } from "shared/toolbar";
+import { BntTypography } from "shared/typography/typography";
+import { AppContext } from "context/app-context";
+import { logoSmall } from "constants/icons";
+import { TProfile } from "@/types/model";
+import { BntRoutesMenu } from "../main-menu/routes-menu";
+
 type BTNHeaderProps = {
-	profile: TProfile;
+	profile?: TProfile | null;
 };
 
 export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
@@ -27,8 +28,8 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 	};
 
 	return (
-		<BNTAppBar position="fixed" open={isDrawerOpen && matches}>
-			<BNTToolbar disableGutters={true}>
+		<BntAppBar position="fixed" open={isDrawerOpen && matches}>
+			<BntToolbar disableGutters>
 				<Stack
 					direction="row"
 					justifyContent="space-between"
@@ -57,13 +58,13 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 						}}
 					>
 						<div>
-							<BNTTypography variant="button">
-								{profile.first_name + " " + profile.last_name}
-							</BNTTypography>
+							<BntTypography variant="button">
+								{profile?.user_name}
+							</BntTypography>
 							<br />
-							<BNTTypography variant="caption" display="block" gutterBottom>
-								{profile.position}W
-							</BNTTypography>
+							<BntTypography variant="caption" display="block" gutterBottom>
+								{profile?.position}
+							</BntTypography>
 						</div>
 					</Box>
 					<div>
@@ -73,7 +74,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 							aria-label="Avatar"
 							onClick={handleClick}
 						>
-							<Avatar alt={`${profile.first_name} ${profile.last_name}`} />
+							<Avatar alt={`${profile?.user_name}`} />
 						</IconButton>
 						<Menu
 							anchorEl={anchorEl}
@@ -110,11 +111,11 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 							transformOrigin={{ horizontal: "right", vertical: "top" }}
 							anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 						>
-							<BNTRoutesMenu showFullName />
+							<BntRoutesMenu showFullName />
 						</Menu>
 					</div>
 				</Stack>
-			</BNTToolbar>
-		</BNTAppBar>
+			</BntToolbar>
+		</BntAppBar>
 	);
 };

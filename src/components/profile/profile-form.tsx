@@ -1,0 +1,36 @@
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useProfileLogic } from "logic/hooks/use-profile-logic";
+import { TFormField, TFormProps, TFormValue } from "shared/form/types/bnt-form";
+import { BntForm } from "shared/form/bnt-form";
+import { PutProfilesByIdApiResponse } from "services/api/bonuts-api";
+import { getProfileFormFields } from "./utils/get-profile-form-fields";
+
+export const BntProfileForm = () => {
+	const { profile, updateProfile } = useProfileLogic();
+	const fields: Array<TFormField> = getProfileFormFields(profile);
+	const formProps: TFormProps = { fields, formId: "user-profile" };
+	const initialValues = profile;
+	const onSubmit = (
+		values: Record<string, TFormValue>
+	):
+		| Promise<
+				| { data: PutProfilesByIdApiResponse }
+				| { error: FetchBaseQueryError | SerializedError }
+				| undefined
+		  >
+		| undefined => {
+		if (profile) {
+			return updateProfile(profile, { ...values, active: true });
+		}
+		return undefined;
+	};
+	return (
+		<BntForm
+			hasInitial
+			initialValues={initialValues}
+			{...formProps}
+			onSubmit={onSubmit}
+		/>
+	);
+};
