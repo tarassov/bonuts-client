@@ -36,7 +36,7 @@ export const DonutCardPure: FC<{
 							/>
 						</div>
 						<div className={DONUT_CARD_CLASSES.captions}>
-							<BntTypography>
+							<BntTypography variant="body1">
 								{translate("Price")}: {price}
 							</BntTypography>
 							<BntTypography>{name}</BntTypography>

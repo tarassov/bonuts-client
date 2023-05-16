@@ -1,10 +1,10 @@
 import { styled } from "@mui/material/styles";
 import { cl } from "themes/helper";
-import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
-import { DonutCardPure } from "./donut-card-pure";
+import { EmployeeCardPure } from "components/employee/employee-card/employee-card-pure";
+import { EMPLOYEE_CARD_CLASSES } from "components/employee/employee-card/classes";
 
-export const DonutCardStyled = styled(
-	DonutCardPure,
+export const EmployeeCardStyled = styled(
+	EmployeeCardPure,
 	{}
 )(({ theme }) => {
 	return {
@@ -13,6 +13,16 @@ export const DonutCardStyled = styled(
 		color: theme.palette.neutral.dark,
 		margin: "auto",
 		"& img": {
+			width: "auto",
+			height: "auto",
+			maxHeight: "160px",
+			maxWidth: "100%",
+			verticalAlign: "middle",
+			margin: "auto",
+			border: "0",
+			[theme.breakpoints.down("xs")]: {
+				maxHeight: "90px",
+			},
 			boxShadow: "0px 0px 48px rgba(255, 255, 255, 0.8)",
 		},
 		"&:hover": {
@@ -23,27 +33,19 @@ export const DonutCardStyled = styled(
 				transition: "all 500ms cubic-bezier(0.34, 1.61, 0.7, 1)",
 			},
 		},
-		[cl(DONUT_CARD_CLASSES.remains)]: {
-			position: "absolute",
-			top: "5px",
-			right: "5px",
-			color: theme.palette.error.main,
-			backgroundColor: theme.palette.secondary.light,
-			borderRadius: "3px",
-			boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.14)",
-		},
-		[cl(DONUT_CARD_CLASSES.cardBody)]: {
+
+		[cl(EMPLOYEE_CARD_CLASSES.cardBody)]: {
 			display: "flex",
 			justifyContent: "center",
 			minHeight: 200,
 		},
-		[cl(DONUT_CARD_CLASSES.captions)]: {
+		[cl(EMPLOYEE_CARD_CLASSES.captions)]: {
 			display: "flex",
 			flexDirection: "column",
 			gap: "12px",
 			alignItems: "center",
 		},
-		[cl(DONUT_CARD_CLASSES.cardHeaderHover)]: {
+		[cl(EMPLOYEE_CARD_CLASSES.cardHeaderHover)]: {
 			display: "flex",
 			flexDirection: "column",
 			height: "100%",

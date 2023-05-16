@@ -15,6 +15,7 @@ const lightTheme = {
 			main: "#d4741a",
 			dark: "#c44e0d",
 			light: "#e6ad57",
+			veryLight: "#FFCF86",
 		},
 		error: {
 			main: red.A400,

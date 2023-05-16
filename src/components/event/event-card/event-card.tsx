@@ -1,16 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { Android, Comment, Edit, ExpandMore, Favorite, Lock } from "@mui/icons-material";
-import {
-	Avatar,
-	Tooltip,
-	IconButton,
-	CardContent,
-	Typography,
-	TextField,
-	Button,
-	Collapse,
-	Box,
-} from "@mui/material";
+import { Android, Comment, Edit, Favorite, Lock } from "@mui/icons-material";
+import { Avatar, Tooltip, IconButton, Typography, TextField, Button, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import { Dictionary } from "constants/dictionary";
@@ -28,7 +18,6 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 	const {
 		profile,
 		public: isPublic,
-		extra_content,
 		title,
 		content,
 		commentable,
@@ -43,7 +32,6 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 	const { t } = useTranslation();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
-	const [expanded, setExpanded] = useState(false);
 	const { toggleLike, updateEvent } = useEventLogic();
 
 	// const handleContentChange = (e: any) => {};
@@ -57,16 +45,6 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 	const handleEdit = (e: any) => {
 		e.preventDefault();
 		setEdit(() => !edit);
-	};
-
-	// const onBlur = () => {
-	// 	setTimeout(() => {
-	// 		setEdit(false);
-	// 	}, 100);
-	// };
-
-	const handleExpandClick = () => {
-		setExpanded(!expanded);
 	};
 
 	// eslint-disable-next-line consistent-return
@@ -185,18 +163,6 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 						<Edit />
 					</IconButton>
 				)}
-				{extra_content && (
-					<IconButton
-						className={classNames(EVENT_CARD_CLASSES.expand, {
-							[EVENT_CARD_CLASSES.expandOpened]: expanded,
-						})}
-						onClick={handleExpandClick}
-						aria-expanded={expanded}
-						aria-label="Show more"
-					>
-						<ExpandMore />
-					</IconButton>
-				)}
 
 				<Typography
 					variant="caption"
@@ -206,9 +172,6 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 					{date_string}
 				</Typography>
 			</BntCardActions>
-			<Collapse in={expanded} timeout="auto" unmountOnExit>
-				<CardContent>{extra_content}</CardContent>
-			</Collapse>
 		</BntCard>
 	);
 };

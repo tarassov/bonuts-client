@@ -53,7 +53,7 @@ export const BntDonutsSearch: FC<{
 	return (
 		<>
 			<BntTextField
-				color="info"
+				color="primary"
 				name="filter-donuts"
 				placeholder={Dictionary.SEARCH_STRING}
 				type={TFieldType.text}
@@ -79,7 +79,7 @@ export const BntDonutsSearch: FC<{
 								e.preventDefault();
 								setSorter(button.sorter);
 							}}
-							color="info"
+							color="primary"
 						>
 							{translate(button.name)}
 						</BntRoundButton>

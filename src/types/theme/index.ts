@@ -6,8 +6,14 @@ export type ThemeContextType = {
 };
 
 declare module "@mui/material/styles" {
+	interface PaletteColor {
+		veryLight?: string;
+	}
 	interface Palette {
 		neutral: Palette["primary"];
+	}
+	interface SimplePaletteColorOptions {
+		veryLight?: string;
 	}
 
 	interface PaletteOptions {

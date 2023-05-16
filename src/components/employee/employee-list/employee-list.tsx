@@ -2,9 +2,9 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { Grid } from "@mui/material";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
-import { EmployeeCard } from "components/employee/employee-card/employee-card";
 import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
 import { EmployeeSorter } from "logic/utils/sorter/employee-sorter";
+import { EmployeeCard } from "components/employee/employee-card/employee-card";
 import { TProfile } from "@/types/model";
 
 export const EmployeeList: FC = () => {
