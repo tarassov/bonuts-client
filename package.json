@@ -1,6 +1,7 @@
 {
 	"name": "bonuts-client",
 	"version": "0.1.0",
+	"homepage": "https://develop.bonuts.ru",
 	"private": true,
 	"dependencies": {
 		"@emotion/react": "^11.10.5",
@@ -42,7 +43,9 @@
 		"lint:fix": "tsc --noEmit && eslint src/**/*.ts{,x}  --fix",
 		"prettier": "prettier --check src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc",
 		"prettier:fix": "prettier --write src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -83,6 +86,7 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-react": "^7.32.2",
 		"eslint-plugin-testing-library": "^5.10.2",
+		"gh-pages": "^5.0.0",
 		"husky": "^8.0.3",
 		"jsdom": "^21.1.1",
 		"lint-staged": "^13.2.2",
