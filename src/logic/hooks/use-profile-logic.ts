@@ -37,5 +37,5 @@ export const useProfileLogic = () => {
 		return undefined;
 	};
 
-	return { profile: authProfile, isLoading, error, updateProfile };
+	return { profile: authProfile, isLoading, error, updateProfile, authTenant };
 };

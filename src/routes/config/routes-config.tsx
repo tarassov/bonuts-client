@@ -24,6 +24,7 @@ import { SharePage } from "pages/share-page/share-page";
 import { TenantPage } from "pages/tenant-page/tenant-page";
 import { PluginsPage } from "pages/plugins-page/plugins-page";
 import { SchedulersPage } from "pages/schedulers-page/schedulers-page";
+import { EmployeePreviewPage } from "pages/employee/employee-preview-page";
 import {
 	AccountOperationsPage,
 	ActiveRequestsPage,
@@ -36,7 +37,7 @@ import {
 	LoginPage,
 	LogoutPage,
 	MyRequestsPage,
-	PeoplePage,
+	EmployeesPage,
 	ProfilePage,
 	RecoverPage,
 	RegistrationPage,
@@ -119,14 +120,21 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		icon: <StarBorderOutlined />,
 		component: <MyRequestsPage />,
 	},
-	People: {
-		path: routesPath[BntRoutes.People],
+	Employees: {
+		path: routesPath[BntRoutes.Employees],
 		anonymous: false,
 		authenticated: true,
 		navbarName: "Employees",
 		hideInMenu: false,
-		component: <PeoplePage />,
+		component: <EmployeesPage />,
 		icon: <PeopleAltOutlined />,
+	},
+	EmployeePreview: {
+		path: routesPath[BntRoutes.EmployeePreview],
+		anonymous: false,
+		authenticated: true,
+		hideInMenu: true,
+		component: <EmployeePreviewPage />,
 	},
 	Profile: {
 		path: routesPath[BntRoutes.Profile],

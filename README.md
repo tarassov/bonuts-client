@@ -23,7 +23,7 @@
     ├── config
     ├── constants
     ├── context
-    ├── utils  #General utils all stuff excluding business hooks
+    ├── hooks  #General hooks all stuff excluding business hooks
     ├── hooks
     │   └── hooks  #business hooks all business operations goes here
     ├── pages
@@ -52,7 +52,7 @@
     ├── services
     │   ├── api
     │   ├── localization
-    │   ├── hooks-utils  #Business hooks utils
+    │   ├── hooks-hooks  #Business hooks hooks
     │   ├── middlewares
     │   ├── redux
     │   ├── store

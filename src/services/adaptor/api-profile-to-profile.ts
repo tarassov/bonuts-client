@@ -17,8 +17,8 @@ const dataToProfile = (data: any) => {
 	};
 	return res;
 };
-export const apiProfileToProfile = (response: GetProfileApiResponse): TProfile | undefined => {
-	if (!response.data || !response.data.id) return undefined;
+export const apiProfileToProfile = (response?: GetProfileApiResponse): TProfile | undefined => {
+	if (!response?.data || !response?.data?.id) return undefined;
 	const res: TProfile = dataToProfile(response.data);
 	return res;
 };

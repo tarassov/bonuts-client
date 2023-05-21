@@ -11,6 +11,9 @@ const injectedRtkApi = api.injectEndpoints({
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
 			query: (queryArg) => ({ url: `/avatars`, method: "POST", body: queryArg.body }),
 		}),
+		getCircles: build.query<GetCirclesApiResponse, GetCirclesApiArg>({
+			query: (queryArg) => ({ url: `/circles`, params: { tenant: queryArg.tenant } }),
+		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts`,
@@ -40,6 +43,12 @@ const injectedRtkApi = api.injectEndpoints({
 		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
 			query: (queryArg) => ({ url: `/profile`, params: { tenant: queryArg.tenant } }),
+		}),
+		getProfilesById: build.query<GetProfilesByIdApiResponse, GetProfilesByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/profiles/${queryArg.id}`,
+				params: { tenant: queryArg.tenant },
+			}),
 		}),
 		putProfilesById: build.mutation<PutProfilesByIdApiResponse, PutProfilesByIdApiArg>({
 			query: (queryArg) => ({
@@ -173,6 +182,20 @@ export type PostAvatarsApiArg = {
 		tenant: string;
 		uploaded_image: any;
 	};
+};
+export type GetCirclesApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			id?: number;
+			active: boolean;
+		};
+	}[];
+};
+export type GetCirclesApiArg = {
+	tenant?: string;
 };
 export type GetDonutsApiResponse = /** status 200 success */ {
 	data: {
@@ -536,6 +559,84 @@ export type GetProfileApiResponse = /** status 200 success */ {
 	}[];
 };
 export type GetProfileApiArg = {
+	tenant?: string;
+};
+export type GetProfilesByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			user_id?: number;
+			active?: boolean;
+			admin?: boolean;
+			attached?: boolean;
+			roles?: string[];
+			default?: boolean;
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			first_name?: string;
+			last_name?: string;
+			email?: string;
+			tenant?: string;
+			sex?: string;
+			name?: string;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+		relationships?: {
+			user?: {
+				data: {
+					id: string;
+					type: string;
+				};
+			};
+		};
+	};
+	included?: {
+		id: string;
+		type: "user";
+		attributes: {
+			id: number;
+			email: string;
+			tenant?: string;
+			last_name: string;
+			first_name: string;
+			sex: string;
+			notes?: (string | null) | null;
+			email_confirmed: boolean;
+			name: string;
+		};
+	}[];
+};
+export type GetProfilesByIdApiArg = {
+	id: string;
 	tenant?: string;
 };
 export type PutProfilesByIdApiResponse = /** status 200 success */ {
@@ -995,6 +1096,7 @@ export type PostRefreshTokenApiArg = void;
 export const {
 	usePostAccountOperationsMutation,
 	usePostAvatarsMutation,
+	useGetCirclesQuery,
 	useGetDonutsQuery,
 	useGetDonutsByIdQuery,
 	useGetEventsQuery,
@@ -1002,6 +1104,7 @@ export const {
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsMutation,
 	useGetProfileQuery,
+	useGetProfilesByIdQuery,
 	usePutProfilesByIdMutation,
 	useGetProfilesQuery,
 	useGetRequestsQuery,

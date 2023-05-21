@@ -10,7 +10,7 @@ export { HomePage } from "pages/home-page/home-page";
 export { LoginPage } from "pages/login-page/login-page";
 export { LogoutPage } from "pages/logout-page/logout-page";
 export { NotFoundPage } from "pages/not-found-page/not-found-page";
-export { PeoplePage } from "pages/people-page/people-page";
+export { EmployeesPage } from "pages/employee/employees-page";
 export { ProfilePage } from "pages/profile-page/profile-page";
 export { RecoverPage } from "pages/recover-page/recover-page";
 export { RegistrationPage } from "pages/registration-page/registration-page";

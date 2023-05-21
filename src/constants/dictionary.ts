@@ -28,3 +28,7 @@ export enum Sorting {
 	SORT_BY_ALPHABET = "sort by alphabet",
 	NAME_DESC = "name desc",
 }
+
+export enum Errors {
+	DATA_FETCHING_ERROR = "Data fetching error",
+}

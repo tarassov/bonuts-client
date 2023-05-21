@@ -1,12 +1,12 @@
 import { TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
 import { UserLogic } from "logic/utils/user-utils";
 import { Roles } from "constants/roles";
+import { useRoleField } from "hooks/form-field/use-role-field";
 import { TProfile } from "@/types/model";
 
-export const getProfileFormFields = (
-	profile?: TProfile | null
-): Array<TFormField> => {
-	return [
+export const useProfileFormFields = (profile?: TProfile | null) => {
+	const { roleField } = useRoleField({ disabled: !UserLogic.isAdmin(profile) });
+	const fields: Array<TFormField> = [
 		{
 			disabled: !UserLogic.isAdmin(profile),
 			image: false,
@@ -41,13 +41,13 @@ export const getProfileFormFields = (
 			label: "Position",
 			xs: 12,
 		},
+		roleField,
 		{
-			disabled: !UserLogic.isAdmin(profile),
 			image: false,
 			size: TFieldSize.md,
-			name: "roles",
-			label: "Roles",
-			placeholder: "Roles",
+			name: "circles",
+			label: "Circles",
+			placeholder: "Circles",
 			source: [
 				{
 					key: Roles.admin,
@@ -66,4 +66,6 @@ export const getProfileFormFields = (
 			xs: 12,
 		},
 	];
+
+	return { fields };
 };

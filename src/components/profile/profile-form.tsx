@@ -1,14 +1,14 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useProfileLogic } from "logic/hooks/use-profile-logic";
-import { TFormField, TFormProps, TFormValue } from "shared/form/types/bnt-form";
+import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { BntForm } from "shared/form/bnt-form";
 import { PutProfilesByIdApiResponse } from "services/api/bonuts-api";
-import { getProfileFormFields } from "./utils/get-profile-form-fields";
+import { useProfileFormFields } from "./hooks/use-profile-form-fields";
 
 export const BntProfileForm = () => {
 	const { profile, updateProfile } = useProfileLogic();
-	const fields: Array<TFormField> = getProfileFormFields(profile);
+	const { fields } = useProfileFormFields(profile);
 	const formProps: TFormProps = { fields, formId: "user-profile" };
 	const initialValues = profile;
 	const onSubmit = (
@@ -25,12 +25,5 @@ export const BntProfileForm = () => {
 		}
 		return undefined;
 	};
-	return (
-		<BntForm
-			hasInitial
-			initialValues={initialValues}
-			{...formProps}
-			onSubmit={onSubmit}
-		/>
-	);
+	return <BntForm hasInitial initialValues={initialValues} {...formProps} onSubmit={onSubmit} />;
 };
