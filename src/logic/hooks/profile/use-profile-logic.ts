@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 import { useGetProfileQuery, usePutProfilesByIdMutation } from "services/api/bonuts-api";
 import { authActions } from "services/redux/slice/auth-slice";
-import { apiProfileToProfile } from "services/adaptor/api-profile-to-profile";
+import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 import { authProfileSelector, authTenantSelector } from "services/redux/selectors/auth-selector";
 import { TProfile } from "@/types/model";
 
@@ -20,7 +20,7 @@ export const useProfileLogic = () => {
 
 	useEffect(() => {
 		if (data) {
-			const translated = apiProfileToProfile(data);
+			const translated = apiProfileAdaptor(data);
 			if (translated) dispatch(authActions.setProfile(translated));
 		}
 	}, [data]);

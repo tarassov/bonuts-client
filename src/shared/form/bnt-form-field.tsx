@@ -11,6 +11,7 @@ export const BntFormField: FC<{
 	id: string;
 }> = ({ field, value, id }) => {
 	const { translate } = useBntTranslate();
+
 	if (field.type === TFieldType.tags) {
 		return <BntTagAutocomplete id={id} field={field} value={value} />;
 	}

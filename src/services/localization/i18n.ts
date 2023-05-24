@@ -73,6 +73,7 @@ i18n.use(LanguageDetector).init({
 				"Closed requests": "Завершенные запросы",
 				Close: "Закрыть",
 				close: "закрыть",
+				Circles: "Круги",
 				created: "создан(а)",
 
 				// D

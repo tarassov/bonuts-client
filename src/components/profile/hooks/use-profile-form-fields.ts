@@ -1,11 +1,21 @@
-import { TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import {
+	TFieldSize,
+	TFieldType,
+	TFormField,
+	TFormFieldSourceItem,
+} from "shared/form/types/bnt-form";
 import { UserLogic } from "logic/utils/user-utils";
-import { Roles } from "constants/roles";
 import { useRoleField } from "hooks/form-field/use-role-field";
+import { useCircleList } from "logic/hooks/cirlce/use-circle-list";
 import { TProfile } from "@/types/model";
+import { TCircle } from "@/types/model/circle";
 
 export const useProfileFormFields = (profile?: TProfile | null) => {
 	const { roleField } = useRoleField({ disabled: !UserLogic.isAdmin(profile) });
+	const { objects: circles, isLoading } = useCircleList();
+	const circleToOption = (circle: TCircle): TFormFieldSourceItem => {
+		return { key: circle.id, label: circle.name };
+	};
 	const fields: Array<TFormField> = [
 		{
 			disabled: !UserLogic.isAdmin(profile),
@@ -48,21 +58,11 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 			name: "circles",
 			label: "Circles",
 			placeholder: "Circles",
-			source: [
-				{
-					key: Roles.admin,
-					label: Roles.admin,
-				},
-				{
-					key: Roles.store_admin,
-					label: Roles.store_admin,
-				},
-				{
-					key: Roles.moderator,
-					label: Roles.moderator,
-				},
-			],
+			source: circles.map(circleToOption),
+			convertSourceValue: (values: Array<TCircle>) => values.map((x) => x.id),
+			valueToOption: circleToOption,
 			type: TFieldType.tags,
+			loading: isLoading,
 			xs: 12,
 		},
 	];

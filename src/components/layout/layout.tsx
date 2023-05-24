@@ -5,7 +5,7 @@ import { BntDrawerHeader } from "shared/drawer";
 import { useAuth } from "hooks/use-auth";
 import { AppContext } from "context/app-context";
 import "../app/styles/app.scss";
-import { useProfileLogic } from "logic/hooks/use-profile-logic";
+import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { getRoutes } from "routes/get-routes";

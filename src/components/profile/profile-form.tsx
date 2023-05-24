@@ -1,6 +1,6 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { useProfileLogic } from "logic/hooks/use-profile-logic";
+import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { BntForm } from "shared/form/bnt-form";
 import { PutProfilesByIdApiResponse } from "services/api/bonuts-api";

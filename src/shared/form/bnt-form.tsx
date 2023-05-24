@@ -22,12 +22,21 @@ export const BntForm: FC<TFormProps> = ({
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [initials, setInitials] = useState(initialValues);
 	const [hasChanges, setHasChanges] = useState(false);
+
 	useEffect(() => {
+		const transformedInitials = _.mapValues(initialValues, (value, key) => {
+			const field = fields?.find((x) => x.name === key);
+			if (field?.convertSourceValue) {
+				return field?.convertSourceValue?.(value);
+			}
+			return value;
+		});
+
 		if (!Object.keys(values).length) {
-			setValues({ ...initialValues } || {});
+			setValues(transformedInitials || {});
 		}
-		setInitials(initialValues);
-	}, [initialValues]);
+		setInitials(transformedInitials);
+	}, [initialValues, fields]);
 
 	const { translate } = useBntTranslate();
 	const onChange = useCallback(
@@ -57,23 +66,18 @@ export const BntForm: FC<TFormProps> = ({
 				<form onSubmit={onSubmitForm}>
 					<Box className="position-relative">
 						<Grid container spacing={2} className="mb-10">
-							<BntFormContextProvider onChange={onChange} values={values}>
+							<BntFormContextProvider
+								onChange={onChange}
+								values={values}
+								initialValues={initialValues}
+							>
 								<>
 									{children}
-									<BntFormFieldList
-										formId={formId}
-										hasInitial={hasInitial}
-										fields={fields}
-									/>
+									<BntFormFieldList formId={formId} hasInitial={hasInitial} fields={fields} />
 								</>
 							</BntFormContextProvider>
 						</Grid>
-						<Stack
-							direction="row"
-							justifyContent="center"
-							alignItems="center"
-							spacing={2}
-						>
+						<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
 							{hasChanges && (
 								<>
 									<BntTransparentButton

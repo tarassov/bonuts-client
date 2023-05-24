@@ -1,4 +1,4 @@
-import { useProfileLogic } from "logic/hooks/use-profile-logic";
+import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import {
 	TFieldSize,
 	TFieldType,
@@ -37,12 +37,5 @@ export const BntProfileImage = () => {
 		}
 		return undefined;
 	};
-	return (
-		<BntForm
-			hasInitial
-			initialValues={initialValues}
-			{...formProps}
-			onSubmit={onSubmit}
-		/>
-	);
+	return <BntForm hasInitial initialValues={initialValues} {...formProps} onSubmit={onSubmit} />;
 };

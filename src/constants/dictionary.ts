@@ -32,3 +32,12 @@ export enum Sorting {
 export enum Errors {
 	DATA_FETCHING_ERROR = "Data fetching error",
 }
+
+export enum CommonStrings {
+	EMPTY_STRING = "",
+	DOT = ".",
+	COMMA = ",",
+	SPACE = " ",
+	SEMICOLON = ":",
+	DASH = "-",
+}

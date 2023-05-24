@@ -42,10 +42,13 @@ export type TFormField = {
 	type?: TFieldType;
 	rows?: number;
 	required?: boolean;
+	loading?: boolean;
+	convertSourceValue?: (value: any) => string | number | Array<string | number>;
+	valueToOption?: (value: any) => TFormFieldSourceItem;
 };
 export type TFormProps = {
 	hasInitial?: boolean;
-	initialValues?: Record<string, any> | null;
+	initialValues?: Record<string, any>;
 	formId: string;
 	fields?: Array<TFormField>;
 	submitCaption?: string;

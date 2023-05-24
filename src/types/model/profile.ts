@@ -1,5 +1,6 @@
 import { TPicture } from "./picture";
 import { TBaseModel } from "./base-model";
+import { TCircle } from "@/types/model/circle";
 
 export type TProfile = TBaseModel & {
 	user_id?: number;
@@ -13,4 +14,5 @@ export type TProfile = TBaseModel & {
 	last_name?: string | null;
 	roles?: Array<string>;
 	tenant?: string;
+	circles?: Array<TCircle>;
 };

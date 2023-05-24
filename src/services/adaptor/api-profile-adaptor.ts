@@ -14,15 +14,16 @@ const dataToProfile = (data: any) => {
 		last_name: data.attributes?.last_name,
 		roles: data.attributes?.roles,
 		tenant: data.attributes?.tenant,
+		circles: data.attributes.circles,
 	};
 	return res;
 };
-export const apiProfileToProfile = (response?: GetProfileApiResponse): TProfile | undefined => {
+export const apiProfileAdaptor = (response?: GetProfileApiResponse): TProfile | undefined => {
 	if (!response?.data || !response?.data?.id) return undefined;
 	const res: TProfile = dataToProfile(response.data);
 	return res;
 };
-export const apiProfilesToProfiles = (response: GetProfilesApiResponse): Array<TProfile> => {
+export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TProfile> => {
 	const { data } = response;
 
 	if (!data) return [];
