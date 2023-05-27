@@ -1,8 +1,8 @@
 import { TProfile } from "@/types/model";
 
 export type TAuthState = {
-	token: string | null;
+	token?: string;
 	isAuthenticated: boolean;
 	tenant: string | null;
-	profile?: TProfile | null;
+	profile?: TProfile;
 };

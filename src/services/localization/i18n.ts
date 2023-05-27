@@ -37,6 +37,7 @@ i18n.use(LanguageDetector).init({
 				CONST_GREETINGS: "Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
 				// A
 				Account: "Аккаунт",
+				"About myself": "Обо мне",
 				Amount: "Количество",
 				Add: "Добавить",
 				Activate: "Активировать",
@@ -237,6 +238,7 @@ i18n.use(LanguageDetector).init({
 
 				// T
 				Tenant: "Команда",
+				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",
 				// U

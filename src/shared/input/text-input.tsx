@@ -1,21 +1,19 @@
 import { FC, SyntheticEvent } from "react";
-import { IconButton, InputAdornment, TextField, TextFieldProps } from "@mui/material";
+import { IconButton, InputAdornment, TextFieldProps } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { EMPTY_FUNCTION } from "constants/functions";
+import { FieldError, TextFieldElement } from "react-hook-form-mui";
 
 /**
  *@param  props: clearable - if true show close icons in the of the string
  *
  * */
-export const BntTextField: FC<
-	TextFieldProps & { stringLabel?: string } & {
-		clearable?: boolean;
-		onClear?: () => void;
-	}
+export const BntTextInput: FC<
+	TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string }
 > = (props) => {
 	const { translate } = useBntTranslate();
-	const { stringLabel, onClear = EMPTY_FUNCTION, clearable = false, ...rest } = props;
+	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, ...rest } = props;
 
 	const { InputProps = {}, value, placeholder, label } = rest;
 
@@ -40,11 +38,14 @@ export const BntTextField: FC<
 	};
 
 	return (
-		<TextField
+		<TextFieldElement
 			{...rest}
+			name={name}
 			placeholder={translate(placeholder)}
 			label={translate(stringLabel) || label}
 			InputProps={inputProps}
+			value={value}
+			parseError={(error: FieldError) => translate(error.message)}
 		/>
 	);
 };

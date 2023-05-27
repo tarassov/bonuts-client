@@ -113,16 +113,24 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			admin?: boolean;
 			attached?: boolean;
 			roles?: string[];
-			default?: boolean;
+			circles?: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
 			first_name?: string;
 			last_name?: string;
+			name?: string;
 			email?: string;
 			tenant?: string;
 			sex?: string;
-			name?: string;
+			phone?: (string | null) | null;
+			bio?: (string | null) | null;
+			birthdate?: (string | null) | null;
+			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
 				url: string | null;
@@ -166,7 +174,6 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			email: string;
-			tenant?: string;
 			last_name: string;
 			first_name: string;
 			sex: string;
@@ -189,7 +196,7 @@ export type GetCirclesApiResponse = /** status 200 success */ {
 		type: string;
 		attributes: {
 			name: string;
-			id?: number;
+			id: number;
 			active: boolean;
 		};
 	}[];
@@ -495,16 +502,24 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			admin?: boolean;
 			attached?: boolean;
 			roles?: string[];
-			default?: boolean;
+			circles?: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
 			first_name?: string;
 			last_name?: string;
+			name?: string;
 			email?: string;
 			tenant?: string;
 			sex?: string;
-			name?: string;
+			phone?: (string | null) | null;
+			bio?: (string | null) | null;
+			birthdate?: (string | null) | null;
+			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
 				url: string | null;
@@ -548,7 +563,6 @@ export type GetProfileApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			email: string;
-			tenant?: string;
 			last_name: string;
 			first_name: string;
 			sex: string;
@@ -572,16 +586,24 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			admin?: boolean;
 			attached?: boolean;
 			roles?: string[];
-			default?: boolean;
+			circles?: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
 			first_name?: string;
 			last_name?: string;
+			name?: string;
 			email?: string;
 			tenant?: string;
 			sex?: string;
-			name?: string;
+			phone?: (string | null) | null;
+			bio?: (string | null) | null;
+			birthdate?: (string | null) | null;
+			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
 				url: string | null;
@@ -625,7 +647,6 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			email: string;
-			tenant?: string;
 			last_name: string;
 			first_name: string;
 			sex: string;
@@ -650,16 +671,24 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			admin?: boolean;
 			attached?: boolean;
 			roles?: string[];
-			default?: boolean;
+			circles?: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
 			first_name?: string;
 			last_name?: string;
+			name?: string;
 			email?: string;
 			tenant?: string;
 			sex?: string;
-			name?: string;
+			phone?: (string | null) | null;
+			bio?: (string | null) | null;
+			birthdate?: (string | null) | null;
+			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
 				url: string | null;
@@ -703,7 +732,6 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			email: string;
-			tenant?: string;
 			last_name: string;
 			first_name: string;
 			sex: string;
@@ -737,16 +765,24 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 			admin?: boolean;
 			attached?: boolean;
 			roles?: string[];
-			default?: boolean;
+			circles?: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
 			first_name?: string;
 			last_name?: string;
+			name?: string;
 			email?: string;
 			tenant?: string;
 			sex?: string;
-			name?: string;
+			phone?: (string | null) | null;
+			bio?: (string | null) | null;
+			birthdate?: (string | null) | null;
+			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
 				url: string | null;
@@ -845,16 +881,24 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 				admin?: boolean;
 				attached?: boolean;
 				roles?: string[];
-				default?: boolean;
+				circles?: {
+					name: string;
+					id: number;
+					active: boolean;
+				}[];
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
 				first_name?: string;
 				last_name?: string;
+				name?: string;
 				email?: string;
 				tenant?: string;
 				sex?: string;
-				name?: string;
+				phone?: (string | null) | null;
+				bio?: (string | null) | null;
+				birthdate?: (string | null) | null;
+				in_date?: (string | null) | null;
 				created_at?: string;
 				user_avatar?: {
 					url: string | null;
@@ -955,16 +999,24 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 				admin?: boolean;
 				attached?: boolean;
 				roles?: string[];
-				default?: boolean;
+				circles?: {
+					name: string;
+					id: number;
+					active: boolean;
+				}[];
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
 				first_name?: string;
 				last_name?: string;
+				name?: string;
 				email?: string;
 				tenant?: string;
 				sex?: string;
-				name?: string;
+				phone?: (string | null) | null;
+				bio?: (string | null) | null;
+				birthdate?: (string | null) | null;
+				in_date?: (string | null) | null;
 				created_at?: string;
 				user_avatar?: {
 					url: string | null;

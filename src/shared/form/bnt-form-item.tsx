@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Grid } from "@mui/material";
+import { FormControl, Grid } from "@mui/material";
 import { TFormField } from "./types/bnt-form";
 import { BntFormField } from "./bnt-form-field";
 
@@ -21,7 +21,9 @@ export const BntFormItem: FC<{
 			md={field_md}
 			lg={field_lg}
 		>
-			<BntFormField id={id} field={field} value={value} />
+			<FormControl required={field.required} style={{ width: "100%" }}>
+				<BntFormField id={id} field={field} value={value} />
+			</FormControl>
 		</Grid>
 	);
 };

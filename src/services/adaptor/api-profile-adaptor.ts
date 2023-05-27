@@ -1,9 +1,11 @@
 import { TProfile } from "@/types/model";
 import { GetProfileApiResponse, GetProfilesApiResponse } from "../api/bonuts-api";
 
-const dataToProfile = (data: any) => {
+const dataToProfile = (data: GetProfileApiResponse["data"]) => {
+	if (!data) return undefined;
 	const res: TProfile = {
 		id: Number(data.id),
+		...data.attributes,
 		user_id: data.attributes?.user_id ? Number(data.attributes?.user_id) : undefined,
 		position: data.attributes?.position,
 		user_name: data.attributes?.name,
@@ -14,13 +16,13 @@ const dataToProfile = (data: any) => {
 		last_name: data.attributes?.last_name,
 		roles: data.attributes?.roles,
 		tenant: data.attributes?.tenant,
-		circles: data.attributes.circles,
+		circles: data.attributes?.circles,
 	};
 	return res;
 };
 export const apiProfileAdaptor = (response?: GetProfileApiResponse): TProfile | undefined => {
 	if (!response?.data || !response?.data?.id) return undefined;
-	const res: TProfile = dataToProfile(response.data);
+	const res: TProfile | undefined = dataToProfile(response.data);
 	return res;
 };
 export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TProfile> => {

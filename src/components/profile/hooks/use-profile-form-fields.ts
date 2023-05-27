@@ -7,6 +7,7 @@ import {
 import { UserLogic } from "logic/utils/user-utils";
 import { useRoleField } from "hooks/form-field/use-role-field";
 import { useCircleList } from "logic/hooks/cirlce/use-circle-list";
+import { texts_a } from "services/localization/texts/texts_a";
 import { TProfile } from "@/types/model";
 import { TCircle } from "@/types/model/circle";
 
@@ -24,6 +25,7 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 			name: "email",
 			label: "Email",
 			xs: 12,
+			required: true,
 		},
 		{
 			disabled: false,
@@ -63,6 +65,18 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 			valueToOption: circleToOption,
 			type: TFieldType.tags,
 			loading: isLoading,
+			xs: 12,
+		},
+		{
+			image: false,
+			size: TFieldSize.md,
+			name: "bio",
+			label: texts_a.about_myself,
+			placeholder: texts_a.about_myself,
+			type: TFieldType.textarea,
+			maxRows: 7,
+			minRows: 5,
+			rows: 6,
 			xs: 12,
 		},
 	];
