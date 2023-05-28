@@ -63,7 +63,7 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 											label={translate(texts_a.admin)}
 										/>
 									)}
-									{!employee?.active && (
+									{employee && !employee?.active && (
 										<BntChip
 											color="error"
 											icon={<ErrorOutline />}

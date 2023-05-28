@@ -4,13 +4,21 @@ import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { BntForm } from "shared/form/bnt-form";
 import { PutProfilesByIdApiResponse } from "services/api/bonuts-api";
+import { useEffect } from "react";
+import { Modules } from "constants/modules";
+import { useLoader } from "shared/loader/hooks/use-loader";
 import { useProfileFormFields } from "./hooks/use-profile-form-fields";
 
 export const BntProfileForm = () => {
-	const { profile, updateProfile } = useProfileLogic();
+	const { profile, updateProfile, isLoading, error } = useProfileLogic();
 	const { fields } = useProfileFormFields(profile);
+	const { setLoading } = useLoader();
 	const formProps: TFormProps = { fields, formId: "user-profile" };
 	const initialValues = profile;
+
+	useEffect(() => {
+		setLoading(Modules.Profile, isLoading && !error);
+	}, [isLoading, error]);
 	const onSubmit = (
 		values: Record<string, TFormValue>
 	):
