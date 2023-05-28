@@ -8,6 +8,7 @@ import { UserLogic } from "logic/utils/user-utils";
 import { useRoleField } from "hooks/form-field/use-role-field";
 import { useCircleList } from "logic/hooks/cirlce/use-circle-list";
 import { texts_a } from "services/localization/texts/texts_a";
+import { texts_e } from "services/localization/texts/texts_e";
 import { TProfile } from "@/types/model";
 import { TCircle } from "@/types/model/circle";
 
@@ -46,6 +47,14 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 			md: 6,
 		},
 		{
+			image: false,
+			size: TFieldSize.xs,
+			name: "contact",
+			label: "Contact",
+			xs: 12,
+			required: true,
+		},
+		{
 			disabled: false,
 			image: false,
 			size: TFieldSize.md,
@@ -54,6 +63,26 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 			xs: 12,
 		},
 		roleField,
+		{
+			image: false,
+			size: TFieldSize.xs,
+			name: "birthdate",
+			label: "Date of birth",
+			type: TFieldType.date,
+			md: 6,
+			sm: 12,
+			xs: 12,
+		},
+		{
+			image: false,
+			size: TFieldSize.xs,
+			name: "in_date",
+			label: texts_e.employment_date,
+			type: TFieldType.date,
+			md: 6,
+			sm: 12,
+			xs: 12,
+		},
 		{
 			image: false,
 			size: TFieldSize.md,

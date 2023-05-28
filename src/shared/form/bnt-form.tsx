@@ -2,6 +2,8 @@ import { FC, useCallback, useEffect, useState } from "react";
 import _ from "lodash";
 import { FormContainer } from "react-hook-form-mui";
 import { BntFormBody } from "shared/form/form-body";
+import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
+import { ru } from "date-fns/locale";
 import { TFormProps, TFormValue } from "./types/bnt-form";
 
 export const BntForm: FC<TFormProps> = ({
@@ -12,6 +14,7 @@ export const BntForm: FC<TFormProps> = ({
 	submitCaption,
 	onSubmit,
 	children,
+	locale = ru,
 }) => {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [initials, setInitials] = useState(initialValues);
@@ -56,21 +59,23 @@ export const BntForm: FC<TFormProps> = ({
 	return (
 		<div>
 			{(!hasInitial || initialValues) && (
-				<FormContainer defaultValues={initialValues} onSuccess={onSubmitForm}>
-					<BntFormBody
-						fields={fields}
-						values={values}
-						onChange={onChange}
-						formId={formId}
-						hasInitial={hasInitial}
-						initialValues={initialValues}
-						submitCaption={submitCaption}
-						hasChanges={hasChanges}
-						onDiscard={onDiscard}
-					>
-						{children}
-					</BntFormBody>
-				</FormContainer>
+				<DateFnsProvider adapterLocale={locale}>
+					<FormContainer defaultValues={initialValues} onSuccess={onSubmitForm}>
+						<BntFormBody
+							fields={fields}
+							values={values}
+							onChange={onChange}
+							formId={formId}
+							hasInitial={hasInitial}
+							initialValues={initialValues}
+							submitCaption={submitCaption}
+							hasChanges={hasChanges}
+							onDiscard={onDiscard}
+						>
+							{children}
+						</BntFormBody>
+					</FormContainer>
+				</DateFnsProvider>
 			)}
 		</div>
 	);

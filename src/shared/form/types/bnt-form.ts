@@ -70,4 +70,5 @@ export type TFormProps = {
 	) => Promise<{ data?: any; error?: any } | undefined> | undefined;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
+	locale?: Locale;
 };

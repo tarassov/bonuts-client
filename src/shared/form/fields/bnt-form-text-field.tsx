@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { TFieldType, TFormValue } from "../types/bnt-form";
 import { useBntForm } from "../hooks/use-bnt-form";
-import { BntTextInput } from "../../input/text-input";
+import { BntTextInputElement } from "../../input/text-input-element";
 
 export const BntFormTextField = (props: {
 	name: string;
@@ -20,7 +20,7 @@ export const BntFormTextField = (props: {
 		onChange(name, e.target.value);
 	};
 	return (
-		<BntTextInput
+		<BntTextInputElement
 			name={name}
 			id={id}
 			placeholder={placeholder}

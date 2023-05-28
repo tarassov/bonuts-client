@@ -1,3 +1,4 @@
 export enum texts_e {
-	"error" = "error",
+	error = "error",
+	employment_date = "Employment date",
 }

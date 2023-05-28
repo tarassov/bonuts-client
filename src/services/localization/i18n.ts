@@ -69,6 +69,7 @@ i18n.use(LanguageDetector).init({
 				"Connect to space": "Присоединиться к пространству",
 				code: "код",
 				Comment: "Комментарий",
+				Contact: "Контакт",
 				"Comment saved": "Комментарий сохранен",
 				"Click to select files": "Нажмите, чтобы выбрать фото",
 				"Closed requests": "Завершенные запросы",
@@ -78,6 +79,7 @@ i18n.use(LanguageDetector).init({
 				created: "создан(а)",
 
 				// D
+				"Date of birth": "Дата рождения",
 				department: "подразделение",
 				"Day of month": "День месяца",
 				DEMO: "Демо",
@@ -108,6 +110,7 @@ i18n.use(LanguageDetector).init({
 
 				// E
 				Edit: "Редактировать",
+				"Employment date": "Дата приема",
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
 				Employees: "Сотрудники",

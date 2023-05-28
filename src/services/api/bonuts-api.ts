@@ -128,6 +128,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
+			contact?: (string | null) | null;
 			bio?: (string | null) | null;
 			birthdate?: (string | null) | null;
 			in_date?: (string | null) | null;
@@ -517,6 +518,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
+			contact?: (string | null) | null;
 			bio?: (string | null) | null;
 			birthdate?: (string | null) | null;
 			in_date?: (string | null) | null;
@@ -601,6 +603,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
+			contact?: (string | null) | null;
 			bio?: (string | null) | null;
 			birthdate?: (string | null) | null;
 			in_date?: (string | null) | null;
@@ -686,6 +689,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
+			contact?: (string | null) | null;
 			bio?: (string | null) | null;
 			birthdate?: (string | null) | null;
 			in_date?: (string | null) | null;
@@ -780,6 +784,7 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
+			contact?: (string | null) | null;
 			bio?: (string | null) | null;
 			birthdate?: (string | null) | null;
 			in_date?: (string | null) | null;
@@ -896,6 +901,7 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 				tenant?: string;
 				sex?: string;
 				phone?: (string | null) | null;
+				contact?: (string | null) | null;
 				bio?: (string | null) | null;
 				birthdate?: (string | null) | null;
 				in_date?: (string | null) | null;
@@ -1014,6 +1020,7 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 				tenant?: string;
 				sex?: string;
 				phone?: (string | null) | null;
+				contact?: (string | null) | null;
 				bio?: (string | null) | null;
 				birthdate?: (string | null) | null;
 				in_date?: (string | null) | null;
