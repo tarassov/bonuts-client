@@ -5,10 +5,10 @@ import { bonutsApi } from "../../api/bonuts-api";
 import { TProfile } from "@/types/model";
 
 const initialState: TAuthState = {
-	token: null,
-	tenant: null,
+	token: undefined,
+	tenant: undefined,
 	isAuthenticated: false,
-	profile: null,
+	profile: undefined,
 };
 
 const slice = createSlice({
@@ -40,9 +40,9 @@ const slice = createSlice({
 			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchRejected, (state) => {
 				state.isAuthenticated = false;
-				state.token = null;
-				state.tenant = null;
-				state.profile = null;
+				state.token = undefined;
+				state.tenant = undefined;
+				state.profile = undefined;
 			});
 	},
 });

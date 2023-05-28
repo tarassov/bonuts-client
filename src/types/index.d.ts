@@ -1,6 +1,6 @@
 type TAuth = {
-	token: string | null;
-	tenant: string | null;
+	token?: string;
+	tenant?: string;
 };
 
 type TRoute<T> = {

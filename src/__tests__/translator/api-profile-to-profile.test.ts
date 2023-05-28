@@ -9,7 +9,6 @@ const mockResponse: GetProfileApiResponse = {
 		attributes: {
 			active: undefined,
 			admin: false,
-			default: undefined,
 			department: null,
 			position: null,
 			store_admin: undefined,
