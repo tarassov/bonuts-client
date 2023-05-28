@@ -64,7 +64,7 @@ export const BntDonutPreview = () => {
 							className={classNames("", { "text-align-center": matchesDownSm })}
 						>
 							<ImagePreview
-								defaultImage={DEFAULT_DONUT_IMAGE}
+								defaultImage={donut?.logo?.url ? undefined : DEFAULT_DONUT_IMAGE}
 								image={donut?.logo?.url}
 								className="ml-10"
 								onClick={onClick}

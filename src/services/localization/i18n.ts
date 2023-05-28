@@ -37,8 +37,10 @@ i18n.use(LanguageDetector).init({
 				CONST_GREETINGS: "Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
 				// A
 				Account: "Аккаунт",
+				"About myself": "Обо мне",
 				Amount: "Количество",
 				Add: "Добавить",
+				admin: "админ",
 				Activate: "Активировать",
 				Active: "Активен",
 				"Active requests": "Запросы в работе",
@@ -68,14 +70,17 @@ i18n.use(LanguageDetector).init({
 				"Connect to space": "Присоединиться к пространству",
 				code: "код",
 				Comment: "Комментарий",
+				Contact: "Контакт",
 				"Comment saved": "Комментарий сохранен",
 				"Click to select files": "Нажмите, чтобы выбрать фото",
 				"Closed requests": "Завершенные запросы",
 				Close: "Закрыть",
 				close: "закрыть",
+				Circles: "Круги",
 				created: "создан(а)",
 
 				// D
+				"Date of birth": "Дата рождения",
 				department: "подразделение",
 				"Day of month": "День месяца",
 				DEMO: "Демо",
@@ -103,12 +108,16 @@ i18n.use(LanguageDetector).init({
 				donut_other: "пончиков",
 				"Domain not found": "Не найден почтовый домен",
 				Domain: "Домен",
+				"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file":
+					"Перетащите сюда файл или кликните, для выбора",
 
 				// E
 				Edit: "Редактировать",
+				"Employment date": "Дата приема",
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
 				Employees: "Сотрудники",
+				Email: "Email",
 				error: "ошибка",
 				Events: "События",
 				"Expiration date": "Дата окончания",
@@ -146,6 +155,7 @@ i18n.use(LanguageDetector).init({
 				"Max donuts": "Макисмальное количество пончиков",
 				message: "сообщение",
 				"My Requests": "Мои запросы",
+				"My requests": "Мои запросы",
 				"My spaces": "Мои команды",
 				"My teams": "Мои команды",
 				"My tenants": "Мои команды",
@@ -160,6 +170,8 @@ i18n.use(LanguageDetector).init({
 				newest: "самые новые",
 				Next: "Вперед",
 				"Not active donuts": "Неактивные пончики",
+				"No options": "Нет вариантов",
+				"not active": "не активен",
 
 				// O
 				"on stock": "в наличии",
@@ -229,6 +241,7 @@ i18n.use(LanguageDetector).init({
 				"start typing": "начните ввод",
 				Store: "Магазин",
 				"Store admin": "Администратор магазина",
+				"store admin": "управляющий",
 				"Something went wrong.": "Что-то пошло не так.",
 				Surname: "Фамилия",
 				"Submit values": "Отправить",
@@ -236,6 +249,7 @@ i18n.use(LanguageDetector).init({
 
 				// T
 				Tenant: "Команда",
+				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",
 				// U
@@ -247,10 +261,10 @@ i18n.use(LanguageDetector).init({
 
 				// W
 				"Welcome points": "Приветственные баллы",
-				"Welcome donutss": "Приветственные пончики",
-				"Without depratment": "Без подразделения",
-				"Wrong credetialis": "Не удалось войти с этим именем и паролем",
-				"Withdrawl error. Not enough points": "Ошибка. Недостаточно баллов",
+				"Welcome donuts": "Приветственные пончики",
+				"Without department": "Без подразделения",
+				"Wrong credentials": "Не удалось войти с этим именем и паролем",
+				"Withdrawal error. Not enough points": "Ошибка. Недостаточно баллов",
 				// X
 
 				// Y

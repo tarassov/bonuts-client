@@ -1,3 +1,5 @@
+import { UseFormRegisterReturn } from "react-hook-form";
+
 export enum TFieldSize {
 	xs = "xs",
 	sm = "sm",
@@ -10,6 +12,8 @@ export enum TFieldType {
 	tags = "tags",
 	imageUpload = "imageUpload",
 	text = "text",
+	textarea = "textarea",
+	date = "date",
 }
 export type TFormImageValue = {
 	url: string;
@@ -41,11 +45,22 @@ export type TFormField = {
 	placeholder?: string;
 	type?: TFieldType;
 	rows?: number;
+	maxRows?: number;
+	minRows?: number;
 	required?: boolean;
+	loading?: boolean;
+	convertSourceValue?: (value: any) => string | number | Array<string | number>;
+	valueToOption?: (value: any) => TFormFieldSourceItem;
 };
+
+export type RegisterFunc = (
+	name: string,
+	options?: { required: boolean }
+) => UseFormRegisterReturn<any>;
+
 export type TFormProps = {
 	hasInitial?: boolean;
-	initialValues?: Record<string, any> | null;
+	initialValues?: Record<string, any>;
 	formId: string;
 	fields?: Array<TFormField>;
 	submitCaption?: string;
@@ -55,4 +70,5 @@ export type TFormProps = {
 	) => Promise<{ data?: any; error?: any } | undefined> | undefined;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
+	locale?: Locale;
 };

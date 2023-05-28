@@ -1,35 +1,40 @@
-import { FC, SyntheticEvent, useCallback, useEffect, useState } from "react";
-import { Box, Grid, Stack } from "@mui/material";
+import { FC, useCallback, useEffect, useState } from "react";
 import _ from "lodash";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { Dictionary } from "constants/dictionary";
+import { FormContainer } from "react-hook-form-mui";
+import { BntFormBody } from "shared/form/form-body";
+import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
+import { ru } from "date-fns/locale";
 import { TFormProps, TFormValue } from "./types/bnt-form";
-import { BntTransparentButton } from "../buttons/transparent-button";
-import { BntFormContextProvider } from "./context/bnt-form-provider";
-import { BntFormFieldList } from "./bnt-form-field-list";
 
 export const BntForm: FC<TFormProps> = ({
 	fields,
 	hasInitial,
 	initialValues,
 	formId,
-	// onLoad,
 	submitCaption,
 	onSubmit,
-	// onValidate,
 	children,
+	locale = ru,
 }) => {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [initials, setInitials] = useState(initialValues);
 	const [hasChanges, setHasChanges] = useState(false);
-	useEffect(() => {
-		if (!Object.keys(values).length) {
-			setValues({ ...initialValues } || {});
-		}
-		setInitials(initialValues);
-	}, [initialValues]);
 
-	const { translate } = useBntTranslate();
+	useEffect(() => {
+		const transformedInitials = _.mapValues(initialValues, (value, key) => {
+			const field = fields?.find((x) => x.name === key);
+			if (field?.convertSourceValue) {
+				return field?.convertSourceValue?.(value);
+			}
+			return value;
+		});
+
+		if (!Object.keys(values).length) {
+			setValues(transformedInitials || {});
+		}
+		setInitials(transformedInitials);
+	}, [initialValues, fields]);
+
 	const onChange = useCallback(
 		(name: string, value: TFormValue) => {
 			const newValues = { ...values, [name]: value };
@@ -38,8 +43,8 @@ export const BntForm: FC<TFormProps> = ({
 		},
 		[initials, values, setHasChanges]
 	);
-	const onSubmitForm = (e: SyntheticEvent) => {
-		e.preventDefault();
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const onSubmitForm = (submitValues: any) => {
 		onSubmit?.({ ...initialValues, ...values })?.then((response) => {
 			if (response && !response.error) {
 				setHasChanges(false);
@@ -54,43 +59,23 @@ export const BntForm: FC<TFormProps> = ({
 	return (
 		<div>
 			{(!hasInitial || initialValues) && (
-				<form onSubmit={onSubmitForm}>
-					<Box className="position-relative">
-						<Grid container spacing={2} className="mb-10">
-							<BntFormContextProvider onChange={onChange} values={values}>
-								<>
-									{children}
-									<BntFormFieldList
-										formId={formId}
-										hasInitial={hasInitial}
-										fields={fields}
-									/>
-								</>
-							</BntFormContextProvider>
-						</Grid>
-						<Stack
-							direction="row"
-							justifyContent="center"
-							alignItems="center"
-							spacing={2}
+				<DateFnsProvider adapterLocale={locale}>
+					<FormContainer defaultValues={initialValues} onSuccess={onSubmitForm}>
+						<BntFormBody
+							fields={fields}
+							values={values}
+							onChange={onChange}
+							formId={formId}
+							hasInitial={hasInitial}
+							initialValues={initialValues}
+							submitCaption={submitCaption}
+							hasChanges={hasChanges}
+							onDiscard={onDiscard}
 						>
-							{hasChanges && (
-								<>
-									<BntTransparentButton
-										color="secondary"
-										onClick={onDiscard}
-										disabled={!hasChanges}
-									>
-										{translate(Dictionary.DISCARD)}
-									</BntTransparentButton>
-									<BntTransparentButton type="submit" disabled={!hasChanges}>
-										{translate(submitCaption || Dictionary.SUBMIT)}
-									</BntTransparentButton>
-								</>
-							)}
-						</Stack>
-					</Box>
-				</form>
+							{children}
+						</BntFormBody>
+					</FormContainer>
+				</DateFnsProvider>
 			)}
 		</div>
 	);

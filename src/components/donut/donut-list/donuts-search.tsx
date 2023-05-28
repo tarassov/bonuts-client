@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, useState } from "react";
 import { Dictionary, Sorting } from "constants/dictionary";
 import { TFieldType } from "shared/form/types/bnt-form";
-import { BntTextField } from "shared/input/text-field";
 import { BntStack } from "shared/stack/stack";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { DonutSorter } from "logic/utils/sorter/donut-sorter";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { BntTextInput } from "shared/input/text-input";
 import { TDonut } from "@/types/model";
 
 export const BntDonutsSearch: FC<{
@@ -52,7 +52,7 @@ export const BntDonutsSearch: FC<{
 
 	return (
 		<>
-			<BntTextField
+			<BntTextInput
 				color="primary"
 				name="filter-donuts"
 				placeholder={Dictionary.SEARCH_STRING}

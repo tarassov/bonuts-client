@@ -1,6 +1,6 @@
 import { cleanup } from "@testing-library/react";
 import { GetProfileApiResponse } from "services/api/bonuts-api";
-import { apiProfileToProfile } from "services/adaptor/api-profile-to-profile";
+import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 
 const mockResponse: GetProfileApiResponse = {
 	data: {
@@ -30,13 +30,13 @@ const mockResponse: GetProfileApiResponse = {
 	},
 };
 
-describe("adaptor: apiProfileToProfile", () => {
+describe("adaptor: apiProfileAdaptor", () => {
 	afterAll(() => {
 		cleanup();
 	});
 
 	test("Translates to profile", () => {
-		const res = apiProfileToProfile(mockResponse);
+		const res = apiProfileAdaptor(mockResponse);
 		expect(res).toBeTruthy();
 		expect(res?.id).toEqual(1);
 		expect(res?.admin).toEqual(false);

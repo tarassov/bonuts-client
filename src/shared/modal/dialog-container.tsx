@@ -1,9 +1,6 @@
 import { useContext } from "react";
 import { BntDialog } from "shared/modal/dialog";
-import {
-	BntDialogCloseContext,
-	BntDialogValueContext,
-} from "shared/modal/dialog-context";
+import { BntDialogCloseContext, BntDialogValueContext } from "shared/modal/dialog-context";
 import { BntStack } from "shared/stack/stack";
 import { CloseOutlined } from "@mui/icons-material";
 import { BntIconButton } from "shared/icon-button/bnt-icon-button";
@@ -29,11 +26,7 @@ export const BntDialogContainer = () => {
 						open={Boolean(modal.modalKey)}
 					>
 						{modal.hasTopMenu && !fullScreen ? (
-							<BntStack
-								className="pr-10"
-								direction="row"
-								justifyContent="flex-end"
-							>
+							<BntStack className="pr-10" direction="row" justifyContent="flex-end">
 								<BntIconButton onClick={() => handleClose(modal.modalKey)}>
 									<CloseOutlined />
 								</BntIconButton>
@@ -48,7 +41,6 @@ export const BntDialogContainer = () => {
 					</BntDialog>
 				);
 			})}
-			)
 		</>
 	);
 };
