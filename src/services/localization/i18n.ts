@@ -107,6 +107,8 @@ i18n.use(LanguageDetector).init({
 				donut_other: "пончиков",
 				"Domain not found": "Не найден почтовый домен",
 				Domain: "Домен",
+				"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file":
+					"Перетащите сюда файл или кликните, для выбора",
 
 				// E
 				Edit: "Редактировать",
@@ -114,6 +116,7 @@ i18n.use(LanguageDetector).init({
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
 				Employees: "Сотрудники",
+				Email: "Email",
 				error: "ошибка",
 				Events: "События",
 				"Expiration date": "Дата окончания",
@@ -151,6 +154,7 @@ i18n.use(LanguageDetector).init({
 				"Max donuts": "Макисмальное количество пончиков",
 				message: "сообщение",
 				"My Requests": "Мои запросы",
+				"My requests": "Мои запросы",
 				"My spaces": "Мои команды",
 				"My teams": "Мои команды",
 				"My tenants": "Мои команды",
@@ -165,6 +169,7 @@ i18n.use(LanguageDetector).init({
 				newest: "самые новые",
 				Next: "Вперед",
 				"Not active donuts": "Неактивные пончики",
+				"No options": "Нет вариантов",
 
 				// O
 				"on stock": "в наличии",
@@ -253,10 +258,10 @@ i18n.use(LanguageDetector).init({
 
 				// W
 				"Welcome points": "Приветственные баллы",
-				"Welcome donutss": "Приветственные пончики",
-				"Without depratment": "Без подразделения",
-				"Wrong credetialis": "Не удалось войти с этим именем и паролем",
-				"Withdrawl error. Not enough points": "Ошибка. Недостаточно баллов",
+				"Welcome donuts": "Приветственные пончики",
+				"Without department": "Без подразделения",
+				"Wrong credentials": "Не удалось войти с этим именем и паролем",
+				"Withdrawal error. Not enough points": "Ошибка. Недостаточно баллов",
 				// X
 
 				// Y

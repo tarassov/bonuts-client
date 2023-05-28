@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntTextAreaField } from "shared/form/fields/bnt-text-area-field";
 import { BntDatePickerField } from "shared/form/fields/bnt-date-picker-field";
 import { TFieldType, TFormField } from "./types/bnt-form";
@@ -12,7 +11,6 @@ export const BntFormField: FC<{
 	value: any;
 	id: string;
 }> = ({ field, value, id }) => {
-	const { translate } = useBntTranslate();
 	if (field.type === TFieldType.tags) {
 		return <BntTagAutocomplete id={id} field={field} value={value} />;
 	}
@@ -50,8 +48,8 @@ export const BntFormField: FC<{
 			<BntFormTextField
 				name={field.name}
 				id={id}
-				placeholder={translate(field.placeholder)}
-				label={translate(field.label)}
+				placeholder={field.placeholder}
+				label={field.label}
 				type={field.type}
 				value={value}
 				rows={field.rows}
