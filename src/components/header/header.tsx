@@ -1,13 +1,11 @@
 import { Avatar, Box, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { FC, useContext, useState, MouseEvent } from "react";
-import { ReactSVG } from "react-svg";
 import { Theme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import { BntAppBar } from "shared/menu/app-bar";
 import { BntToolbar } from "shared/toolbar";
 import { BntTypography } from "shared/typography/typography";
 import { AppContext } from "context/app-context";
-import { logoSmall } from "constants/icons";
 import { TProfile } from "@/types/model";
 import { BntRoutesMenu } from "../main-menu/routes-menu";
 
@@ -16,7 +14,7 @@ type BTNHeaderProps = {
 };
 
 export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
-	const { isDrawerOpen, toggleDrawer } = useContext(AppContext);
+	const { isDrawerOpen } = useContext(AppContext);
 	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.up("sm"));
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -28,7 +26,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 	};
 
 	return (
-		<BntAppBar position="fixed" open={isDrawerOpen && matches}>
+		<BntAppBar position="fixed" open={isDrawerOpen && matches} fullwidth={!matches}>
 			<BntToolbar disableGutters>
 				<Stack
 					direction="row"
@@ -40,27 +38,13 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 						mr: "10px",
 					}}
 				>
-					<IconButton
-						edge="start"
-						color="inherit"
-						aria-label="Open drawer"
-						onClick={toggleDrawer}
-						sx={{
-							marginRight: 2,
-							...(isDrawerOpen && matches && { display: "none" }),
-						}}
-					>
-						{(!isDrawerOpen || !matches) && <ReactSVG src={logoSmall} />}
-					</IconButton>
 					<Box
 						sx={{
 							flex: 1,
 						}}
 					>
 						<div>
-							<BntTypography variant="button">
-								{profile?.user_name}
-							</BntTypography>
+							<BntTypography variant="button">{profile?.user_name}</BntTypography>
 							<br />
 							<BntTypography variant="caption" display="block" gutterBottom>
 								{profile?.position}
@@ -68,12 +52,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 						</div>
 					</Box>
 					<div>
-						<IconButton
-							edge="start"
-							color="inherit"
-							aria-label="Avatar"
-							onClick={handleClick}
-						>
+						<IconButton edge="start" color="inherit" aria-label="Avatar" onClick={handleClick}>
 							<Avatar alt={`${profile?.user_name}`} />
 						</IconButton>
 						<Menu

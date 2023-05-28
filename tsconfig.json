@@ -34,7 +34,8 @@
 			"themes/*": ["src/themes/*"],
 			"utils/*": ["src/utils/*"],
 			"logic/*": ["src/logic/*"],
-			"layout/*": ["src/layout/*"]
+			"layout/*": ["src/layout/*"],
+			"icons/*": ["src/icons/*"]
 		}
 	},
 	"include": ["src"],

@@ -40,6 +40,7 @@ i18n.use(LanguageDetector).init({
 				"About myself": "Обо мне",
 				Amount: "Количество",
 				Add: "Добавить",
+				admin: "админ",
 				Activate: "Активировать",
 				Active: "Активен",
 				"Active requests": "Запросы в работе",
@@ -170,6 +171,7 @@ i18n.use(LanguageDetector).init({
 				Next: "Вперед",
 				"Not active donuts": "Неактивные пончики",
 				"No options": "Нет вариантов",
+				"not active": "не активен",
 
 				// O
 				"on stock": "в наличии",
@@ -239,6 +241,7 @@ i18n.use(LanguageDetector).init({
 				"start typing": "начните ввод",
 				Store: "Магазин",
 				"Store admin": "Администратор магазина",
+				"store admin": "управляющий",
 				"Something went wrong.": "Что-то пошло не так.",
 				Surname: "Фамилия",
 				"Submit values": "Отправить",

@@ -10,8 +10,8 @@ import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { getRoutes } from "routes/get-routes";
 import SwitchRoutes from "../switch-routes/switch-routes";
-import BntSidebar from "../sidebar";
-import { BTNHeader } from "../header";
+import BntSidebar from "../sidebar/sidebar";
+import { BTNHeader } from "../header/header";
 
 export const BntLayout = () => {
 	const { auth } = useAuth();

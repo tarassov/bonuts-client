@@ -8,6 +8,8 @@ export type TProfile = TBaseModel & {
 	name?: string;
 	user_name?: string | null;
 	admin?: boolean;
+	active?: boolean;
+	store_admin?: boolean;
 	user_avatar?: TPicture;
 	email?: string;
 	first_name?: string | null;
