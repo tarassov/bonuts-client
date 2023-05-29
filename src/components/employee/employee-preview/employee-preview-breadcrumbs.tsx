@@ -22,5 +22,5 @@ export const EmployeePreviewBreadcrumbs: FC<{ employee?: TProfile }> = ({ employ
 		},
 	];
 
-	return <BntBreadcrumbs items={breadcrumbs} className="mb-10" />;
+	return <BntBreadcrumbs items={breadcrumbs} className="mb-2" />;
 };

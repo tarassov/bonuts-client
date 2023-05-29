@@ -37,7 +37,7 @@ export const BntFormBody: FC<
 
 	return (
 		<Box className="position-relative">
-			<Grid container spacing={2} className="mb-10">
+			<Grid container spacing={2} className="mb-3">
 				<BntFormContextProvider onChange={onChange} values={values} initialValues={initialValues}>
 					<>
 						{children}

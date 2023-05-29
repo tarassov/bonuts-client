@@ -1,30 +1,31 @@
+$k: 4;
 @mixin mb-mixin($size) {
-  margin-bottom: $size  + px;
+  margin-bottom: $size*$k  + px;
 }
 @mixin m-mixin($size) {
-  margin: $size  + px;
+  margin: $size*$k  + px;
 }
 @mixin mt-mixin($size) {
-  margin-top: $size  + px;
+  margin-top: $size*$k  + px;
 }
 @mixin ml-mixin($size) {
-  margin-left: $size  + px;
+  margin-left: $size*$k  + px;
 }
 @mixin mr-mixin($size) {
-  margin-right: $size  + px;
+  margin-right: $size*$k  + px;
 }
 
 @mixin p-mixin($size) {
-  padding: $size  + px;
+  padding: $size*$k  + px;
 }
 @mixin pb-mixin($size) {
-  padding-bottom: $size  + px;
+  padding-bottom: $size*$k  + px;
 }
 @mixin pt-mixin($size) {
-  padding-top: $size  + px;
+  padding-top: $size*$k  + px;
 }
 @mixin pl-mixin($size) {
-  padding-left: $size  + px;
+  padding-left: $size*$k  + px;
 }
 @mixin pr-mixin($size) {
   padding-right: $size  + px;

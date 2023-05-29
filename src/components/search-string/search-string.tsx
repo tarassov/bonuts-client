@@ -42,15 +42,11 @@ export const SearchString: FC<{
 				clearable
 				onClear={handleClear}
 				onChange={handleChange}
-				className="mb-10"
+				className="mb-3"
 				size="small"
 				sx={{ width: "100%" }}
 			/>
-			<BntStack
-				direction={{ xs: "column", sm: "row" }}
-				className="mb-20"
-				spacing={{ xs: 1, sm: 2 }}
-			>
+			<BntStack direction={{ xs: "column", sm: "row" }} className="mb-5" spacing={{ xs: 1, sm: 2 }}>
 				{buttons.map((button) => {
 					return (
 						<BntRoundButton

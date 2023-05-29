@@ -17,4 +17,8 @@ export type TProfile = TBaseModel & {
 	roles?: Array<string>;
 	tenant?: string;
 	circles?: Array<TCircle>;
+	birthdate?: string;
+	in_date?: string;
+	bio?: string;
+	contact?: string;
 };

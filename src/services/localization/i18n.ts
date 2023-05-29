@@ -141,6 +141,7 @@ i18n.use(LanguageDetector).init({
 
 				// I
 				"Incoming requests": "Входящие запросы",
+				"in date": "дата приема",
 				"invitation added": "Приглашение отправлено",
 				// J
 				Join: "Присоединиться",

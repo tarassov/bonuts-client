@@ -22,11 +22,11 @@ export const DonutPurchaseBlock: FC<{
 
 	return (
 		<BntCard raised>
-			<DonutPrice className="ml-20 mt-10">
+			<DonutPrice className="ml-5 mt-2">
 				{donut.price} {t(Dictionary.PTS)}
 			</DonutPrice>
 			{donut.on_stock ? (
-				<DonutRemainGrey className="ml-20">
+				<DonutRemainGrey className="ml-5">
 					{t(texts_o.on_stock)}: {donut.on_stock}
 				</DonutRemainGrey>
 			) : null}
@@ -36,7 +36,7 @@ export const DonutPurchaseBlock: FC<{
 				</BntTypography>
 			) : null}
 			{donut?.has_remains && (
-				<div className="m-20">
+				<div className="m-5">
 					<BntRegularButton onClick={onCreateRequest} className="width-100">
 						{t(Dictionary.Buy)}
 					</BntRegularButton>

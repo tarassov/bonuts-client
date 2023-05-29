@@ -50,9 +50,9 @@ export const BntDonutPreview = () => {
 
 	return (
 		<>
-			<BntBreadcrumbs items={breadcrumbs} className="mb-10" />
+			<BntBreadcrumbs items={breadcrumbs} className="mb-3" />
 			<BntCard>
-				<BntCardBody className="m-10 p-10">
+				<BntCardBody className="m-3 p-3">
 					<Grid container justifyContent="space-between">
 						<Grid
 							item
@@ -66,7 +66,7 @@ export const BntDonutPreview = () => {
 							<ImagePreview
 								defaultImage={donut?.logo?.url ? undefined : DEFAULT_DONUT_IMAGE}
 								image={donut?.logo?.url}
-								className="ml-10"
+								className="ml-3"
 								onClick={onClick}
 							/>
 						</Grid>

@@ -26,7 +26,7 @@ export const BntDialogContainer = () => {
 						open={Boolean(modal.modalKey)}
 					>
 						{modal.hasTopMenu && !fullScreen ? (
-							<BntStack className="pr-10" direction="row" justifyContent="flex-end">
+							<BntStack className="pr-3" direction="row" justifyContent="flex-end">
 								<BntIconButton onClick={() => handleClose(modal.modalKey)}>
 									<CloseOutlined />
 								</BntIconButton>
