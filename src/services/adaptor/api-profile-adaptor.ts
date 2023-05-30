@@ -17,6 +17,10 @@ const dataToProfile = (data: GetProfileApiResponse["data"]) => {
 		roles: data.attributes?.roles,
 		tenant: data.attributes?.tenant,
 		circles: data.attributes?.circles,
+		birthdate: data.attributes?.birthdate || undefined,
+		in_date: data.attributes?.in_date || undefined,
+		bio: data.attributes?.bio || undefined,
+		contact: data.attributes?.contact || undefined,
 	};
 	return res;
 };
@@ -35,6 +39,10 @@ export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TPro
 		return {
 			...attributes,
 			email: attributes?.email || "",
+			birthdate: attributes?.birthdate || undefined,
+			in_date: attributes?.in_date || undefined,
+			bio: attributes?.bio || undefined,
+			contact: attributes?.contact || undefined,
 			id: Number(id),
 		};
 	});
