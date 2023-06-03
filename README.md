@@ -55,7 +55,7 @@
     │   ├── hooks-hooks  #Business hooks hooks
     │   ├── middlewares
     │   ├── redux
-    │   ├── store
+    │   ├── store-manager
     │   └── adaptor   #Holds methods for translating api responses to a client hooks model
     ├── themes
     └── types

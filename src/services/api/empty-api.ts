@@ -8,7 +8,7 @@ const { getValue } = useStorage();
 const baseQuery = fetchBaseQuery({
 	baseUrl: USE_LOCAL_API ? API_URL_LOCAL : API_URL,
 	prepareHeaders: (headers, { endpoint }) => {
-		// By default, if we have a token in the store, let's use that for authenticated requests
+		// By default, if we have a token in the store-manager, let's use that for authenticated requests
 		const token = getValue("auth_token");
 		if (token) {
 			headers.set("Authorization", `Bearer ${token}`);

@@ -46,3 +46,5 @@ type BntRouteMenuButtonProps = {
 
 	onBeforeClick?: () => { redirect: boolean };
 };
+
+type Order = "asc" | "desc";

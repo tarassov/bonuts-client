@@ -217,6 +217,8 @@ i18n.use(LanguageDetector).init({
 				Rollback: "Вернуть",
 				Roles: "Роли",
 				rows: "строк",
+				"rows per page": "строк на стр.",
+
 				// S
 				saved: "сохранено",
 				"Save changes": "Сохранить изменения",
