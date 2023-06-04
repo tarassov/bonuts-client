@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-file @typescript-eslint/no-unused-vars
 
-import React, { FC, useReducer, useState } from "react";
+import React, { FC, useEffect, useReducer, useState } from "react";
 import {
 	Column,
 	// Table,
@@ -20,6 +20,7 @@ import {
 	ColumnDef,
 	flexRender,
 	FilterFns,
+	SortingState,
 } from "@tanstack/react-table";
 
 import { RankingInfo, rankItem, compareItems } from "@tanstack/match-sorter-utils";
@@ -37,8 +38,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Icon from "@mui/material/Icon";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Box, TableCell, TableHead } from "@mui/material";
+import { Box, Stack, TableCell, TableHead } from "@mui/material";
 import { fuzzyFilter } from "shared/react-table/filters";
+import { ColumnFilter } from "shared/react-table/column-filter";
+import { ArrowDropDownOutlined, ArrowDropUpOutlined, SortOutlined } from "@mui/icons-material";
 
 function fuzzyTextFilterFn(rows: Array<any>, id: number, filterValue: string) {
 	return matchSorter<any>(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -48,13 +51,18 @@ function fuzzyTextFilterFn(rows: Array<any>, id: number, filterValue: string) {
 fuzzyTextFilterFn.autoRemove = (val: any) => !val;
 
 // Our table component
-export const ReactTable: FC<{ columns: Array<any>; data: Array<any> }> = ({ columns, data }) => {
+export const BntReactTablePure: FC<{
+	columns: Array<any>;
+	data: Array<any>;
+	className?: string;
+}> = ({ columns, data, className }) => {
 	const [numberOfRows, setNumberOfRows] = React.useState(10);
 	const [pageSelect, handlePageSelect] = React.useState(0);
 	const rerender = useReducer(() => ({}), {})[1];
 
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
+	const [sorting, setSorting] = useState<SortingState>([]);
 
 	const table = useReactTable({
 		data,
@@ -65,6 +73,7 @@ export const ReactTable: FC<{ columns: Array<any>; data: Array<any> }> = ({ colu
 		state: {
 			columnFilters,
 			globalFilter,
+			sorting,
 		},
 		onColumnFiltersChange: setColumnFilters,
 		onGlobalFilterChange: setGlobalFilter,
@@ -76,26 +85,20 @@ export const ReactTable: FC<{ columns: Array<any>; data: Array<any> }> = ({ colu
 		getFacetedRowModel: getFacetedRowModel(),
 		getFacetedUniqueValues: getFacetedUniqueValues(),
 		getFacetedMinMaxValues: getFacetedMinMaxValues(),
+		onSortingChange: setSorting,
 		debugTable: true,
 		debugHeaders: true,
-		debugColumns: false,
+		debugColumns: true,
 	});
 
-	React.useEffect(() => {
-		if (table.getState().columnFilters[0]?.id === "fullName") {
-			if (table.getState().sorting[0]?.id !== "fullName") {
-				table.setSorting([{ id: "fullName", desc: false }]);
-			}
-		}
-	}, [table.getState().columnFilters[0]?.id]);
+	// React.useEffect(() => {
+	// 	if (table.getState().columnFilters[0]?.id === "fullName") {
+	// 		if (table.getState().sorting[0]?.id !== "fullName") {
+	// 			table.setSorting([{ id: "fullName", desc: false }]);
+	// 		}
+	// 	}
+	// }, [table.getState().columnFilters[0]?.id]);
 
-	const defaultColumn = React.useMemo(
-		() => ({
-			// Let's set up our default Filter UI
-			Filter: DefaultColumnFilter,
-		}),
-		[]
-	);
 	const { translate } = useBntTranslate();
 
 	// We don't want to render all of the rows for this example, so cap
@@ -105,31 +108,67 @@ export const ReactTable: FC<{ columns: Array<any>; data: Array<any> }> = ({ colu
 
 	const numberOfRowsData = [5, 10, 20, 25, 50, 100];
 	return (
-		<TableContainer sx={{ boxShadow: "none" }}>
+		<TableContainer sx={{ boxShadow: "none" }} className={className}>
 			{/* <Box display="flex" justifyContent="space-between" alignItems="center" p={3}> */}
 			<Table>
 				<TableHead>
-					{table.getHeaderGroups().map((headerGroup) => (
+					{table.getHeaderGroups().map((headerGroup, key) => (
 						<TableRow key={headerGroup.id}>
-							{headerGroup.headers.map((header) => (
+							{headerGroup.headers.map((columnHeader) => (
 								<TableCell
 									component="th"
 									scope="row"
-									padding="none"
-									key={header.id}
-									colSpan={header.colSpan}
+									key={columnHeader.id}
+									colSpan={columnHeader.colSpan}
+									className={classnames(
+										"bnt-table-th bnt-table-header",
+										`-sort-${columnHeader.column.getIsSorted()}`,
+										{
+											"-cursor-pointer": headerGroup.headers.length - 1 !== key,
+										}
+									)}
 								>
-									{header.isPlaceholder
-										? null
-										: flexRender(header.column.columnDef.header, header.getContext())}
+									{columnHeader.isPlaceholder ? null : (
+										<Stack
+											direction="row"
+											alignItems="center"
+											gap={2}
+											className="sorter"
+											onClick={columnHeader.column.getToggleSortingHandler()}
+										>
+											{flexRender(columnHeader.column.columnDef.header, columnHeader.getContext())}
+											{columnHeader.column.getCanSort() && (
+												<Stack className={classnames(`sort-${columnHeader.column.getIsSorted()}`)}>
+													<ArrowDropUpOutlined
+														className={classnames("sort-icon", "sort-icon__asc")}
+													/>
+													<ArrowDropDownOutlined
+														className={classnames("sort-icon", "sort-icon__desc")}
+													/>
+												</Stack>
+											)}
+										</Stack>
+									)}
+									{columnHeader.column.getCanFilter() ? (
+										<div>
+											<ColumnFilter column={columnHeader.column} table={table} />
+										</div>
+									) : null}
 								</TableCell>
 							))}
 						</TableRow>
 					))}
 				</TableHead>
 				<TableBody>
-					{table.getRowModel().rows.map((row) => (
-						<TableRow key={row.id}>
+					{table.getRowModel().rows.map((row, i) => (
+						<TableRow
+							key={row.id}
+							className={classnames(
+								"bnt-table-tr",
+								{ " -odd": i % 2 === 0 },
+								{ " -even": i % 2 === 1 }
+							)}
+						>
 							{row.getVisibleCells().map((cell) => (
 								<TableCell key={cell.id}>
 									{flexRender(cell.column.columnDef.cell, cell.getContext())}

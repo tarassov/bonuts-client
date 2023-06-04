@@ -191,6 +191,7 @@ i18n.use(LanguageDetector).init({
 				Position: "Должность",
 				Plugins: "Плагины",
 				Price: "Цена",
+				price: "цена",
 				"price asc": "сначала самые дешевые",
 				"price desc": "сначала самые дорогие",
 				Profile: "Профиль",

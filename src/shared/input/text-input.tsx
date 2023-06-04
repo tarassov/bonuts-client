@@ -9,7 +9,12 @@ import { getInputProps } from "shared/input/helpers/get-input-props";
  *
  * */
 export const BntTextInput: FC<
-	TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string }
+	TextFieldProps & {
+		stringLabel?: string;
+		clearable?: boolean;
+		onClear?: () => void;
+		name?: string;
+	}
 > = (props) => {
 	const { translate } = useBntTranslate();
 	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, ...rest } = props;
