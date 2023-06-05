@@ -9,6 +9,7 @@ const lightTheme = {
 		primary: {
 			main: "#5a985f",
 			light: "#97cf9e",
+			veryLight: "#ebffed",
 			dark: "#426644",
 		},
 		secondary: {

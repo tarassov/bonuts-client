@@ -1,9 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// eslint-disable-file @typescript-eslint/no-unused-vars
-
-import React, { FC, useEffect, useReducer, useState } from "react";
+import React, { FC, useState } from "react";
 import {
-	Column,
 	// Table,
 	useReactTable,
 	ColumnFiltersState,
@@ -13,35 +9,28 @@ import {
 	getFacetedUniqueValues,
 	getFacetedMinMaxValues,
 	getPaginationRowModel,
-	sortingFns,
 	getSortedRowModel,
-	FilterFn,
-	SortingFn,
-	ColumnDef,
 	flexRender,
-	FilterFns,
 	SortingState,
 } from "@tanstack/react-table";
 
-import { RankingInfo, rankItem, compareItems } from "@tanstack/match-sorter-utils";
 import classnames from "classnames";
 import { matchSorter } from "match-sorter";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTextInput } from "shared/input/text-input";
-import { DefaultColumnFilter } from "shared/react-table/default-column-filter";
 
 // @mui material components
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import Icon from "@mui/material/Icon";
-import Autocomplete from "@mui/material/Autocomplete";
-import { Box, Stack, TableCell, TableHead } from "@mui/material";
+import { FormControl, Grid, MenuItem, Select, Stack, TableCell, TableHead } from "@mui/material";
 import { fuzzyFilter } from "shared/react-table/filters";
 import { ColumnFilter } from "shared/react-table/column-filter";
-import { ArrowDropDownOutlined, ArrowDropUpOutlined, SortOutlined } from "@mui/icons-material";
+import { ArrowDropDownOutlined, ArrowDropUpOutlined } from "@mui/icons-material";
+import { BntRegularButton } from "shared/buttons/regular-button";
+import { texts_p } from "services/localization/texts/texts_p";
+import { texts_n } from "services/localization/texts";
 
 function fuzzyTextFilterFn(rows: Array<any>, id: number, filterValue: string) {
 	return matchSorter<any>(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -56,10 +45,6 @@ export const BntReactTablePure: FC<{
 	data: Array<any>;
 	className?: string;
 }> = ({ columns, data, className }) => {
-	const [numberOfRows, setNumberOfRows] = React.useState(10);
-	const [pageSelect, handlePageSelect] = React.useState(0);
-	const rerender = useReducer(() => ({}), {})[1];
-
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
 	const [sorting, setSorting] = useState<SortingState>([]);
@@ -91,20 +76,7 @@ export const BntReactTablePure: FC<{
 		debugColumns: true,
 	});
 
-	// React.useEffect(() => {
-	// 	if (table.getState().columnFilters[0]?.id === "fullName") {
-	// 		if (table.getState().sorting[0]?.id !== "fullName") {
-	// 			table.setSorting([{ id: "fullName", desc: false }]);
-	// 		}
-	// 	}
-	// }, [table.getState().columnFilters[0]?.id]);
-
 	const { translate } = useBntTranslate();
-
-	// We don't want to render all of the rows for this example, so cap
-	// it for this use case
-	// const firstPageRows = rows.slice(0, 10);
-	// let pageSelectData = Array.apply(null, Array(pageOptions.length)).map(function () {});
 
 	const numberOfRowsData = [5, 10, 20, 25, 50, 100];
 	return (
@@ -165,8 +137,8 @@ export const BntReactTablePure: FC<{
 							key={row.id}
 							className={classnames(
 								"bnt-table-tr",
-								{ " -odd": i % 2 === 0 },
-								{ " -even": i % 2 === 1 }
+								{ "bnt-table-tr-odd": i % 2 === 0 },
+								{ "bnt-table-tr-even": i % 2 === 1 }
 							)}
 						>
 							{row.getVisibleCells().map((cell) => (
@@ -178,113 +150,80 @@ export const BntReactTablePure: FC<{
 					))}
 				</TableBody>
 			</Table>
-			{/*	<div className="pagination-bottom"> */}
-			{/*		<div className="-pagination"> */}
-			{/*			<div className="-previous"> */}
-			{/*				<button */}
-			{/*					type="button" */}
-			{/*					onClick={() => previousPage()} */}
-			{/*					disabled={!canPreviousPage} */}
-			{/*					className="-btn" */}
-			{/*				> */}
-			{/*					{t("Previous")} */}
-			{/*				</button> */}
-			{/*			</div> */}
-			{/*			<div className="-center"> */}
-			{/*				<GridContainer className={classes.gridContainer}> */}
-			{/*					<GridItem xs={12} sm={6} md={4}> */}
-			{/*						<FormControl */}
-			{/*							fullWidth */}
-			{/*							className={classes.selectFormControl + " " + classes.formControlMargins} */}
-			{/*						> */}
-			{/*							<Select */}
-			{/*								MenuProps={{ */}
-			{/*									className: classes.selectMenu, */}
-			{/*								}} */}
-			{/*								classes={{ */}
-			{/*									select: classes.select, */}
-			{/*								}} */}
-			{/*								value={pageSelect} */}
-			{/*								onChange={(event) => { */}
-			{/*									gotoPage(event.target.value); */}
-			{/*									handlePageSelect(event.target.value); */}
-			{/*								}} */}
-			{/*								inputProps={{ */}
-			{/*									name: "pageSelect", */}
-			{/*									id: "page-select", */}
-			{/*								}} */}
-			{/*							> */}
-			{/*								{pageSelectData.map((prop, key) => { */}
-			{/*									return ( */}
-			{/*										<MenuItem */}
-			{/*											key={key} */}
-			{/*											classes={{ */}
-			{/*												root: classes.selectMenuItem, */}
-			{/*												selected: classes.selectMenuItemSelected, */}
-			{/*											}} */}
-			{/*											value={key} */}
-			{/*										> */}
-			{/*											{t("Page")} {key + 1} */}
-			{/*										</MenuItem> */}
-			{/*									); */}
-			{/*								})} */}
-			{/*							</Select> */}
-			{/*						</FormControl> */}
-			{/*					</GridItem> */}
-			{/*					<GridItem xs={12} sm={6} md={4}> */}
-			{/*						<FormControl */}
-			{/*							fullWidth */}
-			{/*							className={classes.selectFormControl + " " + classes.formControlMargins} */}
-			{/*						> */}
-			{/*							<Select */}
-			{/*								MenuProps={{ */}
-			{/*									className: classes.selectMenu, */}
-			{/*								}} */}
-			{/*								classes={{ */}
-			{/*									select: classes.select, */}
-			{/*								}} */}
-			{/*								value={numberOfRows} */}
-			{/*								onChange={(event) => { */}
-			{/*									setPageSize(event.target.value); */}
-			{/*									setNumberOfRows(event.target.value); */}
-			{/*								}} */}
-			{/*								inputProps={{ */}
-			{/*									name: "numberOfRows", */}
-			{/*									id: "number-of-rows", */}
-			{/*								}} */}
-			{/*							> */}
-			{/*								{numberOfRowsData.map((prop) => { */}
-			{/*									return ( */}
-			{/*										<MenuItem */}
-			{/*											key={prop} */}
-			{/*											classes={{ */}
-			{/*												root: classes.selectMenuItem, */}
-			{/*												selected: classes.selectMenuItemSelected, */}
-			{/*											}} */}
-			{/*											value={prop} */}
-			{/*										> */}
-			{/*											{prop} {t("rows")} */}
-			{/*										</MenuItem> */}
-			{/*									); */}
-			{/*								})} */}
-			{/*							</Select> */}
-			{/*						</FormControl> */}
-			{/*					</GridItem> */}
-			{/*				</GridContainer> */}
-			{/*			</div> */}
-			{/*			<div className="-next"> */}
-			{/*				<button */}
-			{/*					type="button" */}
-			{/*					onClick={() => nextPage()} */}
-			{/*					disabled={!canNextPage} */}
-			{/*					className="-btn" */}
-			{/*				> */}
-			{/*					{t("Next")} */}
-			{/*				</button> */}
-			{/*			</div> */}
-			{/*		</div> */}
-			{/*	</div> */}
-			{/* </div> */}
+			{data.length ? (
+				<div className="bnt-table-footer">
+					<Stack
+						direction="row"
+						gap={2}
+						justifyContent="space-between"
+						alignItems="stretch"
+						flexWrap={{ xs: "wrap", sm: "nowrap" }}
+					>
+						<BntRegularButton
+							disabled={!table.getCanPreviousPage()}
+							sx={{ width: "100%" }}
+							onClick={() => table.previousPage()}
+						>
+							{translate(texts_p.previous, { capitalize: true })}
+						</BntRegularButton>
+						<Grid container gap={2} justifyContent="center">
+							<Grid item xs={12} sm={5} md={4}>
+								<FormControl fullWidth>
+									<Select
+										value={table.getState().pagination.pageIndex}
+										onChange={(event) => {
+											table.setPageIndex(Number(event.target.value));
+										}}
+										inputProps={{
+											name: "pageSelect",
+											id: "page-select",
+										}}
+										variant="standard"
+									>
+										{table.getPageOptions().map((prop, key) => {
+											return (
+												<MenuItem key={prop} value={prop}>
+													{translate("Page")} {key + 1}
+												</MenuItem>
+											);
+										})}
+									</Select>
+								</FormControl>
+							</Grid>
+							<Grid item xs={12} sm={5} md={4}>
+								<FormControl fullWidth>
+									<Select
+										value={table.getState().pagination.pageSize}
+										onChange={(event) => {
+											table.setPageSize(Number(event.target.value));
+										}}
+										inputProps={{
+											name: "numberOfRows",
+											id: "number-of-rows",
+										}}
+										variant="standard"
+									>
+										{numberOfRowsData.map((prop) => {
+											return (
+												<MenuItem key={prop} value={prop}>
+													{prop} {translate("rows")}
+												</MenuItem>
+											);
+										})}
+									</Select>
+								</FormControl>
+							</Grid>
+						</Grid>
+						<BntRegularButton
+							disabled={!table.getCanNextPage()}
+							sx={{ width: "100%" }}
+							onClick={() => table.nextPage()}
+						>
+							{translate(texts_n.next, { capitalize: true })}
+						</BntRegularButton>
+					</Stack>
+				</div>
+			) : null}
 		</TableContainer>
 	);
 };

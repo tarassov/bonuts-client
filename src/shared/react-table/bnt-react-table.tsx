@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { cl } from "themes/helper";
+import { cl, hover } from "themes/helper";
 import { BntReactTablePure } from "shared/react-table/bnt-react-table-pure";
 
 export const BntReactTable = styled(
@@ -25,15 +25,28 @@ export const BntReactTable = styled(
 		"& input": {
 			border: 0,
 		},
+		[cl("bnt-table-th")]: {
+			minWidth: "60px",
+		},
 		[cl("bnt-table-filter")]: {
-			maxWidth: "200px",
+			width: "100%",
+		},
+		[cl("bnt-table-tr-even")]: {
+			background: theme.palette.grey[200],
+		},
+		[cl("bnt-table-tr")]: {
+			[hover]: {
+				background: theme.palette.grey[300],
+			},
 		},
 		[cl("bnt-table-header")]: {
 			border: 0,
-			borderBottom: "1px solid",
 			borderColor: theme.palette.grey[400],
 			...theme.typography.h6,
 			marginBottom: "24px",
+			"& input": {
+				width: "100%",
+			},
 			"& .sorter": {
 				"&:hover": {
 					color: theme.palette.primary.dark,
@@ -55,6 +68,10 @@ export const BntReactTable = styled(
 					opacity: 1,
 				},
 			},
+		},
+		[cl("bnt-table-footer")]: {
+			marginTop: "24px",
+			paddingLeft: "16px",
 		},
 	};
 });

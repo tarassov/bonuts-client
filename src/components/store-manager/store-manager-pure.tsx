@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// eslint-disable-file @typescript-eslint/no-unused-vars
 import { FC } from "react";
 import { BntReactTable } from "shared/react-table/bnt-react-table";
 import { useTableConfig } from "components/store-manager/use-table-config";

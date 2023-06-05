@@ -153,6 +153,8 @@ i18n.use(LanguageDetector).init({
 				"Log Out": "Выйти",
 
 				// M
+				Max: "Макс",
+				Min: "Мин",
 				"Max donuts": "Макисмальное количество пончиков",
 				message: "сообщение",
 				"My Requests": "Мои запросы",
@@ -170,6 +172,7 @@ i18n.use(LanguageDetector).init({
 				"New item": "Новый элемент",
 				newest: "самые новые",
 				Next: "Вперед",
+				next: "вперед",
 				"Not active donuts": "Неактивные пончики",
 				"No options": "Нет вариантов",
 				"not active": "не активен",
@@ -199,6 +202,7 @@ i18n.use(LanguageDetector).init({
 				PTS: "БОН.",
 				place: "место",
 				Previous: "Назад",
+				previous: "назад",
 				Purchase: "Покупка",
 				// Q
 
@@ -225,6 +229,7 @@ i18n.use(LanguageDetector).init({
 				"Save changes": "Сохранить изменения",
 				"Self account": "Могу потратить",
 				Search: "Поиск",
+				search: "поиск",
 				Share: "Поделиться",
 				"Share dialog": "Окно подарков",
 				"Show only mine": "Показывать только мои",

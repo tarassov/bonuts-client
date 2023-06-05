@@ -1,6 +1,8 @@
 import { Column, Table as ReactTable } from "@tanstack/react-table";
 import { BntTextInput } from "shared/input/text-input";
 import { Stack } from "@mui/material";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_s } from "services/localization/texts";
 
 export const ColumnFilter = ({
 	column,
@@ -10,11 +12,12 @@ export const ColumnFilter = ({
 	table: ReactTable<any>;
 }) => {
 	const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id);
+	const { translate } = useBntTranslate();
 
 	const columnFilterValue = column.getFilterValue();
 
 	return typeof firstValue === "number" ? (
-		<Stack direction="row" className="bnt-table-filter">
+		<Stack direction="row" className="bnt-table-filter" gap={2}>
 			<BntTextInput
 				type="number"
 				value={(columnFilterValue as [number, number])?.[0] ?? ""}
@@ -22,6 +25,7 @@ export const ColumnFilter = ({
 					column.setFilterValue((old: [number, number]) => [e.target.value, old?.[1]])
 				}
 				placeholder="Min"
+				variant="standard"
 			/>
 			<BntTextInput
 				type="number"
@@ -30,13 +34,16 @@ export const ColumnFilter = ({
 					column.setFilterValue((old: [number, number]) => [old?.[0], e.target.value])
 				}
 				placeholder="Max"
+				variant="standard"
 			/>
 		</Stack>
 	) : (
 		<BntTextInput
+			className="bnt-table-filter"
 			value={(columnFilterValue ?? "") as string}
 			onChange={(e) => column.setFilterValue(e.target.value)}
-			placeholder="Search..."
+			placeholder={`${translate(texts_s.search, { capitalize: true })}...`}
+			variant="standard"
 		/>
 	);
 };

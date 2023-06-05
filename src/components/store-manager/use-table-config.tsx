@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { texts_n } from "services/localization/texts";
 import { texts_p } from "services/localization/texts/texts_p";
-import { EditOutlined } from "@mui/icons-material";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { StoreActionCell } from "components/store-manager/store-action-cell";
 import { TDonut } from "@/types/model";
 
 export const useTableConfig = () => {
@@ -24,7 +24,7 @@ export const useTableConfig = () => {
 				enableSorting: true,
 			}),
 			columnHelper.accessor("actions", {
-				cell: () => <EditOutlined />,
+				cell: (info) => <StoreActionCell donutId={info.row.original.id} />,
 				header: "",
 				enableSorting: false,
 				enableColumnFilter: false,
