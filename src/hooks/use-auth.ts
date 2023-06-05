@@ -90,7 +90,7 @@ export function useAuth() {
 			if (savedAuth.token) {
 				const checkResult = await validateAuth(savedAuth); // check if token is valid
 				if (checkResult) {
-					dispatch(authenticate(savedAuth)); // push token to the store
+					dispatch(authenticate(savedAuth)); // push token to the store-manager
 					return true;
 				}
 				setValue<string>("auth_token", "");

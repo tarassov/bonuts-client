@@ -1,6 +1,6 @@
-import { UnderConstruct } from "pages/under-construct";
 import { FC } from "react";
+import { StoreManager } from "components/store-manager/store-manager";
 
 export const StorePage: FC = () => {
-	return <UnderConstruct />;
+	return <StoreManager />;
 };
