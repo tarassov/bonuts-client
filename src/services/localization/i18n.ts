@@ -78,6 +78,7 @@ i18n.use(LanguageDetector).init({
 				close: "закрыть",
 				Circles: "Круги",
 				created: "создан(а)",
+				create: "новый",
 
 				// D
 				"Date of birth": "Дата рождения",
@@ -218,6 +219,11 @@ i18n.use(LanguageDetector).init({
 				Register: "Зарегистрировать",
 				Remove: "Удалить",
 				records: "записей",
+				records_zero: "записей",
+				records_one: "запись",
+				records_few: "записи",
+				records_many: "записей",
+				records_other: "записей",
 				"Refresh or activate": "Обновить или активировать",
 				Rollback: "Вернуть",
 				Roles: "Роли",
