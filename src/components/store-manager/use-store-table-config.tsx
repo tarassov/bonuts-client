@@ -6,7 +6,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { StoreActionCell } from "components/store-manager/store-action-cell";
 import { TDonut } from "@/types/model";
 
-export const useTableConfig = () => {
+export const useStoreTableConfig = () => {
 	const columnHelper = createColumnHelper<TDonut & { actions: any }>();
 	const { translate } = useBntTranslate();
 	const storeTableColumns = useMemo(

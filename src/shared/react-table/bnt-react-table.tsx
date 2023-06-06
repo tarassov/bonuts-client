@@ -39,6 +39,12 @@ export const BntReactTable = styled(
 				background: theme.palette.grey[300],
 			},
 		},
+		[cl("bnt-navigation-button")]: {
+			width: "50%",
+			[theme.breakpoints.down("sm")]: {
+				width: "100%",
+			},
+		},
 		[cl("bnt-table-header")]: {
 			border: 0,
 			borderColor: theme.palette.grey[400],

@@ -28,9 +28,9 @@ import { FormControl, Grid, MenuItem, Select, Stack, TableCell, TableHead } from
 import { fuzzyFilter } from "shared/react-table/filters";
 import { ColumnFilter } from "shared/react-table/column-filter";
 import { ArrowDropDownOutlined, ArrowDropUpOutlined } from "@mui/icons-material";
-import { BntRegularButton } from "shared/buttons/regular-button";
 import { texts_p } from "services/localization/texts/texts_p";
 import { texts_n } from "services/localization/texts";
+import { BntTransparentButton } from "shared/buttons/transparent-button";
 
 function fuzzyTextFilterFn(rows: Array<any>, id: number, filterValue: string) {
 	return matchSorter<any>(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -71,9 +71,6 @@ export const BntReactTablePure: FC<{
 		getFacetedUniqueValues: getFacetedUniqueValues(),
 		getFacetedMinMaxValues: getFacetedMinMaxValues(),
 		onSortingChange: setSorting,
-		debugTable: true,
-		debugHeaders: true,
-		debugColumns: true,
 	});
 
 	const { translate } = useBntTranslate();
@@ -159,13 +156,13 @@ export const BntReactTablePure: FC<{
 						alignItems="stretch"
 						flexWrap={{ xs: "wrap", sm: "nowrap" }}
 					>
-						<BntRegularButton
+						<BntTransparentButton
 							disabled={!table.getCanPreviousPage()}
-							sx={{ width: "100%" }}
+							className="bnt-navigation-button"
 							onClick={() => table.previousPage()}
 						>
 							{translate(texts_p.previous, { capitalize: true })}
-						</BntRegularButton>
+						</BntTransparentButton>
 						<Grid container gap={2} justifyContent="center">
 							<Grid item xs={12} sm={5} md={4}>
 								<FormControl fullWidth>
@@ -214,13 +211,13 @@ export const BntReactTablePure: FC<{
 								</FormControl>
 							</Grid>
 						</Grid>
-						<BntRegularButton
+						<BntTransparentButton
 							disabled={!table.getCanNextPage()}
-							sx={{ width: "100%" }}
+							className="bnt-navigation-button"
 							onClick={() => table.nextPage()}
 						>
 							{translate(texts_n.next, { capitalize: true })}
-						</BntRegularButton>
+						</BntTransparentButton>
 					</Stack>
 				</div>
 			) : null}
