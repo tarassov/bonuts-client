@@ -215,6 +215,7 @@ i18n.use(LanguageDetector).init({
 				"Requests in progress": "Запросы в работе",
 				Refund: "Возврат",
 				Required: "Обязательное поле",
+				requests: "запросы",
 				Requests: "Запросы",
 				Register: "Зарегистрировать",
 				Remove: "Удалить",

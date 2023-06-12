@@ -14,10 +14,18 @@ export const BntTextInput: FC<
 		clearable?: boolean;
 		onClear?: () => void;
 		name?: string;
+		shouldTranslate?: boolean;
 	}
 > = (props) => {
 	const { translate } = useBntTranslate();
-	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, ...rest } = props;
+	const {
+		stringLabel,
+		onClear = EMPTY_FUNCTION,
+		name,
+		clearable = false,
+		shouldTranslate = true,
+		...rest
+	} = props;
 
 	const { InputProps = {}, value, placeholder, label } = rest;
 
@@ -26,7 +34,7 @@ export const BntTextInput: FC<
 		<TextField
 			{...rest}
 			name={name}
-			placeholder={translate(placeholder)}
+			placeholder={shouldTranslate ? translate(placeholder) : placeholder}
 			label={translate(stringLabel) || label}
 			InputProps={inputProps}
 			value={value}

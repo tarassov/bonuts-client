@@ -49,6 +49,7 @@ export const ColumnFilter = ({
 				{ count }
 			)}`}
 			variant="standard"
+			shouldTranslate={false}
 		/>
 	);
 };

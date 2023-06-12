@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IconButton, Stack } from "@mui/material";
-import { EditOutlined } from "@mui/icons-material";
+import { CheckCircleOutline, HighlightOffOutlined } from "@mui/icons-material";
 
 export const RequestActionsCell: FC<{
 	onEditClick: VoidFunction;
@@ -12,12 +12,12 @@ export const RequestActionsCell: FC<{
 		<Stack direction="row">
 			{!hideEdit && (
 				<IconButton onClick={() => onEditClick()}>
-					<EditOutlined />
+					<CheckCircleOutline color="primary" />
 				</IconButton>
 			)}
 			{!hideRollback && (
 				<IconButton onClick={() => onRollbackClick()}>
-					<EditOutlined />
+					<HighlightOffOutlined color="error" />
 				</IconButton>
 			)}
 		</Stack>
