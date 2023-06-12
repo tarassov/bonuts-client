@@ -264,6 +264,7 @@ i18n.use(LanguageDetector).init({
 
 				// T
 				Tenant: "Команда",
+				to: "для",
 				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",

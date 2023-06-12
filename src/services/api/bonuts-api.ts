@@ -107,13 +107,13 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 		id?: string;
 		type?: string;
 		attributes?: {
-			id?: number;
-			user_id?: number;
-			active?: boolean;
-			admin?: boolean;
+			id: number;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
 			attached?: boolean;
-			roles?: string[];
-			circles?: {
+			roles: string[];
+			circles: {
 				name: string;
 				id: number;
 				active: boolean;
@@ -124,13 +124,13 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			name?: string;
-			email?: string;
+			email: string;
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
-			contact?: (string | null) | null;
-			bio?: (string | null) | null;
-			birthdate?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
 			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
@@ -497,13 +497,13 @@ export type GetProfileApiResponse = /** status 200 success */ {
 		id?: string;
 		type?: string;
 		attributes?: {
-			id?: number;
-			user_id?: number;
-			active?: boolean;
-			admin?: boolean;
+			id: number;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
 			attached?: boolean;
-			roles?: string[];
-			circles?: {
+			roles: string[];
+			circles: {
 				name: string;
 				id: number;
 				active: boolean;
@@ -514,13 +514,13 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			name?: string;
-			email?: string;
+			email: string;
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
-			contact?: (string | null) | null;
-			bio?: (string | null) | null;
-			birthdate?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
 			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
@@ -582,13 +582,13 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 		id?: string;
 		type?: string;
 		attributes?: {
-			id?: number;
-			user_id?: number;
-			active?: boolean;
-			admin?: boolean;
+			id: number;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
 			attached?: boolean;
-			roles?: string[];
-			circles?: {
+			roles: string[];
+			circles: {
 				name: string;
 				id: number;
 				active: boolean;
@@ -599,13 +599,13 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			name?: string;
-			email?: string;
+			email: string;
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
-			contact?: (string | null) | null;
-			bio?: (string | null) | null;
-			birthdate?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
 			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
@@ -668,13 +668,13 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 		id?: string;
 		type?: string;
 		attributes?: {
-			id?: number;
-			user_id?: number;
-			active?: boolean;
-			admin?: boolean;
+			id: number;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
 			attached?: boolean;
-			roles?: string[];
-			circles?: {
+			roles: string[];
+			circles: {
 				name: string;
 				id: number;
 				active: boolean;
@@ -685,13 +685,13 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			name?: string;
-			email?: string;
+			email: string;
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
-			contact?: (string | null) | null;
-			bio?: (string | null) | null;
-			birthdate?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
 			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
@@ -763,13 +763,13 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 		id?: string;
 		type?: string;
 		attributes?: {
-			id?: number;
-			user_id?: number;
-			active?: boolean;
-			admin?: boolean;
+			id: number;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
 			attached?: boolean;
-			roles?: string[];
-			circles?: {
+			roles: string[];
+			circles: {
 				name: string;
 				id: number;
 				active: boolean;
@@ -780,13 +780,13 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 			first_name?: string;
 			last_name?: string;
 			name?: string;
-			email?: string;
+			email: string;
 			tenant?: string;
 			sex?: string;
 			phone?: (string | null) | null;
-			contact?: (string | null) | null;
-			bio?: (string | null) | null;
-			birthdate?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
 			in_date?: (string | null) | null;
 			created_at?: string;
 			user_avatar?: {
@@ -880,13 +880,13 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 				}[];
 			};
 			profile: {
-				id?: number;
-				user_id?: number;
-				active?: boolean;
-				admin?: boolean;
+				id: number;
+				user_id: number;
+				active: boolean;
+				admin: boolean;
 				attached?: boolean;
-				roles?: string[];
-				circles?: {
+				roles: string[];
+				circles: {
 					name: string;
 					id: number;
 					active: boolean;
@@ -897,13 +897,13 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 				first_name?: string;
 				last_name?: string;
 				name?: string;
-				email?: string;
+				email: string;
 				tenant?: string;
 				sex?: string;
 				phone?: (string | null) | null;
-				contact?: (string | null) | null;
-				bio?: (string | null) | null;
-				birthdate?: (string | null) | null;
+				contact: (string | null) | null;
+				bio: (string | null) | null;
+				birthdate: (string | null) | null;
 				in_date?: (string | null) | null;
 				created_at?: string;
 				user_avatar?: {
@@ -999,13 +999,13 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 				}[];
 			};
 			profile: {
-				id?: number;
-				user_id?: number;
-				active?: boolean;
-				admin?: boolean;
+				id: number;
+				user_id: number;
+				active: boolean;
+				admin: boolean;
 				attached?: boolean;
-				roles?: string[];
-				circles?: {
+				roles: string[];
+				circles: {
 					name: string;
 					id: number;
 					active: boolean;
@@ -1016,13 +1016,13 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 				first_name?: string;
 				last_name?: string;
 				name?: string;
-				email?: string;
+				email: string;
 				tenant?: string;
 				sex?: string;
 				phone?: (string | null) | null;
-				contact?: (string | null) | null;
-				bio?: (string | null) | null;
-				birthdate?: (string | null) | null;
+				contact: (string | null) | null;
+				bio: (string | null) | null;
+				birthdate: (string | null) | null;
 				in_date?: (string | null) | null;
 				created_at?: string;
 				user_avatar?: {

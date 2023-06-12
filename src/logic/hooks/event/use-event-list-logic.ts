@@ -1,5 +1,5 @@
 import { extendedApi } from "services/api/extended-api";
-import { apiTranslator } from "services/adaptor";
+import { apiAdaptor } from "services/adaptor/api-adaptor";
 import { usePagintatedListBase } from "../use-pagintated-list-base";
 
 export const useEventListLogic = ({ showMine = false }) => {
@@ -10,6 +10,6 @@ export const useEventListLogic = ({ showMine = false }) => {
 			page: 1,
 		},
 		pollingInterval: 10000,
-		translator: apiTranslator.toPosts,
+		translator: apiAdaptor.toPosts,
 	});
 };
