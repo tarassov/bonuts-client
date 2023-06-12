@@ -6,7 +6,7 @@ export const BntTextAreaInput: FC<
 	TextareaAutosizeElementProps & { stringLabel?: string; name: string } & {}
 > = (props) => {
 	const { translate } = useBntTranslate();
-	const { stringLabel, placeholder, name, ...rest } = props;
+	const { stringLabel, placeholder, onAnimationStart, onBlur, onFocus, name, ...rest } = props;
 
 	return <TextareaAutosizeElement {...rest} placeholder={translate(placeholder)} name={name} />;
 };
