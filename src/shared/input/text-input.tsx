@@ -35,7 +35,7 @@ export const BntTextInput: FC<
 			{...rest}
 			name={name}
 			placeholder={shouldTranslate ? translate(placeholder) : placeholder}
-			label={translate(stringLabel) || label}
+			label={shouldTranslate ? translate(stringLabel) || label : stringLabel || label}
 			InputProps={inputProps}
 			value={value}
 		/>
