@@ -16,6 +16,8 @@ export const BntReactTable = styled(
 		"& td": {
 			border: 0,
 			...theme.typography.body2,
+			paddingLeft: 0,
+			paddingRight: 0,
 			fontSize: "1.1rem",
 			color: theme.palette.grey[800],
 		},

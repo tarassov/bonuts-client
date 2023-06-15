@@ -82,7 +82,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 	return (
 		<>
 			<BntBreadcrumbs items={breadcrumbs} className="mb-3" />
-			<Box ml={2} mt={2}>
+			<Box mt={2}>
 				<BntReactTable columns={tableConfig} data={requests} />
 			</Box>
 		</>
