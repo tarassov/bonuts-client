@@ -1,4 +1,4 @@
-import { bonutsApi, PostAvatarsApiResponse } from "./bonuts-api";
+import { bonutsApi, PostAvatarsApiResponse, PostDonutsApiResponse } from "./bonuts-api";
 
 export const bonutsApiOverride = bonutsApi.injectEndpoints({
 	endpoints: (build) => ({
@@ -12,6 +12,16 @@ export const bonutsApiOverride = bonutsApi.injectEndpoints({
 				};
 			},
 		}),
+		createDonut: build.mutation<PostDonutsApiResponse, FormData>({
+			query(data) {
+				return {
+					url: "/donuts",
+					method: "POST",
+					credentials: "include",
+					body: data,
+				};
+			},
+		}),
 	}),
 });
-export const { useUpdateAvatarsMutation } = bonutsApiOverride;
+export const { useUpdateAvatarsMutation, useCreateDonutMutation } = bonutsApiOverride;
