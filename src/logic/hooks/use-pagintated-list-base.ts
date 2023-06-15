@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import _ from "lodash";
 import { usePaginator } from "hooks/use-paginator";
 import { useAppSelector } from "services/redux/store/store";
@@ -37,6 +37,11 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 		if (!_.isEqual(objects, translated)) setObjects(translated);
 	}, [pages]);
 
+	const flatData = useMemo(
+		() => objects.reduce((acc, curr) => [...acc, ...curr], [] as Array<TModel>),
+		[objects]
+	);
+
 	return {
 		hasNext,
 		pages: objects,
@@ -44,5 +49,6 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 		fetchNext,
 		hasNew,
 		applyUpdates,
+		flatData,
 	};
 };

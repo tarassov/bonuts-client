@@ -1,7 +1,7 @@
 import { TProfile } from "@/types/model";
 import { GetProfileApiResponse, GetProfilesApiResponse } from "../api/bonuts-api";
 
-const dataToProfile = (data: GetProfileApiResponse["data"]) => {
+export const dataToProfile = (data: GetProfileApiResponse["data"]) => {
 	if (!data) return undefined;
 	const res: TProfile = {
 		id: Number(data.id),

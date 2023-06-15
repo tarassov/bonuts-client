@@ -43,6 +43,7 @@ i18n.use(LanguageDetector).init({
 				admin: "админ",
 				Activate: "Активировать",
 				Active: "Активен",
+				activated: "в работе",
 				"Active requests": "Запросы в работе",
 				"Active donuts": "Активные пончики",
 				"Already used regards": "Уже использованные награды",
@@ -76,6 +77,8 @@ i18n.use(LanguageDetector).init({
 				"Closed requests": "Завершенные запросы",
 				Close: "Закрыть",
 				close: "закрыть",
+				closed: "закрытые",
+				"closed requests": "закрытые запросы",
 				Circles: "Круги",
 				created: "создан(а)",
 				create: "новый",
@@ -142,6 +145,7 @@ i18n.use(LanguageDetector).init({
 
 				// I
 				"Incoming requests": "Входящие запросы",
+				incoming: "входящие",
 				"in date": "дата приема",
 				"invitation added": "Приглашение отправлено",
 				// J
@@ -214,7 +218,9 @@ i18n.use(LanguageDetector).init({
 				"Recover password": "Восстановить пароль",
 				"Requests in progress": "Запросы в работе",
 				Refund: "Возврат",
+
 				Required: "Обязательное поле",
+				requests: "запросы",
 				Requests: "Запросы",
 				Register: "Зарегистрировать",
 				Remove: "Удалить",
@@ -224,6 +230,10 @@ i18n.use(LanguageDetector).init({
 				records_few: "записи",
 				records_many: "записей",
 				records_other: "записей",
+				"request has been refunded": "запрос отменен",
+				"request has been set as incoming": "запрос переведен во входящие",
+				"request has been set as close": "запрос переведен во закрытые",
+				"request has been set as active": "запрос переведен в работе",
 				"Refresh or activate": "Обновить или активировать",
 				Rollback: "Вернуть",
 				Roles: "Роли",
@@ -264,6 +274,7 @@ i18n.use(LanguageDetector).init({
 
 				// T
 				Tenant: "Команда",
+				to: "для",
 				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",

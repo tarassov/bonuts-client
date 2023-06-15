@@ -7,7 +7,7 @@ const mockResponse: GetProfileApiResponse = {
 		id: "1",
 		type: "profile",
 		attributes: {
-			active: undefined,
+			active: false,
 			admin: false,
 			department: null,
 			position: null,
@@ -25,6 +25,11 @@ const mockResponse: GetProfileApiResponse = {
 			user_avatar: { url: "", thumb: { url: "" }, preview: { url: "" } },
 			logo: undefined,
 			score_total: 0,
+			contact: "12312",
+			circles: [],
+			bio: "",
+			birthdate: "2023-01-01",
+			in_date: "2023-01-01",
 		},
 	},
 };

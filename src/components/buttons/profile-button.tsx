@@ -14,13 +14,11 @@ export const BntProfileButton: FC<{
 			startIcon={
 				<Avatar
 					src={profile.user_avatar?.thumb?.url || undefined}
-					alt={`${profile.user_name} ${profile.user_name}`}
+					alt={`${profile.name} ${profile.name}`}
 				/>
 			}
 		>
-			<Typography variant="body2">
-				{profile.user_name && <span>{profile.user_name}</span>}
-			</Typography>
+			<Typography variant="body2">{profile.name && <span>{profile.name}</span>}</Typography>
 		</BntTransparentButton>
 	);
 };

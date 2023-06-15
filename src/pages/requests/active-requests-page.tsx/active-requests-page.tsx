@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
+import { ActiveRequests } from "components/request/request-list/active-requests";
 
 export const ActiveRequestsPage: FC = () => {
-	return <Typography>ActiveRequestsPage</Typography>;
+	return <ActiveRequests />;
 };

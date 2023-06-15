@@ -1,3 +1,4 @@
-export const texts_i = {
-	in_date: "in date",
-};
+export enum texts_i {
+	in_date = "in date",
+	incoming = "incoming",
+}

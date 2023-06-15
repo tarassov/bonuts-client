@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
+import { ArchiveRequests } from "components/request/request-list/archive-requests";
 
 export const ClosedRequestsPage: FC = () => {
-	return <Typography>ClosedRequestsPage</Typography>;
+	return <ArchiveRequests />;
 };
