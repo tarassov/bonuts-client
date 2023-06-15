@@ -12,7 +12,7 @@ export const useStoreTableConfig = () => {
 	const storeTableColumns = useMemo(
 		() => [
 			columnHelper.accessor("name", {
-				cell: (info) => info.getValue(),
+				cell: (info) => <div className="pl-3">{info.getValue()}</div>,
 				header: translate(texts_n.name, { capitalize: true }),
 				footer: (info) => info.column.id,
 				enableSorting: true,
