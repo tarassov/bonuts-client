@@ -2,13 +2,18 @@ import { useMemo } from "react";
 import { createColumnHelper } from "@tanstack/react-table";
 import { RequestContentCell } from "components/request/request-list/request-content-cell";
 import { RequestActionsCell } from "components/request/request-list/request-actions-cell";
-import { emptyFunction } from "utils/empty-function";
 import { requestFilter } from "components/request/request-list/request-filter";
 import { texts_r } from "services/localization/texts/texts_r";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { emptyFunction } from "utils/empty-function";
 import { TRequest } from "@/types/model/request";
 
-export const useRequestTableConfig = () => {
+export const useRequestTableConfig = (args: {
+	onRollback?: (id: number) => void;
+	onCheck?: (id: number) => void;
+	hideActions?: boolean;
+}) => {
+	const { onRollback = emptyFunction, onCheck = emptyFunction, hideActions = false } = args;
 	const { translate } = useBntTranslate();
 	const columnHelper = createColumnHelper<TRequest & { actions?: any }>();
 	const tableConfig = useMemo(
@@ -27,8 +32,13 @@ export const useRequestTableConfig = () => {
 				filterFn: requestFilter,
 			}),
 			columnHelper.accessor("actions", {
-				cell: () => (
-					<RequestActionsCell onEditClick={emptyFunction} onRollbackClick={emptyFunction} />
+				cell: (info) => (
+					<RequestActionsCell
+						hideEdit={hideActions}
+						hideRollback={hideActions}
+						onCheckClick={() => onCheck(info.row.original.id)}
+						onRollbackClick={() => onRollback(info.row.original.id)}
+					/>
 				),
 				header: "",
 				enableSorting: false,

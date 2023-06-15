@@ -22,7 +22,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 
 	const authTenant = useAppSelector(authTenantSelector);
 
-	const { data, isLoading, isSuccess } = endpoint.useQuery(
+	const { data, isLoading, isSuccess, refetch } = endpoint.useQuery(
 		{
 			...args,
 			tenant: authTenant,
@@ -51,5 +51,6 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 		objects,
 		isLoading,
 		isSuccess,
+		refetch,
 	};
 };

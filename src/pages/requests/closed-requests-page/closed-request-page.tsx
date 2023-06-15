@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { BntRequestsList } from "components/request/request-list/request-list";
+import { ArchiveRequests } from "components/request/request-list/archive-requests";
 
 export const ClosedRequestsPage: FC = () => {
-	return <BntRequestsList />;
+	return <ArchiveRequests />;
 };
