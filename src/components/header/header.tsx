@@ -53,7 +53,10 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 					</Box>
 					<div>
 						<IconButton edge="start" color="inherit" aria-label="Avatar" onClick={handleClick}>
-							<Avatar alt={`${profile?.user_name}`} />
+							<Avatar
+								src={profile?.user_avatar?.thumb?.url || undefined}
+								alt={`${profile?.user_name}`}
+							/>
 						</IconButton>
 						<Menu
 							anchorEl={anchorEl}
