@@ -37,7 +37,7 @@ export const BntLayout = () => {
 			>
 				<BntStack direction="column" sx={{ height: "100%", p: 0, m: 0, overflow: "hidden" }}>
 					{auth.isAuthenticated && <BntDrawerHeader />}
-					<Box sx={{ flexGrow: 1, height: "100%", overflow: "scroll", p: 1 }}>
+					<Box sx={{ flexGrow: 1, height: "100%", overflowY: "auto", p: 1 }}>
 						<SwitchRoutes routes={routerRoutes} />
 					</Box>
 				</BntStack>
