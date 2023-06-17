@@ -24,7 +24,7 @@ export const BntEventList: FC = () => {
 	}, [isLoading]);
 
 	return (
-		<Box ml={2} mt={2}>
+		<Box ml={1} mr={1} mt={2}>
 			{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
 			<Grid container rowSpacing={{ xs: 2 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 				{pages.length > 0 &&

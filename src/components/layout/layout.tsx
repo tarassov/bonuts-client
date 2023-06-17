@@ -12,6 +12,7 @@ import { getRoutes } from "routes/get-routes";
 import SwitchRoutes from "../switch-routes/switch-routes";
 import BntSidebar from "../sidebar/sidebar";
 import { BTNHeader } from "../header/header";
+import { BntStack } from "@/shared/stack/stack";
 
 export const BntLayout = () => {
 	const { auth } = useAuth();
@@ -26,13 +27,20 @@ export const BntLayout = () => {
 	const routerRoutes = useMemo(() => getRoutes(routes, redirects), [routes, redirects]);
 
 	return (
-		<Box sx={{ display: "flex" }}>
+		<Box sx={{ display: "flex", height: "100vh" }}>
 			<CssBaseline />
 			{auth.isAuthenticated && <BTNHeader profile={profile} />}
 			{auth.isAuthenticated && <BntSidebar />}
-			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-				{auth.isAuthenticated && <BntDrawerHeader />}
-				<SwitchRoutes routes={routerRoutes} />
+			<Box
+				component="main"
+				sx={{ flexGrow: 1, maxWidth: "100%", height: "100%", overflow: "hidden" }}
+			>
+				<BntStack direction="column" sx={{ height: "100%", p: 0, m: 0, overflow: "hidden" }}>
+					{auth.isAuthenticated && <BntDrawerHeader />}
+					<Box sx={{ flexGrow: 1, height: "100%", overflow: "scroll", p: 1 }}>
+						<SwitchRoutes routes={routerRoutes} />
+					</Box>
+				</BntStack>
 			</Box>
 		</Box>
 	);
