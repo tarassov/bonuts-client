@@ -14,6 +14,7 @@ import { routesPath } from "routes/config/routes-path";
 import { texts_r } from "services/localization/texts/texts_r";
 import { texts_a, texts_c, texts_i } from "services/localization/texts";
 import { BntBreadcrumbs } from "shared/breadcrumb/breadcrump";
+import { BntStack } from "@/shared/stack/stack";
 
 export type BntRequestListProps = {
 	archive?: boolean;
@@ -80,11 +81,11 @@ export const RequestsList: FC<BntRequestListProps> = ({
 		},
 	];
 	return (
-		<>
-			<BntBreadcrumbs items={breadcrumbs} className="mb-3" />
-			<Box mt={2}>
+		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }}>
+			<BntBreadcrumbs items={breadcrumbs} />
+			<Box sx={{ flexGrow: 1, overflow: "scroll" }}>
 				<BntReactTable columns={tableConfig} data={requests} />
 			</Box>
-		</>
+		</BntStack>
 	);
 };

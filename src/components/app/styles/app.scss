@@ -1,25 +1,46 @@
-@import 'mixins';
+@import "mixins";
 
 body {
-  //background-color: darkgrey;
+	//background-color: darkgrey;
 }
 main {
-  max-width: 100%;
+	max-width: 100%;
 }
 
 .position-relative {
-  position: relative;
+	position: relative;
 }
 .position-sticky {
-  position: sticky;
-  top: 0;
-  align-self: flex-start;
+	position: sticky;
+	top: 0;
+	align-self: flex-start;
 }
 
 .width-100 {
-  width: 100%;
+	width: 100%;
 }
 
-.text-align-center{
-  text-align: center;
+.text-align-center {
+	text-align: center;
+}
+/* Scroll bar stylings */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: rgb(240, 240, 240);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(180, 180, 180);
+	border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(126, 126, 126);
 }

@@ -78,7 +78,6 @@ export const BntReactTablePure: FC<{
 	const numberOfRowsData = [5, 10, 20, 25, 50, 100];
 	return (
 		<TableContainer sx={{ boxShadow: "none" }} className={className}>
-			{/* <Box display="flex" justifyContent="space-between" alignItems="center" p={3}> */}
 			<Table>
 				<TableHead>
 					{table.getHeaderGroups().map((headerGroup, key) => (

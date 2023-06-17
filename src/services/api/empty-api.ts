@@ -4,6 +4,8 @@ import { API_URL, API_URL_LOCAL, USE_LOCAL_API } from "@/config";
 
 const { getValue } = useStorage();
 
+const formDataEndpoints = ["updateAvatars", "createDonut"];
+
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
 	baseUrl: USE_LOCAL_API ? API_URL_LOCAL : API_URL,
@@ -14,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 			headers.set("Authorization", `Bearer ${token}`);
 		}
 
-		if (endpoint === "updateAvatars") {
+		if (formDataEndpoints.includes(endpoint)) {
 			// headers.set("Content-Type", "multipart/form-data");
 			// headers.set("Accept", "*/*");
 		} else {

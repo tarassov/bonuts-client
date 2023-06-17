@@ -20,6 +20,9 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant, all: queryArg.all },
 			}),
 		}),
+		postDonuts: build.mutation<PostDonutsApiResponse, PostDonutsApiArg>({
+			query: (queryArg) => ({ url: `/donuts`, method: "POST", body: queryArg.body }),
+		}),
 		getDonutsById: build.query<GetDonutsByIdApiResponse, GetDonutsByIdApiArg>({
 			query: (queryArg) => ({ url: `/donuts/${queryArg.id}`, params: { tenant: queryArg.tenant } }),
 		}),
@@ -285,6 +288,64 @@ export type GetDonutsApiResponse = /** status 200 success */ {
 export type GetDonutsApiArg = {
 	tenant?: string;
 	all?: string;
+};
+export type PostDonutsApiResponse = /** status 200 success */ {
+	data: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			price: number;
+			id: number;
+			active: boolean;
+			logo: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			description: string;
+			liked: boolean;
+			likes: {
+				id: number;
+				profile_id: number;
+				created_at?: string;
+				likeable_type?: string;
+				likeable_id?: number;
+			}[];
+			has_remains: boolean;
+			on_stock: number;
+			supply_days: number;
+			expiration_date: string;
+			created_at: string;
+			comments: {
+				id: number;
+				content: string;
+				liked?: boolean;
+				likes: number;
+				public: boolean;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				user_name: string;
+				date_string: string;
+			}[];
+		};
+	}[];
+};
+export type PostDonutsApiArg = {
+	body: {
+		price: number;
+		name: string;
+		tenant: string;
+		logo: any;
+	};
 };
 export type GetDonutsByIdApiResponse = /** status 200 sends donut */ {
 	data?: {
@@ -1685,6 +1746,7 @@ export const {
 	usePostAvatarsMutation,
 	useGetCirclesQuery,
 	useGetDonutsQuery,
+	usePostDonutsMutation,
 	useGetDonutsByIdQuery,
 	useGetEventsQuery,
 	usePutEventsByIdMutation,

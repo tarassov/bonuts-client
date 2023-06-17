@@ -27,9 +27,11 @@ export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 		>
 			<ListItemButton
 				sx={{
-					minHeight: 48,
+					minHeight: 24,
 					justifyContent: showFullName ? "initial" : "center",
 					px: 2.5,
+					pt: 0.5,
+					pb: 0.5,
 				}}
 				onClick={onRouteClick}
 			>
