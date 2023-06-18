@@ -7,6 +7,7 @@ export const BntReactTable = styled(
 	{}
 )(({ theme }) => {
 	return {
+		overflowX: "unset",
 		"& table": {
 			border: 0,
 		},

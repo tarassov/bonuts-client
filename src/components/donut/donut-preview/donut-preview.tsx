@@ -3,12 +3,12 @@ import { useLoader } from "shared/loader/hooks/use-loader";
 import { useEffect } from "react";
 import { Modules } from "constants/modules";
 import { DonutSmall, ShoppingBag } from "@mui/icons-material";
-import { BntBreadcrumbs } from "shared/breadcrumb/breadcrump";
+import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
 import { BntCardBody } from "shared/card/card-body";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
 import { useDonutLogic } from "logic/hooks/donut/use-donut-logic";
-import { TBntBreadcrumpItem } from "shared/types/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
 import { Dictionary } from "constants/dictionary";
 import { BntCard } from "shared/card/card";
 import { ImagePreview } from "shared/image/image-preview";
@@ -34,7 +34,7 @@ export const BntDonutPreview = () => {
 	const onClick = () => {
 		ImageModal.show({ url: donut?.logo?.url || "" });
 	};
-	const breadcrumbs: Array<TBntBreadcrumpItem> = [
+	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: "shop",
 			link: "/donuts",

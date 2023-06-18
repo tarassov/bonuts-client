@@ -1,12 +1,12 @@
-export type TBntBreadcrumpItem = {
+export type TBntBreadcrumbItem = {
 	link?: string;
-	onClick?: (item: TBntBreadcrumpItem) => void;
+	onClick?: (item: TBntBreadcrumbItem) => void;
 	label: string;
 	icon?: JSX.Element;
 	key: string;
 };
 
-export type TBntBreadcrump = {
-	items: Array<TBntBreadcrumpItem>;
+export type TBntBreadcrumb = {
+	items: Array<TBntBreadcrumbItem>;
 	className?: string;
 };

@@ -42,6 +42,7 @@ export const DonutCardStyled = styled(
 			flexDirection: "column",
 			gap: "12px",
 			alignItems: "center",
+			textAlign: "center",
 		},
 		[cl(DONUT_CARD_CLASSES.cardHeaderHover)]: {
 			display: "flex",

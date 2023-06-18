@@ -6,14 +6,14 @@ import { useRequestListLogic } from "logic/hooks/request/use-request-list-logic"
 import { BntReactTable } from "shared/react-table/bnt-react-table";
 import { useRequestTableConfig } from "components/request/request-list/use-request-table-config";
 import { emptyFunction } from "utils/empty-function";
-import { TBntBreadcrumpItem } from "shared/types/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
 
 import { ArchiveOutlined, ForwardToInboxOutlined, InboxOutlined } from "@mui/icons-material";
 
 import { routesPath } from "routes/config/routes-path";
 import { texts_r } from "services/localization/texts/texts_r";
 import { texts_a, texts_c, texts_i } from "services/localization/texts";
-import { BntBreadcrumbs } from "shared/breadcrumb/breadcrump";
+import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
 import { BntStack } from "@/shared/stack/stack";
 
 export type BntRequestListProps = {
@@ -67,7 +67,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 	) : (
 		<ForwardToInboxOutlined color="info" />
 	);
-	const breadcrumbs: Array<TBntBreadcrumpItem> = [
+	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: texts_r.requests,
 			link: routesPath.Requests,
@@ -83,7 +83,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 	return (
 		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }}>
 			<BntBreadcrumbs items={breadcrumbs} />
-			<Box sx={{ flexGrow: 1, overflow: "scroll" }}>
+			<Box sx={{ flexGrow: 1, overflowY: "scroll" }}>
 				<BntReactTable columns={tableConfig} data={requests} />
 			</Box>
 		</BntStack>
