@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 export type TabPanelProps = {
 	children?: React.ReactNode;
@@ -16,11 +16,7 @@ export const BntTabPanel: FC<TabPanelProps> = (props) => {
 			aria-labelledby={`bnt-tab-${index}`}
 			{...other}
 		>
-			{value === index && (
-				<Box>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
+			{value === index && <Box>{children}</Box>}
 		</div>
 	);
 };

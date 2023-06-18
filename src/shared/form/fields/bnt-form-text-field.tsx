@@ -27,7 +27,7 @@ export const BntFormTextField = (props: {
 			stringLabel={label}
 			type={type}
 			value={value}
-			multiline={type !== TFieldType.password}
+			multiline={type === TFieldType.text}
 			rows={rows}
 			required={required}
 			sx={{ width: "100%" }}

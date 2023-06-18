@@ -13,9 +13,10 @@ import { TDonut } from "@/types/model";
 
 export type StoreManagerPureProps = {
 	donuts?: Array<TDonut>;
+	onCreateClick?: VoidFunction;
 };
 
-export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts }) => {
+export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateClick }) => {
 	const { storeTableColumns } = useStoreTableConfig();
 	const { translate } = useBntTranslate();
 	const [value, setValue] = useState(0);
@@ -30,7 +31,7 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts }) => {
 	return (
 		<div>
 			<Stack sx={{ width: "100%" }} direction="row" justifyContent="flex-end">
-				<BntTransparentButton color="primary">
+				<BntTransparentButton color="primary" onClick={onCreateClick}>
 					<AddOutlined />
 					{translate(texts_c.create)}
 				</BntTransparentButton>

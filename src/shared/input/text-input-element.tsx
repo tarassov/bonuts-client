@@ -27,6 +27,7 @@ export const BntTextInputElement: FC<
 			InputProps={inputProps}
 			value={value}
 			parseError={(error: FieldError) => translate(error.message)}
+			variant="standard"
 		/>
 	);
 };

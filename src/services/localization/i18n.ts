@@ -114,6 +114,8 @@ i18n.use(LanguageDetector).init({
 				Domain: "Домен",
 				"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file":
 					"Перетащите сюда файл или кликните, для выбора",
+				"Drag and drop an image here or click to select a file":
+					"Перетащите сюда файл или кликните, для выбора",
 
 				// E
 				Edit: "Редактировать",

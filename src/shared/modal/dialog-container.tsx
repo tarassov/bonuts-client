@@ -24,6 +24,7 @@ export const BntDialogContainer = () => {
 						handleClose={() => handleClose(modal.modalKey)}
 						modal={modal}
 						open={Boolean(modal.modalKey)}
+						preventCloseOnBackDropClick={modal.preventCloseOnBackDropClick}
 					>
 						{modal.hasTopMenu && !fullScreen ? (
 							<BntStack className="pr-3" direction="row" justifyContent="flex-end">

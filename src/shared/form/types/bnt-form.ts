@@ -7,11 +7,21 @@ export enum TFieldSize {
 	lg = "lg",
 }
 
+export type TSizeProps = {
+	xs?: number;
+	sm?: number;
+	md?: number;
+	lg?: number;
+};
+
+export type TFieldGroup = { id: number; gap?: number } & TSizeProps;
+
 export enum TFieldType {
 	password = "password",
 	tags = "tags",
 	imageUpload = "imageUpload",
 	text = "text",
+	number = "number",
 	textarea = "textarea",
 	date = "date",
 }
@@ -31,13 +41,9 @@ export type TFormValue =
 	| undefined;
 export type TFormFieldSourceItem = { key: string | number; label?: string };
 export type TFormFieldSource = Array<TFormFieldSourceItem>;
-export type TFormField = {
+export type TFormField = TSizeProps & {
 	name: string;
 	label: string;
-	xs?: number;
-	sm?: number;
-	md?: number;
-	lg?: number;
 	size: TFieldSize;
 	source?: TFormFieldSource;
 	disabled?: boolean;
@@ -51,6 +57,7 @@ export type TFormField = {
 	loading?: boolean;
 	convertSourceValue?: (value: any) => string | number | Array<string | number>;
 	valueToOption?: (value: any) => TFormFieldSourceItem;
+	group?: number;
 };
 
 export type RegisterFunc = (
@@ -63,6 +70,7 @@ export type TFormProps = {
 	initialValues?: Record<string, any>;
 	formId: string;
 	fields?: Array<TFormField>;
+	groups?: Array<TFieldGroup>;
 	submitCaption?: string;
 	onLoad?: () => void;
 	onSubmit?: (

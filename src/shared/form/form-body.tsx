@@ -7,6 +7,7 @@ import { FC } from "react";
 import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useFormContext } from "react-hook-form";
+import { BntFormGroups } from "shared/form/bnt-form-groups";
 
 export const BntFormBody: FC<
 	TFormProps & {
@@ -17,6 +18,7 @@ export const BntFormBody: FC<
 	}
 > = ({
 	fields,
+	groups,
 	hasInitial,
 	initialValues,
 	formId,
@@ -41,7 +43,11 @@ export const BntFormBody: FC<
 				<BntFormContextProvider onChange={onChange} values={values} initialValues={initialValues}>
 					<>
 						{children}
-						<BntFormFieldList formId={formId} hasInitial={hasInitial} fields={fields} />
+						{!groups?.length ? (
+							<BntFormFieldList formId={formId} hasInitial={hasInitial} fields={fields} />
+						) : (
+							<BntFormGroups formId={formId} groups={groups} fields={fields} />
+						)}
 					</>
 				</BntFormContextProvider>
 			</Grid>

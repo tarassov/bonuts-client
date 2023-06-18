@@ -27,11 +27,7 @@ export const BntDialogProvider: FC<{
 	const [modals, setModal] = useState<ModalState | null>(null);
 
 	const showDialog = useCallback(
-		<T extends keyof typeof config.items>(
-			name: T,
-			data: ModalType[T],
-			key?: string
-		) => {
+		<T extends keyof typeof config.items>(name: T, data: ModalType[T], key?: string) => {
 			const modalKey = key || _uniqueId("modal-");
 			setModal((prev) => {
 				return {
@@ -40,9 +36,9 @@ export const BntDialogProvider: FC<{
 						name,
 						data,
 						modalKey,
-						renderItem:
-							config.items[name]?.renderItem || ((d: T) => <div>{d}</div>),
+						renderItem: config.items[name]?.renderItem || ((d: T) => <div>{d}</div>),
 						hasTopMenu: config.items[name]?.hasTopMenu || false,
+						preventCloseOnBackDropClick: config.items[name]?.preventCloseOnBackDropClick || false,
 					},
 				};
 			});
@@ -60,10 +56,7 @@ export const BntDialogProvider: FC<{
 		});
 	}, []);
 
-	const modalsArray = useMemo(
-		() => (modals ? Object.values(modals) : []),
-		[modals]
-	);
+	const modalsArray = useMemo(() => (modals ? Object.values(modals) : []), [modals]);
 
 	return (
 		<BntDialogContext.Provider value={showDialog}>

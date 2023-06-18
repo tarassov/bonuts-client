@@ -9,9 +9,7 @@ type ContextType = {
 
 export const BntDialogContext = createContext<ContextType>(() => {});
 
-export const BntDialogCloseContext = createContext<{ (key: string): void }>(
-	() => {}
-);
+export const BntDialogCloseContext = createContext<{ (key: string): void }>(() => {});
 export const BntDialogValueContext = createContext<
 	Array<{
 		name: keyof typeof modalConfig.items;
@@ -19,5 +17,6 @@ export const BntDialogValueContext = createContext<
 		modalKey: string;
 		renderItem: (d: any) => ReactNode | Array<ReactNode>;
 		hasTopMenu: boolean;
+		preventCloseOnBackDropClick?: boolean;
 	}>
 >([]);

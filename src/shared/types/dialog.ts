@@ -20,12 +20,13 @@ export type TBntModal<T> = {
 	onSuccess?: (values: Record<string, any>) => void;
 	onCancel?: () => void;
 	hasTopMenu?: boolean;
+	preventCloseOnBackDropClick?: boolean;
 };
 
 export type TBntModalItems<T> = {
 	[name in keyof T]: Pick<
 		TBntModal<T[name]>,
-		"renderItem" | "reposeType" | "hasTopMenu"
+		"renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick"
 	>;
 };
 
