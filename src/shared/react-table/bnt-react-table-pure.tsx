@@ -44,7 +44,8 @@ export const BntReactTablePure: FC<{
 	columns: Array<any>;
 	data: Array<any>;
 	className?: string;
-}> = ({ columns, data, className }) => {
+	pageSize?: number;
+}> = ({ columns, data, className, pageSize = 5 }) => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
 	const [sorting, setSorting] = useState<SortingState>([]);
@@ -55,6 +56,7 @@ export const BntReactTablePure: FC<{
 		filterFns: {
 			fuzzy: fuzzyFilter,
 		},
+		initialState: { pagination: { pageSize, pageIndex: 0 } },
 		state: {
 			columnFilters,
 			globalFilter,
