@@ -8,6 +8,7 @@ import { BntStack } from "shared/stack/stack";
 import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
 import { texts_o } from "services/localization/texts/texts_o";
 import classNames from "classnames";
+import { DEFAULT_DONUT_IMAGE } from "constants/images";
 import { TDonut } from "@/types/model";
 
 export const DonutCardPure: FC<{
@@ -30,7 +31,7 @@ export const DonutCardPure: FC<{
 					>
 						<div className={DONUT_CARD_CLASSES.cardHeaderHover}>
 							<img
-								src={logo?.thumb?.url || undefined}
+								src={logo?.thumb?.url || DEFAULT_DONUT_IMAGE}
 								alt="..."
 								className={DONUT_CARD_CLASSES.logo}
 							/>

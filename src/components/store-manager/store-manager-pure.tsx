@@ -5,10 +5,7 @@ import { BntTabs } from "shared/tab/bnt-tabs";
 import { BntTab } from "shared/tab/bnt-tab";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntTabPanel } from "shared/tab/bnt-tab-panel";
-import { BntTransparentButton } from "shared/buttons/transparent-button";
-import { AddOutlined } from "@mui/icons-material";
-import { texts_c } from "services/localization/texts";
-import { Stack } from "@mui/material";
+import { emptyFunction } from "utils/empty-function";
 import { TDonut } from "@/types/model";
 
 export type StoreManagerPureProps = {
@@ -17,7 +14,11 @@ export type StoreManagerPureProps = {
 };
 
 export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateClick }) => {
-	const { storeTableColumns } = useStoreTableConfig();
+	const { storeTableColumns } = useStoreTableConfig(onCreateClick);
+	const { storeTableColumns: storeTableColumnsNotActive } = useStoreTableConfig(
+		emptyFunction,
+		true
+	);
 	const { translate } = useBntTranslate();
 	const [value, setValue] = useState(0);
 
@@ -30,12 +31,6 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateCl
 	if (!donuts) return null;
 	return (
 		<div>
-			<Stack sx={{ width: "100%" }} direction="row" justifyContent="flex-end">
-				<BntTransparentButton color="primary" onClick={onCreateClick}>
-					<AddOutlined />
-					{translate(texts_c.create)}
-				</BntTransparentButton>
-			</Stack>
 			<BntTabs
 				value={value}
 				onChange={handleChange}
@@ -51,7 +46,7 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateCl
 				<BntReactTable columns={storeTableColumns} data={active} />
 			</BntTabPanel>
 			<BntTabPanel value={value} index={1}>
-				<BntReactTable columns={storeTableColumns} data={notActive} />
+				<BntReactTable columns={storeTableColumnsNotActive} data={notActive} />
 			</BntTabPanel>
 		</div>
 	);

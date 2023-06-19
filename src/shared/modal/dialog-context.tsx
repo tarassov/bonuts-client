@@ -1,5 +1,6 @@
 import { modalConfig, ModalType } from "config/modal-config";
 import { createContext, ReactNode } from "react";
+import { TModalProps } from "shared/types/dialog";
 
 type ModalNamesType = keyof typeof modalConfig.items;
 
@@ -15,8 +16,9 @@ export const BntDialogValueContext = createContext<
 		name: keyof typeof modalConfig.items;
 		data: any;
 		modalKey: string;
-		renderItem: (d: any) => ReactNode | Array<ReactNode>;
+		renderItem: (d: any, props?: TModalProps) => ReactNode | Array<ReactNode>;
 		hasTopMenu: boolean;
+		title: string;
 		preventCloseOnBackDropClick?: boolean;
 	}>
 >([]);

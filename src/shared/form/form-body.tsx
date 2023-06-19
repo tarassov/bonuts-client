@@ -19,6 +19,7 @@ export const BntFormBody: FC<
 > = ({
 	fields,
 	groups,
+	groupGap,
 	hasInitial,
 	initialValues,
 	formId,
@@ -46,7 +47,7 @@ export const BntFormBody: FC<
 						{!groups?.length ? (
 							<BntFormFieldList formId={formId} hasInitial={hasInitial} fields={fields} />
 						) : (
-							<BntFormGroups formId={formId} groups={groups} fields={fields} />
+							<BntFormGroups groupGap={groupGap} formId={formId} groups={groups} fields={fields} />
 						)}
 					</>
 				</BntFormContextProvider>

@@ -1,14 +1,17 @@
-import { TFormProps } from "shared/form/types/bnt-form";
+import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { BntForm } from "shared/form/bnt-form";
 import { useCreateDonutFormFields } from "components/donut/donut-create-form/hooks/use-create-donut-form-fields";
+import { FC } from "react";
 
-export const DonutCreateForm = () => {
-	const { fields } = useCreateDonutFormFields();
-	const formProps: TFormProps = { fields, formId: "create-donut" };
+export const DonutCreateForm: FC<{
+	onSubmit: (values: Record<string, TFormValue>) => void;
+}> = ({ onSubmit }) => {
+	const { fields, groups } = useCreateDonutFormFields();
+	const formProps: TFormProps = { fields, formId: "create-donut", groups, groupGap: 0 };
 
-	const onSubmit = (values: any) => {
-		return Promise.resolve(values);
+	const handleSubmit = (values: Record<string, TFormValue>) => {
+		onSubmit(values);
 	};
 
-	return <BntForm {...formProps} onSubmit={onSubmit} />;
+	return <BntForm {...formProps} onSubmit={handleSubmit} />;
 };

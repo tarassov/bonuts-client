@@ -17,7 +17,7 @@ export const ChildPathMenuPure: FC<ChildPathMenuPureProps> = ({ routes, classNam
 		>
 			{routes.map((route) => {
 				return (
-					<Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={route.index}>
+					<Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={route.path}>
 						<MenuCard route={route} />
 					</Grid>
 				);

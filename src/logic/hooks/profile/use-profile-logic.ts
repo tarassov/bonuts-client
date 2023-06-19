@@ -26,15 +26,12 @@ export const useProfileLogic = () => {
 	}, [data]);
 
 	const updateProfile = async (profile: TProfile, values: Record<string, any>) => {
-		if (profile.id && authTenant) {
-			const res = await putProfile({
-				id: profile?.id.toString(),
-				body: { ...values, tenant: authTenant },
-			});
-			refetch();
-			return res;
-		}
-		return undefined;
+		const res = await putProfile({
+			id: profile?.id.toString(),
+			body: { ...values, tenant: authTenant },
+		});
+		refetch();
+		return res;
 	};
 
 	return { profile: authProfile, isLoading, error, updateProfile, authTenant };

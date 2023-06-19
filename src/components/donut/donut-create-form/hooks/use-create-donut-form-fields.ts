@@ -1,15 +1,28 @@
-import { TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
 
 export const useCreateDonutFormFields = () => {
+	const groups: Array<TFieldGroup> = [
+		{
+			id: 1,
+			md: 6,
+			xs: 12,
+		},
+		{
+			id: 2,
+			md: 6,
+			xs: 12,
+		},
+	];
 	const fields: Array<TFormField> = [
 		{
 			image: true,
 			size: TFieldSize.xs,
-			name: "user_avatar",
-			label: "Avatar",
+			name: "logo",
+			label: "Logo",
 			type: TFieldType.imageUpload,
 			xs: 12,
-			md: 6,
+			md: 12,
+			group: 1,
 		},
 		{
 			image: false,
@@ -17,8 +30,8 @@ export const useCreateDonutFormFields = () => {
 			name: "name",
 			label: "name",
 			xs: 12,
-			md: 6,
 			required: true,
+			group: 2,
 		},
 		{
 			disabled: false,
@@ -27,9 +40,11 @@ export const useCreateDonutFormFields = () => {
 			size: TFieldSize.xs,
 			name: "price",
 			label: "price",
+			required: true,
 			xs: 12,
+			group: 2,
 		},
 	];
 
-	return { fields };
+	return { fields, groups };
 };

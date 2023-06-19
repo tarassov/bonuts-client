@@ -7,6 +7,8 @@ import {
 	BntDialogValueContext,
 } from "shared/modal/dialog-context";
 import { BntDialogContainer } from "shared/modal/dialog-container";
+import { isFunction } from "lodash";
+import { CommonStrings } from "constants/dictionary";
 import { TBntModalConfig } from "../types/dialog";
 
 export const BntDialogProvider: FC<{
@@ -21,6 +23,7 @@ export const BntDialogProvider: FC<{
 			modalKey: string;
 			renderItem: (d: any) => ReactNode | Array<ReactNode>;
 			hasTopMenu: boolean;
+			title: string;
 		}
 	>;
 
@@ -29,6 +32,8 @@ export const BntDialogProvider: FC<{
 	const showDialog = useCallback(
 		<T extends keyof typeof config.items>(name: T, data: ModalType[T], key?: string) => {
 			const modalKey = key || _uniqueId("modal-");
+			const { title } = config.items[name];
+			const modalTitle = isFunction(title) ? title(data as never) : title;
 			setModal((prev) => {
 				return {
 					...prev,
@@ -36,6 +41,7 @@ export const BntDialogProvider: FC<{
 						name,
 						data,
 						modalKey,
+						title: modalTitle || CommonStrings.EMPTY_STRING,
 						renderItem: config.items[name]?.renderItem || ((d: T) => <div>{d}</div>),
 						hasTopMenu: config.items[name]?.hasTopMenu || false,
 						preventCloseOnBackDropClick: config.items[name]?.preventCloseOnBackDropClick || false,
