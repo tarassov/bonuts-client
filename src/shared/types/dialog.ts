@@ -11,8 +11,12 @@ export enum BntDialogResponse {
 
 export type TBntModalData = Record<string, string | number | undefined | null>;
 
+export type TModalProps = {
+	close?: VoidFunction;
+};
+
 export type TBntModal<T> = {
-	renderItem: (data: TBntModal<T>) => ReactNode | Array<ReactNode>;
+	renderItem: (data: TBntModal<T>, props?: TModalProps) => ReactNode | Array<ReactNode>;
 	isOpen?: boolean;
 	data: T;
 	modalKey: string;
@@ -20,13 +24,14 @@ export type TBntModal<T> = {
 	onSuccess?: (values: Record<string, any>) => void;
 	onCancel?: () => void;
 	hasTopMenu?: boolean;
+	title?: string | ((data: T) => string);
 	preventCloseOnBackDropClick?: boolean;
 };
 
 export type TBntModalItems<T> = {
 	[name in keyof T]: Pick<
 		TBntModal<T[name]>,
-		"renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick"
+		"renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title"
 	>;
 };
 

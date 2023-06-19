@@ -8,6 +8,8 @@ import { TFormProps, TFormValue } from "./types/bnt-form";
 
 export const BntForm: FC<TFormProps> = ({
 	fields,
+	groups,
+	groupGap,
 	hasInitial,
 	initialValues,
 	formId,
@@ -63,6 +65,8 @@ export const BntForm: FC<TFormProps> = ({
 					<FormContainer defaultValues={initialValues} onSuccess={onSubmitForm}>
 						<BntFormBody
 							fields={fields}
+							groups={groups}
+							groupGap={groupGap}
 							values={values}
 							onChange={onChange}
 							formId={formId}

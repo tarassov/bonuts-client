@@ -1,12 +1,15 @@
 import { useMemo } from "react";
-import { texts_n } from "services/localization/texts";
+import { texts_c, texts_n } from "services/localization/texts";
 import { texts_p } from "services/localization/texts/texts_p";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { StoreActionCell } from "components/store-manager/store-action-cell";
+import { BntRoundButton } from "shared/buttons/round-button";
+import { AddOutlined } from "@mui/icons-material";
+import { BntStack } from "shared/stack/stack";
 import { TDonut } from "@/types/model";
 
-export const useStoreTableConfig = () => {
+export const useStoreTableConfig = (onCreateClick?: VoidFunction, hideCreateButton?: boolean) => {
 	const columnHelper = createColumnHelper<TDonut & { actions: any }>();
 	const { translate } = useBntTranslate();
 	const storeTableColumns = useMemo(
@@ -25,7 +28,18 @@ export const useStoreTableConfig = () => {
 			}),
 			columnHelper.accessor("actions", {
 				cell: (info) => <StoreActionCell donutId={info.row.original.id} />,
-				header: "",
+				header: () => (
+					<>
+						{!hideCreateButton ? (
+							<BntStack sx={{ width: "100%" }} direction="row" justifyContent="center">
+								<BntRoundButton variant="contained" color="primary" onClick={onCreateClick}>
+									<AddOutlined />
+									{translate(texts_c.create)}
+								</BntRoundButton>
+							</BntStack>
+						) : null}
+					</>
+				),
 				enableSorting: false,
 				enableColumnFilter: false,
 			}),

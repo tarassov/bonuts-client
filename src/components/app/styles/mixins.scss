@@ -45,7 +45,7 @@ $k: 4;
   .pb-#{$i} { @include pb-mixin($i); }
   .pt-#{$i} { @include pt-mixin($i); }
   .pr-#{$i} { @include pr-mixin($i); }
-  .pl-#{$i} { @include p-mixin($i); }
+  .pl-#{$i} { @include pl-mixin($i); }
   .p-#{$i} { @include p-mixin($i); }
   .right-#{$i}{ @include right-mixin($i); }
 }

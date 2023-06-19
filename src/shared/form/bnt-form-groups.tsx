@@ -4,14 +4,14 @@ import { BntFormFieldList } from "shared/form/bnt-form-field-list";
 import { Grid } from "@mui/material";
 
 export const BntFormGroups: FC<
-	Pick<TFormProps, "fields" | "formId" | "hasInitial"> & { groups: Array<TFieldGroup> }
-> = ({ fields, formId, hasInitial, groups }) => {
+	Pick<TFormProps, "fields" | "formId" | "hasInitial" | "groupGap"> & { groups: Array<TFieldGroup> }
+> = ({ fields, formId, hasInitial, groups, groupGap }) => {
 	return (
-		<Grid container>
+		<Grid container gap={groupGap}>
 			{groups.map((group) => {
 				const { xs, sm, lg, md, gap, id, ...rest } = group;
 				return (
-					<Grid item xs={xs} sm={sm} lg={lg} md={md} gap={gap} {...rest} key={id}>
+					<Grid item xs={xs} sm={sm} lg={lg} md={md} gap={gap} {...rest} key={id} sx={{ pl: 1 }}>
 						<BntFormFieldList
 							formId={formId}
 							hasInitial={hasInitial}

@@ -12,7 +12,7 @@ const getPaginator = (meta: FetchBaseQueryMeta | undefined): TPaginator => {
 };
 // noinspection TypeScriptValidateJSTypes
 export const extendedApi = bonutsApiOverride.enhanceEndpoints({
-	addTagTypes: ["Event"],
+	addTagTypes: ["Event", "Donuts"],
 	endpoints: {
 		getEvents: {
 			providesTags: ["Event"],
@@ -20,6 +20,12 @@ export const extendedApi = bonutsApiOverride.enhanceEndpoints({
 				response.paginator = getPaginator(meta);
 				return response;
 			},
+		},
+		getDonuts: {
+			providesTags: ["Donuts"],
+		},
+		postDonuts: {
+			invalidatesTags: ["Donuts"],
 		},
 		putEventsById: {
 			// invalidatesTags: ["Event"],
@@ -30,10 +36,10 @@ export const extendedApi = bonutsApiOverride.enhanceEndpoints({
 			) {
 				const response = await queryFulfilled;
 				// eslint-disable-next-line no-restricted-syntax
-				for (const {
-					endpointName,
-					originalArgs,
-				} of extendedApi.util.selectInvalidatedBy(getState(), ["Event"])) {
+				for (const { endpointName, originalArgs } of extendedApi.util.selectInvalidatedBy(
+					getState(),
+					["Event"]
+				)) {
 					// we only want to update `getEvents` here
 					// eslint-disable-next-line no-continue
 					if (endpointName !== "getEvents") continue;

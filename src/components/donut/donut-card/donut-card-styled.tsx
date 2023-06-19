@@ -14,6 +14,7 @@ export const DonutCardStyled = styled(
 		margin: "auto",
 		"& img": {
 			boxShadow: "0px 0px 48px rgba(255, 255, 255, 0.8)",
+			maxHeight: "100px",
 		},
 		"&:hover": {
 			outline: "2px solid",

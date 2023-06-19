@@ -81,7 +81,7 @@ i18n.use(LanguageDetector).init({
 				"closed requests": "закрытые запросы",
 				Circles: "Круги",
 				created: "создан(а)",
-				create: "новый",
+				create: "создать",
 
 				// D
 				"Date of birth": "Дата рождения",
@@ -177,6 +177,7 @@ i18n.use(LanguageDetector).init({
 				"name has been taken": "Имя уже занято",
 				name: "название",
 				"New item": "Новый элемент",
+				"new donut": "Новый пончик",
 				newest: "самые новые",
 				Next: "Вперед",
 				next: "вперед",

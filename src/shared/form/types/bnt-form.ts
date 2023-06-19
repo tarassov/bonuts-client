@@ -71,11 +71,12 @@ export type TFormProps = {
 	formId: string;
 	fields?: Array<TFormField>;
 	groups?: Array<TFieldGroup>;
+	groupGap?: number;
 	submitCaption?: string;
 	onLoad?: () => void;
 	onSubmit?: (
 		values: Record<string, any>
-	) => Promise<{ data?: any; error?: any } | undefined> | undefined;
+	) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
 	locale?: Locale;
