@@ -6,10 +6,7 @@ import { TFormField, TFormImageValue, TFormValue } from "../types/bnt-form";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { BntFormFileInput } from "../bnt-form-file-input";
 
-export const BntImageUpload = (props: {
-	field: TFormField;
-	value: TFormValue;
-}) => {
+export const BntImageUpload = (props: { field: TFormField; value: TFormValue }) => {
 	const { field, value } = props;
 	const { name } = field;
 	const { onChange } = useBntForm();
@@ -76,9 +73,7 @@ export const BntImageUpload = (props: {
 					onDragOver={handleDragOver}
 					onDrop={handleDrop}
 				>
-					<p>
-						{translate("Drag and drop an image here or click to select a file")}
-					</p>
+					<p>{translate("Drag and drop an image here or click to select a file")}</p>
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
 				</Box>
 			)}

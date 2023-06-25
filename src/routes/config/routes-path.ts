@@ -7,6 +7,7 @@ export const routesPath: Record<BntRoutes, string> = {
 	ClosedRequests: "closed_request",
 	Dashboard: "/dashboard",
 	DonutPreview: "/d/:id",
+	DonutEdit: "/donut_edit/:id",
 	Donuts: "/donuts",
 	MyRequests: "/my_requests",
 	IncomingRequests: "/incoming_requests",

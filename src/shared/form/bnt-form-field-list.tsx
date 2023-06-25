@@ -9,7 +9,6 @@ export const BntFormFieldList: FC<Pick<TFormProps, "fields" | "formId" | "hasIni
 	formId,
 }) => {
 	const { values } = useBntForm();
-
 	return (
 		<>
 			{fields &&

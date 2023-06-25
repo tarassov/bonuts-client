@@ -9,14 +9,29 @@ export const BntFormGroups: FC<
 	return (
 		<Grid container gap={groupGap}>
 			{groups.map((group) => {
-				const { xs, sm, lg, md, gap, id, ...rest } = group;
+				const { xs, sm, lg, md, gap, id, padding, ...rest } = group;
+
 				return (
-					<Grid item xs={xs} sm={sm} lg={lg} md={md} gap={gap} {...rest} key={id} sx={{ pl: 1 }}>
-						<BntFormFieldList
-							formId={formId}
-							hasInitial={hasInitial}
-							fields={fields?.filter((x) => x.group === id || (x.group === undefined && id === 0))}
-						/>
+					<Grid
+						item
+						xs={xs}
+						sm={sm}
+						lg={lg}
+						md={md}
+						gap={gap}
+						{...rest}
+						key={id}
+						sx={{ pl: 2, ...padding }}
+					>
+						<Grid container spacing={2}>
+							<BntFormFieldList
+								formId={formId}
+								hasInitial={hasInitial}
+								fields={fields?.filter(
+									(x) => x.group === id || (x.group === undefined && id === 0)
+								)}
+							/>
+						</Grid>
 					</Grid>
 				);
 			})}

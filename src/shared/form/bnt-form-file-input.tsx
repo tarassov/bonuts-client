@@ -17,12 +17,7 @@ export const BntFormFileInput: FC<{
 	};
 
 	return (
-		<Stack
-			direction="row"
-			justifyContent="center"
-			alignItems="center"
-			spacing={2}
-		>
+		<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
 			<input
 				accept="image/*"
 				style={{ display: "none" }}
@@ -35,8 +30,8 @@ export const BntFormFileInput: FC<{
 			/>
 			<label htmlFor="raised-button-file">
 				<BntTransparentButton
-					sx={{ component: "span" }}
-					variant="text"
+					sx={{ component: "span", mt: 1 }}
+					variant="outlined"
 					color="primary"
 					onClick={handleButtonClick}
 				>

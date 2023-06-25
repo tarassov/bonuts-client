@@ -25,6 +25,7 @@ import { TenantPage } from "pages/tenant-page/tenant-page";
 import { PluginsPage } from "pages/plugins-page/plugins-page";
 import { SchedulersPage } from "pages/schedulers-page/schedulers-page";
 import { EmployeePreviewPage } from "pages/employee/employee-preview-page";
+import { DonutEditPage } from "pages/donut/donut-edit-page";
 import {
 	AccountOperationsPage,
 	ActiveRequestsPage,
@@ -74,6 +75,13 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		authenticated: true,
 		hideInMenu: true,
 		component: <DonutPreviewPage />,
+	},
+	DonutEdit: {
+		path: routesPath[BntRoutes.DonutEdit],
+		anonymous: false,
+		authenticated: true,
+		hideInMenu: true,
+		component: <DonutEditPage />,
 	},
 	Donuts: {
 		path: routesPath[BntRoutes.Donuts],

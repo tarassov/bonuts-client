@@ -14,7 +14,17 @@ export type TSizeProps = {
 	lg?: number;
 };
 
-export type TFieldGroup = { id: number; gap?: number } & TSizeProps;
+export type TPaddingProps = {
+	padding?: {
+		p?: number;
+		pt?: number;
+		pb?: number;
+		pl?: number;
+		pr?: number;
+	};
+};
+
+export type TFieldGroup = { id: number; gap?: number } & TSizeProps & TPaddingProps;
 
 export enum TFieldType {
 	password = "password",

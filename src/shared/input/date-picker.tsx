@@ -10,7 +10,11 @@ export const BntDatePicker: FC<
 	return (
 		<DatePickerElement
 			{...rest}
-			inputProps={{ placeholder: translate(stringLabel), label: translate(stringLabel) }}
+			inputProps={{
+				placeholder: translate(stringLabel),
+				label: translate(stringLabel),
+				variant: "standard",
+			}}
 		/>
 	);
 };
