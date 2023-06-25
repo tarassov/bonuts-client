@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { texts_c, texts_n } from "services/localization/texts";
+import { texts_n } from "services/localization/texts";
 import { texts_p } from "services/localization/texts/texts_p";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -31,10 +31,9 @@ export const useStoreTableConfig = (onCreateClick?: VoidFunction, hideCreateButt
 				header: () => (
 					<>
 						{!hideCreateButton ? (
-							<BntStack sx={{ width: "100%" }} direction="row" justifyContent="center">
+							<BntStack width="100%" direction="row" justifyContent="center">
 								<BntRoundButton variant="contained" color="primary" onClick={onCreateClick}>
 									<AddOutlined />
-									{translate(texts_c.create)}
 								</BntRoundButton>
 							</BntStack>
 						) : null}

@@ -7,6 +7,9 @@ export const useDonutUi = (donut?: TBaseModel) => {
 	const dispatch = useAppDispatch();
 	const { CreateDonut } = useModal();
 	const showDonut = (id?: number) => {
+		if (id || donut) dispatch(push(`/d/${id || donut?.id}`));
+	};
+	const editDonut = (id?: number) => {
 		if (id || donut) dispatch(push(`/donut_edit/${id || donut?.id}`));
 	};
 
@@ -14,5 +17,5 @@ export const useDonutUi = (donut?: TBaseModel) => {
 		CreateDonut.show({});
 	};
 
-	return { showDonut, showCreateDonutModal };
+	return { showDonut, editDonut, showCreateDonutModal };
 };

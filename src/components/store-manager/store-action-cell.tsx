@@ -5,10 +5,10 @@ import { useDonutUi } from "logic/ui/use-donut-ui";
 import { BntStack } from "shared/stack/stack";
 
 export const StoreActionCell: FC<{ donutId: number }> = ({ donutId }) => {
-	const { showDonut } = useDonutUi({ id: donutId });
+	const { editDonut } = useDonutUi({ id: donutId });
 	return (
 		<BntStack direction="row" justifyContent="center">
-			<IconButton onClick={() => showDonut()}>
+			<IconButton onClick={() => editDonut()}>
 				<EditOutlined />
 			</IconButton>
 		</BntStack>
