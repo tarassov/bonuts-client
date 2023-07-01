@@ -26,6 +26,7 @@ import { PluginsPage } from "pages/plugins-page/plugins-page";
 import { SchedulersPage } from "pages/schedulers-page/schedulers-page";
 import { EmployeePreviewPage } from "pages/employee/employee-preview-page";
 import { DonutEditPage } from "pages/donut/donut-edit-page";
+import { Roles } from "constants/roles";
 import {
 	AccountOperationsPage,
 	ActiveRequestsPage,
@@ -50,6 +51,7 @@ import {
 	TenantsListPage,
 } from "@/pages";
 
+const groupAdmins = [Roles.moderator, Roles.admin, Roles.admin];
 const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 	AccountOperations: {
 		path: routesPath[BntRoutes.AccountOperations],
@@ -82,6 +84,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		authenticated: true,
 		hideInMenu: true,
 		component: <DonutEditPage />,
+		roles: groupAdmins,
 	},
 	Donuts: {
 		path: routesPath[BntRoutes.Donuts],
@@ -187,6 +190,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <IncomingRequestsPage />,
 				icon: <ForwardToInboxOutlined />,
 				index: 0,
+				roles: groupAdmins,
 			},
 
 			ActiveRequests: {
@@ -198,6 +202,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <ActiveRequestsPage />,
 				icon: <InboxOutlined />,
 				index: 1,
+				roles: groupAdmins,
 			},
 			ClosedRequests: {
 				path: "/closed_requests",
@@ -208,6 +213,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <ClosedRequestsPage />,
 				icon: <ArchiveOutlined />,
 				index: 2,
+				roles: groupAdmins,
 			},
 		},
 	},
@@ -227,6 +233,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		component: <SettingsPage />,
 		redirect: routesPath[BntRoutes.Login],
 		icon: <SettingsOutlined />,
+		roles: groupAdmins,
 		children: {
 			Share: {
 				path: routesPath[BntRoutes.Share],
@@ -237,6 +244,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <SharePage />,
 				redirect: routesPath[BntRoutes.Login],
 				icon: <ShareOutlined />,
+				roles: groupAdmins,
 			},
 			Store: {
 				path: routesPath[BntRoutes.Store],
@@ -247,6 +255,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <StorePage />,
 				icon: <StoreMallDirectoryOutlined />,
 				index: 0,
+				roles: groupAdmins,
 			},
 			Tenant: {
 				path: routesPath[BntRoutes.Tenant],
@@ -257,6 +266,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <TenantPage />,
 				icon: <WidgetsOutlined />,
 				index: 0,
+				roles: groupAdmins,
 			},
 			Plugins: {
 				path: routesPath[BntRoutes.Plugins],
@@ -267,6 +277,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <PluginsPage />,
 				icon: <ExtensionOutlined />,
 				index: 0,
+				roles: groupAdmins,
 			},
 			Schedulers: {
 				path: routesPath[BntRoutes.Schedulers],
@@ -277,6 +288,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				component: <SchedulersPage />,
 				icon: <CalendarMonthOutlined />,
 				index: 0,
+				roles: groupAdmins,
 			},
 		},
 	},
@@ -289,6 +301,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		hideInMenu: false,
 		component: <StatisticsPage />,
 		icon: <LeaderboardOutlined />,
+		roles: [Roles.moderator, Roles.admin, Roles.admin],
 	},
 	TenantList: {
 		path: routesPath[BntRoutes.TenantList],

@@ -116,5 +116,6 @@ export function useAuth() {
 		checkAuth,
 		auth,
 		profile,
+		currentRoles: auth.profile?.roles,
 	};
 }

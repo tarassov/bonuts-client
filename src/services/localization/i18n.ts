@@ -44,6 +44,7 @@ i18n.use(LanguageDetector).init({
 				Activate: "Активировать",
 				Active: "Активен",
 				activated: "в работе",
+				"access denied": "доступ закрыт",
 				"Active requests": "Запросы в работе",
 				"Active donuts": "Активные пончики",
 				"Already used regards": "Уже использованные награды",
