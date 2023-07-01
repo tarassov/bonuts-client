@@ -18,7 +18,7 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 	const circleToOption = (circle: TCircle): TFormFieldSourceItem => {
 		return { key: circle.id, label: circle.name };
 	};
-	const fields: Array<TFormField> = [
+	const fields: Array<TFormField<TProfile>> = [
 		{
 			disabled: !UserLogic.isAdmin(profile),
 			image: false,

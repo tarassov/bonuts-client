@@ -94,6 +94,7 @@ i18n.use(LanguageDetector).init({
 				Departments: "Отделы",
 				Department: "Отдел",
 				Description: "Описание",
+				description: "описание",
 				Details: "Подробнее",
 				"department chief": "руководитель подразделения",
 				"Distrib account": "Могу отдать",
@@ -128,6 +129,7 @@ i18n.use(LanguageDetector).init({
 				Events: "События",
 				"Expiration date": "Дата окончания",
 				Exit: "Выход",
+				"expiration date": "срок действия",
 
 				// F
 				forbidden: "запрещено",

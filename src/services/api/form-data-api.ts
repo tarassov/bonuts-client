@@ -22,6 +22,17 @@ export const bonutsApiOverride = bonutsApi.injectEndpoints({
 				};
 			},
 		}),
+		putDonutsById: build.mutation<PostDonutsApiResponse, { id: number; body: FormData }>({
+			query(data) {
+				return {
+					url: `/donuts/${data.id}`,
+					method: "POST",
+					credentials: "include",
+					body: data.body,
+				};
+			},
+		}),
 	}),
 });
-export const { useUpdateAvatarsMutation, useCreateDonutMutation } = bonutsApiOverride;
+export const { useUpdateAvatarsMutation, useCreateDonutMutation, usePutDonutsByIdMutation } =
+	bonutsApiOverride;

@@ -4,7 +4,7 @@ import { API_URL, API_URL_LOCAL, USE_LOCAL_API } from "@/config";
 
 const { getValue } = useStorage();
 
-const formDataEndpoints = ["updateAvatars", "createDonut"];
+const formDataEndpoints = ["updateAvatars", "createDonut", "putDonutsById"];
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

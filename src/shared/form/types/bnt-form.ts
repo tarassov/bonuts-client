@@ -51,10 +51,11 @@ export type TFormValue =
 	| undefined;
 export type TFormFieldSourceItem = { key: string | number; label?: string };
 export type TFormFieldSource = Array<TFormFieldSourceItem>;
-export type TFormField = TSizeProps & {
-	name: string;
+export type TFormField<T> = TSizeProps & {
+	name: keyof T;
 	label: string;
 	size: TFieldSize;
+	offset?: TSizeProps;
 	source?: TFormFieldSource;
 	disabled?: boolean;
 	image: boolean;
@@ -79,7 +80,7 @@ export type TFormProps = {
 	hasInitial?: boolean;
 	initialValues?: Record<string, any>;
 	formId: string;
-	fields?: Array<TFormField>;
+	fields?: Array<TFormField<any>>;
 	groups?: Array<TFieldGroup>;
 	groupGap?: number;
 	submitCaption?: string;

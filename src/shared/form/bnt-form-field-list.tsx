@@ -13,13 +13,13 @@ export const BntFormFieldList: FC<Pick<TFormProps, "fields" | "formId" | "hasIni
 		<>
 			{fields &&
 				fields.map((field) => {
-					const id = `${formId}|${field.name}`;
+					const id = `${formId}|${String(field.name)}`;
 					return (
 						<BntFormItem
 							key={id}
 							id={id}
 							field={field}
-							value={hasInitial ? values?.[field.name] : undefined}
+							value={hasInitial ? values?.[String(field.name)] : undefined}
 						/>
 					);
 				})}

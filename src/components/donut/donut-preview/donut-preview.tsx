@@ -7,7 +7,7 @@ import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
 import { BntCardBody } from "shared/card/card-body";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
-import { useDonutLogic } from "logic/hooks/donut/use-donut-logic";
+import { useDonutLoader } from "logic/hooks/donut/use-donut-loader";
 import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
 import { Dictionary } from "constants/dictionary";
 import { BntCard } from "shared/card/card";
@@ -23,7 +23,7 @@ export const BntDonutPreview = () => {
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 	const { setLoading } = useLoader();
-	const { donut, isLoading } = useDonutLogic(id);
+	const { donut, isLoading } = useDonutLoader(id);
 	const { translate } = useBntTranslate();
 	const { ImageModal } = useModal();
 
