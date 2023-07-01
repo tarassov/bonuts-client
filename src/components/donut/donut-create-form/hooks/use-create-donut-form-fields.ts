@@ -1,4 +1,5 @@
 import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { TDonut } from "@/types/model";
 
 export const useCreateDonutFormFields = () => {
 	const groups: Array<TFieldGroup> = [
@@ -13,7 +14,7 @@ export const useCreateDonutFormFields = () => {
 			xs: 12,
 		},
 	];
-	const fields: Array<TFormField> = [
+	const fields: Array<TFormField<TDonut>> = [
 		{
 			image: true,
 			size: TFieldSize.xs,

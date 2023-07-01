@@ -44,6 +44,7 @@ i18n.use(LanguageDetector).init({
 				Activate: "Активировать",
 				Active: "Активен",
 				activated: "в работе",
+				"access denied": "доступ закрыт",
 				"Active requests": "Запросы в работе",
 				"Active donuts": "Активные пончики",
 				"Already used regards": "Уже использованные награды",
@@ -94,6 +95,7 @@ i18n.use(LanguageDetector).init({
 				Departments: "Отделы",
 				Department: "Отдел",
 				Description: "Описание",
+				description: "описание",
 				Details: "Подробнее",
 				"department chief": "руководитель подразделения",
 				"Distrib account": "Могу отдать",
@@ -128,6 +130,7 @@ i18n.use(LanguageDetector).init({
 				Events: "События",
 				"Expiration date": "Дата окончания",
 				Exit: "Выход",
+				"expiration date": "срок действия",
 
 				// F
 				forbidden: "запрещено",

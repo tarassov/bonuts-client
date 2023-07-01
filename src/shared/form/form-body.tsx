@@ -10,7 +10,7 @@ import { useFormContext } from "react-hook-form";
 import { BntFormGroups } from "shared/form/bnt-form-groups";
 
 export const BntFormBody: FC<
-	TFormProps & {
+	TFormProps<any> & {
 		onChange: (name: string, value: TFormValue) => void;
 		values: Record<string, TFormValue>;
 		hasChanges: boolean;
@@ -47,7 +47,13 @@ export const BntFormBody: FC<
 						{!groups?.length ? (
 							<BntFormFieldList formId={formId} hasInitial={hasInitial} fields={fields} />
 						) : (
-							<BntFormGroups groupGap={groupGap} formId={formId} groups={groups} fields={fields} />
+							<BntFormGroups
+								groupGap={groupGap}
+								formId={formId}
+								groups={groups}
+								hasInitial={hasInitial}
+								fields={fields}
+							/>
 						)}
 					</>
 				</BntFormContextProvider>
@@ -55,11 +61,11 @@ export const BntFormBody: FC<
 			<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
 				{hasChanges && (
 					<>
-						<BntTransparentButton color="secondary" onClick={onCancelClick}>
+						<BntTransparentButton variant="outlined" color="secondary" onClick={onCancelClick}>
 							{translate(Dictionary.DISCARD)}
 						</BntTransparentButton>
 
-						<BntTransparentButton type="submit">
+						<BntTransparentButton variant="outlined" type="submit">
 							{translate(submitCaption || Dictionary.SUBMIT)}
 						</BntTransparentButton>
 					</>

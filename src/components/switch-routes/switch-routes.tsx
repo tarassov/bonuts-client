@@ -5,6 +5,8 @@ import { useLocationTyped } from "hooks/use-location-typed";
 import { TAuthState } from "services/redux/types/auth-state";
 import { routesPath } from "routes/config/routes-path";
 import { BntRoutes } from "routes/config/routes";
+import _ from "lodash";
+import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
 
 interface ISwithRoutesProps {
 	routes: Array<TRoute<any>>;
@@ -25,7 +27,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 
 const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 	const location = useLocationTyped();
-	const { checkAuth, isAuthLoading, auth } = useAuth();
+	const { checkAuth, isAuthLoading, auth, currentRoles } = useAuth();
 	const background = location.state && location.state.background;
 
 	useEffect(() => {
@@ -45,11 +47,17 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 		return <div>Checking auth...</div>;
 	}
 
+	const hasAccsess = (route: TRoute<BntRoutes>) => {
+		if (!route.roles) return true;
+		return !!_.intersection(route.roles, currentRoles).length;
+	};
+
 	return (
 		<Routes location={background || location}>
 			{authenticatedRoutes &&
 				authenticatedRoutes.map((route) => {
-					return <Route path={route.path} element={getRoute(route, auth)} key={route.path} />;
+					const element = !hasAccsess(route) ? <ForbiddenPage /> : getRoute(route, auth);
+					return <Route path={route.path} element={element} key={route.path} />;
 				})}
 
 			{anonymousRoutes &&

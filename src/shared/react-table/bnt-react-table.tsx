@@ -30,6 +30,7 @@ export const BntReactTable = styled(
 		},
 		[cl("bnt-table-th")]: {
 			minWidth: "60px",
+			padding: "4px",
 		},
 		[cl("bnt-table-filter")]: {
 			width: "100%",

@@ -7,7 +7,7 @@ import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
 import { BntImageUpload } from "./fields/bnt-image-upload";
 
 export const BntFormField: FC<{
-	field: TFormField;
+	field: TFormField<any>;
 	value: any;
 	id: string;
 }> = ({ field, value, id }) => {
@@ -20,7 +20,7 @@ export const BntFormField: FC<{
 	if (field.type === TFieldType.textarea) {
 		return (
 			<BntTextAreaField
-				name={field.name}
+				name={field.name.toString()}
 				id={id}
 				placeholder={field.placeholder}
 				label={field.label}
@@ -36,7 +36,7 @@ export const BntFormField: FC<{
 	if (field.type === TFieldType.date) {
 		return (
 			<BntDatePickerField
-				name={field.name}
+				name={field.name.toString()}
 				disabled={field.disabled}
 				required={field.required}
 				label={field.label}
@@ -46,7 +46,7 @@ export const BntFormField: FC<{
 	return (
 		<>
 			<BntFormTextField
-				name={field.name}
+				name={field.name.toString()}
 				id={id}
 				placeholder={field.placeholder}
 				label={field.label}

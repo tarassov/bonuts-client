@@ -9,10 +9,13 @@ export const useDonutUi = (donut?: TBaseModel) => {
 	const showDonut = (id?: number) => {
 		if (id || donut) dispatch(push(`/d/${id || donut?.id}`));
 	};
+	const editDonut = (id?: number) => {
+		if (id || donut) dispatch(push(`/donut_edit/${id || donut?.id}`));
+	};
 
 	const showCreateDonutModal = () => {
 		CreateDonut.show({});
 	};
 
-	return { showDonut, showCreateDonutModal };
+	return { showDonut, editDonut, showCreateDonutModal };
 };

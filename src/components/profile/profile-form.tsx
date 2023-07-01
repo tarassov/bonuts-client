@@ -8,12 +8,13 @@ import { useEffect } from "react";
 import { Modules } from "constants/modules";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { useProfileFormFields } from "./hooks/use-profile-form-fields";
+import { TProfile } from "@/types/model";
 
 export const BntProfileForm = () => {
 	const { profile, updateProfile, isLoading, error } = useProfileLogic();
 	const { fields } = useProfileFormFields(profile);
 	const { setLoading } = useLoader();
-	const formProps: TFormProps = { fields, formId: "user-profile" };
+	const formProps: TFormProps<TProfile> = { fields, formId: "user-profile" };
 	const initialValues = profile;
 
 	useEffect(() => {

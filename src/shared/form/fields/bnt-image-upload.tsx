@@ -6,18 +6,17 @@ import { TFormField, TFormImageValue, TFormValue } from "../types/bnt-form";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { BntFormFileInput } from "../bnt-form-file-input";
 
-export const BntImageUpload = (props: {
-	field: TFormField;
-	value: TFormValue;
-}) => {
+export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValue }) => {
 	const { field, value } = props;
 	const { name } = field;
 	const { onChange } = useBntForm();
 	const { translate } = useBntTranslate();
 	const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
 	useEffect(() => {
-		const url = (value as TFormImageValue)?.url;
-		setImagePreviewUrl(url || "");
+		if (value) {
+			const url = (value as TFormImageValue)?.url;
+			setImagePreviewUrl(url || "");
+		}
 	}, [value]);
 
 	const handleFile = (files: FileList) => {
@@ -29,7 +28,7 @@ export const BntImageUpload = (props: {
 		};
 
 		reader.readAsDataURL(file);
-		onChange(name, file);
+		onChange(name.toString(), file);
 	};
 
 	const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,9 +75,7 @@ export const BntImageUpload = (props: {
 					onDragOver={handleDragOver}
 					onDrop={handleDrop}
 				>
-					<p>
-						{translate("Drag and drop an image here or click to select a file")}
-					</p>
+					<p>{translate("Drag and drop an image here or click to select a file")}</p>
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
 				</Box>
 			)}

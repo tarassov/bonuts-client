@@ -13,12 +13,12 @@ import { TProfile } from "@/types/model";
 import { TCircle } from "@/types/model/circle";
 
 export const useProfileFormFields = (profile?: TProfile | null) => {
-	const { roleField } = useRoleField({ disabled: !UserLogic.isAdmin(profile) });
+	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(profile) });
 	const { objects: circles, isLoading } = useCircleList();
 	const circleToOption = (circle: TCircle): TFormFieldSourceItem => {
 		return { key: circle.id, label: circle.name };
 	};
-	const fields: Array<TFormField> = [
+	const fields: Array<TFormField<TProfile>> = [
 		{
 			disabled: !UserLogic.isAdmin(profile),
 			image: false,

@@ -6,7 +6,7 @@ import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 import { ru } from "date-fns/locale";
 import { TFormProps, TFormValue } from "./types/bnt-form";
 
-export const BntForm: FC<TFormProps> = ({
+export const BntForm: FC<TFormProps<any>> = ({
 	fields,
 	groups,
 	groupGap,

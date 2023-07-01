@@ -24,6 +24,7 @@ export const apiDonutToDonut = (
 	const { attributes, id } = response.data;
 	return {
 		...attributes,
+		logo: attributes.logo,
 		id: Number(id),
 		commentable: true,
 		likeable: true,

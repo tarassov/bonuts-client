@@ -14,7 +14,17 @@ export type TSizeProps = {
 	lg?: number;
 };
 
-export type TFieldGroup = { id: number; gap?: number } & TSizeProps;
+export type TPaddingProps = {
+	padding?: {
+		p?: number;
+		pt?: number;
+		pb?: number;
+		pl?: number;
+		pr?: number;
+	};
+};
+
+export type TFieldGroup = { id: number; gap?: number } & TSizeProps & TPaddingProps;
 
 export enum TFieldType {
 	password = "password",
@@ -41,10 +51,11 @@ export type TFormValue =
 	| undefined;
 export type TFormFieldSourceItem = { key: string | number; label?: string };
 export type TFormFieldSource = Array<TFormFieldSourceItem>;
-export type TFormField = TSizeProps & {
-	name: string;
+export type TFormField<T = Record<string, any>> = TSizeProps & {
+	name: keyof T;
 	label: string;
 	size: TFieldSize;
+	offset?: TSizeProps;
 	source?: TFormFieldSource;
 	disabled?: boolean;
 	image: boolean;
@@ -65,18 +76,16 @@ export type RegisterFunc = (
 	options?: { required: boolean }
 ) => UseFormRegisterReturn<any>;
 
-export type TFormProps = {
+export type TFormProps<T extends Record<string, any>> = {
 	hasInitial?: boolean;
-	initialValues?: Record<string, any>;
+	initialValues?: T;
 	formId: string;
-	fields?: Array<TFormField>;
+	fields?: Array<TFormField<any>>;
 	groups?: Array<TFieldGroup>;
 	groupGap?: number;
 	submitCaption?: string;
 	onLoad?: () => void;
-	onSubmit?: (
-		values: Record<string, any>
-	) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
+	onSubmit?: (values: T) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
 	locale?: Locale;
