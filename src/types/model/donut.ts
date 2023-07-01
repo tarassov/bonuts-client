@@ -6,7 +6,7 @@ export type TDonut = TBaseModel &
 	TCommentable &
 	TLikeable & {
 		name: string;
-		price?: number;
+		price: number;
 		active: boolean;
 		logo?: TPicture;
 		description?: string;

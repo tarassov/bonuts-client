@@ -6,7 +6,7 @@ import { TFormField, TFormFieldSource, TFormFieldSourceItem } from "../types/bnt
 import { useBntForm } from "../hooks/use-bnt-form";
 
 export const BntTagAutocomplete: FC<{
-	field: TFormField;
+	field: TFormField<any>;
 	value: Array<string | number>;
 	id: string;
 }> = ({ field, value, id }) => {
@@ -20,7 +20,7 @@ export const BntTagAutocomplete: FC<{
 			const values: Array<TFormFieldSourceItem> = value.reduce((acc, curr) => {
 				const combinedSource = source?.length
 					? source
-					: initialValues[field.name].map(field.valueToOption);
+					: initialValues[field.name.toString()].map(field.valueToOption);
 				if (curr) {
 					const option: TFormFieldSourceItem = {
 						key: curr,
@@ -42,7 +42,7 @@ export const BntTagAutocomplete: FC<{
 
 	const handleChange = (e: SyntheticEvent, values: TFormFieldSourceItem[]) => {
 		const newValues = values.map((v) => v.key);
-		onChange(name, newValues);
+		onChange(name.toString(), newValues);
 	};
 
 	return (

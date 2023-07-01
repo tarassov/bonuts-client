@@ -5,7 +5,7 @@ import { TFormField } from "./types/bnt-form";
 import { BntFormField } from "./bnt-form-field";
 
 export const BntFormItem: FC<{
-	field: TFormField;
+	field: TFormField<any>;
 	value?: any;
 	id: string;
 }> = ({ field, value, id }) => {

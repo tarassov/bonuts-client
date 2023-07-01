@@ -22,7 +22,7 @@ export const BntProfileImage = () => {
 			xs: 12,
 		},
 	];
-	const formProps: TFormProps = { fields, formId: "user-profile" };
+	const formProps: TFormProps<any> = { fields, formId: "user-profile" };
 	const initialValues = profile;
 	const onSubmit = (
 		values: Record<string, TFormValue>

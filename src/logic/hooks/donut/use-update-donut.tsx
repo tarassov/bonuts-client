@@ -1,34 +1,35 @@
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
-import { PostDonutsApiResponse } from "services/api/bonuts-api";
-import { TFormValue } from "shared/form/types/bnt-form";
+import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { extendedApi } from "services/api/extended-api";
 import { useAppDispatch } from "services/redux/store/store";
-import { usePutDonutsByIdMutation } from "services/api/form-data-api";
+import { useUpdateDonutMutation } from "services/api/form-data-api";
+import { TDonut } from "@/types/model";
 
 export const useUpdateDonut = () => {
-	const [updateDonut] = usePutDonutsByIdMutation();
+	const [updateDonut] = useUpdateDonutMutation();
 	const dispatch = useAppDispatch();
 	const { profile } = useProfileLogic();
 	const putDonut = async (
-		id: number,
-		args: Record<string, TFormValue>,
-		options?: { onSuccess?: (result: PostDonutsApiResponse) => void }
+		donutId: number,
+		args: TDonut,
+		options?: { onSuccess?: (result: PutDonutsByIdApiResponse) => void }
 	) => {
-		const { logo, price, name } = args as { logo?: File; price: number; name: string };
 		if (profile?.tenant) {
-			const formPayLoad = new FormData();
-			if (logo && !Object.getOwnPropertyDescriptor(logo, "url")) formPayLoad.append("logo", logo);
-			formPayLoad.append("tenant", profile.tenant);
-			formPayLoad.append("price", price.toString());
-			formPayLoad.append("name", name);
-			updateDonut({ id, body: formPayLoad })
-				.unwrap()
-				.then((res) => {
-					if (res.data) {
-						dispatch(extendedApi.util.invalidateTags(["Donuts"]));
-						options?.onSuccess?.(res);
-					}
-				});
+			const { id, logo, created_at, likes, liked, comments, commentable, likeable, ...props } =
+				args;
+			// @ts-ignore
+			const logoNew: File | undefined =
+				logo && !Object.getOwnPropertyDescriptor(logo, "url") ? logo : undefined;
+			const res = await updateDonut({
+				id: donutId.toString(),
+				body: { ...props, ...(logoNew && { logo: logoNew }), tenant: profile?.tenant },
+			});
+			dispatch(extendedApi.util.invalidateTags(["Donuts"]));
+			if (Object.getOwnPropertyDescriptor(res, "data")) {
+				// @ts-ignore
+				options?.onSuccess?.(res.data);
+			}
+			return res;
 		}
 		return undefined;
 	};

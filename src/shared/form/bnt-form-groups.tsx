@@ -1,10 +1,12 @@
 import { FC } from "react";
-import { TFieldGroup, TFormProps } from "shared/form/types/bnt-form";
+import { TFieldGroup, TFormField, TFormProps } from "shared/form/types/bnt-form";
 import { BntFormFieldList } from "shared/form/bnt-form-field-list";
 import { Grid } from "@mui/material";
 
 export const BntFormGroups: FC<
-	Pick<TFormProps, "fields" | "formId" | "hasInitial" | "groupGap"> & { groups: Array<TFieldGroup> }
+	Pick<TFormProps<any>, "fields" | "formId" | "hasInitial" | "groupGap"> & {
+		groups: Array<TFieldGroup>;
+	}
 > = ({ fields, formId, hasInitial, groups, groupGap }) => {
 	return (
 		<Grid container gap={groupGap}>
@@ -28,7 +30,7 @@ export const BntFormGroups: FC<
 								formId={formId}
 								hasInitial={hasInitial}
 								fields={fields?.filter(
-									(x) => x.group === id || (x.group === undefined && id === 0)
+									(x: TFormField<any>) => x.group === id || (x.group === undefined && id === 0)
 								)}
 							/>
 						</Grid>

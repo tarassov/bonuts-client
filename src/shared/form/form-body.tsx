@@ -10,7 +10,7 @@ import { useFormContext } from "react-hook-form";
 import { BntFormGroups } from "shared/form/bnt-form-groups";
 
 export const BntFormBody: FC<
-	TFormProps & {
+	TFormProps<any> & {
 		onChange: (name: string, value: TFormValue) => void;
 		values: Record<string, TFormValue>;
 		hasChanges: boolean;

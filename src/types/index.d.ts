@@ -3,7 +3,7 @@ type TAuth = {
 	tenant?: string;
 };
 
-type TRoute<T = {}, K = string> = {
+type TRoute<T, K = string> = {
 	path: string;
 	component: JSX.Element;
 	anonymous: boolean;
@@ -13,10 +13,10 @@ type TRoute<T = {}, K = string> = {
 	redirect?: string;
 	modal?: boolean;
 	authenticatedRedirect?: string;
-	parentRoute?: TRoute;
+	parentRoute?: TRoute<T>;
 	icon?: JSX.Element;
 	index?: number;
-	children?: { [name in T]?: TRoute };
+	children?: { [name in T]?: TRoute<T> };
 	roles?: Array<K>;
 };
 

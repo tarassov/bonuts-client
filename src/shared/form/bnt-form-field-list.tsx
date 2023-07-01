@@ -3,7 +3,7 @@ import { BntFormItem } from "./bnt-form-item";
 import { TFormProps } from "./types/bnt-form";
 import { useBntForm } from "./hooks/use-bnt-form";
 
-export const BntFormFieldList: FC<Pick<TFormProps, "fields" | "formId" | "hasInitial">> = ({
+export const BntFormFieldList: FC<Pick<TFormProps<any>, "fields" | "formId" | "hasInitial">> = ({
 	fields,
 	hasInitial,
 	formId,

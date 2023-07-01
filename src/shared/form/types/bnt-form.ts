@@ -76,18 +76,16 @@ export type RegisterFunc = (
 	options?: { required: boolean }
 ) => UseFormRegisterReturn<any>;
 
-export type TFormProps = {
+export type TFormProps<T extends Record<string, any>> = {
 	hasInitial?: boolean;
-	initialValues?: Record<string, any>;
+	initialValues?: T;
 	formId: string;
 	fields?: Array<TFormField<any>>;
 	groups?: Array<TFieldGroup>;
 	groupGap?: number;
 	submitCaption?: string;
 	onLoad?: () => void;
-	onSubmit?: (
-		values: Record<string, any>
-	) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
+	onSubmit?: (values: T) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
 	locale?: Locale;

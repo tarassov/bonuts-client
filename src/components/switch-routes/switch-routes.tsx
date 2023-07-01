@@ -47,7 +47,7 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 		return <div>Checking auth...</div>;
 	}
 
-	const hasAccsess = (route: TRoute) => {
+	const hasAccsess = (route: TRoute<BntRoutes>) => {
 		if (!route.roles) return true;
 		return !!_.intersection(route.roles, currentRoles).length;
 	};

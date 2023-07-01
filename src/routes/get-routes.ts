@@ -1,5 +1,4 @@
 import { BntRoutes } from "routes/config/routes";
-import { TRedirect, TRoute } from "@/types";
 
 export const getRoutes = (
 	routes: Partial<Record<BntRoutes, TRoute<BntRoutes>>>,
