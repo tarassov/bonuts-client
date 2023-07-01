@@ -13,8 +13,10 @@ export const BntImageUpload = (props: { field: TFormField; value: TFormValue }) 
 	const { translate } = useBntTranslate();
 	const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
 	useEffect(() => {
-		const url = (value as TFormImageValue)?.url;
-		setImagePreviewUrl(url || "");
+		if (value) {
+			const url = (value as TFormImageValue)?.url;
+			setImagePreviewUrl(url || "");
+		}
 	}, [value]);
 
 	const handleFile = (files: FileList) => {

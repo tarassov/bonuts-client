@@ -51,7 +51,7 @@ export type TFormValue =
 	| undefined;
 export type TFormFieldSourceItem = { key: string | number; label?: string };
 export type TFormFieldSource = Array<TFormFieldSourceItem>;
-export type TFormField<T> = TSizeProps & {
+export type TFormField<T = Record<string, any>> = TSizeProps & {
 	name: keyof T;
 	label: string;
 	size: TFieldSize;
