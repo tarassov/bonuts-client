@@ -1,6 +1,6 @@
 import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
 import { texts_o } from "services/localization/texts/texts_o";
-import { texts_e } from "services/localization/texts";
+import { texts_a, texts_e } from "services/localization/texts";
 import { texts_d } from "services/localization/texts/texts_d";
 import { TDonut } from "@/types/model";
 
@@ -105,9 +105,19 @@ export const useDonutEditFormFields = () => {
 			label: texts_d.description,
 			required: false,
 			xs: 12,
-
 			lg: 8,
 			group: 2,
+		},
+		{
+			disabled: false,
+			type: TFieldType.switch,
+			image: false,
+			size: TFieldSize.xs,
+			name: "active",
+			label: texts_a.active,
+			required: false,
+			xs: 12,
+			group: 1,
 		},
 	];
 

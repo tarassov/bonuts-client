@@ -34,6 +34,7 @@ export enum TFieldType {
 	number = "number",
 	textarea = "textarea",
 	date = "date",
+	switch = "switch",
 }
 export type TFormImageValue = {
 	url: string;

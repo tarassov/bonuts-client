@@ -43,6 +43,7 @@ i18n.use(LanguageDetector).init({
 				admin: "админ",
 				Activate: "Активировать",
 				Active: "Активен",
+				active: "активен",
 				activated: "в работе",
 				"access denied": "доступ закрыт",
 				"Active requests": "Запросы в работе",
