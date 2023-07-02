@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import _ from "lodash";
 import { TFieldType, TFormValue } from "../types/bnt-form";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { BntTextInputElement } from "../../input/text-input-element";
@@ -17,7 +18,8 @@ export const BntFormTextField = (props: {
 	const { name, id, placeholder, label, type, value, rows, required, disabled } = props;
 	const { onChange } = useBntForm();
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		onChange(name, e.target.value);
+		const inputValue = _.isNumber(e.target.value) ? Number(e.target.value) : e.target.value;
+		onChange(name, inputValue);
 	};
 	return (
 		<BntTextInputElement
