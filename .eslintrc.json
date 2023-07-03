@@ -51,7 +51,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["*slice.ts"],
+			"files": ["*slice.ts", "*api.ts"],
 			"rules": {
 				"no-param-reassign": "off"
 			}

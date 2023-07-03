@@ -2,7 +2,7 @@ import { useCreateDonutMutation } from "services/api/form-data-api";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { PostDonutsApiResponse } from "services/api/bonuts-api";
 import { TFormValue } from "shared/form/types/bnt-form";
-import { extendedApi } from "services/api/extended-api";
+import { donutsApi } from "services/api/extended/donuts-api";
 import { useAppDispatch } from "services/redux/store/store";
 
 export const useCreateDonut = () => {
@@ -24,7 +24,7 @@ export const useCreateDonut = () => {
 				.unwrap()
 				.then((res) => {
 					if (res.data) {
-						dispatch(extendedApi.util.invalidateTags(["Donuts"]));
+						dispatch(donutsApi.util.invalidateTags(["Donuts"]));
 						options?.onSuccess?.(res);
 					}
 				});

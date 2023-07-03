@@ -1,6 +1,6 @@
-import { extendedApi } from "services/api/extended-api";
 import { apiAdaptor } from "services/adaptor/api-adaptor";
 import { useListBase } from "logic/hooks/use-list-base";
+import { requestsApi } from "services/api/extended/requests-api";
 
 export const useRequestListLogic = ({
 	archive,
@@ -12,7 +12,7 @@ export const useRequestListLogic = ({
 	incoming?: boolean;
 }) => {
 	return useListBase({
-		endpoint: extendedApi.endpoints.getRequests,
+		endpoint: requestsApi.endpoints.getRequests,
 		args: {
 			page: 1,
 			archive,
