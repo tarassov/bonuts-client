@@ -20,7 +20,6 @@ export const BntForm: FC<TFormProps<any>> = ({
 }) => {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [initials, setInitials] = useState<Record<string, TFormValue> | undefined>(undefined);
-	const [hasChanges, setHasChanges] = useState(false);
 
 	useEffect(() => {
 		if (initialValues) {
@@ -49,7 +48,6 @@ export const BntForm: FC<TFormProps<any>> = ({
 	};
 	const onDiscard = () => {
 		setValues(initials || {});
-		setHasChanges(false);
 	};
 	if (!initials && hasInitial) return null;
 	return (
@@ -63,9 +61,8 @@ export const BntForm: FC<TFormProps<any>> = ({
 						values={values}
 						formId={formId}
 						hasInitial={hasInitial}
-						initialValues={initialValues}
+						initialValues={initials}
 						submitCaption={submitCaption}
-						hasChanges={hasChanges}
 						onDiscard={onDiscard}
 					>
 						{children}
