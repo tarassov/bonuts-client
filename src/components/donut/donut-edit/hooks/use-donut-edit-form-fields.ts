@@ -11,13 +11,32 @@ export const useDonutEditFormFields = () => {
 			md: 5,
 			lg: 3,
 			xs: 12,
+			padding: { pt: 0 },
 		},
 		{
 			id: 2,
 			md: 7,
 			lg: 9,
 			xs: 12,
-			padding: { pt: 2 },
+			padding: { pt: 0 },
+			groups: [
+				{
+					id: 3,
+					xs: 12,
+					lg: 8,
+					offset: {
+						offsetAfterElement: { lg: 4 },
+					},
+					padding: { p: 1 },
+					sx: () => {
+						return {
+							borderBottom: 1,
+							boxShadow: 2,
+							mb: 4,
+						};
+					},
+				},
+			],
 		},
 	];
 	const fields: Array<TFormField<TDonut>> = [
@@ -37,10 +56,19 @@ export const useDonutEditFormFields = () => {
 			name: "name",
 			label: "name",
 			xs: 12,
-			lg: 8,
-			offset: { lg: 4 },
 			required: true,
-			group: 2,
+			group: 3,
+		},
+		{
+			disabled: false,
+			type: TFieldType.switch,
+			image: false,
+			size: TFieldSize.xs,
+			name: "active",
+			label: texts_a.active,
+			required: false,
+			xs: 12,
+			group: 3,
 		},
 		{
 			disabled: false,
@@ -66,7 +94,9 @@ export const useDonutEditFormFields = () => {
 			xs: 12,
 			sm: 6,
 			lg: 4,
-			offset: { lg: 4 },
+			offset: {
+				offsetAfterElement: { lg: 4 },
+			},
 			group: 2,
 		},
 		{
@@ -93,7 +123,7 @@ export const useDonutEditFormFields = () => {
 			xs: 12,
 			md: 6,
 			lg: 2,
-			offset: { lg: 4 },
+			offset: { offsetAfterElement: { lg: 4 } },
 			group: 2,
 		},
 		{
@@ -107,17 +137,6 @@ export const useDonutEditFormFields = () => {
 			xs: 12,
 			lg: 8,
 			group: 2,
-		},
-		{
-			disabled: false,
-			type: TFieldType.switch,
-			image: false,
-			size: TFieldSize.xs,
-			name: "active",
-			label: texts_a.active,
-			required: false,
-			xs: 12,
-			group: 1,
 		},
 	];
 

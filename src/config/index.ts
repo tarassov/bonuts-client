@@ -1,6 +1,6 @@
 export const API_URL = import.meta.env.VITE_API_URL;
 
-export const API_URL_LOCAL = import.meta.env.VITE_API_LOCAL;
+export const API_URL_LOCAL = import.meta.env.VITE_API_LOCAL_URL;
 
 export const USE_LOCAL_API = import.meta.env.VITE_USE_LOCAL_HOST === "true";
 

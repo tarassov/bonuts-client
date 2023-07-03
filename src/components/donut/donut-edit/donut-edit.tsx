@@ -8,6 +8,13 @@ import { useUpdateDonut } from "logic/hooks/donut/use-update-donut";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
+import { Dictionary } from "constants/dictionary";
+import { DonutSmall, SettingsOutlined } from "@mui/icons-material";
+import { routesPath } from "routes/config/routes-path";
+import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
+import { BntCardBody } from "shared/card/card-body";
+import { BntCard } from "shared/card/card";
 import { TDonut } from "@/types/model";
 
 export const DonutEdit = () => {
@@ -18,6 +25,20 @@ export const DonutEdit = () => {
 	useEffect(() => {
 		setLoading(Modules.DonutPreview, isLoading);
 	}, [isLoading]);
+
+	const breadcrumbs: Array<TBntBreadcrumbItem> = [
+		{
+			key: "shop",
+			link: routesPath.Store,
+			label: Dictionary.DONUTS,
+			icon: <SettingsOutlined color="info" />,
+		},
+		{
+			key: id || "donut",
+			label: donut?.name || "",
+			icon: <DonutSmall color="info" />,
+		},
+	];
 
 	const onSubmit = (
 		values: TDonut
@@ -33,5 +54,14 @@ export const DonutEdit = () => {
 		}
 		return undefined;
 	};
-	return donut ? <DonutEditForm donut={donut} onSubmit={onSubmit} /> : null;
+	return (
+		<>
+			<BntBreadcrumbs items={breadcrumbs} className="mb-3" />
+			<BntCard>
+				<BntCardBody className="m-3 p-3">
+					{donut ? <DonutEditForm donut={donut} onSubmit={onSubmit} /> : null}
+				</BntCardBody>
+			</BntCard>
+		</>
+	);
 };
