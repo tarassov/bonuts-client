@@ -17,7 +17,7 @@ export const BntBreadcrumbs: FC<TBntBreadcrumb> = ({ items, className }) => {
 				separator={<NavigateNext fontSize="small" color="info" />}
 			>
 				{items.map((item) => {
-					const { onClick = EMPTY_FUNCTION, link, label, icon, key } = item;
+					const { onClick = EMPTY_FUNCTION, link, label, icon, key, noTranslation } = item;
 					const linkComponent: {
 						component?: React.ForwardRefExoticComponent<
 							LinkProps & React.RefAttributes<HTMLAnchorElement>
@@ -26,13 +26,14 @@ export const BntBreadcrumbs: FC<TBntBreadcrumb> = ({ items, className }) => {
 					} = {
 						...(link && { component: RouterLink, to: link }),
 					};
+					const breadcrumbLabel = noTranslation ? label : translate(label, { capitalize: true });
 					return (
 						<BntStyledBreadcrumb
 							{...linkComponent}
 							onClick={item.onClick ? () => onClick(item) : undefined}
 							label={
-								<Tooltip title={translate(label, { capitalize: true })}>
-									<span>{translate(label, { capitalize: true })}</span>
+								<Tooltip title={breadcrumbLabel}>
+									<span>{breadcrumbLabel}</span>
 								</Tooltip>
 							}
 							icon={icon}

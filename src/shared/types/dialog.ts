@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { VoidResponseFunction } from "@/types/function-types";
 
 export enum BntDialogResponse {
 	None,
@@ -13,6 +14,7 @@ export type TBntModalData = Record<string, string | number | undefined | null>;
 
 export type TModalProps = {
 	close?: VoidFunction;
+	setModalLoading?: VoidResponseFunction<boolean>;
 };
 
 export type TBntModal<T> = {

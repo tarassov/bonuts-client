@@ -90,6 +90,7 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	convertSourceValue?: (value: any) => string | number | Array<string | number>;
 	valueToOption?: (value: any) => TFormFieldSourceItem;
 	group?: number;
+	onClick?: (value: TFormValue) => void;
 };
 
 export type RegisterFunc = (

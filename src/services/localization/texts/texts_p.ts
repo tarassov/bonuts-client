@@ -3,4 +3,5 @@ export enum texts_p {
 	"profiles" = "profiles",
 	"price" = "price",
 	"previous" = "previous",
+	"preview" = "preview",
 }

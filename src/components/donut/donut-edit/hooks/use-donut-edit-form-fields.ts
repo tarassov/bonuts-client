@@ -2,9 +2,22 @@ import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/form/typ
 import { texts_o } from "services/localization/texts/texts_o";
 import { texts_a, texts_e } from "services/localization/texts";
 import { texts_d } from "services/localization/texts/texts_d";
+import { useModal } from "hooks/use-modal";
+import { CommonStrings } from "constants/dictionary";
+import { texts_p } from "services/localization/texts/texts_p";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { TDonut } from "@/types/model";
 
 export const useDonutEditFormFields = () => {
+	const { ImageModal } = useModal();
+	const { t } = useBntTranslate();
+
+	const onClick = (url?: string) => {
+		ImageModal.show({
+			url: url || CommonStrings.EMPTY_STRING,
+			title: t(texts_p.preview, { capitalize: true }),
+		});
+	};
 	const groups: Array<TFieldGroup> = [
 		{
 			id: 1,
@@ -49,6 +62,7 @@ export const useDonutEditFormFields = () => {
 			xs: 12,
 			md: 12,
 			group: 1,
+			onClick: (value) => onClick(value?.toString()),
 		},
 		{
 			image: false,

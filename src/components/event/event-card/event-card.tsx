@@ -10,6 +10,7 @@ import { BntCard } from "shared/card/card";
 import { BntCardContent } from "shared/card/card-content";
 import { BntCardActions } from "shared/card/card-actions";
 import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TPost } from "@/types/model/post";
 import { BntStyledCardHeader } from "./event-card-header";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
@@ -33,6 +34,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
 	const { toggleLike, updateEvent } = useEventLogic();
+	const { showEmployeeModal } = useEmployeeUi();
 
 	// const handleContentChange = (e: any) => {};
 	const handleSubmitEdit = (e: any) => {
@@ -92,7 +94,13 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 			/>
 
 			<BntCardContent>
-				{post.operation && <BntStyledOperationText operation={post.operation} />}
+				{post.operation && (
+					<BntStyledOperationText
+						operation={post.operation}
+						onFromProfileClick={() => showEmployeeModal(post.operation?.from_profile?.id)}
+						onToProfileClick={() => showEmployeeModal(post.operation?.to_profile?.id)}
+					/>
+				)}
 				{!edit && (
 					<Typography variant="body2" component="p">
 						{content}

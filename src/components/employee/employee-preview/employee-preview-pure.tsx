@@ -13,7 +13,7 @@ import { ErrorOutline, ShieldOutlined, StorefrontOutlined } from "@mui/icons-mat
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntLabel } from "components/employee/employee-preview/label";
 import { formatStringDate } from "utils/format-string-date";
-import { ReadonlyTextArea } from "shared/text-area/readonly-text-area";
+import { BntDivider } from "shared/divider/bnt-divider";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
@@ -47,8 +47,8 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 							xs={12}
 							sm={8}
 							md={4}
-							lg={3}
-							xl={2}
+							lg={4}
+							xl={3}
 							className={classNames("", { "text-align-center": matchesDownSm })}
 						>
 							<ImagePreview
@@ -69,7 +69,7 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 								})}
 							</Stack>
 						</Grid>
-						<Grid item xs={12} sm={12} md={5} lg={7} order={{ xs: 3, md: 2 }}>
+						<Grid item xs={12} sm={12} md={5} lg={6} order={{ xs: 3, md: 2 }}>
 							<Stack
 								direction={{ sm: "row", xs: "column" }}
 								alignItems={{ sm: "center", xs: "flex-start" }}
@@ -117,8 +117,9 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 								value={formatStringDate(employee?.in_date)}
 								className="mb-3"
 							/>
+							<BntDivider className="mt-4 mb-4" />
 							<Box>
-								<ReadonlyTextArea defaultValue={employee?.bio} name="bio" readOnly />
+								<BntTypography isPreformatted>{employee?.bio}</BntTypography>
 							</Box>
 						</Grid>
 					</Grid>

@@ -8,10 +8,20 @@ import {
 } from "shared/form/types/bnt-form";
 import { BntForm } from "shared/form/bnt-form";
 import { useUpdateAvatarsMutation } from "services/api/form-data-api";
+import { useModal } from "hooks/use-modal";
+import { CommonStrings } from "constants/dictionary";
 
 export const BntProfileImage = () => {
 	const { profile } = useProfileLogic();
 	const [updateAvatars] = useUpdateAvatarsMutation();
+	const { ImageModal } = useModal();
+
+	const onClick = (url?: string) => {
+		ImageModal.show({
+			url: url || CommonStrings.EMPTY_STRING,
+			title: profile?.name,
+		});
+	};
 	const fields: Array<TFormField> = [
 		{
 			image: true,
@@ -20,6 +30,7 @@ export const BntProfileImage = () => {
 			label: "Avatar",
 			type: TFieldType.imageUpload,
 			xs: 12,
+			onClick: (value) => onClick(value?.toString()),
 		},
 	];
 	const formProps: TFormProps<any> = { fields, formId: "user-profile" };
