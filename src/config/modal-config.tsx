@@ -1,13 +1,14 @@
 import { TBntModalConfig } from "shared/types/dialog";
 import { ModalImage } from "components/modals/modal-image/modal-image";
-import { texts_n } from "services/localization/texts";
 import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
 import { CommonStrings } from "constants/dictionary";
+import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-employee-view";
 
 export type ModalType = {
 	SimpleTextModal: string;
 	ImageModal: { url: string; title?: string };
-	CreateDonut: {};
+	CreateDonut: { title?: string };
+	ViewEmployee: { id: number; title?: string };
 };
 
 export type ModalTypeResponse = {
@@ -28,8 +29,13 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 		CreateDonut: {
 			renderItem: (_, props) => <ModalCreateDonut {...props} />,
 			hasTopMenu: true,
-			title: texts_n.new_donut,
+			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			preventCloseOnBackDropClick: true,
+		},
+		ViewEmployee: {
+			renderItem: (modal, props) => <ModalEmployeeView id={modal.data?.id} {...props} />,
+			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+			hasTopMenu: true,
 		},
 	},
 };

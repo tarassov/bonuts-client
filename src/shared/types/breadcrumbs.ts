@@ -4,6 +4,7 @@ export type TBntBreadcrumbItem = {
 	label: string;
 	icon?: JSX.Element;
 	key: string;
+	noTranslation?: boolean;
 };
 
 export type TBntBreadcrumb = {
