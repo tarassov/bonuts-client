@@ -12,8 +12,9 @@ export const BntTagAutocomplete: FC<{
 }> = ({ field, value, id }) => {
 	const { source = [], label, placeholder, name, disabled, loading } = field;
 	const [current, setCurrent] = useState<Array<TFormFieldSourceItem>>([]);
+	const { onChange } = useBntForm();
 	const { translate } = useBntTranslate();
-	const { onChange, initialValues } = useBntForm();
+	const { initialValues } = useBntForm();
 
 	useEffect(() => {
 		if (value) {

@@ -75,7 +75,9 @@ export const BntDonutPreview = () => {
 								{donut?.name}
 							</BntTypography>
 							<BntTypography variant="h5">{translate(Dictionary.Description)}</BntTypography>
-							<BntTypography paragraph>{donut?.description}</BntTypography>
+							<BntTypography paragraph isPreformatted>
+								{donut?.description}
+							</BntTypography>
 						</Grid>
 
 						<Grid item xs={12} sm={4} md={3} lg={2} order={{ xs: 2, md: 3 }}>

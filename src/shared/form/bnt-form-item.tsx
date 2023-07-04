@@ -6,29 +6,21 @@ import { BntFormField } from "./bnt-form-field";
 
 export const BntFormItem: FC<{
 	field: TFormField<any>;
-	value?: any;
 	id: string;
-}> = ({ field, value, id }) => {
-	const fieldName = String(field.name);
+}> = ({ field, id }) => {
 	const field_xs = field.xs ? field.xs : 12;
 	const field_sm = field.sm ? field.sm : field_xs;
 	const field_md = field.md ? field.md : field_sm;
 	const field_lg = field.lg ? field.lg : field_md;
 	return (
 		<>
-			<Grid
-				item
-				key={fieldName.concat("_key")}
-				xs={field_xs}
-				sm={field_sm}
-				md={field_md}
-				lg={field_lg}
-			>
+			<GridOffset offset={field.offset?.offsetBeforeElement} />
+			<Grid item xs={field_xs} sm={field_sm} md={field_md} lg={field_lg}>
 				<FormControl required={field.required} style={{ width: "100%" }}>
-					<BntFormField id={id} field={field} value={value} />
+					<BntFormField id={id} field={field} />
 				</FormControl>
 			</Grid>
-			<GridOffset key={fieldName.concat("_offset")} offset={field.offset} />
+			<GridOffset offset={field.offset?.offsetAfterElement} />
 		</>
 	);
 };

@@ -1,14 +1,13 @@
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React, { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { Dictionary } from "constants/dictionary";
-import { BntTransparentButton } from "../buttons/transparent-button";
+import { BntIconButton } from "shared/icon-button/bnt-icon-button";
+import { ModeEditOutlineRounded } from "@mui/icons-material";
 
 export const BntFormFileInput: FC<{
 	handleFileInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }> = ({ handleFileInputChange }) => {
 	const inputRef = React.useRef<HTMLInputElement>(null);
-	const { translate } = useBntTranslate();
 
 	const handleButtonClick = () => {
 		if (inputRef.current) {
@@ -28,16 +27,11 @@ export const BntFormFileInput: FC<{
 				ref={inputRef}
 				onChange={handleFileInputChange}
 			/>
-			<label htmlFor="raised-button-file">
-				<BntTransparentButton
-					sx={{ component: "span", mt: 1 }}
-					variant="outlined"
-					color="primary"
-					onClick={handleButtonClick}
-				>
-					{translate(Dictionary.EDIT)}
-				</BntTransparentButton>
-			</label>
+			<Box sx={{ textAlign: "end", width: "100%" }} className="pr-8">
+				<BntIconButton onClick={handleButtonClick} tooltip={Dictionary.EDIT}>
+					<ModeEditOutlineRounded />
+				</BntIconButton>
+			</Box>
 		</Stack>
 	);
 };

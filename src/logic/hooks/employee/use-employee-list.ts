@@ -1,10 +1,10 @@
-import { extendedApi } from "services/api/extended-api";
 import { apiProfilesAdaptor } from "services/adaptor/api-profile-adaptor";
+import { profilesApi } from "services/api/extended/profiles-api";
 import { useListBase } from "../use-list-base";
 
 export const useEmployeeList = () => {
 	return useListBase({
-		endpoint: extendedApi.endpoints.getProfiles,
+		endpoint: profilesApi.endpoints.getProfiles,
 		translator: apiProfilesAdaptor,
 	});
 };

@@ -7,18 +7,15 @@ export const BntFormValuesContext = createContext<Record<string, TFormValue>>({}
 export const BntFormInitialsValuesContext = createContext<Record<string, any>>({});
 
 export const BntFormContextProvider: FC<{
-	onChange: TBntFormContextType;
 	values: Record<string, TFormValue>;
 	initialValues?: Record<string, any>;
 	children: JSX.Element | JSX.Element[];
-}> = ({ onChange, children, values, initialValues = {} }) => {
+}> = ({ children, values, initialValues = {} }) => {
 	return (
-		<BntFormProvider.Provider value={onChange}>
-			<BntFormValuesContext.Provider value={values}>
-				<BntFormInitialsValuesContext.Provider value={initialValues}>
-					{children}
-				</BntFormInitialsValuesContext.Provider>
-			</BntFormValuesContext.Provider>
-		</BntFormProvider.Provider>
+		<BntFormValuesContext.Provider value={values}>
+			<BntFormInitialsValuesContext.Provider value={initialValues}>
+				{children}
+			</BntFormInitialsValuesContext.Provider>
+		</BntFormValuesContext.Provider>
 	);
 };

@@ -1,22 +1,25 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Dictionary, Sorting } from "constants/dictionary";
 import { TFieldType } from "shared/form/types/bnt-form";
-import { BntTextInputElement } from "shared/input/text-input-element";
 import { BntStack } from "shared/stack/stack";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { TDonut } from "@/types/model";
+import { BntTextInput } from "shared/input/text-input";
+import { TBaseModel } from "@/types/model";
 
-export const SearchString: FC<{
+export type SearchStringProps<T extends TBaseModel = TBaseModel> = {
 	setSearch: (search: string) => void;
 	// eslint-disable-next-line react/no-unused-prop-types
-	setFilter: (filters: Array<{ (a: TDonut): boolean }>) => void;
-	setSorter: (sorter: (a: TDonut, b: TDonut) => number) => void;
-	buttons: Array<{
+	setFilter: (filters: Array<{ (a: T): boolean }>) => void;
+	setSorter: (sorter: (a: T, b: T) => number) => void;
+	buttons?: Array<{
 		name: Sorting;
-		sorter: (a: TDonut, b: TDonut) => number;
+		sorter: (a: T, b: T) => number;
 	}>;
-}> = ({ setSorter, setSearch, buttons }) => {
+};
+
+export const SearchString = <T extends TBaseModel>(props: SearchStringProps<T>) => {
+	const { setSorter, setSearch, buttons } = props;
 	const { translate } = useBntTranslate();
 	const [text, setText] = useState<string>("");
 	const setValue = (value: string) => {
@@ -33,10 +36,10 @@ export const SearchString: FC<{
 
 	return (
 		<>
-			<BntTextInputElement
+			<BntTextInput
 				color="primary"
 				name="filter-donuts"
-				placeholder={Dictionary.SEARCH_STRING}
+				placeholder={`${translate(Dictionary.SEARCH_STRING)}...`}
 				type={TFieldType.text}
 				value={text}
 				clearable
@@ -47,7 +50,7 @@ export const SearchString: FC<{
 				sx={{ width: "100%" }}
 			/>
 			<BntStack direction={{ xs: "column", sm: "row" }} className="mb-5" spacing={{ xs: 1, sm: 2 }}>
-				{buttons.map((button) => {
+				{buttons?.map((button) => {
 					return (
 						<BntRoundButton
 							variant="outlined"

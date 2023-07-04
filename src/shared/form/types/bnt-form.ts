@@ -1,4 +1,6 @@
 import { UseFormRegisterReturn } from "react-hook-form";
+import { SystemStyleObject } from "@mui/system/styleFunctionSx/styleFunctionSx";
+import { Theme } from "@mui/material/styles";
 
 export enum TFieldSize {
 	xs = "xs",
@@ -24,7 +26,25 @@ export type TPaddingProps = {
 	};
 };
 
-export type TFieldGroup = { id: number; gap?: number } & TSizeProps & TPaddingProps;
+export type TOffsetProps = {
+	offsetBeforeElement?: TSizeProps;
+	offsetAfterElement?: TSizeProps;
+};
+
+export type TGroupStyle = {
+	border?: string;
+	margin?: string;
+	boxShadow?: number;
+};
+
+export type TFieldGroup = {
+	id: number;
+	gap?: number;
+	groups?: Array<TFieldGroup>;
+	offset?: TOffsetProps;
+	sx?: (theme: Theme) => SystemStyleObject<Theme>;
+} & TSizeProps &
+	TPaddingProps;
 
 export enum TFieldType {
 	password = "password",
@@ -34,6 +54,7 @@ export enum TFieldType {
 	number = "number",
 	textarea = "textarea",
 	date = "date",
+	switch = "switch",
 }
 export type TFormImageValue = {
 	url: string;
@@ -55,7 +76,7 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	name: keyof T;
 	label: string;
 	size: TFieldSize;
-	offset?: TSizeProps;
+	offset?: TOffsetProps;
 	source?: TFormFieldSource;
 	disabled?: boolean;
 	image: boolean;

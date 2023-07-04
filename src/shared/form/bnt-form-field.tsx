@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { BntTextAreaField } from "shared/form/fields/bnt-text-area-field";
 import { BntDatePickerField } from "shared/form/fields/bnt-date-picker-field";
+import { BntSwitchField } from "shared/form/fields/bnt-switch-field";
+import { useWatch } from "react-hook-form";
 import { TFieldType, TFormField } from "./types/bnt-form";
 import { BntFormTextField } from "./fields/bnt-form-text-field";
 import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
@@ -8,9 +10,9 @@ import { BntImageUpload } from "./fields/bnt-image-upload";
 
 export const BntFormField: FC<{
 	field: TFormField<any>;
-	value: any;
 	id: string;
-}> = ({ field, value, id }) => {
+}> = ({ field, id }) => {
+	const value = useWatch({ name: field.name.toString() });
 	if (field.type === TFieldType.tags) {
 		return <BntTagAutocomplete id={id} field={field} value={value} />;
 	}
@@ -41,6 +43,11 @@ export const BntFormField: FC<{
 				required={field.required}
 				label={field.label}
 			/>
+		);
+	}
+	if (field.type === TFieldType.switch) {
+		return (
+			<BntSwitchField name={field.name.toString()} disabled={field.disabled} label={field.label} />
 		);
 	}
 	return (

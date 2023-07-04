@@ -6,6 +6,7 @@ import { BntTab } from "shared/tab/bnt-tab";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntTabPanel } from "shared/tab/bnt-tab-panel";
 import { emptyFunction } from "utils/empty-function";
+import { CardWrapper } from "shared/card-wrapper/card-wrapper";
 import { TDonut } from "@/types/model";
 
 export type StoreManagerPureProps = {
@@ -42,12 +43,14 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateCl
 				<BntTab label={translate("Active donuts")} tabValue={0} />
 				<BntTab label={translate("Not active donuts")} tabValue={1} />
 			</BntTabs>
-			<BntTabPanel value={value} index={0}>
-				<BntReactTable columns={storeTableColumns} data={active} />
-			</BntTabPanel>
-			<BntTabPanel value={value} index={1}>
-				<BntReactTable columns={storeTableColumnsNotActive} data={notActive} />
-			</BntTabPanel>
+			<CardWrapper>
+				<BntTabPanel value={value} index={0}>
+					<BntReactTable columns={storeTableColumns} data={active} />
+				</BntTabPanel>
+				<BntTabPanel value={value} index={1}>
+					<BntReactTable columns={storeTableColumnsNotActive} data={notActive} />
+				</BntTabPanel>
+			</CardWrapper>
 		</div>
 	);
 };

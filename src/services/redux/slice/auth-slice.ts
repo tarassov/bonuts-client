@@ -27,10 +27,7 @@ const slice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchPending, (state, action) => {
-				// eslint-disable-next-line no-console
-				console.log("pending login", action);
-			})
+			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchPending, () => {})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchFulfilled, (state, action) => {
 				state.token = action.payload.auth_token;
 				if (action.payload.tenants.length === 1) {

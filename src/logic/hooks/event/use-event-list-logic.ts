@@ -1,10 +1,10 @@
-import { extendedApi } from "services/api/extended-api";
 import { apiAdaptor } from "services/adaptor/api-adaptor";
+import { eventsApi } from "services/api/extended/events-api";
 import { usePagintatedListBase } from "../use-pagintated-list-base";
 
 export const useEventListLogic = ({ showMine = false }) => {
 	return usePagintatedListBase({
-		endpoint: extendedApi.endpoints.getEvents,
+		endpoint: eventsApi.endpoints.getEvents,
 		args: {
 			showMine: showMine ? "true" : "false",
 			page: 1,
