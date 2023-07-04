@@ -2,10 +2,11 @@ import { TBntModalConfig } from "shared/types/dialog";
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { texts_n } from "services/localization/texts";
 import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
+import { CommonStrings } from "constants/dictionary";
 
 export type ModalType = {
 	SimpleTextModal: string;
-	ImageModal: { url: string };
+	ImageModal: { url: string; title?: string };
 	CreateDonut: {};
 };
 
@@ -21,6 +22,7 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 		},
 		ImageModal: {
 			renderItem: (modal) => <ModalImage url={modal.data.url} />,
+			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			hasTopMenu: true,
 		},
 		CreateDonut: {

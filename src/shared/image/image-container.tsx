@@ -16,4 +16,7 @@ export const ImageContainer = styled("div")((props: { round?: boolean }) => ({
 		maxWidth: "100%",
 		maxHeight: "100%",
 	},
+	"&:hover": {
+		cursor: "zoom-in",
+	},
 }));

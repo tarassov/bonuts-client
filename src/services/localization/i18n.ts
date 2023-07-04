@@ -205,6 +205,7 @@ i18n.use(LanguageDetector).init({
 				position: "должность",
 				Position: "Должность",
 				Plugins: "Плагины",
+				preview: "просмотр",
 				Price: "Цена",
 				price: "цена",
 				"price asc": "сначала самые дешевые",

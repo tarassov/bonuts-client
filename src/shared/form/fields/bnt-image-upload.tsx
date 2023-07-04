@@ -1,6 +1,7 @@
-import { Box, CardMedia } from "@mui/material";
+import { Box } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import React, { useEffect, useState } from "react";
+import { ImagePreview } from "shared/image/image-preview";
 import { TFormField, TFormImageValue, TFormValue } from "../types/bnt-form";
 
 import { useBntForm } from "../hooks/use-bnt-form";
@@ -55,11 +56,9 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 		<div>
 			{imagePreviewUrl ? (
 				<>
-					<CardMedia
-						component="img"
-						sx={{ objectFit: "contain", maxHeight: "300px" }}
-						image={imagePreviewUrl}
-						title="Selected Image"
+					<ImagePreview
+						defaultImage={imagePreviewUrl}
+						onClick={() => field.onClick?.(imagePreviewUrl)}
 					/>
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
 				</>

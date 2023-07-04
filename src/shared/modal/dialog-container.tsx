@@ -10,6 +10,7 @@ import { texts_c } from "services/localization/texts/texts_c";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntDivider } from "shared/divider/bnt-divider";
 import { BntTypography } from "shared/typography/typography";
+import _ from "lodash";
 
 export const BntDialogContainer = () => {
 	const modals = useContext(BntDialogValueContext);
@@ -20,6 +21,12 @@ export const BntDialogContainer = () => {
 	return (
 		<>
 			{[...modals].map((modal) => {
+				// eslint-disable-next-line no-nested-ternary
+				const title = modal.title
+					? _.isFunction(modal.title)
+						? modal.title(modal)
+						: modal.title
+					: "";
 				return (
 					<BntDialog
 						key={modal.modalKey}
@@ -37,7 +44,7 @@ export const BntDialogContainer = () => {
 									alignItems="center"
 									sx={{ color: "success.dark" }}
 								>
-									<BntTypography variant="h5">{t(modal.title, { capitalize: true })}</BntTypography>
+									<BntTypography variant="h5">{t(title, { capitalize: true })}</BntTypography>
 									<BntIconButton onClick={() => handleClose(modal.modalKey)}>
 										<CloseOutlined />
 									</BntIconButton>
