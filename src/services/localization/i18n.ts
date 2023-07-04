@@ -252,6 +252,7 @@ i18n.use(LanguageDetector).init({
 				"Save changes": "Сохранить изменения",
 				"Self account": "Могу потратить",
 				Search: "Поиск",
+				"Search string": "Строка поиска",
 				search: "поиск",
 				Share: "Поделиться",
 				"Share dialog": "Окно подарков",
