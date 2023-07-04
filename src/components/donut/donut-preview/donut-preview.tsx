@@ -32,7 +32,7 @@ export const BntDonutPreview = () => {
 	}, [isLoading]);
 
 	const onClick = () => {
-		ImageModal.show({ url: donut?.logo?.url || "" });
+		ImageModal.show({ url: donut?.logo?.url || DEFAULT_DONUT_IMAGE, title: donut?.name });
 	};
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{

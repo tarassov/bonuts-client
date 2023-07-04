@@ -7,7 +7,7 @@ export const ImageContainer = styled("div")((props: { round?: boolean }) => ({
 	overflow: "hidden",
 	textAlign: "center",
 	verticalAlign: "middle",
-	maxWidth: "250px",
+	maxWidth: "100%",
 	...Shadows.big,
 	...(props.round && { borderRadius: "50%", maxWidth: "100px" }),
 	"& img": {

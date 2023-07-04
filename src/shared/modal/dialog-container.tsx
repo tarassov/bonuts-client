@@ -21,7 +21,6 @@ export const BntDialogContainer = () => {
 	return (
 		<>
 			{[...modals].map((modal) => {
-				// eslint-disable-next-line no-nested-ternary
 				const title = modal.title
 					? _.isFunction(modal.title)
 						? modal.title(modal)
@@ -44,7 +43,7 @@ export const BntDialogContainer = () => {
 									alignItems="center"
 									sx={{ color: "success.dark" }}
 								>
-									<BntTypography variant="h5">{t(title, { capitalize: true })}</BntTypography>
+									<BntTypography variant="h5">{title}</BntTypography>
 									<BntIconButton onClick={() => handleClose(modal.modalKey)}>
 										<CloseOutlined />
 									</BntIconButton>
