@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback, useMemo, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { ModalType } from "config/modal-config";
 import _uniqueId from "lodash/uniqueId";
 import {
@@ -13,8 +13,9 @@ import { TBntModalConfig } from "../types/dialog";
 
 export const BntDialogProvider: FC<{
 	config: TBntModalConfig<ModalType>;
+	path: string;
 	children: JSX.Element | Array<JSX.Element>;
-}> = ({ children, config }) => {
+}> = ({ children, config, path }) => {
 	type ModalState = Record<
 		string,
 		{
@@ -29,9 +30,14 @@ export const BntDialogProvider: FC<{
 
 	const [modals, setModal] = useState<ModalState | null>(null);
 
+	// close all modals after path has changed
+	useEffect(() => {
+		setModal(null);
+	}, [path]);
+
 	const showDialog = useCallback(
 		<T extends keyof typeof config.items>(name: T, data: ModalType[T], key?: string) => {
-			const modalKey = key || _uniqueId("modal-");
+			const modalKey = key || _uniqueId(`modal-${path}-`);
 			const { title } = config.items[name];
 			const modalTitle = isFunction(title) ? title(data as never) : title;
 			setModal((prev) => {
@@ -49,7 +55,7 @@ export const BntDialogProvider: FC<{
 				};
 			});
 		},
-		[]
+		[path]
 	);
 
 	const handleClose = useCallback((key: string) => {

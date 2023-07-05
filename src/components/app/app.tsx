@@ -4,9 +4,7 @@ import { I18nextProvider } from "react-i18next";
 import { history } from "services/redux/store/store";
 import { BntThemeProvider } from "themes/theme-provider";
 import { AppContext } from "context/app-context";
-import { modalConfig } from "config/modal-config";
 import { BntLoadingProvider } from "shared/loader/loading-provider";
-import { BntDialogProvider } from "shared/modal/dialog-provider";
 import { BntLayout } from "components/layout/layout";
 import { SnackbarProvider } from "notistack";
 import { getMenuRoutes } from "routes/get-menu-routes";
@@ -44,9 +42,7 @@ const App = () => {
 						<AppContext.Provider value={contextValue}>
 							<HistoryRouter history={history}>
 								<BntLoadingProvider>
-									<BntDialogProvider config={modalConfig}>
-										<BntLayout />
-									</BntDialogProvider>
+									<BntLayout />
 								</BntLoadingProvider>
 							</HistoryRouter>
 						</AppContext.Provider>

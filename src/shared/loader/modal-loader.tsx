@@ -3,7 +3,7 @@ import Backdrop from "@mui/material/Backdrop";
 import { CircularProgress } from "@mui/material";
 import { FC } from "react";
 
-export const BntModalLoader: FC<{ loading: boolean }> = ({ loading }) => {
+export const BntModalLoader: FC<{ loading?: boolean }> = ({ loading = false }) => {
 	return (
 		<Backdrop
 			sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
