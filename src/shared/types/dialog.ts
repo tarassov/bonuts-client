@@ -28,6 +28,7 @@ export type TBntModal<T> = {
 	hasTopMenu?: boolean;
 	title?: string | ((data: T) => string);
 	preventCloseOnBackDropClick?: boolean;
+	allowFullscreen?: boolean;
 };
 
 export type TBntModalItems<T> = {

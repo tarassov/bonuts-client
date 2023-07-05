@@ -7,6 +7,7 @@ import { routesPath } from "routes/config/routes-path";
 import { BntRoutes } from "routes/config/routes";
 import _ from "lodash";
 import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
+import { PageWrapper } from "pages/page-wrapper";
 
 interface ISwithRoutesProps {
 	routes: Array<TRoute<any>>;
@@ -19,7 +20,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 		return <Navigate to={route.authenticatedRedirect} />;
 	}
 	return auth.isAuthenticated || route.anonymous ? (
-		route.component
+		<PageWrapper children={route.component} path={route.path} />
 	) : (
 		<Navigate to={route.redirect || routesPath[BntRoutes.Login]} />
 	);

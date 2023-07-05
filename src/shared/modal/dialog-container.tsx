@@ -69,9 +69,11 @@ export const BntDialogContainer = () => {
 								setModalLoading: (value) => moduleSetLoading(modal.modalKey, value),
 							})}
 							{fullScreen && (
-								<BntRoundButton onClick={() => handleClose(modal.modalKey)}>
-									{t(texts_c.close)}
-								</BntRoundButton>
+								<BntStack justifyContent="center">
+									<BntRoundButton onClick={() => handleClose(modal.modalKey)}>
+										{t(texts_c.close)}
+									</BntRoundButton>
+								</BntStack>
 							)}
 						</Box>
 					</BntDialog>

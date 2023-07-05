@@ -23,7 +23,7 @@ export const BntDialog: FC<
 		<DialogStyled
 			{...sharedProps}
 			onClose={onClose}
-			fullScreen={fullScreen}
+			fullScreen={fullScreen && !isLoading && modal.allowFullscreen}
 			isLoading={isLoading}
 		/>
 	);

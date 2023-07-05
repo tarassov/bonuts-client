@@ -2,10 +2,9 @@ import { styled } from "@mui/material/styles";
 import { Dialog, DialogProps } from "@mui/material";
 import { cl } from "themes/helper";
 
-export const DialogStyled = styled(
-	Dialog,
-	{}
-)<DialogProps & { isLoading?: boolean }>(({ theme, isLoading }) => {
+export const DialogStyled = styled(Dialog, {
+	shouldForwardProp: (prop) => prop !== "isLoading",
+})<DialogProps & { isLoading?: boolean }>(({ theme, isLoading }) => {
 	if (isLoading) {
 		return {
 			background: "transparent",
