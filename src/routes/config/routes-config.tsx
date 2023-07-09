@@ -27,8 +27,10 @@ import { SchedulersPage } from "pages/schedulers-page/schedulers-page";
 import { EmployeePreviewPage } from "pages/employee/employee-preview-page";
 import { DonutEditPage } from "pages/donut/donut-edit-page";
 import { Roles } from "constants/roles";
+import { useIcons } from "hooks/use-icons";
 import {
 	AccountOperationsPage,
+	CirclesPage,
 	ActiveRequestsPage,
 	ClosedRequestsPage,
 	DashboardPage,
@@ -50,6 +52,8 @@ import {
 	StorePage,
 	TenantsListPage,
 } from "@/pages";
+
+const { CirclesIcon } = useIcons();
 
 const groupAdmins = [Roles.moderator, Roles.admin, Roles.admin];
 const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
@@ -287,6 +291,17 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 				hideInMenu: false,
 				component: <SchedulersPage />,
 				icon: <CalendarMonthOutlined />,
+				index: 0,
+				roles: groupAdmins,
+			},
+			Circles: {
+				path: routesPath[BntRoutes.Circles],
+				anonymous: false,
+				authenticated: true,
+				navbarName: "Circles",
+				hideInMenu: false,
+				component: <CirclesPage />,
+				icon: <CirclesIcon />,
 				index: 0,
 				roles: groupAdmins,
 			},

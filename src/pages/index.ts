@@ -1,3 +1,4 @@
+export { CirclesPage } from "pages/circles-page/circles-page";
 export { ActiveRequestsPage } from "pages/requests/active-requests-page.tsx/active-requests-page";
 export { MyRequestsPage } from "pages/requests/my-requests-page/my-requests-page";
 export { ClosedRequestsPage } from "pages/requests/closed-requests-page/closed-request-page";

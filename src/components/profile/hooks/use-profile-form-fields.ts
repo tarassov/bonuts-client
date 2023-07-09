@@ -6,7 +6,7 @@ import {
 } from "shared/form/types/bnt-form";
 import { UserLogic } from "logic/utils/user-utils";
 import { useRoleField } from "hooks/form-field/use-role-field";
-import { useCircleList } from "logic/hooks/cirlce/use-circle-list";
+import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
 import { texts_a } from "services/localization/texts/texts_a";
 import { texts_e } from "services/localization/texts/texts_e";
 import { TProfile } from "@/types/model";
@@ -14,7 +14,7 @@ import { TCircle } from "@/types/model/circle";
 
 export const useProfileFormFields = (profile?: TProfile | null) => {
 	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(profile) });
-	const { objects: circles, isLoading } = useCircleList();
+	const { objects: circles, isLoading } = useCircleLoaderList();
 	const circleToOption = (circle: TCircle): TFormFieldSourceItem => {
 		return { key: circle.id, label: circle.name };
 	};
