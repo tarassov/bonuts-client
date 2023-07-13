@@ -15,11 +15,8 @@ export type StoreManagerPureProps = {
 };
 
 export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateClick }) => {
-	const { storeTableColumns } = useStoreTableConfig(onCreateClick);
-	const { storeTableColumns: storeTableColumnsNotActive } = useStoreTableConfig(
-		emptyFunction,
-		true
-	);
+	const { tableConfig } = useStoreTableConfig(onCreateClick);
+	const { tableConfig: storeTableColumnsNotActive } = useStoreTableConfig(emptyFunction, true);
 	const { translate } = useBntTranslate();
 	const [value, setValue] = useState(0);
 
@@ -45,7 +42,7 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateCl
 			</BntTabs>
 			<CardWrapper>
 				<BntTabPanel value={value} index={0}>
-					<BntReactTable columns={storeTableColumns} data={active} />
+					<BntReactTable columns={tableConfig} data={active} />
 				</BntTabPanel>
 				<BntTabPanel value={value} index={1}>
 					<BntReactTable columns={storeTableColumnsNotActive} data={notActive} />
