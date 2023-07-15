@@ -4,6 +4,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { ActionType, CellType, HeaderType, TTableConfig } from "shared/react-table/types";
 import { useTableConfig } from "shared/react-table/hooks/use-table-config";
 import { useDonutUi } from "logic/ui/use-donut-ui";
+import { useMemo } from "react";
 import { TDonut } from "@/types/model";
 
 export const useStoreTableConfig = (
@@ -13,46 +14,48 @@ export const useStoreTableConfig = (
 	const { editDonut } = useDonutUi();
 	const { translate } = useBntTranslate();
 
-	const storeConfig: TTableConfig<TDonut> = {
-		columns: [
-			{
-				accessor: "name",
-				cellType: CellType.CellString,
-				enableSorting: true,
-				enableColumnFilter: true,
-				header: {
-					headerType: HeaderType.StringHeader,
-					value: translate(texts_n.name, { capitalize: true }),
+	const storeConfig: TTableConfig<TDonut> = useMemo(() => {
+		return {
+			columns: [
+				{
+					accessor: "name",
+					cellType: CellType.CellString,
+					enableSorting: true,
+					enableColumnFilter: true,
+					header: {
+						headerType: HeaderType.StringHeader,
+						value: translate(texts_n.name, { capitalize: true }),
+					},
+				},
+				{
+					accessor: "price",
+					cellType: CellType.CellNumber,
+					enableSorting: true,
+					enableColumnFilter: true,
+					header: {
+						headerType: HeaderType.StringHeader,
+						value: translate(texts_p.price, { capitalize: true }),
+					},
+				},
+			],
+			actions: {
+				edit: {
+					onClick: editDonut,
+					actionType: ActionType.Edit,
 				},
 			},
-			{
-				accessor: "price",
-				cellType: CellType.CellNumber,
-				enableSorting: true,
-				enableColumnFilter: true,
-				header: {
-					headerType: HeaderType.StringHeader,
-					value: translate(texts_p.price, { capitalize: true }),
-				},
+			headerActions: {
+				...(!hideCreateButton
+					? {
+							create: {
+								onClick: onCreateClick,
+								actionType: ActionType.Create,
+							},
+					  }
+					: null),
 			},
-		],
-		actions: {
-			edit: {
-				onClick: editDonut,
-				actionType: ActionType.Edit,
-			},
-		},
-		headerActions: {
-			...(!hideCreateButton
-				? {
-						create: {
-							onClick: onCreateClick,
-							actionType: ActionType.Create,
-						},
-				  }
-				: null),
-		},
-	};
+		};
+	}, []);
 
 	const { tableConfig } = useTableConfig(storeConfig);
 	return { tableConfig };

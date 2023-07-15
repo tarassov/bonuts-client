@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { FC, useEffect } from "react";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
@@ -14,6 +13,7 @@ import { routesPath } from "routes/config/routes-path";
 import { texts_r } from "services/localization/texts/texts_r";
 import { texts_a, texts_c, texts_i } from "services/localization/texts";
 import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
+import { CardWrapper } from "shared/card-wrapper/card-wrapper";
 import { BntStack } from "@/shared/stack/stack";
 
 export type BntRequestListProps = {
@@ -83,9 +83,9 @@ export const RequestsList: FC<BntRequestListProps> = ({
 	return (
 		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }}>
 			<BntBreadcrumbs items={breadcrumbs} />
-			<Box sx={{ flexGrow: 1, overflowY: "scroll" }}>
+			<CardWrapper className="flex-grow scroll">
 				<BntReactTable columns={tableConfig} data={requests} />
-			</Box>
+			</CardWrapper>
 		</BntStack>
 	);
 };
