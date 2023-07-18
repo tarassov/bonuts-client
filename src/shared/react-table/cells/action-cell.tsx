@@ -11,7 +11,10 @@ export const ActionCell: FC<{ rowId?: number; actions: Array<TTableAction> }> = 
 		<Stack direction="row">
 			{actions.map((action) => {
 				return (
-					<IconButton onClick={() => action.onClick?.(rowId)} sx={{ border: "0.5px solid" }}>
+					<IconButton
+						onClick={() => action.onClick?.(rowId)}
+						sx={!rowId ? { border: "0.5px solid" } : {}}
+					>
 						{actionIconFactory(action.actionType)}
 					</IconButton>
 				);

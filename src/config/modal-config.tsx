@@ -3,12 +3,14 @@ import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
 import { CommonStrings } from "constants/dictionary";
 import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-employee-view";
+import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-create-circle";
 
 export type ModalType = {
 	SimpleTextModal: string;
 	ImageModal: { url: string; title?: string };
 	CreateDonut: { title?: string };
 	ViewEmployee: { id: number; title?: string };
+	CreateCircle: { title?: string };
 };
 
 export type ModalTypeResponse = {
@@ -36,6 +38,12 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 			renderItem: (modal, props) => <ModalEmployeeView id={modal.data?.id} {...props} />,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			hasTopMenu: true,
+		},
+		CreateCircle: {
+			renderItem: (_, props) => <ModalCreateCircle {...props} />,
+			hasTopMenu: true,
+			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+			preventCloseOnBackDropClick: true,
 		},
 	},
 };

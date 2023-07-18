@@ -17,6 +17,13 @@ const injectedRtkApi = api.injectEndpoints({
 		postCircles: build.mutation<PostCirclesApiResponse, PostCirclesApiArg>({
 			query: (queryArg) => ({ url: `/circles`, method: "POST", body: queryArg.body }),
 		}),
+		patchCirclesById: build.mutation<PatchCirclesByIdApiResponse, PatchCirclesByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/circles/${queryArg.id}`,
+				method: "PATCH",
+				body: queryArg.body,
+			}),
+		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts`,
@@ -256,6 +263,23 @@ export type PostCirclesApiArg = {
 	body: {
 		name: string;
 		tenant: string;
+	};
+};
+export type PatchCirclesByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			id: number;
+			active: boolean;
+		};
+	}[];
+};
+export type PatchCirclesByIdApiArg = {
+	id: string;
+	body: {
+		name: string;
 	};
 };
 export type GetDonutsApiResponse = /** status 200 success */ {
@@ -1833,6 +1857,7 @@ export const {
 	usePostAvatarsMutation,
 	useGetCirclesQuery,
 	usePostCirclesMutation,
+	usePatchCirclesByIdMutation,
 	useGetDonutsQuery,
 	usePostDonutsMutation,
 	useGetDonutsByIdQuery,

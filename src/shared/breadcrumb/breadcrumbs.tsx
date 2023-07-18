@@ -4,7 +4,7 @@ import { NavigateNext } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { EMPTY_FUNCTION } from "constants/functions";
 import { BntStyledBreadcrumbs } from "shared/breadcrumb/styled-breadcrumbs";
-import { Tooltip } from "@mui/material";
+import { Icon, Tooltip } from "@mui/material";
 import { TBntBreadcrumb } from "../types/breadcrumbs";
 import { BntStyledBreadcrumb } from "./styled-breadcrumb";
 
@@ -36,7 +36,7 @@ export const BntBreadcrumbs: FC<TBntBreadcrumb> = ({ items, className }) => {
 									<span>{breadcrumbLabel}</span>
 								</Tooltip>
 							}
-							icon={icon}
+							icon={<Icon>{icon}</Icon>}
 							key={key}
 							hasLink={!!link}
 						/>

@@ -1,6 +1,11 @@
 import { bonutsApiOverride } from "services/api/form-data-api";
 
 export const circlesApi = bonutsApiOverride.enhanceEndpoints({
-	addTagTypes: ["Circle"],
-	endpoints: {},
+	addTagTypes: ["Circles"],
+	endpoints: {
+		postCircles: { invalidatesTags: ["Circles"] },
+		getCircles: {
+			providesTags: ["Circles"],
+		},
+	},
 });
