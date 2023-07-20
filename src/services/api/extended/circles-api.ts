@@ -1,11 +1,13 @@
-import { bonutsApiOverride } from "services/api/form-data-api";
+import { bonutsApi } from "services/api/bonuts-api";
 
-export const circlesApi = bonutsApiOverride.enhanceEndpoints({
+// noinspection TypeScriptValidateJSTypes
+export const circlesApi = bonutsApi.enhanceEndpoints({
 	addTagTypes: ["Circles"],
 	endpoints: {
 		postCircles: { invalidatesTags: ["Circles"] },
 		getCircles: {
 			providesTags: ["Circles"],
 		},
+		patchCirclesById: { invalidatesTags: ["Circles"] },
 	},
 });
