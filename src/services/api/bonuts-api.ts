@@ -287,7 +287,7 @@ export type GetCirclesByIdApiResponse = /** status 200 success */ {
 			id: number;
 			active: boolean;
 		};
-	}[];
+	};
 };
 export type GetCirclesByIdApiArg = {
 	id: string;

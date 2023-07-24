@@ -1,4 +1,4 @@
-import { GetCirclesApiResponse } from "services/api/bonuts-api";
+import { GetCirclesApiResponse, GetCirclesByIdApiResponse } from "services/api/bonuts-api";
 
 import { TCircle } from "@/types/model/circle";
 
@@ -14,4 +14,16 @@ export const apiCirclesAdaptor = (response: GetCirclesApiResponse): Array<TCircl
 			id: Number(id),
 		};
 	});
+};
+export const apiCircleAdaptor = (response?: GetCirclesByIdApiResponse): TCircle | undefined => {
+	if (!response) return undefined;
+	const { data } = response;
+
+	if (!data) return undefined;
+
+	const { attributes, id } = data;
+	return {
+		...attributes,
+		id: Number(id),
+	};
 };

@@ -6,6 +6,7 @@ import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-e
 import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-create-circle";
 import { ConfirmationModal } from "components/modals/confirmation-modal";
 import { texts_c } from "services/localization/texts";
+import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-circle";
 
 export type ModalType = {
 	SimpleTextModal: string;
@@ -13,6 +14,7 @@ export type ModalType = {
 	CreateDonut: { title?: string };
 	ViewEmployee: { id: number; title?: string };
 	CreateCircle: { title?: string };
+	EditCircle: { title?: string; circleId: number };
 	ConfirmationModal: { text: string; onSubmit: VoidFunction; title?: string };
 };
 
@@ -52,6 +54,12 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 		},
 		CreateCircle: {
 			renderItem: (_, props) => <ModalCreateCircle {...props} />,
+			hasTopMenu: true,
+			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+			preventCloseOnBackDropClick: true,
+		},
+		EditCircle: {
+			renderItem: (modal, props) => <ModalEditCircle {...props} circleId={modal.data.circleId} />,
 			hasTopMenu: true,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			preventCloseOnBackDropClick: true,

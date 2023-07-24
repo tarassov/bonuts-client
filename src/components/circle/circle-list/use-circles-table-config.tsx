@@ -1,4 +1,4 @@
-import { texts_a, texts_c, texts_n } from "services/localization/texts";
+import { texts_a, texts_c, texts_e, texts_n } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { ActionType, CellType, HeaderType, TTableConfig } from "shared/react-table/types";
 import { useTableConfig } from "shared/react-table/hooks/use-table-config";
@@ -12,7 +12,7 @@ export const useCirclesTableConfig = () => {
 	const { translate } = useBntTranslate();
 	const { showCreateCircleModal } = useCircleUi();
 	const { deleteCircle } = useCircle();
-	const { ConfirmationModal } = useModal();
+	const { ConfirmationModal, EditCircle } = useModal();
 
 	const onDelete = (id?: number) => {
 		if (id) {
@@ -20,6 +20,15 @@ export const useCirclesTableConfig = () => {
 				text: translate(texts_a.are_you_sure_to_delete, { capitalize: true }),
 				onSubmit: () => deleteCircle(id),
 				title: translate(texts_c.confirmation, { capitalize: true }),
+			});
+		}
+	};
+
+	const onEdit = (id?: number) => {
+		if (id) {
+			EditCircle.show({
+				title: translate(texts_e.edit, { capitalize: true }),
+				circleId: id,
 			});
 		}
 	};
@@ -40,7 +49,7 @@ export const useCirclesTableConfig = () => {
 			],
 			actions: {
 				edit: {
-					onClick: () => {},
+					onClick: (id) => onEdit(id),
 					actionType: ActionType.Edit,
 				},
 				delete: {
