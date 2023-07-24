@@ -1,16 +1,28 @@
-import { texts_n } from "services/localization/texts";
+import { texts_a, texts_c, texts_n } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { ActionType, CellType, HeaderType, TTableConfig } from "shared/react-table/types";
 import { useTableConfig } from "shared/react-table/hooks/use-table-config";
 import { useMemo } from "react";
 import { useCircleUi } from "logic/ui/use-circle-ui";
 import { useCircle } from "logic/hooks/cirlce/use-circle";
+import { useModal } from "hooks/use-modal";
 import { TCircle } from "@/types/model";
 
 export const useCirclesTableConfig = () => {
 	const { translate } = useBntTranslate();
 	const { showCreateCircleModal } = useCircleUi();
 	const { deleteCircle } = useCircle();
+	const { ConfirmationModal } = useModal();
+
+	const onDelete = (id?: number) => {
+		if (id) {
+			ConfirmationModal.show({
+				text: translate(texts_a.are_you_sure_to_delete, { capitalize: true }),
+				onSubmit: () => deleteCircle(id),
+				title: translate(texts_c.confirmation, { capitalize: true }),
+			});
+		}
+	};
 
 	const storeConfig: TTableConfig<TCircle> = useMemo(() => {
 		return {
@@ -32,7 +44,7 @@ export const useCirclesTableConfig = () => {
 					actionType: ActionType.Edit,
 				},
 				delete: {
-					onClick: (id) => deleteCircle(id),
+					onClick: (id) => onDelete(id),
 					actionType: ActionType.Delete,
 				},
 			},
