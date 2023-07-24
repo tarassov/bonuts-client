@@ -5,7 +5,7 @@ import { useAppDispatch } from "services/redux/store/store";
 import { useUpdateDonutMutation } from "services/api/form-data-api";
 import { TDonut } from "@/types/model";
 
-export const useUpdateDonut = () => {
+export const useDonut = () => {
 	const [updateDonut] = useUpdateDonutMutation();
 	const dispatch = useAppDispatch();
 	const { profile } = useProfileLogic();

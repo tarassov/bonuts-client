@@ -26,4 +26,5 @@ export enum BntRoutes {
 	AccountOperations = "AccountOperations",
 	MyRequests = "MyRequests",
 	Home = "Home",
+	Circles = "Circles",
 }

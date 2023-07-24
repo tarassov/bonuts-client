@@ -7,6 +7,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntTabPanel } from "shared/tab/bnt-tab-panel";
 import { emptyFunction } from "utils/empty-function";
 import { CardWrapper } from "shared/card-wrapper/card-wrapper";
+import { BntStack } from "shared/stack/stack";
 import { TDonut } from "@/types/model";
 
 export type StoreManagerPureProps = {
@@ -15,11 +16,8 @@ export type StoreManagerPureProps = {
 };
 
 export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateClick }) => {
-	const { storeTableColumns } = useStoreTableConfig(onCreateClick);
-	const { storeTableColumns: storeTableColumnsNotActive } = useStoreTableConfig(
-		emptyFunction,
-		true
-	);
+	const { tableConfig } = useStoreTableConfig(onCreateClick);
+	const { tableConfig: storeTableColumnsNotActive } = useStoreTableConfig(emptyFunction, true);
 	const { translate } = useBntTranslate();
 	const [value, setValue] = useState(0);
 
@@ -31,7 +29,7 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateCl
 	const notActive = useMemo(() => donuts?.filter((x) => !x.active) || [], [donuts]);
 	if (!donuts) return null;
 	return (
-		<div>
+		<BntStack direction="column" className="height-100">
 			<BntTabs
 				value={value}
 				onChange={handleChange}
@@ -43,14 +41,14 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateCl
 				<BntTab label={translate("Active donuts")} tabValue={0} />
 				<BntTab label={translate("Not active donuts")} tabValue={1} />
 			</BntTabs>
-			<CardWrapper>
+			<CardWrapper className="flex-grow scroll">
 				<BntTabPanel value={value} index={0}>
-					<BntReactTable columns={storeTableColumns} data={active} />
+					<BntReactTable columns={tableConfig} data={active} />
 				</BntTabPanel>
 				<BntTabPanel value={value} index={1}>
 					<BntReactTable columns={storeTableColumnsNotActive} data={notActive} />
 				</BntTabPanel>
 			</CardWrapper>
-		</div>
+		</BntStack>
 	);
 };

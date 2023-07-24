@@ -36,11 +36,11 @@ export const BntReactTable = styled(
 			width: "100%",
 		},
 		[cl("bnt-table-tr-even")]: {
-			background: theme.palette.grey[200],
+			background: theme.palette.grey[100],
 		},
 		[cl("bnt-table-tr")]: {
 			[hover]: {
-				background: theme.palette.grey[300],
+				background: theme.palette.grey[200],
 			},
 		},
 		[cl("bnt-navigation-button")]: {

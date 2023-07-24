@@ -9,6 +9,7 @@ import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
 import { texts_o } from "services/localization/texts/texts_o";
 import classNames from "classnames";
 import { DEFAULT_DONUT_IMAGE } from "constants/images";
+import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { TDonut } from "@/types/model";
 
 export const DonutCardPure: FC<{
@@ -17,6 +18,7 @@ export const DonutCardPure: FC<{
 	className?: string;
 }> = ({ donut, className, onDonutClick }) => {
 	const { translate } = useBntTranslate();
+	const { BonutsCurrency } = useBonutsIcon();
 
 	const { on_stock = 0, logo, price, name } = donut;
 	return (
@@ -38,7 +40,10 @@ export const DonutCardPure: FC<{
 						</div>
 						<div className={DONUT_CARD_CLASSES.captions}>
 							<BntTypography variant="body1">
-								{translate("Price")}: {price}
+								<BntStack direction="row">
+									{translate("Price")}: {price}
+									<BonutsCurrency />
+								</BntStack>
 							</BntTypography>
 							<BntTypography>{name}</BntTypography>
 						</div>

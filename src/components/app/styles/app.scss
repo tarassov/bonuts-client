@@ -16,8 +16,19 @@ main {
 	align-self: flex-start;
 }
 
+.scroll {
+	overflow-y: auto;
+}
+.height-100 {
+	height: 100%;
+}
+
 .width-100 {
 	width: 100%;
+}
+
+.flex-grow {
+	flex-grow: 1;
 }
 
 .text-align-center {

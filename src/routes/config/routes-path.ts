@@ -28,4 +28,5 @@ export const routesPath: Record<BntRoutes, string> = {
 	Store: "/store-manager",
 	Tenant: "/tenant",
 	TenantList: "/tenants_list",
+	Circles: "/circles",
 };

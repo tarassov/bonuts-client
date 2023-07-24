@@ -53,6 +53,7 @@ i18n.use(LanguageDetector).init({
 				"Already activated": "Уже активировано",
 				"Accepted requests": "Активированные запросы",
 				"All users": "Все пользователи",
+				"are you sure to delete?": "вы точно хотите удалить?",
 				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
@@ -62,12 +63,14 @@ i18n.use(LanguageDetector).init({
 
 				// C
 				Cancel: "Отмена",
+				cancel: "отмена",
 				Caption: "Название",
 				Change: "Изменить",
 				"Can not be empty": "Не может быть пустым",
 				"Change password": "Сменить пароль",
 				Confirm: "Подтвердить почтовый адрес",
 				"Confirmation dialog": "Подтверждение",
+				confirmation: "подтверждение",
 				"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
 				"Confirm your email first": "Для продолжнеия подтвердите адрес электронной почты ",
 				"Connect to space": "Присоединиться к пространству",
@@ -184,6 +187,7 @@ i18n.use(LanguageDetector).init({
 				name: "название",
 				"New item": "Новый элемент",
 				"new donut": "Новый пончик",
+				"new circle": "новый круг",
 				newest: "самые новые",
 				Next: "Вперед",
 				next: "вперед",
@@ -310,6 +314,7 @@ i18n.use(LanguageDetector).init({
 				"you have to be admin": "Вы должны иметь полномочия администратора",
 				"You have successfully bought a new donut": "Вы успешно купили плюшку",
 				"your comment": "ваш комментарий",
+				yes: "да",
 				// Z
 			},
 		},

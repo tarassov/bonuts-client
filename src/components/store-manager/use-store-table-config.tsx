@@ -1,50 +1,62 @@
-import { useMemo } from "react";
 import { texts_n } from "services/localization/texts";
 import { texts_p } from "services/localization/texts/texts_p";
-import { createColumnHelper } from "@tanstack/react-table";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { StoreActionCell } from "components/store-manager/store-action-cell";
-import { BntRoundButton } from "shared/buttons/round-button";
-import { AddOutlined } from "@mui/icons-material";
-import { BntStack } from "shared/stack/stack";
+import { ActionType, CellType, HeaderType, TTableConfig } from "shared/react-table/types";
+import { useTableConfig } from "shared/react-table/hooks/use-table-config";
+import { useDonutUi } from "logic/ui/use-donut-ui";
+import { useMemo } from "react";
 import { TDonut } from "@/types/model";
 
-export const useStoreTableConfig = (onCreateClick?: VoidFunction, hideCreateButton?: boolean) => {
-	const columnHelper = createColumnHelper<TDonut & { actions: any }>();
+export const useStoreTableConfig = (
+	onCreateClick?: VoidFunction,
+	hideCreateButton: boolean = false
+) => {
+	const { editDonut } = useDonutUi();
 	const { translate } = useBntTranslate();
-	const storeTableColumns = useMemo(
-		() => [
-			columnHelper.accessor("name", {
-				cell: (info) => <div className="pl-3">{info.getValue()}</div>,
-				header: translate(texts_n.name, { capitalize: true }),
-				footer: (info) => info.column.id,
-				enableSorting: true,
-			}),
-			columnHelper.accessor("price", {
-				cell: (info) => info.getValue(),
-				header: translate(texts_p.price, { capitalize: true }),
-				footer: (info) => info.column.id,
-				enableSorting: true,
-			}),
-			columnHelper.accessor("actions", {
-				cell: (info) => <StoreActionCell donutId={info.row.original.id} />,
-				header: () => (
-					<>
-						{!hideCreateButton ? (
-							<BntStack width="100%" direction="row" justifyContent="center">
-								<BntRoundButton variant="contained" color="primary" onClick={onCreateClick}>
-									<AddOutlined />
-								</BntRoundButton>
-							</BntStack>
-						) : null}
-					</>
-				),
-				enableSorting: false,
-				enableColumnFilter: false,
-			}),
-		],
-		[]
-	);
 
-	return { storeTableColumns };
+	const storeConfig: TTableConfig<TDonut> = useMemo(() => {
+		return {
+			columns: [
+				{
+					accessor: "name",
+					cellType: CellType.CellString,
+					enableSorting: true,
+					enableColumnFilter: true,
+					header: {
+						headerType: HeaderType.StringHeader,
+						value: translate(texts_n.name, { capitalize: true }),
+					},
+				},
+				{
+					accessor: "price",
+					cellType: CellType.CellNumber,
+					enableSorting: true,
+					enableColumnFilter: true,
+					header: {
+						headerType: HeaderType.StringHeader,
+						value: translate(texts_p.price, { capitalize: true }),
+					},
+				},
+			],
+			actions: {
+				edit: {
+					onClick: editDonut,
+					actionType: ActionType.Edit,
+				},
+			},
+			headerActions: {
+				...(!hideCreateButton
+					? {
+							create: {
+								onClick: onCreateClick,
+								actionType: ActionType.Create,
+							},
+					  }
+					: null),
+			},
+		};
+	}, []);
+
+	const { tableConfig } = useTableConfig(storeConfig);
+	return { tableConfig };
 };

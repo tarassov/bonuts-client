@@ -28,6 +28,7 @@ export const useRoleField = <T extends { roles?: Array<string> }>({
 			},
 		],
 		type: TFieldType.tags,
+		optionToValue: (option) => (option.key ? option.key : option),
 		xs: 12,
 	};
 

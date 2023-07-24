@@ -4,7 +4,7 @@ import { useDonutLoader } from "logic/hooks/donut/use-donut-loader";
 import { useEffect } from "react";
 import { Modules } from "constants/modules";
 import { DonutEditForm } from "components/donut/donut-edit/donut-edit-form";
-import { useUpdateDonut } from "logic/hooks/donut/use-update-donut";
+import { useDonut } from "logic/hooks/donut/use-donut";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
@@ -21,7 +21,7 @@ export const DonutEdit = () => {
 	const { id } = useParams();
 	const { setLoading } = useLoader();
 	const { donut, isLoading, refetch } = useDonutLoader(id);
-	const { putDonut } = useUpdateDonut();
+	const { putDonut } = useDonut();
 	useEffect(() => {
 		setLoading(Modules.DonutPreview, isLoading);
 	}, [isLoading]);

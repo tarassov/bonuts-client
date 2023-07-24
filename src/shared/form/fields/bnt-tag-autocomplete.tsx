@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, useEffect, useState } from "react";
+import { FC, SyntheticEvent } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CommonStrings, Dictionary } from "constants/dictionary";
@@ -7,43 +7,19 @@ import { useBntForm } from "../hooks/use-bnt-form";
 
 export const BntTagAutocomplete: FC<{
 	field: TFormField<any>;
-	value: Array<string | number>;
+	value: Array<TFormFieldSourceItem>;
 	id: string;
 }> = ({ field, value, id }) => {
 	const { source = [], label, placeholder, name, disabled, loading } = field;
-	const [current, setCurrent] = useState<Array<TFormFieldSourceItem>>([]);
 	const { onChange } = useBntForm();
 	const { translate } = useBntTranslate();
-	const { initialValues } = useBntForm();
-
-	useEffect(() => {
-		if (value) {
-			const values: Array<TFormFieldSourceItem> = value.reduce((acc, curr) => {
-				const combinedSource = source?.length
-					? source
-					: initialValues[field.name.toString()].map(field.valueToOption);
-				if (curr) {
-					const option: TFormFieldSourceItem = {
-						key: curr,
-						label: combinedSource?.length
-							? combinedSource.find((x: TFormFieldSourceItem) => x.key === curr)?.label
-							: curr.toString(),
-					};
-					acc.push(option);
-				}
-				return acc;
-			}, [] as Array<TFormFieldSourceItem>);
-			setCurrent(values);
-		}
-	}, [value, source, initialValues]);
 
 	const filteredSource: TFormFieldSource = source.filter(
-		(x) => !current.find((y) => y.key === x.key)
+		(x) => !value.find((y) => y.key === x.key)
 	);
 
 	const handleChange = (e: SyntheticEvent, values: TFormFieldSourceItem[]) => {
-		const newValues = values.map((v) => v.key);
-		onChange(name.toString(), newValues);
+		onChange(name.toString(), values);
 	};
 
 	return (
@@ -51,15 +27,17 @@ export const BntTagAutocomplete: FC<{
 			multiple
 			id={id}
 			options={filteredSource}
-			getOptionLabel={(option: TFormFieldSourceItem) => option.label || option.key.toString()}
-			value={current}
+			getOptionLabel={(option: TFormFieldSourceItem) =>
+				option.label || option.key?.toString() || option?.toString()
+			}
+			value={value}
 			loading={loading}
 			renderInput={(params) => (
 				<TextField
 					{...params}
 					variant="standard"
 					label={translate(label)}
-					placeholder={!current ? translate(placeholder) : CommonStrings.EMPTY_STRING}
+					placeholder={!value ? translate(placeholder) : CommonStrings.EMPTY_STRING}
 				/>
 			)}
 			onChange={handleChange}

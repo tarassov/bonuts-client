@@ -3,4 +3,5 @@ export enum texts_n {
 	name = "name",
 	"next" = "next",
 	new_donut = "new donut",
+	new_circle = "new circle",
 }

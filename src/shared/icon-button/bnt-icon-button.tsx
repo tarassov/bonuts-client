@@ -1,17 +1,29 @@
 import { FC } from "react";
-import { IconButton, IconButtonProps, Tooltip } from "@mui/material";
+import { Icon, IconButton, IconButtonProps, Tooltip } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-export const BntIconButton: FC<IconButtonProps & { tooltip?: string }> = (props) => {
-	const { tooltip, ...rest } = props;
+export const BntIconButton: FC<IconButtonProps & { tooltip?: string; customIcon?: boolean }> = (
+	props
+) => {
+	const { tooltip, customIcon, children, ...rest } = props;
 	const { t } = useBntTranslate();
 	if (tooltip) {
 		return (
 			<Tooltip title={t(tooltip)}>
-				<IconButton {...props} />
+				{!customIcon ? (
+					<IconButton {...rest}>{children}</IconButton>
+				) : (
+					<IconButton {...rest}>
+						<Icon>{children}</Icon>
+					</IconButton>
+				)}
 			</Tooltip>
 		);
 	}
-
-	return <IconButton {...rest} />;
+	if (!customIcon) return <IconButton {...rest}>{children}</IconButton>;
+	return (
+		<IconButton {...props}>
+			<Icon>{children}</Icon>
+		</IconButton>
+	);
 };

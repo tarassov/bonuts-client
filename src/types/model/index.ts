@@ -4,3 +4,5 @@ export type { TEvent } from "./event";
 export type { TUser } from "./user";
 export type { TBaseModel } from "./base-model";
 export type { TDonut } from "./donut";
+export type { TCircle } from "./circle";
+export type { TRequest } from "./request";

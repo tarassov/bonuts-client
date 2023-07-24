@@ -80,7 +80,7 @@ export const BntReactTablePure: FC<{
 	const numberOfRowsData = [5, 10, 20, 25, 50, 100];
 	return (
 		<TableContainer sx={{ boxShadow: "none" }} className={className}>
-			<Table>
+			<Table stickyHeader>
 				<TableHead>
 					{table.getHeaderGroups().map((headerGroup, key) => (
 						<TableRow key={headerGroup.id}>
