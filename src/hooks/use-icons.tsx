@@ -5,7 +5,7 @@ import { iconNames } from "@/config/icon-names";
 
 const ROOT_PATH = "/assets/icons/";
 
-type Attributes = {
+export type Attributes = {
 	width: string;
 	height: string;
 };

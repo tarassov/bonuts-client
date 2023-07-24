@@ -9,11 +9,19 @@ import { BntTypography } from "shared/typography/typography";
 import { emptyFunction } from "utils/empty-function";
 import { EmployeePreviewBreadcrumbs } from "components/employee/employee-preview/employee-preview-breadcrumbs";
 import { BntChip } from "shared/chip/chip";
-import { ErrorOutline, ShieldOutlined, StorefrontOutlined } from "@mui/icons-material";
+import {
+	DeleteOutlined,
+	ErrorOutline,
+	MonetizationOnOutlined,
+	ShieldOutlined,
+	StorefrontOutlined,
+} from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntLabel } from "components/employee/employee-preview/label";
 import { formatStringDate } from "utils/format-string-date";
 import { BntDivider } from "shared/divider/bnt-divider";
+import { useIcons } from "hooks/use-icons";
+import { BntIconButton } from "shared/icon-button/bnt-icon-button";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
@@ -23,6 +31,7 @@ import {
 	texts_n,
 	texts_s,
 } from "@/services/localization/texts";
+import { BntStack } from "@/shared/stack/stack";
 
 type EmployeePreviewPureProps = {
 	employee?: TProfile;
@@ -34,12 +43,29 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 }) => {
 	const theme = useTheme();
 	const { translate } = useBntTranslate();
+	const { BonutsCurrency } = useIcons();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
-		<>
-			<EmployeePreviewBreadcrumbs employee={employee} />
-			<BntCard>
+		<BntStack direction="column" className="height-100">
+			<BntStack direction="column">
+				<EmployeePreviewBreadcrumbs employee={employee} />
+				<BntCard className="width-100 mb-1">
+					<BntStack direction="row" className="mr-4" justifyContent="flex-end">
+						<BntIconButton color="error">
+							<DeleteOutlined />
+						</BntIconButton>
+						<BntIconButton color="primary">
+							<MonetizationOnOutlined />
+						</BntIconButton>
+						<BntIconButton customIcon>
+							<BonutsCurrency />
+						</BntIconButton>
+					</BntStack>
+				</BntCard>
+			</BntStack>
+
+			<BntCard className="flex-grow scroll">
 				<BntCardBody className="m-2 p-2">
 					<Grid container justifyItems="flex-start" spacing={4}>
 						<Grid
@@ -125,6 +151,6 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 					</Grid>
 				</BntCardBody>
 			</BntCard>
-		</>
+		</BntStack>
 	);
 };

@@ -6,6 +6,8 @@ import { BntTypography } from "shared/typography/typography";
 import { BntRegularButton } from "shared/buttons/regular-button";
 import { useRequestLogic } from "logic/hooks/request/use-request-logic";
 import { texts_o } from "services/localization/texts/texts_o";
+import { BntStack } from "shared/stack/stack";
+import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { DonutRemainGrey } from "./donut-remain-grey";
 import { DonutPrice } from "./donut-price";
 import { TDonut } from "@/types/model";
@@ -15,6 +17,7 @@ export const DonutPurchaseBlock: FC<{
 }> = ({ donut }) => {
 	const { createRequest } = useRequestLogic();
 	const { t } = useBntTranslate();
+	const { BonutsCurrency } = useBonutsIcon();
 
 	const onCreateRequest = () => {
 		createRequest({ donut });
@@ -23,7 +26,9 @@ export const DonutPurchaseBlock: FC<{
 	return (
 		<BntCard raised>
 			<DonutPrice className="ml-5 mt-2">
-				{donut.price} {t(Dictionary.PTS)}
+				<BntStack direction="row">
+					{donut.price} <BonutsCurrency />
+				</BntStack>
 			</DonutPrice>
 			{donut.on_stock ? (
 				<DonutRemainGrey className="ml-5">
