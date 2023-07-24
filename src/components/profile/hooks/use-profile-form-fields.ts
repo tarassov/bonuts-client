@@ -90,8 +90,12 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 			label: "Circles",
 			placeholder: "Circles",
 			source: circles.map(circleToOption),
-			convertSourceValue: (values: Array<TCircle>) => values.map((x) => x.id),
-			valueToOption: circleToOption,
+			valueToOption: (values: Array<TCircle>) => {
+				return values.map((x) => {
+					return { key: x.id, label: x.name };
+				});
+			},
+			optionToValue: (option) => option.key,
 			type: TFieldType.tags,
 			loading: isLoading,
 			xs: 12,

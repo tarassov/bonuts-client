@@ -4,7 +4,7 @@ import { FormContainer } from "react-hook-form-mui";
 import { BntFormBody } from "shared/form/form-body";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 import { ru } from "date-fns/locale";
-import { TFormProps, TFormValue } from "./types/bnt-form";
+import { TFormFieldSourceItem, TFormProps, TFormValue } from "./types/bnt-form";
 
 export const BntForm: FC<TFormProps<any>> = ({
 	fields,
@@ -25,8 +25,8 @@ export const BntForm: FC<TFormProps<any>> = ({
 		if (initialValues) {
 			const transformedInitials = _.mapValues(initialValues, (value, key) => {
 				const field = fields?.find((x) => x.name === key);
-				if (field?.convertSourceValue) {
-					return field?.convertSourceValue?.(value);
+				if (field?.valueToOption) {
+					return field?.valueToOption?.(value);
 				}
 				return value;
 			});
@@ -38,9 +38,20 @@ export const BntForm: FC<TFormProps<any>> = ({
 		}
 	}, [initialValues, fields]);
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const onSubmitForm = (submitValues: any) => {
-		onSubmit?.(submitValues)?.then((response) => {
+		const transformedValues = Object.entries(submitValues).reduce((acc, [key, value]) => {
+			const field = fields?.find((x) => x.name === key);
+
+			if (field?.optionToValue) {
+				const newValue = _.isArray(value)
+					? value.map((x) => field?.optionToValue?.(x))
+					: field.optionToValue(value as TFormFieldSourceItem);
+				return { ...acc, [key]: newValue };
+			}
+			return { ...acc, [key]: value };
+		}, submitValues);
+
+		onSubmit?.(transformedValues)?.then((response) => {
 			if (response && !response.error) {
 				setInitials(submitValues);
 			}

@@ -67,6 +67,7 @@ export type TFormValue =
 	| TFormPrimitiveValue
 	| TFormValueArray
 	| TFormImageValue
+	| Array<TFormFieldSourceItem>
 	| File
 	| null
 	| undefined;
@@ -87,8 +88,10 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	minRows?: number;
 	required?: boolean;
 	loading?: boolean;
-	convertSourceValue?: (value: any) => string | number | Array<string | number>;
-	valueToOption?: (value: any) => TFormFieldSourceItem;
+	valueToOption?: (
+		value: any
+	) => string | number | Array<string | number> | Array<TFormFieldSourceItem>;
+	optionToValue?: (value: TFormFieldSourceItem) => any;
 	group?: number;
 	onClick?: (value: TFormValue) => void;
 };
