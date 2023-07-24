@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { useStorage } from "hooks/use-storage";
+import { defaultTags } from "services/redux/utils/rtk-cache-utils";
 import { API_URL, API_URL_LOCAL, USE_LOCAL_API } from "@/config";
 
 const { getValue } = useStorage();
@@ -22,5 +23,6 @@ const baseQuery = fetchBaseQuery({
 // initialize an empty api service that we'll inject endpoints into later as needed
 export const emptySplitApi = createApi({
 	baseQuery,
+	tagTypes: defaultTags,
 	endpoints: () => ({}),
 });

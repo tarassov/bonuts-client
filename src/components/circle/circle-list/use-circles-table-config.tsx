@@ -4,11 +4,13 @@ import { ActionType, CellType, HeaderType, TTableConfig } from "shared/react-tab
 import { useTableConfig } from "shared/react-table/hooks/use-table-config";
 import { useMemo } from "react";
 import { useCircleUi } from "logic/ui/use-circle-ui";
+import { useCircle } from "logic/hooks/cirlce/use-circle";
 import { TCircle } from "@/types/model";
 
 export const useCirclesTableConfig = () => {
 	const { translate } = useBntTranslate();
 	const { showCreateCircleModal } = useCircleUi();
+	const { deleteCircle } = useCircle();
 
 	const storeConfig: TTableConfig<TCircle> = useMemo(() => {
 		return {
@@ -30,7 +32,7 @@ export const useCirclesTableConfig = () => {
 					actionType: ActionType.Edit,
 				},
 				delete: {
-					onClick: () => {},
+					onClick: (id) => deleteCircle(id),
 					actionType: ActionType.Delete,
 				},
 			},
