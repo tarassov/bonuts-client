@@ -19,11 +19,14 @@ export const useTransfer = () => {
 	const { profile } = useProfileLogic();
 	const { showNotification } = useNotification();
 	const transferMyDonuts = (
-		args: TransferProps,
-		options?: { onSuccess?: (result: PostAccountOperationsApiResponse) => void }
+		args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">,
+		options?: {
+			onSuccess?: (result: PostAccountOperationsApiResponse) => void;
+			onError?: (message?: string) => void;
+		}
 	) => {
 		const { amount, comment, ids } = args;
-		if (tenant && !args.forAll) {
+		if (tenant) {
 			postOperation({
 				body: {
 					tenant,
@@ -40,7 +43,8 @@ export const useTransfer = () => {
 				.then((result) => {
 					options?.onSuccess?.(result);
 					showNotification(texts_t.transferred);
-				});
+				})
+				.catch((e) => options?.onError?.(e.data.message));
 		}
 	};
 	const adminDeposit = (

@@ -13,6 +13,7 @@ export const BntFormBody: FC<
 	TFormProps<any> & {
 		values: Record<string, TFormValue>;
 		onDiscard: VoidFunction;
+		error?: string;
 	}
 > = ({
 	fields,
@@ -25,6 +26,7 @@ export const BntFormBody: FC<
 	children,
 	values,
 	onDiscard,
+	error,
 }) => {
 	const { translate } = useBntTranslate();
 	const { reset } = useFormContext();
@@ -62,7 +64,7 @@ export const BntFormBody: FC<
 				</BntFormContextProvider>
 			</Grid>
 			<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-				{isDirty && (
+				{(isDirty || error) && (
 					<>
 						<BntTransparentButton color="secondary" onClick={onCancelClick}>
 							{translate(texts_c.cancel)}

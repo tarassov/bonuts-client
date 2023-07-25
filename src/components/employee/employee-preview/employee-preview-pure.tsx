@@ -38,6 +38,7 @@ import { BntStack } from "@/shared/stack/stack";
 type EmployeePreviewPureProps = {
 	employee?: TProfile;
 	onImageClick: VoidFunction;
+	onTransferClick?: VoidFunction;
 	onAdminDepositClick?: VoidFunction;
 	allowDisable?: boolean;
 	allowAdminDeposit?: boolean;
@@ -46,6 +47,7 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 	employee,
 	onImageClick = emptyFunction,
 	onAdminDepositClick = emptyFunction,
+	onTransferClick = emptyFunction,
 	allowAdminDeposit,
 	allowDisable,
 }) => {
@@ -60,7 +62,11 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 				<EmployeePreviewBreadcrumbs employee={employee} />
 				<BntCard className="width-100 mb-1">
 					<BntStack direction="row" className="mr-4" justifyContent="flex-end">
-						<BntIconButton color="primary" tooltip={translate(texts_t.transfer_donuts)}>
+						<BntIconButton
+							color="primary"
+							tooltip={translate(texts_t.transfer_donuts)}
+							onClick={onTransferClick}
+						>
 							<CakeOutlined />
 						</BntIconButton>
 						{allowAdminDeposit && (

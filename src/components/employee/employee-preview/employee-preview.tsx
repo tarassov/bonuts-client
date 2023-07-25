@@ -14,7 +14,7 @@ export const EmployeePreview = () => {
 	const { employee, isLoading, error } = useEmployeeLogic(id);
 	const { ImageModal } = useModal();
 	const { profile } = useProfileLogic();
-	const { showAdminDeposit } = useTransferUi();
+	const { showAdminDeposit, showTransfer } = useTransferUi();
 
 	useEffect(() => {
 		setLoading(Modules.EmployeePreview, isLoading && !error);
@@ -25,8 +25,13 @@ export const EmployeePreview = () => {
 	};
 
 	const onAdminDeposit = () => {
-		if (profile) {
-			showAdminDeposit(profile.id);
+		if (employee) {
+			showAdminDeposit(employee.id);
+		}
+	};
+	const onTransfer = () => {
+		if (employee) {
+			showTransfer(employee.id);
 		}
 	};
 
@@ -37,6 +42,7 @@ export const EmployeePreview = () => {
 			allowAdminDeposit={profile?.admin}
 			allowDisable={profile?.admin}
 			onAdminDepositClick={onAdminDeposit}
+			onTransferClick={onTransfer}
 		/>
 	);
 };
