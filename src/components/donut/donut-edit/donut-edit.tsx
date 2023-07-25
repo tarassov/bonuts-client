@@ -31,12 +31,12 @@ export const DonutEdit = () => {
 			key: "shop",
 			link: routesPath.Store,
 			label: Dictionary.DONUTS,
-			icon: <SettingsOutlined color="info" />,
+			icon: <SettingsOutlined />,
 		},
 		{
 			key: id || "donut",
 			label: donut?.name || "",
-			icon: <DonutSmall color="info" />,
+			icon: <DonutSmall />,
 		},
 	];
 

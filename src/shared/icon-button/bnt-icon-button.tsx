@@ -35,7 +35,11 @@ export const BntIconButton: FC<
 		</IconButton>
 	);
 	if (tooltip) {
-		return <Tooltip title={t(tooltip)}>{IconComponent}</Tooltip>;
+		return (
+			<Tooltip placement="bottom-start" title={t(tooltip)}>
+				{IconComponent}
+			</Tooltip>
+		);
 	}
 	return IconComponent;
 };

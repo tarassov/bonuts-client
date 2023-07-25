@@ -72,7 +72,7 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 						{allowAdminDeposit && (
 							<BntIconButton
 								customIcon
-								tooltip={`${translate(texts_t.transfer_points)} (${translate(texts_a.admin)})`}
+								tooltip={`${translate(texts_t.transfer_points)}`}
 								badgeContent="a"
 								badgeColor="info"
 								onClick={onAdminDepositClick}
@@ -83,7 +83,7 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 						{allowDisable && (
 							<BntIconButton
 								color="error"
-								tooltip={`${translate(texts_d.disable_account)} (${translate(texts_a.admin)})`}
+								tooltip={`${translate(texts_d.disable_account)}`}
 								badgeContent="a"
 								badgeColor="info"
 							>

@@ -39,12 +39,12 @@ export const BntDonutPreview = () => {
 			key: "shop",
 			link: "/donuts",
 			label: Dictionary.DONUTS,
-			icon: <ShoppingBag color="info" />,
+			icon: <ShoppingBag />,
 		},
 		{
 			key: id || "donut",
 			label: donut?.name || "",
-			icon: <DonutSmall color="info" />,
+			icon: <DonutSmall />,
 		},
 	];
 
