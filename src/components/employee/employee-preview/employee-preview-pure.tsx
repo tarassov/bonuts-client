@@ -10,9 +10,9 @@ import { emptyFunction } from "utils/empty-function";
 import { EmployeePreviewBreadcrumbs } from "components/employee/employee-preview/employee-preview-breadcrumbs";
 import { BntChip } from "shared/chip/chip";
 import {
-	DeleteOutlined,
+	BlockOutlined,
+	CakeOutlined,
 	ErrorOutline,
-	MonetizationOnOutlined,
 	ShieldOutlined,
 	StorefrontOutlined,
 } from "@mui/icons-material";
@@ -22,11 +22,13 @@ import { formatStringDate } from "utils/format-string-date";
 import { BntDivider } from "shared/divider/bnt-divider";
 import { useIcons } from "hooks/use-icons";
 import { BntIconButton } from "shared/icon-button/bnt-icon-button";
+import { texts_t } from "services/localization/texts/texts_t";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
 	texts_b,
 	texts_c,
+	texts_d,
 	texts_i,
 	texts_n,
 	texts_s,
@@ -36,10 +38,16 @@ import { BntStack } from "@/shared/stack/stack";
 type EmployeePreviewPureProps = {
 	employee?: TProfile;
 	onImageClick: VoidFunction;
+	onAdminDepositClick?: VoidFunction;
+	allowDisable?: boolean;
+	allowAdminDeposit?: boolean;
 };
 export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 	employee,
 	onImageClick = emptyFunction,
+	onAdminDepositClick = emptyFunction,
+	allowAdminDeposit,
+	allowDisable,
 }) => {
 	const theme = useTheme();
 	const { translate } = useBntTranslate();
@@ -52,15 +60,30 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 				<EmployeePreviewBreadcrumbs employee={employee} />
 				<BntCard className="width-100 mb-1">
 					<BntStack direction="row" className="mr-4" justifyContent="flex-end">
-						<BntIconButton color="error">
-							<DeleteOutlined />
+						<BntIconButton color="primary" tooltip={translate(texts_t.transfer_donuts)}>
+							<CakeOutlined />
 						</BntIconButton>
-						<BntIconButton color="primary">
-							<MonetizationOnOutlined />
-						</BntIconButton>
-						<BntIconButton customIcon>
-							<BonutsCurrency />
-						</BntIconButton>
+						{allowAdminDeposit && (
+							<BntIconButton
+								customIcon
+								tooltip={`${translate(texts_t.transfer_points)} (${translate(texts_a.admin)})`}
+								badgeContent="a"
+								badgeColor="info"
+								onClick={onAdminDepositClick}
+							>
+								<BonutsCurrency />
+							</BntIconButton>
+						)}
+						{allowDisable && (
+							<BntIconButton
+								color="error"
+								tooltip={`${translate(texts_d.disable_account)} (${translate(texts_a.admin)})`}
+								badgeContent="a"
+								badgeColor="info"
+							>
+								<BlockOutlined />
+							</BntIconButton>
+						)}
 					</BntStack>
 				</BntCard>
 			</BntStack>

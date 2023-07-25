@@ -39,8 +39,10 @@ i18n.use(LanguageDetector).init({
 				Account: "Аккаунт",
 				"About myself": "Обо мне",
 				Amount: "Количество",
+				amount: "количество",
 				Add: "Добавить",
 				admin: "админ",
+				"admin deposit": "Депозит (админ)",
 				Activate: "Активировать",
 				Active: "Активен",
 				active: "активен",
@@ -76,6 +78,7 @@ i18n.use(LanguageDetector).init({
 				"Connect to space": "Присоединиться к пространству",
 				code: "код",
 				Comment: "Комментарий",
+				comment: "комментарий",
 				Contact: "Контакт",
 				"Comment saved": "Комментарий сохранен",
 				"Click to select files": "Нажмите, чтобы выбрать фото",
@@ -103,6 +106,7 @@ i18n.use(LanguageDetector).init({
 				Details: "Подробнее",
 				"department chief": "руководитель подразделения",
 				"Distrib account": "Могу отдать",
+				"disable account": "отключить аккаунт",
 				"Donut name": "Название плюшки",
 				"Donut added": "Пончик добавлен",
 				"Share donuts": "Перевести пончики",
@@ -257,6 +261,7 @@ i18n.use(LanguageDetector).init({
 				"rows per page": "строк на стр.",
 
 				// S
+				save: "сохранить",
 				saved: "сохранено",
 				"Save changes": "Сохранить изменения",
 				"Self account": "Могу потратить",
@@ -291,6 +296,9 @@ i18n.use(LanguageDetector).init({
 
 				// T
 				Tenant: "Команда",
+				transferred: "перведено",
+				"transfer points": "перевести баллы",
+				"transfer donuts": "перевести пончики",
 				to: "для",
 				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
@@ -300,6 +308,7 @@ i18n.use(LanguageDetector).init({
 				Update: "Обновить",
 				[texts_u.under_construct]: "В разработке",
 				"Update is available": "Обновление доступно",
+				"user can spend in store": "можно тратить в магазине",
 				// V
 
 				// W

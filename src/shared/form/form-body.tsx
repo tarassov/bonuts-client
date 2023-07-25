@@ -2,12 +2,12 @@ import { Box, Grid, Stack } from "@mui/material";
 import { BntFormContextProvider } from "shared/form/context/bnt-form-provider";
 import { BntFormFieldList } from "shared/form/bnt-form-field-list";
 import { BntTransparentButton } from "shared/buttons/transparent-button";
-import { Dictionary } from "constants/dictionary";
 import { FC, useEffect } from "react";
 import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useFormContext, useFormState } from "react-hook-form";
 import { BntFormGroups } from "shared/form/bnt-form-groups";
+import { texts_c, texts_s } from "services/localization/texts";
 
 export const BntFormBody: FC<
 	TFormProps<any> & {
@@ -64,12 +64,12 @@ export const BntFormBody: FC<
 			<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
 				{isDirty && (
 					<>
-						<BntTransparentButton variant="outlined" color="secondary" onClick={onCancelClick}>
-							{translate(Dictionary.DISCARD)}
+						<BntTransparentButton color="secondary" onClick={onCancelClick}>
+							{translate(texts_c.cancel)}
 						</BntTransparentButton>
 
-						<BntTransparentButton variant="outlined" type="submit">
-							{translate(submitCaption || Dictionary.SUBMIT)}
+						<BntTransparentButton type="submit">
+							{submitCaption || translate(texts_s.save)}
 						</BntTransparentButton>
 					</>
 				)}
