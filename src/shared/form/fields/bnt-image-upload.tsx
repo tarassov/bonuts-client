@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import React, { useEffect, useState } from "react";
 import { ImagePreview } from "shared/image/image-preview";
+import _ from "lodash";
 import { TFormField, TFormImageValue, TFormValue } from "../types/bnt-form";
 
 import { useBntForm } from "../hooks/use-bnt-form";
@@ -58,7 +59,9 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 				<>
 					<ImagePreview
 						defaultImage={imagePreviewUrl}
-						onClick={() => field.onClick?.(imagePreviewUrl)}
+						onClick={() => {
+							if (!_.isEmpty(imagePreviewUrl)) field.onClick?.(imagePreviewUrl);
+						}}
 					/>
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
 				</>

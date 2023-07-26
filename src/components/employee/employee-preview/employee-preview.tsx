@@ -23,7 +23,9 @@ export const EmployeePreview = () => {
 	}, [isLoading, error]);
 
 	const onImageClick = () => {
-		ImageModal.show({ url: employee?.user_avatar?.url || "" });
+		if (employee?.user_avatar?.url) {
+			ImageModal.show({ url: employee?.user_avatar?.url || "" });
+		}
 	};
 
 	const onAdminDeposit = () => {
