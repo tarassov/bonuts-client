@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useEmployeeLogic } from "logic/hooks/employee/use-employee-logic";
+import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
 import * as React from "react";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { ModalEmployeeViewStyled } from "components/modals/modal-employee-view/modal-employee-view-styled";
@@ -14,7 +14,7 @@ export const ModalEmployeeView: FC<ModalEmployeeViewProps & TModalProps> = ({
 	close = emptyFunction,
 	setModalLoading = emptyFunction,
 }) => {
-	const { isLoading, employee } = useEmployeeLogic(id);
+	const { isLoading, employee } = useEmployeeLoader(id);
 	const { showEmployee } = useEmployeeUi(employee);
 
 	useEffect(() => {

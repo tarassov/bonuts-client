@@ -313,7 +313,7 @@ export type GetCirclesByIdApiResponse = /** status 200 success */ {
 	};
 };
 export type GetCirclesByIdApiArg = {
-	id: string;
+	id: number;
 	tenant?: string;
 };
 export type PatchCirclesByIdApiResponse = /** status 200 success */ {
@@ -1029,9 +1029,9 @@ export type PutProfilesByIdApiArg = {
 };
 export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
 	data?: {
-		id?: string;
-		type?: string;
-		attributes?: {
+		id: string;
+		type: string;
+		attributes: {
 			id: number;
 			default?: boolean;
 			user_id: number;
@@ -1097,9 +1097,9 @@ export type PostProfilesByIdSetActivityApiArg = {
 };
 export type GetProfilesApiResponse = /** status 200 success */ {
 	data?: {
-		id?: string;
-		type?: string;
-		attributes?: {
+		id: string;
+		type: string;
+		attributes: {
 			id: number;
 			default?: boolean;
 			user_id: number;

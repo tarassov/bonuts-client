@@ -2,7 +2,7 @@ import { useGetProfilesByIdQuery } from "services/api/bonuts-api";
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 
-export const useEmployeeLogic = (id?: number | string | null) => {
+export const useEmployeeLoader = (id?: number | string | null) => {
 	const { authTenant } = useProfileLogic();
 	const { data, error, isLoading } = useGetProfilesByIdQuery({
 		id: id?.toString() || "",
