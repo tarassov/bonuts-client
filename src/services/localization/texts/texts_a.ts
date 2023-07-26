@@ -1,5 +1,6 @@
 export enum texts_a {
 	admin_deposit = "admin deposit",
+	are_you_sure = "are you sure?",
 	are_you_sure_to_delete = "are you sure to delete?",
 	active = "active",
 	activated = "activated",

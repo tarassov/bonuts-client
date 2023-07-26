@@ -11,6 +11,7 @@ import { texts_t } from "services/localization/texts/texts_t";
 import { CommonStrings } from "constants/dictionary";
 import { TransferProps } from "@/types/logic";
 import { AdminDepositProps } from "@/types/logic/transfer";
+import { TActionCallback } from "@/types/logic/action-callback";
 
 export const useTransfer = () => {
 	const [postOperation] = usePostAccountOperationsMutation();
@@ -20,10 +21,7 @@ export const useTransfer = () => {
 	const { showNotification } = useNotification();
 	const transferMyDonuts = (
 		args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">,
-		options?: {
-			onSuccess?: (result: PostAccountOperationsApiResponse) => void;
-			onError?: (message?: string) => void;
-		}
+		options?: TActionCallback<PostAccountOperationsApiResponse>
 	) => {
 		const { amount, comment, ids } = args;
 		if (tenant) {
@@ -49,7 +47,7 @@ export const useTransfer = () => {
 	};
 	const adminDeposit = (
 		args: AdminDepositProps,
-		options?: { onSuccess?: (result: PostAdminDepositApiResponse) => void }
+		options?: TActionCallback<PostAdminDepositApiResponse>
 	) => {
 		const { amount, comment = CommonStrings.EMPTY_STRING, ids, toSelfAccount } = args;
 		if (tenant) {

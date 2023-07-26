@@ -1089,7 +1089,7 @@ export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
 	}[];
 };
 export type PostProfilesByIdSetActivityApiArg = {
-	id: string;
+	id: number;
 	body: {
 		active?: boolean;
 		tenant?: string;

@@ -7,6 +7,7 @@ import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
 import { EmployeePreviewStyled } from "components/employee/employee-preview/employee-preview-styled";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { useTransferUi } from "logic/ui/use-transfer-ui";
+import { useEmployee } from "logic/hooks/employee/use-employee";
 
 export const EmployeePreview = () => {
 	const { id } = useParams();
@@ -15,6 +16,7 @@ export const EmployeePreview = () => {
 	const { ImageModal } = useModal();
 	const { profile } = useProfileLogic();
 	const { showAdminDeposit, showTransfer } = useTransferUi();
+	const { setActivityWithConfirmation, setActivity } = useEmployee();
 
 	useEffect(() => {
 		setLoading(Modules.EmployeePreview, isLoading && !error);
@@ -34,6 +36,17 @@ export const EmployeePreview = () => {
 			showTransfer(employee.id);
 		}
 	};
+	const onActivate = () => {
+		if (employee) {
+			setActivity({ id: employee.id, active: true });
+		}
+	};
+
+	const onDisable = () => {
+		if (employee) {
+			setActivityWithConfirmation({ id: employee.id, active: false });
+		}
+	};
 
 	return (
 		<EmployeePreviewStyled
@@ -43,6 +56,8 @@ export const EmployeePreview = () => {
 			allowDisable={profile?.admin}
 			onAdminDepositClick={onAdminDeposit}
 			onTransferClick={onTransfer}
+			onActivateClick={onActivate}
+			onDisableClick={onDisable}
 		/>
 	);
 };

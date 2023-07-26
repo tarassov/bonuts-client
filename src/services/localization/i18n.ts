@@ -56,6 +56,7 @@ i18n.use(LanguageDetector).init({
 				"Accepted requests": "Активированные запросы",
 				"All users": "Все пользователи",
 				"are you sure to delete?": "вы точно хотите удалить?",
+				"are you sure?": "вы уверены?",
 				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
@@ -300,6 +301,7 @@ i18n.use(LanguageDetector).init({
 				"transfer points": "перевести баллы",
 				"transfer donuts": "перевести пончики",
 				to: "для",
+				"to can transfer to others": "можно дарить коллегам",
 				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",
