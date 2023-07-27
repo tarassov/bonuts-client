@@ -3,7 +3,7 @@ import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
 import * as React from "react";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { ModalEmployeeViewStyled } from "components/modals/modal-employee-view/modal-employee-view-styled";
-import { TModalProps } from "shared/types/dialog";
+import { TModalProps } from "shared/types/dialog-types";
 import { emptyFunction } from "utils/empty-function";
 
 export type ModalEmployeeViewProps = {

@@ -5,7 +5,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { EMPTY_FUNCTION } from "constants/functions";
 import { BntStyledBreadcrumbs } from "shared/breadcrumb/styled-breadcrumbs";
 import { Icon, Tooltip } from "@mui/material";
-import { TBntBreadcrumb } from "../types/breadcrumbs";
+import { TBntBreadcrumb } from "../types/breadcrumbs-types";
 import { BntStyledBreadcrumb } from "./styled-breadcrumb";
 
 export const BntBreadcrumbs: FC<TBntBreadcrumb> = ({ items, className }) => {

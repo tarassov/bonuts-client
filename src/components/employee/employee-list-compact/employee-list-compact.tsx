@@ -17,8 +17,9 @@ export const EmployeeListCompact: FC<{
 	onClick: VoidResponseFunction<TProfile>;
 	title?: string;
 	subTitle?: string;
+	hideSearch?: boolean;
 	children?: JSX.Element;
-}> = ({ title, onClick, profiles, subTitle, children }) => {
+}> = ({ title, onClick, profiles, subTitle, children, hideSearch }) => {
 	const { filteredList, setSorter, setSearch } = useSearch<TProfile>(profiles, {
 		searchField: "name",
 	});
@@ -28,21 +29,23 @@ export const EmployeeListCompact: FC<{
 	return (
 		<BntCard className="width-100 height-100">
 			<BntStack className="width-100 height-100">
-				<Box className="mt-4 mr-4 ml-4">
+				<Box className="mr-4 ml-4">
 					<BntTypography variant="h6" className="mb-2">
 						{title}
 					</BntTypography>
 					<BntTypography variant="body2" className="mb-2">
 						{subTitle}
 					</BntTypography>
-					<SearchString
-						setSearch={setSearch}
-						setFilter={emptyFunction}
-						setSorter={setSorter}
-						buttons={buttons}
-					/>
+					{!hideSearch && (
+						<SearchString
+							setSearch={setSearch}
+							setFilter={emptyFunction}
+							setSorter={setSorter}
+							buttons={buttons}
+						/>
+					)}
 				</Box>
-				<Box className="mt-2 mr-2 ml-2 flex-grow">
+				<Box className="m-2 flex-grow">
 					{filteredList.map((x) => {
 						return <BntProfileButton profile={x} onClick={() => onClick(x)} />;
 					})}

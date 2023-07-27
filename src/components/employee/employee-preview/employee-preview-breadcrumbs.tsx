@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
 import { routesPath } from "routes/config/routes-path";
 import { BntRoutes } from "routes/config/routes";
 import { PeopleAltOutlined, PersonOutlined } from "@mui/icons-material";

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TModalProps } from "shared/types/dialog";
+import { TModalProps } from "shared/types/dialog-types";
 import { emptyFunction } from "utils/empty-function";
 import { Box } from "@mui/material";
 import { TransferForm } from "components/transfer/transfer-form";

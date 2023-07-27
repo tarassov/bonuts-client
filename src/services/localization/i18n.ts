@@ -63,6 +63,7 @@ i18n.use(LanguageDetector).init({
 				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
+				back: "назад",
 				Buy: "Купить",
 				"Burn old points": "Списывать неиспользованные баллы",
 				"Burn old donuts": "Списывать неиспользованные пончики",

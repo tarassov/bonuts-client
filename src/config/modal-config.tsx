@@ -1,4 +1,4 @@
-import { TBntModalConfig } from "shared/types/dialog";
+import { TBntModalConfig } from "shared/types/dialog-types";
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
 import { CommonStrings } from "constants/dictionary";

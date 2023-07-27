@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
 import { BntStack } from "shared/stack/stack";
 import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/card-wrapper/card-wrapper";

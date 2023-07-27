@@ -1,6 +1,6 @@
 import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
 import { Box, Grid } from "@mui/material";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_c, texts_n, texts_s } from "services/localization/texts";
@@ -9,11 +9,15 @@ import { BntRegularButton } from "shared/buttons/regular-button";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { texts_r } from "services/localization/texts/texts_r";
 import { BntTypography } from "shared/typography/typography";
+import { emptyFunction } from "utils/empty-function";
 import { TProfile } from "@/types/model";
 
-export const ShareAll = () => {
+export const ShareAllStepOne: FC<{
+	next?: (args: { profiles: Array<TProfile> }) => void;
+	initialProfiles?: Array<TProfile>;
+}> = ({ next = emptyFunction, initialProfiles = [] }) => {
 	const { objects = [] } = useEmployeeList();
-	const [selected, setSelected] = useState<Array<TProfile>>([]);
+	const [selected, setSelected] = useState<Array<TProfile>>(initialProfiles);
 	const { t } = useBntTranslate();
 
 	const addProfile = (p: TProfile) => {
@@ -53,6 +57,7 @@ export const ShareAll = () => {
 							title={t(texts_a.available_employees, { capitalize: true })}
 							profiles={filtered}
 							onClick={addProfile}
+							hideSearch={!filtered.length}
 						>
 							<>
 								{filtered.length ? (
@@ -68,6 +73,7 @@ export const ShareAll = () => {
 							title={t(texts_s.selected_employees, { capitalize: true })}
 							profiles={selected}
 							onClick={removeProfile}
+							hideSearch={!selected.length}
 						>
 							<>
 								{selected.length ? (
@@ -82,7 +88,14 @@ export const ShareAll = () => {
 					</Grid>
 				</Grid>
 				<BntStack direction="row" alignItems="center" justifyContent="flex-end" className="mt-4">
-					<BntRegularButton>{t(texts_n.next)}</BntRegularButton>
+					<BntRegularButton
+						disabled={!selected.length}
+						onClick={() => {
+							if (selected.length) next({ profiles: selected });
+						}}
+					>
+						{t(texts_n.next)}
+					</BntRegularButton>
 				</BntStack>
 			</Box>
 		</>

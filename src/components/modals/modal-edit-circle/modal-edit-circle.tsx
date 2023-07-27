@@ -1,6 +1,6 @@
 import { TFormValue } from "shared/form/types/bnt-form";
 import { FC } from "react";
-import { TModalProps } from "shared/types/dialog";
+import { TModalProps } from "shared/types/dialog-types";
 import { emptyFunction } from "utils/empty-function";
 import { ModalEditCirclePure } from "components/modals/modal-edit-circle/modal-edit-circle-pure";
 import { useCircle } from "logic/hooks/cirlce/use-circle";

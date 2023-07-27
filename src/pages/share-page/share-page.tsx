@@ -1,5 +1,5 @@
-import { ShareAll } from "components/share-all/share-all";
+import { ShareAllWizard } from "components/share-all/share-all-wizard";
 
 export const SharePage = () => {
-	return <ShareAll />;
+	return <ShareAllWizard />;
 };
