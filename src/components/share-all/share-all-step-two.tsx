@@ -12,7 +12,7 @@ import { TProfile } from "@/types/model";
 export const ShareAllStepTwo: FC<{
 	profiles?: Array<TProfile>;
 	back?: VoidFunction;
-	next?: (args: { amount: number; comment: string }) => void;
+	next?: (args: { amount: number; comment: string; toSelfAccount: boolean }) => void;
 }> = ({ profiles, back = emptyFunction, next = emptyFunction }) => {
 	const { t } = useBntTranslate();
 	return (

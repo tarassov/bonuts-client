@@ -47,7 +47,7 @@ export const EmployeeListCompact: FC<{
 				</Box>
 				<Box className="m-2 flex-grow">
 					{filteredList.map((x) => {
-						return <BntProfileButton profile={x} onClick={() => onClick(x)} />;
+						return <BntProfileButton key={x.id} profile={x} onClick={() => onClick(x)} />;
 					})}
 				</Box>
 				{children}
