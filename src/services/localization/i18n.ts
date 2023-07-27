@@ -1,6 +1,8 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
+import { texts_r } from "services/localization/texts/texts_r";
+import { texts_c } from "services/localization/texts";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -57,6 +59,7 @@ i18n.use(LanguageDetector).init({
 				"All users": "Все пользователи",
 				"are you sure to delete?": "вы точно хотите удалить?",
 				"are you sure?": "вы уверены?",
+				"available employees": "доступные сотрудники",
 				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
@@ -91,6 +94,7 @@ i18n.use(LanguageDetector).init({
 				Circles: "Круги",
 				created: "создан(а)",
 				create: "создать",
+				[texts_c.choose_employees]: "выберите сотрудников",
 
 				// D
 				"Date of birth": "Дата рождения",
@@ -195,7 +199,7 @@ i18n.use(LanguageDetector).init({
 				"new circle": "новый круг",
 				newest: "самые новые",
 				Next: "Вперед",
-				next: "вперед",
+				next: "далее",
 				"Not active donuts": "Неактивные пончики",
 				"No options": "Нет вариантов",
 				"not active": "не активен",
@@ -239,7 +243,7 @@ i18n.use(LanguageDetector).init({
 				"Recover password": "Восстановить пароль",
 				"Requests in progress": "Запросы в работе",
 				Refund: "Возврат",
-
+				[texts_r.remove_all]: "удалить всех",
 				Required: "Обязательное поле",
 				requests: "запросы",
 				Requests: "Запросы",
@@ -279,6 +283,8 @@ i18n.use(LanguageDetector).init({
 				"Send to all": "Отправить всем",
 				"Send again": "Отправить еще раз",
 				"Select image": "Выбрать картинку",
+				"select all": "выбрать всех",
+				"selected employees": "выбранные сотрудники",
 				Settings: "Настройки",
 				Schedule: "Расписание",
 				Schedulers: "Расписания",

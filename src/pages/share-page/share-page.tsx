@@ -1,5 +1,5 @@
-import { UnderConstruct } from "pages/under-construct";
+import { ShareAll } from "components/share-all/share-all";
 
 export const SharePage = () => {
-	return <UnderConstruct />;
+	return <ShareAll />;
 };

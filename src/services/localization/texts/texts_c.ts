@@ -7,4 +7,5 @@ export enum texts_c {
 	"contact" = "Contact",
 	"confirmation" = "confirmation",
 	"closed_requests" = "closed requests",
+	"choose_employees" = "choose employees",
 }

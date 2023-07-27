@@ -3,6 +3,7 @@ export enum texts_r {
 	"rows_per_page" = "rows per page",
 	"records" = "records",
 	"requests" = "requests",
+	remove_all = "remove all",
 	"refunded" = "refunded",
 	"request_been_set_incoming" = "request has been set as incoming",
 	request_been_set_closed = "request has been set as close",
