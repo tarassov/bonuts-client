@@ -8,6 +8,12 @@ const injectedRtkApi = api.injectEndpoints({
 		>({
 			query: (queryArg) => ({ url: `/account_operations`, method: "POST", body: queryArg.body }),
 		}),
+		getAccountsById: build.query<GetAccountsByIdApiResponse, GetAccountsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/accounts/${queryArg.id}`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		postAdminDeposit: build.mutation<PostAdminDepositApiResponse, PostAdminDepositApiArg>({
 			query: (queryArg) => ({ url: `/admin_deposit`, method: "POST", body: queryArg.body }),
 		}),
@@ -169,6 +175,25 @@ export type PostAccountOperationsApiArg = {
 		burn_old?: boolean;
 		to_self_account?: boolean;
 	};
+};
+export type GetAccountsByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			balance: number;
+			last_operation?: {
+				amount?: number;
+				date?: string;
+				direction?: "+" | "-";
+			};
+		};
+	};
+};
+export type GetAccountsByIdApiArg = {
+	id: number;
+	tenant: string;
 };
 export type PostAdminDepositApiResponse = unknown;
 export type PostAdminDepositApiArg = {
@@ -1989,6 +2014,7 @@ export type PostRefreshTokenApiResponse = /** status 200 success */ {
 export type PostRefreshTokenApiArg = void;
 export const {
 	usePostAccountOperationsMutation,
+	useGetAccountsByIdQuery,
 	usePostAdminDepositMutation,
 	usePostAvatarsMutation,
 	useGetCirclesQuery,

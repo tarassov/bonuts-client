@@ -2,7 +2,7 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
 import { texts_r } from "services/localization/texts/texts_r";
-import { texts_c } from "services/localization/texts";
+import { texts_c, texts_i } from "services/localization/texts";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -167,6 +167,8 @@ i18n.use(LanguageDetector).init({
 				"Incoming requests": "Входящие запросы",
 				incoming: "входящие",
 				"in date": "дата приема",
+				[texts_i.i_can_share]: "я могу поделиться",
+				[texts_i.i_can_spend]: "я могу потратить",
 				"invitation added": "Приглашение отправлено",
 				// J
 				Join: "Присоединиться",

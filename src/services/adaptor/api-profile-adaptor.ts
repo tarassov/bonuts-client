@@ -21,7 +21,10 @@ export const dataToProfile = (data: GetProfileApiResponse["data"]) => {
 		in_date: data.attributes?.in_date || undefined,
 		bio: data.attributes?.bio || undefined,
 		contact: data.attributes?.contact || undefined,
+		self_account: data.attributes?.self_account,
+		distrib_account: data.attributes?.distrib_account,
 	};
+
 	return res;
 };
 export const apiProfileAdaptor = (response?: GetProfileApiResponse): TProfile | undefined => {
