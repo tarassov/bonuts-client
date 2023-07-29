@@ -10,14 +10,13 @@ import {
 	usePostRequestsRefundMutation,
 	usePostRequestsRollbackMutation,
 } from "services/api/bonuts-api";
-import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { useNotification } from "services/notification/use-notification";
 import { texts_r } from "services/localization/texts/texts_r";
+import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { TDonut } from "@/types/model";
 
 export const useRequestLogic = () => {
-	const authTenant = useAppSelector(authTenantSelector);
+	const { authTenant, invalidateSelfBalance, profile } = useProfileLogic();
 	const [postRequest] = usePostRequestsMutation();
 	const [postActivateRequest] = usePostRequestsActivateMutation();
 	const [postRefundRequest] = usePostRequestsRefundMutation();
@@ -37,6 +36,7 @@ export const useRequestLogic = () => {
 				.unwrap()
 				.then((result) => {
 					options?.onSuccess?.(result);
+					invalidateSelfBalance();
 					showNotification(texts_r.request_added);
 				});
 		}
@@ -62,6 +62,8 @@ export const useRequestLogic = () => {
 			.unwrap()
 			.then((result) => {
 				options?.onSuccess?.(result);
+				if (result?.data?.some((x) => x?.attributes?.profile.id === profile?.id))
+					invalidateSelfBalance();
 				showNotification(texts_r.request_has_been_refunded);
 			});
 	};

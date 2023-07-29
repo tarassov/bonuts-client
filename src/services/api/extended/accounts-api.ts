@@ -6,7 +6,7 @@ export const accountsApi = bonutsApi.enhanceEndpoints({
 	addTagTypes: ["Accounts"],
 	endpoints: {
 		getAccountsById: {
-			providesTags: cacheByIdArgProperty("Accounts"),
+			providesTags: cacheByIdArgProperty("Accounts", "Balance"),
 		},
 	},
 });

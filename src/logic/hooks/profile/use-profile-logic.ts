@@ -4,6 +4,8 @@ import { useGetProfileQuery, usePutProfilesByIdMutation } from "services/api/bon
 import { authActions } from "services/redux/slice/auth-slice";
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 import { authProfileSelector, authTenantSelector } from "services/redux/selectors/auth-selector";
+import { accountsApi } from "services/api/extended/accounts-api";
+import { invalidateId } from "services/redux/utils/rtk-cache-utils";
 import { TProfile } from "@/types/model";
 
 export const useProfileLogic = () => {
@@ -34,5 +36,24 @@ export const useProfileLogic = () => {
 		return res;
 	};
 
-	return { profile: authProfile, isLoading, error, updateProfile, authTenant };
+	const invalidateDistribBalance = () => {
+		dispatch(
+			accountsApi.util.invalidateTags(invalidateId("Accounts", authProfile?.distrib_account?.id))
+		);
+	};
+	const invalidateSelfBalance = () => {
+		dispatch(
+			accountsApi.util.invalidateTags(invalidateId("Accounts", authProfile?.self_account?.id))
+		);
+	};
+
+	return {
+		profile: authProfile,
+		isLoading,
+		error,
+		updateProfile,
+		authTenant,
+		invalidateSelfBalance,
+		invalidateDistribBalance,
+	};
 };

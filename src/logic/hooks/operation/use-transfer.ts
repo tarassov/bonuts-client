@@ -17,7 +17,7 @@ export const useTransfer = () => {
 	const [postOperation] = usePostAccountOperationsMutation();
 	const [postAdminDeposit] = usePostAdminDepositMutation();
 	const tenant = useCurrentTenant();
-	const { profile } = useProfileLogic();
+	const { profile, invalidateDistribBalance } = useProfileLogic();
 	const { showNotification } = useNotification();
 	const transferMyDonuts = (
 		args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">,
@@ -40,6 +40,7 @@ export const useTransfer = () => {
 				.unwrap()
 				.then((result) => {
 					options?.onSuccess?.(result);
+					invalidateDistribBalance();
 					showNotification(texts_t.transferred);
 				})
 				.catch((e) => options?.onError?.(e.data.message));
