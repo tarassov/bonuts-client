@@ -5,5 +5,7 @@ export const ModalEmployeeViewStyled = styled(
 	ModalEmployeeViewPure,
 	{}
 )(() => {
-	return {};
+	return {
+		padding: "2px",
+	};
 });
