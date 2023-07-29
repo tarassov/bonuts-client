@@ -1,21 +1,19 @@
 import React, { ChangeEvent, useState } from "react";
-import { Dictionary, Sorting } from "constants/dictionary";
+import { Dictionary } from "constants/dictionary";
 import { TFieldType } from "shared/form/types/bnt-form";
 import { BntStack } from "shared/stack/stack";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntTextInput } from "shared/input/text-input";
 import { TBaseModel } from "@/types/model";
+import { TSorterButton } from "@/types/ui/sorter-button";
 
 export type SearchStringProps<T extends TBaseModel = TBaseModel> = {
 	setSearch: (search: string) => void;
 	// eslint-disable-next-line react/no-unused-prop-types
 	setFilter: (filters: Array<{ (a: T): boolean }>) => void;
 	setSorter: (sorter: (a: T, b: T) => number) => void;
-	buttons?: Array<{
-		name: Sorting;
-		sorter: (a: T, b: T) => number;
-	}>;
+	buttons?: Array<TSorterButton<T>>;
 };
 
 export const SearchString = <T extends TBaseModel>(props: SearchStringProps<T>) => {

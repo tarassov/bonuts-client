@@ -5,7 +5,7 @@ import { useRequestListLogic } from "logic/hooks/request/use-request-list-logic"
 import { BntReactTable } from "shared/react-table/bnt-react-table";
 import { useRequestTableConfig } from "components/request/request-list/use-request-table-config";
 import { emptyFunction } from "utils/empty-function";
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
 
 import { ArchiveOutlined, ForwardToInboxOutlined, InboxOutlined } from "@mui/icons-material";
 
@@ -61,18 +61,18 @@ export const RequestsList: FC<BntRequestListProps> = ({
 
 	// eslint-disable-next-line no-nested-ternary
 	const icon = archive ? (
-		<ArchiveOutlined color="info" />
+		<ArchiveOutlined />
 	) : active ? (
-		<InboxOutlined color="info" />
+		<InboxOutlined />
 	) : (
-		<ForwardToInboxOutlined color="info" />
+		<ForwardToInboxOutlined />
 	);
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: texts_r.requests,
 			link: routesPath.Requests,
 			label: texts_r.requests,
-			icon: <ForwardToInboxOutlined color="info" />,
+			icon: <ForwardToInboxOutlined />,
 		},
 		{
 			key: label,

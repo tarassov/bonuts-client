@@ -47,7 +47,12 @@ export const BntFormField: FC<{
 	}
 	if (field.type === TFieldType.switch) {
 		return (
-			<BntSwitchField name={field.name.toString()} disabled={field.disabled} label={field.label} />
+			<BntSwitchField
+				name={field.name.toString()}
+				disabled={field.disabled}
+				label={field.label}
+				disabledLabel={field.disabledLabel}
+			/>
 		);
 	}
 	return (

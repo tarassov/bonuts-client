@@ -9,7 +9,7 @@ import {
 import { BntDialogContainer } from "shared/modal/dialog-container";
 import { isFunction } from "lodash";
 import { CommonStrings } from "constants/dictionary";
-import { TBntModalConfig } from "../types/dialog";
+import { TBntModalConfig } from "../types/dialog-types";
 
 export const BntDialogProvider: FC<{
 	config: TBntModalConfig<ModalType>;

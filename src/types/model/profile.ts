@@ -21,4 +21,14 @@ export type TProfile = TBaseModel & {
 	in_date?: string;
 	bio?: string;
 	contact?: string;
+	self_account?: {
+		id?: number;
+		tenant_id?: number;
+		profile_id?: number;
+	};
+	distrib_account?: {
+		id?: number;
+		tenant_id?: number;
+		profile_id?: number;
+	};
 };

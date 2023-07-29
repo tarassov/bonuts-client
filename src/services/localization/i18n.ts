@@ -1,6 +1,8 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
+import { texts_r } from "services/localization/texts/texts_r";
+import { texts_c, texts_i, texts_t } from "services/localization/texts";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -39,8 +41,10 @@ i18n.use(LanguageDetector).init({
 				Account: "Аккаунт",
 				"About myself": "Обо мне",
 				Amount: "Количество",
+				amount: "количество",
 				Add: "Добавить",
 				admin: "админ",
+				"admin deposit": "Депозит (админ)",
 				Activate: "Активировать",
 				Active: "Активен",
 				active: "активен",
@@ -54,9 +58,12 @@ i18n.use(LanguageDetector).init({
 				"Accepted requests": "Активированные запросы",
 				"All users": "Все пользователи",
 				"are you sure to delete?": "вы точно хотите удалить?",
+				"are you sure?": "вы уверены?",
+				"available employees": "доступные сотрудники",
 				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
+				back: "назад",
 				Buy: "Купить",
 				"Burn old points": "Списывать неиспользованные баллы",
 				"Burn old donuts": "Списывать неиспользованные пончики",
@@ -76,6 +83,7 @@ i18n.use(LanguageDetector).init({
 				"Connect to space": "Присоединиться к пространству",
 				code: "код",
 				Comment: "Комментарий",
+				comment: "комментарий",
 				Contact: "Контакт",
 				"Comment saved": "Комментарий сохранен",
 				"Click to select files": "Нажмите, чтобы выбрать фото",
@@ -87,6 +95,7 @@ i18n.use(LanguageDetector).init({
 				Circles: "Круги",
 				created: "создан(а)",
 				create: "создать",
+				[texts_c.choose_employees]: "выберите сотрудников",
 
 				// D
 				"Date of birth": "Дата рождения",
@@ -103,6 +112,7 @@ i18n.use(LanguageDetector).init({
 				Details: "Подробнее",
 				"department chief": "руководитель подразделения",
 				"Distrib account": "Могу отдать",
+				"disable account": "отключить аккаунт",
 				"Donut name": "Название плюшки",
 				"Donut added": "Пончик добавлен",
 				"Share donuts": "Перевести пончики",
@@ -157,6 +167,8 @@ i18n.use(LanguageDetector).init({
 				"Incoming requests": "Входящие запросы",
 				incoming: "входящие",
 				"in date": "дата приема",
+				[texts_i.i_can_share]: "я могу поделиться",
+				[texts_i.i_can_spend]: "я могу потратить",
 				"invitation added": "Приглашение отправлено",
 				// J
 				Join: "Присоединиться",
@@ -190,7 +202,7 @@ i18n.use(LanguageDetector).init({
 				"new circle": "новый круг",
 				newest: "самые новые",
 				Next: "Вперед",
-				next: "вперед",
+				next: "далее",
 				"Not active donuts": "Неактивные пончики",
 				"No options": "Нет вариантов",
 				"not active": "не активен",
@@ -234,7 +246,7 @@ i18n.use(LanguageDetector).init({
 				"Recover password": "Восстановить пароль",
 				"Requests in progress": "Запросы в работе",
 				Refund: "Возврат",
-
+				[texts_r.remove_all]: "удалить всех",
 				Required: "Обязательное поле",
 				requests: "запросы",
 				Requests: "Запросы",
@@ -257,6 +269,7 @@ i18n.use(LanguageDetector).init({
 				"rows per page": "строк на стр.",
 
 				// S
+				save: "сохранить",
 				saved: "сохранено",
 				"Save changes": "Сохранить изменения",
 				"Self account": "Могу потратить",
@@ -264,6 +277,7 @@ i18n.use(LanguageDetector).init({
 				"Search string": "Строка поиска",
 				search: "поиск",
 				Share: "Поделиться",
+				share: "поделиться",
 				"Share dialog": "Окно подарков",
 				"Show only mine": "Показывать только мои",
 				"Show snow": "Включить снег",
@@ -273,6 +287,8 @@ i18n.use(LanguageDetector).init({
 				"Send to all": "Отправить всем",
 				"Send again": "Отправить еще раз",
 				"Select image": "Выбрать картинку",
+				"select all": "выбрать всех",
+				"selected employees": "выбранные сотрудники",
 				Settings: "Настройки",
 				Schedule: "Расписание",
 				Schedulers: "Расписания",
@@ -291,7 +307,12 @@ i18n.use(LanguageDetector).init({
 
 				// T
 				Tenant: "Команда",
+				transferred: "перведено",
+				"transfer points": "перевести баллы",
+				"transfer donuts": "перевести пончики",
 				to: "для",
+				[texts_t.to_store]: "в магазин",
+				"to can transfer to others": "можно дарить коллегам",
 				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
 				"Teams I can join": "Команды, к которым могу присоединиться",
@@ -300,6 +321,7 @@ i18n.use(LanguageDetector).init({
 				Update: "Обновить",
 				[texts_u.under_construct]: "В разработке",
 				"Update is available": "Обновление доступно",
+				"user can spend in store": "можно тратить в магазине",
 				// V
 
 				// W

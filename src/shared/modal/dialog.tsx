@@ -1,7 +1,7 @@
 import { DialogProps, useTheme, useMediaQuery } from "@mui/material";
 import { FC, SyntheticEvent } from "react";
 import { DialogStyled } from "shared/modal/DialogStyled";
-import { TBntModal } from "../types/dialog";
+import { TBntModal } from "../types/dialog-types";
 
 export const BntDialog: FC<
 	DialogProps & {

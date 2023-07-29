@@ -76,6 +76,8 @@ export type TFormFieldSource = Array<TFormFieldSourceItem>;
 export type TFormField<T = Record<string, any>> = TSizeProps & {
 	name: keyof T;
 	label: string;
+	// for switch type
+	disabledLabel?: string;
 	size: TFieldSize;
 	offset?: TOffsetProps;
 	source?: TFormFieldSource;
@@ -110,7 +112,10 @@ export type TFormProps<T extends Record<string, any>> = {
 	groupGap?: number;
 	submitCaption?: string;
 	onLoad?: () => void;
-	onSubmit?: (values: T) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
+	onSubmit?: (
+		values: T,
+		onError?: (message?: string) => void
+	) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
 	locale?: Locale;

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
 import { routesPath } from "routes/config/routes-path";
 import { BntRoutes } from "routes/config/routes";
 import { PeopleAltOutlined, PersonOutlined } from "@mui/icons-material";
@@ -13,12 +13,12 @@ export const EmployeePreviewBreadcrumbs: FC<{ employee?: TProfile }> = ({ employ
 			key: routesPath[BntRoutes.Employees],
 			link: routesPath[BntRoutes.Employees],
 			label: texts_e.employees,
-			icon: <PeopleAltOutlined color="info" />,
+			icon: <PeopleAltOutlined />,
 		},
 		{
 			key: employee?.id.toString() || "employee",
 			label: employee?.user_name || "",
-			icon: <PersonOutlined color="info" />,
+			icon: <PersonOutlined />,
 			noTranslation: true,
 		},
 	];

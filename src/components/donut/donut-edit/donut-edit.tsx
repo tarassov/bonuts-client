@@ -8,7 +8,7 @@ import { useDonut } from "logic/hooks/donut/use-donut";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
 import { Dictionary } from "constants/dictionary";
 import { DonutSmall, SettingsOutlined } from "@mui/icons-material";
 import { routesPath } from "routes/config/routes-path";
@@ -31,12 +31,12 @@ export const DonutEdit = () => {
 			key: "shop",
 			link: routesPath.Store,
 			label: Dictionary.DONUTS,
-			icon: <SettingsOutlined color="info" />,
+			icon: <SettingsOutlined />,
 		},
 		{
 			key: id || "donut",
 			label: donut?.name || "",
-			icon: <DonutSmall color="info" />,
+			icon: <DonutSmall />,
 		},
 	];
 

@@ -1,29 +1,45 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Icon, IconButton, IconButtonProps, Tooltip } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { BntBadge } from "shared/badge/bnt-badge";
 
-export const BntIconButton: FC<IconButtonProps & { tooltip?: string; customIcon?: boolean }> = (
-	props
-) => {
-	const { tooltip, customIcon, children, ...rest } = props;
+export const BntIconButton: FC<
+	IconButtonProps & {
+		tooltip?: string;
+		customIcon?: boolean;
+		badgeContent?: ReactNode;
+		badgeColor?:
+			| "secondary"
+			| "primary"
+			| "default"
+			| "error"
+			| "info"
+			| "success"
+			| "warning"
+			| undefined;
+	}
+> = (props) => {
+	const { tooltip, customIcon, children, badgeContent, badgeColor, ...rest } = props;
 	const { t } = useBntTranslate();
+	const IconComponent = !customIcon ? (
+		<IconButton {...rest}>
+			<BntBadge badgeContent={badgeContent} color={badgeColor} invisible={!badgeContent}>
+				{children}
+			</BntBadge>
+		</IconButton>
+	) : (
+		<IconButton {...rest}>
+			<BntBadge badgeContent={badgeContent} color={badgeColor} invisible={!badgeContent}>
+				<Icon>{children}</Icon>
+			</BntBadge>
+		</IconButton>
+	);
 	if (tooltip) {
 		return (
-			<Tooltip title={t(tooltip)}>
-				{!customIcon ? (
-					<IconButton {...rest}>{children}</IconButton>
-				) : (
-					<IconButton {...rest}>
-						<Icon>{children}</Icon>
-					</IconButton>
-				)}
+			<Tooltip placement="bottom-start" title={t(tooltip)}>
+				{IconComponent}
 			</Tooltip>
 		);
 	}
-	if (!customIcon) return <IconButton {...rest}>{children}</IconButton>;
-	return (
-		<IconButton {...props}>
-			<Icon>{children}</Icon>
-		</IconButton>
-	);
+	return IconComponent;
 };

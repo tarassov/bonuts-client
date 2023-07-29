@@ -5,7 +5,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { EMPTY_FUNCTION } from "constants/functions";
 import { BntStyledBreadcrumbs } from "shared/breadcrumb/styled-breadcrumbs";
 import { Icon, Tooltip } from "@mui/material";
-import { TBntBreadcrumb } from "../types/breadcrumbs";
+import { TBntBreadcrumb } from "../types/breadcrumbs-types";
 import { BntStyledBreadcrumb } from "./styled-breadcrumb";
 
 export const BntBreadcrumbs: FC<TBntBreadcrumb> = ({ items, className }) => {
@@ -14,7 +14,7 @@ export const BntBreadcrumbs: FC<TBntBreadcrumb> = ({ items, className }) => {
 		<div>
 			<BntStyledBreadcrumbs
 				className={className}
-				separator={<NavigateNext fontSize="small" color="info" />}
+				separator={<NavigateNext fontSize="small" color="action" />}
 			>
 				{items.map((item) => {
 					const { onClick = EMPTY_FUNCTION, link, label, icon, key, noTranslation } = item;

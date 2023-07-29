@@ -35,10 +35,6 @@ export function useAuth() {
 	const { getValue, setValue } = useStorage();
 	const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-	// const navigate = useNavigate();
-	// const dismissErrors = () => {
-	// 	if (user.error) dispatch(dismissErrorsAction());
-
 	useEffect(() => {
 		if (auth.token) {
 			setSkip(false);

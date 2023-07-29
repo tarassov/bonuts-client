@@ -7,4 +7,5 @@ export enum Modules {
 	EmployeePreview = "employee_preview",
 	Requests = "requests",
 	StoreManager = "store_manager",
+	ShareAll = "share_all",
 }

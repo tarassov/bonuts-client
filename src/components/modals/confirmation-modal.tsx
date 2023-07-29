@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { BntStack } from "shared/stack/stack";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
-import { TModalProps } from "shared/types/dialog";
+import { TModalProps } from "shared/types/dialog-types";
 import { emptyFunction } from "utils/empty-function";
 import { BntTransparentButton } from "shared/buttons/transparent-button";
 import { texts_y } from "@/services/localization/texts/texts_y";

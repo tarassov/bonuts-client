@@ -1,6 +1,6 @@
 import { modalConfig, ModalType } from "config/modal-config";
 import { createContext, ReactNode } from "react";
-import { TModalProps } from "shared/types/dialog";
+import { TModalProps } from "shared/types/dialog-types";
 
 type ModalNamesType = keyof typeof modalConfig.items;
 

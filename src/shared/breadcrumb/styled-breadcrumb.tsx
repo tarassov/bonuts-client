@@ -14,7 +14,7 @@ export const BntStyledBreadcrumb = styled(Chip, {
 		maxWidth: "100%",
 		backgroundColor,
 		height: theme.spacing(3),
-		color: theme.palette.info.main,
+		color: theme.palette.grey["800"],
 		fontWeight: theme.typography.fontWeightRegular,
 		[cl("MuiBreadcrumbs-li")]: {
 			overflow: "hidden !important",

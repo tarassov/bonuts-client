@@ -8,6 +8,15 @@ const injectedRtkApi = api.injectEndpoints({
 		>({
 			query: (queryArg) => ({ url: `/account_operations`, method: "POST", body: queryArg.body }),
 		}),
+		getAccountsById: build.query<GetAccountsByIdApiResponse, GetAccountsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/accounts/${queryArg.id}`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		postAdminDeposit: build.mutation<PostAdminDepositApiResponse, PostAdminDepositApiArg>({
+			query: (queryArg) => ({ url: `/admin_deposit`, method: "POST", body: queryArg.body }),
+		}),
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
 			query: (queryArg) => ({ url: `/avatars`, method: "POST", body: queryArg.body }),
 		}),
@@ -86,6 +95,16 @@ const injectedRtkApi = api.injectEndpoints({
 				body: queryArg.body,
 			}),
 		}),
+		postProfilesByIdSetActivity: build.mutation<
+			PostProfilesByIdSetActivityApiResponse,
+			PostProfilesByIdSetActivityApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/profiles/${queryArg.id}/set_activity`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
 			query: (queryArg) => ({ url: `/profiles`, params: { tenant: queryArg.tenant } }),
 		}),
@@ -148,13 +167,42 @@ export type PostAccountOperationsApiArg = {
 	body: {
 		tenant: string;
 		amount: number;
-		from_profile_id?: string;
-		to_profile_ids: string[];
+		from_profile_id?: number;
+		to_profile_ids: number[];
 		comment: string;
 		share_for_all?: boolean;
 		is_for_distrib?: boolean;
 		burn_old?: boolean;
 		to_self_account?: boolean;
+	};
+};
+export type GetAccountsByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			balance: number;
+			last_operation?: {
+				amount?: number;
+				date?: string;
+				direction?: "+" | "-";
+			};
+		};
+	};
+};
+export type GetAccountsByIdApiArg = {
+	id: number;
+	tenant: string;
+};
+export type PostAdminDepositApiResponse = unknown;
+export type PostAdminDepositApiArg = {
+	body: {
+		tenant: string;
+		amount: number;
+		account_type?: "self" | "distrib";
+		to_profile_ids: number[];
+		comment: string;
 	};
 };
 export type PostAvatarsApiResponse = /** status 200 success */ {
@@ -290,7 +338,7 @@ export type GetCirclesByIdApiResponse = /** status 200 success */ {
 	};
 };
 export type GetCirclesByIdApiArg = {
-	id: string;
+	id: number;
 	tenant?: string;
 };
 export type PatchCirclesByIdApiResponse = /** status 200 success */ {
@@ -1004,11 +1052,79 @@ export type PutProfilesByIdApiArg = {
 		tenant?: string;
 	};
 };
+export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			default?: boolean;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
+			attached?: boolean;
+			roles: string[];
+			circles: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			first_name?: string;
+			last_name?: string;
+			name?: string;
+			email: string;
+			tenant?: string;
+			sex?: string;
+			phone?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
+			in_date: (string | null) | null;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+	}[];
+};
+export type PostProfilesByIdSetActivityApiArg = {
+	id: number;
+	body: {
+		active?: boolean;
+		tenant?: string;
+	};
+};
 export type GetProfilesApiResponse = /** status 200 success */ {
 	data?: {
-		id?: string;
-		type?: string;
-		attributes?: {
+		id: string;
+		type: string;
+		attributes: {
 			id: number;
 			default?: boolean;
 			user_id: number;
@@ -1898,6 +2014,8 @@ export type PostRefreshTokenApiResponse = /** status 200 success */ {
 export type PostRefreshTokenApiArg = void;
 export const {
 	usePostAccountOperationsMutation,
+	useGetAccountsByIdQuery,
+	usePostAdminDepositMutation,
 	usePostAvatarsMutation,
 	useGetCirclesQuery,
 	usePostCirclesMutation,
@@ -1915,6 +2033,7 @@ export const {
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,
 	usePutProfilesByIdMutation,
+	usePostProfilesByIdSetActivityMutation,
 	useGetProfilesQuery,
 	useGetRequestsQuery,
 	usePostRequestsMutation,

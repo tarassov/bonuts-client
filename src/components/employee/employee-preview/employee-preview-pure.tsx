@@ -9,19 +9,12 @@ import { BntTypography } from "shared/typography/typography";
 import { emptyFunction } from "utils/empty-function";
 import { EmployeePreviewBreadcrumbs } from "components/employee/employee-preview/employee-preview-breadcrumbs";
 import { BntChip } from "shared/chip/chip";
-import {
-	DeleteOutlined,
-	ErrorOutline,
-	MonetizationOnOutlined,
-	ShieldOutlined,
-	StorefrontOutlined,
-} from "@mui/icons-material";
+import { ErrorOutline, ShieldOutlined, StorefrontOutlined } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntLabel } from "components/employee/employee-preview/label";
 import { formatStringDate } from "utils/format-string-date";
 import { BntDivider } from "shared/divider/bnt-divider";
-import { useIcons } from "hooks/use-icons";
-import { BntIconButton } from "shared/icon-button/bnt-icon-button";
+import { EmployeeActions } from "pages/employee/employee-actions";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
@@ -36,14 +29,27 @@ import { BntStack } from "@/shared/stack/stack";
 type EmployeePreviewPureProps = {
 	employee?: TProfile;
 	onImageClick: VoidFunction;
+	onTransferClick?: VoidFunction;
+	onAdminDepositClick?: VoidFunction;
+	onDisableClick?: VoidFunction;
+	onActivateClick?: VoidFunction;
+	allowDisable?: boolean;
+	allowActivate?: boolean;
+	allowAdminDeposit?: boolean;
 };
 export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 	employee,
 	onImageClick = emptyFunction,
+	onAdminDepositClick = emptyFunction,
+	onTransferClick = emptyFunction,
+	onActivateClick = emptyFunction,
+	onDisableClick = emptyFunction,
+	allowAdminDeposit,
+	allowActivate,
+	allowDisable,
 }) => {
 	const theme = useTheme();
 	const { translate } = useBntTranslate();
-	const { BonutsCurrency } = useIcons();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
@@ -51,17 +57,15 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 			<BntStack direction="column">
 				<EmployeePreviewBreadcrumbs employee={employee} />
 				<BntCard className="width-100 mb-1">
-					<BntStack direction="row" className="mr-4" justifyContent="flex-end">
-						<BntIconButton color="error">
-							<DeleteOutlined />
-						</BntIconButton>
-						<BntIconButton color="primary">
-							<MonetizationOnOutlined />
-						</BntIconButton>
-						<BntIconButton customIcon>
-							<BonutsCurrency />
-						</BntIconButton>
-					</BntStack>
+					<EmployeeActions
+						allowDisable={allowDisable}
+						allowActivate={allowActivate}
+						allowAdminDeposit={allowAdminDeposit}
+						onAdminDepositClick={onAdminDepositClick}
+						onTransferClick={onTransferClick}
+						onDisableClick={onDisableClick}
+						onActivateClick={onActivateClick}
+					/>
 				</BntCard>
 			</BntStack>
 

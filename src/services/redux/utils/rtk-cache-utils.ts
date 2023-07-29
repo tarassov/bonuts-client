@@ -33,7 +33,7 @@ export type CacheList<T, ID> = (CacheItem<T, "LIST"> | CacheItem<T, ID> | Defaul
  * Inner function returned by `providesList` to be passed to the `provides` property of a query
  */
 type InnerProvidesList<T> = <Results extends { id: unknown }[], Error extends FetchBaseQueryError>(
-	results: Results | undefined,
+	results: { data?: Results } | undefined,
 	error: Error | undefined
 ) => CacheList<T, Results[number]["id"]>;
 
@@ -61,9 +61,9 @@ export const providesList =
 	<T extends string>(type: T): InnerProvidesList<T> =>
 	(results, error) => {
 		// is result available?
-		if (results) {
+		if (results?.data) {
 			// successful query
-			return [{ type, id: "LIST" }, ...results.map(({ id }) => ({ type, id } as const))];
+			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id } as const))];
 		}
 		// Received an error, include an error cache item to the cache list
 		return concatErrorCache([{ type, id: "LIST" }], error);

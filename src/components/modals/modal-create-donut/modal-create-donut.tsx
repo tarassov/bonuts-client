@@ -2,7 +2,7 @@ import { useCreateDonut } from "logic/hooks/donut/use-create-donut";
 import { TFormValue } from "shared/form/types/bnt-form";
 import { ModalCreateDonutPure } from "components/modals/modal-create-donut/modal-create-donut-pure";
 import { FC } from "react";
-import { TModalProps } from "shared/types/dialog";
+import { TModalProps } from "shared/types/dialog-types";
 import { emptyFunction } from "utils/empty-function";
 
 export const ModalCreateDonut: FC<TModalProps> = ({ close = emptyFunction }) => {
