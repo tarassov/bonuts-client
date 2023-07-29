@@ -13,17 +13,21 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 	const { t } = useBntTranslate();
 	const { BonutsCurrency } = useBonutsIcon();
 	const accountId = profile?.self_account?.id;
-	const { account } = useAccountBalanceLoader(accountId);
+	const { account, isLoading } = useAccountBalanceLoader(accountId);
 	return (
 		<BntStack gap={1}>
 			<AccountBallanceMainInfo
 				title={t(texts_i.i_can_spend, { capitalize: true })}
 				balance={account?.balance}
 				value={
-					<>
-						{t("point", { count: account?.balance })}
-						(<BonutsCurrency />)
-					</>
+					isLoading ? (
+						"..."
+					) : (
+						<>
+							{t("point", { count: account?.balance })}
+							(<BonutsCurrency />)
+						</>
+					)
 				}
 				lastOperation={account?.last_operation}
 			/>

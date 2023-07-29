@@ -12,7 +12,7 @@ import { TProfile } from "@/types/model";
 export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) => {
 	const { t } = useBntTranslate();
 	const accountId = profile?.distrib_account?.id;
-	const { account } = useAccountBalanceLoader(accountId);
+	const { account, isLoading } = useAccountBalanceLoader(accountId);
 
 	return (
 		<BntStack gap={1}>
@@ -20,10 +20,14 @@ export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) =>
 				title={t(texts_i.i_can_share, { capitalize: true })}
 				balance={account?.balance}
 				value={
-					<>
-						{t("donut", { count: account?.balance })}
-						(<DonutSmallOutlined color="primary" />)
-					</>
+					isLoading ? (
+						"..."
+					) : (
+						<>
+							{t("donut", { count: account?.balance })}
+							(<DonutSmallOutlined color="primary" />)
+						</>
+					)
 				}
 				lastOperation={account?.last_operation}
 			/>

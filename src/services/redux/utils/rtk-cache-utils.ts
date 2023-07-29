@@ -93,6 +93,10 @@ type InnerProvidesNestedList<T> = <
 	error: Error | undefined
 ) => CacheList<T, Results["data"][number]["id"]>;
 
+export const invalidateId = <T extends string, K>(type: T, id: K): [CacheItem<T, K>] | [] => [
+	{ type, id },
+];
+
 /**
  * Similar to `providesList`, but for data located at a nested property,
  * e.g. `results.data` in a paginated response.
@@ -141,13 +145,18 @@ export const cacheByIdArg =
  * ```
  */
 export const cacheByIdArgProperty =
-	<T extends string>(type: T) =>
+	<T extends string>(type: T, tag?: string) =>
 	<Arg extends { id: unknown }, Result = undefined, Error = undefined>(
 		result: Result,
 		error: Error,
 		arg: Arg
-	): readonly [CacheItem<T, Arg["id"]>] | [] =>
-		[{ type, id: arg.id }] as const;
+	): readonly [CacheItem<T, Arg["id"]>] | [] | [CacheItem<T, Arg["id"]>, CacheItem<T, Arg["id"]>] =>
+		tag
+			? [
+					{ type, id: arg.id },
+					{ type, id: tag },
+			  ]
+			: ([{ type, id: arg.id }] as const);
 
 /**
  * HOF to invalidate the 'UNAUTHORIZED' type cache item.
@@ -191,4 +200,5 @@ export const cacher = {
 	cacheByIdArgProperty,
 	invalidatesUnauthorized,
 	invalidatesUnknownErrors,
+	invalidateId,
 };
