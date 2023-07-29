@@ -2,7 +2,7 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
 import { texts_r } from "services/localization/texts/texts_r";
-import { texts_c, texts_i } from "services/localization/texts";
+import { texts_c, texts_i, texts_t } from "services/localization/texts";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -277,6 +277,7 @@ i18n.use(LanguageDetector).init({
 				"Search string": "Строка поиска",
 				search: "поиск",
 				Share: "Поделиться",
+				share: "поделиться",
 				"Share dialog": "Окно подарков",
 				"Show only mine": "Показывать только мои",
 				"Show snow": "Включить снег",
@@ -310,6 +311,7 @@ i18n.use(LanguageDetector).init({
 				"transfer points": "перевести баллы",
 				"transfer donuts": "перевести пончики",
 				to: "для",
+				[texts_t.to_store]: "в магазин",
 				"to can transfer to others": "можно дарить коллегам",
 				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",

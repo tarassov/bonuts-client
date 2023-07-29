@@ -8,7 +8,7 @@ export const AccountBalanceCard: FC<{ accountType: "self" | "distrib" }> = ({ ac
 	const { profile } = useProfileLogic();
 	if (!profile) return null;
 	return (
-		<GradientCard sx={{ maxWidth: "300px" }} className="p-2">
+		<GradientCard className="p-2 width-100" sx={{ maxWidth: 700 }}>
 			{accountType === "distrib" ? (
 				<AccountBalanceDistrib profile={profile} />
 			) : (
