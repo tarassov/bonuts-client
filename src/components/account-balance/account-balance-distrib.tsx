@@ -7,12 +7,14 @@ import { AccountBallanceMainInfo } from "components/account-balance/account-ball
 import { BntRoundButton } from "shared/buttons/round-button";
 import { BntStack } from "shared/stack/stack";
 import { Box } from "@mui/material";
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 
 export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) => {
 	const { t } = useBntTranslate();
 	const accountId = profile?.distrib_account?.id;
 	const { account, isLoading } = useAccountBalanceLoader(accountId);
+	const { toEmployeeList } = useEmployeeUi();
 
 	return (
 		<BntStack gap={1}>
@@ -32,7 +34,7 @@ export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) =>
 				lastOperation={account?.last_operation}
 			/>
 			<Box>
-				<BntRoundButton variant="contained">
+				<BntRoundButton variant="contained" onClick={toEmployeeList}>
 					{t(texts_s.share, { capitalize: true })}
 				</BntRoundButton>
 			</Box>

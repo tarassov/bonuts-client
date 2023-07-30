@@ -6,6 +6,7 @@ import { texts_i, texts_t } from "services/localization/texts";
 import { AccountBallanceMainInfo } from "components/account-balance/account-ballance-main-info";
 import { BntRoundButton } from "shared/buttons/round-button";
 import Box from "@mui/material/Box/Box";
+import { useDonutUi } from "logic/ui/use-donut-ui";
 import { TProfile } from "@/types/model";
 import { BntStack } from "@/shared/stack/stack";
 
@@ -14,6 +15,7 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 	const { BonutsCurrency } = useBonutsIcon();
 	const accountId = profile?.self_account?.id;
 	const { account, isLoading } = useAccountBalanceLoader(accountId);
+	const { toStore } = useDonutUi();
 	return (
 		<BntStack gap={1}>
 			<AccountBallanceMainInfo
@@ -32,7 +34,7 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 				lastOperation={account?.last_operation}
 			/>
 			<Box>
-				<BntRoundButton variant="contained">
+				<BntRoundButton variant="contained" onClick={toStore}>
 					{t(texts_t.to_store, { capitalize: true })}
 				</BntRoundButton>
 			</Box>

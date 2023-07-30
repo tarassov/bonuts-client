@@ -23,6 +23,7 @@ export const dataToProfile = (data: GetProfileApiResponse["data"]) => {
 		contact: data.attributes?.contact || undefined,
 		self_account: data.attributes?.self_account,
 		distrib_account: data.attributes?.distrib_account,
+		created_at: data.attributes?.created_at,
 	};
 
 	return res;

@@ -15,4 +15,9 @@ export const EmployeeSorter = {
 		}
 		return 0;
 	},
+	sorterByDate: (a: TProfile, b: TProfile) => {
+		const bDate: any = new Date(b.created_at || "1970/01/01");
+		const aDate: any = new Date(a.created_at || "1970/01/01");
+		return bDate - aDate;
+	},
 };

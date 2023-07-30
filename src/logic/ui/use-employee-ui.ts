@@ -4,6 +4,8 @@ import { useModal } from "hooks/use-modal";
 import { CommonStrings } from "constants/dictionary";
 import { texts_p } from "services/localization/texts/texts_p";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { routesPath } from "routes/config/routes-path";
+import { BntRoutes } from "routes/config/routes";
 import { TBaseModel } from "@/types/model";
 
 export const useEmployeeUi = (employee?: TBaseModel) => {
@@ -21,5 +23,9 @@ export const useEmployeeUi = (employee?: TBaseModel) => {
 			});
 	};
 
-	return { showEmployee, showEmployeeModal };
+	const toEmployeeList = () => {
+		dispatch(push(routesPath[BntRoutes.Employees]));
+	};
+
+	return { showEmployee, showEmployeeModal, toEmployeeList };
 };

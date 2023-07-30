@@ -34,6 +34,11 @@ main {
 .text-align-center {
 	text-align: center;
 }
+.pointer {
+	&:hover {
+		cursor: pointer;
+	}
+}
 /* Scroll bar stylings */
 ::-webkit-scrollbar {
 	width: 4px;

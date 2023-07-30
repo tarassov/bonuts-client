@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { BntStack } from "shared/stack/stack";
 import { BntTypography } from "shared/typography/typography";
+import { Button } from "@mui/material";
 
 export const AccountBallanceMainInfo: FC<{
 	title: string;
@@ -21,11 +22,15 @@ export const AccountBallanceMainInfo: FC<{
 					{value}
 				</BntStack>
 			</BntStack>
-			<BntTypography variant="caption" color="grey.700">
-				<BntStack direction="row">
-					{`${lastOperation?.direction}${lastOperation?.amount} ${lastOperation?.date}`}
-				</BntStack>
-			</BntTypography>
+			<Button sx={{ width: "fit-content" }}>
+				<BntTypography variant="caption" color="grey.700">
+					<BntStack direction="row">
+						{lastOperation
+							? `${lastOperation?.direction}${lastOperation?.amount} ${lastOperation?.date}`
+							: "..."}
+					</BntStack>
+				</BntTypography>
+			</Button>
 		</BntStack>
 	);
 };
