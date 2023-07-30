@@ -16,6 +16,8 @@ import { DEFAULT_DONUT_IMAGE } from "constants/images";
 import { BntTypography } from "shared/typography/typography";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useModal } from "hooks/use-modal";
+import { BntRoutes } from "routes/config/routes";
+import { routesPath } from "routes/config/routes-path";
 import { DonutPurchaseBlock } from "./donut-purchase-block";
 
 export const BntDonutPreview = () => {
@@ -36,8 +38,8 @@ export const BntDonutPreview = () => {
 	};
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
-			key: "shop",
-			link: "/donuts",
+			key: routesPath[BntRoutes.Donuts],
+			link: routesPath[BntRoutes.Donuts],
 			label: Dictionary.DONUTS,
 			icon: <ShoppingBag />,
 		},
