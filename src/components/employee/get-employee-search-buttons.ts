@@ -9,5 +9,9 @@ export const getEmployeeSearchButtons = (): Array<TSorterButton<TProfile>> => {
 			name: Sorting.SORT_BY_ALPHABET,
 			sorter: EmployeeSorter.sorterByName,
 		},
+		{
+			name: Sorting.NEWEST,
+			sorter: EmployeeSorter.sorterByDate,
+		},
 	];
 };

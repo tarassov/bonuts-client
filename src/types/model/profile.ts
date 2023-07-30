@@ -31,4 +31,5 @@ export type TProfile = TBaseModel & {
 		tenant_id?: number;
 		profile_id?: number;
 	};
+	created_at?: string;
 };
