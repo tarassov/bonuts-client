@@ -4,4 +4,5 @@ export enum texts_p {
 	"price" = "price",
 	"previous" = "previous",
 	"preview" = "preview",
+	"page_not_found" = "page not found",
 }
