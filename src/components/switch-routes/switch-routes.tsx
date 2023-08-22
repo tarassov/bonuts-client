@@ -9,7 +9,7 @@ import _ from "lodash";
 import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
 import { PageWrapper } from "pages/page-wrapper";
 
-interface ISwithRoutesProps {
+interface ISwitchRoutesProps {
 	routes: Array<TRoute<any>>;
 	// eslint-disable-next-line react/no-unused-prop-types
 	redirects?: Array<TRedirect>;
@@ -26,7 +26,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 	);
 };
 
-const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
+const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 	const location = useLocationTyped();
 	const { checkAuth, isAuthLoading, auth, currentRoles } = useAuth();
 	const background = location.state && location.state.background;
@@ -48,7 +48,7 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 		return <div>Checking auth...</div>;
 	}
 
-	const hasAccsess = (route: TRoute<BntRoutes>) => {
+	const hasAccess = (route: TRoute<BntRoutes>) => {
 		if (!route.roles) return true;
 		return !!_.intersection(route.roles, currentRoles).length;
 	};
@@ -57,7 +57,7 @@ const SwitchRoutes: FC<ISwithRoutesProps> = ({ routes }) => {
 		<Routes location={background || location}>
 			{authenticatedRoutes &&
 				authenticatedRoutes.map((route) => {
-					const element = !hasAccsess(route) ? <ForbiddenPage /> : getRoute(route, auth);
+					const element = !hasAccess(route) ? <ForbiddenPage /> : getRoute(route, auth);
 					return <Route path={route.path} element={element} key={route.path} />;
 				})}
 

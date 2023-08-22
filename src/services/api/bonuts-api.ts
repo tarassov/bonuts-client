@@ -146,6 +146,9 @@ const injectedRtkApi = api.injectEndpoints({
 		>({
 			query: (queryArg) => ({ url: `/tenants/${queryArg.tenantName}/join`, method: "POST" }),
 		}),
+		getTenantCurrent: build.query<GetTenantCurrentApiResponse, GetTenantCurrentApiArg>({
+			query: (queryArg) => ({ url: `/tenant/current`, params: { tenant: queryArg.tenant } }),
+		}),
 		postRegister: build.mutation<PostRegisterApiResponse, PostRegisterApiArg>({
 			query: (queryArg) => ({ url: `/register`, method: "POST", body: queryArg.body }),
 		}),
@@ -1926,6 +1929,42 @@ export type PostTenantsByTenantNameJoinApiResponse = unknown;
 export type PostTenantsByTenantNameJoinApiArg = {
 	tenantName: string;
 };
+export type GetTenantCurrentApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			name: string;
+			caption?: string | null;
+			active: boolean;
+			created_at: string;
+			updated_at: string;
+			domain: string;
+			demo: boolean;
+			logo: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			};
+			welcome_points: number;
+			welcome_donuts: number;
+			email_notification: boolean;
+			birthday_donuts: number;
+			birthday_points: number;
+			join_to_project_donuts: number;
+			join_to_company_donuts: number;
+			join_to_project_points: number;
+			join_to_company_points: number;
+			use_departments: boolean;
+			test?: boolean;
+		};
+	};
+};
+export type GetTenantCurrentApiArg = {
+	tenant?: string;
+};
 export type PostRegisterApiResponse = unknown;
 export type PostRegisterApiArg = {
 	body: {
@@ -2042,6 +2081,7 @@ export const {
 	usePostRequestsRollbackMutation,
 	usePostRequestsCloseMutation,
 	usePostTenantsByTenantNameJoinMutation,
+	useGetTenantCurrentQuery,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
 	usePostAuthenticateMutation,
