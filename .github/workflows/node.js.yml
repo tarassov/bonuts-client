@@ -38,7 +38,7 @@ jobs:
     - name: RUN DEPLOY TO GITHUB-PAGES
       uses: peaceiris/actions-gh-pages@v3
       with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        deploy_key: ${{ secrets.DEPLOY_TOKEN }}
         publish_dir: ./dist
 
     # - name: Deploy
