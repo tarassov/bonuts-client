@@ -1,5 +1,5 @@
-import { UnderConstruct } from "pages/under-construct";
+import { TenantEdit } from "components/tenant/tenant-edit";
 
 export const TenantPage = () => {
-	return <UnderConstruct />;
+	return <TenantEdit />;
 };

@@ -2,7 +2,7 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
 import { texts_r } from "services/localization/texts/texts_r";
-import { texts_c, texts_i, texts_t } from "services/localization/texts";
+import { texts_c, texts_e, texts_i, texts_t } from "services/localization/texts";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -63,6 +63,7 @@ i18n.use(LanguageDetector).init({
 				// B
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
+				"birthday donuts": "пончики на день рождения",
 				back: "назад",
 				Buy: "Купить",
 				"Burn old points": "Списывать неиспользованные баллы",
@@ -72,6 +73,7 @@ i18n.use(LanguageDetector).init({
 				Cancel: "Отмена",
 				cancel: "отмена",
 				Caption: "Название",
+				caption: "название",
 				Change: "Изменить",
 				"Can not be empty": "Не может быть пустым",
 				"Change password": "Сменить пароль",
@@ -128,6 +130,7 @@ i18n.use(LanguageDetector).init({
 				donut_other: "пончиков",
 				"Domain not found": "Не найден почтовый домен",
 				Domain: "Домен",
+				domain: "домен",
 				"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file":
 					"Перетащите сюда файл или кликните, для выбора",
 				"Drag and drop an image here or click to select a file":
@@ -140,6 +143,7 @@ i18n.use(LanguageDetector).init({
 				"Error while updating": "Ошибка во время обновления",
 				Employees: "Сотрудники",
 				employees: "сотрудники",
+				[texts_e.email_notification]: "оповещения по почте",
 				Email: "Email",
 				error: "ошибка",
 				Events: "События",
@@ -325,8 +329,8 @@ i18n.use(LanguageDetector).init({
 				// V
 
 				// W
-				"Welcome points": "Приветственные баллы",
-				"Welcome donuts": "Приветственные пончики",
+				"welcome points": "приветственные баллы",
+				"welcome donuts": "приветственные пончики",
 				"Without department": "Без подразделения",
 				"Wrong credentials": "Не удалось войти с этим именем и паролем",
 				"Withdrawal error. Not enough points": "Ошибка. Недостаточно баллов",
