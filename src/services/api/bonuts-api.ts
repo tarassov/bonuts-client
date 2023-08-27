@@ -2005,18 +2005,14 @@ export type PutTenantCurrentApiArg = {
 	body: {
 		id: number;
 		name: string;
+		tenant: string;
 		caption?: string | null;
 		active: boolean;
 		created_at: string;
 		updated_at: string;
 		domain: string;
 		demo: boolean;
-		logo: {
-			url: string;
-			thumb: {
-				url: string;
-			};
-		};
+		logo?: any;
 		welcome_points: number;
 		welcome_donuts: number;
 		email_notification: boolean;
