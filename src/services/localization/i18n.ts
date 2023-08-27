@@ -2,7 +2,7 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
 import { texts_r } from "services/localization/texts/texts_r";
-import { texts_c, texts_e, texts_i, texts_t } from "services/localization/texts";
+import { texts_c, texts_e, texts_i, texts_s, texts_t } from "services/localization/texts";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -273,6 +273,7 @@ i18n.use(LanguageDetector).init({
 				"rows per page": "строк на стр.",
 
 				// S
+				[texts_s.settings_updated]: "настройки обновлены",
 				save: "сохранить",
 				saved: "сохранено",
 				"Save changes": "Сохранить изменения",

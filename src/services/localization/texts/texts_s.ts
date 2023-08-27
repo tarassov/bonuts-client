@@ -7,4 +7,5 @@ export enum texts_s {
 	selected_employees = "selected employees",
 	store_admin = "store admin",
 	supply_days = "supply days",
+	settings_updated = " settings updated",
 }
