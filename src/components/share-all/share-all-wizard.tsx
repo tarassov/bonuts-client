@@ -13,12 +13,15 @@ type ShareAllWizardType = {
 export const ShareAllWizard = () => {
 	const { adminDeposit } = useTransfer();
 
-	const onSubmit = (values: Partial<ShareAllWizardType>) => {
-		const { Step1, Step2 } = values;
+	const onSubmit = async (values: Partial<ShareAllWizardType & { onSuccess?: VoidFunction }>) => {
+		const { Step1, Step2, onSuccess } = values;
 		if (Step1 && Step2) {
 			const { profiles } = Step1;
 			const { amount, comment, toSelfAccount } = Step2;
-			adminDeposit({ amount, comment, toSelfAccount, ids: profiles.map((x) => x.id) });
+			adminDeposit(
+				{ amount, comment, toSelfAccount, ids: profiles.map((x) => x.id) },
+				{ onSuccess }
+			);
 		}
 	};
 	const shareAllConfig: TWizardConfig<ShareAllWizardType, undefined> = {

@@ -9,22 +9,27 @@ import { useNotification } from "services/notification";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { texts_t } from "services/localization/texts/texts_t";
 import { CommonStrings } from "constants/dictionary";
+import { useLoader } from "shared/loader/hooks/use-loader";
 import { TransferProps } from "@/types/logic";
 import { AdminDepositProps } from "@/types/logic/transfer";
 import { TActionCallback } from "@/types/logic/action-callback";
 
+const OPERATION_NAME = "transferDonuts";
 export const useTransfer = () => {
 	const [postOperation] = usePostAccountOperationsMutation();
 	const [postAdminDeposit] = usePostAdminDepositMutation();
 	const tenant = useCurrentTenant();
 	const { profile, invalidateDistribBalance } = useProfileLogic();
 	const { showNotification } = useNotification();
+	const { setLoading } = useLoader();
+
 	const transferMyDonuts = (
 		args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">,
 		options?: TActionCallback<PostAccountOperationsApiResponse>
 	) => {
 		const { amount, comment, ids } = args;
 		if (tenant) {
+			setLoading(OPERATION_NAME, true);
 			postOperation({
 				body: {
 					tenant,
@@ -43,7 +48,10 @@ export const useTransfer = () => {
 					invalidateDistribBalance();
 					showNotification(texts_t.transferred);
 				})
-				.catch((e) => options?.onError?.(e.data.message));
+				.catch((e) => options?.onError?.(e.data.message))
+				.finally(() => {
+					setLoading(OPERATION_NAME, false);
+				});
 		}
 	};
 	const adminDeposit = (
@@ -52,6 +60,7 @@ export const useTransfer = () => {
 	) => {
 		const { amount, comment = CommonStrings.EMPTY_STRING, ids, toSelfAccount } = args;
 		if (tenant) {
+			setLoading(OPERATION_NAME, true);
 			postAdminDeposit({
 				body: {
 					tenant,
@@ -65,6 +74,9 @@ export const useTransfer = () => {
 				.then((result) => {
 					options?.onSuccess?.(result);
 					showNotification(texts_t.transferred);
+				})
+				.finally(() => {
+					setLoading(OPERATION_NAME, false);
 				});
 		}
 	};

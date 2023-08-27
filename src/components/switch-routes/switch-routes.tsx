@@ -57,7 +57,12 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 		<Routes location={background || location}>
 			{authenticatedRoutes &&
 				authenticatedRoutes.map((route) => {
-					const element = !hasAccess(route) ? <ForbiddenPage /> : getRoute(route, auth);
+					const element =
+						auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? (
+							<ForbiddenPage />
+						) : (
+							getRoute(route, auth)
+						);
 					return <Route path={route.path} element={element} key={route.path} />;
 				})}
 
