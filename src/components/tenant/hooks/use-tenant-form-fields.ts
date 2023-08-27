@@ -99,6 +99,11 @@ export const useTenantFormFields = () => {
 			xs: 12,
 			sm: 6,
 			lg: 4,
+			offset: {
+				offsetAfterElement: {
+					lg: 4,
+				},
+			},
 			group: 2,
 		},
 		{
@@ -112,9 +117,19 @@ export const useTenantFormFields = () => {
 			xs: 12,
 			sm: 6,
 			lg: 4,
-			offset: {
-				offsetAfterElement: { lg: 4 },
-			},
+			group: 2,
+		},
+		{
+			disabled: false,
+			type: TFieldType.number,
+			image: false,
+			size: TFieldSize.xs,
+			name: "birthday_points",
+			label: texts_b.birthday_points,
+			required: false,
+			xs: 12,
+			sm: 6,
+			lg: 4,
 			group: 2,
 		},
 		{

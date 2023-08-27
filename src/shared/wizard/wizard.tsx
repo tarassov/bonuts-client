@@ -15,6 +15,11 @@ export const Wizard = <TConfig, TInitialProps>(props: {
 	const [wizardState, setWizardState] = useState<Partial<TConfig>>({});
 	const currentStep = steps[currentStepName as keyof TConfig];
 
+	const resetWizard = () => {
+		setCurrentStepIndex(0);
+		setWizardState({});
+	};
+
 	const stepProps: TWizardProps<TConfig, TConfig[keyof TConfig], TInitialProps> = {
 		wizardState,
 		initialValues,
@@ -28,9 +33,7 @@ export const Wizard = <TConfig, TInitialProps>(props: {
 			if (currentStepIndex < Object.keys(steps).length - 1) {
 				setCurrentStepIndex((prev) => prev + 1);
 			} else {
-				onSubmit({ ...wizardState, [currentStepName]: args });
-				setCurrentStepIndex(0);
-				setWizardState({});
+				onSubmit({ ...wizardState, [currentStepName]: args, onSuccess: resetWizard });
 			}
 		},
 	};

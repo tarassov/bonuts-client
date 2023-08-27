@@ -8,6 +8,7 @@ const initialState: TAuthState = {
 	token: undefined,
 	tenant: undefined,
 	isAuthenticated: false,
+	isAuthenticating: false,
 	profile: undefined,
 };
 
@@ -18,6 +19,7 @@ const slice = createSlice({
 		logout: () => initialState,
 		authenticate: (state: TAuthState, action: PayloadAction<TAuth>) => {
 			state.isAuthenticated = true;
+			state.isAuthenticating = false;
 			state.token = action.payload.token;
 			state.tenant = action.payload.tenant;
 		},
@@ -27,16 +29,20 @@ const slice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchPending, () => {})
+			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchPending, (state) => {
+				state.isAuthenticating = true;
+			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchFulfilled, (state, action) => {
 				state.token = action.payload.auth_token;
 				if (action.payload.tenants.length === 1) {
 					state.tenant = action.payload.tenants[0]?.name || "";
 				}
 				state.isAuthenticated = true;
+				state.isAuthenticating = false;
 			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchRejected, (state) => {
 				state.isAuthenticated = false;
+				state.isAuthenticating = false;
 				state.token = undefined;
 				state.tenant = undefined;
 				state.profile = undefined;

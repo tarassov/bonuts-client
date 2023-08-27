@@ -30,5 +30,5 @@ type TWizardSteps<TWizardState, TInitialValues> = {
 export type TWizardConfig<TWizardState, TInitialValues> = {
 	steps: TWizardSteps<TWizardState, TInitialValues>;
 	initialValues: TInitialValues;
-	onSubmit: VoidResponseFunction<Partial<TWizardState>>;
+	onSubmit: VoidResponseFunction<Partial<TWizardState> & { onSuccess?: VoidFunction }>;
 };

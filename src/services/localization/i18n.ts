@@ -2,7 +2,7 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
 import { texts_r } from "services/localization/texts/texts_r";
-import { texts_c, texts_e, texts_i, texts_s, texts_t } from "services/localization/texts";
+import { texts_b, texts_c, texts_e, texts_i, texts_s, texts_t } from "services/localization/texts";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -64,9 +64,10 @@ i18n.use(LanguageDetector).init({
 				"Back to store": "Назад в магазин",
 				Balance: "Баланс",
 				"birthday donuts": "пончики на день рождения",
+				[texts_b.birthday_points]: "монеты на день рождения",
 				back: "назад",
 				Buy: "Купить",
-				"Burn old points": "Списывать неиспользованные баллы",
+				"Burn old points": "Списывать неиспользованные монеты",
 				"Burn old donuts": "Списывать неиспользованные пончики",
 
 				// C
@@ -163,7 +164,7 @@ i18n.use(LanguageDetector).init({
 				// H
 				History: "История",
 				Home: "Главная",
-				"How many points do you want to send": "Сколько баллов вы хотите отправить",
+				"How many points do you want to send": "Сколько монет вы хотите отправить",
 				"How many donuts do you want to send": "Сколько пончиков вы хотите отправить",
 				"Hide snow": "Убрать снег",
 
@@ -197,7 +198,7 @@ i18n.use(LanguageDetector).init({
 				more: "ещё",
 				// N
 				"new password": "новый пароль",
-				"New points for all users": "Новые баллы для всех пользователей",
+				"New points for all users": "Новые монеты для всех пользователей",
 				Name: "Имя",
 				"name has been taken": "Имя уже занято",
 				name: "название",
@@ -218,12 +219,12 @@ i18n.use(LanguageDetector).init({
 				Page: "Страница",
 				People: "Сотрудники",
 				"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
-				points: "баллы",
-				point_zero: "баллов",
-				point_one: "балл",
-				point_few: "балла",
-				point_many: "баллов",
-				point_other: "баллов",
+				points: "монеты",
+				point_zero: "монет",
+				point_one: "монета",
+				point_few: "монет",
+				point_many: "монет",
+				point_other: "монет",
 				position: "должность",
 				Position: "Должность",
 				Plugins: "Плагины",
@@ -313,7 +314,7 @@ i18n.use(LanguageDetector).init({
 				// T
 				Tenant: "Команда",
 				transferred: "перведено",
-				"transfer points": "перевести баллы",
+				"transfer points": "перевести монеты",
 				"transfer donuts": "перевести пончики",
 				to: "для",
 				[texts_t.to_store]: "в магазин",
@@ -330,11 +331,11 @@ i18n.use(LanguageDetector).init({
 				// V
 
 				// W
-				"welcome points": "приветственные баллы",
+				"welcome points": "приветственные монеты",
 				"welcome donuts": "приветственные пончики",
 				"Without department": "Без подразделения",
 				"Wrong credentials": "Не удалось войти с этим именем и паролем",
-				"Withdrawal error. Not enough points": "Ошибка. Недостаточно баллов",
+				"Withdrawal error. Not enough points": "Ошибка. Недостаточно монет",
 				// X
 
 				// Y
