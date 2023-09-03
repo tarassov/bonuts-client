@@ -19,6 +19,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 	if (auth.isAuthenticated && route.authenticatedRedirect) {
 		return <Navigate to={route.authenticatedRedirect} />;
 	}
+
 	return auth.isAuthenticated || route.anonymous ? (
 		<PageWrapper children={route.component} path={route.path} />
 	) : (
@@ -55,6 +56,10 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 
 	return (
 		<Routes location={background || location}>
+			<Route
+				path="*"
+				element={<Navigate to={auth.isAuthenticated ? "/" : routesPath[BntRoutes.Login]} />}
+			/>
 			{authenticatedRoutes &&
 				authenticatedRoutes.map((route) => {
 					const element =

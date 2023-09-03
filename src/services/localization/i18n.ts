@@ -3,6 +3,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
 import { texts_r } from "services/localization/texts/texts_r";
 import { texts_b, texts_c, texts_e, texts_i, texts_s, texts_t } from "services/localization/texts";
+import * as process from "process";
 
 i18n.use(LanguageDetector).init({
 	// we init with resources
@@ -145,6 +146,7 @@ i18n.use(LanguageDetector).init({
 				Employees: "Сотрудники",
 				employees: "сотрудники",
 				[texts_e.email_notification]: "оповещения по почте",
+				[texts_e.edit]: "редакатировать",
 				Email: "Email",
 				error: "ошибка",
 				Events: "События",
@@ -326,6 +328,7 @@ i18n.use(LanguageDetector).init({
 				"Update donut": "Обновить пончик",
 				Update: "Обновить",
 				[texts_u.under_construct]: "В разработке",
+				[texts_u.updated]: "обновлено",
 				"Update is available": "Обновление доступно",
 				"user can spend in store": "можно тратить в магазине",
 				// V
@@ -348,7 +351,7 @@ i18n.use(LanguageDetector).init({
 		},
 	},
 	fallbackLng: "en",
-	debug: true,
+	debug: !process.env.NODE_ENV || process.env.NODE_ENV === "development",
 
 	// have a common namespace used around the full app
 	ns: ["translations"],

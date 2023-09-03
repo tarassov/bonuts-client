@@ -1,4 +1,3 @@
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import {
 	TFieldSize,
 	TFieldType,
@@ -7,13 +6,14 @@ import {
 	TFormValue,
 } from "shared/form/types/bnt-form";
 import { BntForm } from "shared/form/bnt-form";
-import { useUpdateAvatarsMutation } from "services/api/form-data-api";
 import { useModal } from "hooks/use-modal";
 import { CommonStrings } from "constants/dictionary";
+import { useUpdateAvatar } from "logic/hooks/profile/use-update-avatar";
+import { FC } from "react";
+import { TProfile } from "@/types/model";
 
-export const BntProfileImage = () => {
-	const { profile } = useProfileLogic();
-	const [updateAvatars] = useUpdateAvatarsMutation();
+export const BntProfileImage: FC<{ profile?: TProfile }> = ({ profile }) => {
+	const { postAvatar } = useUpdateAvatar();
 	const { ImageModal } = useModal();
 
 	const onClick = (url?: string) => {
@@ -39,12 +39,8 @@ export const BntProfileImage = () => {
 		values: Record<string, TFormValue>
 	): Promise<{ data: any } | { error: any } | undefined> | undefined => {
 		if (profile && profile.tenant && profile.id) {
-			const formPayLoad = new FormData();
 			const file = values.user_avatar as File;
-			formPayLoad.append("uploaded_image", file);
-			formPayLoad.append("tenant", profile.tenant);
-			formPayLoad.append("id", profile.id.toString());
-			return updateAvatars(formPayLoad);
+			return postAvatar({ file, id: profile.id });
 		}
 		return undefined;
 	};

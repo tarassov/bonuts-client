@@ -1,7 +1,6 @@
 import { ApiMethod } from "services/api/helpers/api-method";
 import {
 	bonutsApi,
-	PostAvatarsApiResponse,
 	PostDonutsApiResponse,
 	PutDonutsByIdApiArg,
 	PutDonutsByIdApiResponse,
@@ -9,16 +8,6 @@ import {
 
 export const bonutsApiOverride = bonutsApi.injectEndpoints({
 	endpoints: (build) => ({
-		updateAvatars: build.mutation<PostAvatarsApiResponse, FormData>({
-			query(data) {
-				return {
-					url: "/avatars",
-					method: "POST",
-					credentials: "include",
-					body: data,
-				};
-			},
-		}),
 		createDonut: build.mutation<PostDonutsApiResponse, FormData>({
 			query(data) {
 				return {
@@ -36,5 +25,4 @@ export const bonutsApiOverride = bonutsApi.injectEndpoints({
 		}),
 	}),
 });
-export const { useUpdateAvatarsMutation, useCreateDonutMutation, useUpdateDonutMutation } =
-	bonutsApiOverride;
+export const { useCreateDonutMutation, useUpdateDonutMutation } = bonutsApiOverride;

@@ -3,8 +3,8 @@ import { emptyFunction } from "utils/empty-function";
 import { BntStack } from "shared/stack/stack";
 import { BntIconButton } from "shared/icon-button/bnt-icon-button";
 import { texts_t } from "services/localization/texts/texts_t";
-import { BlockOutlined, CakeOutlined, CheckOutlined } from "@mui/icons-material";
-import { texts_a, texts_d } from "services/localization/texts";
+import { BlockOutlined, CakeOutlined, CheckOutlined, EditOutlined } from "@mui/icons-material";
+import { texts_a, texts_d, texts_e } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useIcons } from "hooks/use-icons";
 
@@ -13,17 +13,21 @@ export const EmployeeActions: FC<{
 	onAdminDepositClick?: VoidFunction;
 	onDisableClick?: VoidFunction;
 	onActivateClick?: VoidFunction;
+	onEditClick?: VoidFunction;
 	allowDisable?: boolean;
 	allowActivate?: boolean;
 	allowAdminDeposit?: boolean;
+	allowEdit?: boolean;
 }> = ({
 	onAdminDepositClick = emptyFunction,
+	onEditClick = emptyFunction,
 	onTransferClick = emptyFunction,
 	onActivateClick = emptyFunction,
 	onDisableClick = emptyFunction,
 	allowAdminDeposit,
 	allowDisable,
 	allowActivate,
+	allowEdit,
 }) => {
 	const { translate } = useBntTranslate();
 	const { BonutsCurrency } = useIcons();
@@ -37,6 +41,11 @@ export const EmployeeActions: FC<{
 			>
 				<CakeOutlined />
 			</BntIconButton>
+			{allowEdit && (
+				<BntIconButton customIcon tooltip={`${translate(texts_e.edit)}`} onClick={onEditClick}>
+					<EditOutlined color="secondary" />
+				</BntIconButton>
+			)}
 			{allowAdminDeposit && (
 				<BntIconButton
 					customIcon

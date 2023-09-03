@@ -1,17 +1,19 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { BntForm } from "shared/form/bnt-form";
-import { PutProfilesByIdApiResponse } from "services/api/bonuts-api";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Modules } from "constants/modules";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { useProfileFormFields } from "./hooks/use-profile-form-fields";
 import { TProfile } from "@/types/model";
 
-export const BntProfileForm = () => {
-	const { profile, updateProfile, isLoading, error } = useProfileLogic();
+export const BntProfileForm: FC<{
+	profile?: TProfile;
+	isLoading?: boolean;
+	error?: FetchBaseQueryError | SerializedError;
+	updateProfile: (profile: TProfile, values: Record<string, any>) => void;
+}> = ({ profile, isLoading = false, error, updateProfile }) => {
 	const { fields } = useProfileFormFields(profile);
 	const { setLoading } = useLoader();
 	const formProps: TFormProps<TProfile> = { fields, formId: "user-profile" };
@@ -20,15 +22,7 @@ export const BntProfileForm = () => {
 	useEffect(() => {
 		setLoading(Modules.Profile, isLoading && !error);
 	}, [isLoading, error]);
-	const onSubmit = (
-		values: Record<string, TFormValue>
-	):
-		| Promise<
-				| { data: PutProfilesByIdApiResponse }
-				| { error: FetchBaseQueryError | SerializedError }
-				| undefined
-		  >
-		| undefined => {
+	const onSubmit = (values: Record<string, TFormValue>) => {
 		if (profile) {
 			return updateProfile(profile, { ...values, active: true });
 		}

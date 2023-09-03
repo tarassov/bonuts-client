@@ -1,6 +1,6 @@
 import { updateQueryData } from "services/api/update-query-data";
 import { GetEventsApiResponse } from "services/api/bonuts-api";
-import { bonutsApiOverride } from "services/api/form-data-api";
+import { bonutsApiOverride } from "services/api/injected-api";
 import { getPaginator } from "services/api/helpers/get-paginator";
 import { TPageable } from "@/types/api/api";
 

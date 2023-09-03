@@ -9,11 +9,14 @@ import { useRoleField } from "hooks/form-field/use-role-field";
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
 import { texts_a } from "services/localization/texts/texts_a";
 import { texts_e } from "services/localization/texts/texts_e";
+import { useAppSelector } from "services/redux/store/store";
+import { authProfileSelector } from "services/redux/selectors/auth-selector";
 import { TProfile } from "@/types/model";
 import { TCircle } from "@/types/model/circle";
 
 export const useProfileFormFields = (profile?: TProfile | null) => {
-	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(profile) });
+	const authProfile = useAppSelector(authProfileSelector);
+	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(authProfile) });
 	const { objects: circles, isLoading } = useCircleLoaderList();
 	const circleToOption = (circle: TCircle): TFormFieldSourceItem => {
 		return { key: circle.id, label: circle.name };
