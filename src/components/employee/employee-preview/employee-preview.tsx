@@ -56,6 +56,7 @@ export const EmployeePreview = () => {
 			onImageClick={onImageClick}
 			allowAdminDeposit={profile?.admin}
 			allowDisable={profile?.admin}
+			allowEdit={profile?.admin}
 			onAdminDepositClick={onAdminDeposit}
 			onTransferClick={onTransfer}
 			onActivateClick={onActivate}

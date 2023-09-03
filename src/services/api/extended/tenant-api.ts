@@ -1,4 +1,4 @@
-import { bonutsApiOverride } from "services/api/form-data-api";
+import { bonutsApiOverride } from "services/api/injected-api";
 import { PutTenantCurrentApiArg, PutTenantCurrentApiResponse } from "services/api/bonuts-api";
 import { ApiMethod } from "services/api/helpers/api-method";
 

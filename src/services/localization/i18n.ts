@@ -146,6 +146,7 @@ i18n.use(LanguageDetector).init({
 				Employees: "Сотрудники",
 				employees: "сотрудники",
 				[texts_e.email_notification]: "оповещения по почте",
+				[texts_e.edit]: "редакатировать",
 				Email: "Email",
 				error: "ошибка",
 				Events: "События",
@@ -327,6 +328,7 @@ i18n.use(LanguageDetector).init({
 				"Update donut": "Обновить пончик",
 				Update: "Обновить",
 				[texts_u.under_construct]: "В разработке",
+				[texts_u.updated]: "обновлено",
 				"Update is available": "Обновление доступно",
 				"user can spend in store": "можно тратить в магазине",
 				// V

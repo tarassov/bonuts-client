@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { BntCardBody } from "shared/card/card-body";
 import { Grid, Stack, useMediaQuery, useTheme, Box } from "@mui/material";
 import classNames from "classnames";
@@ -15,6 +15,7 @@ import { BntLabel } from "components/employee/employee-preview/label";
 import { formatStringDate } from "utils/format-string-date";
 import { BntDivider } from "shared/divider/bnt-divider";
 import { EmployeeActions } from "pages/employee/employee-actions";
+import { EmployeeEdit } from "components/employee/employee-edit/employee-edit";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
@@ -36,6 +37,7 @@ type EmployeePreviewPureProps = {
 	allowDisable?: boolean;
 	allowActivate?: boolean;
 	allowAdminDeposit?: boolean;
+	allowEdit?: boolean;
 };
 export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 	employee,
@@ -47,10 +49,12 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 	allowAdminDeposit,
 	allowActivate,
 	allowDisable,
+	allowEdit,
 }) => {
 	const theme = useTheme();
 	const { translate } = useBntTranslate();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
+	const [editMode, setEditMode] = useState(false);
 
 	return (
 		<BntStack direction="column" className="height-100">
@@ -61,8 +65,10 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 						allowDisable={allowDisable}
 						allowActivate={allowActivate}
 						allowAdminDeposit={allowAdminDeposit}
+						allowEdit={allowEdit}
 						onAdminDepositClick={onAdminDepositClick}
 						onTransferClick={onTransferClick}
+						onEditClick={() => setEditMode(true)}
 						onDisableClick={onDisableClick}
 						onActivateClick={onActivateClick}
 					/>
@@ -71,88 +77,94 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 
 			<BntCard className="flex-grow scroll">
 				<BntCardBody className="m-2 p-2">
-					<Grid container justifyItems="flex-start" spacing={4}>
-						<Grid
-							item
-							xs={12}
-							sm={8}
-							md={4}
-							lg={4}
-							xl={3}
-							className={classNames("", { "text-align-center": matchesDownSm })}
-						>
-							<ImagePreview
-								defaultImage={DEFAULT_AVATAR}
-								image={employee?.user_avatar?.url}
-								className="ml-3"
-								onClick={onImageClick}
-							/>
-							<Stack
-								direction={{ sm: "column", md: "row", xs: "row" }}
-								justifyContent="center"
-								alignItems={{ sm: "center", xs: "center" }}
-								spacing={2}
-								className="ml-4 mt-4"
-							>
-								{employee?.circles?.map((circle) => {
-									return <BntChip color="info" label={circle.name} />;
-								})}
-							</Stack>
-						</Grid>
-						<Grid item xs={12} sm={12} md={5} lg={6} order={{ xs: 3, md: 2 }}>
-							<Stack
-								direction={{ sm: "row", xs: "column" }}
-								alignItems={{ sm: "center", xs: "flex-start" }}
-								spacing={2}
-							>
-								<BntTypography variant="h4" display="block">
-									{employee?.user_name}
-								</BntTypography>
-								<Stack direction={{ sm: "column", md: "row", xs: "column" }} spacing={2}>
-									{employee?.admin && (
-										<BntChip
-											color="primary"
-											icon={<ShieldOutlined />}
-											label={translate(texts_a.admin)}
-										/>
-									)}
-									{employee && !employee?.active && (
-										<BntChip
-											color="error"
-											icon={<ErrorOutline />}
-											label={translate(texts_n.not_active)}
-										/>
-									)}
-									{employee?.store_admin && (
-										<BntChip
-											color="warning"
-											icon={<StorefrontOutlined />}
-											label={translate(texts_s.store_admin)}
-										/>
-									)}
-								</Stack>
-							</Stack>
-							<BntTypography variant="h5" display="block" className="mb-4">
-								{employee?.position}
-							</BntTypography>
-							<BntLabel name="email" value={employee?.email} className="mb-3" />
-							<BntLabel name={texts_c.contact} value={employee?.contact} className="mb-3" />
-							<BntLabel
-								name={texts_b.birthday}
-								value={formatStringDate(employee?.birthdate, true)}
-								className="mb-3"
-							/>
-							<BntLabel
-								name={texts_i.in_date}
-								value={formatStringDate(employee?.in_date)}
-								className="mb-3"
-							/>
-							<BntDivider className="mt-4 mb-4" />
-							<Box>
-								<BntTypography isPreformatted>{employee?.bio}</BntTypography>
-							</Box>
-						</Grid>
-					</Grid>
+					{editMode ? (
+						<EmployeeEdit profile={employee} onClose={() => setEditMode(false)} />
+					) : (
+						<>
+							<Grid container justifyItems="flex-start" spacing={4}>
+								<Grid
+									item
+									xs={12}
+									sm={8}
+									md={4}
+									lg={4}
+									xl={3}
+									className={classNames("", { "text-align-center": matchesDownSm })}
+								>
+									<ImagePreview
+										defaultImage={DEFAULT_AVATAR}
+										image={employee?.user_avatar?.url}
+										className="ml-3"
+										onClick={onImageClick}
+									/>
+									<Stack
+										direction={{ sm: "column", md: "row", xs: "row" }}
+										justifyContent="center"
+										alignItems={{ sm: "center", xs: "center" }}
+										spacing={2}
+										className="ml-4 mt-4"
+									>
+										{employee?.circles?.map((circle) => {
+											return <BntChip color="info" label={circle.name} />;
+										})}
+									</Stack>
+								</Grid>
+								<Grid item xs={12} sm={12} md={5} lg={6} order={{ xs: 3, md: 2 }}>
+									<Stack
+										direction={{ sm: "row", xs: "column" }}
+										alignItems={{ sm: "center", xs: "flex-start" }}
+										spacing={2}
+									>
+										<BntTypography variant="h4" display="block">
+											{employee?.user_name}
+										</BntTypography>
+										<Stack direction={{ sm: "column", md: "row", xs: "column" }} spacing={2}>
+											{employee?.admin && (
+												<BntChip
+													color="primary"
+													icon={<ShieldOutlined />}
+													label={translate(texts_a.admin)}
+												/>
+											)}
+											{employee && !employee?.active && (
+												<BntChip
+													color="error"
+													icon={<ErrorOutline />}
+													label={translate(texts_n.not_active)}
+												/>
+											)}
+											{employee?.store_admin && (
+												<BntChip
+													color="warning"
+													icon={<StorefrontOutlined />}
+													label={translate(texts_s.store_admin)}
+												/>
+											)}
+										</Stack>
+									</Stack>
+									<BntTypography variant="h5" display="block" className="mb-4">
+										{employee?.position}
+									</BntTypography>
+									<BntLabel name="email" value={employee?.email} className="mb-3" />
+									<BntLabel name={texts_c.contact} value={employee?.contact} className="mb-3" />
+									<BntLabel
+										name={texts_b.birthday}
+										value={formatStringDate(employee?.birthdate, true)}
+										className="mb-3"
+									/>
+									<BntLabel
+										name={texts_i.in_date}
+										value={formatStringDate(employee?.in_date)}
+										className="mb-3"
+									/>
+									<BntDivider className="mt-4 mb-4" />
+									<Box>
+										<BntTypography isPreformatted>{employee?.bio}</BntTypography>
+									</Box>
+								</Grid>
+							</Grid>
+						</>
+					)}
 				</BntCardBody>
 			</BntCard>
 		</BntStack>

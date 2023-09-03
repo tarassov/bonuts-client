@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
-import { useGetProfileQuery, usePutProfilesByIdMutation } from "services/api/bonuts-api";
+import { useGetProfileQuery } from "services/api/bonuts-api";
 import { authActions } from "services/redux/slice/auth-slice";
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 import { authProfileSelector, authTenantSelector } from "services/redux/selectors/auth-selector";
 import { accountsApi } from "services/api/extended/accounts-api";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
+import { useUpdateProfile } from "logic/hooks/profile/use-update-profile";
 import { TProfile } from "@/types/model";
 
 export const useProfileLogic = () => {
-	const [putProfile] = usePutProfilesByIdMutation();
 	const authProfile = useAppSelector(authProfileSelector);
 	const authTenant = useAppSelector(authTenantSelector);
+	const { updateProfile: update } = useUpdateProfile();
 	const dispatch = useAppDispatch();
 	const { data, error, isLoading, refetch } = useGetProfileQuery(
 		{
@@ -28,12 +29,7 @@ export const useProfileLogic = () => {
 	}, [data]);
 
 	const updateProfile = async (profile: TProfile, values: Record<string, any>) => {
-		const res = await putProfile({
-			id: profile?.id.toString(),
-			body: { ...values, tenant: authTenant },
-		});
-		refetch();
-		return res;
+		return update(profile, values, refetch);
 	};
 
 	const invalidateDistribBalance = () => {
