@@ -10,9 +10,10 @@ import {
 	Link,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { FC, SyntheticEvent, useState } from "react";
+import { FC, SyntheticEvent, useEffect, useState } from "react";
 import { useAuth } from "hooks/use-auth";
-// @ts-ignore
+import { useLoader } from "shared/loader/hooks/use-loader";
+import { Modules } from "constants/modules";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
@@ -21,13 +22,13 @@ export const LoginPage: FC = () => {
 	//	const from = location.state?.from?.pathname || "/";
 
 	const { signIn, isLogging } = useAuth();
-
+	const { setLoading } = useLoader();
 	const [credentials, setValue] = useState({
 		email: "",
 		password: "",
 	});
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue({ ...credentials, [e.currentTarget.name]: e.currentTarget.value });
 	};
 	const handleSubmit = (e: SyntheticEvent) => {
@@ -35,9 +36,10 @@ export const LoginPage: FC = () => {
 		signIn({ body: credentials });
 	};
 
-	if (isLogging) {
-		return <div>Logging in...</div>;
-	}
+	useEffect(() => {
+		setLoading(Modules.Default, isLogging);
+		return () => setLoading(Modules.Default, false);
+	}, [isLogging]);
 
 	return (
 		<Box className={styles.box} sx={{ mt: 8 }}>

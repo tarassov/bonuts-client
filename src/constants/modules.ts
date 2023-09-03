@@ -1,4 +1,5 @@
 export enum Modules {
+	Default = "default",
 	Profile = "profile",
 	Events = "event",
 	Donuts = "donuts",
