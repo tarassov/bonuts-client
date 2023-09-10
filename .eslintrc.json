@@ -62,6 +62,12 @@
 			"rules": {
 				"react/destructuring-assignment": "off"
 			}
+		},
+		{
+			"files": ["bonuts-api.ts"],
+			"rules": {
+				"import/newline-after-import": "off"
+			}
 		}
 	]
 }

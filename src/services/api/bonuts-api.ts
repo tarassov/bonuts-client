@@ -8,6 +8,12 @@ const injectedRtkApi = api.injectEndpoints({
 		>({
 			query: (queryArg) => ({ url: `/account_operations`, method: "POST", body: queryArg.body }),
 		}),
+		getAccountOperations: build.query<GetAccountOperationsApiResponse, GetAccountOperationsApiArg>({
+			query: (queryArg) => ({
+				url: `/account_operations`,
+				params: { tenant: queryArg.tenant, account_id: queryArg.accountId, page: queryArg.page },
+			}),
+		}),
 		getAccountsById: build.query<GetAccountsByIdApiResponse, GetAccountsByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/accounts/${queryArg.id}`,
@@ -168,7 +174,23 @@ const injectedRtkApi = api.injectEndpoints({
 	overrideExisting: false,
 });
 export { injectedRtkApi as bonutsApi };
-export type PostAccountOperationsApiResponse = unknown;
+export type PostAccountOperationsApiResponse = /** status 201 success */ {
+	error?: boolean;
+	message?: string;
+	errorText?: string;
+	result?: {
+		id: number;
+		amount: any;
+		parent_operation_id?: (number | null) | null;
+		account_id: number;
+		direction: number;
+		comment?: (string | null) | null;
+		deal_id?: number;
+		created_at?: string;
+		created_at_utc?: number;
+		updated_at?: string;
+	}[];
+};
 export type PostAccountOperationsApiArg = {
 	body: {
 		tenant: string;
@@ -181,6 +203,28 @@ export type PostAccountOperationsApiArg = {
 		burn_old?: boolean;
 		to_self_account?: boolean;
 	};
+};
+export type GetAccountOperationsApiResponse = /** status 200 success */ {
+	error?: boolean;
+	message?: string;
+	errorText?: string;
+	result?: {
+		id: number;
+		amount: any;
+		parent_operation_id?: (number | null) | null;
+		account_id: number;
+		direction: number;
+		comment?: (string | null) | null;
+		deal_id?: number;
+		created_at?: string;
+		created_at_utc?: number;
+		updated_at?: string;
+	}[];
+};
+export type GetAccountOperationsApiArg = {
+	tenant?: string;
+	accountId?: string;
+	page?: number;
 };
 export type GetAccountsByIdApiResponse = /** status 200 success */ {
 	data?: {
@@ -201,7 +245,23 @@ export type GetAccountsByIdApiArg = {
 	id: number;
 	tenant: string;
 };
-export type PostAdminDepositApiResponse = unknown;
+export type PostAdminDepositApiResponse = /** status 200 success */ {
+	error?: boolean;
+	message?: string;
+	errorText?: string;
+	result?: {
+		id: number;
+		amount: any;
+		parent_operation_id?: (number | null) | null;
+		account_id: number;
+		direction: number;
+		comment?: (string | null) | null;
+		deal_id?: number;
+		created_at?: string;
+		created_at_utc?: number;
+		updated_at?: string;
+	}[];
+};
 export type PostAdminDepositApiArg = {
 	body: {
 		tenant: string;
@@ -2114,6 +2174,7 @@ export type PostRefreshTokenApiResponse = /** status 200 success */ {
 export type PostRefreshTokenApiArg = void;
 export const {
 	usePostAccountOperationsMutation,
+	useGetAccountOperationsQuery,
 	useGetAccountsByIdQuery,
 	usePostAdminDepositMutation,
 	usePostAvatarsMutation,
