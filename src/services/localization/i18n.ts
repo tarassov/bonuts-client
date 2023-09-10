@@ -2,7 +2,15 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { texts_u } from "services/localization/texts/texts_u";
 import { texts_r } from "services/localization/texts/texts_r";
-import { texts_b, texts_c, texts_e, texts_i, texts_s, texts_t } from "services/localization/texts";
+import {
+	texts_b,
+	texts_c,
+	texts_e,
+	texts_h,
+	texts_i,
+	texts_s,
+	texts_t,
+} from "services/localization/texts";
 import * as process from "process";
 
 i18n.use(LanguageDetector).init({
@@ -165,6 +173,7 @@ i18n.use(LanguageDetector).init({
 
 				// H
 				History: "История",
+				[texts_h.history]: "история",
 				Home: "Главная",
 				"How many points do you want to send": "Сколько монет вы хотите отправить",
 				"How many donuts do you want to send": "Сколько пончиков вы хотите отправить",

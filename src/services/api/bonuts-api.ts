@@ -1,5 +1,4 @@
 import { emptySplitApi as api } from "./empty-api";
-
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
 		postAccountOperations: build.mutation<
@@ -178,17 +177,20 @@ export type PostAccountOperationsApiResponse = /** status 201 success */ {
 	error?: boolean;
 	message?: string;
 	errorText?: string;
-	result?: {
-		id: number;
-		amount: any;
-		parent_operation_id?: (number | null) | null;
-		account_id: number;
-		direction: number;
-		comment?: (string | null) | null;
-		deal_id?: number;
-		created_at?: string;
-		created_at_utc?: number;
-		updated_at?: string;
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			amount: any;
+			parent_operation_id?: (number | null) | null;
+			direction: number;
+			comment?: (string | null) | null;
+			deal_id?: number;
+			created_at: string;
+			created_at_utc: string;
+			updated_at?: string;
+		};
 	}[];
 };
 export type PostAccountOperationsApiArg = {
@@ -208,17 +210,20 @@ export type GetAccountOperationsApiResponse = /** status 200 success */ {
 	error?: boolean;
 	message?: string;
 	errorText?: string;
-	result?: {
-		id: number;
-		amount: any;
-		parent_operation_id?: (number | null) | null;
-		account_id: number;
-		direction: number;
-		comment?: (string | null) | null;
-		deal_id?: number;
-		created_at?: string;
-		created_at_utc?: number;
-		updated_at?: string;
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			amount: any;
+			parent_operation_id?: (number | null) | null;
+			direction: number;
+			comment?: (string | null) | null;
+			deal_id?: number;
+			created_at: string;
+			created_at_utc: string;
+			updated_at?: string;
+		};
 	}[];
 };
 export type GetAccountOperationsApiArg = {
@@ -249,17 +254,20 @@ export type PostAdminDepositApiResponse = /** status 200 success */ {
 	error?: boolean;
 	message?: string;
 	errorText?: string;
-	result?: {
-		id: number;
-		amount: any;
-		parent_operation_id?: (number | null) | null;
-		account_id: number;
-		direction: number;
-		comment?: (string | null) | null;
-		deal_id?: number;
-		created_at?: string;
-		created_at_utc?: number;
-		updated_at?: string;
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			amount: any;
+			parent_operation_id?: (number | null) | null;
+			direction: number;
+			comment?: (string | null) | null;
+			deal_id?: number;
+			created_at: string;
+			created_at_utc: string;
+			updated_at?: string;
+		};
 	}[];
 };
 export type PostAdminDepositApiArg = {
@@ -722,11 +730,12 @@ export type GetEventsApiResponse = /** status 200 success */ {
 			public: boolean;
 			position: string;
 			operation?: {
-				id?: number;
+				id: number;
 				direction?: number;
 				amount?: number;
 				deal_type?: string;
-				created_at?: string;
+				created_at: string;
+				created_at_utc?: string;
 				to_user_name?: string;
 				to_profile?: {
 					id: number;
@@ -804,11 +813,12 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 				public: boolean;
 				position: string;
 				operation?: {
-					id?: number;
+					id: number;
 					direction?: number;
 					amount?: number;
 					deal_type?: string;
-					created_at?: string;
+					created_at: string;
+					created_at_utc?: string;
 					to_user_name?: string;
 					to_profile?: {
 						id: number;

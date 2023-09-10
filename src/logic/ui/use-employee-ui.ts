@@ -6,9 +6,9 @@ import { texts_p } from "services/localization/texts/texts_p";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { routesPath } from "routes/config/routes-path";
 import { BntRoutes } from "routes/config/routes";
-import { TBaseModel } from "@/types/model";
+import { TProfile } from "@/types/model";
 
-export const useEmployeeUi = (employee?: TBaseModel) => {
+export const useEmployeeUi = (employee?: TProfile) => {
 	const dispatch = useAppDispatch();
 	const { ViewEmployee } = useModal();
 	const { t } = useBntTranslate();
@@ -27,5 +27,27 @@ export const useEmployeeUi = (employee?: TBaseModel) => {
 		dispatch(push(routesPath[BntRoutes.Employees]));
 	};
 
-	return { showEmployee, showEmployeeModal, toEmployeeList };
+	const toDistribBalanceHistory = () => {
+		const account_id = employee?.distrib_account?.id;
+		if (account_id) {
+			dispatch(push(routesPath[BntRoutes.AccountOperations].replace(":id", account_id.toString())));
+		} else {
+			console.warn("Account id was not found in employee", employee);
+		}
+	};
+	const toSelfBalanceHistory = () => {
+		const account_id = employee?.self_account?.id;
+		if (account_id) {
+			dispatch(push(routesPath[BntRoutes.AccountOperations].replace(":id", account_id.toString())));
+		} else {
+			console.warn("Account id was not found in employee", employee);
+		}
+	};
+	return {
+		showEmployee,
+		showEmployeeModal,
+		toEmployeeList,
+		toDistribBalanceHistory,
+		toSelfBalanceHistory,
+	};
 };

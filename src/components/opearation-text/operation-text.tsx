@@ -24,9 +24,7 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 	className,
 	showDateTime,
 }) => {
-	const { to_profile, direction, deal_type, from_profile, created_at } =
-		operation;
-
+	const { to_profile, direction, deal_type, from_profile, created_at } = operation;
 	const { translate } = useBntTranslate();
 
 	const amountClass = classNames({
@@ -65,27 +63,18 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 					)}
 					{from_profile && (
 						<>
-							<span className={OPERATION_CLASSES.operationText}>
-								{translate("from")}
-							</span>
-							<BntProfileButton
-								profile={from_profile}
-								onClick={fromProfileClick}
-							/>
+							<span className={OPERATION_CLASSES.operationText}>{translate("from")}</span>
+							<BntProfileButton profile={from_profile} onClick={fromProfileClick} />
 						</>
 					)}
 					{showDateTime && created_at !== undefined && created_at !== null && (
-						<span className={OPERATION_CLASSES.operationText}>
-							{created_at}
-						</span>
+						<span className={OPERATION_CLASSES.operationText}>{created_at}</span>
 					)}
 					{(operation.deal_type === DealType.Buy ||
 						operation.deal_type === DealType.RefundRequest) && (
 						<Button onClick={purchaseClick}>
 							{translate(
-								deal_type === DealType.RefundRequest
-									? DealType.Purchase
-									: DealType.Refund
+								deal_type === DealType.RefundRequest ? DealType.Purchase : DealType.Refund
 							)}
 						</Button>
 					)}

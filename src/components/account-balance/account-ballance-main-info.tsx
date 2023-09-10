@@ -8,9 +8,10 @@ export const AccountBallanceMainInfo: FC<{
 	balance?: number;
 	value: React.ReactNode;
 	lastOperation?: { direction?: "+" | "-"; amount?: number; date?: string };
-}> = ({ title, value, lastOperation, balance }) => {
+	onClick?: VoidFunction;
+}> = ({ title, value, lastOperation, balance, onClick }) => {
 	return (
-		<BntStack>
+		<BntStack onClick={onClick}>
 			<BntStack direction="row" gap={1}>
 				<BntTypography display="block" color="grey.700">
 					{title}:

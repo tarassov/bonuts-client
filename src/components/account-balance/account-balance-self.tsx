@@ -7,6 +7,7 @@ import { AccountBallanceMainInfo } from "components/account-balance/account-ball
 import { BntRoundButton } from "shared/buttons/round-button";
 import Box from "@mui/material/Box/Box";
 import { useDonutUi } from "logic/ui/use-donut-ui";
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 import { BntStack } from "@/shared/stack/stack";
 
@@ -16,6 +17,8 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 	const accountId = profile?.self_account?.id;
 	const { account, isLoading } = useAccountBalanceLoader(accountId);
 	const { toStore } = useDonutUi();
+	const { toSelfBalanceHistory } = useEmployeeUi(profile);
+
 	return (
 		<BntStack gap={1}>
 			<AccountBallanceMainInfo
@@ -32,6 +35,7 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 					)
 				}
 				lastOperation={account?.last_operation}
+				onClick={toSelfBalanceHistory}
 			/>
 			<Box>
 				<BntRoundButton variant="contained" onClick={toStore}>
