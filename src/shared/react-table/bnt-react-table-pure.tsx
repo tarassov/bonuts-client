@@ -1,23 +1,25 @@
 import React, { FC, useState } from "react";
 import {
-	// Table,
-	useReactTable,
 	ColumnFiltersState,
+	flexRender,
 	getCoreRowModel,
-	getFilteredRowModel,
+	getFacetedMinMaxValues,
 	getFacetedRowModel,
 	getFacetedUniqueValues,
-	getFacetedMinMaxValues,
+	getFilteredRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
-	flexRender,
+	Row,
 	SortingState,
+	useReactTable,
 } from "@tanstack/react-table";
 
 import classnames from "classnames";
 import { matchSorter } from "match-sorter";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { defaultRangeExtractor, useVirtualizer } from "@tanstack/react-virtual";
 
 // @mui material components
 import Table from "@mui/material/Table";
@@ -45,10 +47,12 @@ export const BntReactTablePure: FC<{
 	data: Array<any>;
 	className?: string;
 	pageSize?: number;
-}> = ({ columns, data, className, pageSize = 5 }) => {
+	isVirtual?: boolean;
+}> = ({ columns, data, className, pageSize = 5, isVirtual = false }) => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
 	const [sorting, setSorting] = useState<SortingState>([]);
+	const tableContainerRef = React.useRef<HTMLDivElement>(null);
 
 	const table = useReactTable({
 		data,
@@ -68,7 +72,7 @@ export const BntReactTablePure: FC<{
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		getSortedRowModel: getSortedRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
+		getPaginationRowModel: !isVirtual ? getPaginationRowModel() : undefined,
 		getFacetedRowModel: getFacetedRowModel(),
 		getFacetedUniqueValues: getFacetedUniqueValues(),
 		getFacetedMinMaxValues: getFacetedMinMaxValues(),
@@ -78,8 +82,35 @@ export const BntReactTablePure: FC<{
 	const { translate } = useBntTranslate();
 
 	const numberOfRowsData = [5, 10, 20, 25, 50, 100];
+
+	const { rows } = table.getRowModel();
+
+	const virtualizer = useVirtualizer({
+		getScrollElement: () => tableContainerRef?.current,
+		count: rows.length,
+		overscan: 10,
+		estimateSize: () => 100,
+		rangeExtractor: (range) => {
+			return defaultRangeExtractor({
+				...range,
+				startIndex:
+					range.startIndex % 2 === 0 ? range.startIndex : Math.max(0, range.startIndex - 1),
+			});
+		},
+	});
+	const virtualRows = virtualizer.getVirtualItems();
+
+	const [paddingTop, paddingBottom] =
+		virtualRows.length > 0
+			? [virtualRows[0].start, virtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end]
+			: [0, 0];
+
 	return (
-		<TableContainer sx={{ boxShadow: "none" }} className={className}>
+		<TableContainer
+			sx={{ boxShadow: "none", height: "100%", overflow: "auto" }}
+			className={className}
+			ref={tableContainerRef}
+		>
 			<Table stickyHeader>
 				<TableHead>
 					{table.getHeaderGroups().map((headerGroup, key) => (
@@ -130,25 +161,39 @@ export const BntReactTablePure: FC<{
 					))}
 				</TableHead>
 				<TableBody>
-					{table.getRowModel().rows.map((row, i) => (
-						<TableRow
-							key={row.id}
-							className={classnames(
-								"bnt-table-tr",
-								{ "bnt-table-tr-odd": i % 2 === 0 },
-								{ "bnt-table-tr-even": i % 2 === 1 }
-							)}
-						>
-							{row.getVisibleCells().map((cell) => (
-								<TableCell key={cell.id}>
-									{flexRender(cell.column.columnDef.cell, cell.getContext())}
-								</TableCell>
-							))}
+					{paddingTop > 0 && (
+						<TableRow>
+							<TableCell style={{ height: `${paddingTop}px` }} />
 						</TableRow>
-					))}
+					)}
+					{virtualRows.map((virtualRow: any, i) => {
+						const row = rows[virtualRow.index] as Row<any>;
+						return (
+							<TableRow
+								key={row.id}
+								className={classnames(
+									virtualRow.index.toString(),
+									"bnt-table-tr",
+									{ "bnt-table-tr-odd": i % 2 === 0 },
+									{ "bnt-table-tr-even": i % 2 === 1 }
+								)}
+							>
+								{row.getVisibleCells().map((cell) => (
+									<TableCell key={cell.id}>
+										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+									</TableCell>
+								))}
+							</TableRow>
+						);
+					})}
+					{paddingBottom > 0 && (
+						<TableRow>
+							<TableCell style={{ height: `${paddingBottom}px` }} />
+						</TableRow>
+					)}
 				</TableBody>
 			</Table>
-			{data.length ? (
+			{data.length && !isVirtual ? (
 				<div className="bnt-table-footer">
 					<Stack
 						direction="row"
