@@ -14,7 +14,7 @@ export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) =>
 	const { t } = useBntTranslate();
 	const accountId = profile?.distrib_account?.id;
 	const { account, isLoading } = useAccountBalanceLoader(accountId);
-	const { toEmployeeList } = useEmployeeUi();
+	const { toEmployeeList, toDistribBalanceHistory } = useEmployeeUi(profile);
 
 	return (
 		<BntStack gap={1}>
@@ -32,6 +32,7 @@ export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) =>
 					)
 				}
 				lastOperation={account?.last_operation}
+				onClick={toDistribBalanceHistory}
 			/>
 			<Box>
 				<BntRoundButton variant="contained" onClick={toEmployeeList}>

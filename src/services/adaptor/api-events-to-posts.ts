@@ -28,8 +28,13 @@ export const apiEventsToPosts = (response: GetEventsApiResponse): Array<TPost> =
 
 			operation: {
 				...attributes.operation,
+				id: attributes.operation?.id!,
 				deal_type: attributes.operation?.deal_type as DealType,
-				created_at: target.attributes.date_string,
+				created_at: attributes.operation?.created_at || target.attributes.date_string,
+				created_at_utc:
+					attributes.operation?.created_at_utc ||
+					attributes.operation?.created_at ||
+					target.attributes.date_string,
 			},
 		};
 	});

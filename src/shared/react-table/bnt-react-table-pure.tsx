@@ -26,7 +26,17 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import { FormControl, Grid, MenuItem, Select, Stack, TableCell, TableHead } from "@mui/material";
+import {
+	FormControl,
+	Grid,
+	MenuItem,
+	Select,
+	Stack,
+	TableCell,
+	TableHead,
+	useMediaQuery,
+	useTheme,
+} from "@mui/material";
 import { fuzzyFilter } from "shared/react-table/filters";
 import { ColumnFilter } from "shared/react-table/column-filter";
 import { ArrowDropDownOutlined, ArrowDropUpOutlined } from "@mui/icons-material";
@@ -48,11 +58,14 @@ export const BntReactTablePure: FC<{
 	className?: string;
 	pageSize?: number;
 	isVirtual?: boolean;
-}> = ({ columns, data, className, pageSize = 5, isVirtual = false }) => {
+	estimateSize?: number;
+}> = ({ columns, data, className, pageSize = 5, isVirtual = false, estimateSize }) => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const tableContainerRef = React.useRef<HTMLDivElement>(null);
+	const theme = useTheme();
+	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 
 	const table = useReactTable({
 		data,
@@ -89,7 +102,7 @@ export const BntReactTablePure: FC<{
 		getScrollElement: () => tableContainerRef?.current,
 		count: rows.length,
 		overscan: 10,
-		estimateSize: () => 100,
+		estimateSize: () => estimateSize || (matchesDownSm ? 200 : 100),
 		rangeExtractor: (range) => {
 			return defaultRangeExtractor({
 				...range,
@@ -111,7 +124,10 @@ export const BntReactTablePure: FC<{
 			className={className}
 			ref={tableContainerRef}
 		>
-			<Table stickyHeader>
+			<Table
+				stickyHeader
+				// style={isVirtual ? { height: virtualizer.getTotalSize(), position: "relative" } : {}}
+			>
 				<TableHead>
 					{table.getHeaderGroups().map((headerGroup, key) => (
 						<TableRow key={headerGroup.id}>
@@ -171,8 +187,8 @@ export const BntReactTablePure: FC<{
 						return (
 							<TableRow
 								key={row.id}
+								ref={isVirtual ? virtualizer.measureElement : undefined}
 								className={classnames(
-									virtualRow.index.toString(),
 									"bnt-table-tr",
 									{ "bnt-table-tr-odd": i % 2 === 0 },
 									{ "bnt-table-tr-even": i % 2 === 1 }

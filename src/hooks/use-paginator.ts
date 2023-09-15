@@ -8,7 +8,8 @@ import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/ap
 export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	endpoint: Endpoint,
 	args: GetArgsType<Endpoint>,
-	pollingInterval: number | undefined
+	pollingInterval: number | undefined,
+	skip?: boolean
 ) {
 	const dispatch = useAppDispatch();
 	const queries = useAppSelector((state: RootState) => state.api.queries);
@@ -32,6 +33,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 				? pollingInterval
 				: 5000,
 			refetchOnMountOrArgChange: true,
+			skip,
 		}
 	);
 

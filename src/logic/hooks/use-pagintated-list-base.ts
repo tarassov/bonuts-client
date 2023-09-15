@@ -10,12 +10,14 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 	args: GetArgsType<Endpoint>;
 	pollingInterval: number | undefined;
 	translator?: (response: GetResultType<Endpoint>) => Array<TModel>;
+	skip?: boolean;
 }) => {
 	const {
 		endpoint,
 		args,
 		pollingInterval = 1000,
 		translator = (response: GetResultType<Endpoint>) => response as Array<TModel>,
+		skip,
 	} = props;
 
 	const [objects, setObjects] = useState<Array<Array<TModel>>>([]);
@@ -25,7 +27,8 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } = usePaginator(
 		endpoint,
 		{ ...args, tenant: authTenant },
-		pollingInterval
+		pollingInterval,
+		skip
 	);
 
 	useEffect(() => {
