@@ -8,6 +8,7 @@ import {
 	texts_e,
 	texts_h,
 	texts_i,
+	texts_p,
 	texts_s,
 	texts_t,
 } from "services/localization/texts";
@@ -242,6 +243,7 @@ i18n.use(LanguageDetector).init({
 				preview: "просмотр",
 				Price: "Цена",
 				price: "цена",
+				[texts_p.purchase]: "покупка",
 				"price asc": "сначала самые дешевые",
 				"price desc": "сначала самые дорогие",
 				Profile: "Профиль",
@@ -263,6 +265,7 @@ i18n.use(LanguageDetector).init({
 				"Requests in progress": "Запросы в работе",
 				Refund: "Возврат",
 				[texts_r.remove_all]: "удалить всех",
+				[texts_r.refund]: "возврат",
 				Required: "Обязательное поле",
 				requests: "запросы",
 				Requests: "Запросы",

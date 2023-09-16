@@ -11,7 +11,7 @@ export const AccountBallanceMainInfo: FC<{
 	onClick?: VoidFunction;
 }> = ({ title, value, lastOperation, balance, onClick }) => {
 	return (
-		<BntStack onClick={onClick}>
+		<BntStack>
 			<BntStack direction="row" gap={1}>
 				<BntTypography display="block" color="grey.700">
 					{title}:
@@ -23,7 +23,7 @@ export const AccountBallanceMainInfo: FC<{
 					{value}
 				</BntStack>
 			</BntStack>
-			<Button sx={{ width: "fit-content" }}>
+			<Button sx={{ width: "fit-content" }} onClick={onClick}>
 				<BntTypography variant="caption" color="grey.700">
 					<BntStack direction="row">
 						{lastOperation
