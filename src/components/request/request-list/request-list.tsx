@@ -84,7 +84,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }}>
 			<BntBreadcrumbs items={breadcrumbs} />
 			<CardWrapper className="flex-grow scroll">
-				<BntReactTable columns={tableConfig} data={requests} isVirtual />
+				<BntReactTable columns={tableConfig} data={requests} isVirtual estimateSize={100} />
 			</CardWrapper>
 		</BntStack>
 	);
