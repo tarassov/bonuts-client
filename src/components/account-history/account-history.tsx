@@ -23,5 +23,5 @@ export const AccountHistory: FC<{ accountId?: number }> = ({ accountId }) => {
 		setLoading(Modules.Events, isLoading);
 	}, [isLoading]);
 
-	return <BntReactTable columns={tableConfig} data={flatData} isVirtual />;
+	return <BntReactTable columns={tableConfig} data={flatData} isVirtual estimateSize={100} />;
 };
