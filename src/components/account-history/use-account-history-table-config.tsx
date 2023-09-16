@@ -16,7 +16,8 @@ export const useAccountHistoryTableConfig = () => {
 					info ? <BntStyledOperationText operation={info?.row.original} showDateTime /> : <div />,
 				header: translate(texts_h.history, { capitalize: true }),
 				footer: (info) => info.column.id,
-				enableSorting: true,
+				enableSorting: false,
+				enableColumnFilter: false,
 				// filterFn: requestFilter,
 			}),
 		];

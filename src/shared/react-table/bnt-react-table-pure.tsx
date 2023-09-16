@@ -43,6 +43,7 @@ import { ArrowDropDownOutlined, ArrowDropUpOutlined } from "@mui/icons-material"
 import { texts_p } from "services/localization/texts/texts_p";
 import { texts_n } from "services/localization/texts";
 import { BntTransparentButton } from "shared/buttons/transparent-button";
+import { emptyFunction } from "utils/empty-function";
 
 function fuzzyTextFilterFn(rows: Array<any>, id: number, filterValue: string) {
 	return matchSorter<any>(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -59,7 +60,20 @@ export const BntReactTablePure: FC<{
 	pageSize?: number;
 	isVirtual?: boolean;
 	estimateSize?: number;
-}> = ({ columns, data, className, pageSize = 5, isVirtual = false, estimateSize }) => {
+	hasNext?: boolean;
+	isFetching?: boolean;
+	fetchNext?: VoidFunction;
+}> = ({
+	columns,
+	data,
+	className,
+	pageSize = 5,
+	isVirtual = false,
+	estimateSize,
+	hasNext = false,
+	isFetching = false,
+	fetchNext = emptyFunction,
+}) => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
 	const [sorting, setSorting] = useState<SortingState>([]);
@@ -111,6 +125,24 @@ export const BntReactTablePure: FC<{
 			});
 		},
 	});
+
+	const fetchMoreOnBottomReached = React.useCallback(
+		(containerRefElement?: HTMLDivElement | null) => {
+			if (containerRefElement) {
+				const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
+				// once the user has scrolled within 300px of the bottom of the table, fetch more data if there is any
+				if (scrollHeight - scrollTop - clientHeight < 300 && !isFetching && hasNext) {
+					fetchNext();
+				}
+			}
+		},
+		[fetchNext, isFetching, hasNext]
+	);
+	// a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
+	React.useEffect(() => {
+		fetchMoreOnBottomReached(tableContainerRef.current);
+	}, [fetchMoreOnBottomReached]);
+
 	const virtualRows = virtualizer.getVirtualItems();
 
 	const [paddingTop, paddingBottom] =
@@ -122,6 +154,7 @@ export const BntReactTablePure: FC<{
 		<TableContainer
 			sx={{ boxShadow: "none", height: "100%", overflow: "auto" }}
 			className={className}
+			onScroll={(e) => fetchMoreOnBottomReached(e.target as HTMLDivElement)}
 			ref={tableContainerRef}
 		>
 			<Table
@@ -188,6 +221,7 @@ export const BntReactTablePure: FC<{
 							<TableRow
 								key={row.id}
 								ref={isVirtual ? virtualizer.measureElement : undefined}
+								data-index={i}
 								className={classnames(
 									"bnt-table-tr",
 									{ "bnt-table-tr-odd": i % 2 === 0 },
