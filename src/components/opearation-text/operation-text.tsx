@@ -4,6 +4,7 @@ import { FC } from "react";
 import { EMPTY_FUNCTION } from "constants/functions";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { OPERATION_CLASSES } from "components/opearation-text/classes";
+import { useLocalDate } from "shared/locale/hooks/use-local-date";
 import { TOperation } from "@/types/model/operation";
 import { BntProfileButton } from "../buttons/profile-button";
 import { DealType } from "@/types/model/deal-type";
@@ -24,8 +25,9 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 	className,
 	showDateTime,
 }) => {
-	const { to_profile, direction, deal_type, from_profile, created_at } = operation;
+	const { to_profile, direction, deal_type, from_profile, created_at, created_at_utc } = operation;
 	const { translate } = useBntTranslate();
+	const { formatDate } = useLocalDate();
 
 	const amountClass = classNames({
 		[OPERATION_CLASSES.operationText]: true,
@@ -49,7 +51,6 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 			{operation !== undefined && operation !== null && (
 				<Grid container className={OPERATION_CLASSES.operationContainer}>
 					<span className={amountClass}>
-						{" "}
 						{operation.direction === 1 ? "+" : ""}
 						{operation.amount}{" "}
 					</span>
@@ -68,7 +69,7 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 						</>
 					)}
 					{showDateTime && created_at !== undefined && created_at !== null && (
-						<span className={OPERATION_CLASSES.operationText}>{created_at}</span>
+						<span className={OPERATION_CLASSES.operationText}>{formatDate(created_at_utc)}</span>
 					)}
 					{(operation.deal_type === DealType.Buy ||
 						operation.deal_type === DealType.RefundRequest) && (

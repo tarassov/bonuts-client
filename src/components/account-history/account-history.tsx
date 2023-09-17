@@ -7,7 +7,6 @@ import { BntReactTable } from "shared/react-table/bnt-react-table";
 
 export const AccountHistory: FC<{ accountId?: number }> = ({ accountId }) => {
 	const { tableConfig } = useAccountHistoryTableConfig();
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { hasNext, flatData, isLoading, fetchNext, isFetching } = useOperationHistory({
 		id: accountId,
 	});

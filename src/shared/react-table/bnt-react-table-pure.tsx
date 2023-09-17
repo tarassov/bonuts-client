@@ -59,6 +59,7 @@ export const BntReactTablePure: FC<{
 	className?: string;
 	pageSize?: number;
 	isVirtual?: boolean;
+	virtualOverscan?: number;
 	estimateSize?: number;
 	hasNext?: boolean;
 	isFetching?: boolean;
@@ -73,6 +74,7 @@ export const BntReactTablePure: FC<{
 	hasNext = false,
 	isFetching = false,
 	fetchNext = emptyFunction,
+	virtualOverscan = 100,
 }) => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
@@ -115,7 +117,7 @@ export const BntReactTablePure: FC<{
 	const virtualizer = useVirtualizer({
 		getScrollElement: () => tableContainerRef?.current,
 		count: rows.length,
-		overscan: 10,
+		overscan: virtualOverscan,
 		estimateSize: () => estimateSize || (matchesDownSm ? 200 : 100),
 		rangeExtractor: (range) => {
 			return defaultRangeExtractor({

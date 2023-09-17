@@ -4,6 +4,8 @@ import { showError } from "services/notification";
 import { Errors } from "constants/dictionary";
 import { bonutsApi } from "services/api/bonuts-api";
 import { useStorage } from "hooks/use-storage";
+import { routesPath } from "routes/config/routes-path";
+import { push } from "redux-first-history";
 
 export const rtkErrorHandler: Middleware =
 	<AppDispatch extends Dispatch<AnyAction>, RootState>(
@@ -23,6 +25,7 @@ export const rtkErrorHandler: Middleware =
 				setValue<string | null>("auth_token", null);
 				setValue<string | null>("tenant", null);
 				dispatch(bonutsApi.util.resetApiState());
+				dispatch(push(routesPath.Login));
 			}
 			if (action?.payload?.data?.error)
 				showError(
