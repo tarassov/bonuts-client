@@ -10,9 +10,8 @@ import { SnackbarProvider } from "notistack";
 import { getMenuRoutes } from "routes/get-menu-routes";
 import { routesConfig } from "routes/config/routes-config";
 import "./styles/app.scss";
-import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
-import { ru } from "date-fns/locale";
-import { AppContextType } from "@/types/context";
+import { LocaleProvider } from "shared/locale/locale-provider";
+import { AppContextType } from "@/types/context/app-context-type";
 import i18n from "../../services/localization/i18n";
 
 const App = () => {
@@ -37,8 +36,7 @@ const App = () => {
 		<BntThemeProvider>
 			<I18nextProvider i18n={i18n}>
 				<SnackbarProvider>
-					<DateFnsProvider adapterLocale={ru}>
-						{/* <BntLayout /> */}
+					<LocaleProvider>
 						<AppContext.Provider value={contextValue}>
 							<HistoryRouter history={history}>
 								<BntLoadingProvider>
@@ -46,7 +44,7 @@ const App = () => {
 								</BntLoadingProvider>
 							</HistoryRouter>
 						</AppContext.Provider>
-					</DateFnsProvider>
+					</LocaleProvider>
 				</SnackbarProvider>
 			</I18nextProvider>
 		</BntThemeProvider>

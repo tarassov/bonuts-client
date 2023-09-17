@@ -36,7 +36,6 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 	const { toggleLike, updateEvent } = useEventLogic();
 	const { showEmployeeModal } = useEmployeeUi();
 
-	// const handleContentChange = (e: any) => {};
 	const handleSubmitEdit = (e: any) => {
 		updateEvent(post, { content: e.target.content.value });
 		setEdit(false);

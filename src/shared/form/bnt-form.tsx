@@ -3,7 +3,7 @@ import _ from "lodash";
 import { FormContainer } from "react-hook-form-mui";
 import { BntFormBody } from "shared/form/form-body";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
-import { ru } from "date-fns/locale";
+import { useLocale } from "shared/locale/hooks/use-locale";
 import { TFormFieldSourceItem, TFormProps, TFormValue } from "./types/bnt-form";
 
 export const BntForm: FC<TFormProps<any>> = ({
@@ -16,12 +16,11 @@ export const BntForm: FC<TFormProps<any>> = ({
 	submitCaption,
 	onSubmit,
 	children,
-	locale = ru,
 }) => {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [error, setError] = useState<string>();
 	const [initials, setInitials] = useState<Record<string, TFormValue> | undefined>(undefined);
-
+	const locale = useLocale();
 	useEffect(() => {
 		if (initialValues) {
 			const transformedInitials = _.mapValues(initialValues, (value, key) => {

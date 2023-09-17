@@ -5,11 +5,12 @@ import { DEFAULT_AVATAR } from "constants/images";
 import { BntTypography } from "shared/typography/typography";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { CircularProgress, Stack } from "@mui/material";
+import { CircularProgress, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import * as React from "react";
 
 import { BntRoundButton } from "shared/buttons/round-button";
-import { BntChip } from "shared/chip/chip";
+import { MoreHoriz } from "@mui/icons-material";
+import { CircleTag } from "components/circle/circle-tag/circle-tag";
 import { texts_m } from "@/services/localization/texts/texts_m";
 import { TProfile } from "@/types/model";
 
@@ -19,6 +20,8 @@ export type ModalEmployeeViewPureProps = {
 	isLoading?: boolean;
 	className?: string;
 };
+
+const MAX_TAGS = 3;
 export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
 	employee,
 	onGoToEmployeeClick,
@@ -26,6 +29,8 @@ export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
 	className,
 }) => {
 	const { t } = useBntTranslate();
+	const theme = useTheme();
+	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 	return (
 		<BntStack flexDirection="row" className={className}>
 			{isLoading ? (
@@ -43,17 +48,33 @@ export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
 								</BntRoundButton>
 							</BntStack>
 
-							<Stack
-								direction={{ sm: "column", md: "row", xs: "row" }}
+							<BntStack
+								direction="row"
 								justifyContent="center"
 								alignItems={{ sm: "center", xs: "center" }}
-								spacing={2}
-								className="ml-4 mt-4"
+								flexWrap="wrap"
+								spacing={1}
+								gap={1}
+								className="ml-2 mt-2"
 							>
-								{employee?.circles?.map((circle) => {
-									return <BntChip color="info" label={circle.name} />;
-								})}
-							</Stack>
+								{employee?.circles
+									?.filter((x, i) => i < MAX_TAGS || !matchesDownSm)
+									.map((circle) => {
+										return <CircleTag title={circle.name} />;
+									})}
+								{matchesDownSm &&
+									employee?.circles?.length &&
+									employee?.circles?.length > MAX_TAGS && (
+										<Tooltip
+											title={employee.circles
+												.filter((x, i) => i >= MAX_TAGS)
+												.map((x) => x.name)
+												.join(", ")}
+										>
+											<MoreHoriz className="pointer" onClick={onGoToEmployeeClick} />
+										</Tooltip>
+									)}
+							</BntStack>
 						</BntStack>
 					</BntStack>
 				</>

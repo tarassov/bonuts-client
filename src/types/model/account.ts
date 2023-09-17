@@ -6,5 +6,6 @@ export type TAccount = TBaseModel & {
 		direction?: "+" | "-";
 		amount?: number;
 		date?: string;
+		date_utc?: string;
 	};
 };

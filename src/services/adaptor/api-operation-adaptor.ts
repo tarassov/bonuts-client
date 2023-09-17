@@ -4,7 +4,7 @@ import { TOperation } from "@/types/model/operation";
 export const apiOperationAdaptor = (
 	response: GetAccountOperationsApiResponse
 ): Array<TOperation> => {
-	const { data } = response;
+	const { data } = response || {};
 
 	if (!data) return [];
 

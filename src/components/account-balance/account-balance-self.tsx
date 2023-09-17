@@ -3,7 +3,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { texts_i, texts_t } from "services/localization/texts";
-import { AccountBallanceMainInfo } from "components/account-balance/account-ballance-main-info";
+import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
 import { BntRoundButton } from "shared/buttons/round-button";
 import Box from "@mui/material/Box/Box";
 import { useDonutUi } from "logic/ui/use-donut-ui";
@@ -21,7 +21,7 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 
 	return (
 		<BntStack gap={1}>
-			<AccountBallanceMainInfo
+			<AccountBalanceMainInfo
 				title={t(texts_i.i_can_spend, { capitalize: true })}
 				balance={account?.balance}
 				value={

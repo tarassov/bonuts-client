@@ -241,6 +241,7 @@ export type GetAccountsByIdApiResponse = /** status 200 success */ {
 			last_operation?: {
 				amount?: number;
 				date?: string;
+				date_utc?: string;
 				direction?: "+" | "-";
 			};
 		};

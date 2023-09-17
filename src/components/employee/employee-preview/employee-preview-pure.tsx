@@ -16,6 +16,7 @@ import { formatStringDate } from "utils/format-string-date";
 import { BntDivider } from "shared/divider/bnt-divider";
 import { EmployeeActions } from "pages/employee/employee-actions";
 import { EmployeeEdit } from "components/employee/employee-edit/employee-edit";
+import { CircleTag } from "components/circle/circle-tag/circle-tag";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
@@ -98,14 +99,16 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 										onClick={onImageClick}
 									/>
 									<Stack
-										direction={{ sm: "column", md: "row", xs: "row" }}
+										direction="row"
 										justifyContent="center"
 										alignItems={{ sm: "center", xs: "center" }}
-										spacing={2}
+										flexWrap="wrap"
+										spacing={1}
+										gap={1}
 										className="ml-4 mt-4"
 									>
 										{employee?.circles?.map((circle) => {
-											return <BntChip color="info" label={circle.name} />;
+											return <CircleTag title={circle.name} />;
 										})}
 									</Stack>
 								</Grid>
