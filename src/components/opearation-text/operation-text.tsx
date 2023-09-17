@@ -69,7 +69,9 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 						</>
 					)}
 					{showDateTime && created_at !== undefined && created_at !== null && (
-						<span className={OPERATION_CLASSES.operationText}>{formatDate(created_at_utc)}</span>
+						<span className={OPERATION_CLASSES.operationText}>
+							<Typography variant="body2">{formatDate(created_at_utc)}</Typography>
+						</span>
 					)}
 					{(operation.deal_type === DealType.Buy ||
 						operation.deal_type === DealType.RefundRequest) && (
