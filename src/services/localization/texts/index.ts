@@ -14,3 +14,4 @@ export { texts_p } from "services/localization/texts/texts_p";
 export { texts_r } from "services/localization/texts/texts_r";
 export { texts_s } from "services/localization/texts/texts_s";
 export { texts_t } from "services/localization/texts/texts_t";
+export { texts_u } from "services/localization/texts/texts_u";

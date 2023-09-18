@@ -163,6 +163,12 @@ const injectedRtkApi = api.injectEndpoints({
 		postConfirmEmail: build.mutation<PostConfirmEmailApiResponse, PostConfirmEmailApiArg>({
 			query: (queryArg) => ({ url: `/confirm_email`, method: "POST", body: queryArg.body }),
 		}),
+		postDemoAuthenticate: build.mutation<
+			PostDemoAuthenticateApiResponse,
+			PostDemoAuthenticateApiArg
+		>({
+			query: () => ({ url: `/demo_authenticate`, method: "POST" }),
+		}),
 		postAuthenticate: build.mutation<PostAuthenticateApiResponse, PostAuthenticateApiArg>({
 			query: (queryArg) => ({ url: `/authenticate`, method: "POST", body: queryArg.body }),
 		}),
@@ -2112,6 +2118,39 @@ export type PostConfirmEmailApiArg = {
 		token: string;
 	};
 };
+export type PostDemoAuthenticateApiResponse = /** status 200 success */ {
+	tenants: {
+		id: number;
+		name: string;
+		caption?: string | null;
+		active: boolean;
+		created_at: string;
+		updated_at: string;
+		domain: string;
+		demo: boolean;
+		logo: {
+			url: string;
+			thumb: {
+				url: string;
+			};
+		};
+		welcome_points: number;
+		welcome_donuts: number;
+		email_notification: boolean;
+		birthday_donuts: number;
+		birthday_points: number;
+		join_to_project_donuts: number;
+		join_to_company_donuts: number;
+		join_to_project_points: number;
+		join_to_company_points: number;
+		use_departments: boolean;
+		test?: boolean;
+	}[];
+	auth_token: string;
+	username?: string | null;
+	currentTenant?: (string | null) | null;
+};
+export type PostDemoAuthenticateApiArg = void;
 export type PostAuthenticateApiResponse = /** status 200 success */ {
 	tenants: {
 		id: number;
@@ -2218,6 +2257,7 @@ export const {
 	usePutTenantCurrentMutation,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
+	usePostDemoAuthenticateMutation,
 	usePostAuthenticateMutation,
 	usePostRefreshTokenMutation,
 } = injectedRtkApi;

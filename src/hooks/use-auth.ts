@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { push } from "redux-first-history";
 import { authActions } from "services/redux/slice/auth-slice";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
+
 import {
 	bonutsApi,
 	PostAuthenticateApiArg,
 	PostRegisterApiArg,
 	useGetProfileQuery,
 	usePostAuthenticateMutation,
+	usePostDemoAuthenticateMutation,
 	usePostRegisterMutation,
 } from "../services/api/bonuts-api";
 import { useStorage } from "./use-storage";
@@ -22,6 +24,9 @@ export function useAuth() {
 	const [skip, setSkip] = useState(true);
 	const [postAuthenticate, { isLoading: isLogging, error: authError }] =
 		usePostAuthenticateMutation();
+
+	const [postDemoAuthenticate, { isLoading: isDemoLogging, error: authDemoError }] =
+		usePostDemoAuthenticateMutation();
 
 	const { data: profile } = useGetProfileQuery(
 		{ tenant: auth.tenant || "" },
@@ -68,6 +73,23 @@ export function useAuth() {
 		}
 	};
 
+	const demoSignIn = async () => {
+		try {
+			const payload = await postDemoAuthenticate().unwrap();
+			let current_tenant = "";
+			if (payload.currentTenant) {
+				current_tenant = payload.currentTenant;
+			} else if (payload.tenants.length === 1) {
+				current_tenant = payload.tenants[0]?.name || "";
+			}
+			setValue<string>("auth_token", payload.auth_token);
+			setValue<string>("tenant", current_tenant);
+		} catch (err) {
+			// eslint-disable-next-line no-console
+			console.log(err);
+		}
+	};
+
 	const signOut = async () => {
 		setValue<string | null>("auth_token", null);
 		setValue<string | null>("tenant", null);
@@ -100,12 +122,13 @@ export function useAuth() {
 	};
 
 	return {
-		isLogging,
+		isLogging: isLogging || isDemoLogging,
 		isPostingRegister,
 		isAuthLoading,
 		registerError,
-		authError,
+		authError: authError || authDemoError,
 		signIn,
+		demoSignIn,
 		signOut,
 		register,
 		getAuth,

@@ -5,4 +5,5 @@ export enum texts_e {
 	employment_date = "Employment date",
 	expiration_date = "expiration date",
 	email_notification = "email notification",
+	email_address = "email address",
 }
