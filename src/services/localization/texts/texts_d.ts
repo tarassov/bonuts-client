@@ -4,4 +4,5 @@ export enum texts_d {
 	disable_account = "disable account",
 	disabled = "disabled",
 	domain = "domain",
+	demo = "demo",
 }

@@ -29,6 +29,24 @@ const slice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
+			.addMatcher(bonutsApi.endpoints.postDemoAuthenticate.matchPending, (state) => {
+				state.isAuthenticating = true;
+			})
+			.addMatcher(bonutsApi.endpoints.postDemoAuthenticate.matchFulfilled, (state, action) => {
+				state.token = action.payload.auth_token;
+				if (action.payload.tenants.length === 1) {
+					state.tenant = action.payload.tenants[0]?.name || "";
+				}
+				state.isAuthenticated = true;
+				state.isAuthenticating = false;
+			})
+			.addMatcher(bonutsApi.endpoints.postDemoAuthenticate.matchRejected, (state) => {
+				state.isAuthenticated = false;
+				state.isAuthenticating = false;
+				state.token = undefined;
+				state.tenant = undefined;
+				state.profile = undefined;
+			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchPending, (state) => {
 				state.isAuthenticating = true;
 			})

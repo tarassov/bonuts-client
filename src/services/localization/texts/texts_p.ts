@@ -5,5 +5,6 @@ export enum texts_p {
 	"previous" = "previous",
 	"preview" = "preview",
 	purchase = "purchase",
+	password = "password",
 	"page_not_found" = "page not found",
 }

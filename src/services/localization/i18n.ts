@@ -1,16 +1,17 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import { texts_u } from "services/localization/texts/texts_u";
-import { texts_r } from "services/localization/texts/texts_r";
 import {
 	texts_b,
 	texts_c,
+	texts_d,
 	texts_e,
 	texts_h,
 	texts_i,
 	texts_p,
+	texts_r,
 	texts_s,
 	texts_t,
+	texts_u,
 } from "services/localization/texts";
 import * as process from "process";
 
@@ -114,6 +115,7 @@ i18n.use(LanguageDetector).init({
 				"Date of birth": "Дата рождения",
 				department: "подразделение",
 				"Day of month": "День месяца",
+				[texts_d.demo]: "демо",
 				DEMO: "Демо",
 				Dashboard: "Лента",
 				Delete: "Удалить",
@@ -157,6 +159,7 @@ i18n.use(LanguageDetector).init({
 				[texts_e.email_notification]: "оповещения по почте",
 				[texts_e.edit]: "редакатировать",
 				Email: "Email",
+				[texts_e.email_address]: "почтовый адрес",
 				error: "ошибка",
 				Events: "События",
 				"Expiration date": "Дата окончания",
@@ -228,6 +231,7 @@ i18n.use(LanguageDetector).init({
 				"on stock": "в наличии",
 				"Only you can see it": "Только вы это видите",
 				// P
+				[texts_p.password]: "пароль",
 				Page: "Страница",
 				People: "Сотрудники",
 				"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
@@ -277,6 +281,7 @@ i18n.use(LanguageDetector).init({
 				records_few: "записи",
 				records_many: "записей",
 				records_other: "записей",
+				[texts_r.restore_password]: "восстановить пароль",
 				"request has been refunded": "запрос отменен",
 				"request has been set as incoming": "запрос переведен во входящие",
 				"request has been set as close": "запрос переведен во закрытые",
@@ -314,6 +319,8 @@ i18n.use(LanguageDetector).init({
 				Schedulers: "Расписания",
 				Sign_Out: "Выход",
 				Sign_In: "Войти",
+				[texts_s.sign_in]: "войти",
+				[texts_s.sign_up]: "регистрация",
 				Sign_Up: "Регистрация",
 				Statistic: "Статистика",
 				"start typing": "начните ввод",

@@ -8,4 +8,6 @@ export enum texts_s {
 	store_admin = "store admin",
 	supply_days = "supply days",
 	settings_updated = " settings updated",
+	sign_in = "sign in",
+	sign_up = "регистрация",
 }
