@@ -7,6 +7,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_d, texts_e, texts_p, texts_r, texts_s } from "services/localization/texts";
 import { AppRegistrationOutlined, LoginOutlined, RestoreOutlined } from "@mui/icons-material";
 import BonutsFullIcon from "icons/BonutsFullIcon.svg";
+import { useAuthUi } from "logic/ui/use-auth-ui";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
@@ -15,6 +16,7 @@ export const LoginPage: FC = () => {
 	//	const from = location.state?.from?.pathname || "/";
 
 	const { signIn, demoSignIn, isLogging } = useAuth();
+	const { showRegister } = useAuthUi();
 	const { setLoading } = useLoader();
 	const { translate } = useBntTranslate();
 	const [credentials, setValue] = useState({
@@ -79,7 +81,7 @@ export const LoginPage: FC = () => {
 								<RestoreOutlined color="primary" />
 								{translate(texts_r.restore_password, { capitalize: true })}
 							</Button>
-							<Button sx={{ textTransform: "none" }}>
+							<Button sx={{ textTransform: "none" }} onClick={showRegister}>
 								<AppRegistrationOutlined color="primary" />
 								{translate(texts_s.sign_up, { capitalize: true })}
 							</Button>
