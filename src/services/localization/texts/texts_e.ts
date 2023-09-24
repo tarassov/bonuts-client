@@ -6,4 +6,5 @@ export enum texts_e {
 	expiration_date = "expiration date",
 	email_notification = "email notification",
 	email_address = "email address",
+	email_address_must_be_valid = "email address must be valid",
 }

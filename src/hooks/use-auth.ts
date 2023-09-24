@@ -6,11 +6,9 @@ import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 import {
 	bonutsApi,
 	PostAuthenticateApiArg,
-	PostRegisterApiArg,
 	useGetProfileQuery,
 	usePostAuthenticateMutation,
 	usePostDemoAuthenticateMutation,
-	usePostRegisterMutation,
 } from "../services/api/bonuts-api";
 import { useStorage } from "./use-storage";
 
@@ -35,8 +33,6 @@ export function useAuth() {
 		}
 	);
 
-	const [postRegister, { isLoading: isPostingRegister, error: registerError }] =
-		usePostRegisterMutation();
 	const { getValue, setValue } = useStorage();
 	const [isAuthLoading, setIsAuthLoading] = useState(true);
 
@@ -97,10 +93,6 @@ export function useAuth() {
 		dispatch(logout());
 	};
 
-	const register = async (credentials: PostRegisterApiArg) => {
-		postRegister(credentials);
-	};
-
 	const checkAuth = async () => {
 		setIsAuthLoading(true);
 		try {
@@ -123,14 +115,11 @@ export function useAuth() {
 
 	return {
 		isLogging: isLogging || isDemoLogging,
-		isPostingRegister,
 		isAuthLoading,
-		registerError,
 		authError: authError || authDemoError,
 		signIn,
 		demoSignIn,
 		signOut,
-		register,
 		getAuth,
 		checkAuth,
 		auth,

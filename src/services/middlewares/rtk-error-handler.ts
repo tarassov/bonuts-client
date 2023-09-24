@@ -6,6 +6,7 @@ import { bonutsApi } from "services/api/bonuts-api";
 import { useStorage } from "hooks/use-storage";
 import { routesPath } from "routes/config/routes-path";
 import { push } from "redux-first-history";
+import i18next from "i18next";
 
 export const rtkErrorHandler: Middleware =
 	<AppDispatch extends Dispatch<AnyAction>, RootState>(
@@ -29,8 +30,8 @@ export const rtkErrorHandler: Middleware =
 			}
 			if (action?.payload?.data?.error)
 				showError(
-					action?.payload?.data?.message ||
-						action.payload?.data?.errorText ||
+					i18next.t(action?.payload?.data?.message) ||
+						i18next.t(action.payload?.data?.errorText) ||
 						Errors.DATA_FETCHING_ERROR
 				);
 		}

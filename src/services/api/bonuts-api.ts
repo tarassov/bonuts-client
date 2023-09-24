@@ -172,6 +172,12 @@ const injectedRtkApi = api.injectEndpoints({
 		postAuthenticate: build.mutation<PostAuthenticateApiResponse, PostAuthenticateApiArg>({
 			query: (queryArg) => ({ url: `/authenticate`, method: "POST", body: queryArg.body }),
 		}),
+		postSendConfirmEmail: build.mutation<
+			PostSendConfirmEmailApiResponse,
+			PostSendConfirmEmailApiArg
+		>({
+			query: (queryArg) => ({ url: `/send_confirm_email`, method: "POST", body: queryArg.body }),
+		}),
 		postRefreshToken: build.mutation<PostRefreshTokenApiResponse, PostRefreshTokenApiArg>({
 			query: () => ({ url: `/refresh_token`, method: "POST" }),
 		}),
@@ -306,6 +312,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
+			bot?: boolean;
 			first_name?: string;
 			last_name?: string;
 			name?: string;
@@ -886,6 +893,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
+			bot?: boolean;
 			first_name?: string;
 			last_name?: string;
 			name?: string;
@@ -972,6 +980,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
+			bot?: boolean;
 			first_name?: string;
 			last_name?: string;
 			name?: string;
@@ -1059,6 +1068,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
+			bot?: boolean;
 			first_name?: string;
 			last_name?: string;
 			name?: string;
@@ -1155,6 +1165,7 @@ export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
+			bot?: boolean;
 			first_name?: string;
 			last_name?: string;
 			name?: string;
@@ -1223,6 +1234,7 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 			department?: (object | null) | null;
 			position?: (string | null) | null;
 			store_admin?: boolean;
+			bot?: boolean;
 			first_name?: string;
 			last_name?: string;
 			name?: string;
@@ -1341,6 +1353,7 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
+				bot?: boolean;
 				first_name?: string;
 				last_name?: string;
 				name?: string;
@@ -1464,6 +1477,7 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
+				bot?: boolean;
 				first_name?: string;
 				last_name?: string;
 				name?: string;
@@ -1587,6 +1601,7 @@ export type PostRequestsActivateApiResponse = /** status 200 success */ {
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
+				bot?: boolean;
 				first_name?: string;
 				last_name?: string;
 				name?: string;
@@ -1710,6 +1725,7 @@ export type PostRequestsRefundApiResponse = /** status 200 success */ {
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
+				bot?: boolean;
 				first_name?: string;
 				last_name?: string;
 				name?: string;
@@ -1833,6 +1849,7 @@ export type PostRequestsRollbackApiResponse = /** status 200 success */ {
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
+				bot?: boolean;
 				first_name?: string;
 				last_name?: string;
 				name?: string;
@@ -1956,6 +1973,7 @@ export type PostRequestsCloseApiResponse = /** status 200 success */ {
 				department?: (object | null) | null;
 				position?: (string | null) | null;
 				store_admin?: boolean;
+				bot?: boolean;
 				first_name?: string;
 				last_name?: string;
 				name?: string;
@@ -2189,6 +2207,18 @@ export type PostAuthenticateApiArg = {
 		password: string;
 	};
 };
+export type PostSendConfirmEmailApiResponse = /** status 200 not confirmed email */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: any;
+	}[];
+};
+export type PostSendConfirmEmailApiArg = {
+	body: {
+		email: string;
+	};
+};
 export type PostRefreshTokenApiResponse = /** status 200 success */ {
 	tenants: {
 		id: number;
@@ -2259,5 +2289,6 @@ export const {
 	usePostConfirmEmailMutation,
 	usePostDemoAuthenticateMutation,
 	usePostAuthenticateMutation,
+	usePostSendConfirmEmailMutation,
 	usePostRefreshTokenMutation,
 } = injectedRtkApi;

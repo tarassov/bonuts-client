@@ -8,4 +8,5 @@ export enum texts_c {
 	"confirmation" = "confirmation",
 	"closed_requests" = "closed requests",
 	"choose_employees" = "choose employees",
+	confirmation_email_was_sent_to = "confirmation email was sent to",
 }

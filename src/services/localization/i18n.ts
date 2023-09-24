@@ -5,8 +5,10 @@ import {
 	texts_c,
 	texts_d,
 	texts_e,
+	texts_f,
 	texts_h,
 	texts_i,
+	texts_l,
 	texts_p,
 	texts_r,
 	texts_s,
@@ -92,8 +94,10 @@ i18n.use(LanguageDetector).init({
 				Confirm: "Подтвердить почтовый адрес",
 				"Confirmation dialog": "Подтверждение",
 				confirmation: "подтверждение",
+				[texts_c.confirmation_email_was_sent_to]:
+					"Письмо для подтверждения было отправлено на ваш электронный адрес",
 				"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
-				"Confirm your email first": "Для продолжнеия подтвердите адрес электронной почты ",
+				"Confirm your email first": "Для продолжения подтвердите адрес электронной почты ",
 				"Connect to space": "Присоединиться к пространству",
 				code: "код",
 				Comment: "Комментарий",
@@ -154,6 +158,7 @@ i18n.use(LanguageDetector).init({
 				"Employment date": "Дата приема",
 				"Edit donut": "Редактировать пончик",
 				"Error while updating": "Ошибка во время обновления",
+				[texts_e.email_address_must_be_valid]: "Почтовый адрес должен быть в верном формате",
 				Employees: "Сотрудники",
 				employees: "сотрудники",
 				[texts_e.email_notification]: "оповещения по почте",
@@ -167,9 +172,11 @@ i18n.use(LanguageDetector).init({
 				"expiration date": "срок действия",
 
 				// F
+				[texts_f.first_name]: "имя",
 				forbidden: "запрещено",
 				for: "для",
 				from: "от",
+
 				// G
 				"Go to shop": "В магазин",
 				"Go to": "Перейти",
@@ -196,6 +203,7 @@ i18n.use(LanguageDetector).init({
 				// K
 
 				// L
+				[texts_l.last_name]: "фамилия",
 				"Log in": "Войти",
 				"Log Out": "Выйти",
 
@@ -232,6 +240,9 @@ i18n.use(LanguageDetector).init({
 				"Only you can see it": "Только вы это видите",
 				// P
 				[texts_p.password]: "пароль",
+				[texts_p.password_repeat]: "пароль еще раз",
+				[texts_p.password_is_required]: "пароль необходим",
+				[texts_p.password_confirm_is_required]: "подтверждение пароля необходимо",
 				Page: "Страница",
 				People: "Сотрудники",
 				"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
@@ -311,6 +322,7 @@ i18n.use(LanguageDetector).init({
 				Send: "Отправить",
 				"Send to all": "Отправить всем",
 				"Send again": "Отправить еще раз",
+				[texts_s.send_confirmation_email]: "Отправить письмо подтвреждения",
 				"Select image": "Выбрать картинку",
 				"select all": "выбрать всех",
 				"selected employees": "выбранные сотрудники",
