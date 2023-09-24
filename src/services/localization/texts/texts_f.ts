@@ -1,3 +1,4 @@
 export enum texts_f {
-	filtred = "filtred",
+	filtered = "filtered",
+	first_name = "first name",
 }

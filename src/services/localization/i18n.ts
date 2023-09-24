@@ -5,8 +5,10 @@ import {
 	texts_c,
 	texts_d,
 	texts_e,
+	texts_f,
 	texts_h,
 	texts_i,
+	texts_l,
 	texts_p,
 	texts_r,
 	texts_s,
@@ -167,9 +169,11 @@ i18n.use(LanguageDetector).init({
 				"expiration date": "срок действия",
 
 				// F
+				[texts_f.first_name]: "имя",
 				forbidden: "запрещено",
 				for: "для",
 				from: "от",
+
 				// G
 				"Go to shop": "В магазин",
 				"Go to": "Перейти",
@@ -196,6 +200,7 @@ i18n.use(LanguageDetector).init({
 				// K
 
 				// L
+				[texts_l.last_name]: "фамилия",
 				"Log in": "Войти",
 				"Log Out": "Выйти",
 
@@ -232,6 +237,9 @@ i18n.use(LanguageDetector).init({
 				"Only you can see it": "Только вы это видите",
 				// P
 				[texts_p.password]: "пароль",
+				[texts_p.password_repeat]: "пароль еще раз",
+				[texts_p.password_is_required]: "пароль необходим",
+				[texts_p.password_confirm_is_required]: "подтверждение пароля необходимо",
 				Page: "Страница",
 				People: "Сотрудники",
 				"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
