@@ -16,7 +16,9 @@ export const useRegisterValidation = () => {
 			.oneOf([Yup.ref("password")], translate(texts_p.passwords_do_not_math)),
 		first_name: Yup.string().required(translate(texts_f.first_name)),
 		last_name: Yup.string().required(translate(texts_l.last_name)),
-		email: Yup.string().required(translate(texts_e.email_address)),
+		email: Yup.string()
+			.required(translate(texts_e.email_address))
+			.email(translate(texts_e.email_address)),
 	});
 
 	return { formSchema };

@@ -1,6 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
 import { FC, useEffect } from "react";
-import { useAuth } from "hooks/use-auth";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -10,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { BntTypography } from "shared/typography/typography";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
+import { useSignUp } from "hooks/use-sign-up";
 import styles from "./registration-page.module.scss";
 import { RegisterFields } from "@/types/form/register";
 
@@ -19,7 +19,7 @@ export const RegistrationPage: FC = () => {
 		shouldUseNativeValidation: true,
 		resolver: yupResolver(formSchema),
 	});
-	const { isPostingRegister, register } = useAuth();
+	const { isPostingRegister, register } = useSignUp();
 	const { setLoading } = useLoader();
 	const { translate } = useBntTranslate();
 

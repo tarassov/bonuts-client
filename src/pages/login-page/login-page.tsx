@@ -1,5 +1,5 @@
 import { Box, Button, Grid, TextField, Stack } from "@mui/material";
-import { FC, SyntheticEvent, useEffect, useState } from "react";
+import { FC, SyntheticEvent, useEffect, useMemo, useState } from "react";
 import { useAuth } from "hooks/use-auth";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
@@ -8,6 +8,8 @@ import { texts_d, texts_e, texts_p, texts_r, texts_s } from "services/localizati
 import { AppRegistrationOutlined, LoginOutlined, RestoreOutlined } from "@mui/icons-material";
 import BonutsFullIcon from "icons/BonutsFullIcon.svg";
 import { useAuthUi } from "logic/ui/use-auth-ui";
+import { useSignUp } from "hooks/use-sign-up";
+import _ from "lodash";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
@@ -15,10 +17,11 @@ export const LoginPage: FC = () => {
 	// const location = useLocationTyped();
 	//	const from = location.state?.from?.pathname || "/";
 
-	const { signIn, demoSignIn, isLogging } = useAuth();
+	const { signIn, demoSignIn, isLogging, authError } = useAuth();
 	const { showRegister } = useAuthUi();
 	const { setLoading } = useLoader();
 	const { translate } = useBntTranslate();
+	const { sendConfirmEmail } = useSignUp();
 	const [credentials, setValue] = useState({
 		email: "",
 		password: "",
@@ -36,6 +39,13 @@ export const LoginPage: FC = () => {
 		setLoading(Modules.Default, isLogging);
 		return () => setLoading(Modules.Default, false);
 	}, [isLogging]);
+
+	const errorCode = useMemo(() => {
+		if (authError && Object.hasOwn(authError, "data")) {
+			return (authError as any)?.data?.errorCode;
+		}
+		return undefined;
+	}, [authError]);
 
 	return (
 		<Box className={styles.box} sx={{ mt: 8 }}>
@@ -88,6 +98,18 @@ export const LoginPage: FC = () => {
 						</Stack>
 					</Grid>
 				</Grid>
+				{errorCode === 5000 && (
+					<Button
+						fullWidth
+						color="secondary"
+						sx={{ textTransform: "none", mt: 4 }}
+						onClick={() => {
+							if (!_.isEmpty(credentials.email)) sendConfirmEmail(credentials.email);
+						}}
+					>
+						{translate(texts_s.send_confirmation_email, { capitalize: true })}
+					</Button>
+				)}
 			</Box>
 		</Box>
 	);
