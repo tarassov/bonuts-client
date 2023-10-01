@@ -1,5 +1,5 @@
 import { Box, Button, Grid, TextField, Stack } from "@mui/material";
-import { FC, SyntheticEvent, useEffect, useMemo, useState } from "react";
+import { FC, SyntheticEvent, useMemo, useState } from "react";
 import { useAuth } from "hooks/use-auth";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
@@ -19,7 +19,6 @@ export const LoginPage: FC = () => {
 
 	const { signIn, demoSignIn, isLogging, authError } = useAuth();
 	const { showRegister } = useAuthUi();
-	const { setLoading } = useLoader();
 	const { translate } = useBntTranslate();
 	const { sendConfirmEmail } = useSignUp();
 	const [credentials, setValue] = useState({
@@ -35,10 +34,7 @@ export const LoginPage: FC = () => {
 		signIn({ body: credentials });
 	};
 
-	useEffect(() => {
-		setLoading(Modules.Default, isLogging);
-		return () => setLoading(Modules.Default, false);
-	}, [isLogging]);
+	useLoader(Modules.Default, isLogging);
 
 	const errorCode = useMemo(() => {
 		if (authError && Object.hasOwn(authError, "data")) {

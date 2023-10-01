@@ -1,9 +1,7 @@
 import { createContext, FC, useCallback, useMemo, useState } from "react";
 import { BntModalLoader } from "./modal-loader";
 
-export const BntSetLoadingContext = createContext<
-	(name: string, value: boolean) => void
->(() => {});
+export const BntSetLoadingContext = createContext<(name: string, value: boolean) => void>(() => {});
 
 export const BntLoadingProvider: FC<{
 	children: JSX.Element | Array<JSX.Element>;

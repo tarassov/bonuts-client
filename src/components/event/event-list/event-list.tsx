@@ -1,5 +1,5 @@
 import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { FC, SyntheticEvent, useEffect } from "react";
+import { FC, SyntheticEvent } from "react";
 import { Dictionary } from "constants/dictionary";
 import { useEventListLogic } from "logic/hooks/event/use-event-list-logic";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -17,15 +17,12 @@ export const BntEventList: FC = () => {
 		showMine: false,
 	});
 
-	const { setLoading } = useLoader();
 	const onNext = (e: SyntheticEvent) => {
 		e.preventDefault();
 		fetchNext();
 	};
 
-	useEffect(() => {
-		setLoading(Modules.Events, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.Events, isLoading);
 
 	return (
 		<Box className={classnames("scroll height-100 pb-2", { "pr-12": !matchesDownMd })}>

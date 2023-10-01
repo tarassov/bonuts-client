@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useLoader } from "shared/loader/hooks/use-loader";
-import { useEffect } from "react";
 import { Modules } from "constants/modules";
 import { DonutSmall, ShoppingBag } from "@mui/icons-material";
 import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
@@ -24,14 +23,12 @@ export const BntDonutPreview = () => {
 	const { id } = useParams();
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
-	const { setLoading } = useLoader();
+
 	const { donut, isLoading } = useDonutLoader(id);
 	const { translate } = useBntTranslate();
 	const { ImageModal } = useModal();
 
-	useEffect(() => {
-		setLoading(Modules.DonutPreview, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.DonutPreview, isLoading);
 
 	const onClick = () => {
 		ImageModal.show({ url: donut?.logo?.url || DEFAULT_DONUT_IMAGE, title: donut?.name });

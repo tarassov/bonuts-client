@@ -1,7 +1,20 @@
-import { useContext } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { BntSetLoadingContext } from "../loading-provider";
 
-export const useLoader = () => {
+export const useLoader = (name: string, isLoading: boolean) => {
 	const setLoading = useContext(BntSetLoadingContext);
-	return { setLoading };
+	useEffect(() => {
+		setLoading(name, isLoading);
+		return () => setLoading(name, false);
+	}, [isLoading]);
+
+	const openLoader = useCallback(() => {
+		setLoading(name, true);
+	}, []);
+
+	const closeLoader = useCallback(() => {
+		setLoading(name, false);
+	}, []);
+
+	return { openLoader, closeLoader };
 };

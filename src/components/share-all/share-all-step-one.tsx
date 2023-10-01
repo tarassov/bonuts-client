@@ -1,6 +1,6 @@
 import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
 import { Box, Grid } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_c, texts_n, texts_s } from "services/localization/texts";
@@ -21,11 +21,8 @@ export const ShareAllStepOne: FC<{
 	const { objects = [], isLoading } = useEmployeeList();
 	const [selected, setSelected] = useState<Array<TProfile>>(initialProfiles);
 	const { t } = useBntTranslate();
-	const { setLoading } = useLoader();
 
-	useEffect(() => {
-		setLoading(Modules.ShareAll, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.ShareAll, isLoading);
 
 	const addProfile = (p: TProfile) => {
 		setSelected((prev) => {

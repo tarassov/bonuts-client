@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { useDonutLoader } from "logic/hooks/donut/use-donut-loader";
-import { useEffect } from "react";
 import { Modules } from "constants/modules";
 import { DonutEditForm } from "components/donut/donut-edit/donut-edit-form";
 import { useDonut } from "logic/hooks/donut/use-donut";
@@ -19,12 +18,11 @@ import { TDonut } from "@/types/model";
 
 export const DonutEdit = () => {
 	const { id } = useParams();
-	const { setLoading } = useLoader();
+
 	const { donut, isLoading, refetch } = useDonutLoader(id);
 	const { putDonut } = useDonut();
-	useEffect(() => {
-		setLoading(Modules.DonutPreview, isLoading);
-	}, [isLoading]);
+
+	useLoader(Modules.DonutPreview, isLoading);
 
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{

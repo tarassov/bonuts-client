@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useLoader } from "shared/loader/hooks/use-loader";
-import { useEffect } from "react";
 import { Modules } from "constants/modules";
 import { useModal } from "hooks/use-modal";
 import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
@@ -11,16 +10,13 @@ import { useEmployee } from "logic/hooks/employee/use-employee";
 
 export const EmployeePreview = () => {
 	const { id } = useParams();
-	const { setLoading } = useLoader();
 	const { employee, isLoading, error } = useEmployeeLoader(id);
 	const { ImageModal } = useModal();
 	const { profile } = useProfileLogic();
 	const { showAdminDeposit, showTransfer } = useTransferUi();
 	const { setActivityWithConfirmation, setActivity } = useEmployee();
 
-	useEffect(() => {
-		setLoading(Modules.EmployeePreview, isLoading && !error);
-	}, [isLoading, error]);
+	useLoader(Modules.EmployeePreview, isLoading && !error);
 
 	const onImageClick = () => {
 		if (employee?.user_avatar?.url) {
