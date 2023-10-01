@@ -84,6 +84,9 @@ const injectedRtkApi = api.injectEndpoints({
 		postInvitations: build.mutation<PostInvitationsApiResponse, PostInvitationsApiArg>({
 			query: (queryArg) => ({ url: `/invitations`, method: "POST", body: queryArg.body }),
 		}),
+		getInvitationsMy: build.query<GetInvitationsMyApiResponse, GetInvitationsMyApiArg>({
+			query: () => ({ url: `/invitations/my` }),
+		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
 			query: (queryArg) => ({ url: `/profile`, params: { tenant: queryArg.tenant } }),
 		}),
@@ -157,11 +160,20 @@ const injectedRtkApi = api.injectEndpoints({
 		putTenantCurrent: build.mutation<PutTenantCurrentApiResponse, PutTenantCurrentApiArg>({
 			query: (queryArg) => ({ url: `/tenant/current`, method: "PUT", body: queryArg.body }),
 		}),
+		getTenantsAccessible: build.query<GetTenantsAccessibleApiResponse, GetTenantsAccessibleApiArg>({
+			query: () => ({ url: `/tenants/accessible` }),
+		}),
+		getTenants: build.query<GetTenantsApiResponse, GetTenantsApiArg>({
+			query: () => ({ url: `/tenants` }),
+		}),
 		postRegister: build.mutation<PostRegisterApiResponse, PostRegisterApiArg>({
 			query: (queryArg) => ({ url: `/register`, method: "POST", body: queryArg.body }),
 		}),
 		postConfirmEmail: build.mutation<PostConfirmEmailApiResponse, PostConfirmEmailApiArg>({
 			query: (queryArg) => ({ url: `/confirm_email`, method: "POST", body: queryArg.body }),
+		}),
+		getConfirmEmail: build.query<GetConfirmEmailApiResponse, GetConfirmEmailApiArg>({
+			query: (queryArg) => ({ url: `/confirm_email`, params: { token: queryArg.token } }),
 		}),
 		postDemoAuthenticate: build.mutation<
 			PostDemoAuthenticateApiResponse,
@@ -171,6 +183,9 @@ const injectedRtkApi = api.injectEndpoints({
 		}),
 		postAuthenticate: build.mutation<PostAuthenticateApiResponse, PostAuthenticateApiArg>({
 			query: (queryArg) => ({ url: `/authenticate`, method: "POST", body: queryArg.body }),
+		}),
+		postLogout: build.mutation<PostLogoutApiResponse, PostLogoutApiArg>({
+			query: () => ({ url: `/logout`, method: "POST" }),
 		}),
 		postSendConfirmEmail: build.mutation<
 			PostSendConfirmEmailApiResponse,
@@ -873,6 +888,14 @@ export type PostInvitationsApiArg = {
 		tenant?: string;
 	};
 };
+export type GetInvitationsMyApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: any;
+	}[];
+};
+export type GetInvitationsMyApiArg = void;
 export type GetProfileApiResponse = /** status 200 success */ {
 	data?: {
 		id?: string;
@@ -2121,6 +2144,74 @@ export type PutTenantCurrentApiArg = {
 		test?: boolean;
 	};
 };
+export type GetTenantsAccessibleApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			name: string;
+			caption?: string | null;
+			active: boolean;
+			created_at: string;
+			updated_at: string;
+			domain: string;
+			demo: boolean;
+			logo: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			};
+			welcome_points: number;
+			welcome_donuts: number;
+			email_notification: boolean;
+			birthday_donuts: number;
+			birthday_points: number;
+			join_to_project_donuts: number;
+			join_to_company_donuts: number;
+			join_to_project_points: number;
+			join_to_company_points: number;
+			use_departments: boolean;
+			test?: boolean;
+		};
+	}[];
+};
+export type GetTenantsAccessibleApiArg = void;
+export type GetTenantsApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			name: string;
+			caption?: string | null;
+			active: boolean;
+			created_at: string;
+			updated_at: string;
+			domain: string;
+			demo: boolean;
+			logo: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			};
+			welcome_points: number;
+			welcome_donuts: number;
+			email_notification: boolean;
+			birthday_donuts: number;
+			birthday_points: number;
+			join_to_project_donuts: number;
+			join_to_company_donuts: number;
+			join_to_project_points: number;
+			join_to_company_points: number;
+			use_departments: boolean;
+			test?: boolean;
+		};
+	}[];
+};
+export type GetTenantsApiArg = void;
 export type PostRegisterApiResponse = unknown;
 export type PostRegisterApiArg = {
 	body: {
@@ -2135,6 +2226,26 @@ export type PostConfirmEmailApiArg = {
 	body: {
 		token: string;
 	};
+};
+export type GetConfirmEmailApiResponse = /** status 200 receives user */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			type?: string;
+			email?: string;
+			last_name?: string;
+			first_name?: string;
+			sex?: string;
+			note?: string;
+			email_confirmed?: boolean;
+			name?: string;
+		};
+	};
+};
+export type GetConfirmEmailApiArg = {
+	token?: string;
 };
 export type PostDemoAuthenticateApiResponse = /** status 200 success */ {
 	tenants: {
@@ -2207,6 +2318,8 @@ export type PostAuthenticateApiArg = {
 		password: string;
 	};
 };
+export type PostLogoutApiResponse = unknown;
+export type PostLogoutApiArg = void;
 export type PostSendConfirmEmailApiResponse = /** status 200 not confirmed email */ {
 	data?: {
 		id?: string;
@@ -2271,6 +2384,7 @@ export const {
 	usePutEventsByIdMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsMutation,
+	useGetInvitationsMyQuery,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,
 	usePutProfilesByIdMutation,
@@ -2285,10 +2399,14 @@ export const {
 	usePostTenantsByTenantNameJoinMutation,
 	useGetTenantCurrentQuery,
 	usePutTenantCurrentMutation,
+	useGetTenantsAccessibleQuery,
+	useGetTenantsQuery,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
+	useGetConfirmEmailQuery,
 	usePostDemoAuthenticateMutation,
 	usePostAuthenticateMutation,
+	usePostLogoutMutation,
 	usePostSendConfirmEmailMutation,
 	usePostRefreshTokenMutation,
 } = injectedRtkApi;

@@ -51,6 +51,7 @@ import {
 	StatisticsPage,
 	StorePage,
 	TenantsListPage,
+	EventPage,
 } from "@/pages";
 
 const { CirclesIcon } = useIcons();
@@ -150,6 +151,13 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		authenticated: true,
 		hideInMenu: true,
 		component: <EmployeePreviewPage />,
+	},
+	Event: {
+		path: routesPath[BntRoutes.Event],
+		anonymous: false,
+		authenticated: true,
+		hideInMenu: true,
+		component: <EventPage />,
 	},
 	Profile: {
 		path: routesPath[BntRoutes.Profile],
