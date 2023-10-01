@@ -64,6 +64,9 @@ const slice = createSlice({
 				state.token = undefined;
 				state.tenant = undefined;
 				state.profile = undefined;
+			})
+			.addMatcher(bonutsApi.endpoints.postLogout.matchPending, () => {
+				return initialState;
 			});
 	},
 });

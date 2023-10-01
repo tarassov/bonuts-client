@@ -9,6 +9,7 @@ import {
 	useGetProfileQuery,
 	usePostAuthenticateMutation,
 	usePostDemoAuthenticateMutation,
+	usePostLogoutMutation,
 } from "../services/api/bonuts-api";
 import { useStorage } from "./use-storage";
 
@@ -17,7 +18,7 @@ import { useStorage } from "./use-storage";
 // TODO: now we use localStorage for saving auth_token. We should remove it as soon as new backend will be deployed since it is unsave and we should use only cookie for jwt
 export function useAuth() {
 	const dispatch = useAppDispatch();
-	const { logout, authenticate } = authActions;
+	const { authenticate } = authActions;
 	const auth = useAppSelector((store) => store.auth);
 	const [skip, setSkip] = useState(true);
 	const [postAuthenticate, { isLoading: isLogging, error: authError }] =
@@ -26,10 +27,12 @@ export function useAuth() {
 	const [postDemoAuthenticate, { isLoading: isDemoLogging, error: authDemoError }] =
 		usePostDemoAuthenticateMutation();
 
+	const [postLogout] = usePostLogoutMutation();
+
 	const { data: profile } = useGetProfileQuery(
 		{ tenant: auth.tenant || "" },
 		{
-			skip,
+			skip: skip || !auth.tenant,
 		}
 	);
 
@@ -89,8 +92,10 @@ export function useAuth() {
 	const signOut = async () => {
 		setValue<string | null>("auth_token", null);
 		setValue<string | null>("tenant", null);
-		dispatch(bonutsApi.util.resetApiState());
-		dispatch(logout());
+		postLogout().finally(() => {
+			dispatch(push("/login"));
+			dispatch(bonutsApi.util.resetApiState());
+		});
 	};
 
 	const checkAuth = async () => {

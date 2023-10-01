@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 // import * as path from "path";
 import svgr from "vite-plugin-svgr";
 import dns from "dns";
@@ -13,6 +14,7 @@ export default defineConfig({
 		port: 3002,
 	},
 	plugins: [
+		basicSsl(),
 		react(),
 		tsconfigPaths(),
 		svgr({

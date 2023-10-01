@@ -16,6 +16,7 @@ import i18n from "../../services/localization/i18n";
 
 const App = () => {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
+
 	const toggleDrawer = () => {
 		setDrawerOpen(!isDrawerOpen);
 	};
