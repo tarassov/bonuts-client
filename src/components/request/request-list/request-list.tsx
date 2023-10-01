@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useRequestListLogic } from "logic/hooks/request/use-request-list-logic";
@@ -50,11 +50,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 		hideActions,
 	});
 
-	const { setLoading } = useLoader();
-
-	useEffect(() => {
-		setLoading(Modules.Requests, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.Requests, isLoading);
 
 	// eslint-disable-next-line no-nested-ternary
 	const label = archive ? texts_c.closed_requests : active ? texts_a.activated : texts_i.incoming;

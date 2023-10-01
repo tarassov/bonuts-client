@@ -21,7 +21,7 @@ export const useTransfer = () => {
 	const tenant = useCurrentTenant();
 	const { profile, invalidateDistribBalance } = useProfileLogic();
 	const { showNotification } = useNotification();
-	const { setLoading } = useLoader();
+	const { openLoader, closeLoader } = useLoader(OPERATION_NAME, false);
 
 	const transferMyDonuts = (
 		args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">,
@@ -29,7 +29,7 @@ export const useTransfer = () => {
 	) => {
 		const { amount, comment, ids } = args;
 		if (tenant) {
-			setLoading(OPERATION_NAME, true);
+			openLoader();
 			postOperation({
 				body: {
 					tenant,
@@ -50,7 +50,7 @@ export const useTransfer = () => {
 				})
 				.catch((e) => options?.onError?.(e.data.message))
 				.finally(() => {
-					setLoading(OPERATION_NAME, false);
+					closeLoader();
 				});
 		}
 	};
@@ -60,7 +60,7 @@ export const useTransfer = () => {
 	) => {
 		const { amount, comment = CommonStrings.EMPTY_STRING, ids, toSelfAccount } = args;
 		if (tenant) {
-			setLoading(OPERATION_NAME, true);
+			openLoader();
 			postAdminDeposit({
 				body: {
 					tenant,
@@ -76,7 +76,7 @@ export const useTransfer = () => {
 					showNotification(texts_t.transferred);
 				})
 				.finally(() => {
-					setLoading(OPERATION_NAME, false);
+					closeLoader();
 				});
 		}
 	};

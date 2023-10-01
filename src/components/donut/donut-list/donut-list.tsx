@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { Grid } from "@mui/material";
 import { DonutSorter } from "logic/utils/sorter/donut-sorter";
 import { useDonutLoaderList } from "logic/hooks/donut/use-donut-loader-list";
@@ -10,7 +10,6 @@ import { BntDonutsSearch } from "./donuts-search";
 
 // TODO: extract pure component
 export const BntDonutsList: FC = () => {
-	const { setLoading } = useLoader();
 	const [search, setSearch] = useState<string>("");
 	const [filterFunction, setFilterFunction] = useState<Array<{ (a: TDonut): boolean }>>([]);
 	const [sorter, setSorter] = useState<{
@@ -25,9 +24,7 @@ export const BntDonutsList: FC = () => {
 		setSorter(() => sorterToUpdate);
 	};
 
-	useEffect(() => {
-		setLoading(Modules.Donuts, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.Donuts, isLoading);
 
 	const filteredList = useMemo(() => {
 		return objects

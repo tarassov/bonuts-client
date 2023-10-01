@@ -1,6 +1,6 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { BntDrawerHeader } from "shared/drawer";
 import { useAuth } from "hooks/use-auth";
 import { AppContext } from "context/app-context";
@@ -18,11 +18,8 @@ export const BntLayout = () => {
 	const { auth } = useAuth();
 	const { routes, redirects } = useContext(AppContext);
 	const { profile, isLoading } = useProfileLogic();
-	const { setLoading } = useLoader();
 
-	useEffect(() => {
-		setLoading(Modules.Profile, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.Profile, isLoading);
 
 	const routerRoutes = useMemo(() => getRoutes(routes, redirects), [routes, redirects]);
 

@@ -1,5 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -20,7 +20,7 @@ export const RegistrationPage: FC = () => {
 		resolver: yupResolver(formSchema),
 	});
 	const { isPostingRegister, register } = useSignUp();
-	const { setLoading } = useLoader();
+
 	const { translate } = useBntTranslate();
 
 	const onSubmit = async (data: RegisterFields) => {
@@ -29,10 +29,8 @@ export const RegistrationPage: FC = () => {
 		// eslint-disable-next-line no-console
 		console.log(r);
 	};
-	useEffect(() => {
-		setLoading(Modules.Default, isPostingRegister);
-		return () => setLoading(Modules.Default, false);
-	}, [isPostingRegister]);
+
+	useLoader(Modules.Default, isPostingRegister);
 
 	return (
 		<Box className={styles.box} sx={{ mt: 8 }}>

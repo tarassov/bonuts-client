@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useAccountHistoryTableConfig } from "components/account-history/use-account-history-table-config";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
@@ -11,11 +11,7 @@ export const AccountHistory: FC<{ accountId?: number }> = ({ accountId }) => {
 		id: accountId,
 	});
 
-	const { setLoading } = useLoader();
-
-	useEffect(() => {
-		setLoading(Modules.Events, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.Events, isLoading);
 
 	return (
 		<BntReactTable

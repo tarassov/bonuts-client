@@ -4,9 +4,8 @@ import { showError } from "services/notification";
 import { Errors } from "constants/dictionary";
 import { bonutsApi } from "services/api/bonuts-api";
 import { useStorage } from "hooks/use-storage";
-import { routesPath } from "routes/config/routes-path";
-import { push } from "redux-first-history";
 import i18next from "i18next";
+import { authActions } from "services/redux/slice/auth-slice";
 
 export const rtkErrorHandler: Middleware =
 	<AppDispatch extends Dispatch<AnyAction>, RootState>(
@@ -22,18 +21,18 @@ export const rtkErrorHandler: Middleware =
 			console.warn("We got a rejected action!");
 			// eslint-disable-next-line no-console
 			console.log(action);
-			if (action.payload.status === 401) {
-				setValue<string | null>("auth_token", null);
-				setValue<string | null>("tenant", null);
-				dispatch(bonutsApi.util.resetApiState());
-				dispatch(push(routesPath.Login));
-			}
 			if (action?.payload?.data?.error)
 				showError(
 					i18next.t(action?.payload?.data?.message) ||
 						i18next.t(action.payload?.data?.errorText) ||
 						Errors.DATA_FETCHING_ERROR
 				);
+			if (action.payload.status === 401) {
+				setValue<string | null>("auth_token", null);
+				setValue<string | null>("tenant", null);
+				dispatch(authActions.logout());
+				dispatch(bonutsApi.util.resetApiState());
+			}
 		}
 
 		return next(action);

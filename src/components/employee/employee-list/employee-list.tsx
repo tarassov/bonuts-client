@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { Grid } from "@mui/material";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
@@ -12,7 +12,6 @@ import { TProfile } from "@/types/model";
 import { TSorterButton } from "@/types/ui/sorter-button";
 
 export const EmployeeList: FC = () => {
-	const { setLoading } = useLoader();
 	const { objects = [], isLoading } = useEmployeeList();
 	const { filteredList, setSorter, setSearch } = useSearch<TProfile>(objects, {
 		searchField: "name",
@@ -24,9 +23,7 @@ export const EmployeeList: FC = () => {
 		setSorter(() => sorterToUpdate);
 	};
 
-	useEffect(() => {
-		setLoading(Modules.Employees, isLoading);
-	}, [isLoading]);
+	useLoader(Modules.Employees, isLoading);
 
 	return (
 		<>
