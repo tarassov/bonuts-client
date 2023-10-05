@@ -326,7 +326,7 @@ i18n.use(LanguageDetector).init({
 				Send: "Отправить",
 				"Send to all": "Отправить всем",
 				"Send again": "Отправить еще раз",
-				[texts_s.send_confirmation_email]: "Отправить письмо подтвреждения",
+				[texts_s.send_confirmation_email]: "Отправить письмо подтверждения",
 				"Select image": "Выбрать картинку",
 				"select all": "выбрать всех",
 				"selected employees": "выбранные сотрудники",
