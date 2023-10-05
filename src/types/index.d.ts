@@ -18,6 +18,7 @@ type TRoute<T, K = string> = {
 	index?: number;
 	children?: { [name in T]?: TRoute<T> };
 	roles?: Array<K>;
+	tenantNotRequired?: boolean;
 };
 
 type TRedirect = {

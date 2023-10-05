@@ -2,7 +2,7 @@ import { Avatar, Box, Button } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { LogoutOutlined } from "@mui/icons-material";
-import { useAuth } from "hooks/use-auth";
+import { useAuth } from "logic/hooks/auth/use-auth";
 import { Dictionary } from "constants/dictionary";
 
 export const LogoutPage: FC = () => {

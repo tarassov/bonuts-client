@@ -10,4 +10,5 @@ export enum Modules {
 	Requests = "requests",
 	StoreManager = "store_manager",
 	ShareAll = "share_all",
+	ConfirmEmail = "confirm_email",
 }
