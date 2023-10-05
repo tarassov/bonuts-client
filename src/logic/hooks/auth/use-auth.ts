@@ -10,8 +10,8 @@ import {
 	usePostAuthenticateMutation,
 	usePostDemoAuthenticateMutation,
 	usePostLogoutMutation,
-} from "../services/api/bonuts-api";
-import { useStorage } from "./use-storage";
+} from "services/api/bonuts-api";
+import { useStorage } from "hooks/use-storage";
 
 // const MAX_RETRY_NUMBER = 3;
 

@@ -12,6 +12,9 @@ export const useProjectNavigate = () => {
 	const navigateToSignUp = () => {
 		dispatch(push(routesPath[BntRoutes.Registration]));
 	};
+	const navigateToRoot = () => {
+		dispatch(push("/"));
+	};
 
-	return { navigateToLogin, navigateToSignUp };
+	return { navigateToLogin, navigateToSignUp, navigateToRoot };
 };

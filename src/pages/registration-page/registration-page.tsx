@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { BntTypography } from "shared/typography/typography";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
-import { useSignUp } from "hooks/use-sign-up";
+import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import styles from "./registration-page.module.scss";
 import { RegisterFields } from "@/types/form/register";
 

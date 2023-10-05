@@ -1,6 +1,6 @@
 import { FC, useEffect, useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useAuth } from "hooks/use-auth";
+import { useAuth } from "logic/hooks/auth/use-auth";
 import { useLocationTyped } from "hooks/use-location-typed";
 import { TAuthState } from "services/redux/types/auth-state";
 import { routesPath } from "routes/config/routes-path";
@@ -19,7 +19,9 @@ const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 	if (auth.isAuthenticated && route.authenticatedRedirect) {
 		return <Navigate to={route.authenticatedRedirect} />;
 	}
-
+	if (auth.isAuthenticated && !route.authenticated) {
+		return <Navigate to="/" />;
+	}
 	return auth.isAuthenticated || route.anonymous ? (
 		<PageWrapper children={route.component} path={route.path} />
 	) : (
@@ -61,15 +63,17 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 				element={<Navigate to={auth.isAuthenticated ? "/" : routesPath[BntRoutes.Login]} />}
 			/>
 			{authenticatedRoutes &&
-				authenticatedRoutes.map((route) => {
-					const element =
-						auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? (
-							<ForbiddenPage />
-						) : (
-							getRoute(route, auth)
-						);
-					return <Route path={route.path} element={element} key={route.path} />;
-				})}
+				authenticatedRoutes
+					.filter((x) => x.tenantNotRequired || auth.tenant)
+					.map((route) => {
+						const element =
+							auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? (
+								<ForbiddenPage />
+							) : (
+								getRoute(route, auth)
+							);
+						return <Route path={route.path} element={element} key={route.path} />;
+					})}
 
 			{anonymousRoutes &&
 				anonymousRoutes.map((route) => {

@@ -9,6 +9,7 @@ import {
 	texts_h,
 	texts_i,
 	texts_l,
+	texts_n,
 	texts_p,
 	texts_r,
 	texts_s,
@@ -99,6 +100,8 @@ i18n.use(LanguageDetector).init({
 				"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
 				"Confirm your email first": "Для продолжения подтвердите адрес электронной почты ",
 				"Connect to space": "Присоединиться к пространству",
+				[texts_c.confirm]: "подтвердить",
+				[texts_c.confirmed]: "подтверждено",
 				code: "код",
 				Comment: "Комментарий",
 				comment: "комментарий",
@@ -162,6 +165,7 @@ i18n.use(LanguageDetector).init({
 				Employees: "Сотрудники",
 				employees: "сотрудники",
 				[texts_e.email_notification]: "оповещения по почте",
+				[texts_e.email_confirmation]: "подтверждение почты",
 				[texts_e.edit]: "редакатировать",
 				Email: "Email",
 				[texts_e.email_address]: "почтовый адрес",
@@ -234,7 +238,7 @@ i18n.use(LanguageDetector).init({
 				"Not active donuts": "Неактивные пончики",
 				"No options": "Нет вариантов",
 				"not active": "не активен",
-
+				[texts_n.not_found]: "не найдено",
 				// O
 				"on stock": "в наличии",
 				"Only you can see it": "Только вы это видите",

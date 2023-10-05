@@ -28,6 +28,7 @@ import { EmployeePreviewPage } from "pages/employee/employee-preview-page";
 import { DonutEditPage } from "pages/donut/donut-edit-page";
 import { Roles } from "constants/roles";
 import { useIcons } from "hooks/use-icons";
+import { ConfirmEmailPage } from "pages/confirm-email-page/confirm-email-page";
 import {
 	AccountOperationsPage,
 	CirclesPage,
@@ -64,6 +65,13 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		authenticated: true,
 		hideInMenu: false,
 		component: <AccountOperationsPage />,
+	},
+	ConfirmEmail: {
+		path: routesPath[BntRoutes.ConfirmEmail],
+		anonymous: true,
+		authenticated: false,
+		hideInMenu: false,
+		component: <ConfirmEmailPage />,
 	},
 	Dashboard: {
 		path: routesPath[BntRoutes.Dashboard],
@@ -126,6 +134,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		component: <LogoutPage />,
 		icon: <LogoutOutlined />,
 		index: 100,
+		tenantNotRequired: true,
 	},
 	MyRequests: {
 		path: routesPath[BntRoutes.MyRequests],
@@ -334,6 +343,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		hideInMenu: false,
 		component: <TenantsListPage />,
 		icon: <Diversity2Outlined />,
+		tenantNotRequired: true,
 	},
 };
 

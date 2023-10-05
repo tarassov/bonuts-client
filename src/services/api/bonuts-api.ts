@@ -2221,7 +2221,9 @@ export type PostRegisterApiArg = {
 		password: string;
 	};
 };
-export type PostConfirmEmailApiResponse = unknown;
+export type PostConfirmEmailApiResponse = /** status 201 success */ {
+	auth_token: string;
+};
 export type PostConfirmEmailApiArg = {
 	body: {
 		token: string;

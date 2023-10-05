@@ -2,7 +2,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
 import { useContext, useMemo } from "react";
 import { BntDrawerHeader } from "shared/drawer";
-import { useAuth } from "hooks/use-auth";
+import { useAuth } from "logic/hooks/auth/use-auth";
 import { AppContext } from "context/app-context";
 import "../app/styles/app.scss";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
