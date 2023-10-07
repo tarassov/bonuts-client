@@ -1,1 +1,3 @@
-export enum texts_g {}
+export enum texts_g {
+	go_to = "go to",
+}

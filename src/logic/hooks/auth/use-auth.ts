@@ -117,6 +117,10 @@ export function useAuth() {
 			setIsAuthLoading(false);
 		}
 	};
+	const setTenant = (name: string) => {
+		setValue<string | null>("tenant", name);
+		checkAuth();
+	};
 
 	return {
 		isLogging: isLogging || isDemoLogging,
@@ -128,6 +132,7 @@ export function useAuth() {
 		getAuth,
 		checkAuth,
 		auth,
+		setTenant,
 		profile,
 		currentRoles: auth.profile?.roles,
 	};

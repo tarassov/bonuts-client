@@ -6,9 +6,12 @@ import {
 	texts_d,
 	texts_e,
 	texts_f,
+	texts_g,
 	texts_h,
 	texts_i,
+	texts_j,
 	texts_l,
+	texts_m,
 	texts_n,
 	texts_p,
 	texts_r,
@@ -184,6 +187,7 @@ i18n.use(LanguageDetector).init({
 				// G
 				"Go to shop": "В магазин",
 				"Go to": "Перейти",
+				[texts_g.go_to]: "перейти",
 				Goods: "Товары",
 
 				// H
@@ -203,6 +207,7 @@ i18n.use(LanguageDetector).init({
 				"invitation added": "Приглашение отправлено",
 				// J
 				Join: "Присоединиться",
+				[texts_j.join]: "присоединиться",
 
 				// K
 
@@ -221,6 +226,7 @@ i18n.use(LanguageDetector).init({
 				"My spaces": "Мои команды",
 				"My teams": "Мои команды",
 				"My tenants": "Мои команды",
+				[texts_m.my_teams]: "мои команды",
 				More: "Ещё",
 				more: "ещё",
 				// N
@@ -358,6 +364,7 @@ i18n.use(LanguageDetector).init({
 				"to can transfer to others": "можно дарить коллегам",
 				"This field is required": "Это поле является обязательным",
 				"Team settings": "Настройки команды",
+				[texts_t.teams_you_can_join]: "команды, к которым можно присоединиться",
 				"Teams I can join": "Команды, к которым могу присоединиться",
 				// U
 				"Update donut": "Обновить пончик",
