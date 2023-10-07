@@ -11,4 +11,7 @@ export enum Modules {
 	StoreManager = "store_manager",
 	ShareAll = "share_all",
 	ConfirmEmail = "confirm_email",
+	AccessibleTenants = "accessible_tenants",
+	MyTenants = "my_tenants",
+	MyInvitations = "my_invitations",
 }

@@ -25,8 +25,7 @@ export const useDonut = () => {
 				body: { ...props, ...(logoNew && { logo: logoNew }), tenant: profile?.tenant },
 			});
 			dispatch(donutsApi.util.invalidateTags(["Donuts"]));
-			if (Object.getOwnPropertyDescriptor(res, "data")) {
-				// @ts-ignore
+			if ("data" in res) {
 				options?.onSuccess?.(res.data);
 			}
 			return res;

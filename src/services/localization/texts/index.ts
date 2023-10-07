@@ -7,6 +7,7 @@ export { texts_f } from "services/localization/texts/texts_f";
 export { texts_g } from "services/localization/texts/texts_g";
 export { texts_h } from "services/localization/texts/texts_h";
 export { texts_i } from "services/localization/texts/texts_i";
+export { texts_j } from "services/localization/texts/texts_j";
 export { texts_k } from "services/localization/texts/texts_k";
 export { texts_l } from "services/localization/texts/texts_l";
 export { texts_m } from "services/localization/texts/texts_m";

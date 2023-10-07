@@ -1,6 +1,6 @@
 import { useAppSelector } from "services/redux/store/store";
 import { authTenantSelector } from "services/redux/selectors/auth-selector";
-import { tenantApi } from "services/api/extended/tenant-api";
+import { tenantsApi } from "services/api/extended/tenants-api";
 import { PutTenantCurrentApiResponse } from "services/api/bonuts-api";
 import { useNotification } from "services/notification";
 import { texts_s } from "services/localization/texts";
@@ -8,7 +8,7 @@ import { TTenant } from "@/types/model/tenant";
 
 export const useUpdateCurrentTenant = () => {
 	const authTenant = useAppSelector(authTenantSelector);
-	const [putTenant] = tenantApi.useUpdateCurrentTenantFormDataMutation();
+	const [putTenant] = tenantsApi.useUpdateCurrentTenantFormDataMutation();
 	const { showNotification } = useNotification();
 
 	const updateTenant = async (

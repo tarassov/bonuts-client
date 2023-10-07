@@ -890,9 +890,21 @@ export type PostInvitationsApiArg = {
 };
 export type GetInvitationsMyApiResponse = /** status 200 success */ {
 	data?: {
-		id?: string;
-		type?: string;
-		attributes?: any;
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			caption: string;
+			activated: boolean;
+			closed: boolean;
+			declined: boolean | null;
+			logo?: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			};
+		};
 	}[];
 };
 export type GetInvitationsMyApiArg = void;
@@ -2046,7 +2058,68 @@ export type PostRequestsCloseApiArg = {
 		tenant?: string;
 	};
 };
-export type PostTenantsByTenantNameJoinApiResponse = unknown;
+export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			default?: boolean;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
+			attached?: boolean;
+			roles: string[];
+			circles: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			bot?: boolean;
+			first_name?: string;
+			last_name?: string;
+			name?: string;
+			email: string;
+			tenant?: string;
+			sex?: string;
+			phone?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
+			in_date: (string | null) | null;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+	}[];
+};
 export type PostTenantsByTenantNameJoinApiArg = {
 	tenantName: string;
 };
