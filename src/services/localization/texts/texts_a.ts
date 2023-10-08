@@ -1,4 +1,5 @@
 export enum texts_a {
+	accept = "accept",
 	admin_deposit = "admin deposit",
 	available_employees = "available employees",
 	are_you_sure = "are you sure?",

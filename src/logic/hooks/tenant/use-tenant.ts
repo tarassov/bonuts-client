@@ -4,10 +4,12 @@ import { TTenant } from "@/types/model/tenant";
 
 export const useTenant = (tenant?: TTenant) => {
 	const [postJoin] = usePostTenantsByTenantNameJoinMutation();
-	const { checkAuth } = useAuth();
+	const { setTenant } = useAuth();
 	const joinTenant = () => {
 		if (tenant) {
-			postJoin({ tenantName: tenant.name }).then(() => checkAuth());
+			postJoin({ tenantName: tenant.name }).then(() => {
+				setTenant(tenant.name);
+			});
 		}
 	};
 

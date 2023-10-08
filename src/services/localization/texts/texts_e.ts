@@ -3,6 +3,7 @@ export enum texts_e {
 	error = "error",
 	employees = "employees",
 	employment_date = "Employment date",
+	empty_events_placeholder = "you dont have any events yet",
 	expiration_date = "expiration date",
 	email_notification = "email notification",
 	email_confirmation = "email confirmation",

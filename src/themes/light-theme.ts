@@ -19,7 +19,9 @@ const lightTheme = {
 			veryLight: "#FFCF86",
 		},
 		error: {
-			main: red.A400,
+			veryLight: red.A100,
+			light: red.A200,
+			main: red.A700,
 		},
 		neutral: {
 			main: grey.A400,

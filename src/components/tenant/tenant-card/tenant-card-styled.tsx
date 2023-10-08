@@ -12,18 +12,24 @@ export const TenantCardStyled = styled(
 		maxWidth: 300,
 		color: theme.palette.neutral.dark,
 		margin: "auto",
-		"& img": {
-			width: "auto",
-			height: "auto",
-			maxHeight: "160px",
-			maxWidth: "100%",
-			verticalAlign: "middle",
-			margin: "auto",
-			border: "0",
-			[theme.breakpoints.down("xs")]: {
-				maxHeight: "90px",
+		[cl(TENANT_CARD_CLASSES.tenantDefaultLogo)]: {
+			"& img": {
+				width: "auto",
+				height: "auto",
+				maxHeight: "100px",
+				maxWidth: "100%",
+				verticalAlign: "middle",
+				margin: "auto",
+				border: "0",
+				[theme.breakpoints.down("xs")]: {
+					maxHeight: "60px",
+				},
 			},
-			boxShadow: "0px 0px 48px rgba(255, 255, 255, 0.8)",
+		},
+		[cl(TENANT_CARD_CLASSES.tenantLogo)]: {
+			"& img": {
+				boxShadow: "0px 0px 48px rgba(255, 255, 255, 0.8)",
+			},
 		},
 		"&:hover": {
 			outline: "1px solid",
@@ -33,7 +39,7 @@ export const TenantCardStyled = styled(
 		[cl(TENANT_CARD_CLASSES.cardBody)]: {
 			display: "flex",
 			justifyContent: "center",
-			minHeight: 200,
+			minHeight: 150,
 		},
 		[cl(TENANT_CARD_CLASSES.captions)]: {
 			display: "flex",

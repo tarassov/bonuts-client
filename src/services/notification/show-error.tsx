@@ -5,6 +5,7 @@ import { CloseOutlined } from "@mui/icons-material";
 
 export const showError = (error: string) => {
 	enqueueSnackbar(error, {
+		preventDuplicate: true,
 		variant: ESeverity.Error,
 		action: (snackbarId) => {
 			return (

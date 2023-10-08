@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { Button } from "@mui/material";
+import { BntButton } from "shared/buttons/bnt-button";
 
-export const BntRegularButton = styled(Button, {
+export const BntRegularButton = styled(BntButton, {
 	shouldForwardProp: () => true,
 })(({ theme }) => ({
 	fontSize: 16,

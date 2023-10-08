@@ -7,27 +7,37 @@ import { BntTypography } from "shared/typography/typography";
 import { FC } from "react";
 import { TENANT_CARD_CLASSES } from "components/tenant/tenant-card/classes";
 import { BntRegularSecondaryButton } from "shared/buttons/regular-secondary-button";
+import { emptyFunction } from "utils/empty-function";
+import { BntCancelButton } from "shared/buttons/cancel-button";
 import { TTenant } from "@/types/model/tenant";
 
 export type TenantCardPureProps = {
-	tenant: TTenant;
-	actionName?: string;
-	onActionClick?: VoidFunction;
+	tenant: Partial<Pick<TTenant, "logo" | "caption">>;
+	submitActionName?: string;
+	onSubmitActionClick?: VoidFunction;
+	cancelActionName?: string;
+	onCancelActionClick?: VoidFunction;
 	className?: string;
 };
 
 export const TenantCardPure: FC<TenantCardPureProps> = ({
 	tenant,
-	actionName,
-	onActionClick,
+	submitActionName,
+	onSubmitActionClick = emptyFunction,
+	cancelActionName,
+	onCancelActionClick = emptyFunction,
 	className,
 }) => {
 	const { logo, caption } = tenant;
 	return (
 		<BntCard raised className={classNames(TENANT_CARD_CLASSES.tenantCard, className)}>
-			<BntCardBody className={`${TENANT_CARD_CLASSES.cardBody} mt-10 ml-10 mr-10 mb-4`}>
+			<BntCardBody className={`${TENANT_CARD_CLASSES.cardBody} mt-4 ml-4 mr-4 mb-4`}>
 				<BntStack direction="column" justifyContent="space-between" alignItems="center" spacing={3}>
-					<div className={TENANT_CARD_CLASSES.tenantLogo}>
+					<div
+						className={classNames(TENANT_CARD_CLASSES.tenantDefaultLogo, {
+							[TENANT_CARD_CLASSES.tenantLogo]: logo?.url,
+						})}
+					>
 						<img src={logo?.url || DEFAULT_DONUT_IMAGE} alt="..." />
 					</div>
 					<div className={TENANT_CARD_CLASSES.captions}>
@@ -37,19 +47,24 @@ export const TenantCardPure: FC<TenantCardPureProps> = ({
 					</div>
 				</BntStack>
 			</BntCardBody>
-			{actionName && (
-				<BntStack
-					direction="column"
-					justifyContent="space-between"
-					alignItems="center"
-					spacing={3}
-					className="mb-6"
-				>
-					<BntRegularSecondaryButton variant="contained" onClick={onActionClick}>
-						{actionName}
+			<BntStack
+				direction="row"
+				justifyContent="center"
+				alignItems="center"
+				spacing={3}
+				className="mb-6"
+			>
+				{submitActionName && (
+					<BntRegularSecondaryButton variant="contained" onClick={onSubmitActionClick} noTransform>
+						{submitActionName}
 					</BntRegularSecondaryButton>
-				</BntStack>
-			)}
+				)}
+				{cancelActionName && (
+					<BntCancelButton variant="contained" onClick={onCancelActionClick} noTransform>
+						{cancelActionName}
+					</BntCancelButton>
+				)}
+			</BntStack>
 		</BntCard>
 	);
 };

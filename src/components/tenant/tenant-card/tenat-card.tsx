@@ -3,8 +3,10 @@ import { TenantCardStyled } from "components/tenant/tenant-card/tenant-card-styl
 import { TTenant } from "@/types/model/tenant";
 
 export type TenantCardProps = {
-	tenant: TTenant;
-	actionName?: string;
-	onActionClick?: VoidFunction;
+	tenant: Partial<Pick<TTenant, "logo" | "caption">>;
+	submitActionName?: string;
+	onSubmitActionClick?: VoidFunction;
+	cancelActionName?: string;
+	onCancelActionClick?: VoidFunction;
 };
 export const TenantCard: FC<TenantCardProps> = (props) => <TenantCardStyled {...props} />;

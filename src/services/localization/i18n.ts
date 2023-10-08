@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import {
+	texts_a,
 	texts_b,
 	texts_c,
 	texts_d,
@@ -22,7 +23,6 @@ import {
 import * as process from "process";
 
 i18n.use(LanguageDetector).init({
-	// we init with resources
 	resources: {
 		en: {
 			translations: {
@@ -62,6 +62,7 @@ i18n.use(LanguageDetector).init({
 				Add: "Добавить",
 				admin: "админ",
 				"admin deposit": "Депозит (админ)",
+				[texts_a.accept]: "принять",
 				Activate: "Активировать",
 				Active: "Активен",
 				active: "активен",
@@ -129,6 +130,7 @@ i18n.use(LanguageDetector).init({
 				DEMO: "Демо",
 				Dashboard: "Лента",
 				Delete: "Удалить",
+				[texts_d.decline]: "отклонить",
 				"delivery days": "через сколько дней будет",
 				Departments: "Отделы",
 				Department: "Отдел",
@@ -169,6 +171,7 @@ i18n.use(LanguageDetector).init({
 				employees: "сотрудники",
 				[texts_e.email_notification]: "оповещения по почте",
 				[texts_e.email_confirmation]: "подтверждение почты",
+				[texts_e.empty_events_placeholder]: "здесь будут отображаться все события",
 				[texts_e.edit]: "редакатировать",
 				Email: "Email",
 				[texts_e.email_address]: "почтовый адрес",
@@ -202,6 +205,7 @@ i18n.use(LanguageDetector).init({
 				"Incoming requests": "Входящие запросы",
 				incoming: "входящие",
 				"in date": "дата приема",
+				[texts_i.invitations]: "приглашения",
 				[texts_i.i_can_share]: "я могу поделиться",
 				[texts_i.i_can_spend]: "я могу потратить",
 				"invitation added": "Приглашение отправлено",
