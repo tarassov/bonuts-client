@@ -6,6 +6,10 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import classnames from "classnames";
+import { BntTypography } from "shared/typography/typography";
+import { texts_e } from "services/localization/texts";
+import { BntStack } from "shared/stack/stack";
+import { LightbulbCircleOutlined } from "@mui/icons-material";
 import { BntStyledEventCard } from "../event-card/event-card-styled";
 
 export const BntEventList: FC = () => {
@@ -24,8 +28,33 @@ export const BntEventList: FC = () => {
 
 	useLoader(Modules.Events, isLoading);
 
+	const isEmpty = !pages[0]?.length;
+
 	return (
-		<Box className={classnames("scroll height-100 pb-2", { "pr-12": !matchesDownMd })}>
+		<Box
+			className={classnames("height-100 pb-2", {
+				"pr-12": !matchesDownMd,
+				scroll: !isEmpty,
+			})}
+			sx={{
+				overflowY: matchesDownMd && isEmpty ? "hidden" : undefined,
+			}}
+		>
+			{isEmpty ? (
+				<BntStack
+					alignItems="center"
+					justifyContent="center"
+					sx={{
+						height: matchesDownMd ? "300px" : "40%",
+						overflowY: matchesDownMd ? "hidden" : undefined,
+					}}
+				>
+					<LightbulbCircleOutlined sx={{ height: "100px", width: "100px" }} />
+					<BntTypography>
+						{translate(texts_e.empty_events_placeholder, { capitalize: true })}
+					</BntTypography>
+				</BntStack>
+			) : null}
 			{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
 			<Grid container rowSpacing={{ xs: 2 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 				{pages.length > 0 &&

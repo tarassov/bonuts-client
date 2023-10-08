@@ -12,8 +12,10 @@ export const UserTenantCard: FC<{ tenant: TTenant }> = ({ tenant }) => {
 	return (
 		<TenantCard
 			tenant={tenant}
-			actionName={auth.tenant !== tenant.name ? t(texts_g.go_to) : undefined}
-			onActionClick={() => setTenant(tenant.name)}
+			submitActionName={
+				auth.tenant !== tenant.name ? t(texts_g.go_to, { capitalize: true }) : undefined
+			}
+			onSubmitActionClick={() => setTenant(tenant.name)}
 		/>
 	);
 };

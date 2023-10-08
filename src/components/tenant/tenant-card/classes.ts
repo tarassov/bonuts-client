@@ -1,6 +1,7 @@
 export const TENANT_CARD_CLASSES = {
 	tenantCard: "tenant-card",
 	tenantLogo: "tenant-logo",
+	tenantDefaultLogo: "tenant-default-logo",
 	cardHover: "card-hover",
 	cardHeaderHover: "card-header-hover",
 	cardActions: "card-actions",

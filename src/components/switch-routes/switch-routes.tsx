@@ -16,6 +16,9 @@ interface ISwitchRoutesProps {
 }
 
 const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
+	if (auth.isAuthenticated && !auth.tenant && (!route.tenantNotRequired || route.path === "/")) {
+		return <Navigate to={routesPath[BntRoutes.TenantList]} />;
+	}
 	if (auth.isAuthenticated && route.authenticatedRedirect) {
 		return <Navigate to={route.authenticatedRedirect} />;
 	}
@@ -60,7 +63,17 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 		<Routes location={background || location}>
 			<Route
 				path="*"
-				element={<Navigate to={auth.isAuthenticated ? "/" : routesPath[BntRoutes.Login]} />}
+				element={
+					<Navigate
+						to={
+							auth.isAuthenticated
+								? !auth.tenant
+									? routesPath[BntRoutes.TenantList]
+									: "/"
+								: routesPath[BntRoutes.Login]
+						}
+					/>
+				}
 			/>
 			{authenticatedRoutes &&
 				authenticatedRoutes
