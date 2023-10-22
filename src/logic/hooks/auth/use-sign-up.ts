@@ -17,7 +17,15 @@ export const useSignUp = () => {
 	const { navigateToLogin } = useProjectNavigate();
 
 	const register = async (credentials: PostRegisterApiArg) => {
-		const result = await postRegister(credentials);
+		const trimmedCredentials: PostRegisterApiArg = {
+			body: {
+				...credentials.body,
+				email: credentials.body.email.trim(),
+				first_name: credentials.body.first_name.trim(),
+				last_name: credentials.body.last_name.trim(),
+			},
+		};
+		const result = await postRegister(trimmedCredentials);
 		if (!Object.hasOwn(result, "error")) {
 			showNotification(translate(texts_c.confirmation_email_was_sent_to, { capitalize: true }));
 			navigateToLogin();

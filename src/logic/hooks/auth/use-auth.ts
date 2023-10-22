@@ -57,7 +57,10 @@ export function useAuth() {
 
 	const signIn = async (credentials: PostAuthenticateApiArg) => {
 		try {
-			const payload = await postAuthenticate(credentials).unwrap();
+			const trimmedCredentials: PostAuthenticateApiArg = {
+				body: { email: credentials.body.email.trim(), password: credentials.body.password },
+			};
+			const payload = await postAuthenticate(trimmedCredentials).unwrap();
 			let current_tenant = "";
 			if (payload.currentTenant) {
 				current_tenant = payload.currentTenant;
