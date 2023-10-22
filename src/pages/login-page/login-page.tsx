@@ -10,6 +10,7 @@ import BonutsFullIcon from "icons/BonutsFullIcon.svg";
 import { useAuthUi } from "logic/ui/use-auth-ui";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import _ from "lodash";
+import { useProjectNavigate } from "hooks/use-project-navigate";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
@@ -21,6 +22,7 @@ export const LoginPage: FC = () => {
 	const { showRegister } = useAuthUi();
 	const { translate } = useBntTranslate();
 	const { sendConfirmEmail } = useSignUp();
+	const { navigateToRestorePassword } = useProjectNavigate();
 	const [credentials, setValue] = useState({
 		email: "",
 		password: "",
@@ -83,7 +85,7 @@ export const LoginPage: FC = () => {
 					<Grid item>
 						{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 						<Stack flexDirection={{ xs: "column", sm: "row" }} gap={1} alignItems="flex-start">
-							<Button sx={{ textTransform: "none" }}>
+							<Button sx={{ textTransform: "none" }} onClick={navigateToRestorePassword}>
 								<RestoreOutlined color="primary" />
 								{translate(texts_r.restore_password, { capitalize: true })}
 							</Button>

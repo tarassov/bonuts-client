@@ -2,7 +2,7 @@ export enum BntRoutes {
 	Login = "Login",
 	Logout = "Logout",
 	Registration = "Registration",
-	Restore = "Restore",
+	RequestRecover = "RequestRecover",
 	Recover = "Recover",
 	Dashboard = "Dashboard",
 	Donuts = "Donuts",

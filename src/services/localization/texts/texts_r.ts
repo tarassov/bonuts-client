@@ -11,4 +11,5 @@ export enum texts_r {
 	request_been_set_active = "request has been set as active",
 	request_has_been_refunded = "request has been refunded",
 	restore_password = "restore password",
+	recover_email_has_been_sent = "recover email has been sent",
 }

@@ -15,8 +15,12 @@ import { RegisterFields } from "@/types/form/register";
 
 export const RegistrationPage: FC = () => {
 	const { formSchema } = useRegisterValidation();
-	const { register: fieldRegister, handleSubmit } = useForm<RegisterFields>({
-		shouldUseNativeValidation: true,
+	const {
+		register: fieldRegister,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<RegisterFields>({
+		shouldUseNativeValidation: false,
 		resolver: yupResolver(formSchema),
 	});
 	const { isPostingRegister, register } = useSignUp();
@@ -25,9 +29,7 @@ export const RegistrationPage: FC = () => {
 
 	const onSubmit = async (data: RegisterFields) => {
 		const { passwordRepeat, ...args } = data;
-		const r = await register({ body: args });
-		// eslint-disable-next-line no-console
-		console.log(r);
+		await register({ body: args });
 	};
 
 	useLoader(Modules.Default, isPostingRegister);
@@ -43,6 +45,8 @@ export const RegistrationPage: FC = () => {
 				<TextField
 					margin="normal"
 					fullWidth
+					error={!!errors.first_name}
+					helperText={errors.first_name?.message}
 					required
 					{...fieldRegister("first_name", {
 						required: translate(texts_f.first_name),
@@ -53,6 +57,8 @@ export const RegistrationPage: FC = () => {
 				/>
 				<TextField
 					margin="normal"
+					error={!!errors.last_name}
+					helperText={errors.last_name?.message}
 					fullWidth
 					required
 					{...fieldRegister("last_name", { required: translate(texts_l.last_name) })}
@@ -60,6 +66,8 @@ export const RegistrationPage: FC = () => {
 				/>{" "}
 				<TextField
 					margin="normal"
+					error={!!errors.email}
+					helperText={errors.email?.message}
 					required
 					fullWidth
 					{...fieldRegister("email", { required: translate(texts_e.email_address) })}
@@ -67,6 +75,8 @@ export const RegistrationPage: FC = () => {
 				/>
 				<TextField
 					margin="normal"
+					error={!!errors.password}
+					helperText={errors.password?.message}
 					required
 					fullWidth
 					{...fieldRegister("password", { required: texts_p.password })}
@@ -75,6 +85,8 @@ export const RegistrationPage: FC = () => {
 				/>
 				<TextField
 					margin="normal"
+					error={!!errors.passwordRepeat}
+					helperText={errors.passwordRepeat?.message}
 					required
 					fullWidth
 					label={translate(texts_p.password_repeat, { capitalize: true })}

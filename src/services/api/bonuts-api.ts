@@ -202,6 +202,18 @@ const injectedRtkApi = api.injectEndpoints({
 		postRefreshToken: build.mutation<PostRefreshTokenApiResponse, PostRefreshTokenApiArg>({
 			query: () => ({ url: `/refresh_token`, method: "POST" }),
 		}),
+		getUsersRecover: build.query<GetUsersRecoverApiResponse, GetUsersRecoverApiArg>({
+			query: (queryArg) => ({
+				url: `/users/recover`,
+				params: { recover_token: queryArg.recoverToken },
+			}),
+		}),
+		putUsersPassword: build.mutation<PutUsersPasswordApiResponse, PutUsersPasswordApiArg>({
+			query: (queryArg) => ({ url: `/users/password`, method: "PUT", body: queryArg.body }),
+		}),
+		postUsersPassword: build.mutation<PostUsersPasswordApiResponse, PostUsersPasswordApiArg>({
+			query: (queryArg) => ({ url: `/users/password`, method: "POST", body: queryArg.body }),
+		}),
 	}),
 	overrideExisting: false,
 });
@@ -2529,6 +2541,43 @@ export type PostRefreshTokenApiResponse = /** status 200 success */ {
 	currentTenant?: (string | null) | null;
 };
 export type PostRefreshTokenApiArg = void;
+export type GetUsersRecoverApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			type?: string;
+			email?: string;
+			last_name?: string;
+			first_name?: string;
+			sex?: string;
+			note?: string;
+			email_confirmed?: boolean;
+			name?: string;
+		};
+	};
+};
+export type GetUsersRecoverApiArg = {
+	recoverToken?: string;
+};
+export type PutUsersPasswordApiResponse = /** status 200 success */ {
+	email_sent: boolean;
+};
+export type PutUsersPasswordApiArg = {
+	body: {
+		email: string;
+	};
+};
+export type PostUsersPasswordApiResponse = /** status 200 success */ {
+	auth_token: string;
+};
+export type PostUsersPasswordApiArg = {
+	body: {
+		recover_token: string;
+		password: string;
+	};
+};
 export const {
 	usePostAccountOperationsMutation,
 	useGetAccountOperationsQuery,
@@ -2574,4 +2623,7 @@ export const {
 	usePostLogoutMutation,
 	usePostSendConfirmEmailMutation,
 	usePostRefreshTokenMutation,
+	useGetUsersRecoverQuery,
+	usePutUsersPasswordMutation,
+	usePostUsersPasswordMutation,
 } = injectedRtkApi;
