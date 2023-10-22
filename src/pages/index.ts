@@ -17,7 +17,6 @@ export { ProfilePage } from "pages/profile-page/profile-page";
 export { RecoverPage } from "pages/recover-page/recover-page";
 export { RegistrationPage } from "pages/registration-page/registration-page";
 export { RequestsPage } from "pages/requests/requests-page/requests-page";
-export { RestorePasswordPage } from "pages/restore-password-page/restore-password-page";
 export { SettingsPage } from "pages/settings-page/settings-page";
 export { StatisticsPage } from "pages/statistics-page/statistics-page";
 export { TenantsListPage } from "pages/tenants-list-page/tenants-list-page";

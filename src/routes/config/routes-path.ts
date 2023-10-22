@@ -18,7 +18,7 @@ export const routesPath: Record<BntRoutes, string> = {
 	Event: "/event/:id",
 	Plugins: "/plugins",
 	Profile: "/my",
-	Restore: "/restore",
+	RequestRecover: "/recover_password",
 	Recover: "/recover_password/:token",
 	Registration: "/registration",
 	Requests: "/requests",

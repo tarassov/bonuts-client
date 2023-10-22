@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "pages/registration-page/registration-page.module.scss";
 import { PasswordRecoverRequest } from "components/password-recover/password-recover-request";
@@ -7,10 +7,16 @@ import { PasswordRecoverSet } from "components/password-recover/password-recover
 import { usePasswordRecover } from "logic/hooks/auth/use-password-recover";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
+import { useProjectNavigate } from "hooks/use-project-navigate";
 
 export const RecoverPage: FC = () => {
 	const { token } = useParams();
-	const { sendRecoverEmail, changePassword, isLoading } = usePasswordRecover(token);
+	const { sendRecoverEmail, changePassword, isLoading, isError } = usePasswordRecover(token);
+	const { navigateToLogin } = useProjectNavigate();
+
+	useEffect(() => {
+		if (isError) navigateToLogin();
+	}, [isError]);
 
 	useLoader(Modules.Default, isLoading);
 

@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import basicSsl from "@vitejs/plugin-basic-ssl";
+import pluginRewriteAll from "vite-plugin-rewrite-all";
 // import * as path from "path";
 import svgr from "vite-plugin-svgr";
 import dns from "dns";
@@ -14,6 +15,7 @@ export default defineConfig({
 		port: 3002,
 	},
 	plugins: [
+		pluginRewriteAll(), //Vite plugin that fix dev server not rewriting the path includes a dot. https://www.npmjs.com/package/vite-plugin-rewrite-all
 		basicSsl(),
 		react(),
 		tsconfigPaths(),

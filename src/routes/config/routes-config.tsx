@@ -47,7 +47,6 @@ import {
 	RecoverPage,
 	RegistrationPage,
 	RequestsPage,
-	RestorePasswordPage,
 	SettingsPage,
 	StatisticsPage,
 	StorePage,
@@ -179,6 +178,13 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		icon: <PersonOutlined />,
 		index: 1,
 	},
+	RequestRecover: {
+		path: routesPath[BntRoutes.RequestRecover],
+		anonymous: true,
+		authenticated: false,
+		hideInMenu: true,
+		component: <RecoverPage />,
+	},
 	Recover: {
 		path: routesPath[BntRoutes.Recover],
 		anonymous: true,
@@ -238,13 +244,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 			},
 		},
 	},
-	Restore: {
-		path: routesPath[BntRoutes.Restore],
-		anonymous: true,
-		authenticated: false,
-		hideInMenu: true,
-		component: <RestorePasswordPage />,
-	},
+
 	Settings: {
 		path: routesPath[BntRoutes.Settings],
 		anonymous: false,
