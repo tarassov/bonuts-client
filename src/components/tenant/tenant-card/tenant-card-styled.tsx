@@ -47,6 +47,9 @@ export const TenantCardStyled = styled(
 			gap: "12px",
 			alignItems: "center",
 		},
+		[cl(TENANT_CARD_CLASSES.error)]: {
+			color: theme.palette.error.main,
+		},
 		[cl(TENANT_CARD_CLASSES.cardHeaderHover)]: {
 			display: "flex",
 			flexDirection: "column",

@@ -8,4 +8,5 @@ export const TENANT_CARD_CLASSES = {
 	cardBody: "card-body",
 	cardTitle: "card-title",
 	captions: "captions",
+	error: "error",
 };

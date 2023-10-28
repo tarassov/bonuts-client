@@ -8,5 +8,6 @@ export type TenantCardProps = {
 	onSubmitActionClick?: VoidFunction;
 	cancelActionName?: string;
 	onCancelActionClick?: VoidFunction;
+	errorText?: string;
 };
 export const TenantCard: FC<TenantCardProps> = (props) => <TenantCardStyled {...props} />;
