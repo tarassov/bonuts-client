@@ -6,4 +6,5 @@ export enum texts_t {
 	transfer_points = "transfer points",
 	transfer_donuts = "transfer donuts",
 	transferred = "transferred",
+	transfer = "transfer",
 }

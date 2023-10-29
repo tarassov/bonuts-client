@@ -369,6 +369,7 @@ i18n.use(LanguageDetector).init({
 				"transfer points": "перевести монеты",
 				"transfer donuts": "перевести пончики",
 				to: "для",
+				[texts_t.transfer]: "перевести",
 				[texts_t.to_store]: "в магазин",
 				"to can transfer to others": "можно дарить коллегам",
 				"This field is required": "Это поле является обязательным",
