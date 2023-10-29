@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TenantCard } from "components/tenant/tenant-card/tenat-card";
+import { TenantCard } from "components/tenant/tenant-card/tenant-card";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_j } from "services/localization/texts";
 import { useTenant } from "logic/hooks/tenant/use-tenant";

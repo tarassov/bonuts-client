@@ -18,6 +18,7 @@ export type TenantCardPureProps = {
 	cancelActionName?: string;
 	onCancelActionClick?: VoidFunction;
 	className?: string;
+	errorText?: string;
 };
 
 export const TenantCardPure: FC<TenantCardPureProps> = ({
@@ -27,6 +28,7 @@ export const TenantCardPure: FC<TenantCardPureProps> = ({
 	cancelActionName,
 	onCancelActionClick = emptyFunction,
 	className,
+	errorText,
 }) => {
 	const { logo, caption } = tenant;
 	return (
@@ -43,6 +45,9 @@ export const TenantCardPure: FC<TenantCardPureProps> = ({
 					<div className={TENANT_CARD_CLASSES.captions}>
 						<BntTypography align="center" variant="subtitle1">
 							{caption}
+						</BntTypography>
+						<BntTypography className={TENANT_CARD_CLASSES.error} align="center" variant="caption">
+							{errorText}
 						</BntTypography>
 					</div>
 				</BntStack>

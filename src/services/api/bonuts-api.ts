@@ -2237,6 +2237,8 @@ export type GetTenantCurrentApiResponse = /** status 200 success */ {
 			updated_at: string;
 			domain: string;
 			demo: boolean;
+			attached?: boolean | null;
+			deactivated?: boolean | null;
 			logo: {
 				url: string;
 				thumb: {
@@ -2273,6 +2275,8 @@ export type PutTenantCurrentApiResponse = /** status 200 success */ {
 			updated_at: string;
 			domain: string;
 			demo: boolean;
+			attached?: boolean | null;
+			deactivated?: boolean | null;
 			logo: {
 				url: string;
 				thumb: {
@@ -2331,6 +2335,8 @@ export type GetTenantsAccessibleApiResponse = /** status 200 success */ {
 			updated_at: string;
 			domain: string;
 			demo: boolean;
+			attached?: boolean | null;
+			deactivated?: boolean | null;
 			logo: {
 				url: string;
 				thumb: {
@@ -2365,6 +2371,8 @@ export type GetTenantsApiResponse = /** status 200 success */ {
 			updated_at: string;
 			domain: string;
 			demo: boolean;
+			attached?: boolean | null;
+			deactivated?: boolean | null;
 			logo: {
 				url: string;
 				thumb: {
@@ -2433,6 +2441,8 @@ export type PostDemoAuthenticateApiResponse = /** status 200 success */ {
 		updated_at: string;
 		domain: string;
 		demo: boolean;
+		attached?: boolean | null;
+		deactivated?: boolean | null;
 		logo: {
 			url: string;
 			thumb: {
@@ -2466,6 +2476,8 @@ export type PostAuthenticateApiResponse = /** status 200 success */ {
 		updated_at: string;
 		domain: string;
 		demo: boolean;
+		attached?: boolean | null;
+		deactivated?: boolean | null;
 		logo: {
 			url: string;
 			thumb: {
@@ -2518,6 +2530,8 @@ export type PostRefreshTokenApiResponse = /** status 200 success */ {
 		updated_at: string;
 		domain: string;
 		demo: boolean;
+		attached?: boolean | null;
+		deactivated?: boolean | null;
 		logo: {
 			url: string;
 			thumb: {

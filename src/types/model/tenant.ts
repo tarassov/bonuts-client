@@ -21,4 +21,6 @@ export type TTenant = TBaseModel & {
 	join_to_company_points: number;
 	use_departments: boolean;
 	test?: boolean;
+	deactivated?: boolean | null;
+	attached?: boolean | null;
 };
