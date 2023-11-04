@@ -9,13 +9,18 @@ import {
 import { BntDialogContainer } from "shared/modal/dialog-container";
 import { isFunction } from "lodash";
 import { CommonStrings } from "constants/dictionary";
+import { useLocationTyped } from "hooks/use-location-typed";
+import { useNavigate } from "react-router-dom";
 import { TBntModalConfig } from "../types/dialog-types";
 
 export const BntDialogProvider: FC<{
 	config: TBntModalConfig<ModalType>;
 	path: string;
+	addressPath: string; // could be different for modal path's
 	children: JSX.Element | Array<JSX.Element>;
-}> = ({ children, config, path }) => {
+	defaultModal?: keyof ModalType;
+	defaultModalData?: any;
+}> = ({ children, config, path, addressPath, defaultModal, defaultModalData }) => {
 	type ModalState = Record<
 		string,
 		{
@@ -27,6 +32,8 @@ export const BntDialogProvider: FC<{
 			title: string;
 		}
 	>;
+	const navigate = useNavigate();
+	const location = useLocationTyped();
 
 	const [modals, setModal] = useState<ModalState | null>(null);
 
@@ -38,8 +45,18 @@ export const BntDialogProvider: FC<{
 	const showDialog = useCallback(
 		<T extends keyof typeof config.items>(name: T, data: ModalType[T], key?: string) => {
 			const modalKey = key || _uniqueId(`modal-${path}-`);
-			const { title } = config.items[name];
+			const { title, getPath } = config.items[name];
 			const modalTitle = isFunction(title) ? title(data as never) : title;
+
+			if (getPath) {
+				let newPath = getPath(data);
+				newPath = newPath[0] === "/" ? newPath : `/${newPath}`;
+				if (addressPath !== newPath) {
+					navigate(getPath(data), {
+						state: { background: location, name, data, modal: true },
+					});
+				}
+			}
 			setModal((prev) => {
 				return {
 					...prev,
@@ -50,6 +67,7 @@ export const BntDialogProvider: FC<{
 						title: modalTitle || CommonStrings.EMPTY_STRING,
 						renderItem: config.items[name]?.renderItem || ((d: T) => <div>{d}</div>),
 						hasTopMenu: config.items[name]?.hasTopMenu || false,
+						isTop: config.items[name]?.isTop || false,
 						preventCloseOnBackDropClick: config.items[name]?.preventCloseOnBackDropClick || false,
 					},
 				};
@@ -58,14 +76,30 @@ export const BntDialogProvider: FC<{
 		[path]
 	);
 
-	const handleClose = useCallback((key: string) => {
-		setModal((prev) => {
-			if (!prev) return null;
-			return Object.keys(prev).reduce((acc, curr) => {
-				if (curr !== key) acc[curr] = prev[curr];
-				return acc;
-			}, {} as ModalState);
-		});
+	const handleClose = useCallback(
+		(key: string, name: string) => {
+			const { items } = config;
+			if (name) {
+				const { getPath } = items[name as keyof typeof config.items];
+				if (getPath) {
+					navigate(-1);
+				}
+			}
+			setModal((prev) => {
+				if (!prev) return null;
+				return Object.keys(prev).reduce((acc, curr) => {
+					if (curr !== key) acc[curr] = prev[curr];
+					return acc;
+				}, {} as ModalState);
+			});
+		},
+		[config, navigate]
+	);
+
+	useEffect(() => {
+		if (defaultModal && defaultModalData) {
+			showDialog(defaultModal, defaultModalData);
+		}
 	}, []);
 
 	const modalsArray = useMemo(() => (modals ? Object.values(modals) : []), [modals]);

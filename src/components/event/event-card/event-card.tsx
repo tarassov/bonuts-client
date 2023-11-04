@@ -11,11 +11,17 @@ import { BntCardContent } from "shared/card/card-content";
 import { BntCardActions } from "shared/card/card-actions";
 import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
+import { useEventUi } from "logic/ui/use-event-ui";
+import { emptyFunction } from "utils/empty-function";
 import { TPost } from "@/types/model/post";
 import { BntStyledCardHeader } from "./event-card-header";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
 
-export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, className }) => {
+export const BntEventCard: FC<{ post: TPost; className?: string; preventNewModal?: boolean }> = ({
+	post,
+	className,
+	preventNewModal,
+}) => {
 	const {
 		profile,
 		public: isPublic,
@@ -35,6 +41,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 	const [edit, setEdit] = useState(false);
 	const { toggleLike, updateEvent } = useEventLogic();
 	const { showEmployeeModal } = useEmployeeUi();
+	const { showDetailedPost } = useEventUi(post);
 
 	const handleSubmitEdit = (e: any) => {
 		updateEvent(post, { content: e.target.content.value });
@@ -42,7 +49,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string }> = ({ post, cl
 		e.preventDefault();
 	};
 	const handleLike = () => toggleLike(post);
-	const handleComment = () => {};
+	const handleComment = !preventNewModal ? showDetailedPost : emptyFunction;
 	const handleEdit = (e: any) => {
 		e.preventDefault();
 		setEdit(() => !edit);

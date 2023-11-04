@@ -9,9 +9,11 @@ export const BntDialog: FC<
 		handleClose: (modal: TBntModal<any>) => void;
 		preventCloseOnBackDropClick?: boolean;
 		isLoading?: boolean;
+		isTop?: boolean;
 	}
 > = (props) => {
-	const { handleClose, modal, preventCloseOnBackDropClick, isLoading, ...sharedProps } = props;
+	const { handleClose, modal, preventCloseOnBackDropClick, isLoading, isTop, ...sharedProps } =
+		props;
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 	const onClose = (event: SyntheticEvent, reason: string) => {
@@ -25,6 +27,7 @@ export const BntDialog: FC<
 			onClose={onClose}
 			fullScreen={fullScreen && !isLoading && modal.allowFullscreen}
 			isLoading={isLoading}
+			isTop={isTop}
 		/>
 	);
 };

@@ -29,12 +29,20 @@ export type TBntModal<T> = {
 	title?: string | ((data: T) => string);
 	preventCloseOnBackDropClick?: boolean;
 	allowFullscreen?: boolean;
+	getPath?: (data: T) => string;
+	isTop?: boolean;
 };
 
 export type TBntModalItems<T> = {
 	[name in keyof T]: Pick<
 		TBntModal<T[name]>,
-		"renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title"
+		| "renderItem"
+		| "reposeType"
+		| "hasTopMenu"
+		| "preventCloseOnBackDropClick"
+		| "title"
+		| "getPath"
+		| "isTop"
 	>;
 };
 

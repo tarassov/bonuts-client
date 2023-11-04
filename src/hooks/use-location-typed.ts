@@ -4,6 +4,9 @@ export interface ILocationProps extends Location {
 	state: {
 		from?: Location;
 		background?: Location;
+		modal?: boolean;
+		name?: string;
+		data?: any;
 	};
 }
 

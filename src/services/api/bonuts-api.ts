@@ -72,6 +72,9 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant, showMine: queryArg.showMine, page: queryArg.page },
 			}),
 		}),
+		getEventsById: build.query<GetEventsByIdApiResponse, GetEventsByIdApiArg>({
+			query: (queryArg) => ({ url: `/events/${queryArg.id}` }),
+		}),
 		putEventsById: build.mutation<PutEventsByIdApiResponse, PutEventsByIdApiArg>({
 			query: (queryArg) => ({ url: `/events/${queryArg.id}`, method: "PUT", body: queryArg.body }),
 		}),
@@ -539,8 +542,23 @@ export type GetDonutsApiResponse = /** status 200 success */ {
 						url: string | null;
 					};
 				};
+				profile?: {
+					id: number;
+					name: string;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+				};
 				user_name: string;
 				date_string: string;
+				date_string_utc?: string;
 			}[];
 		};
 	}[];
@@ -593,8 +611,23 @@ export type PostDonutsApiResponse = /** status 200 success */ {
 						url: string | null;
 					};
 				};
+				profile?: {
+					id: number;
+					name: string;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+				};
 				user_name: string;
 				date_string: string;
+				date_string_utc?: string;
 			}[];
 		};
 	}[];
@@ -651,8 +684,23 @@ export type GetDonutsByIdApiResponse = /** status 200 sends donut */ {
 						url: string | null;
 					};
 				};
+				profile?: {
+					id: number;
+					name: string;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+				};
 				user_name: string;
 				date_string: string;
+				date_string_utc?: string;
 			}[];
 		};
 	};
@@ -705,8 +753,23 @@ export type PutDonutsByIdApiResponse = /** status 200 success */ {
 						url: string | null;
 					};
 				};
+				profile?: {
+					id: number;
+					name: string;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+				};
 				user_name: string;
 				date_string: string;
+				date_string_utc?: string;
 			}[];
 		};
 	}[];
@@ -731,6 +794,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 		type: string;
 		attributes: {
 			content: string;
+			event_name: string | null;
 			extra_content?: string | null;
 			id: number;
 			date_string: string;
@@ -752,8 +816,23 @@ export type GetEventsApiResponse = /** status 200 success */ {
 						url: string | null;
 					};
 				};
+				profile?: {
+					id: number;
+					name: string;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+				};
 				user_name: string;
 				date_string: string;
+				date_string_utc?: string;
 			}[];
 			comments_count: number;
 			user_avatar: {
@@ -807,6 +886,102 @@ export type GetEventsApiArg = {
 	showMine?: string;
 	page?: number;
 };
+export type GetEventsByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			content: string;
+			event_name: string | null;
+			extra_content?: string | null;
+			id: number;
+			date_string: string;
+			profile_id: number;
+			user_id: number;
+			user_name: string;
+			comments: {
+				id: number;
+				content: string;
+				liked?: boolean;
+				likes: number;
+				public: boolean;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				profile?: {
+					id: number;
+					name: string;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+				};
+				user_name: string;
+				date_string: string;
+				date_string_utc?: string;
+			}[];
+			comments_count: number;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			editable?: boolean;
+			liked: boolean;
+			likes: {
+				id: number;
+				profile_id: number;
+				created_at?: string;
+				likeable_type?: string;
+				likeable_id?: number;
+			}[];
+			public: boolean;
+			position: string;
+			operation?: {
+				id: number;
+				direction?: number;
+				amount?: number;
+				deal_type?: string;
+				created_at: string;
+				created_at_utc?: string;
+				to_user_name?: string;
+				to_profile?: {
+					id: number;
+					user_name?: string;
+					user_avatar?: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+					position?: string;
+				};
+			} | null;
+		};
+	};
+};
+export type GetEventsByIdApiArg = {
+	id: string;
+};
 export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 	data?: {
 		data?: {
@@ -814,6 +989,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 			type: string;
 			attributes: {
 				content: string;
+				event_name: string | null;
 				extra_content?: string | null;
 				id: number;
 				date_string: string;
@@ -835,8 +1011,23 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 							url: string | null;
 						};
 					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
 					user_name: string;
 					date_string: string;
+					date_string_utc?: string;
 				}[];
 				comments_count: number;
 				user_avatar: {
@@ -1469,8 +1660,23 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 							url: string | null;
 						};
 					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
 					user_name: string;
 					date_string: string;
+					date_string_utc?: string;
 				}[];
 			};
 			profile: {
@@ -1593,8 +1799,23 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 							url: string | null;
 						};
 					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
 					user_name: string;
 					date_string: string;
+					date_string_utc?: string;
 				}[];
 			};
 			profile: {
@@ -1717,8 +1938,23 @@ export type PostRequestsActivateApiResponse = /** status 200 success */ {
 							url: string | null;
 						};
 					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
 					user_name: string;
 					date_string: string;
+					date_string_utc?: string;
 				}[];
 			};
 			profile: {
@@ -1841,8 +2077,23 @@ export type PostRequestsRefundApiResponse = /** status 200 success */ {
 							url: string | null;
 						};
 					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
 					user_name: string;
 					date_string: string;
+					date_string_utc?: string;
 				}[];
 			};
 			profile: {
@@ -1965,8 +2216,23 @@ export type PostRequestsRollbackApiResponse = /** status 200 success */ {
 							url: string | null;
 						};
 					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
 					user_name: string;
 					date_string: string;
+					date_string_utc?: string;
 				}[];
 			};
 			profile: {
@@ -2089,8 +2355,23 @@ export type PostRequestsCloseApiResponse = /** status 200 success */ {
 							url: string | null;
 						};
 					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
 					user_name: string;
 					date_string: string;
+					date_string_utc?: string;
 				}[];
 			};
 			profile: {
@@ -2608,6 +2889,7 @@ export const {
 	useGetDonutsByIdQuery,
 	usePutDonutsByIdMutation,
 	useGetEventsQuery,
+	useGetEventsByIdQuery,
 	usePutEventsByIdMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,
