@@ -100,6 +100,7 @@ i18n.use(LanguageDetector).init({
 				Confirm: "Подтвердить почтовый адрес",
 				"Confirmation dialog": "Подтверждение",
 				confirmation: "подтверждение",
+				[texts_c.comment]: "комментарий",
 				[texts_c.confirmation_email_was_sent_to]:
 					"Письмо для подтверждения было отправлено на ваш электронный адрес",
 				"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
@@ -109,7 +110,6 @@ i18n.use(LanguageDetector).init({
 				[texts_c.confirmed]: "подтверждено",
 				code: "код",
 				Comment: "Комментарий",
-				comment: "комментарий",
 				Contact: "Контакт",
 				"Comment saved": "Комментарий сохранен",
 				"Click to select files": "Нажмите, чтобы выбрать фото",
@@ -350,6 +350,7 @@ i18n.use(LanguageDetector).init({
 				Schedulers: "Расписания",
 				Sign_Out: "Выход",
 				Sign_In: "Войти",
+				[texts_s.send]: "Отправить",
 				[texts_s.sign_in]: "войти",
 				[texts_s.sign_up]: "регистрация",
 				Sign_Up: "Регистрация",

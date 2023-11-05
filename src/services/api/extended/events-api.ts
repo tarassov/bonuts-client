@@ -2,6 +2,7 @@ import { updateQueryData } from "services/api/update-query-data";
 import { GetEventsApiResponse } from "services/api/bonuts-api";
 import { bonutsApiOverride } from "services/api/injected-api";
 import { getPaginator } from "services/api/helpers/get-paginator";
+import { cacheByIdArgProperty } from "services/redux/utils/rtk-cache-utils";
 import { TPageable } from "@/types/api/api";
 
 // noinspection TypeScriptValidateJSTypes
@@ -26,5 +27,7 @@ export const eventsApi = bonutsApiOverride.enhanceEndpoints({
 				});
 			},
 		},
+		getEventsById: { providesTags: cacheByIdArgProperty("Event") },
 	},
 });
+export const { useGetEventsByIdQuery } = eventsApi;

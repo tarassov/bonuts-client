@@ -1,15 +1,16 @@
 import { styled } from "@mui/material/styles";
 import { cl } from "themes/helper";
 import { EVENT_CARD_CLASSES } from "./classes";
-import { BntEventCard } from "./event-card";
+import { BntEventCard, BntEventCardProps } from "./event-card";
 
 const iconFontSize = "16px";
 
 export const BntStyledEventCard = styled(
 	BntEventCard,
 	{}
-)(({ theme }) => {
+)<BntEventCardProps & { bodyMaxHeight?: string | number }>(({ theme, bodyMaxHeight = 300 }) => {
 	return {
+		width: "100%",
 		backgroundColor: theme.palette.background.paper,
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		maxWidth: 700,
@@ -17,6 +18,10 @@ export const BntStyledEventCard = styled(
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
+		[cl(EVENT_CARD_CLASSES.cardContent)]: {
+			maxHeight: bodyMaxHeight,
+			overflow: "auto",
+		},
 		[cl(EVENT_CARD_CLASSES.cardPrivate)]: {
 			backgroundColor: theme.palette.info.light,
 		},

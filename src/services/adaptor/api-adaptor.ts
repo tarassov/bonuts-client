@@ -3,11 +3,12 @@ import { apiRequestsAdaptor } from "services/adaptor/api-requests-adaptor";
 import { apiOperationAdaptor } from "services/adaptor/api-operation-adaptor";
 import { apiTenantAdaptor, apiTenantsAdaptor } from "services/adaptor/api-tenant-adaptor";
 import { apiInvitationsAdaptor } from "services/adaptor/api-invitation-adaptor";
-import { apiEventsToPosts } from "./api-events-to-posts";
+import { apiEventsToPosts, apiEventToPost } from "./api-events-to-posts";
 
 export const apiAdaptor = (() => {
 	return {
 		toPosts: apiEventsToPosts,
+		toPost: apiEventToPost,
 		toDonuts: apiDonutsToDonuts,
 		toDonut: apiDonutToDonut,
 		toRequests: apiRequestsAdaptor,

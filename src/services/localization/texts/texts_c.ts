@@ -5,6 +5,7 @@ export enum texts_c {
 	"create" = "create",
 	"created" = "created",
 	"contact" = "Contact",
+	"comment" = "comment",
 	"confirmation" = "confirmation",
 	"confirm" = "confirm",
 	"confirmed" = "confirmed",

@@ -11,5 +11,6 @@ export enum texts_s {
 	supply_days = "supply days",
 	settings_updated = " settings updated",
 	sign_in = "sign in",
+	send = "send",
 	sign_up = "регистрация",
 }

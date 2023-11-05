@@ -8,6 +8,7 @@ import { BntRoutes } from "routes/config/routes";
 import _ from "lodash";
 import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
 import { PageWrapper } from "pages/page-wrapper";
+import { ModalType } from "config/modal-config";
 
 interface ISwitchRoutesProps {
 	routes: Array<TRoute<any>>;
@@ -15,7 +16,13 @@ interface ISwitchRoutesProps {
 	redirects?: Array<TRedirect>;
 }
 
-const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
+const getRoute = (
+	route: TRoute<any>,
+	auth: TAuthState,
+	path: string,
+	modalName?: keyof ModalType,
+	modalData?: any
+): JSX.Element => {
 	if (auth.isAuthenticated && !auth.tenant && (!route.tenantNotRequired || route.path === "/")) {
 		return <Navigate to={routesPath[BntRoutes.TenantList]} />;
 	}
@@ -26,7 +33,13 @@ const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 		return <Navigate to="/" />;
 	}
 	return auth.isAuthenticated || route.anonymous ? (
-		<PageWrapper children={route.component} path={route.path} />
+		<PageWrapper
+			children={route.component}
+			path={route.path}
+			addressPath={path}
+			modalData={modalData}
+			modalName={modalName}
+		/>
 	) : (
 		<Navigate to={route.redirect || routesPath[BntRoutes.Login]} />
 	);
@@ -35,8 +48,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState): JSX.Element => {
 const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 	const location = useLocationTyped();
 	const { checkAuth, isAuthLoading, auth, currentRoles } = useAuth();
-	const background = location.state && location.state.background;
-
+	const { background, name, data } = location.state || {};
 	useEffect(() => {
 		checkAuth();
 	}, []);
@@ -83,14 +95,20 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 							auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? (
 								<ForbiddenPage />
 							) : (
-								getRoute(route, auth)
+								getRoute(route, auth, location.pathname, name as keyof ModalType, data)
 							);
 						return <Route path={route.path} element={element} key={route.path} />;
 					})}
 
 			{anonymousRoutes &&
 				anonymousRoutes.map((route) => {
-					return <Route path={route.path} element={getRoute(route, auth)} key={route.path} />;
+					return (
+						<Route
+							path={route.path}
+							element={getRoute(route, auth, location.pathname)}
+							key={route.path}
+						/>
+					);
 				})}
 		</Routes>
 	);

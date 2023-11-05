@@ -39,11 +39,12 @@ export const BntDialogContainer = () => {
 				return (
 					<BntDialog
 						key={modal.modalKey}
-						handleClose={() => handleClose(modal.modalKey)}
+						handleClose={() => handleClose(modal.modalKey, modal.name)}
 						modal={modal}
 						open={Boolean(modal.modalKey)}
 						preventCloseOnBackDropClick={modal.preventCloseOnBackDropClick}
 						isLoading={isLoading}
+						isTop={modal.isTop}
 					>
 						<BntModalLoader loading={isLoading} />
 						<Box sx={isLoading ? { display: "none" } : undefined}>
@@ -57,7 +58,7 @@ export const BntDialogContainer = () => {
 										sx={{ color: "success.dark" }}
 									>
 										<BntTypography variant="h5">{title}</BntTypography>
-										<BntIconButton onClick={() => handleClose(modal.modalKey)}>
+										<BntIconButton onClick={() => handleClose(modal.modalKey, modal.name)}>
 											<CloseOutlined />
 										</BntIconButton>
 									</BntStack>
@@ -65,12 +66,12 @@ export const BntDialogContainer = () => {
 								</>
 							) : null}
 							{modal.renderItem(modal, {
-								close: () => handleClose(modal.modalKey),
+								close: () => handleClose(modal.modalKey, modal.name),
 								setModalLoading: (value) => moduleSetLoading(modal.modalKey, value),
 							})}
 							{fullScreen && (
 								<BntStack justifyContent="center">
-									<BntRoundButton onClick={() => handleClose(modal.modalKey)}>
+									<BntRoundButton onClick={() => handleClose(modal.modalKey, modal.name)}>
 										{t(texts_c.close)}
 									</BntRoundButton>
 								</BntStack>

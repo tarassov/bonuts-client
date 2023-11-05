@@ -6,9 +6,9 @@ import { useBntForm } from "../hooks/use-bnt-form";
 export const BntTextAreaField = (props: {
 	name: string;
 	id?: string;
-	placeholder: string | undefined;
+	placeholder?: string | undefined;
 	label?: string;
-	value: TFormValue;
+	value?: TFormValue;
 	maxRows?: number;
 	minRows?: number;
 	rows?: number;

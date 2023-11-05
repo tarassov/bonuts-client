@@ -9,6 +9,8 @@ import { texts_c } from "services/localization/texts";
 import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-circle";
 import { ModalAdminDeposit } from "components/modals/modal-admin-deposit/modal-admin-deposit";
 import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
+import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal-detailed-event";
+import { TPost } from "@/types/model/post";
 
 export type ModalType = {
 	SimpleTextModal: string;
@@ -20,6 +22,7 @@ export type ModalType = {
 	ConfirmationModal: { text: string; onSubmit: VoidFunction; title?: string };
 	AdminDepositModal: { title?: string; id: number };
 	TransferModal: { title?: string; id: number };
+	DetailedEvent: { post: TPost };
 };
 
 export type ModalTypeResponse = {
@@ -79,6 +82,13 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 			hasTopMenu: true,
 			title: (data) => data.title || "Transfer",
 			preventCloseOnBackDropClick: true,
+		},
+		DetailedEvent: {
+			renderItem: (modal, props) => <ModalDetailedEvent post={modal.data.post} {...props} />,
+			hasTopMenu: true,
+			title: (data) => data.post.title,
+			getPath: (data) => `event/${data.post.id}`,
+			isTop: true,
 		},
 	},
 };
