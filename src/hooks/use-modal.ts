@@ -8,7 +8,7 @@ export const useModal = () => {
 
 	const closeAll = useCallback(() => {
 		Object.keys(modalConfig.items).forEach((modal) => {
-			handleClose(modal);
+			handleClose(modal, modal);
 		});
 	}, [modalConfig.items]);
 
@@ -19,7 +19,7 @@ export const useModal = () => {
 			show: (data: ModalType[typeof key]) => {
 				showModal(key, data);
 			},
-			hide: () => handleClose(key),
+			hide: () => handleClose(key, key),
 		};
 		return acc;
 	}, {} as { [k in keyof ModalType]: { name: keyof ModalType; show: (data: ModalType[k]) => void; hide: VoidFunction } });
