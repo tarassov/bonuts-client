@@ -7,5 +7,6 @@ export type TEvent = TBaseModel & {
 	content?: string;
 	extra_content?: string;
 	date_string?: string;
+	date_string_utc?: string;
 	editable?: boolean;
 };

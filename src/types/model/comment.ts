@@ -14,4 +14,5 @@ export type TComment = TBaseModel & {
 	user_avatar: TPicture;
 	user_name: string;
 	date_string: string;
+	date_string_utc?: string;
 };

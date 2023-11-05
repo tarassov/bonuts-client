@@ -73,10 +73,20 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		getEventsById: build.query<GetEventsByIdApiResponse, GetEventsByIdApiArg>({
-			query: (queryArg) => ({ url: `/events/${queryArg.id}` }),
+			query: (queryArg) => ({ url: `/events/${queryArg.id}`, params: { tenant: queryArg.tenant } }),
 		}),
 		putEventsById: build.mutation<PutEventsByIdApiResponse, PutEventsByIdApiArg>({
 			query: (queryArg) => ({ url: `/events/${queryArg.id}`, method: "PUT", body: queryArg.body }),
+		}),
+		postEventsByIdComments: build.mutation<
+			PostEventsByIdCommentsApiResponse,
+			PostEventsByIdCommentsApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/events/${queryArg.id}/comments`,
+				method: "POST",
+				body: queryArg.body,
+			}),
 		}),
 		postInvitationsByIdAccept: build.mutation<
 			PostInvitationsByIdAcceptApiResponse,
@@ -798,6 +808,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 			extra_content?: string | null;
 			id: number;
 			date_string: string;
+			date_string_utc?: string;
 			profile_id: number;
 			user_id: number;
 			user_name: string;
@@ -896,6 +907,7 @@ export type GetEventsByIdApiResponse = /** status 200 success */ {
 			extra_content?: string | null;
 			id: number;
 			date_string: string;
+			date_string_utc?: string;
 			profile_id: number;
 			user_id: number;
 			user_name: string;
@@ -981,6 +993,7 @@ export type GetEventsByIdApiResponse = /** status 200 success */ {
 };
 export type GetEventsByIdApiArg = {
 	id: string;
+	tenant?: string;
 };
 export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 	data?: {
@@ -993,6 +1006,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 				extra_content?: string | null;
 				id: number;
 				date_string: string;
+				date_string_utc?: string;
 				profile_id: number;
 				user_id: number;
 				user_name: string;
@@ -1081,6 +1095,109 @@ export type PutEventsByIdApiArg = {
 	id: string;
 	body: {
 		like: boolean;
+		tenant: string;
+	};
+};
+export type PostEventsByIdCommentsApiResponse = /** status 200 new comment created */ {
+	data?: {
+		data?: {
+			id: string;
+			type: string;
+			attributes: {
+				content: string;
+				event_name: string | null;
+				extra_content?: string | null;
+				id: number;
+				date_string: string;
+				date_string_utc?: string;
+				profile_id: number;
+				user_id: number;
+				user_name: string;
+				comments: {
+					id: number;
+					content: string;
+					liked?: boolean;
+					likes: number;
+					public: boolean;
+					user_avatar: {
+						url: string | null;
+						thumb: {
+							url: string | null;
+						};
+						preview: {
+							url: string | null;
+						};
+					};
+					profile?: {
+						id: number;
+						name: string;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+					};
+					user_name: string;
+					date_string: string;
+					date_string_utc?: string;
+				}[];
+				comments_count: number;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				editable?: boolean;
+				liked: boolean;
+				likes: {
+					id: number;
+					profile_id: number;
+					created_at?: string;
+					likeable_type?: string;
+					likeable_id?: number;
+				}[];
+				public: boolean;
+				position: string;
+				operation?: {
+					id: number;
+					direction?: number;
+					amount?: number;
+					deal_type?: string;
+					created_at: string;
+					created_at_utc?: string;
+					to_user_name?: string;
+					to_profile?: {
+						id: number;
+						user_name?: string;
+						user_avatar?: {
+							url: string | null;
+							thumb: {
+								url: string | null;
+							};
+							preview: {
+								url: string | null;
+							};
+						};
+						position?: string;
+					};
+				} | null;
+			};
+		}[];
+	};
+};
+export type PostEventsByIdCommentsApiArg = {
+	id: string;
+	body: {
+		text: string;
 		tenant: string;
 	};
 };
@@ -2891,6 +3008,7 @@ export const {
 	useGetEventsQuery,
 	useGetEventsByIdQuery,
 	usePutEventsByIdMutation,
+	usePostEventsByIdCommentsMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,
 	usePostInvitationsMutation,

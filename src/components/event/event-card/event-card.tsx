@@ -13,15 +13,13 @@ import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { useEventUi } from "logic/ui/use-event-ui";
 import { emptyFunction } from "utils/empty-function";
+import { formatStringDate } from "utils/format-string-date";
 import { TPost } from "@/types/model/post";
 import { BntStyledCardHeader } from "./event-card-header";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
 
-export const BntEventCard: FC<{ post: TPost; className?: string; preventNewModal?: boolean }> = ({
-	post,
-	className,
-	preventNewModal,
-}) => {
+export type BntEventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
+export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNewModal }) => {
 	const {
 		profile,
 		public: isPublic,
@@ -32,8 +30,8 @@ export const BntEventCard: FC<{ post: TPost; className?: string; preventNewModal
 		comments_count,
 		likes,
 		liked,
-		date_string,
 		editable,
+		date_string_utc,
 	} = post;
 	const { user_name, user_avatar, position } = profile;
 	const { t } = useTranslation();
@@ -99,7 +97,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string; preventNewModal
 				subheader={isPublic && position}
 			/>
 
-			<BntCardContent>
+			<BntCardContent className={EVENT_CARD_CLASSES.cardContent}>
 				{post.operation && (
 					<BntStyledOperationText
 						operation={post.operation}
@@ -183,7 +181,7 @@ export const BntEventCard: FC<{ post: TPost; className?: string; preventNewModal
 					component="div"
 					className={EVENT_CARD_CLASSES.cardDateCaption}
 				>
-					{date_string}
+					{formatStringDate(date_string_utc, false, true)}
 				</Typography>
 			</BntCardActions>
 		</BntCard>

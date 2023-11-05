@@ -6,6 +6,7 @@ export const CommentCardStyled = styled(
 	{}
 )(({ theme }) => {
 	return {
+		width: "100%",
 		backgroundColor: theme.palette.background.paper,
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		maxWidth: 700,
