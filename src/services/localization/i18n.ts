@@ -83,6 +83,7 @@ i18n.use(LanguageDetector).init({
 				Balance: "Баланс",
 				"birthday donuts": "пончики на день рождения",
 				[texts_b.birthday_points]: "монеты на день рождения",
+				[texts_b.birthday_message]: "сообщение на день рождения",
 				[texts_b.blocked]: "заблокировано",
 				back: "назад",
 				Buy: "Купить",

@@ -143,6 +143,17 @@ export const useTenantFormFields = () => {
 			xs: 12,
 			group: 2,
 		},
+		{
+			disabled: false,
+			type: TFieldType.text,
+			image: false,
+			size: TFieldSize.xs,
+			name: "birthday_message",
+			label: texts_b.birthday_message,
+			required: false,
+			xs: 12,
+			group: 2,
+		},
 	];
 
 	return { fields, groups };

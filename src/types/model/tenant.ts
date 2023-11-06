@@ -23,4 +23,5 @@ export type TTenant = TBaseModel & {
 	test?: boolean;
 	deactivated?: boolean | null;
 	attached?: boolean | null;
+	birthday_message?: string | null;
 };

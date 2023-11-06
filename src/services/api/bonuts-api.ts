@@ -2634,6 +2634,7 @@ export type GetTenantCurrentApiResponse = /** status 200 success */ {
 			created_at: string;
 			updated_at: string;
 			domain: string;
+			birthday_message?: string;
 			demo: boolean;
 			attached?: boolean | null;
 			deactivated?: boolean | null;
@@ -2672,6 +2673,7 @@ export type PutTenantCurrentApiResponse = /** status 200 success */ {
 			created_at: string;
 			updated_at: string;
 			domain: string;
+			birthday_message?: string;
 			demo: boolean;
 			attached?: boolean | null;
 			deactivated?: boolean | null;
@@ -2732,6 +2734,7 @@ export type GetTenantsAccessibleApiResponse = /** status 200 success */ {
 			created_at: string;
 			updated_at: string;
 			domain: string;
+			birthday_message?: string;
 			demo: boolean;
 			attached?: boolean | null;
 			deactivated?: boolean | null;
@@ -2768,6 +2771,7 @@ export type GetTenantsApiResponse = /** status 200 success */ {
 			created_at: string;
 			updated_at: string;
 			domain: string;
+			birthday_message?: string;
 			demo: boolean;
 			attached?: boolean | null;
 			deactivated?: boolean | null;
@@ -2838,6 +2842,7 @@ export type PostDemoAuthenticateApiResponse = /** status 200 success */ {
 		created_at: string;
 		updated_at: string;
 		domain: string;
+		birthday_message?: string;
 		demo: boolean;
 		attached?: boolean | null;
 		deactivated?: boolean | null;
@@ -2873,6 +2878,7 @@ export type PostAuthenticateApiResponse = /** status 200 success */ {
 		created_at: string;
 		updated_at: string;
 		domain: string;
+		birthday_message?: string;
 		demo: boolean;
 		attached?: boolean | null;
 		deactivated?: boolean | null;
@@ -2927,6 +2933,7 @@ export type PostRefreshTokenApiResponse = /** status 200 success */ {
 		created_at: string;
 		updated_at: string;
 		domain: string;
+		birthday_message?: string;
 		demo: boolean;
 		attached?: boolean | null;
 		deactivated?: boolean | null;
