@@ -207,6 +207,7 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		hideInMenu: false,
 		component: <RequestsPage />,
 		icon: <ForwardToInboxOutlined />,
+		roles: groupAdmins,
 		children: {
 			IncomingRequests: {
 				path: routesPath[BntRoutes.IncomingRequests],

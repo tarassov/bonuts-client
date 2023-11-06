@@ -12,5 +12,6 @@ export enum texts_s {
 	settings_updated = " settings updated",
 	sign_in = "sign in",
 	send = "send",
-	sign_up = "регистрация",
+	sign_up = "sign_up",
+	soon_will_be_back = "soon_will_be_back",
 }

@@ -14,6 +14,7 @@ import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { useEventUi } from "logic/ui/use-event-ui";
 import { emptyFunction } from "utils/empty-function";
 import { formatStringDate } from "utils/format-string-date";
+import { BntTypography } from "shared/typography/typography";
 import { TPost } from "@/types/model/post";
 import { BntStyledCardHeader } from "./event-card-header";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
@@ -106,9 +107,9 @@ export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNe
 					/>
 				)}
 				{!edit && (
-					<Typography variant="body2" component="p">
+					<BntTypography variant="body2" isPreformatted>
 						{content}
-					</Typography>
+					</BntTypography>
 				)}
 				{edit && (
 					<Box

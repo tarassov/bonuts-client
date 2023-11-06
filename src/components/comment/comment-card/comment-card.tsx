@@ -12,6 +12,7 @@ import { BntCardActions } from "shared/card/card-actions";
 import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
 import { BntStack } from "shared/stack/stack";
 import { formatStringDate } from "utils/format-string-date";
+import { BntTypography } from "shared/typography/typography";
 import { TComment } from "@/types/model/comment";
 
 export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
@@ -48,9 +49,9 @@ export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
 				subheader={employee?.position}
 			/>
 			<BntCardContent>
-				<Typography variant="body2" component="p">
+				<BntTypography variant="body2" isPreformatted>
 					{content}
-				</Typography>
+				</BntTypography>
 			</BntCardContent>
 			<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
 				<BntStack direction="row" justifyContent="flex-end" className="width-100">

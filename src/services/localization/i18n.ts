@@ -353,6 +353,7 @@ i18n.use(LanguageDetector).init({
 				[texts_s.send]: "Отправить",
 				[texts_s.sign_in]: "войти",
 				[texts_s.sign_up]: "регистрация",
+				[texts_s.soon_will_be_back]: "Он улетел, но обещал вернуться",
 				Sign_Up: "Регистрация",
 				Statistic: "Статистика",
 				"start typing": "начните ввод",
