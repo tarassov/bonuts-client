@@ -47,7 +47,10 @@ export const BntDialogContainer = () => {
 						isTop={modal.isTop}
 					>
 						<BntModalLoader loading={isLoading} />
-						<Box sx={isLoading ? { display: "none" } : undefined}>
+						<Box
+							className="bnt-dialog-box"
+							sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}
+						>
 							{modal.hasTopMenu && !fullScreen ? (
 								<>
 									<BntStack
