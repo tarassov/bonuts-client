@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
+import { UnderConstruct } from "pages/under-construct";
 
 export const StatisticsPage: FC = () => {
-	return <Typography>StatisticsPage</Typography>;
+	return <UnderConstruct />;
 };
