@@ -3,7 +3,7 @@ import { LocaleContext } from "shared/locale/locale-context";
 import enLocale from "date-fns/locale/en-US";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 
-export const getDateLocale = () => Intl.DateTimeFormat().resolvedOptions().locale;
+export const getDateLocale = () => navigator.language; // Intl.DateTimeFormat().resolvedOptions().locale;
 export const LocaleProvider: FC<{ children: JSX.Element | Array<JSX.Element> }> = ({
 	children,
 }) => {
