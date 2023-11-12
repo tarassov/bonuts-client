@@ -174,7 +174,7 @@ i18n.use(LanguageDetector).init({
 				[texts_e.email_notification]: "оповещения по почте",
 				[texts_e.email_confirmation]: "подтверждение почты",
 				[texts_e.empty_events_placeholder]: "здесь будут отображаться все события",
-				[texts_e.edit]: "редакатировать",
+				[texts_e.edit]: "редактировать",
 				Email: "Email",
 				[texts_e.email_address]: "почтовый адрес",
 				error: "ошибка",
@@ -204,6 +204,7 @@ i18n.use(LanguageDetector).init({
 				"Hide snow": "Убрать снег",
 
 				// I
+				Invitations: "Приглашения",
 				"Incoming requests": "Входящие запросы",
 				incoming: "входящие",
 				"in date": "дата приема",
@@ -251,6 +252,9 @@ i18n.use(LanguageDetector).init({
 				"No options": "Нет вариантов",
 				"not active": "не активен",
 				[texts_n.not_found]: "не найдено",
+				[texts_n.new_invitation]: "новое приглашение",
+				[texts_n.new_invitation_was_created]: "Новое приглашение было создано",
+				[texts_n.new_invitation_email_was_sent]: "Письмо с приглашением было отправлено",
 				// O
 				"on stock": "в наличии",
 				"Only you can see it": "Только вы это видите",
