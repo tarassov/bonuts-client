@@ -27,6 +27,7 @@ export const BntFormBody: FC<
 	values,
 	onDiscard,
 	error,
+	keepValuesOnSubmit = true,
 }) => {
 	const { translate } = useBntTranslate();
 	const { reset } = useFormContext();
@@ -34,7 +35,7 @@ export const BntFormBody: FC<
 
 	useEffect(() => {
 		if (isSubmitSuccessful) {
-			reset({}, { keepValues: true });
+			reset({}, { keepValues: keepValuesOnSubmit });
 		}
 	}, [isSubmitSuccessful, reset]);
 

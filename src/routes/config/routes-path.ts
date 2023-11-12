@@ -31,4 +31,5 @@ export const routesPath: Record<BntRoutes, string> = {
 	TenantList: "/tenants_list",
 	Circles: "/circles",
 	ConfirmEmail: "/confirm_email/:token",
+	Invitations: "/invitations",
 };

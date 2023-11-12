@@ -10,6 +10,7 @@ import {
 	ForwardToInboxOutlined,
 	InboxOutlined,
 	LeaderboardOutlined,
+	LibraryAddOutlined,
 	LogoutOutlined,
 	PeopleAltOutlined,
 	PersonOutlined,
@@ -29,6 +30,7 @@ import { DonutEditPage } from "pages/donut/donut-edit-page";
 import { Roles } from "constants/roles";
 import { useIcons } from "hooks/use-icons";
 import { ConfirmEmailPage } from "pages/confirm-email-page/confirm-email-page";
+import { InvitationPage } from "pages/invitation/invitation-page";
 import {
 	AccountOperationsPage,
 	CirclesPage,
@@ -191,6 +193,16 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		authenticated: false,
 		hideInMenu: true,
 		component: <RecoverPage />,
+	},
+	Invitations: {
+		path: routesPath[BntRoutes.Invitations],
+		anonymous: false,
+		authenticated: true,
+		navbarName: "Invitations",
+		hideInMenu: false,
+		component: <InvitationPage />,
+		icon: <LibraryAddOutlined />,
+		roles: groupAdmins,
 	},
 	Registration: {
 		path: routesPath[BntRoutes.Registration],

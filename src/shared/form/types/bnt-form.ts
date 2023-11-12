@@ -1,4 +1,4 @@
-import { UseFormRegisterReturn } from "react-hook-form";
+import { Resolver, UseFormRegisterReturn } from "react-hook-form";
 import { SystemStyleObject } from "@mui/system/styleFunctionSx/styleFunctionSx";
 import { Theme } from "@mui/material/styles";
 
@@ -119,4 +119,6 @@ export type TFormProps<T extends Record<string, any>> = {
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
 	locale?: Locale;
+	keepValuesOnSubmit?: boolean;
+	resolver?: Resolver<any, any>;
 };

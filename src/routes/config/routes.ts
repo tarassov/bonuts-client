@@ -29,4 +29,5 @@ export enum BntRoutes {
 	Circles = "Circles",
 	ConfirmEmail = "ConfirmEmail",
 	Event = "Event",
+	Invitations = "Invitations",
 }

@@ -16,6 +16,8 @@ export const BntForm: FC<TFormProps<any>> = ({
 	submitCaption,
 	onSubmit,
 	children,
+	keepValuesOnSubmit,
+	resolver,
 }) => {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [error, setError] = useState<string>();
@@ -69,7 +71,7 @@ export const BntForm: FC<TFormProps<any>> = ({
 	return (
 		<div>
 			<DateFnsProvider adapterLocale={locale}>
-				<FormContainer defaultValues={initials} onSuccess={onSubmitForm}>
+				<FormContainer defaultValues={initials} onSuccess={onSubmitForm} resolver={resolver}>
 					<BntFormBody
 						fields={fields}
 						groups={groups}
@@ -77,6 +79,7 @@ export const BntForm: FC<TFormProps<any>> = ({
 						values={values}
 						formId={formId}
 						hasInitial={hasInitial}
+						keepValuesOnSubmit={keepValuesOnSubmit}
 						initialValues={initials}
 						submitCaption={submitCaption}
 						onDiscard={onDiscard}
