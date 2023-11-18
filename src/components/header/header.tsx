@@ -1,4 +1,4 @@
-import { Avatar, Box, IconButton, Stack, useMediaQuery } from "@mui/material";
+import { Avatar, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { FC, useContext, useState, MouseEvent } from "react";
 import { Theme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
@@ -6,6 +6,8 @@ import { BntAppBar } from "shared/menu/app-bar";
 import { BntToolbar } from "shared/toolbar";
 import { BntTypography } from "shared/typography/typography";
 import { AppContext } from "context/app-context";
+import { BntStack } from "shared/stack/stack";
+import { AccountBalanceSmall } from "components/account-balance/account-balance-small";
 import { TProfile } from "@/types/model";
 import { BntRoutesMenu } from "../main-menu/routes-menu";
 
@@ -38,20 +40,44 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 						mr: "10px",
 					}}
 				>
-					<Box
+					<BntStack
+						direction="column"
+						gap={0}
 						sx={{
 							flex: 1,
+							overflow: "hidden",
 						}}
 					>
-						<div>
-							<BntTypography variant="button">{profile?.user_name}</BntTypography>
-							<br />
-							<BntTypography variant="caption" display="block" gutterBottom>
-								{profile?.position}
-							</BntTypography>
-						</div>
-					</Box>
-					<div>
+						<BntTypography
+							variant="button"
+							display="block"
+							sx={{
+								textWrap: "nowrap",
+								whiteSpace: "nowrap",
+								textOverflow: "ellipsis",
+								overflow: "hidden",
+								minWidth: 20,
+							}}
+						>
+							{profile?.user_name}
+						</BntTypography>
+						<BntTypography
+							variant="caption"
+							display="block"
+							gutterBottom
+							sx={{
+								textWrap: "nowrap",
+								whiteSpace: "nowrap",
+								textOverflow: "ellipsis",
+								overflow: "hidden",
+								minWidth: 20,
+							}}
+						>
+							{profile?.position}
+						</BntTypography>
+					</BntStack>
+					<BntStack direction="row" alignItems="center" gap={2}>
+						<AccountBalanceSmall profile={profile || undefined} />
 						<IconButton edge="start" color="inherit" aria-label="Avatar" onClick={handleClick}>
 							<Avatar
 								src={profile?.user_avatar?.thumb?.url || undefined}
@@ -95,7 +121,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 						>
 							<BntRoutesMenu showFullName />
 						</Menu>
-					</div>
+					</BntStack>
 				</Stack>
 			</BntToolbar>
 		</BntAppBar>
