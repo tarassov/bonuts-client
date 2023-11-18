@@ -10,10 +10,14 @@ import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { TProfile } from "@/types/model";
 
 export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => {
-	const { account: distribAccount } = useAccountBalanceLoader(profile?.distrib_account?.id);
+	const { account: distribAccount, isLoading: isLoadingDistrib } = useAccountBalanceLoader(
+		profile?.distrib_account?.id
+	);
 	const theme = useTheme();
 	const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-	const { account: selfAccount } = useAccountBalanceLoader(profile?.self_account?.id);
+	const { account: selfAccount, isLoading: isLoadingSelf } = useAccountBalanceLoader(
+		profile?.self_account?.id
+	);
 	const { BonutsCurrency } = useBonutsIcon({ height: "16px", width: "16px" });
 	const { toSelfBalanceHistory, toDistribBalanceHistory } = useEmployeeUi(profile);
 	const { t } = useBntTranslate();
@@ -42,9 +46,13 @@ export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => 
 						color="grey.700"
 						sx={{ lineHeight: "22px", textWrap: "nowrap" }}
 					>
-						{!smallScreen
-							? `${selfAccount?.balance} ${t("point", { count: selfAccount?.balance })}`
-							: selfAccount?.balance}
+						{!isLoadingSelf && profile ? (
+							<>
+								{!smallScreen
+									? `${selfAccount?.balance} ${t("point", { count: selfAccount?.balance })}`
+									: selfAccount?.balance}
+							</>
+						) : null}
 					</BntTypography>
 					<BonutsCurrency />
 				</BntStack>
@@ -63,9 +71,13 @@ export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => 
 					color="grey.700"
 					sx={{ lineHeight: "22px", textWrap: "nowrap" }}
 				>
-					{!smallScreen
-						? `${distribAccount?.balance} ${t("donut", { count: distribAccount?.balance })}`
-						: distribAccount?.balance}
+					{!isLoadingDistrib && profile ? (
+						<>
+							{!smallScreen
+								? `${distribAccount?.balance} ${t("donut", { count: distribAccount?.balance })}`
+								: distribAccount?.balance}
+						</>
+					) : null}
 				</BntTypography>
 				<DonutSmallOutlined color="primary" sx={{ width: "16px", height: "16px" }} />
 			</BntStack>
