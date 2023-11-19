@@ -3,6 +3,8 @@ import { BntStack } from "shared/stack/stack";
 import { BntTypography } from "shared/typography/typography";
 import { Button } from "@mui/material";
 import { useLocalDate } from "shared/locale/hooks/use-local-date";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { CommonStrings } from "constants/dictionary";
 
 export const AccountBalanceMainInfo: FC<{
 	title: string;
@@ -10,8 +12,10 @@ export const AccountBalanceMainInfo: FC<{
 	value: React.ReactNode;
 	lastOperation?: { direction?: "+" | "-"; amount?: number; date?: string; date_utc?: string };
 	onClick?: VoidFunction;
-}> = ({ title, value, lastOperation, balance, onClick }) => {
+	name?: string;
+}> = ({ title, value, lastOperation, name, balance, onClick }) => {
 	const { formatDate } = useLocalDate();
+	const { t } = useBntTranslate();
 	return (
 		<BntStack>
 			<BntStack direction="row" gap={1}>
@@ -26,12 +30,12 @@ export const AccountBalanceMainInfo: FC<{
 				</BntStack>
 			</BntStack>
 			<Button sx={{ width: "fit-content" }} onClick={onClick}>
-				<BntTypography variant="caption" color="grey.700">
+				<BntTypography variant="caption" color="grey.700" textTransform="none">
 					<BntStack direction="row">
 						{lastOperation
-							? `${lastOperation?.direction}${lastOperation?.amount} ${formatDate(
-									lastOperation?.date_utc
-							  )}`
+							? `${lastOperation?.direction}${lastOperation?.amount} ${
+									name ? t(name, { count: lastOperation.amount }) : CommonStrings.EMPTY_STRING
+							  } ${formatDate(lastOperation?.date_utc)}`
 							: "..."}
 					</BntStack>
 				</BntTypography>

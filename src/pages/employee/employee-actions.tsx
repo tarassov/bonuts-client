@@ -6,7 +6,7 @@ import { texts_t } from "services/localization/texts/texts_t";
 import { BlockOutlined, CakeOutlined, CheckOutlined, EditOutlined } from "@mui/icons-material";
 import { texts_a, texts_d, texts_e } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useIcons } from "hooks/use-icons";
+import { useBonutsIcon } from "hooks/use-bonuts-icon";
 
 export const EmployeeActions: FC<{
 	onTransferClick?: VoidFunction;
@@ -30,7 +30,7 @@ export const EmployeeActions: FC<{
 	allowEdit,
 }) => {
 	const { translate } = useBntTranslate();
-	const { BonutsCurrency } = useIcons();
+	const { BonutsCurrency } = useBonutsIcon();
 
 	return (
 		<BntStack direction="row" className="mr-4" justifyContent="flex-end">

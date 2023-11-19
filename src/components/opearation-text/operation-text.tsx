@@ -77,7 +77,7 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 						operation.deal_type === DealType.RefundRequest) && (
 						<Button onClick={purchaseClick}>
 							{translate(
-								deal_type === DealType.RefundRequest ? DealType.Purchase : DealType.Refund
+								deal_type === DealType.RefundRequest ? DealType.Refund : DealType.Purchase
 							)}
 						</Button>
 					)}
