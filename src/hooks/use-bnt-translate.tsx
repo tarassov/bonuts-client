@@ -10,7 +10,9 @@ export const useBntTranslate = () => {
 	): string => {
 		let res = "";
 		if (value) {
-			res = t(value, { ...(options?.count ? { count: options?.count } : {}) });
+			res = t(value, {
+				...(options?.count || options?.count === 0 ? { count: options?.count } : {}),
+			});
 			if (options?.capitalize) {
 				res = _.capitalize(res);
 			}

@@ -31,6 +31,7 @@ export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) =>
 						</>
 					)
 				}
+				name="donut"
 				lastOperation={account?.last_operation}
 				onClick={toDistribBalanceHistory}
 			/>

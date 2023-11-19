@@ -34,6 +34,7 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 						</>
 					)
 				}
+				name="point"
 				lastOperation={account?.last_operation}
 				onClick={toSelfBalanceHistory}
 			/>
