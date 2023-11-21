@@ -90,6 +90,8 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	minRows?: number;
 	required?: boolean;
 	loading?: boolean;
+	maxValue?: number;
+	minValue?: number;
 	valueToOption?: (
 		value: any
 	) => string | number | Array<string | number> | Array<TFormFieldSourceItem>;
