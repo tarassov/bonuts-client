@@ -10,6 +10,8 @@ import { BntTypography } from "shared/typography/typography";
 import { texts_e } from "services/localization/texts";
 import { BntStack } from "shared/stack/stack";
 import { LightbulbCircleOutlined } from "@mui/icons-material";
+import { SearchString } from "components/search-string/search-string";
+import { emptyFunction } from "utils/empty-function";
 import { BntStyledEventCard } from "../event-card/event-card-styled";
 
 export const BntEventList: FC = () => {
@@ -57,6 +59,11 @@ export const BntEventList: FC = () => {
 			) : null}
 			{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
 			<Grid container rowSpacing={{ xs: 2 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+				{pages.length > 0 ? (
+					<Grid item xs={12} className="mt-1">
+						<SearchString setSearch={emptyFunction} />
+					</Grid>
+				) : null}
 				{pages.length > 0 &&
 					Object.values(pages).map((page) => {
 						return (
