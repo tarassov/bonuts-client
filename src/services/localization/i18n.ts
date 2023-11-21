@@ -226,6 +226,8 @@ i18n.use(LanguageDetector).init({
 				// M
 				Max: "Макс",
 				Min: "Мин",
+				[texts_m.max_amount_is]: "максимальное значение - ",
+				[texts_m.min_amount_is]: "минимальное значение - ",
 				"Max donuts": "Макисмальное количество пончиков",
 				message: "сообщение",
 				"My Requests": "Мои запросы",

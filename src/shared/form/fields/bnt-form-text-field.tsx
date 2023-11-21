@@ -12,10 +12,24 @@ export const BntFormTextField = (props: {
 	type: TFieldType | undefined;
 	value: TFormValue;
 	rows?: number;
+	maxValue?: number;
+	minValue?: number;
 	disabled?: boolean;
 	required?: boolean;
 }) => {
-	const { name, id, placeholder, label, type, value, rows, required, disabled } = props;
+	const {
+		name,
+		id,
+		minValue,
+		maxValue,
+		placeholder,
+		label,
+		type,
+		value,
+		rows,
+		required,
+		disabled,
+	} = props;
 	const { onChange } = useBntForm();
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = _.isNumber(e.target.value) ? Number(e.target.value) : e.target.value;
@@ -35,6 +49,7 @@ export const BntFormTextField = (props: {
 			sx={{ width: "100%" }}
 			disabled={disabled}
 			onChange={handleChange}
+			InputProps={{ inputProps: { min: minValue, max: maxValue } }}
 		/>
 	);
 };
