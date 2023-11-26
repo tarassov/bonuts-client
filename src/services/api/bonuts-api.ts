@@ -69,7 +69,12 @@ const injectedRtkApi = api.injectEndpoints({
 		getEvents: build.query<GetEventsApiResponse, GetEventsApiArg>({
 			query: (queryArg) => ({
 				url: `/events`,
-				params: { tenant: queryArg.tenant, showMine: queryArg.showMine, page: queryArg.page },
+				params: {
+					tenant: queryArg.tenant,
+					showMine: queryArg.showMine,
+					searchText: queryArg.searchText,
+					page: queryArg.page,
+				},
 			}),
 		}),
 		getEventsById: build.query<GetEventsByIdApiResponse, GetEventsByIdApiArg>({
@@ -895,6 +900,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 export type GetEventsApiArg = {
 	tenant?: string;
 	showMine?: string;
+	searchText?: string;
 	page?: number;
 };
 export type GetEventsByIdApiResponse = /** status 200 success */ {
