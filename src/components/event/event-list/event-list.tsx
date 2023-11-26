@@ -46,16 +46,17 @@ export const BntEventList: FC = () => {
 		<BntStack direction="column" className={classnames("height-100 pb-2")}>
 			<BntStack direction="row" gap={2} justifyContent="space-bwteen" alignItems="center">
 				{pages.length > 0 ? (
-					<SearchString setSearch={setSearchText} debounceDelay={500} className="flex-grow" />
+					<>
+						<SearchString setSearch={setSearchText} debounceDelay={500} className="flex-grow" />
+						<FormControlLabel
+							control={<Checkbox />}
+							label={translate(texts_s.show_only_mine)}
+							onChange={(_, value) => {
+								setShowMine(value);
+							}}
+						/>
+					</>
 				) : null}
-
-				<FormControlLabel
-					control={<Checkbox />}
-					label={translate(texts_s.show_only_mine)}
-					onChange={(_, value) => {
-						setShowMine(value);
-					}}
-				/>
 			</BntStack>
 
 			<Box
