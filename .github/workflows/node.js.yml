@@ -33,9 +33,7 @@ jobs:
 #      run: yarn test --coverage
 
     - name: Build
-      run: yarn build
-      env:
-        VITE_API_URL: 'https://api-develop.bonuts.ru/api/v1/'
+      run: yarn build-staging
 
     - name: RUN DEPLOY TO GITHUB-PAGES
       uses: peaceiris/actions-gh-pages@v3

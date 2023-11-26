@@ -46,6 +46,7 @@
 		"start": "vite --https",
 		"dev": "vite",
 		"build": "tsc && vite build",
+		"build-staging": "tsc && vite build --mode staging",
 		"serve": "vite preview",
 		"test": "vitest",
 		"test:withoutWatch": "vitest run",
