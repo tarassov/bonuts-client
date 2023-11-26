@@ -43,7 +43,7 @@ export const BntEventList: FC = () => {
 	const isEmpty = !pages[0]?.length;
 
 	return (
-		<Box className={classnames("height-100 pb-2")}>
+		<BntStack direction="column" className={classnames("height-100 pb-2")}>
 			<BntStack direction="row" gap={2} justifyContent="space-bwteen" alignItems="center">
 				{pages.length > 0 ? (
 					<SearchString setSearch={setSearchText} debounceDelay={500} className="flex-grow" />
@@ -59,7 +59,7 @@ export const BntEventList: FC = () => {
 			</BntStack>
 
 			<Box
-				className={classnames("height-100 pb-2 mt-2", {
+				className={classnames("flex-grow pb-2 mt-2", {
 					"pr-12": !matchesDownMd,
 					scroll: !isEmpty,
 				})}
@@ -102,6 +102,6 @@ export const BntEventList: FC = () => {
 					<Button onClick={onNext}>{translate(Dictionary.MORE)}</Button>
 				)}
 			</Box>
-		</Box>
+		</BntStack>
 	);
 };
