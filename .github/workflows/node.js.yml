@@ -5,9 +5,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "develop" ]
 
 jobs:
   build:
@@ -40,6 +40,8 @@ jobs:
       with:
         deploy_key: ${{ secrets.DEPLOY_TOKEN }}
         publish_dir: ./dist
+      env:
+        VITE_API_URL: 'https://api-develop.bonuts.ru/api/v1/'
 
     # - name: Deploy
     #   run: |
