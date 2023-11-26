@@ -40,6 +40,7 @@ export const apiEventToPost = (response: GetEventsByIdApiResponse): TPost | unde
 };
 
 export const apiEventsToPosts = (response: GetEventsApiResponse): Array<TPost> => {
+	if (!response) return [];
 	const { data } = response;
 
 	if (!data) return [];
