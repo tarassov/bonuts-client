@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { deepEqual } from "fast-equals";
 import { RootState, store, useAppDispatch, useAppSelector } from "services/redux/store/store";
+import _ from "lodash";
 import { USE_POLLING_INTERVAL } from "@/config";
 
 import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/api";
@@ -13,13 +14,29 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 ) {
 	const dispatch = useAppDispatch();
 	const queries = useAppSelector((state: RootState) => state.api.queries);
-
+	const { page, ...restArgs } = args;
+	const [queryArgs, setQueryArgs] = useState(restArgs);
 	const [pages, setPages] = useState<Record<number, GetResultType<Endpoint>>>([]);
 	const [results, setResults] = useState<Array<any>>([]);
 	const [temp, setTemp] = useState<GetResultType<Endpoint>>();
 	const [currentPage, setCurrentPage] = useState(0);
 	const [hasNew, setHasNew] = useState(false);
 	const [hasNext, setHasNext] = useState(false);
+	//
+	// useEffect(() => {
+	// 	console.log(restArgs);
+	// 	console.log(queryArgs);
+	// 	if (!_.isEqual(restArgs, queryArgs)) setQueryArgs(restArgs);
+	// 	if (!_.isEqual(restArgs, queryArgs) && currentPage > 1) {
+	// 		setQueryArgs(restArgs);
+	// 		setCurrentPage(1);
+	// 		setPages([]);
+	// 		// setResults([]);
+	// 		// setTemp(undefined);
+	// 		// setHasNext(false);
+	// 	}
+	// }, [restArgs, queryArgs, currentPage]);
+
 	const { data, isLoading, isSuccess } = endpoint.useQuery(
 		{
 			...args,
@@ -73,19 +90,22 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			const newPages: Record<number, GetResultType<Endpoint>> = {};
 			for (let i = 2; i <= currentPage; i++) {
 				const { data: pageData } = endpoint.select({ ...args, page: i })(rootState);
+				if (!pageData) break;
 				if (data) {
-					const page = pageData as GetResultType<Endpoint>;
-					if (!deepEqual(pages[i], page)) newPages[i] = page;
+					const queryPage = pageData as GetResultType<Endpoint>;
+					if (!deepEqual(pages[i], queryPage)) newPages[i] = queryPage;
 				}
 			}
 			if (Object.keys(newPages).length) setPages({ ...pages, ...newPages });
 		}
-	}, [queries, results]);
+	}, [queries, results, args]);
 
 	useEffect(() => {
 		if (isSuccess) {
 			// if only one page is loaded then update immediately
-			if (Object.keys(pages).length <= 1) {
+			if (Object.keys(pages).length <= 1 || !_.isEqual(restArgs, queryArgs)) {
+				setQueryArgs(restArgs);
+				setCurrentPage(1);
 				setPages({ 1: data });
 			} else {
 				// if other pages are loaded then save updates and mark hasNew as true
