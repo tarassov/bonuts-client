@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { UnderConstruct } from "pages/under-construct";
+import { ProfileRequestList } from "components/request/profile-request/profile-request-list";
 
 export const MyRequestsPage: FC = () => {
-	return <UnderConstruct />;
+	return <ProfileRequestList />;
 };

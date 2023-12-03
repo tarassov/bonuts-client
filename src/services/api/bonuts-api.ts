@@ -147,6 +147,7 @@ const injectedRtkApi = api.injectEndpoints({
 					active: queryArg.active,
 					archive: queryArg.archive,
 					incoming: queryArg.incoming,
+					my: queryArg.my,
 					tenant: queryArg.tenant,
 				},
 			}),
@@ -1866,6 +1867,7 @@ export type GetRequestsApiArg = {
 	active?: boolean;
 	archive?: boolean;
 	incoming?: boolean;
+	my?: boolean;
 	tenant?: string;
 };
 export type PostRequestsApiResponse = /** status 201 success */ {
