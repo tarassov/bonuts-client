@@ -6,10 +6,12 @@ export const useRequestListLogic = ({
 	archive,
 	active,
 	incoming,
+	my,
 }: {
 	archive?: boolean;
 	active?: boolean;
 	incoming?: boolean;
+	my?: boolean;
 }) => {
 	return useListBase({
 		endpoint: requestsApi.endpoints.getRequests,
@@ -18,6 +20,7 @@ export const useRequestListLogic = ({
 			archive,
 			active,
 			incoming,
+			my,
 		},
 		pollingInterval: 10000,
 		translator: apiAdaptor.toRequests,

@@ -5,6 +5,7 @@ export enum texts_a {
 	are_you_sure = "are you sure?",
 	are_you_sure_to_delete = "are you sure to delete?",
 	active = "active",
+	active_request = "active requests",
 	activated = "activated",
 	activate = "activate",
 	access_denied = "access denied",

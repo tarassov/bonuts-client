@@ -12,8 +12,21 @@ export const useRequestTableConfig = (args: {
 	onRollback?: (id: number) => void;
 	onCheck?: (id: number) => void;
 	hideActions?: boolean;
+	checkRollbackEnabled?: (request: TRequest) => boolean;
+	checkCheckEnabled?: (request: TRequest) => boolean;
+	hideRollback?: boolean;
+	checkTooltip?: string;
+	rollbackTooltip?: string;
 }) => {
-	const { onRollback = emptyFunction, onCheck = emptyFunction, hideActions = false } = args;
+	const {
+		onRollback = emptyFunction,
+		onCheck = emptyFunction,
+		hideActions = false,
+		checkRollbackEnabled,
+		checkCheckEnabled,
+		checkTooltip,
+		rollbackTooltip,
+	} = args;
 	const { translate } = useBntTranslate();
 	const columnHelper = createColumnHelper<TRequest & { actions?: any }>();
 	const tableConfig = useMemo(
@@ -32,14 +45,21 @@ export const useRequestTableConfig = (args: {
 				filterFn: requestFilter,
 			}),
 			columnHelper.accessor("actions", {
-				cell: (info) => (
-					<RequestActionsCell
-						hideEdit={hideActions}
-						hideRollback={hideActions}
-						onCheckClick={() => onCheck(info.row.original.id)}
-						onRollbackClick={() => onRollback(info.row.original.id)}
-					/>
-				),
+				cell: (info) => {
+					const rollbackIsDisabled =
+						checkRollbackEnabled && !checkRollbackEnabled(info.row.original);
+					const checkIsDisabled = checkCheckEnabled && !checkCheckEnabled(info.row.original);
+					return (
+						<RequestActionsCell
+							checkTooltip={checkTooltip}
+							rollbackTooltip={rollbackTooltip}
+							hideCheck={!onCheck || hideActions || checkIsDisabled}
+							hideRollback={!onRollback || hideActions || rollbackIsDisabled}
+							onCheckClick={() => onCheck(info.row.original.id)}
+							onRollbackClick={() => onRollback(info.row.original.id)}
+						/>
+					);
+				},
 				header: "",
 				enableSorting: false,
 				enableColumnFilter: false,

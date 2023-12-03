@@ -15,28 +15,41 @@ import { texts_a, texts_c, texts_i } from "services/localization/texts";
 import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/card-wrapper/card-wrapper";
 import { BntStack } from "@/shared/stack/stack";
+import { TRequest } from "@/types/model";
 
 export type BntRequestListProps = {
 	archive?: boolean;
 	active?: boolean;
+	my?: boolean;
 	incoming?: boolean;
 	onRollback?: (id: number, options: { onSuccess: (res: any) => void }) => void;
 	onCheck?: (id: number, options: { onSuccess: (res: any) => void }) => void;
 	hideActions?: boolean;
+	checkRollbackEnabled?: (request: TRequest) => boolean;
+	checkCheckEnabled?: (request: TRequest) => boolean;
+	hideBreadCrumbs?: boolean;
+	checkTooltip?: string;
+	rollbackTooltip?: string;
 };
 export const RequestsList: FC<BntRequestListProps> = ({
 	active,
 	archive,
 	incoming,
+	my,
 	onRollback = emptyFunction,
 	onCheck = emptyFunction,
 	hideActions = false,
+	checkRollbackEnabled,
+	checkCheckEnabled,
+	hideBreadCrumbs,
+	rollbackTooltip,
+	checkTooltip,
 }) => {
 	const {
 		objects: requests,
 		isLoading,
 		refetch,
-	} = useRequestListLogic({ active, archive, incoming });
+	} = useRequestListLogic({ active, archive, incoming, my });
 
 	const rollback = (id: number) => {
 		onRollback(id, { onSuccess: refetch });
@@ -48,6 +61,10 @@ export const RequestsList: FC<BntRequestListProps> = ({
 		onCheck: check,
 		onRollback: rollback,
 		hideActions,
+		checkRollbackEnabled,
+		checkCheckEnabled,
+		rollbackTooltip,
+		checkTooltip,
 	});
 
 	useLoader(Modules.Requests, isLoading);
@@ -78,7 +95,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 	];
 	return (
 		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }}>
-			<BntBreadcrumbs items={breadcrumbs} />
+			{!hideBreadCrumbs && <BntBreadcrumbs items={breadcrumbs} />}
 			<CardWrapper className="flex-grow scroll">
 				<BntReactTable columns={tableConfig} data={requests} isVirtual estimateSize={100} />
 			</CardWrapper>

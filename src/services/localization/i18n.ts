@@ -64,6 +64,7 @@ i18n.use(LanguageDetector).init({
 				"admin deposit": "Депозит (админ)",
 				[texts_a.accept]: "принять",
 				Activate: "Активировать",
+				[texts_a.active_request]: "Активные запросы",
 				Active: "Активен",
 				active: "активен",
 				activated: "в работе",
