@@ -1,5 +1,5 @@
-import { UnderConstruct } from "pages/under-construct";
+import { NewSchedulerBlock } from "components/scheduler/new-scheduler-block";
 
 export const SchedulersPage = () => {
-	return <UnderConstruct />;
+	return <NewSchedulerBlock />;
 };

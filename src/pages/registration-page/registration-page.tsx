@@ -63,7 +63,7 @@ export const RegistrationPage: FC = () => {
 					required
 					{...fieldRegister("last_name", { required: translate(texts_l.last_name) })}
 					label={translate(texts_l.last_name, { capitalize: true })}
-				/>{" "}
+				/>
 				<TextField
 					margin="normal"
 					error={!!errors.email}
