@@ -18,7 +18,7 @@ export const SchedulerForm: FC<{ onSubmit?: (scheduler: TScheduler) => void }> =
 	onSubmit = emptyFunction,
 }) => {
 	const { translate } = useBntTranslate();
-	const { parseTimezone } = useTimezone({ labelStyle: "abbrev" });
+	const { parseTimezone } = useTimezone();
 	const { formSchema } = useSchedulerValidation();
 
 	const formContext = useForm<TSchedulerFormFields>({

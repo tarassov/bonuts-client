@@ -6,7 +6,7 @@ import { ITimezone, ITimezoneOption } from "shared/types/timezones";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
 // thanks to https://github.com/ndom91/react-timezone-select/
-export function useTimezone({ labelStyle = "original", displayValue = "GMT" }): {
+export function useTimezone(): {
 	parseTimezone: (zone: ITimezone | string | undefined) => ITimezoneOption | undefined | false;
 	options: ITimezoneOption[];
 } {
@@ -30,26 +30,9 @@ export function useTimezone({ labelStyle = "original", displayValue = "GMT" }): 
 					.split(",")
 					.map((x) => t(x.trim()))
 					.join(", ");
-				const prefix = `(${displayValue}${hr.includes("-") ? hr : `+${hr}`}) ${names}`;
+				const prefix = `(${"GMT"}${hr.includes("-") ? hr : `+${hr}`}) ${names}`;
 
-				let label = "";
-
-				switch (labelStyle) {
-					case "original":
-						label = prefix;
-						break;
-					case "altName":
-						label = `${prefix} ${altName ? `(${t(altName)})` : ""}`;
-						break;
-					case "abbrev":
-						label = `${prefix} (${abbr})`;
-						break;
-					case "offsetHidden":
-						label = `${prefix.replace(/^\(.*?\)\s*/, "")}`;
-						break;
-					default:
-						label = `${prefix}`;
-				}
+				const label = `${prefix} (${abbr})`;
 
 				return {
 					value: tz.name,
@@ -67,7 +50,7 @@ export function useTimezone({ labelStyle = "original", displayValue = "GMT" }): 
 		return filtered.sort((a, b) => {
 			return (a.offset || 0) - (b.offset || 0);
 		});
-	}, [labelStyle]);
+	}, []);
 
 	const findFuzzyTz = (zone: string): ITimezoneOption => {
 		let currentTime: Spacetime;
