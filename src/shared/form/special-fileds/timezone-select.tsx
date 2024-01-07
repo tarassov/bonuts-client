@@ -7,7 +7,7 @@ export const TimezoneSelect: FC<
 	SelectElementProps<any, any> & { stringLabel?: string; name: string; className?: string }
 > = (props) => {
 	const { stringLabel, placeholder, className, ...rest } = props;
-	const { options, parseTimezone } = useTimezone({ labelStyle: "abbrev" });
+	const { options, parseTimezone } = useTimezone();
 	const { translate } = useBntTranslate();
 
 	return (

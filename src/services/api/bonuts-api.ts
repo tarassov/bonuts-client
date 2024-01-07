@@ -51,6 +51,44 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
+		getDonutsSchedulers: build.query<GetDonutsSchedulersApiResponse, GetDonutsSchedulersApiArg>({
+			query: (queryArg) => ({ url: `/donuts_schedulers`, params: { tenant: queryArg.tenant } }),
+		}),
+		postDonutsSchedulers: build.mutation<
+			PostDonutsSchedulersApiResponse,
+			PostDonutsSchedulersApiArg
+		>({
+			query: (queryArg) => ({ url: `/donuts_schedulers`, method: "POST", body: queryArg.body }),
+		}),
+		getDonutsSchedulersById: build.query<
+			GetDonutsSchedulersByIdApiResponse,
+			GetDonutsSchedulersByIdApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/donuts_schedulers/${queryArg.id}`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		patchDonutsSchedulersById: build.mutation<
+			PatchDonutsSchedulersByIdApiResponse,
+			PatchDonutsSchedulersByIdApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/donuts_schedulers/${queryArg.id}`,
+				method: "PATCH",
+				body: queryArg.body,
+			}),
+		}),
+		deleteDonutsSchedulersById: build.mutation<
+			DeleteDonutsSchedulersByIdApiResponse,
+			DeleteDonutsSchedulersByIdApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/donuts_schedulers/${queryArg.id}`,
+				method: "DELETE",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts`,
@@ -302,6 +340,7 @@ export type GetAccountsByIdApiResponse = /** status 200 success */ {
 		attributes: {
 			id: number;
 			balance: number;
+			type?: string;
 			last_operation?: {
 				amount?: number;
 				date?: string;
@@ -511,6 +550,335 @@ export type DeleteCirclesByIdApiResponse = /** status 200 success */ {
 	}[];
 };
 export type DeleteCirclesByIdApiArg = {
+	id: string;
+	tenant?: string;
+};
+export type GetDonutsSchedulersApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string | null;
+			comment?: string | null;
+			id: number;
+			active: boolean;
+			day?: number | null;
+			weekday?: number | null;
+			burn_old?: boolean | null;
+			every?: string;
+			execute_time?: string | null;
+			timezone?: string | null;
+			profile?: {
+				id: number;
+				default?: boolean;
+				user_id: number;
+				active: boolean;
+				admin: boolean;
+				attached?: boolean;
+				roles: string[];
+				circles: {
+					name: string;
+					id: number;
+					active: boolean;
+				}[];
+				department?: (object | null) | null;
+				position?: (string | null) | null;
+				store_admin?: boolean;
+				bot?: boolean;
+				first_name?: string;
+				last_name?: string;
+				name?: string;
+				email: string;
+				tenant?: string;
+				sex?: string;
+				phone?: (string | null) | null;
+				contact: (string | null) | null;
+				bio: (string | null) | null;
+				birthdate: (string | null) | null;
+				in_date: (string | null) | null;
+				created_at?: string;
+				user_avatar?: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				logo?: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				score_total?: number;
+				self_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+				distrib_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+			};
+		};
+	}[];
+};
+export type GetDonutsSchedulersApiArg = {
+	tenant?: string;
+};
+export type PostDonutsSchedulersApiResponse = /** status 201 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string | null;
+			comment?: string | null;
+			id: number;
+			active: boolean;
+			day?: number | null;
+			weekday?: number | null;
+			burn_old?: boolean | null;
+			every?: string;
+			execute_time?: string | null;
+			timezone?: string | null;
+			profile?: {
+				id: number;
+				default?: boolean;
+				user_id: number;
+				active: boolean;
+				admin: boolean;
+				attached?: boolean;
+				roles: string[];
+				circles: {
+					name: string;
+					id: number;
+					active: boolean;
+				}[];
+				department?: (object | null) | null;
+				position?: (string | null) | null;
+				store_admin?: boolean;
+				bot?: boolean;
+				first_name?: string;
+				last_name?: string;
+				name?: string;
+				email: string;
+				tenant?: string;
+				sex?: string;
+				phone?: (string | null) | null;
+				contact: (string | null) | null;
+				bio: (string | null) | null;
+				birthdate: (string | null) | null;
+				in_date: (string | null) | null;
+				created_at?: string;
+				user_avatar?: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				logo?: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				score_total?: number;
+				self_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+				distrib_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+			};
+		};
+	}[];
+};
+export type PostDonutsSchedulersApiArg = {
+	body: {
+		name: string;
+		tenant: string;
+		amount: number;
+		every: string;
+		comment: string;
+		burn_old?: boolean;
+		day?: number;
+		weekday?: number;
+		execute_time?: string;
+		timezone?: string;
+	};
+};
+export type GetDonutsSchedulersByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string | null;
+			comment?: string | null;
+			id: number;
+			active: boolean;
+			day?: number | null;
+			weekday?: number | null;
+			burn_old?: boolean | null;
+			every?: string;
+			execute_time?: string | null;
+			timezone?: string | null;
+			profile?: {
+				id: number;
+				default?: boolean;
+				user_id: number;
+				active: boolean;
+				admin: boolean;
+				attached?: boolean;
+				roles: string[];
+				circles: {
+					name: string;
+					id: number;
+					active: boolean;
+				}[];
+				department?: (object | null) | null;
+				position?: (string | null) | null;
+				store_admin?: boolean;
+				bot?: boolean;
+				first_name?: string;
+				last_name?: string;
+				name?: string;
+				email: string;
+				tenant?: string;
+				sex?: string;
+				phone?: (string | null) | null;
+				contact: (string | null) | null;
+				bio: (string | null) | null;
+				birthdate: (string | null) | null;
+				in_date: (string | null) | null;
+				created_at?: string;
+				user_avatar?: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				logo?: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				score_total?: number;
+				self_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+				distrib_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+			};
+		};
+	};
+};
+export type GetDonutsSchedulersByIdApiArg = {
+	id: number;
+	tenant?: string;
+};
+export type PatchDonutsSchedulersByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string | null;
+			comment?: string | null;
+			id: number;
+			active: boolean;
+			day?: number | null;
+			weekday?: number | null;
+			burn_old?: boolean | null;
+			every?: string;
+			execute_time?: string | null;
+			timezone?: string | null;
+			profile?: {
+				id: number;
+				default?: boolean;
+				user_id: number;
+				active: boolean;
+				admin: boolean;
+				attached?: boolean;
+				roles: string[];
+				circles: {
+					name: string;
+					id: number;
+					active: boolean;
+				}[];
+				department?: (object | null) | null;
+				position?: (string | null) | null;
+				store_admin?: boolean;
+				bot?: boolean;
+				first_name?: string;
+				last_name?: string;
+				name?: string;
+				email: string;
+				tenant?: string;
+				sex?: string;
+				phone?: (string | null) | null;
+				contact: (string | null) | null;
+				bio: (string | null) | null;
+				birthdate: (string | null) | null;
+				in_date: (string | null) | null;
+				created_at?: string;
+				user_avatar?: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				logo?: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				score_total?: number;
+				self_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+				distrib_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+			};
+		};
+	};
+};
+export type PatchDonutsSchedulersByIdApiArg = {
+	id: string;
+	body: {
+		name: string;
+		tenant: string;
+	};
+};
+export type DeleteDonutsSchedulersByIdApiResponse = unknown;
+export type DeleteDonutsSchedulersByIdApiArg = {
 	id: string;
 	tenant?: string;
 };
@@ -2722,6 +3090,7 @@ export type PutTenantCurrentApiArg = {
 		email_notification: boolean;
 		birthday_donuts: number;
 		birthday_points: number;
+		birthday_message?: string | null;
 		join_to_project_donuts: number;
 		join_to_company_donuts: number;
 		join_to_project_points: number;
@@ -2850,21 +3219,14 @@ export type PostDemoAuthenticateApiResponse = /** status 200 success */ {
 		created_at: string;
 		updated_at: string;
 		domain: string;
-		birthday_message?: string;
 		demo: boolean;
-		attached?: boolean | null;
-		deactivated?: boolean | null;
-		logo: {
-			url: string;
-			thumb: {
-				url: string;
-			};
-		};
+		logo?: any;
 		welcome_points: number;
 		welcome_donuts: number;
 		email_notification: boolean;
 		birthday_donuts: number;
 		birthday_points: number;
+		birthday_message?: string;
 		join_to_project_donuts: number;
 		join_to_company_donuts: number;
 		join_to_project_points: number;
@@ -2886,21 +3248,14 @@ export type PostAuthenticateApiResponse = /** status 200 success */ {
 		created_at: string;
 		updated_at: string;
 		domain: string;
-		birthday_message?: string;
 		demo: boolean;
-		attached?: boolean | null;
-		deactivated?: boolean | null;
-		logo: {
-			url: string;
-			thumb: {
-				url: string;
-			};
-		};
+		logo?: any;
 		welcome_points: number;
 		welcome_donuts: number;
 		email_notification: boolean;
 		birthday_donuts: number;
 		birthday_points: number;
+		birthday_message?: string;
 		join_to_project_donuts: number;
 		join_to_company_donuts: number;
 		join_to_project_points: number;
@@ -2941,21 +3296,14 @@ export type PostRefreshTokenApiResponse = /** status 200 success */ {
 		created_at: string;
 		updated_at: string;
 		domain: string;
-		birthday_message?: string;
 		demo: boolean;
-		attached?: boolean | null;
-		deactivated?: boolean | null;
-		logo: {
-			url: string;
-			thumb: {
-				url: string;
-			};
-		};
+		logo?: any;
 		welcome_points: number;
 		welcome_donuts: number;
 		email_notification: boolean;
 		birthday_donuts: number;
 		birthday_points: number;
+		birthday_message?: string;
 		join_to_project_donuts: number;
 		join_to_company_donuts: number;
 		join_to_project_points: number;
@@ -3016,6 +3364,11 @@ export const {
 	useGetCirclesByIdQuery,
 	usePatchCirclesByIdMutation,
 	useDeleteCirclesByIdMutation,
+	useGetDonutsSchedulersQuery,
+	usePostDonutsSchedulersMutation,
+	useGetDonutsSchedulersByIdQuery,
+	usePatchDonutsSchedulersByIdMutation,
+	useDeleteDonutsSchedulersByIdMutation,
 	useGetDonutsQuery,
 	usePostDonutsMutation,
 	useGetDonutsByIdQuery,
