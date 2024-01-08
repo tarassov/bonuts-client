@@ -88,7 +88,7 @@ export const SchedulerFormFields = () => {
 			<Grid item xs={12} sm={6} className="mt-2">
 				<BntTimePickerElement
 					stringLabel={texts_c.choose_time}
-					name="time"
+					name="execute_time"
 					ampm={false}
 					format="HH:mm"
 					required

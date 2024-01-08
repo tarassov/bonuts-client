@@ -11,10 +11,10 @@ import { useTimezone } from "shared/form/hooks/use-timezone";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSchedulerValidation } from "components/scheduler/use-scheduler-validation";
 import { TSchedulerFormFields } from "components/scheduler/types/scheduler-form-fields";
-import { TScheduler } from "@/types/model/scheduler";
+import { schedulerFormToModel } from "components/scheduler/helper/scheduler-form-to-model";
+import { TNewScheduler } from "@/types/model/scheduler";
 
-export const SchedulerForm: FC<{ onSubmit?: (scheduler: TScheduler) => void }> = ({
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const SchedulerForm: FC<{ onSubmit?: (scheduler: TNewScheduler) => void }> = ({
 	onSubmit = emptyFunction,
 }) => {
 	const { translate } = useBntTranslate();
@@ -32,7 +32,7 @@ export const SchedulerForm: FC<{ onSubmit?: (scheduler: TScheduler) => void }> =
 	});
 
 	const handleSubmit = (scheduler: TSchedulerFormFields) => {
-		console.warn(scheduler);
+		onSubmit(schedulerFormToModel(scheduler));
 	};
 	return (
 		<FormContainer

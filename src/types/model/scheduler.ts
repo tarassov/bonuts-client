@@ -12,6 +12,8 @@ export type TScheduler = TBaseModel & {
 	day?: number;
 	weekday?: number;
 	every?: TSchedulerType;
-	time?: string;
+	execute_time?: string;
 	timezone?: string;
 };
+
+export type TNewScheduler = Omit<TScheduler, "id">;

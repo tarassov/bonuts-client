@@ -868,7 +868,7 @@ export type PatchDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 				};
 			};
 		};
-	};
+	}[];
 };
 export type PatchDonutsSchedulersByIdApiArg = {
 	id: string;

@@ -312,6 +312,7 @@ export const ruLocale = {
 
 		// S
 		[texts_s.settings_updated]: "настройки обновлены",
+		[texts_s.scheduler_created]: "планировщик создан",
 		save: "сохранить",
 		saved: "сохранено",
 		"Save changes": "Сохранить изменения",

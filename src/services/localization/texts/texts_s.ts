@@ -15,4 +15,5 @@ export enum texts_s {
 	send = "send",
 	sign_up = "sign_up",
 	soon_will_be_back = "soon_will_be_back",
+	scheduler_created = "scheduler created",
 }
