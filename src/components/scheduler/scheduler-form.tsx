@@ -14,9 +14,10 @@ import { TSchedulerFormFields } from "components/scheduler/types/scheduler-form-
 import { schedulerFormToModel } from "components/scheduler/helper/scheduler-form-to-model";
 import { TNewScheduler } from "@/types/model/scheduler";
 
-export const SchedulerForm: FC<{ onSubmit?: (scheduler: TNewScheduler) => void }> = ({
-	onSubmit = emptyFunction,
-}) => {
+export const SchedulerForm: FC<{
+	onSubmit?: (scheduler: TNewScheduler) => void;
+	onCancel: VoidFunction;
+}> = ({ onSubmit = emptyFunction, onCancel = emptyFunction }) => {
 	const { translate } = useBntTranslate();
 	const { parseTimezone } = useTimezone();
 	const { formSchema } = useSchedulerValidation();
@@ -41,7 +42,7 @@ export const SchedulerForm: FC<{ onSubmit?: (scheduler: TNewScheduler) => void }
 			onError={(e) => console.error(e)}
 		>
 			<SchedulerFormFields />
-			<BntFormSubmit visible />
+			<BntFormSubmit visible onCancelClick={onCancel} />
 		</FormContainer>
 	);
 };

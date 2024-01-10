@@ -1,6 +1,7 @@
 export enum texts_n {
 	not_active = "not active",
 	name = "name",
+	no_name = "no name",
 	name_is_required = "name is required",
 	"next" = "next",
 	new_donut = "new donut",

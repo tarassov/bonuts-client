@@ -1,6 +1,7 @@
 export enum texts_a {
 	accept = "accept",
 	amount = "amount",
+	add_new_scheduler = "add new scheduler",
 	admin_deposit = "admin deposit",
 	add_comment = "add some comment",
 	available_employees = "available employees",

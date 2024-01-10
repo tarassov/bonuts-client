@@ -20,3 +20,21 @@ declare module "@mui/material/styles" {
 		neutral: PaletteOptions["primary"];
 	}
 }
+
+declare module "@mui/material/styles" {
+	interface TypographyVariants {
+		caption2: React.CSSProperties;
+	}
+
+	// allow configuration using `createTheme`
+	interface TypographyVariantsOptions {
+		caption2?: React.CSSProperties;
+	}
+}
+
+// Update the Typography's variant prop options
+declare module "@mui/material/Typography" {
+	interface TypographyPropsVariantOverrides {
+		caption2: true;
+	}
+}

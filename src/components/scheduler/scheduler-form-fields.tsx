@@ -5,7 +5,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useFormState, useWatch } from "react-hook-form";
 import { BntSelectElement } from "shared/input/select-element";
 import { useMemo } from "react";
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { getMonthDayOptions } from "shared/helpers/get-month-day-array";
 import { SchedulerTypes } from "components/scheduler/constants/scheduler-types";
 import { WeekdayDaySelect } from "shared/form/special-fileds/weekday-day-select";
@@ -16,6 +16,8 @@ import { TScheduler } from "@/types/model/scheduler";
 export const SchedulerFormFields = () => {
 	const { t } = useBntTranslate();
 	const { errors } = useFormState<TScheduler>();
+	const theme = useTheme();
+	const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 	const every = useWatch({ name: "every" });
 
 	const types = useMemo(
@@ -53,7 +55,7 @@ export const SchedulerFormFields = () => {
 			{every === "daily" ? (
 				<Grid item xs={12} sm={6}>
 					<BntSelectElement
-						className="pl-2"
+						className={!smallScreen ? "pl-2" : undefined}
 						fullWidth
 						name="day"
 						options={getMonthDayOptions()}
@@ -71,7 +73,7 @@ export const SchedulerFormFields = () => {
 				<Grid item xs={12} sm={5}>
 					<WeekdayDaySelect
 						fullWidth
-						className="pl-2"
+						className={!smallScreen ? "pl-2" : undefined}
 						name="weekday"
 						options={getMonthDayOptions()}
 						label={t(texts_c.choose_day)}
