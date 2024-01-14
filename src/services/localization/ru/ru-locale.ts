@@ -367,6 +367,7 @@ export const ruLocale = {
 		to: "для",
 		[texts_t.transfer]: "перевести",
 		[texts_t.to_store]: "в магазин",
+		[texts_t.time_is_required]: "необходимо указать время",
 		"to can transfer to others": "можно дарить коллегам",
 		"This field is required": "Это поле является обязательным",
 		"Team settings": "Настройки команды",

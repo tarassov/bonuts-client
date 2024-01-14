@@ -12,12 +12,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSchedulerValidation } from "components/scheduler/use-scheduler-validation";
 import { TSchedulerFormFields } from "components/scheduler/types/scheduler-form-fields";
 import { schedulerFormToModel } from "components/scheduler/helper/scheduler-form-to-model";
-import { TNewScheduler } from "@/types/model/scheduler";
+import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
 
 export const SchedulerForm: FC<{
+	defaultValue?: TScheduler;
 	onSubmit?: (scheduler: TNewScheduler) => void;
 	onCancel: VoidFunction;
-}> = ({ onSubmit = emptyFunction, onCancel = emptyFunction }) => {
+}> = ({ onSubmit = emptyFunction, onCancel = emptyFunction, defaultValue = defaultScheduler }) => {
 	const { translate } = useBntTranslate();
 	const { parseTimezone } = useTimezone();
 	const { formSchema } = useSchedulerValidation();
@@ -26,7 +27,7 @@ export const SchedulerForm: FC<{
 		shouldUseNativeValidation: false,
 		resolver: yupResolver(formSchema),
 		defaultValues: {
-			...defaultScheduler,
+			...defaultValue,
 			name: translate(texts_n.new_scheduler),
 			timezoneValue: parseTimezone(defaultScheduler.timezone),
 		},

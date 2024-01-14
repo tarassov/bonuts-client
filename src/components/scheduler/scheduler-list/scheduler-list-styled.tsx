@@ -10,7 +10,18 @@ export const SchedulerListStyled = styled(
 )(({ theme }) => {
 	return {
 		maxWidth: 700,
+		padding: 4,
+		paddingLeft: 8,
 		[cl(SCHEDULER_LIST_CLASSES.schedulerCard)]: {
+			"&:hover": {
+				cursor: "pointer",
+				outline: "2px solid",
+				outlineColor: theme.palette.primary.light,
+				"& img": {
+					transform: "translate3d(0, -3px, 2px)",
+					transition: "all 500ms cubic-bezier(0.34, 1.61, 0.7, 1)",
+				},
+			},
 			display: "flex",
 			paddingTop: 12,
 			paddingLeft: 12,

@@ -7,4 +7,5 @@ export enum texts_t {
 	transfer_donuts = "transfer donuts",
 	transferred = "transferred",
 	transfer = "transfer",
+	time_is_required = "time is required",
 }

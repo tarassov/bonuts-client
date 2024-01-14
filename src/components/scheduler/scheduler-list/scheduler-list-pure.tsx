@@ -1,64 +1,52 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { BntStack } from "shared/stack/stack";
-import { BntCard } from "shared/card/card";
-import { BntCardBody } from "shared/card/card-body";
 import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/classes";
 import classNames from "classnames";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_d, texts_e, texts_n } from "services/localization/texts";
-import { Box } from "@mui/material";
-import { BntTypography } from "shared/typography/typography";
-import { getWeekdayOptions } from "shared/helpers/get-weekday";
-import { formatStringDate } from "utils/format-string-date";
-import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
+import { SchedulerCard } from "components/scheduler/scheduler-list/scheduler-card";
+import { SchedulerForm } from "components/scheduler/scheduler-form";
+import { emptyFunction } from "utils/empty-function";
+import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
 
-export type SchedulerListPureProps = { schedulers?: Array<TScheduler>; className?: string };
-export const SchedulerListPure: FC<SchedulerListPureProps> = ({ schedulers, className }) => {
-	const { t } = useBntTranslate();
+export type SchedulerListPureProps = {
+	schedulers?: Array<TScheduler>;
+	className?: string;
+	createMode?: boolean;
+	closeCreateMode?: VoidFunction;
+	onCreate?: (scheduler: TNewScheduler) => void;
+	onUpdate?: (scheduler: TNewScheduler) => void;
+};
+export const SchedulerListPure: FC<SchedulerListPureProps> = ({
+	schedulers,
+	createMode,
+	className,
+	closeCreateMode = emptyFunction,
+	onCreate,
+	onUpdate,
+}) => {
+	const [editId, setEditId] = useState<number | undefined>();
+	useEffect(() => {
+		if (editId !== undefined && createMode) setEditId(undefined);
+	}, [createMode]);
 	return (
 		<BntStack
 			direction="column"
 			className={classNames(SCHEDULER_LIST_CLASSES.schedulerList, className)}
 			gap={2}
 		>
+			{createMode && <SchedulerForm onSubmit={onCreate} onCancel={closeCreateMode} />}
 			{schedulers?.map((scheduler) => {
 				return (
-					<BntCard raised className={SCHEDULER_LIST_CLASSES.schedulerCard}>
-						<BntCardBody className={SCHEDULER_LIST_CLASSES.schedulerCardBody}>
-							<BntStack direction="column">
-								<Box>{scheduler.name || t(texts_n.no_name, { capitalize: true })}</Box>
-								<Box>
-									<BntTypography variant="caption2">
-										{`${scheduler.amount}  ${t("donut", { count: scheduler.amount })} `}
-										{`${
-											scheduler.every === TSchedulerType.weekly
-												? t(texts_e.every_week)
-												: t(texts_e.every_month)
-										}`}
-									</BntTypography>
-								</Box>
-								<Box>
-									<BntTypography variant="caption2">
-										<>
-											{`${
-												scheduler.every === TSchedulerType.weekly
-													? t(getWeekdayOptions().find((x) => x.id === scheduler.weekday)?.label)
-													: `${scheduler.day}  ${t(texts_d.day)}`
-											}`}
-											{` ${formatStringDate(
-												scheduler.execute_time,
-												false,
-												true,
-												undefined,
-												true,
-												true
-											)}`}
-										</>
-									</BntTypography>
-								</Box>
-							</BntStack>
-						</BntCardBody>
-					</BntCard>
+					<SchedulerCard
+						key={scheduler.id}
+						scheduler={scheduler}
+						onSubmit={onUpdate}
+						preventEdit={createMode}
+						openEdit={() => setEditId(scheduler.id)}
+						closeEdit={() => {
+							if (scheduler.id === editId) setEditId(undefined);
+						}}
+						editId={editId}
+					/>
 				);
 			})}
 		</BntStack>
