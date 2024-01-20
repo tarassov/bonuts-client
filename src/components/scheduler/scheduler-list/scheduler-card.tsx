@@ -3,13 +3,17 @@ import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/clas
 import { BntCardBody } from "shared/card/card-body";
 import { BntStack } from "shared/stack/stack";
 import { Box } from "@mui/material";
-import { texts_d, texts_e, texts_n } from "services/localization/texts";
+import { texts_a, texts_d, texts_e, texts_n } from "services/localization/texts";
 import { BntTypography } from "shared/typography/typography";
 import { getWeekdayOptions } from "shared/helpers/get-weekday";
 import { formatStringDate } from "utils/format-string-date";
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { SchedulerForm } from "components/scheduler/scheduler-form";
+import { BntProfileButton } from "components/buttons/profile-button";
+import { emptyFunction } from "utils/empty-function";
+import classNames from "classnames";
+import { CommonStrings } from "constants/dictionary";
 import { TNewScheduler, TScheduler, TSchedulerType } from "@/types/model/scheduler";
 
 export const SchedulerCard: FC<{
@@ -28,7 +32,19 @@ export const SchedulerCard: FC<{
 	};
 
 	if (editId === scheduler.id) {
-		return <SchedulerForm defaultValue={scheduler} onCancel={closeEdit} onSubmit={handleSubmit} />;
+		return (
+			<BntCard className={classNames("p-2")} raised>
+				{scheduler.profile && (
+					<BntStack justifyContent="flex-start" direction="row" alignItems="center" gap={2}>
+						<BntTypography variant="caption2">
+							{t(texts_a.author, { capitalize: true })}
+						</BntTypography>
+						<BntProfileButton profile={scheduler.profile} onClick={emptyFunction} />
+					</BntStack>
+				)}
+				<SchedulerForm defaultValue={scheduler} onCancel={closeEdit} onSubmit={handleSubmit} />
+			</BntCard>
+		);
 	}
 	return (
 		<BntCard
@@ -59,7 +75,14 @@ export const SchedulerCard: FC<{
 										? t(getWeekdayOptions().find((x) => x.id === scheduler.weekday)?.label)
 										: `${scheduler.day}  ${t(texts_d.day)}`
 								}`}
-								{` ${formatStringDate(scheduler.execute_time, false, true, undefined, true, true)}`}
+								{` ${formatStringDate(
+									scheduler.execute_time,
+									false,
+									true,
+									undefined,
+									true,
+									true
+								)} ${scheduler.timezone ? `[${scheduler.timezone}]` : CommonStrings.EMPTY_STRING}`}
 							</>
 						</BntTypography>
 					</Box>

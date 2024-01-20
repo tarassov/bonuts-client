@@ -19,6 +19,7 @@ export const timezonesRu = {
 	Guadalajara: "Гвадалахара",
 	"Mexico City": "Мехико",
 	Monterrey: "Монтеррей",
+	Montevideo: "Монтевидео",
 	"Central America": "Центральная Америка",
 	"Eastern Time (US & Canada)": "Центральная Америка",
 	"Eastern Time": "Центральная Америка",

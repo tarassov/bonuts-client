@@ -12,24 +12,35 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSchedulerValidation } from "components/scheduler/use-scheduler-validation";
 import { TSchedulerFormFields } from "components/scheduler/types/scheduler-form-fields";
 import { schedulerFormToModel } from "components/scheduler/helper/scheduler-form-to-model";
+import { secondsToTime } from "shared/helpers/seconds-to-time";
 import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
 
 export const SchedulerForm: FC<{
 	defaultValue?: TScheduler;
 	onSubmit?: (scheduler: TNewScheduler) => void;
 	onCancel: VoidFunction;
-}> = ({ onSubmit = emptyFunction, onCancel = emptyFunction, defaultValue = defaultScheduler }) => {
+	submitCaption?: string;
+	className?: string;
+}> = ({
+	onSubmit = emptyFunction,
+	onCancel = emptyFunction,
+	defaultValue = defaultScheduler,
+	submitCaption,
+	className,
+}) => {
 	const { translate } = useBntTranslate();
 	const { parseTimezone } = useTimezone();
 	const { formSchema } = useSchedulerValidation();
 
 	const formContext = useForm<TSchedulerFormFields>({
 		shouldUseNativeValidation: false,
+		// @ts-ignore
 		resolver: yupResolver(formSchema),
 		defaultValues: {
 			...defaultValue,
-			name: translate(texts_n.new_scheduler),
-			timezoneValue: parseTimezone(defaultScheduler.timezone),
+			name: defaultValue.id ? defaultValue.name : translate(texts_n.new_scheduler),
+			time: secondsToTime(defaultValue.time_in_seconds),
+			timezoneValue: parseTimezone(defaultValue.timezone || defaultScheduler.timezone),
 		},
 	});
 
@@ -37,13 +48,15 @@ export const SchedulerForm: FC<{
 		onSubmit(schedulerFormToModel(scheduler));
 	};
 	return (
-		<FormContainer
-			formContext={formContext}
-			onSuccess={handleSubmit}
-			onError={(e) => console.error(e)}
-		>
-			<SchedulerFormFields />
-			<BntFormSubmit visible onCancelClick={onCancel} />
-		</FormContainer>
+		<div className={className}>
+			<FormContainer
+				formContext={formContext}
+				onSuccess={handleSubmit}
+				onError={(e) => console.error(e)}
+			>
+				<SchedulerFormFields />
+				<BntFormSubmit visible onCancelClick={onCancel} submitCaption={submitCaption} />
+			</FormContainer>
+		</div>
 	);
 };

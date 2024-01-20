@@ -11,7 +11,7 @@ export const useSchedulerValidation = () => {
 			.min(1, `${translate(texts_m.min_amount_is)} 1`)
 			.max(10000, `${translate(texts_m.max_amount_is)} 10000`),
 		comment: Yup.string().required(translate(texts_c.comment_is_required, { capitalize: true })),
-		execute_time: Yup.string().required(translate(texts_t.time_is_required, { capitalize: true })),
+		time: Yup.string().required(translate(texts_t.time_is_required, { capitalize: true })),
 	});
 
 	return { formSchema };

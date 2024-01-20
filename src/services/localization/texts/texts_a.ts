@@ -1,4 +1,5 @@
 export enum texts_a {
+	author = "author",
 	accept = "accept",
 	amount = "amount",
 	add_new_scheduler = "add new scheduler",

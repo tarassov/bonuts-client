@@ -1,15 +1,16 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { TimePickerElement, TimePickerElementProps } from "react-hook-form-mui";
 import { usePickerLocale } from "shared/locale/hooks/use-picker-locale";
 
-export const BntTimePickerElement: FC<
+export const BntTimePickerElement = forwardRef<
+	HTMLInputElement,
 	TimePickerElementProps<any, any> & {
 		stringLabel?: string;
 		name: string;
 		fullWidth?: boolean;
-	} & {}
-> = (props) => {
+	}
+>((props, ref) => {
 	const { translate } = useBntTranslate();
 	const pickerLocale = usePickerLocale();
 
@@ -24,6 +25,7 @@ export const BntTimePickerElement: FC<
 				label: translate(stringLabel),
 				variant: "standard",
 			}}
+			ref={ref}
 		/>
 	);
-};
+});

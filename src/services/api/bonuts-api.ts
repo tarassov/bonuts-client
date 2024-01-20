@@ -567,6 +567,7 @@ export type GetDonutsSchedulersApiResponse = /** status 200 success */ {
 			burn_old?: boolean | null;
 			every?: string;
 			execute_time?: string | null;
+			time_in_seconds?: number | null;
 			timezone?: string | null;
 			profile?: {
 				id: number;
@@ -644,6 +645,7 @@ export type PostDonutsSchedulersApiResponse = /** status 201 success */ {
 			burn_old?: boolean | null;
 			every?: string;
 			execute_time?: string | null;
+			time_in_seconds?: number | null;
 			timezone?: string | null;
 			profile?: {
 				id: number;
@@ -715,6 +717,7 @@ export type PostDonutsSchedulersApiArg = {
 		day?: number;
 		weekday?: number;
 		execute_time?: string;
+		time_in_seconds?: number;
 		timezone?: string;
 	};
 };
@@ -732,6 +735,7 @@ export type GetDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 			burn_old?: boolean | null;
 			every?: string;
 			execute_time?: string | null;
+			time_in_seconds?: number | null;
 			timezone?: string | null;
 			profile?: {
 				id: number;
@@ -810,6 +814,7 @@ export type PatchDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 			burn_old?: boolean | null;
 			every?: string;
 			execute_time?: string | null;
+			time_in_seconds?: number | null;
 			timezone?: string | null;
 			profile?: {
 				id: number;

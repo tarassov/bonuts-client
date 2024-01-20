@@ -33,6 +33,7 @@ export const ruLocale = {
 		Add: "Добавить",
 		admin: "админ",
 		"admin deposit": "Депозит (админ)",
+		[texts_a.author]: "автор",
 		[texts_a.accept]: "принять",
 		[texts_a.add_new_scheduler]: "добавить новый планировщик",
 		[texts_a.add_comment]: "добавьте комментарий",
@@ -63,6 +64,7 @@ export const ruLocale = {
 		Buy: "Купить",
 		"Burn old points": "Списывать неиспользованные монеты",
 		"Burn old donuts": "Списывать неиспользованные пончики",
+		[texts_b.burn_unused_donuts]: "списывать неиспользованные пончики",
 
 		// C
 		Cancel: "Отмена",

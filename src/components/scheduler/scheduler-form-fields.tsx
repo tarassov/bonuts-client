@@ -1,5 +1,5 @@
 import { BntTextInputElement } from "shared/input/text-input-element";
-import { texts_a, texts_c, texts_e, texts_n } from "services/localization/texts";
+import { texts_a, texts_b, texts_c, texts_e, texts_n } from "services/localization/texts";
 import { BntTimePickerElement } from "shared/input/time-picker-element";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useFormState, useWatch } from "react-hook-form";
@@ -11,6 +11,7 @@ import { SchedulerTypes } from "components/scheduler/constants/scheduler-types";
 import { WeekdayDaySelect } from "shared/form/special-fileds/weekday-day-select";
 import { TimezoneSelect } from "shared/form/special-fileds/timezone-select";
 import { BntTextAreaInput } from "shared/input/text-area-input";
+import { BntSwitchElement } from "shared/input/bnt-switch-element";
 import { TScheduler } from "@/types/model/scheduler";
 
 export const SchedulerFormFields = () => {
@@ -90,7 +91,7 @@ export const SchedulerFormFields = () => {
 			<Grid item xs={12} sm={6} className="mt-2">
 				<BntTimePickerElement
 					stringLabel={texts_c.choose_time}
-					name="execute_time"
+					name="time"
 					ampm={false}
 					format="HH:mm"
 					required
@@ -126,6 +127,9 @@ export const SchedulerFormFields = () => {
 					stringLabel={texts_c.comment}
 					rows={6}
 				/>
+			</Grid>
+			<Grid item xs={12} className="mt-2">
+				<BntSwitchElement name="burn_old" stringLabel={texts_b.burn_unused_donuts} />
 			</Grid>
 		</Grid>
 	);

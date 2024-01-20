@@ -1,7 +1,7 @@
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { SwitchElement } from "react-hook-form-mui";
 import { useFormContext } from "react-hook-form";
 import { useMemo } from "react";
+import { BntSwitchElement } from "shared/input/bnt-switch-element";
 
 export const BntSwitchField = (props: {
 	name: string;
@@ -21,5 +21,5 @@ export const BntSwitchField = (props: {
 		return value ? label : disabledLabel || label;
 	}, [value]);
 
-	return <SwitchElement label={t(switchLabel)} name={name} disabled={disabled} id={id} />;
+	return <BntSwitchElement stringLabel={t(switchLabel)} name={name} disabled={disabled} id={id} />;
 };

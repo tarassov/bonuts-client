@@ -10,8 +10,10 @@ export const SchedulerListStyled = styled(
 )(({ theme }) => {
 	return {
 		maxWidth: 700,
-		padding: 4,
+		paddingTop: 8,
+		paddingRight: 4,
 		paddingLeft: 8,
+		paddingBottom: 24,
 		[cl(SCHEDULER_LIST_CLASSES.schedulerCard)]: {
 			"&:hover": {
 				cursor: "pointer",
