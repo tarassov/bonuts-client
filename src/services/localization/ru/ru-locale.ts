@@ -321,6 +321,7 @@ export const ruLocale = {
 		[texts_s.scheduler_created]: "планировщик создан",
 		[texts_s.scheduler_updated]: "планировщик обновлен",
 		[texts_s.scheduler_deleted]: "планировщик удален",
+		[texts_s.scheduler_delete]: "удаление планировщика",
 		save: "сохранить",
 		saved: "сохранено",
 		"Save changes": "Сохранить изменения",

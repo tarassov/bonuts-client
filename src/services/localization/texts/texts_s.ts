@@ -18,4 +18,5 @@ export enum texts_s {
 	scheduler_created = "scheduler created",
 	scheduler_updated = "scheduler updated",
 	scheduler_deleted = "scheduler deleted",
+	scheduler_delete = "scheduler delete",
 }
