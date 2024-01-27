@@ -10,6 +10,7 @@ import { formatStringDate } from "utils/format-string-date";
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CommonStrings } from "constants/dictionary";
+import { secondsToTime } from "shared/helpers/seconds-to-time";
 import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
 
 export const SchedulerCard: FC<{
@@ -49,12 +50,12 @@ export const SchedulerCard: FC<{
 										: `${scheduler.day}  ${t(texts_d.day)}`
 								}`}
 								{` ${formatStringDate(
-									scheduler.execute_time,
+									secondsToTime(scheduler.time_in_seconds),
 									false,
 									true,
 									undefined,
 									true,
-									true
+									false
 								)} ${scheduler.timezone ? `[${scheduler.timezone}]` : CommonStrings.EMPTY_STRING}`}
 							</>
 						</BntTypography>
