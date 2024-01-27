@@ -8,4 +8,5 @@ export enum texts_t {
 	transferred = "transferred",
 	transfer = "transfer",
 	time_is_required = "time is required",
+	tooltip_scheduler_time = "tooltip_scheduler_time",
 }

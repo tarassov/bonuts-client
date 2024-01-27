@@ -8,6 +8,7 @@ import { emptyFunction } from "utils/empty-function";
 import { BntDivider } from "shared/divider/bnt-divider";
 import { texts_c } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { SchedulerCardEdit } from "components/scheduler/scheduler-list/scheduler-card-edit";
 import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
 
 export type SchedulerListPureProps = {
@@ -17,6 +18,7 @@ export type SchedulerListPureProps = {
 	closeCreateMode?: VoidFunction;
 	onCreate?: (scheduler: TNewScheduler) => void;
 	onUpdate?: (scheduler: TNewScheduler) => void;
+	onDelete?: (id: number) => void;
 };
 export const SchedulerListPure: FC<SchedulerListPureProps> = ({
 	schedulers,
@@ -25,6 +27,7 @@ export const SchedulerListPure: FC<SchedulerListPureProps> = ({
 	closeCreateMode = emptyFunction,
 	onCreate,
 	onUpdate,
+	onDelete = emptyFunction,
 }) => {
 	const [editId, setEditId] = useState<number | undefined>();
 	const { t } = useBntTranslate();
@@ -46,20 +49,28 @@ export const SchedulerListPure: FC<SchedulerListPureProps> = ({
 			)}
 			{createMode && <BntDivider />}
 			{schedulers?.map((scheduler) => {
+				if (editId === scheduler.id) {
+					return (
+						<SchedulerCardEdit
+							key={scheduler.id}
+							scheduler={scheduler}
+							onSubmit={onUpdate}
+							onDelete={() => onDelete(scheduler.id)}
+							closeEdit={() => {
+								if (scheduler.id === editId) setEditId(undefined);
+							}}
+						/>
+					);
+				}
 				return (
 					<SchedulerCard
 						key={scheduler.id}
 						scheduler={scheduler}
-						onSubmit={onUpdate}
 						// preventEdit={createMode}
 						openEdit={() => {
 							closeCreateMode();
 							setEditId(scheduler.id);
 						}}
-						closeEdit={() => {
-							if (scheduler.id === editId) setEditId(undefined);
-						}}
-						editId={editId}
 					/>
 				);
 			})}

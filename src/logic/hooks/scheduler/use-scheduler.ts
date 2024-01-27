@@ -1,4 +1,7 @@
-import { PostDonutsSchedulersApiResponse } from "services/api/bonuts-api";
+import {
+	DeleteDonutsSchedulersByIdApiResponse,
+	PostDonutsSchedulersApiResponse,
+} from "services/api/bonuts-api";
 import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
 import { useNotification } from "services/notification";
 import { texts_s } from "services/localization/texts";
@@ -7,9 +10,14 @@ import { format } from "date-fns";
 import { TScheduler } from "@/types/model/scheduler";
 
 export const useScheduler = () => {
-	const { usePostDonutsSchedulersMutation, usePatchDonutsSchedulersByIdMutation } = schedulersApi;
+	const {
+		usePostDonutsSchedulersMutation,
+		usePatchDonutsSchedulersByIdMutation,
+		useDeleteDonutsSchedulersByIdMutation,
+	} = schedulersApi;
 	const [postScheduler] = usePostDonutsSchedulersMutation();
 	const [patchScheduler] = usePatchDonutsSchedulersByIdMutation();
+	const [deleteSchedulerMutation] = useDeleteDonutsSchedulersByIdMutation();
 	const tenant = useCurrentTenant();
 	const { showNotification } = useNotification();
 
@@ -53,22 +61,35 @@ export const useScheduler = () => {
 					tenant,
 					...args,
 					name: name.toString(),
-					// amount,
-					// every,
-					// comment,
-					// execute_time: args.execute_time
-					// 	? format(new Date(args.execute_time), "yyyy-MM-dd HH:mm")
-					// 	: "2000-01-01 00:00",
 				},
 			})
 				.unwrap()
 				.then((result) => {
 					options?.onSuccess?.(result);
-					showNotification(texts_s.scheduler_created);
+					showNotification(texts_s.scheduler_updated);
 				});
 		} else {
 			throw new Error("empty tenant or name");
 		}
 	};
-	return { createScheduler, updateScheduler };
+
+	const deleteScheduler = (
+		schedulerId: number,
+		options?: { onSuccess?: (result: DeleteDonutsSchedulersByIdApiResponse) => void }
+	) => {
+		if (tenant && schedulerId) {
+			deleteSchedulerMutation({
+				id: schedulerId?.toString(),
+				tenant,
+			})
+				.unwrap()
+				.then((result) => {
+					options?.onSuccess?.(result);
+					showNotification(texts_s.scheduler_deleted);
+				});
+		} else {
+			throw new Error("empty tenant or name");
+		}
+	};
+	return { createScheduler, updateScheduler, deleteScheduler };
 };

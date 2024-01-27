@@ -882,7 +882,81 @@ export type PatchDonutsSchedulersByIdApiArg = {
 		tenant: string;
 	};
 };
-export type DeleteDonutsSchedulersByIdApiResponse = unknown;
+export type DeleteDonutsSchedulersByIdApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string | null;
+			comment?: string | null;
+			id: number;
+			active: boolean;
+			day?: number | null;
+			weekday?: number | null;
+			burn_old?: boolean | null;
+			every?: string;
+			execute_time?: string | null;
+			time_in_seconds?: number | null;
+			timezone?: string | null;
+			profile?: {
+				id: number;
+				default?: boolean;
+				user_id: number;
+				active: boolean;
+				admin: boolean;
+				attached?: boolean;
+				roles: string[];
+				circles: {
+					name: string;
+					id: number;
+					active: boolean;
+				}[];
+				department?: (object | null) | null;
+				position?: (string | null) | null;
+				store_admin?: boolean;
+				bot?: boolean;
+				first_name?: string;
+				last_name?: string;
+				name?: string;
+				email: string;
+				tenant?: string;
+				sex?: string;
+				phone?: (string | null) | null;
+				contact: (string | null) | null;
+				bio: (string | null) | null;
+				birthdate: (string | null) | null;
+				in_date: (string | null) | null;
+				created_at?: string;
+				user_avatar?: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+				logo?: {
+					url?: string | null;
+					thumb?: {
+						url?: string | null;
+					};
+				};
+				score_total?: number;
+				self_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+				distrib_account?: {
+					id?: number;
+					tenant_id?: number;
+					profile_id?: number;
+				};
+			};
+		};
+	}[];
+};
 export type DeleteDonutsSchedulersByIdApiArg = {
 	id: string;
 	tenant?: string;

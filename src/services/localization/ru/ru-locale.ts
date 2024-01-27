@@ -39,6 +39,7 @@ export const ruLocale = {
 		[texts_a.add_comment]: "добавьте комментарий",
 		Activate: "Активировать",
 		[texts_a.active_request]: "Активные запросы",
+		[texts_a.approximate_action_time]: "приблизительное время начала действия",
 		Active: "Активен",
 		active: "активен",
 		activated: "в работе",
@@ -318,6 +319,8 @@ export const ruLocale = {
 		// S
 		[texts_s.settings_updated]: "настройки обновлены",
 		[texts_s.scheduler_created]: "планировщик создан",
+		[texts_s.scheduler_updated]: "планировщик обновлен",
+		[texts_s.scheduler_deleted]: "планировщик удален",
 		save: "сохранить",
 		saved: "сохранено",
 		"Save changes": "Сохранить изменения",
@@ -374,6 +377,8 @@ export const ruLocale = {
 		"This field is required": "Это поле является обязательным",
 		"Team settings": "Настройки команды",
 		[texts_t.teams_you_can_join]: "команды, к которым можно присоединиться",
+		[texts_t.tooltip_scheduler_time]:
+			"фактическое действие будет запущено в течении 1 часа после указанного времени.",
 		"Teams I can join": "Команды, к которым могу присоединиться",
 		// U
 		"Update donut": "Обновить пончик",

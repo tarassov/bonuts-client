@@ -3,49 +3,22 @@ import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/clas
 import { BntCardBody } from "shared/card/card-body";
 import { BntStack } from "shared/stack/stack";
 import { Box } from "@mui/material";
-import { texts_a, texts_d, texts_e, texts_n } from "services/localization/texts";
+import { texts_d, texts_e, texts_n } from "services/localization/texts";
 import { BntTypography } from "shared/typography/typography";
 import { getWeekdayOptions } from "shared/helpers/get-weekday";
 import { formatStringDate } from "utils/format-string-date";
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { SchedulerForm } from "components/scheduler/scheduler-form";
-import { BntProfileButton } from "components/buttons/profile-button";
-import { emptyFunction } from "utils/empty-function";
-import classNames from "classnames";
 import { CommonStrings } from "constants/dictionary";
-import { TNewScheduler, TScheduler, TSchedulerType } from "@/types/model/scheduler";
+import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
 
 export const SchedulerCard: FC<{
 	preventEdit?: boolean;
 	scheduler: TScheduler;
-	onSubmit?: (scheduler: TNewScheduler) => void;
 	openEdit: VoidFunction;
-	closeEdit: VoidFunction;
-	editId?: number;
-}> = ({ scheduler, onSubmit, preventEdit, openEdit, closeEdit, editId }) => {
+}> = ({ scheduler, preventEdit, openEdit }) => {
 	const { t } = useBntTranslate();
 
-	const handleSubmit = (newScheduler: TNewScheduler) => {
-		onSubmit?.(newScheduler);
-		closeEdit();
-	};
-
-	if (editId === scheduler.id) {
-		return (
-			<BntCard className={classNames("p-2")} raised>
-				{scheduler.profile && (
-					<BntStack justifyContent="flex-start" direction="row" alignItems="center" gap={2}>
-						<BntTypography variant="caption2">
-							{t(texts_a.author, { capitalize: true })}
-						</BntTypography>
-						<BntProfileButton profile={scheduler.profile} onClick={emptyFunction} />
-					</BntStack>
-				)}
-				<SchedulerForm defaultValue={scheduler} onCancel={closeEdit} onSubmit={handleSubmit} />
-			</BntCard>
-		);
-	}
 	return (
 		<BntCard
 			raised

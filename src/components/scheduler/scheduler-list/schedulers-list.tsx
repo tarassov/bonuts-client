@@ -12,7 +12,7 @@ import { TNewScheduler } from "@/types/model/scheduler";
 
 export const SchedulersList = () => {
 	const { objects: schedulers, isLoading } = useSchedulerListLoader();
-	const { createScheduler, updateScheduler } = useScheduler();
+	const { createScheduler, updateScheduler, deleteScheduler } = useScheduler();
 	const [createMode, setCreateMode] = useState(false);
 	useLoader(Modules.Schedulers, isLoading);
 	const theme = useTheme();
@@ -35,6 +35,7 @@ export const SchedulersList = () => {
 					closeCreateMode={() => setCreateMode(false)}
 					onCreate={onCreate}
 					onUpdate={updateScheduler}
+					onDelete={deleteScheduler}
 				/>
 			</CardWrapper>
 		</BntStack>

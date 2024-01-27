@@ -16,4 +16,6 @@ export enum texts_s {
 	sign_up = "sign_up",
 	soon_will_be_back = "soon_will_be_back",
 	scheduler_created = "scheduler created",
+	scheduler_updated = "scheduler updated",
+	scheduler_deleted = "scheduler deleted",
 }
