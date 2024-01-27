@@ -1,6 +1,14 @@
 import { blue, grey, red } from "@mui/material/colors";
 
 const lightTheme = {
+	typography: {
+		caption2: {
+			fontWeight: 400,
+			fontSize: "0.85rem",
+			lineHeight: 1.66,
+			letterSpacing: "0.03333em",
+		},
+	},
 	palette: {
 		background: {
 			default: grey.A100,

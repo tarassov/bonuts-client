@@ -1,13 +1,11 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { BntFormContextProvider } from "shared/form/context/bnt-form-provider";
 import { BntFormFieldList } from "shared/form/bnt-form-field-list";
-import { BntTransparentButton } from "shared/buttons/transparent-button";
 import { FC, useEffect } from "react";
 import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useFormContext, useFormState } from "react-hook-form";
 import { BntFormGroups } from "shared/form/bnt-form-groups";
-import { texts_c, texts_s } from "services/localization/texts";
+import { BntFormSubmit } from "shared/form/bnt-form-submit";
 
 export const BntFormBody: FC<
 	TFormProps<any> & {
@@ -29,7 +27,6 @@ export const BntFormBody: FC<
 	error,
 	keepValuesOnSubmit = true,
 }) => {
-	const { translate } = useBntTranslate();
 	const { reset } = useFormContext();
 	const { isDirty, isSubmitSuccessful } = useFormState();
 
@@ -64,19 +61,11 @@ export const BntFormBody: FC<
 					</>
 				</BntFormContextProvider>
 			</Grid>
-			<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-				{(isDirty || error) && (
-					<>
-						<BntTransparentButton color="secondary" onClick={onCancelClick}>
-							{translate(texts_c.cancel)}
-						</BntTransparentButton>
-
-						<BntTransparentButton type="submit">
-							{submitCaption || translate(texts_s.save)}
-						</BntTransparentButton>
-					</>
-				)}
-			</Stack>
+			<BntFormSubmit
+				visible={!!(isDirty || error)}
+				onCancelClick={onCancelClick}
+				submitCaption={submitCaption}
+			/>
 		</Box>
 	);
 };

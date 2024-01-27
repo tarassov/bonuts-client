@@ -1,5 +1,5 @@
-import { UnderConstruct } from "pages/under-construct";
+import { SchedulersList } from "components/scheduler/scheduler-list/schedulers-list";
 
 export const SchedulersPage = () => {
-	return <UnderConstruct />;
+	return <SchedulersList />;
 };

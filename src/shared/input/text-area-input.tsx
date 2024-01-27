@@ -16,6 +16,7 @@ export const BntTextAreaInput: FC<
 		<TextareaAutosizeElement
 			{...rest}
 			placeholder={translate(placeholder)}
+			label={translate(stringLabel)}
 			name={name}
 			parseError={(error: FieldError) => translate(error.message)}
 		/>

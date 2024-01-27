@@ -1,4 +1,5 @@
 export enum texts_d {
+	day = "day",
 	delivery_days = "delivery days",
 	decline = "decline",
 	description = "description",

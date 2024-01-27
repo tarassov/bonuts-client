@@ -7,4 +7,6 @@ export enum texts_t {
 	transfer_donuts = "transfer donuts",
 	transferred = "transferred",
 	transfer = "transfer",
+	time_is_required = "time is required",
+	tooltip_scheduler_time = "tooltip_scheduler_time",
 }
