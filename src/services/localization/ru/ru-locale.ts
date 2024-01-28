@@ -78,6 +78,7 @@ export const ruLocale = {
 		Confirm: "Подтвердить почтовый адрес",
 		"Confirmation dialog": "Подтверждение",
 		confirmation: "подтверждение",
+		[texts_c.coins]: "монеты",
 		[texts_c.comment]: "комментарий",
 		[texts_c.confirmation_email_was_sent_to]:
 			"Письмо для подтверждения было отправлено на ваш электронный адрес",
@@ -115,6 +116,7 @@ export const ruLocale = {
 		DEMO: "Демо",
 		Dashboard: "Лента",
 		Delete: "Удалить",
+		[texts_d.donuts]: "пончики",
 		[texts_d.decline]: "отклонить",
 		"delivery days": "через сколько дней будет",
 		Departments: "Отделы",
@@ -132,7 +134,6 @@ export const ruLocale = {
 		Donut: "Пончик",
 		Donuts: "Пончики",
 		"Donut description": "Описание пончика",
-		donuts: "пончики",
 		donut_zero: "пончиков",
 		donut_one: "пончик",
 		donut_few: "пончика",
@@ -367,16 +368,18 @@ export const ruLocale = {
 
 		// T
 		Tenant: "Команда",
+		"Team settings": "Настройки команды",
 		transferred: "перведено",
 		"transfer points": "перевести монеты",
 		"transfer donuts": "перевести пончики",
 		to: "для",
 		[texts_t.transfer]: "перевести",
+		[texts_t.transfer_type]: "тип перевода",
 		[texts_t.to_store]: "в магазин",
+		"Transfer donuts or coins": "Перевести пончики или монеты", // route name!
 		[texts_t.time_is_required]: "необходимо указать время",
 		"to can transfer to others": "можно дарить коллегам",
 		"This field is required": "Это поле является обязательным",
-		"Team settings": "Настройки команды",
 		[texts_t.teams_you_can_join]: "команды, к которым можно присоединиться",
 		[texts_t.tooltip_scheduler_time]:
 			"фактическое действие будет запущено в течении 1 часа после указанного времени.",

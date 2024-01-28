@@ -1,6 +1,7 @@
 export enum texts_c {
 	"close" = "close",
 	"closed" = "closed",
+	coins = "coins",
 	"cancel" = "cancel",
 	"create" = "create",
 	"created" = "created",

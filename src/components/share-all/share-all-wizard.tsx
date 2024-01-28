@@ -3,11 +3,12 @@ import { ShareAllStepOne } from "components/share-all/share-all-step-one";
 import { ShareAllStepTwo } from "components/share-all/share-all-step-two";
 import { Wizard } from "shared/wizard/wizard";
 import { useTransfer } from "logic/hooks/operation/use-transfer";
+import { Currency } from "constants/currency";
 import { TProfile } from "@/types/model";
 
 type ShareAllWizardType = {
 	Step1: { profiles: Array<TProfile> };
-	Step2: { amount: number; comment: string; toSelfAccount: boolean };
+	Step2: { amount: number; comment: string; type: Currency };
 };
 
 export const ShareAllWizard = () => {
@@ -17,9 +18,9 @@ export const ShareAllWizard = () => {
 		const { Step1, Step2, onSuccess } = values;
 		if (Step1 && Step2) {
 			const { profiles } = Step1;
-			const { amount, comment, toSelfAccount } = Step2;
+			const { amount, comment, type } = Step2;
 			adminDeposit(
-				{ amount, comment, toSelfAccount, ids: profiles.map((x) => x.id) },
+				{ amount, comment, toSelfAccount: type === Currency.coin, ids: profiles.map((x) => x.id) },
 				{ onSuccess }
 			);
 		}

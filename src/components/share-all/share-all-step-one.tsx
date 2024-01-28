@@ -12,6 +12,7 @@ import { BntTypography } from "shared/typography/typography";
 import { emptyFunction } from "utils/empty-function";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
+import { useSearch } from "logic/hooks/use-search";
 import { TProfile } from "@/types/model";
 
 export const ShareAllStepOne: FC<{
@@ -23,6 +24,12 @@ export const ShareAllStepOne: FC<{
 	const { t } = useBntTranslate();
 
 	useLoader(Modules.ShareAll, isLoading);
+
+	const filtered = objects.filter((x) => selected.every((y) => y.id !== x.id));
+
+	const { filteredList, setSorter, setSearch } = useSearch<TProfile>(filtered, {
+		searchField: "name",
+	});
 
 	const addProfile = (p: TProfile) => {
 		setSelected((prev) => {
@@ -39,13 +46,11 @@ export const ShareAllStepOne: FC<{
 	};
 
 	const selectAll = () => {
-		setSelected(objects);
+		setSelected([...filteredList, ...selected]);
 	};
 	const removeAll = () => {
 		setSelected([]);
 	};
-
-	const filtered = objects.filter((x) => selected.every((y) => y.id !== x.id));
 
 	return (
 		<>
@@ -59,8 +64,10 @@ export const ShareAllStepOne: FC<{
 					<Grid item xs={12} sm={6}>
 						<EmployeeListCompact
 							title={t(texts_a.available_employees, { capitalize: true })}
-							profiles={filtered}
+							profiles={filteredList}
 							onClick={addProfile}
+							setSearch={setSearch}
+							setSorter={setSorter}
 							hideSearch={!filtered.length}
 						>
 							<>
