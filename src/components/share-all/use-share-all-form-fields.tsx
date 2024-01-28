@@ -1,7 +1,11 @@
 import { TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { Currency } from "constants/currency";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c, texts_d, texts_t } from "services/localization/texts";
 
-export type TransferFormType = { comment: string; amount: number; toSelfAccount: boolean };
+export type TransferFormType = { comment: string; amount: number; type: Currency };
 export const useShareAllFormFields = () => {
+	const { t } = useBntTranslate();
 	const fields: Array<TFormField<TransferFormType>> = [
 		{
 			image: false,
@@ -25,12 +29,21 @@ export const useShareAllFormFields = () => {
 		},
 		{
 			image: false,
+			required: true,
 			size: TFieldSize.md,
-			name: "toSelfAccount",
-			label: "user can spend in store",
-			disabledLabel: "to can transfer to others",
-			placeholder: "type",
-			type: TFieldType.switch,
+			name: "type",
+			label: t(texts_t.transfer_type, { capitalize: true }),
+			source: [
+				{
+					key: Currency.donut,
+					label: t(texts_d.donuts),
+				},
+				{
+					key: Currency.coin,
+					label: t(texts_c.coins),
+				},
+			],
+			type: TFieldType.radio,
 			xs: 12,
 		},
 	];

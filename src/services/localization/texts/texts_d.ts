@@ -7,4 +7,5 @@ export enum texts_d {
 	disabled = "disabled",
 	domain = "domain",
 	demo = "demo",
+	donuts = "donuts",
 }

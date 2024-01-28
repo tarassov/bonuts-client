@@ -7,12 +7,13 @@ import { EmployeeListCompact } from "components/employee/employee-list-compact/e
 import { BntStack } from "shared/stack/stack";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { ShareAllForm } from "components/share-all/share-all-form";
+import { Currency } from "constants/currency";
 import { TProfile } from "@/types/model";
 
 export const ShareAllStepTwo: FC<{
 	profiles?: Array<TProfile>;
 	back?: VoidFunction;
-	next?: (args: { amount: number; comment: string; toSelfAccount: boolean }) => void;
+	next?: (args: { amount: number; comment: string; type: Currency }) => void;
 }> = ({ profiles, back = emptyFunction, next = emptyFunction }) => {
 	const { t } = useBntTranslate();
 	return (

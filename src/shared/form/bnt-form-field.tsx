@@ -3,6 +3,7 @@ import { BntTextAreaField } from "shared/form/fields/bnt-text-area-field";
 import { BntDatePickerField } from "shared/form/fields/bnt-date-picker-field";
 import { BntSwitchField } from "shared/form/fields/bnt-switch-field";
 import { useWatch } from "react-hook-form";
+import { BntRadioField } from "shared/form/fields/bnt-radio-field";
 import { TFieldType, TFormField } from "./types/bnt-form";
 import { BntFormTextField } from "./fields/bnt-form-text-field";
 import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
@@ -54,6 +55,9 @@ export const BntFormField: FC<{
 				disabledLabel={field.disabledLabel}
 			/>
 		);
+	}
+	if (field.type === TFieldType.radio) {
+		return <BntRadioField field={field} />;
 	}
 	return (
 		<>

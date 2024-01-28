@@ -68,6 +68,7 @@ export const BntForm: FC<TFormProps<any>> = ({
 		setValues(initials || {});
 	};
 	if (!initials && hasInitial) return null;
+
 	return (
 		<div>
 			<DateFnsProvider adapterLocale={locale}>
