@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import basicSsl from "@vitejs/plugin-basic-ssl";
@@ -15,6 +15,7 @@ export default defineConfig({
 		port: 3002,
 	},
 	plugins: [
+		splitVendorChunkPlugin(),
 		pluginRewriteAll(), //Vite plugin that fix dev server not rewriting the path includes a dot. https://www.npmjs.com/package/vite-plugin-rewrite-all
 		basicSsl(),
 		react(),
@@ -27,6 +28,27 @@ export default defineConfig({
 			include: "**/*.svg",
 		}),
 	],
+	build: {
+		minify: true,
+		rollupOptions: {
+			output: {
+				manualChunks: function manualChunks(id) {
+					if (id.includes("node_modules/lodash/")) {
+						return "lodash";
+					}
+					if (id.includes("node_modules/@tanstack")) {
+						return "tanstack";
+					}
+					if (id.includes("node_modules/i18next")) {
+						return "i18next";
+					}
+					if (id.includes("node_modules")) {
+						return "vendor";
+					}
+				},
+			},
+		},
+	},
 	resolve: {
 		// alias: {
 		// 	scss: path.resolve(__dirname, "src/scss"),
