@@ -1,5 +1,5 @@
 import CssBaseline from "@mui/material/CssBaseline";
-import { Box } from "@mui/material";
+
 import { useContext, useMemo } from "react";
 import { BntDrawerHeader } from "shared/drawer";
 import { useAuth } from "logic/hooks/auth/use-auth";
@@ -9,6 +9,7 @@ import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { getRoutes } from "routes/get-routes";
+import { BntBox } from "shared/box/bnt-box";
 import SwitchRoutes from "../switch-routes/switch-routes";
 import BntSidebar from "../sidebar/sidebar";
 import { BTNHeader } from "../header/header";
@@ -24,21 +25,21 @@ export const BntLayout = () => {
 	const routerRoutes = useMemo(() => getRoutes(routes, redirects), [routes, redirects]);
 
 	return (
-		<Box sx={{ display: "flex", height: "100vh" }}>
+		<BntBox sx={{ display: "flex", height: "100vh" }}>
 			<CssBaseline />
 			{auth.isAuthenticated && <BTNHeader profile={profile} />}
 			{auth.isAuthenticated && <BntSidebar />}
-			<Box
+			<BntBox
 				component="main"
 				sx={{ flexGrow: 1, maxWidth: "100%", height: "100%", overflow: "hidden" }}
 			>
 				<BntStack direction="column" sx={{ height: "100%", p: 0, m: 0, overflow: "hidden" }}>
 					{auth.isAuthenticated && <BntDrawerHeader />}
-					<Box sx={{ flexGrow: 1, height: "100%", overflowY: "auto", p: 1 }}>
+					<BntBox sx={{ flexGrow: 1, height: "100%", overflowY: "auto", p: 1 }}>
 						<SwitchRoutes routes={routerRoutes} />
-					</Box>
+					</BntBox>
 				</BntStack>
-			</Box>
-		</Box>
+			</BntBox>
+		</BntBox>
 	);
 };

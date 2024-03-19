@@ -1,6 +1,7 @@
 import { BntCard } from "shared/card/card";
 import { BntStack } from "shared/stack/stack";
-import { Box, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { texts_a } from "services/localization/texts";
 import { BntTypography } from "shared/typography/typography";
 import { FC } from "react";
@@ -35,11 +36,11 @@ export const SchedulerCardEdit: FC<{
 						</BntTypography>
 						<BntProfileButton profile={scheduler.profile} onClick={emptyFunction} />
 					</BntStack>
-					<Box>
+					<BntBox>
 						<IconButton onClick={onDelete} sx={{ width: 40 }}>
 							<DeleteOutlined />
 						</IconButton>
-					</Box>
+					</BntBox>
 				</BntStack>
 			)}
 			<SchedulerForm defaultValue={scheduler} onCancel={closeEdit} onSubmit={handleSubmit} />

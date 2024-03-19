@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { BntCardBody } from "shared/card/card-body";
-import { Grid, Stack, useMediaQuery, useTheme, Box } from "@mui/material";
+import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
 import { BntCard } from "shared/card/card";
 import { ImagePreview } from "shared/image/image-preview";
@@ -17,6 +17,7 @@ import { BntDivider } from "shared/divider/bnt-divider";
 import { EmployeeActions } from "pages/employee/employee-actions";
 import { EmployeeEdit } from "components/employee/employee-edit/employee-edit";
 import { CircleTag } from "components/circle/circle-tag/circle-tag";
+import { BntBox } from "shared/box/bnt-box";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
@@ -161,9 +162,9 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 										className="mb-3"
 									/>
 									<BntDivider className="mt-4 mb-4" />
-									<Box>
+									<BntBox>
 										<BntTypography isPreformatted>{employee?.bio}</BntTypography>
-									</Box>
+									</BntBox>
 								</Grid>
 							</Grid>
 						</>

@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React, { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "pages/registration-page/registration-page.module.scss";
@@ -8,6 +7,7 @@ import { usePasswordRecover } from "logic/hooks/auth/use-password-recover";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useProjectNavigate } from "hooks/use-project-navigate";
+import { BntBox } from "shared/box/bnt-box";
 
 export const RecoverPage: FC = () => {
 	const { token } = useParams();
@@ -21,12 +21,12 @@ export const RecoverPage: FC = () => {
 	useLoader(Modules.Default, isLoading);
 
 	return (
-		<Box className={styles.box} sx={{ mt: 8 }}>
+		<BntBox className={styles.box} sx={{ mt: 8 }}>
 			{!token ? (
 				<PasswordRecoverRequest onSubmit={sendRecoverEmail} />
 			) : (
 				<PasswordRecoverSet onSubmit={changePassword} />
 			)}
-		</Box>
+		</BntBox>
 	);
 };

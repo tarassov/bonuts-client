@@ -15,6 +15,7 @@ import { useEventUi } from "logic/ui/use-event-ui";
 import { emptyFunction } from "utils/empty-function";
 import { formatStringDate } from "utils/format-string-date";
 import { BntTypography } from "shared/typography/typography";
+import { BntBox } from "shared/box/bnt-box";
 import { TPost } from "@/types/model/post";
 import { BntStyledCardHeader } from "./event-card-header";
 import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
@@ -152,13 +153,13 @@ export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNe
 						>
 							<Favorite />
 						</IconButton>
-						<Box
+						<BntBox
 							className={classNames(EVENT_CARD_CLASSES.iconCaption, {
 								[EVENT_CARD_CLASSES.liked]: liked,
 							})}
 						>
 							{likes.length > 0 && likes.length}
-						</Box>
+						</BntBox>
 					</>
 				)}
 				{commentable && (
@@ -166,9 +167,9 @@ export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNe
 						<IconButton aria-label="Comment" onClick={handleComment}>
 							<Comment />
 						</IconButton>
-						<Box className={classNames(EVENT_CARD_CLASSES.iconCaption)}>
+						<BntBox className={classNames(EVENT_CARD_CLASSES.iconCaption)}>
 							{comments_count !== undefined && comments_count !== 0 && comments_count}
-						</Box>
+						</BntBox>
 					</>
 				)}
 				{editable && (

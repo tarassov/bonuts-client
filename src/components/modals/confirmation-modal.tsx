@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Box } from "@mui/material";
+
 import { BntStack } from "shared/stack/stack";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
 import { TModalProps } from "shared/types/dialog-types";
 import { emptyFunction } from "utils/empty-function";
 import { BntTransparentButton } from "shared/buttons/transparent-button";
+import { BntBox } from "shared/box/bnt-box";
 import { texts_y } from "@/services/localization/texts/texts_y";
 
 export const ConfirmationModal: FC<TModalProps & { text?: string; onSubmit: VoidFunction }> = ({
@@ -20,7 +21,7 @@ export const ConfirmationModal: FC<TModalProps & { text?: string; onSubmit: Void
 	};
 
 	return (
-		<Box sx={{ m: 1 }}>
+		<BntBox sx={{ m: 1 }}>
 			<BntStack>
 				<div className="flex-grow pl-2">{text}</div>
 				<BntStack
@@ -38,6 +39,6 @@ export const ConfirmationModal: FC<TModalProps & { text?: string; onSubmit: Void
 					</BntTransparentButton>
 				</BntStack>
 			</BntStack>
-		</Box>
+		</BntBox>
 	);
 };

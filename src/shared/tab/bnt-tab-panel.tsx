@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Box } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 
 export type TabPanelProps = {
 	children?: React.ReactNode;
@@ -19,9 +19,9 @@ export const BntTabPanel: FC<TabPanelProps> = (props) => {
 			{...other}
 		>
 			{value === index && (
-				<Box component="div" className={boxClassName}>
+				<BntBox component="div" className={boxClassName}>
 					{children}
-				</Box>
+				</BntBox>
 			)}
 		</div>
 	);

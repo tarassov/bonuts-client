@@ -5,9 +5,9 @@ import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance
 import { texts_i, texts_t } from "services/localization/texts";
 import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
 import { BntRoundButton } from "shared/buttons/round-button";
-import Box from "@mui/material/Box/Box";
 import { useDonutUi } from "logic/ui/use-donut-ui";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
+import { BntBox } from "shared/box/bnt-box";
 import { TProfile } from "@/types/model";
 import { BntStack } from "@/shared/stack/stack";
 
@@ -38,11 +38,11 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 				lastOperation={account?.last_operation}
 				onClick={toSelfBalanceHistory}
 			/>
-			<Box>
+			<BntBox>
 				<BntRoundButton variant="contained" onClick={toStore}>
 					{t(texts_t.to_store, { capitalize: true })}
 				</BntRoundButton>
-			</Box>
+			</BntBox>
 		</BntStack>
 	);
 };

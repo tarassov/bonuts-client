@@ -1,4 +1,5 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { FC } from "react";
 import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
@@ -22,7 +23,7 @@ export const ConfirmEmailPage: FC = () => {
 	useLoader(Modules.ConfirmEmail, isLoading);
 
 	return (
-		<Box className={styles.box} sx={{ mt: 8 }}>
+		<BntBox className={styles.box} sx={{ mt: 8 }}>
 			<BonutsFullIcon style={{ width: "110px", height: "50px" }} />
 			{user?.attributes?.email ? (
 				<>
@@ -41,6 +42,6 @@ export const ConfirmEmailPage: FC = () => {
 					</Button>
 				</>
 			)}
-		</Box>
+		</BntBox>
 	);
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TWizardConfig, TWizardProps } from "shared/types/wizard-types";
-import { Box } from "@mui/material";
+import { BntBox } from "../box/bnt-box";
 
 export const Wizard = <TConfig, TInitialProps>(props: {
 	config: TWizardConfig<TConfig, TInitialProps>;
@@ -37,5 +37,5 @@ export const Wizard = <TConfig, TInitialProps>(props: {
 			}
 		},
 	};
-	return <Box>{currentStep.renderItem(stepProps)}</Box>;
+	return <BntBox>{currentStep.renderItem(stepProps)}</BntBox>;
 };

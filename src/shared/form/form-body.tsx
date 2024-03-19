@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { BntFormContextProvider } from "shared/form/context/bnt-form-provider";
 import { BntFormFieldList } from "shared/form/bnt-form-field-list";
 import { FC, useEffect } from "react";
@@ -6,6 +6,7 @@ import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
 import { useFormContext, useFormState } from "react-hook-form";
 import { BntFormGroups } from "shared/form/bnt-form-groups";
 import { BntFormSubmit } from "shared/form/bnt-form-submit";
+import { BntBox } from "shared/box/bnt-box";
 
 export const BntFormBody: FC<
 	TFormProps<any> & {
@@ -42,7 +43,7 @@ export const BntFormBody: FC<
 	};
 
 	return (
-		<Box className="position-relative">
+		<BntBox className="position-relative">
 			<Grid container spacing={2} className="mb-3">
 				<BntFormContextProvider values={values} initialValues={initialValues}>
 					<>
@@ -66,6 +67,6 @@ export const BntFormBody: FC<
 				onCancelClick={onCancelClick}
 				submitCaption={submitCaption}
 			/>
-		</Box>
+		</BntBox>
 	);
 };

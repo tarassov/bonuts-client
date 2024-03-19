@@ -1,4 +1,5 @@
-import { Avatar, Box, Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { LogoutOutlined } from "@mui/icons-material";
@@ -12,7 +13,7 @@ export const LogoutPage: FC = () => {
 		signOut();
 	};
 	return (
-		<Box
+		<BntBox
 			sx={{
 				mt: 8,
 				display: "flex",
@@ -39,6 +40,6 @@ export const LogoutPage: FC = () => {
 					<LogoutOutlined />
 				</Avatar>
 			</Button>
-		</Box>
+		</BntBox>
 	);
 };

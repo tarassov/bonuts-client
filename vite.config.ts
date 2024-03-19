@@ -42,6 +42,9 @@ export default defineConfig({
 					if (id.includes("node_modules/i18next")) {
 						return "i18next";
 					}
+					if (id.includes("node_modules/reagraph")) {
+						return "reagraph";
+					}
 					if (id.includes("node_modules")) {
 						return "vendor";
 					}

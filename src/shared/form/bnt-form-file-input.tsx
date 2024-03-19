@@ -1,5 +1,6 @@
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import React, { FC } from "react";
+import { BntBox } from "shared/box/bnt-box";
 import { Dictionary } from "constants/dictionary";
 import { BntIconButton } from "shared/icon-button/bnt-icon-button";
 import { ModeEditOutlineRounded } from "@mui/icons-material";
@@ -27,11 +28,11 @@ export const BntFormFileInput: FC<{
 				ref={inputRef}
 				onChange={handleFileInputChange}
 			/>
-			<Box sx={{ textAlign: "center", width: "100%" }} className="pr-8">
+			<BntBox sx={{ textAlign: "center", width: "100%" }} className="pr-8">
 				<BntIconButton onClick={handleButtonClick} tooltip={Dictionary.EDIT}>
 					<ModeEditOutlineRounded />
 				</BntIconButton>
-			</Box>
+			</BntBox>
 		</Stack>
 	);
 };

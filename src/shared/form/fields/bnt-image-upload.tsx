@@ -1,10 +1,9 @@
-import { Box } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import React, { useEffect, useState } from "react";
 import { ImagePreview } from "shared/image/image-preview";
 import _ from "lodash";
+import { BntBox } from "shared/box/bnt-box";
 import { TFormField, TFormImageValue, TFormValue } from "../types/bnt-form";
-
 import { useBntForm } from "../hooks/use-bnt-form";
 import { BntFormFileInput } from "../bnt-form-file-input";
 
@@ -66,7 +65,7 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
 				</>
 			) : (
-				<Box
+				<BntBox
 					sx={{
 						border: "dashed 2px #aaa",
 						borderRadius: 5,
@@ -76,10 +75,11 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 					}}
 					onDragOver={handleDragOver}
 					onDrop={handleDrop}
+					component="div"
 				>
 					<p>{translate("Drag and drop an image here or click to select a file")}</p>
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
-				</Box>
+				</BntBox>
 			)}
 		</div>
 	);

@@ -6,7 +6,7 @@ import { DonutSmallOutlined } from "@mui/icons-material";
 import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { BntStack } from "shared/stack/stack";
-import { Box } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 
@@ -35,11 +35,11 @@ export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) =>
 				lastOperation={account?.last_operation}
 				onClick={toDistribBalanceHistory}
 			/>
-			<Box>
+			<BntBox>
 				<BntRoundButton variant="contained" onClick={toEmployeeList}>
 					{t(texts_s.share, { capitalize: true })}
 				</BntRoundButton>
-			</Box>
+			</BntBox>
 		</BntStack>
 	);
 };
