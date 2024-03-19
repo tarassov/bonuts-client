@@ -5,9 +5,11 @@ export type TabPanelProps = {
 	children?: React.ReactNode;
 	index: number;
 	value: number;
+	className?: string;
+	boxClassName?: string;
 };
 export const BntTabPanel: FC<TabPanelProps> = (props) => {
-	const { children, value, index, ...other } = props;
+	const { children, value, index, boxClassName, ...other } = props;
 	return (
 		<div
 			role="tabpanel"
@@ -16,7 +18,11 @@ export const BntTabPanel: FC<TabPanelProps> = (props) => {
 			aria-labelledby={`bnt-tab-${index}`}
 			{...other}
 		>
-			{value === index && <Box>{children}</Box>}
+			{value === index && (
+				<Box component="div" className={boxClassName}>
+					{children}
+				</Box>
+			)}
 		</div>
 	);
 };

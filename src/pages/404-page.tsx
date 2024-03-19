@@ -15,6 +15,7 @@ export const Page404 = () => {
 				display: "flex",
 				justifyContent: "center",
 			}}
+			component="div"
 		>
 			<Stack direction="column">
 				<NotAccessibleOutlined sx={{ height: "150px", width: "150px" }} />

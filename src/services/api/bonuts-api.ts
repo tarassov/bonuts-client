@@ -229,6 +229,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getTenants: build.query<GetTenantsApiResponse, GetTenantsApiArg>({
 			query: () => ({ url: `/tenants` }),
 		}),
+		getTies: build.query<GetTiesApiResponse, GetTiesApiArg>({
+			query: (queryArg) => ({ url: `/ties`, params: { tenant: queryArg.tenant } }),
+		}),
 		postRegister: build.mutation<PostRegisterApiResponse, PostRegisterApiArg>({
 			query: (queryArg) => ({ url: `/register`, method: "POST", body: queryArg.body }),
 		}),
@@ -3252,6 +3255,14 @@ export type GetTenantsApiResponse = /** status 200 success */ {
 	}[];
 };
 export type GetTenantsApiArg = void;
+export type GetTiesApiResponse = /** status 200 success */ {
+	from_id?: number;
+	to_id?: number;
+	id?: null;
+}[];
+export type GetTiesApiArg = {
+	tenant?: string;
+};
 export type PostRegisterApiResponse = unknown;
 export type PostRegisterApiArg = {
 	body: {
@@ -3476,6 +3487,7 @@ export const {
 	usePutTenantCurrentMutation,
 	useGetTenantsAccessibleQuery,
 	useGetTenantsQuery,
+	useGetTiesQuery,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
 	useGetConfirmEmailQuery,

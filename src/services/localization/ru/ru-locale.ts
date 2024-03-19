@@ -226,6 +226,7 @@ export const ruLocale = {
 		more: "ещё",
 		// N
 		[texts_n.name_is_required]: "необходимо задать имя",
+		[texts_n.network_connections]: "связи",
 		"new password": "новый пароль",
 		"New points for all users": "Новые монеты для всех пользователей",
 		Name: "Имя",

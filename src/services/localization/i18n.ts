@@ -1,8 +1,6 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import * as process from "process";
-
 import { ruLocale } from "services/localization/ru/ru-locale";
 import { enLocale } from "services/localization/en/en-locale";
 
@@ -12,7 +10,7 @@ i18n.use(LanguageDetector).init({
 		ru: ruLocale,
 	},
 	fallbackLng: "en",
-	debug: !process.env.NODE_ENV || process.env.NODE_ENV === "development",
+	debug: import.meta.env.DEV,
 
 	// have a common namespace used around the full app
 	ns: ["translations"],
