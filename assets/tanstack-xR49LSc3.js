@@ -1,4 +1,4 @@
-import{r as y,ak as xe}from"./vendor-Cwl-XID1.js";/**
+import{r as y,al as xe}from"./vendor-Bzw4pu8u.js";/**
    * table-core
    *
    * Copyright (c) TanStack
