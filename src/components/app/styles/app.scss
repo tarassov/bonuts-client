@@ -44,7 +44,16 @@ main {
 .flex-column {
 	flex-flow: column;
 }
+.align-items-center{
+	align-items: center;
+}
 
+.justify-content-between{
+	justify-content: space-between;
+}
+.justify-content-evenly{
+	justify-content: space-evenly;
+}
 .text-align-center {
 	text-align: center;
 }

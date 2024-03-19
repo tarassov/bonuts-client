@@ -12,4 +12,6 @@ export enum texts_p {
 	password_is_required = "password is required",
 	password_confirm_is_required = "password confirm is required",
 	passwords_do_not_math = "password do not match",
+	period_start = "period start",
+	period_end = "period end",
 }

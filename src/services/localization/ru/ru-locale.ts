@@ -257,6 +257,8 @@ export const ruLocale = {
 		[texts_p.password_is_required]: "пароль необходим",
 		[texts_p.passwords_do_not_math]: "пароль не совпадает",
 		[texts_p.password_confirm_is_required]: "подтверждение пароля необходимо",
+		[texts_p.period_start]: "начало периода",
+		[texts_p.period_end]: "конец периода",
 		Page: "Страница",
 		People: "Сотрудники",
 		"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
