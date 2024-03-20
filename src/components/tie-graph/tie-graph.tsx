@@ -9,22 +9,21 @@ import {
 	useSelection,
 	GraphCanvasRef,
 } from "reagraph";
-import React, { FC, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, useMemo, useRef, useState } from "react";
 import { tieTheme } from "components/tie-graph/tie-theme";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_p } from "services/localization/texts";
 
 export const TieGraph: FC = () => {
-	const { objects: ties } = useTiesList();
 	const { objects: profiles = [] } = useEmployeeList();
 	const [, setActiveNode] = useState<InternalGraphNode | undefined>();
 	const { t } = useBntTranslate();
 	const [from, setFrom] = useState<Date | null>(null);
 	const [to, setTo] = useState<Date | null>(null);
 	const graphRef = useRef<GraphCanvasRef | null>(null);
+	const { objects: ties } = useTiesList(from?.toString(), to?.toString());
 
-	useEffect(() => {}, [to, from]);
 	const nodes = useMemo<Array<GraphNode>>(() => {
 		return profiles
 			.filter((x) => x.user_id)

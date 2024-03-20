@@ -176,7 +176,15 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
-			query: (queryArg) => ({ url: `/profiles`, params: { tenant: queryArg.tenant } }),
+			query: (queryArg) => ({
+				url: `/profiles`,
+				params: {
+					tenant: queryArg.tenant,
+					show_balance: queryArg.showBalance,
+					show_score: queryArg.showScore,
+					show_sent: queryArg.showSent,
+				},
+			}),
 		}),
 		getRequests: build.query<GetRequestsApiResponse, GetRequestsApiArg>({
 			query: (queryArg) => ({
@@ -230,7 +238,10 @@ const injectedRtkApi = api.injectEndpoints({
 			query: () => ({ url: `/tenants` }),
 		}),
 		getTies: build.query<GetTiesApiResponse, GetTiesApiArg>({
-			query: (queryArg) => ({ url: `/ties`, params: { tenant: queryArg.tenant } }),
+			query: (queryArg) => ({
+				url: `/ties`,
+				params: { tenant: queryArg.tenant, date_from: queryArg.dateFrom, date_to: queryArg.dateTo },
+			}),
 		}),
 		postRegister: build.mutation<PostRegisterApiResponse, PostRegisterApiArg>({
 			query: (queryArg) => ({ url: `/register`, method: "POST", body: queryArg.body }),
@@ -381,6 +392,7 @@ export type PostAdminDepositApiArg = {
 	body: {
 		tenant: string;
 		amount: number;
+		/** Recipient's account type distrib or self */
 		account_type?: "self" | "distrib";
 		to_profile_ids: number[];
 		comment: string;
@@ -2179,6 +2191,9 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 };
 export type GetProfilesApiArg = {
 	tenant?: string;
+	showBalance?: boolean;
+	showScore?: boolean;
+	showSent?: boolean;
 };
 export type GetRequestsApiResponse = /** status 200 success */ {
 	data?: {
@@ -3262,6 +3277,8 @@ export type GetTiesApiResponse = /** status 200 success */ {
 }[];
 export type GetTiesApiArg = {
 	tenant?: string;
+	dateFrom?: string;
+	dateTo?: string;
 };
 export type PostRegisterApiResponse = unknown;
 export type PostRegisterApiArg = {
