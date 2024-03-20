@@ -9,7 +9,7 @@ import {
 	useSelection,
 	GraphCanvasRef,
 } from "reagraph";
-import React, { FC, useMemo, useRef, useState } from "react";
+import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import { tieTheme } from "components/tie-graph/tie-theme";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -53,7 +53,9 @@ export const TieGraph: FC = () => {
 		edges,
 		pathSelectionType: "all",
 	});
-
+	useEffect(() => {
+		return () => graphRef.current?.getControls().dispose();
+	}, []);
 	return (
 		<div className="d-flex  flex-column height-100">
 			<div className="p-2 pl-4 w-100 d-flex justify-content-evenly">
