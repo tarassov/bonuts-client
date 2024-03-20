@@ -1,1 +1,1 @@
-export const iconNames = ["DoughNutIcon", "CirclesIcon", "BonutsCurrency"] as const;
+export const iconNames = ["DoughNutIcon", "CirclesIcon", "BonutsCurrency", "BetaSvgIcon"] as const;

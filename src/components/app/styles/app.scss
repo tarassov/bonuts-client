@@ -41,11 +41,21 @@ main {
 .flex-row {
 	flex-flow: row;
 }
+.flex-grow {
+	flex-grow: 1;
+}
 .flex-column {
 	flex-flow: column;
 }
 .align-items-center{
 	align-items: center;
+}
+
+.align-items-end{
+	align-items: end;
+}
+.align-items-start{
+	align-items: start;
 }
 
 .justify-content-between{
