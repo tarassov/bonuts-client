@@ -84,7 +84,7 @@ export const TieGraph: FC = () => {
 						layoutType="radialOut2d"
 						ref={graphRef}
 						onNodePointerOver={(node) => setActiveNode(node)}
-						labelFontUrl="/assets/fonts/NotoSansSC-Regular.ttf"
+						labelFontUrl="https://fonts.cdnfonts.com/s/56328/l_10646.woff"
 						animated
 						draggable
 						selections={selections}
