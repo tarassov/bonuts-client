@@ -56,9 +56,19 @@ export const TieGraph: FC = () => {
 	useEffect(() => {
 		return () => graphRef.current?.getControls().dispose();
 	}, []);
+
+	// setInterval(function() {
+	// 	var currentTime = (new Date()).getTime();
+	// 	if (currentTime > (lastTime + 2000*2)) {  // ignore small delays
+	// 		setTimeout(function() {
+	// 			//enter code here, it will run after wake up
+	// 		}, 2000);
+	// 	}
+	// 	lastTime = currentTime;
+	// }, 2000);
 	return (
 		<div className="d-flex  flex-column height-100">
-			<div className="p-2 pl-4 w-100 d-flex justify-content-evenly">
+			<div className="p-2 pl-4 pt-4 w-100 d-flex justify-content-evenly">
 				<DatePicker
 					onChange={(value: Date | null) => setFrom(value)}
 					slotProps={{
@@ -82,7 +92,7 @@ export const TieGraph: FC = () => {
 				{nodes.length > 0 ? (
 					<GraphCanvas
 						theme={tieTheme}
-						layoutType="radialOut2d"
+						layoutType="circular2d"
 						ref={graphRef}
 						onNodePointerOver={(node) => setActiveNode(node)}
 						labelFontUrl="https://fonts.cdnfonts.com/s/56328/l_10646.woff"
@@ -93,11 +103,16 @@ export const TieGraph: FC = () => {
 						onCanvasClick={onCanvasClick}
 						onNodeClick={onNodeClick}
 						nodes={nodes}
-						minNodeSize={20}
 						edges={edges}
 						edgeInterpolation="curved"
 						renderNode={({ node, ...rest }) => {
-							return <Icon {...rest} node={node} image={node.icon || ""} />;
+							return (
+								<Icon
+									{...rest}
+									node={node}
+									image={node.icon || "/assets/icons/default_profile.png" || ""}
+								/>
+							);
 						}}
 					/>
 				) : undefined}

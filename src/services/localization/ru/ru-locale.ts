@@ -20,6 +20,7 @@ import {
 } from "services/localization/texts";
 import { timezonesRu } from "services/localization/ru/timezones-ru";
 import { weekdaysRu } from "services/localization/ru/weekdays-ru";
+import { reportsRu } from "@/features/reports/localization/reports-ru";
 
 export const ruLocale = {
 	translations: {
@@ -226,7 +227,6 @@ export const ruLocale = {
 		more: "ещё",
 		// N
 		[texts_n.name_is_required]: "необходимо задать имя",
-		[texts_n.network_connections]: "связи",
 		"new password": "новый пароль",
 		"New points for all users": "Новые монеты для всех пользователей",
 		Name: "Имя",
@@ -412,5 +412,6 @@ export const ruLocale = {
 		// Z
 		...timezonesRu,
 		...weekdaysRu,
+		...reportsRu.translations,
 	},
 };

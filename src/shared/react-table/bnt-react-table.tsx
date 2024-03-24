@@ -17,6 +17,8 @@ export const BntReactTable = styled(
 		"& td": {
 			border: 0,
 			...theme.typography.body2,
+			paddingTop: 4,
+			paddingBottom: 4,
 			paddingLeft: 0,
 			paddingRight: 0,
 			fontSize: "1.1rem",
@@ -84,4 +86,4 @@ export const BntReactTable = styled(
 			paddingLeft: "16px",
 		},
 	};
-});
+}) as typeof BntReactTablePure;

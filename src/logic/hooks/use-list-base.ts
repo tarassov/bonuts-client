@@ -10,6 +10,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 	endpoint: Endpoint;
 	args?: GetArgsType<Endpoint>;
 	pollingInterval?: number | undefined;
+	skip?: boolean;
 	translator?: (response: GetResultType<Endpoint>) => Array<TModel>;
 }) => {
 	const { profilerStart, profilerStop } = usePerformance(
@@ -21,6 +22,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 		args,
 		pollingInterval = 1000,
 		translator = (response: GetResultType<Endpoint>) => response as Array<TModel>,
+		skip,
 	} = props;
 
 	const [objects, setObjects] = useState<Array<TModel>>([]);
@@ -40,6 +42,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 				? pollingInterval
 				: 5000,
 			refetchOnMountOrArgChange: true,
+			skip,
 		}
 	);
 

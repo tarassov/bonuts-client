@@ -11,7 +11,7 @@ import * as React from "react";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { MoreHoriz } from "@mui/icons-material";
 import { CircleTag } from "components/circle/circle-tag/circle-tag";
-import { texts_m } from "@/services/localization/texts/texts_m";
+import { texts_g } from "services/localization/texts";
 import { TProfile } from "@/types/model";
 
 export type ModalEmployeeViewPureProps = {
@@ -44,7 +44,7 @@ export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
 							<BntStack flexDirection="row" alignItems="baseline">
 								<BntTypography>{employee?.position}</BntTypography>
 								<BntRoundButton variant="outlined" onClick={onGoToEmployeeClick} className="ml-2">
-									{t(texts_m.more)}...
+									{t(texts_g.go_to)}
 								</BntRoundButton>
 							</BntStack>
 

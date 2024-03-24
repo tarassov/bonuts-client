@@ -11,5 +11,4 @@ export enum texts_n {
 	new_scheduler = "new scheduler",
 	new_invitation_was_created = "new invitation was created",
 	new_invitation_email_was_sent = "new invitation email was sent",
-	network_connections = "network connections",
 }

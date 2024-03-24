@@ -6,9 +6,11 @@ import { TProfile } from "@/types/model";
 export const BntProfileButton: FC<{
 	profile: TProfile;
 	onClick: () => void;
-}> = ({ profile, onClick }) => {
+	className?: string;
+}> = ({ profile, onClick, className }) => {
 	return (
 		<BntTransparentButton
+			className={className}
 			onClick={onClick}
 			disableRipple
 			startIcon={

@@ -183,6 +183,19 @@ const injectedRtkApi = api.injectEndpoints({
 					show_balance: queryArg.showBalance,
 					show_score: queryArg.showScore,
 					show_sent: queryArg.showSent,
+					search_text: queryArg.searchText,
+				},
+			}),
+		}),
+		getReportsProfiles: build.query<GetReportsProfilesApiResponse, GetReportsProfilesApiArg>({
+			query: (queryArg) => ({
+				url: `/reports/profiles`,
+				params: {
+					tenant: queryArg.tenant,
+					report_type: queryArg.reportType,
+					date_from: queryArg.dateFrom,
+					date_to: queryArg.dateTo,
+					search_text: queryArg.searchText,
 				},
 			}),
 		}),
@@ -2194,6 +2207,78 @@ export type GetProfilesApiArg = {
 	showBalance?: boolean;
 	showScore?: boolean;
 	showSent?: boolean;
+	searchText?: string;
+};
+export type GetReportsProfilesApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			default?: boolean;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
+			attached?: boolean;
+			roles: string[];
+			circles: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			bot?: boolean;
+			first_name?: string;
+			last_name?: string;
+			name?: string;
+			email: string;
+			tenant?: string;
+			sex?: string;
+			phone?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
+			in_date: (string | null) | null;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+	}[];
+};
+export type GetReportsProfilesApiArg = {
+	tenant?: string;
+	/** Value that will be displayed as reported  in score_total field */
+	reportType?: "show_balance" | "show_score" | "show_sent";
+	dateFrom?: string;
+	/** Search string */
+	dateTo?: string;
+	searchText?: string;
 };
 export type GetRequestsApiResponse = /** status 200 success */ {
 	data?: {
@@ -3493,6 +3578,7 @@ export const {
 	usePutProfilesByIdMutation,
 	usePostProfilesByIdSetActivityMutation,
 	useGetProfilesQuery,
+	useGetReportsProfilesQuery,
 	useGetRequestsQuery,
 	usePostRequestsMutation,
 	usePostRequestsActivateMutation,

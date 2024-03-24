@@ -4,15 +4,15 @@ import { SyntheticEvent, useState } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntTabPanel } from "shared/tab/bnt-tab-panel";
 import { TieGraph } from "components/tie-graph/tie-graph";
-import { texts_n } from "services/localization/texts";
 import { BntStack } from "shared/stack/stack";
-import { useIcons } from "hooks/use-icons";
-import { CardWrapper } from "@/shared/card-wrapper/card-wrapper";
+import { CardWrapper } from "shared/card-wrapper/card-wrapper";
+import { BetaNotice } from "components/beta-notice/beta-notice";
+import reportsTexts from "@/features/reports/localization/reports-texts";
+import { StatisticsDashboard } from "@/features/reports/component/statistic/statistics-dashboard";
 
 export const ReportsMain = () => {
 	const [value, setValue] = useState(0);
 	const { translate } = useBntTranslate();
-	const { BetaSvgIcon } = useIcons({ width: "40px", height: "40px" });
 	const handleChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
@@ -26,14 +26,14 @@ export const ReportsMain = () => {
 				variant="fullWidth"
 				aria-label="donuts tabs"
 			>
+				<BntTab label={translate(reportsTexts.dashboard)} tabValue={0} />
 				<BntTab
 					label={
-						<span className="d-flex justify-content-between align-items-center width-100">
-							<div className="flex-grow  d-flex  flex-column align-items-start">
-								<BetaSvgIcon />
+						<span className="d-flex justify-content-center align-items-center width-100">
+							<div className="d-flex flex-grow justify-content-center align-items-center">
+								{translate(reportsTexts.network_connections)}
+								<BetaNotice className="ml-2" />
 							</div>
-							{translate(texts_n.network_connections)}
-							<div className="flex-grow" />
 						</span>
 					}
 					tabValue={0}
@@ -41,6 +41,9 @@ export const ReportsMain = () => {
 			</BntTabs>
 			<CardWrapper className="flex-grow scroll">
 				<BntTabPanel value={value} index={0} className="height-100" boxClassName="height-100">
+					<StatisticsDashboard />
+				</BntTabPanel>
+				<BntTabPanel value={value} index={1} className="height-100" boxClassName="height-100">
 					<TieGraph />
 				</BntTabPanel>
 			</CardWrapper>

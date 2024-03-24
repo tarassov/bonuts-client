@@ -1,5 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import {
+	ColumnDef,
 	ColumnFiltersState,
 	flexRender,
 	getCoreRowModel,
@@ -53,18 +54,8 @@ function fuzzyTextFilterFn(rows: Array<any>, id: number, filterValue: string) {
 fuzzyTextFilterFn.autoRemove = (val: any) => !val;
 
 // Our table component
-export const BntReactTablePure: FC<{
-	columns: Array<any>;
-	data: Array<any>;
-	className?: string;
-	pageSize?: number;
-	isVirtual?: boolean;
-	virtualOverscan?: number;
-	estimateSize?: number;
-	hasNext?: boolean;
-	isFetching?: boolean;
-	fetchNext?: VoidFunction;
-}> = ({
+// eslint-disable-next-line comma-spacing
+export const BntReactTablePure = <T,>({
 	columns,
 	data,
 	className,
@@ -75,6 +66,19 @@ export const BntReactTablePure: FC<{
 	isFetching = false,
 	fetchNext = emptyFunction,
 	virtualOverscan = 100,
+	noHeaders = false,
+}: {
+	columns: Array<ColumnDef<T, any>>;
+	data: Array<T>;
+	className?: string;
+	pageSize?: number;
+	isVirtual?: boolean;
+	virtualOverscan?: number;
+	estimateSize?: number;
+	hasNext?: boolean;
+	isFetching?: boolean;
+	fetchNext?: VoidFunction;
+	noHeaders?: boolean;
 }) => {
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [globalFilter, setGlobalFilter] = useState("");
@@ -163,54 +167,61 @@ export const BntReactTablePure: FC<{
 				stickyHeader
 				// style={isVirtual ? { height: virtualizer.getTotalSize(), position: "relative" } : {}}
 			>
-				<TableHead>
-					{table.getHeaderGroups().map((headerGroup, key) => (
-						<TableRow key={headerGroup.id}>
-							{headerGroup.headers.map((columnHeader) => (
-								<TableCell
-									component="th"
-									scope="row"
-									key={columnHeader.id}
-									colSpan={columnHeader.colSpan}
-									className={classnames(
-										"bnt-table-th bnt-table-header",
-										`-sort-${columnHeader.column.getIsSorted()}`,
-										{
-											"-cursor-pointer": headerGroup.headers.length - 1 !== key,
-										}
-									)}
-								>
-									{columnHeader.isPlaceholder ? null : (
-										<Stack
-											direction="row"
-											alignItems="center"
-											gap={2}
-											className="sorter"
-											onClick={columnHeader.column.getToggleSortingHandler()}
-										>
-											{flexRender(columnHeader.column.columnDef.header, columnHeader.getContext())}
-											{columnHeader.column.getCanSort() && (
-												<Stack className={classnames(`sort-${columnHeader.column.getIsSorted()}`)}>
-													<ArrowDropUpOutlined
-														className={classnames("sort-icon", "sort-icon__asc")}
-													/>
-													<ArrowDropDownOutlined
-														className={classnames("sort-icon", "sort-icon__desc")}
-													/>
-												</Stack>
-											)}
-										</Stack>
-									)}
-									{columnHeader.column.getCanFilter() ? (
-										<div>
-											<ColumnFilter column={columnHeader.column} table={table} />
-										</div>
-									) : null}
-								</TableCell>
-							))}
-						</TableRow>
-					))}
-				</TableHead>
+				{!noHeaders ? (
+					<TableHead>
+						{table.getHeaderGroups().map((headerGroup, key) => (
+							<TableRow key={headerGroup.id}>
+								{headerGroup.headers.map((columnHeader) => (
+									<TableCell
+										component="th"
+										scope="row"
+										key={columnHeader.id}
+										colSpan={columnHeader.colSpan}
+										className={classnames(
+											"bnt-table-th bnt-table-header",
+											`-sort-${columnHeader.column.getIsSorted()}`,
+											{
+												"-cursor-pointer": headerGroup.headers.length - 1 !== key,
+											}
+										)}
+									>
+										{columnHeader.isPlaceholder ? null : (
+											<Stack
+												direction="row"
+												alignItems="center"
+												gap={2}
+												className="sorter"
+												onClick={columnHeader.column.getToggleSortingHandler()}
+											>
+												{flexRender(
+													columnHeader.column.columnDef.header,
+													columnHeader.getContext()
+												)}
+												{columnHeader.column.getCanSort() && (
+													<Stack
+														className={classnames(`sort-${columnHeader.column.getIsSorted()}`)}
+													>
+														<ArrowDropUpOutlined
+															className={classnames("sort-icon", "sort-icon__asc")}
+														/>
+														<ArrowDropDownOutlined
+															className={classnames("sort-icon", "sort-icon__desc")}
+														/>
+													</Stack>
+												)}
+											</Stack>
+										)}
+										{columnHeader.column.getCanFilter() ? (
+											<div>
+												<ColumnFilter column={columnHeader.column} table={table} />
+											</div>
+										) : null}
+									</TableCell>
+								))}
+							</TableRow>
+						))}
+					</TableHead>
+				) : null}
 				<TableBody>
 					{paddingTop > 0 && (
 						<TableRow>
