@@ -72,7 +72,10 @@ export const StatisticsTile: FC<StatisticsTileProps> = ({
 					</BntIconButton>
 				)}
 			</BntBox>
-			<BntCardBody className="flex-grow overflow-hidden pl-2 pr-2">
+			<BntCardBody
+				className="flex-grow overflow-hidden pl-2 pr-2"
+				onClick={(e) => e.stopPropagation()}
+			>
 				{isLoading ? (
 					<CircularProgress color="inherit" />
 				) : (

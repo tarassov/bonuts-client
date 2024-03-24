@@ -63,17 +63,17 @@ export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
 										return <CircleTag title={circle.name} />;
 									})}
 								{matchesDownSm &&
-									employee?.circles?.length &&
-									employee?.circles?.length > MAX_TAGS && (
-										<Tooltip
-											title={employee.circles
-												.filter((x, i) => i >= MAX_TAGS)
-												.map((x) => x.name)
-												.join(", ")}
-										>
-											<MoreHoriz className="pointer" onClick={onGoToEmployeeClick} />
-										</Tooltip>
-									)}
+								employee?.circles?.length &&
+								employee?.circles?.length > MAX_TAGS ? (
+									<Tooltip
+										title={employee.circles
+											.filter((x, i) => i >= MAX_TAGS)
+											.map((x) => x.name)
+											.join(", ")}
+									>
+										<MoreHoriz className="pointer" onClick={onGoToEmployeeClick} />
+									</Tooltip>
+								) : null}
 							</BntStack>
 						</BntStack>
 					</BntStack>

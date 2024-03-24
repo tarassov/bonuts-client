@@ -2,6 +2,7 @@ import { Grid, useMediaQuery } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import classnames from "classnames";
+import { BntBox } from "shared/box/bnt-box";
 import { TotalBalanceTable } from "@/features/reports/component/statistic/total-balance-table";
 import { TotalDonutsSentReport } from "@/features/reports/component/statistic/total-donuts-sent-report";
 import { TotalDonutsReceivedReport } from "@/features/reports/component/statistic/total-donuts-received.report";
@@ -53,53 +54,61 @@ export const StatisticsDashboard = () => {
 	};
 
 	return (
-		<Grid
-			container
-			className={classnames("p-2", { "height-100": matchesSmUp })}
-			alignItems="stretch"
-			gap={4}
-			sx={{ position: "relative" }}
-			onClick={() => setFullScreenValue(undefined)}
-		>
+		<div className="position-relative height-100">
 			<Grid
-				item
-				{...getScreenProps("balance")}
-				// @ts-ignore
-				sx={{ ...getMaxHeight("balance"), ...getDisplayProps("balance") }}
+				container
+				className={classnames("p-2", { "height-100": matchesSmUp })}
+				alignItems="stretch"
+				gap={4}
+				sx={{ position: "relative" }}
+				onClick={() => setFullScreenValue(undefined)}
 			>
-				<TotalBalanceTable
-					onFullScreenOpen={() => setFullScreenValue("balance")}
-					onFullScreenExit={() => setFullScreenValue(undefined)}
-					fullscreen={fullscreenValue === "balance"}
-					onlyHeader={!matchesSmUp && fullscreenValue !== "balance"}
-				/>
+				<Grid
+					item
+					{...getScreenProps("balance")}
+					// @ts-ignore
+					sx={{ ...getMaxHeight("balance"), ...getDisplayProps("balance") }}
+				>
+					<TotalBalanceTable
+						onFullScreenOpen={() => setFullScreenValue("balance")}
+						onFullScreenExit={() => setFullScreenValue(undefined)}
+						fullscreen={fullscreenValue === "balance"}
+						onlyHeader={!matchesSmUp && fullscreenValue !== "balance"}
+					/>
+				</Grid>
+				<Grid
+					item
+					{...getScreenProps("sent")}
+					// @ts-ignore
+					sx={{ ...getMaxHeight("sent"), ...getDisplayProps("sent") }}
+				>
+					<TotalDonutsSentReport
+						onFullScreenOpen={() => setFullScreenValue("sent")}
+						onFullScreenExit={() => setFullScreenValue(undefined)}
+						fullscreen={fullscreenValue === "sent"}
+						onlyHeader={!matchesSmUp && fullscreenValue !== "sent"}
+					/>
+				</Grid>
+				<Grid
+					item
+					{...getScreenProps("score")}
+					// @ts-ignore
+					sx={{ ...getMaxHeight("score"), ...getDisplayProps("score") }}
+				>
+					<TotalDonutsReceivedReport
+						onFullScreenOpen={() => setFullScreenValue("score")}
+						onFullScreenExit={() => setFullScreenValue(undefined)}
+						fullscreen={fullscreenValue === "score"}
+						onlyHeader={!matchesSmUp && fullscreenValue !== "score"}
+					/>
+				</Grid>
 			</Grid>
-			<Grid
-				item
-				{...getScreenProps("sent")}
-				// @ts-ignore
-				sx={{ ...getMaxHeight("sent"), ...getDisplayProps("sent") }}
-			>
-				<TotalDonutsSentReport
-					onFullScreenOpen={() => setFullScreenValue("sent")}
-					onFullScreenExit={() => setFullScreenValue(undefined)}
-					fullscreen={fullscreenValue === "sent"}
-					onlyHeader={!matchesSmUp && fullscreenValue !== "sent"}
+			{fullscreenValue && matchesSmUp ? (
+				<BntBox
+					onClick={() => setFullScreenValue(undefined)}
+					sx={{ position: "absolute", width: "100%", height: "100%", zIndex: 80, top: 0, left: 0 }}
 				/>
-			</Grid>
-			<Grid
-				item
-				{...getScreenProps("score")}
-				// @ts-ignore
-				sx={{ ...getMaxHeight("score"), ...getDisplayProps("score") }}
-			>
-				<TotalDonutsReceivedReport
-					onFullScreenOpen={() => setFullScreenValue("score")}
-					onFullScreenExit={() => setFullScreenValue(undefined)}
-					fullscreen={fullscreenValue === "score"}
-					onlyHeader={!matchesSmUp && fullscreenValue !== "score"}
-				/>
-			</Grid>
-		</Grid>
+			) : null}
+		</div>
 	);
 };
