@@ -176,7 +176,28 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
-			query: (queryArg) => ({ url: `/profiles`, params: { tenant: queryArg.tenant } }),
+			query: (queryArg) => ({
+				url: `/profiles`,
+				params: {
+					tenant: queryArg.tenant,
+					show_balance: queryArg.showBalance,
+					show_score: queryArg.showScore,
+					show_sent: queryArg.showSent,
+					search_text: queryArg.searchText,
+				},
+			}),
+		}),
+		getReportsProfiles: build.query<GetReportsProfilesApiResponse, GetReportsProfilesApiArg>({
+			query: (queryArg) => ({
+				url: `/reports/profiles`,
+				params: {
+					tenant: queryArg.tenant,
+					report_type: queryArg.reportType,
+					date_from: queryArg.dateFrom,
+					date_to: queryArg.dateTo,
+					search_text: queryArg.searchText,
+				},
+			}),
 		}),
 		getRequests: build.query<GetRequestsApiResponse, GetRequestsApiArg>({
 			query: (queryArg) => ({
@@ -228,6 +249,12 @@ const injectedRtkApi = api.injectEndpoints({
 		}),
 		getTenants: build.query<GetTenantsApiResponse, GetTenantsApiArg>({
 			query: () => ({ url: `/tenants` }),
+		}),
+		getTies: build.query<GetTiesApiResponse, GetTiesApiArg>({
+			query: (queryArg) => ({
+				url: `/ties`,
+				params: { tenant: queryArg.tenant, date_from: queryArg.dateFrom, date_to: queryArg.dateTo },
+			}),
 		}),
 		postRegister: build.mutation<PostRegisterApiResponse, PostRegisterApiArg>({
 			query: (queryArg) => ({ url: `/register`, method: "POST", body: queryArg.body }),
@@ -378,6 +405,7 @@ export type PostAdminDepositApiArg = {
 	body: {
 		tenant: string;
 		amount: number;
+		/** Recipient's account type distrib or self */
 		account_type?: "self" | "distrib";
 		to_profile_ids: number[];
 		comment: string;
@@ -2176,6 +2204,81 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 };
 export type GetProfilesApiArg = {
 	tenant?: string;
+	showBalance?: boolean;
+	showScore?: boolean;
+	showSent?: boolean;
+	searchText?: string;
+};
+export type GetReportsProfilesApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			default?: boolean;
+			user_id: number;
+			active: boolean;
+			admin: boolean;
+			attached?: boolean;
+			roles: string[];
+			circles: {
+				name: string;
+				id: number;
+				active: boolean;
+			}[];
+			department?: (object | null) | null;
+			position?: (string | null) | null;
+			store_admin?: boolean;
+			bot?: boolean;
+			first_name?: string;
+			last_name?: string;
+			name?: string;
+			email: string;
+			tenant?: string;
+			sex?: string;
+			phone?: (string | null) | null;
+			contact: (string | null) | null;
+			bio: (string | null) | null;
+			birthdate: (string | null) | null;
+			in_date: (string | null) | null;
+			created_at?: string;
+			user_avatar?: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			logo?: {
+				url?: string | null;
+				thumb?: {
+					url?: string | null;
+				};
+			};
+			score_total?: number;
+			self_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+			distrib_account?: {
+				id?: number;
+				tenant_id?: number;
+				profile_id?: number;
+			};
+		};
+	}[];
+};
+export type GetReportsProfilesApiArg = {
+	tenant?: string;
+	/** Value that will be displayed as reported  in score_total field */
+	reportType?: "show_balance" | "show_score" | "show_sent";
+	dateFrom?: string;
+	/** Search string */
+	dateTo?: string;
+	searchText?: string;
 };
 export type GetRequestsApiResponse = /** status 200 success */ {
 	data?: {
@@ -3252,6 +3355,16 @@ export type GetTenantsApiResponse = /** status 200 success */ {
 	}[];
 };
 export type GetTenantsApiArg = void;
+export type GetTiesApiResponse = /** status 200 success */ {
+	from_id?: number;
+	to_id?: number;
+	id?: null;
+}[];
+export type GetTiesApiArg = {
+	tenant?: string;
+	dateFrom?: string;
+	dateTo?: string;
+};
 export type PostRegisterApiResponse = unknown;
 export type PostRegisterApiArg = {
 	body: {
@@ -3465,6 +3578,7 @@ export const {
 	usePutProfilesByIdMutation,
 	usePostProfilesByIdSetActivityMutation,
 	useGetProfilesQuery,
+	useGetReportsProfilesQuery,
 	useGetRequestsQuery,
 	usePostRequestsMutation,
 	usePostRequestsActivateMutation,
@@ -3476,6 +3590,7 @@ export const {
 	usePutTenantCurrentMutation,
 	useGetTenantsAccessibleQuery,
 	useGetTenantsQuery,
+	useGetTiesQuery,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
 	useGetConfirmEmailQuery,

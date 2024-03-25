@@ -6,7 +6,8 @@ import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { FC } from "react";
 import { DonutSmallOutlined } from "@mui/icons-material";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { TProfile } from "@/types/model";
 
 export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => {
@@ -28,7 +29,7 @@ export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => 
 			minWidth={smallScreen ? 20 : 100}
 			maxWidth={smallScreen ? 50 : 200}
 		>
-			<Box
+			<BntBox
 				color="grey.400"
 				sx={{ lineHeight: "16px", borderBottom: "1px solid" }}
 				className="pr-1 pointer"
@@ -56,7 +57,7 @@ export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => 
 					</BntTypography>
 					<BonutsCurrency />
 				</BntStack>
-			</Box>
+			</BntBox>
 			<BntStack
 				className="pr-1 pointer"
 				sx={{ lineHeight: "16px" }}

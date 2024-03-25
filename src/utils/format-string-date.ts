@@ -3,7 +3,7 @@ import { CommonStrings } from "constants/dictionary";
 import { ru } from "date-fns/locale";
 
 export const formatStringDate = (
-	date?: string,
+	date?: string | null,
 	short?: boolean,
 	useTime?: boolean,
 	locale?: Locale,

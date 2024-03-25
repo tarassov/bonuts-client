@@ -23,6 +23,7 @@ export const BntForm: FC<TFormProps<any>> = ({
 	const [error, setError] = useState<string>();
 	const [initials, setInitials] = useState<Record<string, TFormValue> | undefined>(undefined);
 	const locale = useLocale();
+
 	useEffect(() => {
 		if (initialValues) {
 			const transformedInitials = _.mapValues(initialValues, (value, key) => {
@@ -43,7 +44,7 @@ export const BntForm: FC<TFormProps<any>> = ({
 	const onError = (message?: string) => {
 		setError(message);
 	};
-	const onSubmitForm = (submitValues: any) => {
+	const onSubmitForm = async (submitValues: any) => {
 		const transformedValues = Object.entries(submitValues).reduce((acc, [key, value]) => {
 			const field = fields?.find((x) => x.name === key);
 
@@ -56,11 +57,15 @@ export const BntForm: FC<TFormProps<any>> = ({
 			return { ...acc, [key]: value };
 		}, submitValues);
 		if (error) setError(undefined);
-		onSubmit?.(transformedValues, onError)?.then((response) => {
+		try {
+			const response = await onSubmit?.(transformedValues, onError);
+
 			if (response && !response.error) {
 				setInitials(submitValues);
 			}
-		});
+		} catch (e) {
+			setError("saving error");
+		}
 	};
 
 	const onDiscard = () => {

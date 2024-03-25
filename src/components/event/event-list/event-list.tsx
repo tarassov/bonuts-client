@@ -1,13 +1,6 @@
-import {
-	Box,
-	Button,
-	Checkbox,
-	FormControlLabel,
-	Grid,
-	useMediaQuery,
-	useTheme,
-} from "@mui/material";
-import { FC, SyntheticEvent, useState } from "react";
+import { Button, Checkbox, FormControlLabel, Grid, useMediaQuery, useTheme } from "@mui/material";
+
+import React, { FC, SyntheticEvent, useState } from "react";
 import { Dictionary } from "constants/dictionary";
 import { useEventListLogic } from "logic/hooks/event/use-event-list-logic";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -20,6 +13,7 @@ import { BntStack } from "shared/stack/stack";
 import { LightbulbCircleOutlined } from "@mui/icons-material";
 import { SearchString } from "components/search-string/search-string";
 import { BntStyledEventCard } from "../event-card/event-card-styled";
+import { BntBox } from "@/shared/box/bnt-box";
 
 export const BntEventList: FC = () => {
 	const { translate } = useBntTranslate();
@@ -59,7 +53,7 @@ export const BntEventList: FC = () => {
 				) : null}
 			</BntStack>
 
-			<Box
+			<BntBox
 				className={classnames("flex-grow pb-2 mt-2", {
 					"pr-12": !matchesDownMd,
 					scroll: !isEmpty,
@@ -102,7 +96,7 @@ export const BntEventList: FC = () => {
 				{hasNext && pages.length > 0 && (
 					<Button onClick={onNext}>{translate(Dictionary.MORE)}</Button>
 				)}
-			</Box>
+			</BntBox>
 		</BntStack>
 	);
 };

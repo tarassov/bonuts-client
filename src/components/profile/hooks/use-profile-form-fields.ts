@@ -14,7 +14,7 @@ import { authProfileSelector } from "services/redux/selectors/auth-selector";
 import { TProfile } from "@/types/model";
 import { TCircle } from "@/types/model/circle";
 
-export const useProfileFormFields = (profile?: TProfile | null) => {
+export const useProfileFormFields = () => {
 	const authProfile = useAppSelector(authProfileSelector);
 	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(authProfile) });
 	const { objects: circles, isLoading } = useCircleLoaderList();
@@ -23,7 +23,7 @@ export const useProfileFormFields = (profile?: TProfile | null) => {
 	};
 	const fields: Array<TFormField<TProfile>> = [
 		{
-			disabled: !UserLogic.isAdmin(profile),
+			readOnly: !UserLogic.isAdmin(authProfile),
 			image: false,
 			size: TFieldSize.xs,
 			name: "email",

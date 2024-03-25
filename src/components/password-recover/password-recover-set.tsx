@@ -26,7 +26,7 @@ export const PasswordRecoverSet: FC<{ onSubmit: (password: string) => void }> = 
 	};
 
 	return (
-		<Box sx={{ mt: 8 }}>
+		<Box component="div" sx={{ mt: 8 }}>
 			<Box component="form" onSubmit={handleSubmit(doSubmit)} noValidate sx={{ mt: 1 }}>
 				<TextField
 					margin="normal"

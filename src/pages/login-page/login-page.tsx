@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField, Stack } from "@mui/material";
+import { Button, Grid, TextField, Stack, Box } from "@mui/material";
 import { FC, SyntheticEvent, useMemo, useState } from "react";
 import { useAuth } from "logic/hooks/auth/use-auth";
 import { useLoader } from "shared/loader/hooks/use-loader";
@@ -46,7 +46,7 @@ export const LoginPage: FC = () => {
 	}, [authError]);
 
 	return (
-		<Box className={styles.box} sx={{ mt: 8 }}>
+		<Box component="div" className={styles.box} sx={{ mt: 8 }}>
 			<BonutsFullIcon style={{ width: "110px", height: "50px" }} />
 			<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 				<TextField

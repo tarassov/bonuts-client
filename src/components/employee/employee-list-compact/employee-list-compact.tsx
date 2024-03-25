@@ -2,7 +2,7 @@ import { FC, JSX } from "react";
 import { BntCard } from "shared/card/card";
 import { BntProfileButton } from "components/buttons/profile-button";
 import { BntTypography } from "shared/typography/typography";
-import { Box } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { SearchString } from "components/search-string/search-string";
 import { emptyFunction } from "utils/empty-function";
 import { getEmployeeSearchButtons } from "components/employee/get-employee-search-buttons";
@@ -39,7 +39,7 @@ export const EmployeeListCompact: FC<{
 	return (
 		<BntCard className="width-100 height-100">
 			<BntStack className="width-100 height-100">
-				<Box className="mr-4 ml-4">
+				<BntBox className="mr-4 ml-4">
 					<BntTypography variant="h6" className="mb-2">
 						{title}
 					</BntTypography>
@@ -54,12 +54,12 @@ export const EmployeeListCompact: FC<{
 							buttons={buttons}
 						/>
 					)}
-				</Box>
-				<Box className="m-2 flex-grow">
+				</BntBox>
+				<BntBox className="m-2 flex-grow">
 					{profiles.map((x) => {
 						return <BntProfileButton key={x.id} profile={x} onClick={() => onClick(x)} />;
 					})}
-				</Box>
+				</BntBox>
 				{children}
 			</BntStack>
 		</BntCard>

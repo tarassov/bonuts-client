@@ -34,7 +34,7 @@ export const CircleListPure: FC<CircleListPureProps> = ({ circles }) => {
 		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }}>
 			<BntBreadcrumbs items={breadcrumbs} />
 			<CardWrapper className="flex-grow scroll">
-				<BntReactTable columns={tableConfig} data={circles} />
+				<BntReactTable data={circles} columns={tableConfig} />
 			</CardWrapper>
 		</BntStack>
 	);

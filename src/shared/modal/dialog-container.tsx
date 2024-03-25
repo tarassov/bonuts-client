@@ -4,7 +4,8 @@ import { BntDialogCloseContext, BntDialogValueContext } from "shared/modal/dialo
 import { BntStack } from "shared/stack/stack";
 import { CloseOutlined } from "@mui/icons-material";
 import { BntIconButton } from "shared/icon-button/bnt-icon-button";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { texts_c } from "services/localization/texts/texts_c";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -47,7 +48,7 @@ export const BntDialogContainer = () => {
 						isTop={modal.isTop}
 					>
 						<BntModalLoader loading={isLoading} />
-						<Box
+						<BntBox
 							className="bnt-dialog-box"
 							sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}
 						>
@@ -79,7 +80,7 @@ export const BntDialogContainer = () => {
 									</BntRoundButton>
 								</BntStack>
 							)}
-						</Box>
+						</BntBox>
 					</BntDialog>
 				);
 			})}

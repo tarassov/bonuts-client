@@ -15,6 +15,7 @@ export const BntFormTextField = (props: {
 	maxValue?: number;
 	minValue?: number;
 	disabled?: boolean;
+	readOnly?: boolean;
 	required?: boolean;
 }) => {
 	const {
@@ -23,6 +24,7 @@ export const BntFormTextField = (props: {
 		minValue,
 		maxValue,
 		placeholder,
+		readOnly,
 		label,
 		type,
 		value,
@@ -49,7 +51,7 @@ export const BntFormTextField = (props: {
 			sx={{ width: "100%" }}
 			disabled={disabled}
 			onChange={handleChange}
-			InputProps={{ inputProps: { min: minValue, max: maxValue } }}
+			InputProps={{ inputProps: { min: minValue, max: maxValue }, readOnly }}
 		/>
 	);
 };

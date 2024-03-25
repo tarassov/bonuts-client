@@ -1,5 +1,6 @@
 import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { FC, useState } from "react";
 import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -54,12 +55,12 @@ export const ShareAllStepOne: FC<{
 
 	return (
 		<>
-			<Box className="ml-4">
+			<BntBox className="ml-4">
 				<BntTypography variant="h5">
 					{t(texts_c.choose_employees, { capitalize: true })}
 				</BntTypography>
-			</Box>
-			<Box className="m-4">
+			</BntBox>
+			<BntBox className="m-4">
 				<Grid container columnSpacing={2} rowSpacing={2}>
 					<Grid item xs={12} sm={6}>
 						<EmployeeListCompact
@@ -72,9 +73,9 @@ export const ShareAllStepOne: FC<{
 						>
 							<>
 								{filtered.length ? (
-									<Box className="m-4">
+									<BntBox className="m-4">
 										<BntRoundButton onClick={selectAll}>{t(texts_s.select_all)}</BntRoundButton>
-									</Box>
+									</BntBox>
 								) : null}
 							</>
 						</EmployeeListCompact>
@@ -88,11 +89,11 @@ export const ShareAllStepOne: FC<{
 						>
 							<>
 								{selected.length ? (
-									<Box className="m-4">
+									<BntBox className="m-4">
 										<BntRoundButton color="secondary" onClick={removeAll}>
 											{t(texts_r.remove_all)}
 										</BntRoundButton>
-									</Box>
+									</BntBox>
 								) : null}
 							</>
 						</EmployeeListCompact>
@@ -108,7 +109,7 @@ export const ShareAllStepOne: FC<{
 						{t(texts_n.next)}
 					</BntRegularButton>
 				</BntStack>
-			</Box>
+			</BntBox>
 		</>
 	);
 };

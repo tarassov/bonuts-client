@@ -1,4 +1,5 @@
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { ConstructionOutlined } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_u } from "services/localization/texts/texts_u";
@@ -8,7 +9,7 @@ import { texts_s } from "services/localization/texts";
 export const UnderConstruct = () => {
 	const { t } = useBntTranslate();
 	return (
-		<Box
+		<BntBox
 			sx={{
 				alignItems: "center",
 				width: "100%",
@@ -22,6 +23,6 @@ export const UnderConstruct = () => {
 				<BntTypography variant="h5">{t(texts_u.under_construct)}</BntTypography>
 				<BntTypography variant="body2">{t(texts_s.soon_will_be_back)}</BntTypography>
 			</Stack>
-		</Box>
+		</BntBox>
 	);
 };

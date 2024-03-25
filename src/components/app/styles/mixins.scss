@@ -36,7 +36,7 @@ $k: 4;
   right: $size  + px;;
 }
 
-@for $i from 1 through 40 {
+@for $i from 0 through 40 {
   .mb-#{$i} { @include mb-mixin($i); }
   .mt-#{$i} { @include mt-mixin($i); }
   .mr-#{$i} { @include mr-mixin($i); }

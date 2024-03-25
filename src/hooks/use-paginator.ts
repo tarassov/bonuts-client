@@ -64,7 +64,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	}, [currentPage, data]);
 
 	useEffect(() => {
-		setCurrentPage(args.page);
+		setCurrentPage(args.page || 0);
 	}, []);
 
 	useEffect(() => {

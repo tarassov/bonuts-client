@@ -10,4 +10,6 @@ export enum texts_t {
 	transfer = "transfer",
 	time_is_required = "time is required",
 	tooltip_scheduler_time = "tooltip_scheduler_time",
+	total_donuts_received = "total received",
+	total_donuts_sent = "total received",
 }

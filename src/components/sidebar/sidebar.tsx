@@ -22,7 +22,7 @@ const BntSidebar: FC = () => {
 							sx={{ width: "100%", height: "100%", padding: 0 }}
 						>
 							{isDrawerOpen ? (
-								<BonutsFullIcon style={{ width: "110px", height: "50px" }} />
+								<BonutsFullIcon style={{ width: "128px", height: "50px" }} />
 							) : (
 								<BonutsIcon style={{ width: "50px", height: "50px" }} />
 							)}

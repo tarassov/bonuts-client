@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { Icon, IconButton, IconButtonProps, Tooltip } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntBadge } from "shared/badge/bnt-badge";
@@ -20,6 +20,10 @@ export const BntIconButton: FC<
 	}
 > = (props) => {
 	const { tooltip, customIcon, children, badgeContent, badgeColor, ...rest } = props;
+	const [showTooltip, setShowTooltip] = useState(false);
+	useEffect(() => {
+		setShowTooltip(false);
+	}, [tooltip]);
 	const { t } = useBntTranslate();
 	const IconComponent = !customIcon ? (
 		<IconButton {...rest}>
@@ -36,7 +40,14 @@ export const BntIconButton: FC<
 	);
 	if (tooltip) {
 		return (
-			<Tooltip placement="bottom-start" title={t(tooltip)}>
+			<Tooltip
+				placement="bottom-start"
+				title={t(tooltip)}
+				open={showTooltip}
+				disableHoverListener
+				onMouseEnter={() => setShowTooltip(true)}
+				onMouseLeave={() => setShowTooltip(false)}
+			>
 				{IconComponent}
 			</Tooltip>
 		);

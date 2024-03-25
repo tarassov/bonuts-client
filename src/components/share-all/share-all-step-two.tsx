@@ -2,7 +2,8 @@ import { FC } from "react";
 import { BntRoundButton } from "shared/buttons/round-button";
 import { texts_b } from "services/localization/texts";
 import { emptyFunction } from "utils/empty-function";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
+import { BntBox } from "shared/box/bnt-box";
 import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
 import { BntStack } from "shared/stack/stack";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -18,7 +19,7 @@ export const ShareAllStepTwo: FC<{
 	const { t } = useBntTranslate();
 	return (
 		<>
-			<Box className="m-4">
+			<BntBox className="m-4">
 				<BntStack
 					direction="row"
 					alignItems="center"
@@ -32,13 +33,13 @@ export const ShareAllStepTwo: FC<{
 				</BntStack>
 				<Grid className="mb-4" container columnSpacing={2} rowSpacing={2}>
 					<Grid item xs={12}>
-						<Box sx={{ maxHeight: "200px" }} className="scroll">
+						<BntBox sx={{ maxHeight: "200px" }} className="scroll">
 							<EmployeeListCompact profiles={profiles || []} onClick={emptyFunction} hideSearch />
-						</Box>
+						</BntBox>
 					</Grid>
 				</Grid>
 				<ShareAllForm onSuccess={next} />
-			</Box>
+			</BntBox>
 		</>
 	);
 };

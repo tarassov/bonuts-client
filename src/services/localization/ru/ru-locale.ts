@@ -20,6 +20,7 @@ import {
 } from "services/localization/texts";
 import { timezonesRu } from "services/localization/ru/timezones-ru";
 import { weekdaysRu } from "services/localization/ru/weekdays-ru";
+import { reportsRu } from "@/features/reports/localization/reports-ru";
 
 export const ruLocale = {
 	translations: {
@@ -57,6 +58,7 @@ export const ruLocale = {
 		// B
 		"Back to store": "Назад в магазин",
 		Balance: "Баланс",
+		[texts_b.birthday]: "дата рождения",
 		"birthday donuts": "пончики на день рождения",
 		[texts_b.birthday_points]: "монеты на день рождения",
 		[texts_b.birthday_message]: "сообщение на день рождения",
@@ -256,6 +258,8 @@ export const ruLocale = {
 		[texts_p.password_is_required]: "пароль необходим",
 		[texts_p.passwords_do_not_math]: "пароль не совпадает",
 		[texts_p.password_confirm_is_required]: "подтверждение пароля необходимо",
+		[texts_p.period_start]: "начало периода",
+		[texts_p.period_end]: "конец периода",
 		Page: "Страница",
 		People: "Сотрудники",
 		"Please confirm your email": "Пожалуйста, подтвердите почтовый адрес",
@@ -409,5 +413,6 @@ export const ruLocale = {
 		// Z
 		...timezonesRu,
 		...weekdaysRu,
+		...reportsRu.translations,
 	},
 };

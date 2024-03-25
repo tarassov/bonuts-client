@@ -2,7 +2,7 @@ import { BntCard } from "shared/card/card";
 import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/classes";
 import { BntCardBody } from "shared/card/card-body";
 import { BntStack } from "shared/stack/stack";
-import { Box } from "@mui/material";
+
 import { texts_d, texts_e, texts_n } from "services/localization/texts";
 import { BntTypography } from "shared/typography/typography";
 import { getWeekdayOptions } from "shared/helpers/get-weekday";
@@ -11,6 +11,7 @@ import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CommonStrings } from "constants/dictionary";
 import { secondsToTime } from "shared/helpers/seconds-to-time";
+import { BntBox } from "shared/box/bnt-box";
 import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
 
 export const SchedulerCard: FC<{
@@ -30,8 +31,8 @@ export const SchedulerCard: FC<{
 		>
 			<BntCardBody className={SCHEDULER_LIST_CLASSES.schedulerCardBody}>
 				<BntStack direction="column">
-					<Box>{scheduler.name || t(texts_n.no_name, { capitalize: true })}</Box>
-					<Box>
+					<BntBox>{scheduler.name || t(texts_n.no_name, { capitalize: true })}</BntBox>
+					<BntBox>
 						<BntTypography variant="caption2">
 							{`${scheduler.amount}  ${t("donut", { count: scheduler.amount })} `}
 							{`${
@@ -40,8 +41,8 @@ export const SchedulerCard: FC<{
 									: t(texts_e.every_month)
 							}`}
 						</BntTypography>
-					</Box>
-					<Box>
+					</BntBox>
+					<BntBox>
 						<BntTypography variant="caption2">
 							<>
 								{`${
@@ -59,7 +60,7 @@ export const SchedulerCard: FC<{
 								)} ${scheduler.timezone ? `[${scheduler.timezone}]` : CommonStrings.EMPTY_STRING}`}
 							</>
 						</BntTypography>
-					</Box>
+					</BntBox>
 				</BntStack>
 			</BntCardBody>
 		</BntCard>

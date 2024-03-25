@@ -17,10 +17,11 @@ export type TProfile = TBaseModel & {
 	roles?: Array<string>;
 	tenant?: string;
 	circles?: Array<TCircle>;
-	birthdate?: string;
-	in_date?: string;
+	birthdate?: string | null;
+	in_date?: string | null;
 	bio?: string;
 	contact?: string;
+	score_total?: number;
 	self_account?: {
 		id?: number;
 		tenant_id?: number;

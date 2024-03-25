@@ -17,8 +17,8 @@ export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 		roles: data.attributes?.roles,
 		tenant: data.attributes?.tenant,
 		circles: data.attributes?.circles,
-		birthdate: data.attributes?.birthdate || undefined,
-		in_date: data.attributes?.in_date || undefined,
+		birthdate: data.attributes?.birthdate || null,
+		in_date: data.attributes?.in_date || null,
 		bio: data.attributes?.bio || undefined,
 		contact: data.attributes?.contact || undefined,
 		self_account: data.attributes?.self_account,
@@ -30,8 +30,7 @@ export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 };
 export const apiProfileAdaptor = (response?: GetProfileApiResponse): TProfile | undefined => {
 	if (!response?.data || !response?.data?.id) return undefined;
-	const res: TProfile | undefined = dataToProfile(response.data);
-	return res;
+	return dataToProfile(response.data);
 };
 export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TProfile> => {
 	const { data } = response;
@@ -43,8 +42,8 @@ export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TPro
 		return {
 			...attributes,
 			email: attributes?.email || "",
-			birthdate: attributes?.birthdate || undefined,
-			in_date: attributes?.in_date || undefined,
+			birthdate: attributes?.birthdate || null,
+			in_date: attributes?.in_date || null,
 			bio: attributes?.bio || undefined,
 			contact: attributes?.contact || undefined,
 			id: Number(id),

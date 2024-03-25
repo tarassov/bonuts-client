@@ -35,7 +35,7 @@ export const RegistrationPage: FC = () => {
 	useLoader(Modules.Default, isPostingRegister);
 
 	return (
-		<Box className={styles.box} sx={{ mt: 8 }}>
+		<Box component="div" className={styles.box} sx={{ mt: 8 }}>
 			<BonutsFullIcon style={{ width: "110px", height: "50px" }} />
 
 			<BntTypography variant="h5" className="mt-8 mb-2">

@@ -83,6 +83,7 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	offset?: TOffsetProps;
 	source?: TFormFieldSource;
 	disabled?: boolean;
+	readOnly?: boolean;
 	image: boolean;
 	placeholder?: string;
 	type?: TFieldType;

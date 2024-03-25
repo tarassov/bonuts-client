@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Button, TextField, Box } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e, texts_r } from "services/localization/texts";
 import { useForm } from "react-hook-form";
@@ -27,7 +27,7 @@ export const PasswordRecoverRequest: FC<{ onSubmit: (email: string) => void }> =
 	};
 
 	return (
-		<Box sx={{ mt: 8 }}>
+		<Box component="div" sx={{ mt: 8 }}>
 			<Box component="form" onSubmit={handleSubmit(doSubmit)} noValidate sx={{ mt: 1 }}>
 				<TextField
 					margin="normal"

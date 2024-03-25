@@ -48,6 +48,7 @@ export const useTenantFormFields = () => {
 		},
 		{
 			image: false,
+			readOnly: true,
 			size: TFieldSize.xs,
 			name: "name",
 			label: "name",

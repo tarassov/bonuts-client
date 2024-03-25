@@ -13,7 +13,7 @@ export type GetArgsType<T> = T extends ApiEndpointQuery<
 	QueryDefinition<infer ArgsType, any, string, any, string>,
 	any
 >
-	? ArgsType & { page: number }
+	? ArgsType & { page?: number }
 	: never;
 export type TEndpoint<Endpoint> = ApiEndpointQuery<any, any> &
 	QueryHooks<QueryDefinition<any, any, string, GetResultType<Endpoint>>>;
