@@ -70,6 +70,7 @@ export const BntFormField: FC<{
 				value={value}
 				rows={field.rows}
 				disabled={field.disabled}
+				readOnly={field.readOnly}
 				required={field.required}
 				maxValue={field.maxValue}
 				minValue={field.minValue}

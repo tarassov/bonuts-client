@@ -10,7 +10,7 @@ export const TenantEditForm = () => {
 	const fieldsProps = useTenantFormFields();
 
 	const handleSubmit = (values: TTenant) => {
-		updateTenant(values);
+		return updateTenant(values);
 	};
 
 	return (

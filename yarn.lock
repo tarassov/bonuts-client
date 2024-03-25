@@ -5104,7 +5104,7 @@ react-hook-form-mui@^6.8.0:
   resolved "https://registry.yarnpkg.com/react-hook-form-mui/-/react-hook-form-mui-6.8.0.tgz#337dcb1baa1f28d9cd746e78b6bef473d21d438a"
   integrity sha512-p+Hu/z+nVgSoCXEijs1aXjOUmGoGX0oWzgyBJR4Xgay+il3c6E0HdSHd94XxcmC6i08a88u/+zJ96tuDDjjzRw==
 
-react-hook-form@^7.44.1:
+react-hook-form@^7.51.1:
   version "7.51.1"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.1.tgz#3ce5f8b5ef41903b4054a641cef8c0dc8bf8ae85"
   integrity sha512-ifnBjl+kW0ksINHd+8C/Gp6a4eZOdWyvRv0UBaByShwU8JbVx5hTcTWEcd5VdybvmPTATkVVXk9npXArHmo56w==

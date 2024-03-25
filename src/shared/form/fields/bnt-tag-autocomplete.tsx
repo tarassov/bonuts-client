@@ -10,7 +10,7 @@ export const BntTagAutocomplete: FC<{
 	value: Array<TFormFieldSourceItem>;
 	id: string;
 }> = ({ field, value, id }) => {
-	const { source = [], label, placeholder, name, disabled, loading } = field;
+	const { source = [], label, placeholder, name, disabled, loading, readOnly } = field;
 	const { onChange } = useBntForm();
 	const { translate } = useBntTranslate();
 
@@ -32,6 +32,7 @@ export const BntTagAutocomplete: FC<{
 			}
 			value={value}
 			loading={loading}
+			readOnly={readOnly}
 			renderInput={(params) => (
 				<TextField
 					{...params}

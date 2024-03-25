@@ -7,14 +7,16 @@ export const BntDatePickerField = (props: {
 	label?: string;
 	required?: boolean;
 	disabled?: boolean;
+	readOnly?: boolean;
 }) => {
-	const { name, label, required, disabled } = props;
+	const { name, label, required, disabled, readOnly } = props;
 	const { onChange } = useBntForm();
 	const handleChange = (date: Date) => {
 		onChange(name, date?.toDateString() || CommonStrings.EMPTY_STRING);
 	};
 	return (
 		<BntDatePicker
+			readOnly={readOnly}
 			name={name}
 			stringLabel={label}
 			onChange={handleChange}

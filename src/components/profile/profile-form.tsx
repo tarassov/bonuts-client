@@ -14,7 +14,7 @@ export const BntProfileForm: FC<{
 	error?: FetchBaseQueryError | SerializedError;
 	updateProfile: (profile: TProfile, values: Record<string, any>) => void;
 }> = ({ profile, isLoading = false, error, updateProfile }) => {
-	const { fields } = useProfileFormFields(profile);
+	const { fields } = useProfileFormFields();
 
 	const formProps: TFormProps<TProfile> = { fields, formId: "user-profile" };
 	const initialValues = profile;

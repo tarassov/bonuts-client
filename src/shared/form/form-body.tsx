@@ -29,13 +29,13 @@ export const BntFormBody: FC<
 	keepValuesOnSubmit = true,
 }) => {
 	const { reset } = useFormContext();
-	const { isDirty, isSubmitSuccessful } = useFormState();
-
+	const formState = useFormState();
+	const { isDirty, isSubmitSuccessful } = formState;
 	useEffect(() => {
 		if (isSubmitSuccessful) {
-			reset({}, { keepValues: keepValuesOnSubmit });
+			reset(initialValues, { keepValues: keepValuesOnSubmit });
 		}
-	}, [isSubmitSuccessful, reset]);
+	}, [isSubmitSuccessful]);
 
 	const onCancelClick = () => {
 		onDiscard();
