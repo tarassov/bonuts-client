@@ -58,6 +58,7 @@ export const ruLocale = {
 		// B
 		"Back to store": "Назад в магазин",
 		Balance: "Баланс",
+		[texts_b.birthday]: "дата рождения",
 		"birthday donuts": "пончики на день рождения",
 		[texts_b.birthday_points]: "монеты на день рождения",
 		[texts_b.birthday_message]: "сообщение на день рождения",
