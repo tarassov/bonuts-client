@@ -8,6 +8,7 @@ import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { BntBox } from "shared/box/bnt-box";
+import { Messenger } from "components/3cx/messenger";
 
 export const RecoverPage: FC = () => {
 	const { token } = useParams();
@@ -21,12 +22,15 @@ export const RecoverPage: FC = () => {
 	useLoader(Modules.Default, isLoading);
 
 	return (
-		<BntBox className={styles.box} sx={{ mt: 8 }}>
-			{!token ? (
-				<PasswordRecoverRequest onSubmit={sendRecoverEmail} />
-			) : (
-				<PasswordRecoverSet onSubmit={changePassword} />
-			)}
-		</BntBox>
+		<>
+			<BntBox className={styles.box} sx={{ mt: 8 }}>
+				{!token ? (
+					<PasswordRecoverRequest onSubmit={sendRecoverEmail} />
+				) : (
+					<PasswordRecoverSet onSubmit={changePassword} />
+				)}
+			</BntBox>
+			<Messenger />
+		</>
 	);
 };

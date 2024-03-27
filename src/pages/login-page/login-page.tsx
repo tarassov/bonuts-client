@@ -11,6 +11,7 @@ import { useAuthUi } from "logic/ui/use-auth-ui";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import _ from "lodash";
 import { useProjectNavigate } from "hooks/use-project-navigate";
+import { Messenger } from "components/3cx/messenger";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
@@ -45,8 +46,10 @@ export const LoginPage: FC = () => {
 		return undefined;
 	}, [authError]);
 
+	// @ts-ignore
 	return (
 		<Box component="div" className={styles.box} sx={{ mt: 8 }}>
+			<Messenger />
 			<BonutsFullIcon style={{ width: "110px", height: "50px" }} />
 			<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 				<TextField
