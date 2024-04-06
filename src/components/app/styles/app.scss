@@ -75,6 +75,8 @@ main {
 		cursor: pointer;
 	}
 }
+
+
 /* Scroll bar stylings */
 ::-webkit-scrollbar {
 	width: 4px;
@@ -96,3 +98,12 @@ main {
 ::-webkit-scrollbar-thumb:hover {
 	background: rgb(126, 126, 126);
 }
+
+@supports (scrollbar-color: red blue) and (not selector(::-webkit-scrollbar)){
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: rgb(180, 180, 180) rgb(240, 240, 240);
+	}
+}
+
+
