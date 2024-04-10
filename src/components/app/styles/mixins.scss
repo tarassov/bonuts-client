@@ -28,7 +28,7 @@ $k: 4;
   padding-left: $size*$k  + px;
 }
 @mixin pr-mixin($size) {
-  padding-right: $size  + px;
+  padding-right: $size*$k  + px;
 }
 
 @mixin right-mixin($size) {

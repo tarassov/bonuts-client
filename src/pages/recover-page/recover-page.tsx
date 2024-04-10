@@ -8,7 +8,7 @@ import { useLoader } from "shared/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { BntBox } from "shared/box/bnt-box";
-import { Messenger } from "components/3cx/messenger";
+import { Messenger } from "@/features/3cx/messenger";
 
 export const RecoverPage: FC = () => {
 	const { token } = useParams();

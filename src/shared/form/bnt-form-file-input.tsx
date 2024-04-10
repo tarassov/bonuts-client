@@ -28,7 +28,7 @@ export const BntFormFileInput: FC<{
 				ref={inputRef}
 				onChange={handleFileInputChange}
 			/>
-			<BntBox sx={{ textAlign: "center", width: "100%" }} className="pr-8">
+			<BntBox sx={{ textAlign: "center", width: "100%" }} className="pr-2">
 				<BntIconButton onClick={handleButtonClick} tooltip={Dictionary.EDIT}>
 					<ModeEditOutlineRounded />
 				</BntIconButton>

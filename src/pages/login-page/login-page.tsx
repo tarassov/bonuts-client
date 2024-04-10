@@ -11,7 +11,7 @@ import { useAuthUi } from "logic/ui/use-auth-ui";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import _ from "lodash";
 import { useProjectNavigate } from "hooks/use-project-navigate";
-import { Messenger } from "components/3cx/messenger";
+import { Messenger } from "@/features/3cx/messenger";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
