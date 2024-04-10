@@ -4,4 +4,5 @@ export enum texts_i {
 	incoming = "incoming",
 	i_can_spend = "i can spend",
 	i_can_share = "i can share",
+	integrations = "integrations",
 }

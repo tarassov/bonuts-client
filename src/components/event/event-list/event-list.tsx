@@ -55,7 +55,7 @@ export const BntEventList: FC = () => {
 
 			<BntBox
 				className={classnames("flex-grow pb-2 mt-2", {
-					"pr-12": !matchesDownMd,
+					"pr-3": !matchesDownMd,
 					scroll: !isEmpty,
 				})}
 				sx={{

@@ -4,4 +4,5 @@ export const iconNames = [
 	"BonutsCurrency",
 	"BetaSvgIcon",
 	"BonutOutlined",
+	"QrCode",
 ] as const;

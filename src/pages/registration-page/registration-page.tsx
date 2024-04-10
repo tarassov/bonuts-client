@@ -10,7 +10,7 @@ import { BntTypography } from "shared/typography/typography";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
-import { Messenger } from "components/3cx/messenger";
+import { Messenger } from "@/features/3cx/messenger";
 import styles from "./registration-page.module.scss";
 import { RegisterFields } from "@/types/form/register";
 

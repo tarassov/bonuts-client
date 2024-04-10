@@ -33,4 +33,5 @@ export type TProfile = TBaseModel & {
 		profile_id?: number;
 	};
 	created_at?: string;
+	tg_code?: string;
 };
