@@ -13,8 +13,8 @@ import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal
 import { TPost } from "@/types/model/post";
 import {
 	IntegrationModalType,
-	integrationsModalConfig,
-} from "@/features/integration-settings/modal/integrations-modal-config";
+	notificationsModalConfig,
+} from "@/features/notifications-settings/modal/notifications-modal-config";
 
 export type ModalType = IntegrationModalType & {
 	SimpleTextModal: string;
@@ -94,6 +94,6 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 			getPath: (data) => `event/${data.post.id}`,
 			isTop: true,
 		},
-		...integrationsModalConfig.items,
+		...notificationsModalConfig.items,
 	},
 };

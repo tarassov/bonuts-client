@@ -6,8 +6,8 @@ import { iconNames } from "@/config/icon-names";
 const ROOT_PATH = "/assets/icons/";
 
 export type Attributes = {
-	width: string;
-	height: string;
+	width: string | number;
+	height: string | number;
 };
 
 export const useIcons = (attributes?: Partial<Attributes>) =>
