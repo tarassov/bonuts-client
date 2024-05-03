@@ -7,11 +7,12 @@ export const CardWrapper: FC<{
 	children?: JSX.Element | Array<JSX.Element>;
 	transparent?: boolean;
 	className?: string;
-}> = ({ children, className, transparent }) => {
+	maxWidth?: number;
+}> = ({ children, className, transparent, maxWidth }) => {
 	return (
 		<BntCard
 			className={classNames(className, "mt-2 height-100")}
-			sx={{ background: transparent ? "transparent" : undefined }}
+			sx={{ background: transparent ? "transparent" : undefined, maxWidth }}
 		>
 			<BntCardBody className="height-100">{children}</BntCardBody>
 		</BntCard>

@@ -197,6 +197,7 @@ export const ruLocale = {
 		incoming: "входящие",
 		"in date": "дата приема",
 		[texts_i.invitations]: "приглашения",
+		[texts_i.integrations]: "интеграции",
 		[texts_i.i_can_share]: "я могу поделиться",
 		[texts_i.i_can_spend]: "я могу потратить",
 		"invitation added": "Приглашение отправлено",
@@ -248,6 +249,7 @@ export const ruLocale = {
 		[texts_n.new_scheduler]: "новый планировщик",
 		[texts_n.new_invitation_was_created]: "Новое приглашение было создано",
 		[texts_n.new_invitation_email_was_sent]: "Письмо с приглашением было отправлено",
+		[texts_n.notifications]: "уведомления",
 		// O
 		"on stock": "в наличии",
 		"Only you can see it": "Только вы это видите",

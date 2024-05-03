@@ -9,7 +9,7 @@ import { texts_i, texts_p } from "services/localization/texts";
 import { BntTabPanel } from "shared/tab/bnt-tab-panel";
 import { useQuery } from "hooks/use-query";
 import { Messenger } from "@/features/3cx/messenger";
-import { ProfileIntegrations } from "@/features/integration-settings/profile-integrations";
+import { ProfileNotifications } from "@/features/notifications-settings/components/profile-notifications";
 
 export const ProfilePage: React.FC = () => {
 	const query = useQuery();
@@ -28,7 +28,6 @@ export const ProfilePage: React.FC = () => {
 					onChange={handleChange}
 					indicatorColor="primary"
 					textColor="primary"
-					variant="fullWidth"
 					aria-label="profile tabs"
 				>
 					<BntTab label={translate(texts_p.profile)} tabValue={0} />
@@ -39,7 +38,7 @@ export const ProfilePage: React.FC = () => {
 						<ProfileEdit />
 					</BntTabPanel>
 					<BntTabPanel value={value} index={1}>
-						<ProfileIntegrations />
+						<ProfileNotifications />
 					</BntTabPanel>
 				</CardWrapper>
 			</BntStack>
