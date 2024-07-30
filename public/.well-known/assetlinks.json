@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "ru.bonuts.twa",
-        "sha256_cert_fingerprints": ["18:22:E6:94:3A:A8:C4:74:9E:D3:E2:96:EF:56:AE:2D:2E:58:CA:8B:42:FD:F8:AF:87:6E:44:D9:F6:64:0E:C2"]
+        "sha256_cert_fingerprints": ["18:22:E6:94:3A:A8:C4:74:9E:D3:E2:96:EF:56:AE:2D:2E:58:CA:8B:42:FD:F8:AF:87:6E:44:D9:F6:64:0E:C2", "18:22:E6:94:3A:A8:C4:74:9E:D3:E2:96:EF:56:AE:2D:2E:58:CA:8B:42:FD:F8:AF:87:6E:44:D9:F6:64:0E:C2"]
       }
     }]
