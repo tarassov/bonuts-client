@@ -9,12 +9,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "favicon-32x32.ico",
+      "src": "favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/x-icon"
     },
     {
-      "src": "favicon-16x16.ico",
+      "src": "favicon-16x16.png",
       "sizes": "16x16",
       "type": "image/x-icon"
     },
@@ -31,7 +31,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "display_override": "window-controls-overlay",
+  "display_override": ["window-controls-overlay"],
   "theme_color": "#426644",
   "background_color": "#FFCF86",
   "orientation": "any"
