@@ -1,6 +1,7 @@
 {
   "short_name": "Bonuts",
   "name": "Bonuts application",
+  "description": "Using its own currency, the Bonuts platform helps build team relationships on a new level.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -30,6 +31,8 @@
   ],
   "start_url": ".",
   "display": "standalone",
+  "display_override": "window-controls-overlay",
   "theme_color": "#426644",
-  "background_color": "#FFCF86"
+  "background_color": "#FFCF86",
+  "orientation": "any"
 }
