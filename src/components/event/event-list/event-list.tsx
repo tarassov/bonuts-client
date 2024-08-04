@@ -105,12 +105,12 @@ export const BntEventList: FC = () => {
 						</BntTypography>
 					</BntStack>
 				) : null}
-				{hasNext && pages.length > 0 && (
-					<BntStack alignItems="center" justifyContent="center" className="pt-2">
-						<CircularProgress color="primary" ref={ref} />
-					</BntStack>
-				)}
 			</BntBox>
+			{hasNext && pages.length > 0 && (
+				<BntStack alignItems="center" justifyContent="center" className="pt-2">
+					<CircularProgress color="primary" ref={ref} />
+				</BntStack>
+			)}
 		</BntStack>
 	);
 };
