@@ -23,6 +23,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
+dev-dist
+
 #IDE
 .idea
 .code
