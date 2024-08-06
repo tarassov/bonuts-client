@@ -42,14 +42,14 @@ export const BntEventList: FC = () => {
 		if (inView && !isLoading) {
 			fetchNext();
 		}
-	}, [inView, isLoading]);
+	}, [inView, isLoading, fetchNext]);
 
 	useLoader(Modules.Events, isLoading);
 
 	const isEmpty = !pages[0]?.length;
 
 	return (
-		<BntStack direction="column" className={classnames("height-100 pb-2")}>
+		<BntStack direction="column" className={classnames("height-100")}>
 			<BntStack direction="row" gap={2} justifyContent="space-bwteen" alignItems="center">
 				{pages.length > 0 ? (
 					<>
@@ -105,12 +105,12 @@ export const BntEventList: FC = () => {
 						</BntTypography>
 					</BntStack>
 				) : null}
+				{hasNext && pages.length > 0 && (
+					<BntStack alignItems="center" justifyContent="center" className="pt-2 overflow-hidden">
+						<CircularProgress color="primary" ref={ref} />
+					</BntStack>
+				)}
 			</BntBox>
-			{hasNext && pages.length > 0 && (
-				<BntStack alignItems="center" justifyContent="center" className="pt-2">
-					<CircularProgress color="primary" ref={ref} />
-				</BntStack>
-			)}
 		</BntStack>
 	);
 };
