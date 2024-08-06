@@ -74,8 +74,8 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	}, [results]);
 
 	const fetchNext = useCallback(() => {
-		setCurrentPage((prev) => prev + 1);
-	}, [setCurrentPage]);
+		setCurrentPage(currentPage + 1);
+	}, [setCurrentPage, currentPage]);
 
 	useEffect(() => {
 		if (currentPage > 1) {

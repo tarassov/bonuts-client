@@ -147,7 +147,7 @@ export const BntReactTablePure = <T,>({
 	// a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
 	React.useEffect(() => {
 		fetchMoreOnBottomReached(tableContainerRef.current);
-	}, [fetchMoreOnBottomReached]);
+	}, []);
 
 	const virtualRows = virtualizer.getVirtualItems();
 
