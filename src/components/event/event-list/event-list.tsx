@@ -8,7 +8,7 @@ import {
 	useTheme,
 } from "@mui/material";
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Dictionary } from "constants/dictionary";
 import { useEventListLogic } from "logic/hooks/event/use-event-list-logic";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -20,7 +20,7 @@ import { texts_e, texts_s } from "services/localization/texts";
 import { BntStack } from "shared/stack/stack";
 import { LightbulbCircleOutlined } from "@mui/icons-material";
 import { SearchString } from "components/search-string/search-string";
-import { useInView } from "react-intersection-observer";
+import { InView } from "react-intersection-observer";
 import { BntStyledEventCard } from "../event-card/event-card-styled";
 import { BntBox } from "@/shared/box/bnt-box";
 
@@ -36,20 +36,12 @@ export const BntEventList: FC = () => {
 		searchText,
 	});
 
-	const { ref, inView } = useInView();
-
-	useEffect(() => {
-		if (inView && !isLoading) {
-			fetchNext();
-		}
-	}, [inView, isLoading]);
-
 	useLoader(Modules.Events, isLoading);
 
 	const isEmpty = !pages[0]?.length;
 
 	return (
-		<BntStack direction="column" className={classnames("height-100 pb-2")}>
+		<BntStack direction="column" className={classnames("height-100")}>
 			<BntStack direction="row" gap={2} justifyContent="space-bwteen" alignItems="center">
 				{pages.length > 0 ? (
 					<>
@@ -105,12 +97,21 @@ export const BntEventList: FC = () => {
 						</BntTypography>
 					</BntStack>
 				) : null}
+				{hasNext && pages.length > 0 && (
+					<BntStack alignItems="center" justifyContent="center" className="pt-2 overflow-hidden">
+						<InView
+							as="div"
+							onChange={(inView) => {
+								if (inView && !isLoading) {
+									fetchNext();
+								}
+							}}
+						>
+							<CircularProgress color="primary" />
+						</InView>
+					</BntStack>
+				)}
 			</BntBox>
-			{hasNext && pages.length > 0 && (
-				<BntStack alignItems="center" justifyContent="center" className="pt-2">
-					<CircularProgress color="primary" ref={ref} />
-				</BntStack>
-			)}
 		</BntStack>
 	);
 };

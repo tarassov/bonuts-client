@@ -103,7 +103,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	useEffect(() => {
 		if (isSuccess) {
 			// if only one page is loaded then update immediately
-			if (Object.keys(pages).length <= 1 || !_.isEqual(restArgs, queryArgs)) {
+			if (!Object.keys(results).length || !_.isEqual(restArgs, queryArgs)) {
 				setQueryArgs(restArgs);
 				setCurrentPage(1);
 				setPages({ 1: data });

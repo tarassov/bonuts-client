@@ -47,7 +47,7 @@ export const SearchString = <T extends TBaseModel>(props: SearchStringProps<T>) 
 			<BntTextInput
 				color="primary"
 				name="filter-donuts"
-				placeholder={`${translate(Dictionary.SEARCH_STRING)}...`}
+				placeholder={`${Dictionary.SEARCH_STRING}`}
 				type={TFieldType.text}
 				value={text}
 				clearable
