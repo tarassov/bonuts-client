@@ -8,7 +8,7 @@ import {
 	useTheme,
 } from "@mui/material";
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Dictionary } from "constants/dictionary";
 import { useEventListLogic } from "logic/hooks/event/use-event-list-logic";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -20,7 +20,7 @@ import { texts_e, texts_s } from "services/localization/texts";
 import { BntStack } from "shared/stack/stack";
 import { LightbulbCircleOutlined } from "@mui/icons-material";
 import { SearchString } from "components/search-string/search-string";
-import { useInView } from "react-intersection-observer";
+import { InView } from "react-intersection-observer";
 import { BntStyledEventCard } from "../event-card/event-card-styled";
 import { BntBox } from "@/shared/box/bnt-box";
 
@@ -35,14 +35,6 @@ export const BntEventList: FC = () => {
 		showMine,
 		searchText,
 	});
-
-	const { ref, inView } = useInView();
-
-	useEffect(() => {
-		if (inView && !isLoading) {
-			fetchNext();
-		}
-	}, [inView, isLoading, fetchNext]);
 
 	useLoader(Modules.Events, isLoading);
 
@@ -107,7 +99,16 @@ export const BntEventList: FC = () => {
 				) : null}
 				{hasNext && pages.length > 0 && (
 					<BntStack alignItems="center" justifyContent="center" className="pt-2 overflow-hidden">
-						<CircularProgress color="primary" ref={ref} />
+						<InView
+							as="div"
+							onChange={(inView) => {
+								if (inView && !isLoading) {
+									fetchNext();
+								}
+							}}
+						>
+							<CircularProgress color="primary" />
+						</InView>
 					</BntStack>
 				)}
 			</BntBox>
