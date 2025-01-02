@@ -1,23 +1,24 @@
 import React, { FC, useState } from "react";
-import { BntCardBody } from "shared/card/card-body";
+import { BntCardBody } from "shared/ui/card/card-body";
 import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
-import { BntCard } from "shared/card/card";
-import { ImagePreview } from "shared/image/image-preview";
+import { BntCard } from "shared/ui/card/card";
+import { ImagePreview } from "shared/ui/image/image-preview";
 import { DEFAULT_AVATAR } from "constants/images";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";
 import { EmployeePreviewBreadcrumbs } from "components/employee/employee-preview/employee-preview-breadcrumbs";
-import { BntChip } from "shared/chip/chip";
+import { BntChip } from "shared/ui/chip/chip";
 import { ErrorOutline, ShieldOutlined, StorefrontOutlined } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntLabel } from "components/employee/employee-preview/label";
 import { formatStringDate } from "utils/format-string-date";
-import { BntDivider } from "shared/divider/bnt-divider";
+import { BntDivider } from "shared/ui/divider/bnt-divider";
 import { EmployeeActions } from "pages/employee/employee-actions";
 import { EmployeeEdit } from "components/employee/employee-edit/employee-edit";
 import { CircleTag } from "components/circle/circle-tag/circle-tag";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntStack } from "shared/ui/stack/stack";
 import { TProfile } from "@/types/model";
 import {
 	texts_a,
@@ -27,7 +28,6 @@ import {
 	texts_n,
 	texts_s,
 } from "@/services/localization/texts";
-import { BntStack } from "@/shared/stack/stack";
 
 type EmployeePreviewPureProps = {
 	employee?: TProfile;

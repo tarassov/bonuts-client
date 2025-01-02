@@ -1,7 +1,7 @@
 import { texts_a, texts_c, texts_e, texts_n } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { ActionType, CellType, HeaderType, TTableConfig } from "shared/react-table/types";
-import { useTableConfig } from "shared/react-table/hooks/use-table-config";
+import { ActionType, CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
+import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
 import { useMemo } from "react";
 import { useCircleUi } from "logic/ui/use-circle-ui";
 import { useCircle } from "logic/hooks/cirlce/use-circle";

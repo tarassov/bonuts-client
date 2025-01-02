@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { useDonutLoader } from "logic/hooks/donut/use-donut-loader";
 import { Modules } from "constants/modules";
 import { DonutEditForm } from "components/donut/donut-edit/donut-edit-form";
@@ -7,13 +7,13 @@ import { useDonut } from "logic/hooks/donut/use-donut";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 import { Dictionary } from "constants/dictionary";
 import { DonutSmall, SettingsOutlined } from "@mui/icons-material";
 import { routesPath } from "routes/config/routes-path";
-import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
-import { BntCardBody } from "shared/card/card-body";
-import { BntCard } from "shared/card/card";
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { BntCard } from "shared/ui/card/card";
 import { TDonut } from "@/types/model";
 
 export const DonutEdit = () => {

@@ -1,4 +1,4 @@
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 
 import React from "react";
 import { EventDetailed } from "components/event/event-card/event-detailed";

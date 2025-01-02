@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { BntStack } from "shared/stack/stack";
-import { BntTypography } from "shared/typography/typography";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
 import { Button } from "@mui/material";
-import { useLocalDate } from "shared/locale/hooks/use-local-date";
+import { useLocalDate } from "shared/ui/locale/hooks/use-local-date";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CommonStrings } from "constants/dictionary";
 

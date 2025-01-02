@@ -1,8 +1,8 @@
 import { Stack } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { NotAccessibleOutlined } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import { texts_p } from "services/localization/texts";
 
 export const Page404 = () => {

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BntForm } from "shared/form/bnt-form";
+import { BntForm } from "shared/ui/form/bnt-form";
 
 import { useShareAllFormFields } from "components/share-all/use-share-all-form-fields";
 import { useBntTranslate } from "hooks/use-bnt-translate";

@@ -24,6 +24,7 @@ export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 		self_account: data.attributes?.self_account,
 		distrib_account: data.attributes?.distrib_account,
 		created_at: data.attributes?.created_at,
+		tg_code: data.attributes?.tg_code || undefined,
 	};
 
 	return res;
@@ -46,6 +47,7 @@ export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TPro
 			in_date: attributes?.in_date || null,
 			bio: attributes?.bio || undefined,
 			contact: attributes?.contact || undefined,
+			tg_code: attributes?.tg_code || undefined,
 			id: Number(id),
 		};
 	});

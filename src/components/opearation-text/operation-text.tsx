@@ -4,7 +4,7 @@ import { FC } from "react";
 import { EMPTY_FUNCTION } from "constants/functions";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { OPERATION_CLASSES } from "components/opearation-text/classes";
-import { useLocalDate } from "shared/locale/hooks/use-local-date";
+import { useLocalDate } from "shared/ui/locale/hooks/use-local-date";
 import { TOperation } from "@/types/model/operation";
 import { BntProfileButton } from "../buttons/profile-button";
 import { DealType } from "@/types/model/deal-type";

@@ -1,7 +1,7 @@
-import { TWizardConfig } from "shared/types/wizard-types";
+import { TWizardConfig } from "shared/ui/types/wizard-types";
 import { ShareAllStepOne } from "components/share-all/share-all-step-one";
 import { ShareAllStepTwo } from "components/share-all/share-all-step-two";
-import { Wizard } from "shared/wizard/wizard";
+import { Wizard } from "shared/ui/wizard/wizard";
 import { useTransfer } from "logic/hooks/operation/use-transfer";
 import { Currency } from "constants/currency";
 import { TProfile } from "@/types/model";

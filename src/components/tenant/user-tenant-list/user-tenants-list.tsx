@@ -1,4 +1,4 @@
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { Grid } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";

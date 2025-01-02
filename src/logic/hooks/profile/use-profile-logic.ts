@@ -7,7 +7,7 @@ import { authProfileSelector, authTenantSelector } from "services/redux/selector
 import { accountsApi } from "services/api/extended/accounts-api";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
 import { useUpdateProfile } from "logic/hooks/profile/use-update-profile";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { TProfile } from "@/types/model";
 
 const OPERATION_NAME = "profileLogic";

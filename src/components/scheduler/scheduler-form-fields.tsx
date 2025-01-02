@@ -1,20 +1,20 @@
-import { BntTextInputElement } from "shared/input/text-input-element";
+import { BntTextInputElement } from "shared/ui/input/text-input-element";
 import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "services/localization/texts";
-import { BntTimePickerElement } from "shared/input/time-picker-element";
+import { BntTimePickerElement } from "shared/ui/input/time-picker-element";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useFormState, useWatch } from "react-hook-form";
-import { BntSelectElement } from "shared/input/select-element";
+import { BntSelectElement } from "shared/ui/input/select-element";
 import { useMemo } from "react";
 import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
-import { getMonthDayOptions } from "shared/helpers/get-month-day-array";
+import { getMonthDayOptions } from "shared/lib/get-month-day-array";
 import { SchedulerTypes } from "components/scheduler/constants/scheduler-types";
-import { WeekdayDaySelect } from "shared/form/special-fileds/weekday-day-select";
-import { TimezoneSelect } from "shared/form/special-fileds/timezone-select";
-import { BntTextAreaInput } from "shared/input/text-area-input";
-import { BntSwitchElement } from "shared/input/bnt-switch-element";
-import { BntTypography } from "shared/typography/typography";
+import { WeekdayDaySelect } from "shared/ui/form/special-fileds/weekday-day-select";
+import { TimezoneSelect } from "shared/ui/form/special-fileds/timezone-select";
+import { BntTextAreaInput } from "shared/ui/input/text-area-input";
+import { BntSwitchElement } from "shared/ui/input/bnt-switch-element";
+import { BntTypography } from "shared/ui/typography/typography";
 import { ErrorOutlineOutlined } from "@mui/icons-material";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { TScheduler } from "@/types/model/scheduler";
 
 export const SchedulerFormFields = () => {

@@ -1,4 +1,4 @@
-import { TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
 import { Currency } from "constants/currency";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c, texts_d, texts_t } from "services/localization/texts";

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { modalConfig, ModalType } from "config/modal-config";
-import { BntDialogProvider } from "shared/modal/dialog-provider";
+import { BntDialogProvider } from "shared/ui/modal/dialog-provider";
 
 export const PageWrapper: FC<{
 	children: JSX.Element | Array<JSX.Element>;

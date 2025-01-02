@@ -2,7 +2,7 @@ import { Grid, useMediaQuery } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import classnames from "classnames";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { TotalBalanceTable } from "@/features/reports/component/statistic/total-balance-table";
 import { TotalDonutsSentReport } from "@/features/reports/component/statistic/total-donuts-sent-report";
 import { TotalDonutsReceivedReport } from "@/features/reports/component/statistic/total-donuts-received.report";

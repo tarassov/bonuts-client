@@ -1,11 +1,11 @@
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useSchedulerListLoader } from "logic/hooks/scheduler/use-scheduler-list-loader";
 import { SchedulerListStyled } from "components/scheduler/scheduler-list/scheduler-list-styled";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { NewSchedulerBlock } from "components/scheduler/new-scheduler-block";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { useState } from "react";
 import { useScheduler } from "logic/hooks/scheduler/use-scheduler";
 import { useModal } from "hooks/use-modal";

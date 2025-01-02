@@ -1,6 +1,6 @@
 import React from "react";
-import { BntStack } from "shared/stack/stack";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack/stack";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { CreateInvitationForm } from "components/invitation/create-invitation-form";
 
 export const InvitationPage: React.FC = () => {

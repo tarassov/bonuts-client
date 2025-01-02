@@ -11,7 +11,7 @@ import {
 	usePostDemoAuthenticateMutation,
 	usePostLogoutMutation,
 } from "services/api/bonuts-api";
-import { useStorage } from "hooks/use-storage";
+import { useStorage } from "shared/lib/localStorage/use-storage";
 
 // const MAX_RETRY_NUMBER = 3;
 

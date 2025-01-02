@@ -9,7 +9,7 @@ import { useNotification } from "services/notification";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { texts_t } from "services/localization/texts/texts_t";
 import { CommonStrings } from "constants/dictionary";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { TransferProps } from "@/types/logic";
 import { AdminDepositProps } from "@/types/logic/transfer";
 import { TActionCallback } from "@/types/logic/action-callback";

@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntCard } from "shared/card/card";
+import { BntCard } from "shared/ui/card/card";
 import { Dictionary } from "constants/dictionary";
-import { BntTypography } from "shared/typography/typography";
-import { BntRegularButton } from "shared/buttons/regular-button";
+import { BntTypography } from "shared/ui/typography/typography";
+import { BntRegularButton } from "shared/ui/buttons/regular-button";
 import { useRequestLogic } from "logic/hooks/request/use-request-logic";
 import { texts_o } from "services/localization/texts/texts_o";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { DonutRemainGrey } from "./donut-remain-grey";
 import { DonutPrice } from "./donut-price";

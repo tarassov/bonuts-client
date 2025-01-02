@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Grid } from "@mui/material";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
 import { EmployeeCard } from "components/employee/employee-card/employee-card";

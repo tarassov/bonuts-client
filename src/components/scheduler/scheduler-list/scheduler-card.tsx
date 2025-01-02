@@ -1,17 +1,17 @@
-import { BntCard } from "shared/card/card";
+import { BntCard } from "shared/ui/card/card";
 import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/classes";
-import { BntCardBody } from "shared/card/card-body";
-import { BntStack } from "shared/stack/stack";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { BntStack } from "shared/ui/stack/stack";
 
 import { texts_d, texts_e, texts_n } from "services/localization/texts";
-import { BntTypography } from "shared/typography/typography";
-import { getWeekdayOptions } from "shared/helpers/get-weekday";
+import { BntTypography } from "shared/ui/typography/typography";
+import { getWeekdayOptions } from "shared/lib/get-weekday";
 import { formatStringDate } from "utils/format-string-date";
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CommonStrings } from "constants/dictionary";
-import { secondsToTime } from "shared/helpers/seconds-to-time";
-import { BntBox } from "shared/box/bnt-box";
+import { secondsToTime } from "shared/lib/seconds-to-time";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
 
 export const SchedulerCard: FC<{

@@ -1,11 +1,11 @@
-import { BntTabs } from "shared/tab/bnt-tabs";
-import { BntTab } from "shared/tab/bnt-tab";
+import { BntTabs } from "shared/ui/tab/bnt-tabs";
+import { BntTab } from "shared/ui/tab/bnt-tab";
 import { SyntheticEvent, useState } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTabPanel } from "shared/tab/bnt-tab-panel";
+import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
 import { TieGraph } from "components/tie-graph/tie-graph";
-import { BntStack } from "shared/stack/stack";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack/stack";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { BetaNotice } from "components/beta-notice/beta-notice";
 import reportsTexts from "@/features/reports/localization/reports-texts";
 import { StatisticsDashboard } from "@/features/reports/component/statistic/statistics-dashboard";

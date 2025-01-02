@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import { BntTypography } from "shared/typography/typography";
-import { BntDivider } from "shared/divider/bnt-divider";
+import { BntTypography } from "shared/ui/typography/typography";
+import { BntDivider } from "shared/ui/divider/bnt-divider";
 import { FC } from "react";
 
 export const TenantList: FC<{ children: React.ReactNode; title: string }> = ({

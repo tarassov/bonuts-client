@@ -4,12 +4,12 @@ import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { texts_i, texts_t } from "services/localization/texts";
 import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
-import { BntRoundButton } from "shared/buttons/round-button";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { useDonutUi } from "logic/ui/use-donut-ui";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntStack } from "shared/ui/stack/stack";
 import { TProfile } from "@/types/model";
-import { BntStack } from "@/shared/stack/stack";
 
 export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 	const { t } = useBntTranslate();

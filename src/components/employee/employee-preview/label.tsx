@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { Stack } from "@mui/material";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import classNames from "classnames";
 
 export const BntLabel: FC<{ name: string; value?: string; className?: string }> = ({

@@ -3,7 +3,7 @@ import {
 	TFieldType,
 	TFormField,
 	TFormFieldSourceItem,
-} from "shared/form/types/bnt-form";
+} from "shared/ui/form/types/bnt-form";
 import { UserLogic } from "logic/utils/user-utils";
 import { useRoleField } from "hooks/form-field/use-role-field";
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";

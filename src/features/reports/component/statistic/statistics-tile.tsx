@@ -1,21 +1,21 @@
-import { BntReactTable } from "shared/react-table/bnt-react-table";
+import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
 import { FC } from "react";
 import { CircularProgress } from "@mui/material";
 import * as React from "react";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import classNames from "classnames";
-import { BntCard } from "shared/card/card";
-import { BntTypography } from "shared/typography/typography";
+import { BntCard } from "shared/ui/card/card";
+import { BntTypography } from "shared/ui/typography/typography";
 import { CloseOutlined, FullscreenOutlined } from "@mui/icons-material";
-import { BntIconButton } from "shared/icon-button/bnt-icon-button";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { emptyFunction } from "utils/empty-function";
 import { texts_c } from "services/localization/texts";
 import { Currency } from "constants/currency";
+import { BntCardBody } from "shared/ui/card/card-body";
 import { TProfile } from "@/types/model";
 import { useStatisticsTableConfig } from "@/features/reports/component/statistic/use-statistics-table-config";
 import reportsTexts from "@/features/reports/localization/reports-texts";
-import { BntCardBody } from "@/shared/card/card-body";
 
 export type StatisticsTileProps = {
 	totalFieldName: string;

@@ -1,5 +1,5 @@
 import { Avatar, Button } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { LogoutOutlined } from "@mui/icons-material";

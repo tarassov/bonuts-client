@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { BntStyledEventCard } from "components/event/event-card/event-card-styled";
 import { useEventLoader } from "logic/hooks/event/use-event-loader";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { CommentList } from "components/comment/comment-list";
 import { CommentForm } from "components/comment/comment-form";
 import { useEventLogic } from "logic/hooks/event/use-event-logic";

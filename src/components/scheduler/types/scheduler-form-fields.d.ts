@@ -1,4 +1,4 @@
-import { ITimezoneOption } from "shared/types/timezones";
+import { ITimezoneOption } from "shared/ui/types/timezones";
 import { TScheduler } from "@/types/model/scheduler";
 
 export type TSchedulerFormFields = Partial<TScheduler> &

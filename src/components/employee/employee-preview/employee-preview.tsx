@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useModal } from "hooks/use-modal";
 import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";

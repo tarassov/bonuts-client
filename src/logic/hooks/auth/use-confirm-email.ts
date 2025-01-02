@@ -7,7 +7,7 @@ import { useNotification } from "services/notification";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
 import { useProjectNavigate } from "hooks/use-project-navigate";
-import { useStorage } from "hooks/use-storage";
+import { useStorage } from "shared/lib/localStorage/use-storage";
 
 export const useConfirmEmail = (token?: string) => {
 	const { data, isLoading } = useGetConfirmEmailQuery({ token }, { skip: !token });

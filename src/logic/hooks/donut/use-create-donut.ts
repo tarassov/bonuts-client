@@ -1,7 +1,7 @@
 import { useCreateDonutMutation } from "services/api/injected-api";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { PostDonutsApiResponse } from "services/api/bonuts-api";
-import { TFormValue } from "shared/form/types/bnt-form";
+import { TFormValue } from "shared/ui/form/types/bnt-form";
 import { donutsApi } from "services/api/extended/donuts-api";
 import { useAppDispatch } from "services/redux/store/store";
 

@@ -1,4 +1,4 @@
-import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
 import { texts_o } from "services/localization/texts/texts_o";
 import { texts_a, texts_e } from "services/localization/texts";
 import { texts_d } from "services/localization/texts/texts_d";

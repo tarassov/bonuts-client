@@ -1,11 +1,11 @@
-import { BntCard } from "shared/card/card";
-import { BntCardActionArea } from "shared/card/card-action-area";
+import { BntCard } from "shared/ui/card/card";
+import { BntCardActionArea } from "shared/ui/card/card-action-area";
 import { FC } from "react";
 import { MENU_CARD_CLASSES } from "components/child-path/menu-card/classes";
 import classNames from "classnames";
-import { BntCardBody } from "shared/card/card-body";
+import { BntCardBody } from "shared/ui/card/card-body";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import { BntRoutes } from "routes/config/routes";
 
 export type MenuCardPureProps = {

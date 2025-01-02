@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Dictionary } from "constants/dictionary";
-import { TFieldType } from "shared/form/types/bnt-form";
-import { BntStack } from "shared/stack/stack";
-import { BntRoundButton } from "shared/buttons/round-button";
+import { TFieldType } from "shared/ui/form/types/bnt-form";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTextInput } from "shared/input/text-input";
+import { BntTextInput } from "shared/ui/input/text-input";
 import { emptyFunction } from "utils/empty-function";
 import classnames from "classnames";
 import { useDebounce } from "usehooks-ts";

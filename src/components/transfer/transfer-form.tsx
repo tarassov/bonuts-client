@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useTransfer } from "logic/hooks/operation/use-transfer";
-import { BntForm } from "shared/form/bnt-form";
+import { BntForm } from "shared/ui/form/bnt-form";
 import {
 	TransferFormType,
 	useTransferFormFields,
@@ -22,6 +22,13 @@ export const TransferForm: FC<{ id: number; onSuccess?: VoidFunction }> = ({ id,
 		transferMyDonuts({ amount, comment, ids: [id] }, { onSuccess, onError });
 	};
 
+	const initialValues = useMemo(() => {
+		return {
+			amount: 1,
+			comment: "",
+		};
+	}, []);
+
 	return (
 		<BntForm
 			formId="transfer-donuts"
@@ -29,6 +36,8 @@ export const TransferForm: FC<{ id: number; onSuccess?: VoidFunction }> = ({ id,
 			fields={fields}
 			resolver={resolver}
 			submitCaption={t(texts_t.transfer_donuts)}
+			hasInitial
+			initialValues={initialValues}
 		/>
 	);
 };

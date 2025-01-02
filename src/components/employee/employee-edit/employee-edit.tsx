@@ -4,10 +4,10 @@ import { BntProfileForm } from "components/profile/profile-form";
 import React, { FC } from "react";
 
 import { useUpdateProfile } from "logic/hooks/profile/use-update-profile";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { texts_c } from "services/localization/texts";
 import { CloseOutlined } from "@mui/icons-material";
-import { BntIconButton } from "shared/icon-button/bnt-icon-button";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { emptyFunction } from "utils/empty-function";
 import { TProfile } from "@/types/model";

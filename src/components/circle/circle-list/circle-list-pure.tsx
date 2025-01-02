@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
-import { BntStack } from "shared/stack/stack";
-import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
-import { BntReactTable } from "shared/react-table/bnt-react-table";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
 import { routesConfig } from "routes/config/routes-config";
 import { BntRoutes } from "routes/config/routes";
 import { CommonStrings } from "constants/dictionary";

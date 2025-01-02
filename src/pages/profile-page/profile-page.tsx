@@ -1,12 +1,12 @@
 import React, { SyntheticEvent, useState } from "react";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
-import { BntStack } from "shared/stack/stack";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack/stack";
 import { ProfileEdit } from "components/profile/profile-edit";
-import { BntTabs } from "shared/tab/bnt-tabs";
-import { BntTab } from "shared/tab/bnt-tab";
+import { BntTabs } from "shared/ui/tab/bnt-tabs";
+import { BntTab } from "shared/ui/tab/bnt-tab";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_i, texts_p } from "services/localization/texts";
-import { BntTabPanel } from "shared/tab/bnt-tab-panel";
+import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
 import { useQuery } from "hooks/use-query";
 import { Messenger } from "@/features/3cx/messenger";
 import { ProfileIntegrations } from "@/features/integration-settings/profile-integrations";

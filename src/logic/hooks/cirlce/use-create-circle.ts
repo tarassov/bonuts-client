@@ -3,7 +3,7 @@ import { PostCirclesApiResponse } from "services/api/bonuts-api";
 import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
 import { useNotification } from "services/notification";
 import { texts_c } from "services/localization/texts";
-import { TFormValue } from "shared/form/types/bnt-form";
+import { TFormValue } from "shared/ui/form/types/bnt-form";
 
 export const useCreateCircle = () => {
 	const { usePostCirclesMutation } = circlesApi;

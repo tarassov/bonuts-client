@@ -1,12 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
 import { FC } from "react";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e, texts_f, texts_l, texts_p, texts_s } from "services/localization/texts";
 import BonutsFullIcon from "icons/BonutsFullIcon.svg";
 import { useForm } from "react-hook-form";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";

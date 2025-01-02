@@ -3,7 +3,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { FC } from "react";
 import { texts_c, texts_s } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 
 export const CommentForm: FC<{
 	onSubmit: (comment: string) => Promise<void>;

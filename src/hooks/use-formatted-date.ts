@@ -1,5 +1,7 @@
+import { useCallback } from "react";
+
 export const useFormattedDate = () => {
-	const getFormattedDate = (datetime: string) => datetime;
+	const getFormattedDate = useCallback((datetime: string) => datetime, []);
 
 	return { getFormattedDate };
 };

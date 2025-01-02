@@ -4,8 +4,8 @@ import {
 	TFormField,
 	TFormProps,
 	TFormValue,
-} from "shared/form/types/bnt-form";
-import { BntForm } from "shared/form/bnt-form";
+} from "shared/ui/form/types/bnt-form";
+import { BntForm } from "shared/ui/form/bnt-form";
 import { useModal } from "hooks/use-modal";
 import { CommonStrings } from "constants/dictionary";
 import { useUpdateAvatar } from "logic/hooks/profile/use-update-avatar";

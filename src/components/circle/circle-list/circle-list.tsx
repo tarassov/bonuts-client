@@ -1,5 +1,5 @@
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { CircleListPure } from "components/circle/circle-list/circle-list-pure";
 

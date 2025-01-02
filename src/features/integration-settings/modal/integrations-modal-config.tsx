@@ -1,8 +1,8 @@
-import { TBntModalConfig } from "shared/types/dialog-types";
+import { TBntModalConfig } from "shared/ui/types/dialog-types";
 import { TelegramModal } from "@/features/integration-settings/modal/telegram-modal";
 
 export type IntegrationModalType = {
-	ConnectTelegramModal: { tg_code };
+	ConnectTelegramModal: { tg_code?: string };
 };
 
 export const integrationsModalConfig: TBntModalConfig<IntegrationModalType> = {

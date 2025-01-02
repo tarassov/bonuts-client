@@ -3,7 +3,7 @@ import {
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,
 } from "services/api/extended/invitations-api";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { usePostInvitationsMutation } from "services/api/bonuts-api";
 import { useNotification } from "services/notification";
 import { texts_n } from "services/localization/texts";

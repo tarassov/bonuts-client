@@ -4,9 +4,9 @@ import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance
 import { texts_i, texts_s } from "services/localization/texts";
 import { DonutSmallOutlined } from "@mui/icons-material";
 import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
-import { BntRoundButton } from "shared/buttons/round-button";
-import { BntStack } from "shared/stack/stack";
-import { BntBox } from "shared/box/bnt-box";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 

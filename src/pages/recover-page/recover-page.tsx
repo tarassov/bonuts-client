@@ -4,10 +4,10 @@ import styles from "pages/registration-page/registration-page.module.scss";
 import { PasswordRecoverRequest } from "components/password-recover/password-recover-request";
 import { PasswordRecoverSet } from "components/password-recover/password-recover-set";
 import { usePasswordRecover } from "logic/hooks/auth/use-password-recover";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useProjectNavigate } from "hooks/use-project-navigate";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { Messenger } from "@/features/3cx/messenger";
 
 export const RecoverPage: FC = () => {

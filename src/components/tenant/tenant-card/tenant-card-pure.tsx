@@ -1,14 +1,14 @@
-import { BntCard } from "shared/card/card";
+import { BntCard } from "shared/ui/card/card";
 import classNames from "classnames";
-import { BntCardBody } from "shared/card/card-body";
-import { BntStack } from "shared/stack/stack";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { BntStack } from "shared/ui/stack/stack";
 import { DEFAULT_DONUT_IMAGE } from "constants/images";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import { FC } from "react";
 import { TENANT_CARD_CLASSES } from "components/tenant/tenant-card/classes";
-import { BntRegularSecondaryButton } from "shared/buttons/regular-secondary-button";
+import { BntRegularSecondaryButton } from "shared/ui/buttons/regular-secondary-button";
 import { emptyFunction } from "utils/empty-function";
-import { BntCancelButton } from "shared/buttons/cancel-button";
+import { BntCancelButton } from "shared/ui/buttons/cancel-button";
 import { TTenant } from "@/types/model/tenant";
 
 export type TenantCardPureProps = {

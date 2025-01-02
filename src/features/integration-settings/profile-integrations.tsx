@@ -1,10 +1,10 @@
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { texts_c, texts_n } from "services/localization/texts";
 import { useModal } from "hooks/use-modal";
 import { useTranslation } from "react-i18next";
-import { BntStack } from "shared/stack/stack";
-import { BntTypography } from "shared/typography/typography";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
 import { Button } from "@mui/material";
 
 export const ProfileIntegrations = () => {

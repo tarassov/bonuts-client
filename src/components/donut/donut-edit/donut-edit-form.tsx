@@ -1,5 +1,5 @@
-import { TFormProps } from "shared/form/types/bnt-form";
-import { BntForm } from "shared/form/bnt-form";
+import { TFormProps } from "shared/ui/form/types/bnt-form";
+import { BntForm } from "shared/ui/form/bnt-form";
 import { FC } from "react";
 import { useDonutEditFormFields } from "components/donut/donut-edit/hooks/use-donut-edit-form-fields";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";

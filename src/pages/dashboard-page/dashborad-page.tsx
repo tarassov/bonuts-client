@@ -3,7 +3,7 @@ import { BntEventList } from "components/event/event-list/event-list";
 import { AccountBalanceCard } from "components/account-balance/account-balance-card";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
-import { BntStack } from "@/shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 
 export const DashboardPage: FC = () => {
 	const theme = useTheme();

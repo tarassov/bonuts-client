@@ -1,12 +1,12 @@
 import { FC, JSX } from "react";
-import { BntCard } from "shared/card/card";
+import { BntCard } from "shared/ui/card/card";
 import { BntProfileButton } from "components/buttons/profile-button";
-import { BntTypography } from "shared/typography/typography";
-import { BntBox } from "shared/box/bnt-box";
+import { BntTypography } from "shared/ui/typography/typography";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { SearchString } from "components/search-string/search-string";
 import { emptyFunction } from "utils/empty-function";
 import { getEmployeeSearchButtons } from "components/employee/get-employee-search-buttons";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { TProfile } from "@/types/model";
 import { VoidResponseFunction } from "@/types/function-types";
 import { TSorterButton } from "@/types/ui/sorter-button";

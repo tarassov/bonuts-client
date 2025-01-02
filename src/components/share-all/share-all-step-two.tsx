@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { BntRoundButton } from "shared/buttons/round-button";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { texts_b } from "services/localization/texts";
 import { emptyFunction } from "utils/empty-function";
 import { Grid } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { ShareAllForm } from "components/share-all/share-all-form";
 import { Currency } from "constants/currency";

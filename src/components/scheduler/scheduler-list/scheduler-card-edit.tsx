@@ -1,9 +1,9 @@
-import { BntCard } from "shared/card/card";
-import { BntStack } from "shared/stack/stack";
+import { BntCard } from "shared/ui/card/card";
+import { BntStack } from "shared/ui/stack/stack";
 import { IconButton } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { texts_a } from "services/localization/texts";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { SchedulerForm } from "components/scheduler/scheduler-form";

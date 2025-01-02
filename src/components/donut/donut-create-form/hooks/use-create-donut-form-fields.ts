@@ -1,4 +1,4 @@
-import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
 import { TDonut } from "@/types/model";
 
 export const useCreateDonutFormFields = () => {

@@ -1,8 +1,8 @@
 import { texts_n } from "services/localization/texts";
 import { texts_p } from "services/localization/texts/texts_p";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { ActionType, CellType, HeaderType, TTableConfig } from "shared/react-table/types";
-import { useTableConfig } from "shared/react-table/hooks/use-table-config";
+import { ActionType, CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
+import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
 import { useDonutUi } from "logic/ui/use-donut-ui";
 import { useMemo } from "react";
 import { TDonut } from "@/types/model";

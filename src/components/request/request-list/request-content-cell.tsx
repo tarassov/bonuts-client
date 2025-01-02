@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { BntProfileButton } from "components/buttons/profile-button";
 import { emptyFunction } from "utils/empty-function";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { DonutButton } from "components/buttons/donut-button";
 import { texts_t } from "services/localization/texts/texts_t";
 import { useFormattedDate } from "hooks/use-formatted-date";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { CommonStrings } from "constants/dictionary";
 import { TDonut, TProfile } from "@/types/model";
