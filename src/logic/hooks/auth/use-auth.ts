@@ -11,7 +11,7 @@ import {
 	usePostDemoAuthenticateMutation,
 	usePostLogoutMutation,
 } from "services/api/bonuts-api";
-import { useStorage } from "shared/lib/localStorage/use-storage";
+import { storage } from "shared/lib/localStorage";
 
 // const MAX_RETRY_NUMBER = 3;
 
@@ -36,7 +36,7 @@ export function useAuth() {
 		}
 	);
 
-	const { getValue, setValue } = useStorage();
+	const { getValue, setValue } = storage;
 	const [isAuthLoading, setIsAuthLoading] = useState(true);
 
 	useEffect(() => {
@@ -49,8 +49,8 @@ export function useAuth() {
 
 	const getAuth = (): TAuth => {
 		return {
-			token: getValue<string>("auth_token") || "",
-			tenant: getValue<string>("tenant") || "",
+			token: getValue("auth_token") || "",
+			tenant: getValue("tenant") || "",
 		};
 	};
 	const validateAuth = async (authToValidate: TAuth): Promise<boolean> => !!authToValidate.token;

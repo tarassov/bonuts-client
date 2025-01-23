@@ -5,20 +5,20 @@ import {
 	StatisticsTile,
 	StatisticsTileProps,
 } from "@/features/reports/component/statistic/statistics-tile";
-import { useProfileReports } from "@/features/reports/logic/hooks/useProfileReports";
+import { useProfileReports } from "@/features/reports/logic/useProfileReports";
 import reportsTexts from "@/features/reports/localization/reports-texts";
 
-export type TTotalDonutsReceivedReportProps = Pick<
+export type TotalDonutsSentReportProps = Pick<
 	StatisticsTileProps,
 	"onFullScreenOpen" | "onFullScreenExit" | "fullscreen" | "onlyHeader"
 >;
-export const TotalDonutsReceivedReport: FC<TTotalDonutsReceivedReportProps> = (props) => {
+export const TotalDonutsSentReport: FC<TotalDonutsSentReportProps> = (props) => {
 	const { onlyHeader } = props;
-	const { objects = [], isLoading } = useProfileReports({ reportType: "show_score" }, onlyHeader);
+	const { objects = [], isLoading } = useProfileReports({ reportType: "show_sent" }, onlyHeader);
 	const { t } = useBntTranslate();
 	return (
 		<StatisticsTile
-			totalFieldName={t(reportsTexts.total_donuts_received, { capitalize: true })}
+			totalFieldName={t(reportsTexts.total_donuts_sent, { capitalize: true })}
 			data={objects}
 			isLoading={isLoading}
 			currency={Currency.donut}

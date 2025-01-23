@@ -1,27 +1,27 @@
 import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_b } from "services/localization/texts";
 import { Currency } from "constants/currency";
 import {
 	StatisticsTile,
 	StatisticsTileProps,
 } from "@/features/reports/component/statistic/statistics-tile";
-import { useProfileReports } from "@/features/reports/logic/hooks/useProfileReports";
+import { useProfileReports } from "@/features/reports/logic/useProfileReports";
+import reportsTexts from "@/features/reports/localization/reports-texts";
 
-export type TotalBalanceTableProps = Pick<
+export type TTotalDonutsReceivedReportProps = Pick<
 	StatisticsTileProps,
 	"onFullScreenOpen" | "onFullScreenExit" | "fullscreen" | "onlyHeader"
 >;
-export const TotalBalanceTable: FC<TotalBalanceTableProps> = (props) => {
+export const TotalDonutsReceivedReport: FC<TTotalDonutsReceivedReportProps> = (props) => {
 	const { onlyHeader } = props;
-	const { objects = [], isLoading } = useProfileReports({ reportType: "show_balance" }, onlyHeader);
+	const { objects = [], isLoading } = useProfileReports({ reportType: "show_score" }, onlyHeader);
 	const { t } = useBntTranslate();
 	return (
 		<StatisticsTile
-			totalFieldName={t(texts_b.balance, { capitalize: true })}
+			totalFieldName={t(reportsTexts.total_donuts_received, { capitalize: true })}
 			data={objects}
 			isLoading={isLoading}
-			currency={Currency.coin}
+			currency={Currency.donut}
 			{...props}
 		/>
 	);
