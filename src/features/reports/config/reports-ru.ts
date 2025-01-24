@@ -1,4 +1,4 @@
-import reportsTexts from "@/features/reports/localization/reports-texts";
+import reportsTexts from "./reports-texts";
 
 export const reportsRu = {
 	translations: {

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { BntStack } from "shared/ui/stack/stack";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { ReportsMain } from "@/features/reports/component/reports/reports-main";
+import { ReportsMain } from "@/features/reports";
 
 export const StatisticsPage: FC = () => {
 	return (

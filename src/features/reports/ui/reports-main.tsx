@@ -7,8 +7,9 @@ import { TieGraph } from "components/tie-graph/tie-graph";
 import { BntStack } from "shared/ui/stack/stack";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { BetaNotice } from "components/beta-notice/beta-notice";
-import reportsTexts from "@/features/reports/localization/reports-texts";
-import { StatisticsDashboard } from "@/features/reports/component/statistic/statistics-dashboard";
+
+import reportsTexts from "../config/reports-texts";
+import { StatisticsDashboard } from "./statistics-dashboard";
 
 export const ReportsMain = () => {
 	const [value, setValue] = useState(0);

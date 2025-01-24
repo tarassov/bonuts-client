@@ -1,6 +1,6 @@
 import { useListBase } from "logic/hooks/use-list-base";
 import { apiProfilesAdaptor } from "services/adaptor/api-profile-adaptor";
-import { reportsApi } from "@/features/reports/services/reports-api";
+import { reportsApi } from "../api/reports-api";
 
 export const useProfileReports = (
 	args: {

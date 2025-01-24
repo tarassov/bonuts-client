@@ -10,7 +10,7 @@ import { useIcons } from "hooks/use-icons";
 import { BntStack } from "shared/ui/stack/stack";
 import { DonutSmallOutlined } from "@mui/icons-material";
 import { TProfile } from "@/types/model";
-import reportsTexts from "@/features/reports/localization/reports-texts";
+import reportsTexts from "@/features/reports/config/reports-texts";
 
 export const useStatisticsTableConfig = (totalFieldName: string, currency?: Currency) => {
 	const { translate } = useBntTranslate();
