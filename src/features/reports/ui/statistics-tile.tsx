@@ -14,8 +14,8 @@ import { texts_c } from "services/localization/texts";
 import { Currency } from "constants/currency";
 import { BntCardBody } from "shared/ui/card/card-body";
 import { TProfile } from "@/types/model";
-import { useStatisticsTableConfig } from "@/features/reports/component/statistic/use-statistics-table-config";
-import reportsTexts from "@/features/reports/localization/reports-texts";
+import { useStatisticsTableConfig } from "./use-statistics-table-config";
+import reportsTexts from "../config/reports-texts";
 
 export type StatisticsTileProps = {
 	totalFieldName: string;

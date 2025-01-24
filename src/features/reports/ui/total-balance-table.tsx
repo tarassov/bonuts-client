@@ -2,11 +2,8 @@ import { FC } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_b } from "services/localization/texts";
 import { Currency } from "constants/currency";
-import {
-	StatisticsTile,
-	StatisticsTileProps,
-} from "@/features/reports/component/statistic/statistics-tile";
-import { useProfileReports } from "@/features/reports/logic/useProfileReports";
+import { StatisticsTile, StatisticsTileProps } from "./statistics-tile";
+import { useProfileReports } from "../model/useProfileReports";
 
 export type TotalBalanceTableProps = Pick<
 	StatisticsTileProps,

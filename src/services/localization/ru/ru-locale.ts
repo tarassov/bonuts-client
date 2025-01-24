@@ -20,7 +20,7 @@ import {
 } from "services/localization/texts";
 import { timezonesRu } from "services/localization/ru/timezones-ru";
 import { weekdaysRu } from "services/localization/ru/weekdays-ru";
-import { reportsRu } from "@/features/reports/localization/reports-ru";
+import { reportsRu } from "@/features/reports";
 
 export const ruLocale = {
 	translations: {
