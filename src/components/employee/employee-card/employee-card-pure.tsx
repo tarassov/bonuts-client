@@ -30,7 +30,7 @@ export const EmployeeCardPure: FC<EmployeeCardPureProps> = ({
 	const { translate } = useBntTranslate();
 
 	return (
-		<BntCard raised className={classNames(EMPLOYEE_CARD_CLASSES.employeeCard, className)}>
+		<BntCard raised className={classNames(className)}>
 			<BntCardActionArea onClick={onCardClick} className={EMPLOYEE_CARD_CLASSES.cardActions}>
 				<BntCardBody className={`${EMPLOYEE_CARD_CLASSES.cardBody} mt-4 ml-10 mr-10 mb-4`}>
 					<BntStack
