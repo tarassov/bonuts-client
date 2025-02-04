@@ -8,8 +8,8 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_i, texts_p } from "services/localization/texts";
 import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
 import { useQuery } from "hooks/use-query";
+import { ProfileIntegrations } from "src/widgets/integration-settings";
 import { Messenger } from "@/features/3cx/messenger";
-import { ProfileIntegrations } from "@/features/integration-settings/profile-integrations";
 
 export const ProfilePage: React.FC = () => {
 	const query = useQuery();

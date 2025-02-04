@@ -1,5 +1,5 @@
-import { BntTypography } from "shared/ui/typography/typography";
 import { FC } from "react";
+import { BntTypography } from "shared/ui/typography/typography";
 
 export const BetaNotice: FC<{ className?: string }> = ({ className }) => {
 	return (

@@ -14,7 +14,7 @@ import { TPost } from "@/types/model/post";
 import {
 	IntegrationModalType,
 	integrationsModalConfig,
-} from "@/features/integration-settings/modal/integrations-modal-config";
+} from "@/widgets/integration-settings/ui/integrations-modal-config";
 
 export type ModalType = IntegrationModalType & {
 	SimpleTextModal: string;

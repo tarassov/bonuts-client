@@ -6,7 +6,7 @@ import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
 import { TieGraph } from "components/tie-graph/tie-graph";
 import { BntStack } from "shared/ui/stack/stack";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BetaNotice } from "components/beta-notice/beta-notice";
+import { BetaNotice } from "shared/ui/beta-notice/beta-notice";
 
 import reportsTexts from "../config/reports-texts";
 import { StatisticsDashboard } from "./statistics-dashboard";

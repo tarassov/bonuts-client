@@ -1,19 +1,19 @@
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { useContext, useMemo } from "react";
-import { BntDrawerHeader } from "src/shared/ui/drawer";
+import { BntDrawerHeader } from "shared/ui/drawer";
 import { useAuth } from "logic/hooks/auth/use-auth";
 import { AppContext } from "context/app-context";
-import "../app/styles/app.scss";
+import "@/app/styles/app.scss";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { getRoutes } from "routes/get-routes";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntStack } from "shared/ui/stack/stack";
-import SwitchRoutes from "../switch-routes/switch-routes";
-import BntSidebar from "../sidebar/sidebar";
-import { BTNHeader } from "../header/header";
+import SwitchRoutes from "components/switch-routes/switch-routes";
+import BntSidebar from "components/sidebar/sidebar";
+import { BTNHeader } from "components/header/header";
 
 export const BntLayout = () => {
 	const { auth } = useAuth();
