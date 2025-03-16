@@ -1,19 +1,27 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { emptyFunction } from "utils/empty-function";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { FormContainer } from "react-hook-form-mui";
-import { SchedulerFormFields } from "components/scheduler/scheduler-form-fields";
-import { texts_n } from "services/localization/texts";
-import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
-import { defaultScheduler } from "components/scheduler/constants/default-scheduler";
-import { useTimezone } from "shared/ui/form/hooks/use-timezone";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSchedulerValidation } from "components/scheduler/use-scheduler-validation";
-import { TSchedulerFormFields } from "components/scheduler/types/scheduler-form-fields";
-import { schedulerFormToModel } from "components/scheduler/helper/scheduler-form-to-model";
+
 import { secondsToTime } from "shared/lib/seconds-to-time";
-import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
+import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
+import { useTimezone } from "shared/ui/form/hooks/use-timezone";
+
+import { emptyFunction } from "utils/empty-function";
+
+import { texts_n } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { schedulerFormToModel } from "../lib/scheduler-form-to-model";
+import { useSchedulerValidation } from "../model/use-scheduler-validation";
+
+import { SchedulerFormFields } from "./scheduler-form-fields";
+
+import type { TNewScheduler, TScheduler } from "@/types/model/scheduler";
+import type { TSchedulerFormFields } from "../types/scheduler-form-fields";
+
+import { defaultScheduler } from "@/widgets/scheduler/constants/default-scheduler";
 
 export const SchedulerForm: FC<{
 	defaultValue?: TScheduler;

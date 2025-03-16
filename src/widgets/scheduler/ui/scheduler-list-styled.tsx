@@ -1,7 +1,8 @@
 import { styled } from "@mui/material/styles";
-import { SchedulerListPure } from "components/scheduler/scheduler-list/scheduler-list-pure";
 import { cl } from "themes/helper";
-import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/classes";
+
+import { SCHEDULER_LIST_CLASSES } from "@/widgets/scheduler/ui/classes";
+import { SchedulerListPure } from "@/widgets/scheduler/ui/scheduler-list-pure";
 
 export const SchedulerListStyled = styled(
 	SchedulerListPure,

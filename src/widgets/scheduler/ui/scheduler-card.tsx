@@ -1,18 +1,23 @@
-import { BntCard } from "shared/ui/card/card";
-import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/classes";
-import { BntCardBody } from "shared/ui/card/card-body";
-import { BntStack } from "shared/ui/stack/stack";
-
-import { texts_d, texts_e, texts_n } from "services/localization/texts";
-import { BntTypography } from "shared/ui/typography/typography";
-import { getWeekdayOptions } from "shared/lib/get-weekday";
-import { formatStringDate } from "utils/format-string-date";
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { CommonStrings } from "constants/dictionary";
+
+import { getWeekdayOptions } from "shared/lib/get-weekday";
 import { secondsToTime } from "shared/lib/seconds-to-time";
 import { BntBox } from "shared/ui/box/bnt-box";
+import { BntCard } from "shared/ui/card/card";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { formatStringDate } from "utils/format-string-date";
+
+import { CommonStrings } from "constants/dictionary";
+
+import { texts_d, texts_e, texts_n } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
 import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
+import { SCHEDULER_LIST_CLASSES } from "@/widgets/scheduler/ui/classes";
 
 export const SchedulerCard: FC<{
 	preventEdit?: boolean;

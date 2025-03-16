@@ -1,6 +1,7 @@
-import { TSchedulerFormFields } from "components/scheduler/types/scheduler-form-fields";
 import { timeToSecondsFromMidnight } from "shared/lib/time-to-seconds-from-midnight";
+
 import { TNewScheduler } from "@/types/model/scheduler";
+import { TSchedulerFormFields } from "@/widgets/scheduler/types/scheduler-form-fields";
 
 export const schedulerFormToModel = (formValues: TSchedulerFormFields): TNewScheduler => {
 	const { timezoneValue, time, ...rest } = formValues;

@@ -108,6 +108,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getInvitationsMy: build.query<GetInvitationsMyApiResponse, GetInvitationsMyApiArg>({
 			query: () => ({ url: `/invitations/my` }),
 		}),
+		getPlugins: build.query<GetPluginsApiResponse, GetPluginsApiArg>({
+			query: (queryArg) => ({ url: `/plugins`, params: { tenant: queryArg.tenant } }),
+		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
 			query: (queryArg) => ({ url: `/profile`, params: { tenant: queryArg.tenant } }),
 		}),
@@ -232,7 +235,7 @@ const injectedRtkApi = api.injectEndpoints({
 		getTenantPlugins: build.query<GetTenantPluginsApiResponse, GetTenantPluginsApiArg>({
 			query: (queryArg) => ({
 				url: `/tenant_plugins`,
-				params: { tenant: queryArg.tenant, type: queryArg.type },
+				params: { tenant: queryArg.tenant, type: queryArg["type"] },
 			}),
 		}),
 		postTenantsByTenantNameJoin: build.mutation<
@@ -1307,6 +1310,12 @@ export type GetInvitationsMyApiResponse = /** status 200 success */ {
 	}[];
 };
 export type GetInvitationsMyApiArg = void;
+export type GetPluginsApiResponse = /** status 200 success */ {
+	data?: TenantPlugin[];
+};
+export type GetPluginsApiArg = {
+	tenant?: string;
+};
 export type GetProfileApiResponse = /** status 200 success */ {
 	data?: {
 		id?: string;
@@ -3592,6 +3601,19 @@ export type PostUsersPasswordApiArg = {
 		password: string;
 	};
 };
+export type TenantPlugin = {
+	id: number;
+	name: string;
+	active?: boolean;
+	settings?:
+		| {
+				id: number;
+				name: string;
+				value?: string;
+				notes?: string | null;
+		  }[]
+		| null;
+};
 export const {
 	usePostAccountOperationsMutation,
 	useGetAccountOperationsQuery,
@@ -3614,6 +3636,7 @@ export const {
 	usePostInvitationsByIdDeclineMutation,
 	usePostInvitationsMutation,
 	useGetInvitationsMyQuery,
+	useGetPluginsQuery,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,
 	usePutProfilesByIdMutation,

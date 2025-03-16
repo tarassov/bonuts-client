@@ -1,17 +1,23 @@
+import { FC } from "react";
+import { DeleteOutlined } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+import classNames from "classnames";
+
+import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
 import { BntStack } from "shared/ui/stack/stack";
-import { IconButton } from "@mui/material";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { texts_a } from "services/localization/texts";
 import { BntTypography } from "shared/ui/typography/typography";
-import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { SchedulerForm } from "components/scheduler/scheduler-form";
-import { BntProfileButton } from "components/buttons/profile-button";
+
 import { emptyFunction } from "utils/empty-function";
-import classNames from "classnames";
-import { DeleteOutlined } from "@mui/icons-material";
+
+import { texts_a } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { BntProfileButton } from "components/buttons/profile-button";
+
 import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
+import { SchedulerForm } from "@/widgets/scheduler/ui/scheduler-form";
 
 export const SchedulerCardEdit: FC<{
 	scheduler: TScheduler;

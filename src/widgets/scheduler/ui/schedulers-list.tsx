@@ -1,17 +1,23 @@
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
-import { useSchedulerListLoader } from "logic/hooks/scheduler/use-scheduler-list-loader";
-import { SchedulerListStyled } from "components/scheduler/scheduler-list/scheduler-list-styled";
-import { useMediaQuery, useTheme } from "@mui/material";
-import { BntStack } from "shared/ui/stack/stack";
-import { NewSchedulerBlock } from "components/scheduler/new-scheduler-block";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { useState } from "react";
-import { useScheduler } from "logic/hooks/scheduler/use-scheduler";
-import { useModal } from "hooks/use-modal";
+import { useMediaQuery, useTheme } from "@mui/material";
+
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntStack } from "shared/ui/stack/stack";
+
+import { Modules } from "constants/modules";
+
 import { texts_a, texts_s } from "services/localization/texts";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useModal } from "hooks/use-modal";
+
+import { useScheduler } from "logic/hooks/scheduler/use-scheduler";
+import { useSchedulerListLoader } from "logic/hooks/scheduler/use-scheduler-list-loader";
+
 import { TNewScheduler } from "@/types/model/scheduler";
+import { NewSchedulerBlock } from "@/widgets/scheduler/ui/new-scheduler-block";
+import { SchedulerListStyled } from "@/widgets/scheduler/ui/scheduler-list-styled";
 
 export const SchedulersList = () => {
 	const { objects: schedulers, isLoading } = useSchedulerListLoader();

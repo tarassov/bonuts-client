@@ -1,21 +1,25 @@
-import { BntTextInputElement } from "shared/ui/input/text-input-element";
-import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "services/localization/texts";
-import { BntTimePickerElement } from "shared/ui/input/time-picker-element";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useFormState, useWatch } from "react-hook-form";
-import { BntSelectElement } from "shared/ui/input/select-element";
 import { useMemo } from "react";
-import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
-import { getMonthDayOptions } from "shared/lib/get-month-day-array";
-import { SchedulerTypes } from "components/scheduler/constants/scheduler-types";
-import { WeekdayDaySelect } from "shared/ui/form/special-fileds/weekday-day-select";
-import { TimezoneSelect } from "shared/ui/form/special-fileds/timezone-select";
-import { BntTextAreaInput } from "shared/ui/input/text-area-input";
-import { BntSwitchElement } from "shared/ui/input/bnt-switch-element";
-import { BntTypography } from "shared/ui/typography/typography";
+import { useFormState, useWatch } from "react-hook-form";
 import { ErrorOutlineOutlined } from "@mui/icons-material";
+import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+
+import { getMonthDayOptions } from "shared/lib/get-month-day-array";
+import { TimezoneSelect } from "shared/ui/form/special-fileds/timezone-select";
+import { WeekdayDaySelect } from "shared/ui/form/special-fileds/weekday-day-select";
+import { BntSwitchElement } from "shared/ui/input/bnt-switch-element";
+import { BntSelectElement } from "shared/ui/input/select-element";
+import { BntTextAreaInput } from "shared/ui/input/text-area-input";
+import { BntTextInputElement } from "shared/ui/input/text-input-element";
+import { BntTimePickerElement } from "shared/ui/input/time-picker-element";
 import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
 import { TScheduler } from "@/types/model/scheduler";
+import { SchedulerTypes } from "@/widgets/scheduler/constants/scheduler-types";
 
 export const SchedulerFormFields = () => {
 	const { t } = useBntTranslate();

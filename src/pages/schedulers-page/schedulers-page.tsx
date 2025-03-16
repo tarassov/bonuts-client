@@ -1,4 +1,4 @@
-import { SchedulersList } from "components/scheduler/scheduler-list/schedulers-list";
+import { SchedulersList } from "@/widgets/scheduler";
 
 export const SchedulersPage = () => {
 	return <SchedulersList />;

@@ -1,14 +1,19 @@
 import React, { SyntheticEvent, useState } from "react";
+import { ProfileIntegrations } from "src/widgets/integration-settings";
+
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { BntStack } from "shared/ui/stack/stack";
-import { ProfileEdit } from "components/profile/profile-edit";
-import { BntTabs } from "shared/ui/tab/bnt-tabs";
 import { BntTab } from "shared/ui/tab/bnt-tab";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_i, texts_p } from "services/localization/texts";
 import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
+import { BntTabs } from "shared/ui/tab/bnt-tabs";
+
+import { texts_i, texts_p } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useQuery } from "hooks/use-query";
-import { ProfileIntegrations } from "src/widgets/integration-settings";
+
+import { ProfileEdit } from "components/profile/profile-edit";
+
 import { Messenger } from "@/features/3cx/messenger";
 
 export const ProfilePage: React.FC = () => {

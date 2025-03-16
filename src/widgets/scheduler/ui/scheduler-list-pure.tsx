@@ -1,15 +1,20 @@
 import { FC, useEffect, useState } from "react";
-import { BntStack } from "shared/ui/stack/stack";
-import { SCHEDULER_LIST_CLASSES } from "components/scheduler/scheduler-list/classes";
 import classNames from "classnames";
-import { SchedulerCard } from "components/scheduler/scheduler-list/scheduler-card";
-import { SchedulerForm } from "components/scheduler/scheduler-form";
-import { emptyFunction } from "utils/empty-function";
+
 import { BntDivider } from "shared/ui/divider/bnt-divider";
+import { BntStack } from "shared/ui/stack/stack";
+
+import { emptyFunction } from "utils/empty-function";
+
 import { texts_c } from "services/localization/texts";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { SchedulerCardEdit } from "components/scheduler/scheduler-list/scheduler-card-edit";
+
 import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
+import { SCHEDULER_LIST_CLASSES } from "@/widgets/scheduler/ui/classes";
+import { SchedulerCard } from "@/widgets/scheduler/ui/scheduler-card";
+import { SchedulerCardEdit } from "@/widgets/scheduler/ui/scheduler-card-edit";
+import { SchedulerForm } from "@/widgets/scheduler/ui/scheduler-form";
 
 export type SchedulerListPureProps = {
 	schedulers?: Array<TScheduler>;
