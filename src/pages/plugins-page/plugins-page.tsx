@@ -1,5 +1,5 @@
-import { UnderConstruct } from "pages/under-construct";
+import { PluginList } from "@/widgets/plugin-list";
 
 export const PluginsPage = () => {
-	return <UnderConstruct />;
+	return <PluginList />;
 };

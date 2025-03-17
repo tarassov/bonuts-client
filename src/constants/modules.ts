@@ -16,4 +16,5 @@ export enum Modules {
 	AccessibleTenants = "accessible_tenants",
 	MyTenants = "my_tenants",
 	MyInvitations = "my_invitations",
+	Plugins = "Plugins",
 }
