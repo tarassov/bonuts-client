@@ -25,10 +25,11 @@ export const TenantSchedulers = () => {
 	const { createScheduler, updateScheduler, deleteScheduler } = useScheduler();
 	const [createMode, setCreateMode] = useState(false);
 	const { ConfirmationModal } = useModal();
-	useLoader(Modules.Schedulers, isLoading);
 	const theme = useTheme();
 	const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 	const { t } = useBntTranslate();
+
+	useLoader(Modules.Schedulers, isLoading);
 
 	const onCreate = (scheduler: TNewScheduler) => {
 		createScheduler(scheduler, { onSuccess: () => setCreateMode(false) });

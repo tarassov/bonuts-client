@@ -35,9 +35,12 @@ export const SchedulerList: FC<SchedulerListProps> = ({
 }) => {
 	const [editId, setEditId] = useState<number | undefined>();
 	const { t } = useBntTranslate();
+
 	useEffect(() => {
 		if (editId !== undefined && createMode) setEditId(undefined);
-	}, [createMode, editId]);
+		// eslint-disable-next-line
+	}, [createMode]);
+
 	return (
 		<SchedulerStack direction="column" className={className} gap={2}>
 			{createMode && (

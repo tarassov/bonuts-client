@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+
 import { BntCard } from "shared/ui/card/card";
 
 export const GradientCard = styled(BntCard, {
