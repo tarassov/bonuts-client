@@ -15,11 +15,12 @@ import { useModal } from "hooks/use-modal";
 import { useScheduler } from "logic/hooks/scheduler/use-scheduler";
 import { useSchedulerListLoader } from "logic/hooks/scheduler/use-scheduler-list-loader";
 
+import { SchedulerList } from "./scheduler-list";
+
 import { TNewScheduler } from "@/types/model/scheduler";
 import { NewSchedulerBlock } from "@/widgets/scheduler/ui/new-scheduler-block";
-import { SchedulerListStyled } from "@/widgets/scheduler/ui/scheduler-list-styled";
 
-export const SchedulersList = () => {
+export const TenantSchedulers = () => {
 	const { objects: schedulers, isLoading } = useSchedulerListLoader();
 	const { createScheduler, updateScheduler, deleteScheduler } = useScheduler();
 	const [createMode, setCreateMode] = useState(false);
@@ -48,7 +49,7 @@ export const SchedulersList = () => {
 		>
 			{!createMode ? <NewSchedulerBlock onClick={() => setCreateMode(true)} /> : null}
 			<CardWrapper className="flex-grow scroll" transparent>
-				<SchedulerListStyled
+				<SchedulerList
 					schedulers={schedulers}
 					createMode={createMode}
 					closeCreateMode={() => setCreateMode(false)}

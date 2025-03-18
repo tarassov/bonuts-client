@@ -1,5 +1,5 @@
-import { SchedulersList } from "@/widgets/scheduler";
+import { TenantSchedulers } from "@/widgets/scheduler";
 
 export const SchedulersPage = () => {
-	return <SchedulersList />;
+	return <TenantSchedulers />;
 };

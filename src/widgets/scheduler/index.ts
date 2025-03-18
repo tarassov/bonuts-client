@@ -1,1 +1,1 @@
-export { SchedulersList } from "./ui/schedulers-list";
+export { TenantSchedulers } from "./ui/tenant-schedulers";
