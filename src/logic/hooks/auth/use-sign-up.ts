@@ -3,9 +3,10 @@ import {
 	usePostRegisterMutation,
 	usePostSendConfirmEmailMutation,
 } from "services/api/bonuts-api";
-import { useNotification } from "services/notification";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
+import { useNotification } from "services/notification";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 
 export const useSignUp = () => {

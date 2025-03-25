@@ -22,7 +22,7 @@ export const PluginList = () => {
 				return (
 					<div key={x.id}>
 						{isEdit ? (
-							<PluginForm defaultValue={x} onCancel={() => setEditId(undefined)} />
+							<PluginForm plugin={x} onCancel={() => setEditId(undefined)} />
 						) : (
 							<PluginCard plugin={x} openEdit={() => setEditId(x.id)} />
 						)}
