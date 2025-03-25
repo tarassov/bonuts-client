@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import { useLocalDate } from "shared/ui/locale/hooks/use-local-date";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CommonStrings } from "constants/dictionary";
+import { formatStringDate } from "utils/format-string-date";
 
 export const AccountBalanceMainInfo: FC<{
 	title: string;
@@ -14,7 +15,6 @@ export const AccountBalanceMainInfo: FC<{
 	onClick?: VoidFunction;
 	name?: string;
 }> = ({ title, value, lastOperation, name, balance, onClick }) => {
-	const { formatDate } = useLocalDate();
 	const { t } = useBntTranslate();
 	return (
 		<BntStack>
@@ -35,7 +35,7 @@ export const AccountBalanceMainInfo: FC<{
 						{lastOperation
 							? `${lastOperation?.direction}${lastOperation?.amount} ${
 									name ? t(name, { count: lastOperation.amount }) : CommonStrings.EMPTY_STRING
-							  } ${formatDate(lastOperation?.date_utc)}`
+							  } ${formatStringDate(lastOperation?.date_utc, false, true)}`
 							: "..."}
 					</BntStack>
 				</BntTypography>

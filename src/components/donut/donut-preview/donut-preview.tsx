@@ -70,10 +70,12 @@ export const BntDonutPreview = () => {
 							/>
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={7} order={{ xs: 3, md: 2 }}>
-							<BntTypography variant="h3" display="block">
+							<BntTypography sx={{ overflowWrap: "break-word" }} variant="h5" display="block">
 								{donut?.name}
 							</BntTypography>
-							<BntTypography variant="h5">{translate(Dictionary.Description)}</BntTypography>
+							<BntTypography className="mb-2 mt-2" variant="subtitle2">
+								{translate(Dictionary.Description)}
+							</BntTypography>
 							<BntTypography paragraph isPreformatted>
 								{donut?.description}
 							</BntTypography>

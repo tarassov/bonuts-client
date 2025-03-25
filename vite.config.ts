@@ -6,7 +6,7 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 // import * as path from "path";
 import svgr from "vite-plugin-svgr";
 import dns from "dns";
-
+import { VitePWA } from "vite-plugin-pwa";
 dns.setDefaultResultOrder("verbatim");
 
 // https://vitejs.dev/config/
@@ -26,6 +26,13 @@ export default defineConfig({
 				icon: true,
 			},
 			include: "**/*.svg",
+		}),
+		VitePWA({
+			registerType: "autoUpdate",
+			manifest: false,
+			workbox: {
+				globPatterns: ["**/*.{js,ts,tsx,jsx,css,html,ico,png,svg}"],
+			},
 		}),
 	],
 	build: {

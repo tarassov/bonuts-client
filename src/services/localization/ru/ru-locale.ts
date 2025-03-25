@@ -332,7 +332,7 @@ export const ruLocale = {
 		"Save changes": "Сохранить изменения",
 		"Self account": "Могу потратить",
 		Search: "Поиск",
-		"Search string": "Строка поиска",
+		"Search string": "Строка поиска...",
 		search: "поиск",
 		[texts_s.set_password]: "установить пароль",
 		Share: "Поделиться",
