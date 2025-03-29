@@ -111,6 +111,23 @@ const injectedRtkApi = api.injectEndpoints({
 		getPlugins: build.query<GetPluginsApiResponse, GetPluginsApiArg>({
 			query: (queryArg) => ({ url: `/plugins`, params: { tenant: queryArg.tenant } }),
 		}),
+		postPluginsByIdActivate: build.mutation<
+			PostPluginsByIdActivateApiResponse,
+			PostPluginsByIdActivateApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/plugins/${queryArg.id}/activate`,
+				method: "POST",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		patchPluginsById: build.mutation<PatchPluginsByIdApiResponse, PatchPluginsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/plugins/${queryArg.id}`,
+				method: "PATCH",
+				body: queryArg.body,
+			}),
+		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
 			query: (queryArg) => ({ url: `/profile`, params: { tenant: queryArg.tenant } }),
 		}),
@@ -1315,6 +1332,22 @@ export type GetPluginsApiResponse = /** status 200 success */ {
 };
 export type GetPluginsApiArg = {
 	tenant?: string;
+};
+export type PostPluginsByIdActivateApiResponse = unknown;
+export type PostPluginsByIdActivateApiArg = {
+	tenant?: string;
+	id: string;
+};
+export type PatchPluginsByIdApiResponse = unknown;
+export type PatchPluginsByIdApiArg = {
+	id: string;
+	body: {
+		settings: {
+			id?: string;
+			value: string | null;
+		}[];
+		tenant: string;
+	};
 };
 export type GetProfileApiResponse = /** status 200 success */ {
 	data?: {
@@ -3609,7 +3642,7 @@ export type TenantPlugin = {
 		| {
 				id: number;
 				name: string;
-				value?: string;
+				value?: string | null;
 				notes?: string | null;
 		  }[]
 		| null;
@@ -3637,6 +3670,8 @@ export const {
 	usePostInvitationsMutation,
 	useGetInvitationsMyQuery,
 	useGetPluginsQuery,
+	usePostPluginsByIdActivateMutation,
+	usePatchPluginsByIdMutation,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,
 	usePutProfilesByIdMutation,
