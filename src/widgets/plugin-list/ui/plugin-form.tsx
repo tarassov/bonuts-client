@@ -5,13 +5,8 @@ import { FormContainer } from "react-hook-form-mui";
 import { BntCard } from "shared/ui/card/card";
 import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
 import { BntTextInputElement } from "shared/ui/input/text-input-element";
-import { BntTypography } from "shared/ui/typography/typography";
 
 import { emptyFunction } from "utils/empty-function";
-
-import { texts_n } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { TPlugin } from "@/types/model";
 import { PluginHeader } from "@/widgets/plugin-list/ui/plugin-header";
@@ -33,8 +28,6 @@ export const PluginForm: FC<{
 	});
 
 	const handleSubmit = (value: TPlugin) => {
-		// eslint-disable-next-line no-console
-		console.log(value);
 		onSubmit(value);
 	};
 

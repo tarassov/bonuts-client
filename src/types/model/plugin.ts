@@ -6,7 +6,7 @@ export type TPlugin = {
 		| {
 				id: number;
 				name: string;
-				value?: string;
+				value: string | null;
 				notes?: string | null;
 		  }[]
 		| null;

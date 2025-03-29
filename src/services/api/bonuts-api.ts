@@ -1340,10 +1340,10 @@ export type PostPluginsByIdActivateApiArg = {
 };
 export type PatchPluginsByIdApiResponse = unknown;
 export type PatchPluginsByIdApiArg = {
-	id: string;
+	id: number;
 	body: {
-		settings: {
-			id?: string;
+		plugin_settings?: {
+			id?: number;
 			value: string | null;
 		}[];
 		tenant: string;
