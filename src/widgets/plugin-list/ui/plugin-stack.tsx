@@ -5,12 +5,13 @@ import { BntStack } from "shared/ui/stack/stack";
 export const PluginStack = styled(
 	BntStack,
 	{}
-)(() => {
+)(({ theme }) => {
 	return {
 		maxWidth: 300,
-		paddingTop: 8,
-		paddingRight: 4,
-		paddingLeft: 8,
-		paddingBottom: 24,
+		[theme.breakpoints.down("md")]: {
+			maxWidth: "100%",
+		},
+		gap: 12,
+		padding: 24,
 	};
 });

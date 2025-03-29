@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { SwitchElement, SwitchElementProps } from "react-hook-form-mui";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
 export const BntSwitchElement = forwardRef<

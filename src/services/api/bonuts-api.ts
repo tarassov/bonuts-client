@@ -121,6 +121,16 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
+		postPluginsByIdDeactivate: build.mutation<
+			PostPluginsByIdDeactivateApiResponse,
+			PostPluginsByIdDeactivateApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/plugins/${queryArg.id}/deactivate`,
+				method: "POST",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		patchPluginsById: build.mutation<PatchPluginsByIdApiResponse, PatchPluginsByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/plugins/${queryArg.id}`,
@@ -1335,6 +1345,11 @@ export type GetPluginsApiArg = {
 };
 export type PostPluginsByIdActivateApiResponse = unknown;
 export type PostPluginsByIdActivateApiArg = {
+	tenant?: string;
+	id: string;
+};
+export type PostPluginsByIdDeactivateApiResponse = unknown;
+export type PostPluginsByIdDeactivateApiArg = {
 	tenant?: string;
 	id: string;
 };
@@ -3642,7 +3657,7 @@ export type TenantPlugin = {
 		| {
 				id: number;
 				name: string;
-				value?: string | null;
+				value: string | null;
 				notes?: string | null;
 		  }[]
 		| null;
@@ -3671,6 +3686,7 @@ export const {
 	useGetInvitationsMyQuery,
 	useGetPluginsQuery,
 	usePostPluginsByIdActivateMutation,
+	usePostPluginsByIdDeactivateMutation,
 	usePatchPluginsByIdMutation,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,

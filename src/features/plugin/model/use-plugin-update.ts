@@ -5,8 +5,7 @@ import { useNotification } from "services/notification";
 import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { useAppSelector } from "services/redux/store/store";
 
-import { usePatchPluginsByIdMutation } from "../api/plugins-api";
-
+import { usePatchPluginsByIdMutation } from "@/entities/plugin";
 import { TPlugin } from "@/types/model";
 
 export function usePluginUpdate() {
