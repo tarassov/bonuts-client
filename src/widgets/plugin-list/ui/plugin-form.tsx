@@ -1,6 +1,7 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useCallback } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FormContainer } from "react-hook-form-mui";
+import { FormControlLabel, FormGroup } from "@mui/material";
 
 import { BntCard } from "shared/ui/card/card";
 import { UiCheckbox } from "shared/ui/checkbox";
@@ -8,6 +9,10 @@ import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
 import { BntTextInputElement } from "shared/ui/input/text-input-element";
 
 import { emptyFunction } from "utils/empty-function";
+
+import { texts_a, texts_d } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { TPlugin } from "@/types/model";
 import { PluginHeader } from "@/widgets/plugin-list/ui/plugin-header";
@@ -17,9 +22,9 @@ export const PluginForm: FC<{
 	submitCaption?: string;
 	className?: string;
 
-	onSubmit?: (plugin: TPlugin) => void;
+	onSubmit?: (plugin: TPlugin) => Promise<void>;
 	onCancel?: VoidFunction;
-	onSetActive?: (active: boolean) => void;
+	onSetActive?: (id: number, active: boolean) => void;
 }> = ({
 	onSubmit = emptyFunction,
 	onCancel = emptyFunction,
@@ -28,22 +33,31 @@ export const PluginForm: FC<{
 	className,
 	onSetActive = emptyFunction,
 }) => {
+	const { t } = useBntTranslate();
 	const formContext = useForm({
 		defaultValues: plugin,
 	});
-	const { control } = formContext;
+	const {
+		control,
+		formState: { isDirty },
+		reset,
+	} = formContext;
 	const { fields } = useFieldArray({
 		control,
 		name: "settings",
 	});
 
-	const handleSubmit = (value: TPlugin) => {
-		onSubmit(value);
+	const handleSubmit = async (value: TPlugin) => {
+		await onSubmit(value);
+		reset(value);
 	};
 
-	const handleCheck = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
-		onSetActive(checked);
-	};
+	const handleCheck = useCallback(
+		(event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+			onSetActive(plugin.id, checked);
+		},
+		[onSetActive, plugin]
+	);
 
 	return (
 		<BntCard className={className} sx={{ paddingTop: 2, paddingLeft: 2 }}>
@@ -66,11 +80,18 @@ export const PluginForm: FC<{
 						/>
 					))}
 
-					<BntFormSubmit visible onCancelClick={onCancel} submitCaption={submitCaption} />
+					{isDirty ? (
+						<BntFormSubmit visible onCancelClick={onCancel} submitCaption={submitCaption} />
+					) : null}
 				</FormContainer>
-			) : (
-				<UiCheckbox onChange={handleCheck} />
-			)}
+			) : null}
+			<FormGroup>
+				<FormControlLabel
+					labelPlacement="end"
+					control={<UiCheckbox onChange={handleCheck} checked={plugin.active} />}
+					label={plugin.active ? t(texts_d.deactivate) : t(texts_a.activate)}
+				/>
+			</FormGroup>
 		</BntCard>
 	);
 };

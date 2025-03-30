@@ -7,7 +7,7 @@ export const PluginStack = styled(
 	{}
 )(({ theme }) => {
 	return {
-		maxWidth: 300,
+		maxWidth: 500,
 		[theme.breakpoints.down("md")]: {
 			maxWidth: "100%",
 		},

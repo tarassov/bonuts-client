@@ -4,7 +4,7 @@ import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { Modules } from "constants/modules";
 
-import { usePluginListLoader } from "@/features/plugin";
+import { usePluginActivate, usePluginListLoader } from "@/features/plugin";
 import { usePluginUpdate } from "@/features/plugin/model/use-plugin-update";
 import { PluginCard } from "@/widgets/plugin-list/ui/plugin-card";
 import { PluginForm } from "@/widgets/plugin-list/ui/plugin-form";
@@ -14,6 +14,7 @@ export const PluginList = () => {
 	const { objects, isLoading } = usePluginListLoader();
 	const [editId, setEditId] = useState<number | undefined>();
 	const { updatePlugin } = usePluginUpdate();
+	const { setActivatePlugin } = usePluginActivate();
 
 	useLoader(Modules.Schedulers, isLoading);
 
@@ -28,6 +29,7 @@ export const PluginList = () => {
 								plugin={x}
 								onCancel={() => setEditId(undefined)}
 								onSubmit={updatePlugin}
+								onSetActive={setActivatePlugin}
 							/>
 						) : (
 							<PluginCard plugin={x} openEdit={() => setEditId(x.id)} />

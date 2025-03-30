@@ -17,9 +17,9 @@ export const PluginCardContainer = styled(
 			},
 		},
 		display: "flex",
-		paddingTop: 12,
 		paddingLeft: 12,
 		justifyContent: "flex-start",
-		minHeight: 50,
+		alignItems: "center",
+		minHeight: 80,
 	};
 });

@@ -1346,12 +1346,12 @@ export type GetPluginsApiArg = {
 export type PostPluginsByIdActivateApiResponse = unknown;
 export type PostPluginsByIdActivateApiArg = {
 	tenant?: string;
-	id: string;
+	id: number;
 };
 export type PostPluginsByIdDeactivateApiResponse = unknown;
 export type PostPluginsByIdDeactivateApiArg = {
 	tenant?: string;
-	id: string;
+	id: number;
 };
 export type PatchPluginsByIdApiResponse = unknown;
 export type PatchPluginsByIdApiArg = {

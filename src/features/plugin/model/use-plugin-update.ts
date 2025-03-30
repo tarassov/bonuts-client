@@ -14,17 +14,18 @@ export function usePluginUpdate() {
 	const { showNotification } = useNotification();
 
 	const updatePlugin = useCallback(
-		(plugin: TPlugin) => {
+		async (plugin: TPlugin) => {
 			const { id, settings } = plugin;
 
 			if (!settings) return;
 
 			if (authTenant) {
-				patchPluginsById({ id, body: { plugin_settings: settings, tenant: authTenant } })
-					.unwrap()
-					.then(() => {
-						showNotification(texts_s.settings_updated);
-					});
+				const request = patchPluginsById({
+					id,
+					body: { plugin_settings: settings, tenant: authTenant },
+				});
+				await request.unwrap();
+				showNotification(texts_s.settings_updated);
 			}
 		},
 		[authTenant, patchPluginsById, showNotification]

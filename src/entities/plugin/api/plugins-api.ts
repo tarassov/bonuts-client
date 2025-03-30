@@ -7,6 +7,7 @@ export const pluginsApi = bonutsApi.enhanceEndpoints({
 	endpoints: {
 		getPlugins: { providesTags: providesList("Plugins") },
 		postPluginsByIdActivate: { invalidatesTags: invalidatesList("Plugins") },
+		postPluginsByIdDeactivate: { invalidatesTags: invalidatesList("Plugins") },
 		patchPluginsById: { invalidatesTags: invalidatesList("Plugins") },
 	},
 });
@@ -15,4 +16,5 @@ export const {
 	useGetPluginsQuery,
 	usePatchPluginsByIdMutation,
 	usePostPluginsByIdActivateMutation,
+	usePostPluginsByIdDeactivateMutation,
 } = pluginsApi;

@@ -1,3 +1,5 @@
+import { timezonesRu } from "services/localization/ru/timezones-ru";
+import { weekdaysRu } from "services/localization/ru/weekdays-ru";
 import {
 	texts_a,
 	texts_b,
@@ -18,8 +20,7 @@ import {
 	texts_t,
 	texts_u,
 } from "services/localization/texts";
-import { timezonesRu } from "services/localization/ru/timezones-ru";
-import { weekdaysRu } from "services/localization/ru/weekdays-ru";
+
 import { reportsRu } from "@/features/reports";
 
 export const ruLocale = {
@@ -39,6 +40,7 @@ export const ruLocale = {
 		[texts_a.add_new_scheduler]: "добавить новый планировщик",
 		[texts_a.add_comment]: "добавьте комментарий",
 		Activate: "Активировать",
+		[texts_a.activate]: "активировать",
 		[texts_a.active_request]: "Активные запросы",
 		[texts_a.approximate_action_time]: "приблизительное время начала действия",
 		Active: "Активен",
@@ -120,6 +122,7 @@ export const ruLocale = {
 		Delete: "Удалить",
 		[texts_d.donuts]: "пончики",
 		[texts_d.decline]: "отклонить",
+		[texts_d.deactivate]: "деактивировать",
 		"delivery days": "через сколько дней будет",
 		Departments: "Отделы",
 		Department: "Отдел",
