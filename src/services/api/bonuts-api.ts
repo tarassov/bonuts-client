@@ -259,12 +259,6 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
-		getTenantPlugins: build.query<GetTenantPluginsApiResponse, GetTenantPluginsApiArg>({
-			query: (queryArg) => ({
-				url: `/tenant_plugins`,
-				params: { tenant: queryArg.tenant, type: queryArg["type"] },
-			}),
-		}),
 		postTenantsByTenantNameJoin: build.mutation<
 			PostTenantsByTenantNameJoinApiResponse,
 			PostTenantsByTenantNameJoinApiArg
@@ -333,6 +327,13 @@ const injectedRtkApi = api.injectEndpoints({
 		}),
 		postUsersPassword: build.mutation<PostUsersPasswordApiResponse, PostUsersPasswordApiArg>({
 			query: (queryArg) => ({ url: `/users/password`, method: "POST", body: queryArg.body }),
+		}),
+		postUsersGenerateTg: build.mutation<PostUsersGenerateTgApiResponse, PostUsersGenerateTgApiArg>({
+			query: (queryArg) => ({
+				url: `/users/generate_tg`,
+				method: "POST",
+				params: { tenant: queryArg.tenant },
+			}),
 		}),
 	}),
 	overrideExisting: false,
@@ -3105,27 +3106,6 @@ export type DeleteDonutsSchedulersByIdApiArg = {
 	id: string;
 	tenant?: string;
 };
-export type GetTenantPluginsApiResponse = /** status 200 success */ {
-	data?: {
-		id: string;
-		type: string;
-		attributes: {
-			id: number;
-			active: boolean;
-			name: string;
-			settings?: {
-				id: number;
-				name: string;
-				value?: (string | null) | null;
-				notes?: (string | null) | null;
-			}[];
-		};
-	}[];
-};
-export type GetTenantPluginsApiArg = {
-	tenant?: string;
-	type?: string;
-};
 export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
 	data?: {
 		id: string;
@@ -3649,6 +3629,12 @@ export type PostUsersPasswordApiArg = {
 		password: string;
 	};
 };
+export type PostUsersGenerateTgApiResponse = /** status 200 success */ {
+	code?: number;
+};
+export type PostUsersGenerateTgApiArg = {
+	tenant?: string;
+};
 export type TenantPlugin = {
 	id: number;
 	name: string;
@@ -3705,7 +3691,6 @@ export const {
 	useGetDonutsSchedulersByIdQuery,
 	usePatchDonutsSchedulersByIdMutation,
 	useDeleteDonutsSchedulersByIdMutation,
-	useGetTenantPluginsQuery,
 	usePostTenantsByTenantNameJoinMutation,
 	useGetTenantCurrentQuery,
 	usePutTenantCurrentMutation,
@@ -3724,4 +3709,5 @@ export const {
 	useGetUsersRecoverQuery,
 	usePutUsersPasswordMutation,
 	usePostUsersPasswordMutation,
+	usePostUsersGenerateTgMutation,
 } = injectedRtkApi;

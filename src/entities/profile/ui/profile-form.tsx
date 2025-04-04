@@ -1,12 +1,16 @@
+import { FC } from "react";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { TFormProps, TFormValue } from "shared/ui/form/types/bnt-form";
+
 import { BntForm } from "shared/ui/form/bnt-form";
-import { FC } from "react";
-import { Modules } from "constants/modules";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { useProfileFormFields } from "./hooks/use-profile-form-fields";
-import { TProfile } from "@/types/model";
+
+import { Modules } from "constants/modules";
+
+import { useProfileFormFields } from "../model/use-profile-form-fields";
+
+import type { TProfile } from "@/types/model";
 
 export const BntProfileForm: FC<{
 	profile?: TProfile;

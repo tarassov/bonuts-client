@@ -4,13 +4,17 @@ import {
 	TFormField,
 	TFormFieldSourceItem,
 } from "shared/ui/form/types/bnt-form";
-import { UserLogic } from "logic/utils/user-utils";
-import { useRoleField } from "hooks/form-field/use-role-field";
-import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
+
 import { texts_a } from "services/localization/texts/texts_a";
 import { texts_e } from "services/localization/texts/texts_e";
-import { useAppSelector } from "services/redux/store/store";
 import { authProfileSelector } from "services/redux/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
+
+import { useRoleField } from "hooks/form-field/use-role-field";
+
+import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
+import { UserLogic } from "logic/utils/user-utils";
+
 import { TProfile } from "@/types/model";
 import { TCircle } from "@/types/model/circle";
 

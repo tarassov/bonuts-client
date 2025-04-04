@@ -12,8 +12,7 @@ import { texts_i, texts_p } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useQuery } from "hooks/use-query";
 
-import { ProfileEdit } from "components/profile/profile-edit";
-
+import { ProfileEdit } from "@/entities/profile";
 import { Messenger } from "@/features/3cx/messenger";
 
 export const ProfilePage: React.FC = () => {
