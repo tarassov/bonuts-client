@@ -1,4 +1,4 @@
-import { TBntModalConfig } from "shared/types/dialog-types";
+import { TBntModalConfig } from "shared/ui/types/dialog-types";
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
 import { CommonStrings } from "constants/dictionary";
@@ -11,8 +11,12 @@ import { ModalAdminDeposit } from "components/modals/modal-admin-deposit/modal-a
 import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
 import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal-detailed-event";
 import { TPost } from "@/types/model/post";
+import {
+	IntegrationModalType,
+	integrationsModalConfig,
+} from "@/widgets/integration-settings/ui/integrations-modal-config";
 
-export type ModalType = {
+export type ModalType = IntegrationModalType & {
 	SimpleTextModal: string;
 	ImageModal: { url: string; title?: string };
 	CreateDonut: { title?: string };
@@ -90,5 +94,6 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 			getPath: (data) => `event/${data.post.id}`,
 			isTop: true,
 		},
+		...integrationsModalConfig.items,
 	},
 };

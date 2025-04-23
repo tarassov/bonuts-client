@@ -1,7 +1,7 @@
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 /**
- * Default tags used by the cacher helpers
+ * Default tags used by the cacher lib
  */
 export const defaultTags = ["UNAUTHORIZED", "UNKNOWN_ERROR"] as const;
 type DefaultTags = (typeof defaultTags)[number];
@@ -189,7 +189,7 @@ export const invalidatesUnknownErrors =
 		["UNKNOWN_ERROR"];
 
 /**
- * Utility helpers for common provides/invalidates scenarios
+ * Utility lib for common provides/invalidates scenarios
  */
 export const cacher = {
 	defaultTags,

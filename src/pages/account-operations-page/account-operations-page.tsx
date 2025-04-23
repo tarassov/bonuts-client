@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import { AccountHistory } from "components/account-history/account-history";
-import { BntStack } from "shared/stack/stack";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack/stack";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 
 export const AccountOperationsPage: FC = () => {
 	const { id } = useParams();

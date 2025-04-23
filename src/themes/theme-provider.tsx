@@ -1,4 +1,4 @@
-import { createContext, FC } from "react";
+import { createContext, FC, ReactNode } from "react";
 
 import { StyledEngineProvider, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { useCustomTheme } from "hooks/use-custom-theme";
@@ -17,7 +17,7 @@ export const CustomThemeContext = createContext<ThemeContextType>({
 });
 
 type ThemeProviderProps = {
-	children?: React.ReactNode;
+	children?: ReactNode;
 };
 export const BntThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 	const [theme, changeThemeMethods] = useCustomTheme(themes);

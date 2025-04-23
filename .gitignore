@@ -11,12 +11,16 @@
 # production
 /build
 /dist
+/app/*
 
 # misc
 .DS_Store
 .env.local
 .env.development.local
 .env.test.local
+
+.gradle/*
+
 .env.production.local
 
 npm-debug.log*

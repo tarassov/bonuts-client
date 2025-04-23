@@ -1,17 +1,17 @@
 import React, { FC } from "react";
-import { BntCard } from "shared/card/card";
+import { BntCard } from "shared/ui/card/card";
 import classNames from "classnames";
-import { BntCardActionArea } from "shared/card/card-action-area";
-import { BntCardBody } from "shared/card/card-body";
-import { BntStack } from "shared/stack/stack";
-import { BntTypography } from "shared/typography/typography";
+import { BntCardActionArea } from "shared/ui/card/card-action-area";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";
 import { EMPLOYEE_CARD_CLASSES } from "components/employee/employee-card/classes";
 import { DEFAULT_AVATAR } from "constants/images";
 import { texts_t } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CakeOutlined } from "@mui/icons-material";
-import { BntIconButton } from "shared/icon-button/bnt-icon-button";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { TProfile } from "@/types/model";
 
 export type EmployeeCardPureProps = {
@@ -30,7 +30,7 @@ export const EmployeeCardPure: FC<EmployeeCardPureProps> = ({
 	const { translate } = useBntTranslate();
 
 	return (
-		<BntCard raised className={classNames(EMPLOYEE_CARD_CLASSES.employeeCard, className)}>
+		<BntCard raised className={classNames(className)}>
 			<BntCardActionArea onClick={onCardClick} className={EMPLOYEE_CARD_CLASSES.cardActions}>
 				<BntCardBody className={`${EMPLOYEE_CARD_CLASSES.cardBody} mt-4 ml-10 mr-10 mb-4`}>
 					<BntStack

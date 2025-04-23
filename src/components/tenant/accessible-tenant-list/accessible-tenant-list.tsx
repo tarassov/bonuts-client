@@ -1,5 +1,5 @@
 import { useAccessibleTenantsLoaderList } from "logic/hooks/tenant/use-accessible-tenants-loader-list";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { AccessibleTenantCard } from "components/tenant/accessible-tenant-list/accessible-tenant-card";
 import { Grid } from "@mui/material";

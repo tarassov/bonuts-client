@@ -1,11 +1,11 @@
-import { TBntBreadcrumbItem } from "shared/types/breadcrumbs-types";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 import { routesConfig } from "routes/config/routes-config";
 import { BntRoutes } from "routes/config/routes";
 import { CommonStrings } from "constants/dictionary";
-import { BntBreadcrumbs } from "shared/breadcrumb/breadcrumbs";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import React from "react";
-import { BntStack } from "shared/stack/stack";
+import { BntStack } from "shared/ui/stack/stack";
 import { TenantEditForm } from "components/tenant/tenant-edit-form";
 
 export const TenantEdit = () => {

@@ -1,4 +1,4 @@
-import { GradientCard } from "shared/card/gradient-card";
+import { GradientCard } from "shared/ui/card/gradient-card";
 import { FC } from "react";
 import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { AccountBalanceDistrib } from "components/account-balance/account-balance-distrib";

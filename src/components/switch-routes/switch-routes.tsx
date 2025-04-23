@@ -1,11 +1,12 @@
 import { FC, useEffect, useMemo } from "react";
+import _ from "lodash";
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import { useAuth } from "logic/hooks/auth/use-auth";
 import { useLocationTyped } from "hooks/use-location-typed";
 import { TAuthState } from "services/redux/types/auth-state";
 import { routesPath } from "routes/config/routes-path";
 import { BntRoutes } from "routes/config/routes";
-import _ from "lodash";
 import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
 import { PageWrapper } from "pages/page-wrapper";
 import { ModalType } from "config/modal-config";

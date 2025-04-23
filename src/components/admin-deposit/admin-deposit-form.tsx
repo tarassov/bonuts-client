@@ -3,7 +3,7 @@ import {
 	AdminDepositFormType,
 	useAdminDepositFormFields,
 } from "components/admin-deposit/use-admin-deposit-form-fields";
-import { BntForm } from "shared/form/bnt-form";
+import { BntForm } from "shared/ui/form/bnt-form";
 import { FC } from "react";
 
 export const AdminDepositForm: FC<{ profileIds: Array<number>; onSuccess?: VoidFunction }> = ({

@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { TModalProps } from "shared/types/dialog-types";
+import { TModalProps } from "shared/ui/types/dialog-types";
 import { EventDetailed } from "components/event/event-card/event-detailed";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { TPost } from "@/types/model/post";
 
 export type ModalDetailedEventProps = {

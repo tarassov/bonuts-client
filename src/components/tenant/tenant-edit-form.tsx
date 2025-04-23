@@ -1,4 +1,4 @@
-import { BntForm } from "shared/form/bnt-form";
+import { BntForm } from "shared/ui/form/bnt-form";
 import { useTenantLoader } from "logic/hooks/tenant/use-tenant-loader";
 import { useTenantFormFields } from "components/tenant/hooks/use-tenant-form-fields";
 import { useUpdateCurrentTenant } from "logic/hooks/tenant/use-update-current-tenant";

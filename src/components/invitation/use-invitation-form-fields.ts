@@ -1,4 +1,4 @@
-import { TFieldSize, TFormField } from "shared/form/types/bnt-form";
+import { TFieldSize, TFormField } from "shared/ui/form/types/bnt-form";
 import { TUser } from "@/types/model";
 
 export const useInvitationFormFields = () => {

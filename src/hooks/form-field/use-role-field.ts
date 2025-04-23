@@ -1,4 +1,4 @@
-import { TFieldSize, TFieldType, TFormField } from "shared/form/types/bnt-form";
+import { TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
 import { Roles } from "constants/roles";
 
 export const useRoleField = <T extends { roles?: Array<string> }>({

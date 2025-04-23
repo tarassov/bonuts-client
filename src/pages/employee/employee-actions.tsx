@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { emptyFunction } from "utils/empty-function";
-import { BntStack } from "shared/stack/stack";
-import { BntIconButton } from "shared/icon-button/bnt-icon-button";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { texts_t } from "services/localization/texts/texts_t";
 import { BlockOutlined, CakeOutlined, CheckOutlined, EditOutlined } from "@mui/icons-material";
 import { texts_a, texts_d, texts_e } from "services/localization/texts";

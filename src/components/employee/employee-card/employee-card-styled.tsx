@@ -45,12 +45,5 @@ export const EmployeeCardStyled = styled(
 			gap: "12px",
 			alignItems: "center",
 		},
-		[cl(EMPLOYEE_CARD_CLASSES.cardHeaderHover)]: {
-			display: "flex",
-			flexDirection: "column",
-			height: "100%",
-			alignItems: "center",
-			justifyContent: "center",
-		},
 	};
 });

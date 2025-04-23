@@ -55,7 +55,8 @@ import {
 	TenantsListPage,
 	EventPage,
 } from "@/pages";
-
+// fixme: hook is called outside of component
+// eslint-disable-next-line react-hooks/rules-of-hooks
 const { CirclesIcon } = useIcons();
 
 const groupAdmins = [Roles.moderator, Roles.admin, Roles.admin];

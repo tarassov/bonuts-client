@@ -1,10 +1,10 @@
 import { SyntheticEvent, useState } from "react";
-import { BntTabs } from "shared/tab/bnt-tabs";
-import { BntTab } from "shared/tab/bnt-tab";
+import { BntTabs } from "shared/ui/tab/bnt-tabs";
+import { BntTab } from "shared/ui/tab/bnt-tab";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTabPanel } from "shared/tab/bnt-tab-panel";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
-import { BntStack } from "shared/stack/stack";
+import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack/stack";
 import { ProfileActiveRequestList } from "components/request/profile-request/profile-active-request-list";
 import { ProfileClosedRequestList } from "components/request/profile-request/profile-closed-request-list";
 import { texts_a, texts_c } from "services/localization/texts";

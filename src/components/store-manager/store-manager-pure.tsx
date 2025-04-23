@@ -1,13 +1,13 @@
 import { FC, SyntheticEvent, useMemo, useState } from "react";
-import { BntReactTable } from "shared/react-table/bnt-react-table";
+import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
 import { useStoreTableConfig } from "components/store-manager/use-store-table-config";
-import { BntTabs } from "shared/tab/bnt-tabs";
-import { BntTab } from "shared/tab/bnt-tab";
+import { BntTabs } from "shared/ui/tab/bnt-tabs";
+import { BntTab } from "shared/ui/tab/bnt-tab";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTabPanel } from "shared/tab/bnt-tab-panel";
+import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
 import { emptyFunction } from "utils/empty-function";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
-import { BntStack } from "shared/stack/stack";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack/stack";
 import { TDonut } from "@/types/model";
 
 export type StoreManagerPureProps = {

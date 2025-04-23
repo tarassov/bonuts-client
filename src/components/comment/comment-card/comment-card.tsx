@@ -1,19 +1,25 @@
 import { FC } from "react";
-import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
-import { BntCard } from "shared/card/card";
-import { CommentCardHeader } from "components/comment/comment-card/comment-card-header";
-import { Dictionary } from "constants/dictionary";
-import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
-import { BntCardContent } from "shared/card/card-content";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import classNames from "classnames";
 import { Android } from "@mui/icons-material";
-import { BntCardActions } from "shared/card/card-actions";
-import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
-import { BntStack } from "shared/stack/stack";
+import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
+import classNames from "classnames";
+
+import { BntCard } from "shared/ui/card/card";
+import { BntCardActions } from "shared/ui/card/card-actions";
+import { BntCardContent } from "shared/ui/card/card-content";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
 import { formatStringDate } from "utils/format-string-date";
-import { BntTypography } from "shared/typography/typography";
-import { TComment } from "@/types/model/comment";
+
+import { Dictionary } from "constants/dictionary";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
+
+import { CommentCardHeader } from "components/comment/comment-card/comment-card-header";
+
+import type { TComment } from "@/types/model/comment";
 
 export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
 	comment,
@@ -53,13 +59,9 @@ export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
 					{content}
 				</BntTypography>
 			</BntCardContent>
-			<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
+			<BntCardActions disableSpacing>
 				<BntStack direction="row" justifyContent="flex-end" className="width-100">
-					<Typography
-						variant="caption"
-						component="div"
-						className={EVENT_CARD_CLASSES.cardDateCaption}
-					>
+					<Typography variant="caption" component="div">
 						{formatStringDate(date_string_utc, false, true)}
 					</Typography>
 				</BntStack>

@@ -1,7 +1,7 @@
 import { Button, Grid, TextField, Stack, Box } from "@mui/material";
 import { FC, SyntheticEvent, useMemo, useState } from "react";
 import { useAuth } from "logic/hooks/auth/use-auth";
-import { useLoader } from "shared/loader/hooks/use-loader";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_d, texts_e, texts_p, texts_r, texts_s } from "services/localization/texts";
@@ -11,7 +11,7 @@ import { useAuthUi } from "logic/ui/use-auth-ui";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import _ from "lodash";
 import { useProjectNavigate } from "hooks/use-project-navigate";
-import { Messenger } from "components/3cx/messenger";
+import { Messenger } from "@/features/3cx/messenger";
 import styles from "./login-page.module.scss";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";

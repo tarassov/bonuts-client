@@ -19,4 +19,6 @@ export enum texts_c {
 	choose_time = "choose time",
 	choose_timezone = "choose timezone",
 	confirmation_email_was_sent_to = "confirmation email was sent to",
+	connect_to_telegram = "connect to telegram",
+	connect = "подключить",
 }

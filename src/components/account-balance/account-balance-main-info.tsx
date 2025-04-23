@@ -1,10 +1,14 @@
 import { FC } from "react";
-import { BntStack } from "shared/stack/stack";
-import { BntTypography } from "shared/typography/typography";
 import { Button } from "@mui/material";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { CommonStrings } from "constants/dictionary";
+
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
 import { formatStringDate } from "utils/format-string-date";
+
+import { CommonStrings } from "constants/dictionary";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
 
 export const AccountBalanceMainInfo: FC<{
 	title: string;

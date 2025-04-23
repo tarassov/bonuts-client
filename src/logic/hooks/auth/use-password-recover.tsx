@@ -8,7 +8,7 @@ import { texts_c, texts_r } from "services/localization/texts";
 import { useNotification } from "services/notification";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
-import { useStorage } from "hooks/use-storage";
+import { storage } from "shared/lib/localStorage";
 import { AUTH_TOKEN } from "constants/auth-token";
 
 export const usePasswordRecover = (token?: string) => {
@@ -25,7 +25,7 @@ export const usePasswordRecover = (token?: string) => {
 
 	const { showNotification } = useNotification();
 	const { navigateToRoot } = useProjectNavigate();
-	const { setValue } = useStorage();
+	const { setValue } = storage;
 	const { translate } = useBntTranslate();
 	const sendRecoverEmail = (email: string) => {
 		putPasswordRecover({ body: { email } }).then((res) => {

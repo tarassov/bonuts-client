@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { BntCard } from "shared/card/card";
+import { BntCard } from "shared/ui/card/card";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntCardActionArea } from "shared/card/card-action-area";
-import { BntCardBody } from "shared/card/card-body";
-import { BntTypography } from "shared/typography/typography";
-import { BntStack } from "shared/stack/stack";
+import { BntCardActionArea } from "shared/ui/card/card-action-area";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { BntTypography } from "shared/ui/typography/typography";
+import { BntStack } from "shared/ui/stack/stack";
 import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
 import { texts_o } from "services/localization/texts/texts_o";
 import classNames from "classnames";

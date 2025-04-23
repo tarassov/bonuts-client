@@ -1,4 +1,4 @@
-import { emailRegex } from "@/regex/email-regex";
+import { emailRegex } from "shared/lib/regex/email-regex";
 
 export const isEmailValid = (email: string): boolean => {
 	// Test the email against the regular expression

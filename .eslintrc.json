@@ -4,7 +4,7 @@
 		"es2021": true,
 		"jest": true
 	},
-	"extends": ["airbnb", "airbnb-typescript", "plugin:prettier/recommended"],
+	"extends": ["airbnb", "airbnb-typescript",  "plugin:react-hooks/recommended", "plugin:prettier/recommended"],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -14,8 +14,48 @@
 		"sourceType": "module",
 		"project": "./tsconfig.json"
 	},
-	"plugins": ["@typescript-eslint", "react", "testing-library", "prettier"],
+	"plugins": ["@typescript-eslint", "react", "testing-library", "simple-import-sort", "prettier"],
 	"rules": {
+		"simple-import-sort/imports": [
+			"warn",
+			{
+				"groups": [
+					// Packages `react` related packages come first.
+					["^react", "^@?\\w"	],
+					// Internal packages.
+					["^shared(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
+					["^utils(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
+					["^constants(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
+					["^services(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
+					["^hook(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
+					["^logic(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
+					["^components(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
+					["^features(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
+					["^widgets(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
+					["^pages(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
+					["^(?=.*(?:^app|\/app))(?!.*(?:\\.css$|\\.scss$|\\u0000$))"],
+					// Parent imports. Put `..` last.
+					["^\\.\\.(?!/?$)", "^\\.\\./?$"	],
+					// Other relative imports. Put same-folder imports and `.` last.
+					[
+						"^\\./(?=.*/)(?!/?$)",
+						"^\\.(?!/?$)",
+						"^\\./?$"
+					],
+					// Style imports.
+					[
+						"^.+\\.?(scss)$",
+						"^.+\\.?(css)$"
+					],
+					// Types
+					[
+						"^@?\\w.*\\u0000$",
+						"^[^.].*\\u0000$",
+						"^\\..*\\u0000$"
+					]
+				]
+			}
+		],
 		"no-console": ["warn", { "allow": ["warn", "error"] }],
 		"@typescript-eslint/naming-convention": "off",
 		"comma-spacing": ["warn", { "before": false, "after": true }],
@@ -66,7 +106,8 @@
 		{
 			"files": ["bonuts-api.ts"],
 			"rules": {
-				"import/newline-after-import": "off"
+				"import/newline-after-import": "off",
+				"@typescript-eslint/dot-notation": "off"
 			}
 		}
 	]

@@ -1,13 +1,13 @@
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
-import { BntStack } from "shared/stack/stack";
-import { BntTypography } from "shared/typography/typography";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { FC } from "react";
 import { DonutSmallOutlined } from "@mui/icons-material";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
+import { BntBox } from "shared/ui/box/bnt-box";
 import { TProfile } from "@/types/model";
 
 export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => {

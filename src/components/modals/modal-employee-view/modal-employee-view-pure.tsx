@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { BntStack } from "shared/stack/stack";
-import { ImagePreview } from "shared/image/image-preview";
+import { BntStack } from "shared/ui/stack/stack";
+import { ImagePreview } from "shared/ui/image/image-preview";
 import { DEFAULT_AVATAR } from "constants/images";
-import { BntTypography } from "shared/typography/typography";
+import { BntTypography } from "shared/ui/typography/typography";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { CircularProgress, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import * as React from "react";
 
-import { BntRoundButton } from "shared/buttons/round-button";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { MoreHoriz } from "@mui/icons-material";
 import { CircleTag } from "components/circle/circle-tag/circle-tag";
 import { texts_g } from "services/localization/texts";
