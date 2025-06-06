@@ -1,74 +1,65 @@
-# Bonuts.ru  client v2
+# Bonuts.ru Client v2
 
-## Project structure
-```bash 
-└── src
-    ├── shared  #Base components that that could be extracted easily
-    │   ├── drawer
-    │   ├── BNTToolbar
-    │   ├── BNTTypography
-    │   ├── buttons
-    │   ├── loader
-    │   └── menu
-    ├── components #App specific components
-    │   ├── app #component wrappers
-    │   ├── buttons
-    │   ├── event-card
-    │   ├── header
-    │   ├── layout #main layout
-    │   ├── main-menu
-    │   ├── opearation-text
-    │   ├── sidebar
-    │   └── switch-routes
-    ├── config
-    ├── constants
-    ├── context
-    ├── hooks  #General hooks all stuff excluding business hooks
-    ├── hooks
-    │   └── hooks  #business hooks all business operations goes here
-    ├── pages
-    │   ├── account-operations-page
-    │   ├── dashboard-page
-    │   ├── donut
-    │   ├── home-page
-    │   ├── login-page
-    │   ├── logout-page
-    │   ├── not-found-page
-    │   ├── people-page
-    │   ├── profile-page
-    │   ├── recover-page
-    │   ├── registration-page
-    │   ├── requests
-    │   │   ├── active-requests-page.tsx
-    │   │   ├── closed-requests-page
-    │   │   ├── incoming-requests-page
-    │   │   ├── my-requests-page
-    │   │   └── requests-page
-    │   ├── restore-password-page
-    │   ├── settings-page
-    │   ├── statistics-page
-    │   └── tenants-list-page
-    ├── routes
-    ├── services
-    │   ├── api
-    │   ├── localization
-    │   ├── hooks-hooks  #Business hooks hooks
-    │   ├── middlewares
-    │   ├── redux
-    │   ├── store-manager
-    │   └── adaptor   #Holds methods for translating api responses to a client hooks model
-    ├── themes
-    └── types
-    │   ├── api
-    │   ├── context
-    │   ├── model
-    │   └── theme
-```
+## Project Overview
+Bonuts.ru is a React-based web application built with TypeScript, Vite, and Material UI.
+
+## Environment Configuration
+
+The application uses different environment configurations:
+
+- `.env`: Default environment variables
+- `.env.local`: Local overrides (not committed to repository)
+- `.env.production`: Production environment variables
+- `.env.staging`: Staging environment variables
+
+Key environment variables:
+
+- `VITE_API_URL`: API endpoint URL
+- `VITE_API_LOCAL_URL`: Local API URL for development
+- `VITE_USE_LOCAL_HOST`: Flag to use localhost for development
+
+To set up your local environment, copy `.env.local.example` to `.env.local` and adjust as needed.
+
 ## Available Scripts
 
 In the project directory, you can run:
+
 ### `yarn install`
-### `yarn start`
+Installs all dependencies required for the project.
 
+### `yarn start` or `yarn dev`
+Runs the app in development mode using Vite.
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
+### `yarn build`
+Builds the app for production to the `dist` folder.
 
+### `yarn build-staging`
+Builds the app for staging environment.
+
+### `yarn serve`
+Previews the built app locally.
+
+### `yarn test`
+Runs tests in watch mode using Vitest.
+
+### `yarn test:withoutWatch`
+Runs tests once without watch mode.
+
+### `yarn generate-api`
+Generates API code from OpenAPI specification.
+
+### `yarn lint`
+Checks for linting errors.
+
+### `yarn lint:fix`
+Fixes linting errors automatically when possible.
+
+### `yarn prettier`
+Checks code formatting.
+
+### `yarn prettier:fix`
+Fixes code formatting issues.
+
+### `yarn deploy`
+Deploys the application to GitHub Pages.
