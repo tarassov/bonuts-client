@@ -1,12 +1,14 @@
-import { Divider, useMediaQuery } from "@mui/material";
 import { FC, useContext } from "react";
+import { Divider, useMediaQuery } from "@mui/material";
 import { Theme } from "@mui/material/styles";
-import { BntDrawer, BntDrawerHeader } from "src/shared/ui/drawer";
 import { AppContext } from "context/app-context";
 import BonutsFullIcon from "icons/BonutsFullIcon.svg";
 import BonutsIcon from "icons/BonutsIcon.svg";
-import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
+
 import { BntMainMenu } from "../main-menu/main-menu";
+
+import { BntTransparentButton } from "@/shared/ui/buttons";
+import { BntDrawer, BntDrawerHeader } from "@/shared/ui/drawer";
 
 const BntSidebar: FC = () => {
 	const { isDrawerOpen } = useContext(AppContext);
