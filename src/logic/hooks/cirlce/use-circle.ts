@@ -3,7 +3,8 @@ import {
 	useDeleteCirclesByIdMutation,
 	usePatchCirclesByIdMutation,
 } from "services/api/bonuts-api";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
+
+import { useProfileLogic } from "@/entities/profile";
 import { TCircle } from "@/types/model";
 
 export const useCircle = () => {

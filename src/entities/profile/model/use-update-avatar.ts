@@ -1,9 +1,9 @@
-import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
-import { useNotification } from "services/notification";
 import { PostAvatarsApiResponse } from "services/api/bonuts-api";
 import { avatarApi } from "services/api/extended/avatar-api";
 import { texts_u } from "services/localization/texts/texts_u";
+import { useNotification } from "services/notification";
+import { authTenantSelector } from "services/redux/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
 
 export const useUpdateAvatar = () => {
 	const authTenant = useAppSelector(authTenantSelector);

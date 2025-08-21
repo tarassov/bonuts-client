@@ -1,5 +1,5 @@
 import { usePostTenantsByTenantNameJoinMutation } from "services/api/bonuts-api";
-import { useAuth } from "logic/hooks/auth/use-auth";
+import { useAuth } from "shared/model/auth/use-auth";
 import { TTenant } from "@/types/model/tenant";
 
 export const useTenant = (tenant?: TTenant) => {

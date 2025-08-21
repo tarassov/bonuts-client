@@ -10,9 +10,10 @@ import {
 	usePostRequestsRefundMutation,
 	usePostRequestsRollbackMutation,
 } from "services/api/bonuts-api";
-import { useNotification } from "services/notification/use-notification";
 import { texts_r } from "services/localization/texts/texts_r";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
+import { useNotification } from "services/notification/use-notification";
+
+import { useProfileLogic } from "@/entities/profile";
 import { TDonut } from "@/types/model";
 
 export const useRequestLogic = () => {

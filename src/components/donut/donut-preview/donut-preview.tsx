@@ -1,25 +1,30 @@
 import { useParams } from "react-router-dom";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
 import { DonutSmall, ShoppingBag } from "@mui/icons-material";
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { BntCardBody } from "shared/ui/card/card-body";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
-import { useDonutLoader } from "logic/hooks/donut/use-donut-loader";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-import { Dictionary } from "constants/dictionary";
-import { BntCard } from "shared/ui/card/card";
-import { ImagePreview } from "shared/ui/image/image-preview";
-import { DEFAULT_DONUT_IMAGE } from "constants/images";
-import { BntTypography } from "shared/ui/typography/typography";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useModal } from "hooks/use-modal";
 import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { BntCard } from "shared/ui/card/card";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { ImagePreview } from "shared/ui/image/image-preview";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { Dictionary } from "constants/dictionary";
+import { DEFAULT_DONUT_IMAGE } from "constants/images";
+import { Modules } from "constants/modules";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useModal } from "hooks/use-modal";
+
 import { DonutPurchaseBlock } from "./donut-purchase-block";
 
-export const BntDonutPreview = () => {
+import { useDonutLoader } from "@/entities/donut";
+
+export function BntDonutPreview() {
 	const { id } = useParams();
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -89,4 +94,4 @@ export const BntDonutPreview = () => {
 			</BntCard>
 		</>
 	);
-};
+}

@@ -1,6 +1,6 @@
 import { Button, Grid, TextField, Stack, Box } from "@mui/material";
 import { FC, SyntheticEvent, useMemo, useState } from "react";
-import { useAuth } from "logic/hooks/auth/use-auth";
+import { useAuth } from "shared/model/auth/use-auth";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";

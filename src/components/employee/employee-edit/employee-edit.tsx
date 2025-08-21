@@ -11,7 +11,7 @@ import { texts_c } from "services/localization/texts";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { useUpdateProfile } from "logic/hooks/profile/use-update-profile";
+import { useUpdateProfile } from "@/entities/profile/model/use-update-profile";
 
 import { BntProfileForm, BntProfileImage } from "@/entities/profile";
 import { TProfile } from "@/types/model";

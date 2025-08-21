@@ -1,8 +1,9 @@
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { donutsApi } from "services/api/extended/donuts-api";
-import { useAppDispatch } from "services/redux/store/store";
 import { useUpdateDonutMutation } from "services/api/injected-api";
+import { useAppDispatch } from "services/redux/store/store";
+
+import { useProfileLogic } from "@/entities/profile";
 import { TDonut } from "@/types/model";
 
 export const useDonut = () => {

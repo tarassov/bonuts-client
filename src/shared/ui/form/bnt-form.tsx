@@ -1,12 +1,14 @@
 import { FC, useEffect, useState } from "react";
-import _ from "lodash";
 import { FormContainer } from "react-hook-form-mui";
-import { BntFormBody } from "shared/ui/form/form-body";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
+import _ from "lodash";
+
+import { BntFormBody } from "shared/ui/form/form-body";
 import { useLocale } from "shared/ui/locale/hooks/use-locale";
+
 import { TFormFieldSourceItem, TFormProps, TFormValue } from "./types/bnt-form";
 
-export const BntForm: FC<TFormProps<any>> = ({
+export function BntForm<T extends Record<string, any>>({
 	fields,
 	groups,
 	groupGap,
@@ -18,7 +20,7 @@ export const BntForm: FC<TFormProps<any>> = ({
 	children,
 	keepValuesOnSubmit,
 	resolver,
-}) => {
+}: TFormProps<T>) {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [error, setError] = useState<string>();
 	const [initials, setInitials] = useState<Record<string, TFormValue> | undefined>(undefined);
@@ -97,4 +99,4 @@ export const BntForm: FC<TFormProps<any>> = ({
 			</DateFnsProvider>
 		</div>
 	);
-};
+}

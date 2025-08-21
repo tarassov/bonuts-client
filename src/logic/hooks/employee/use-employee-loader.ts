@@ -1,6 +1,9 @@
-import { useGetProfilesByIdQuery } from "services/api/bonuts-api";
+import { useMemo } from "react";
+
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
+import { useGetProfilesByIdQuery } from "services/api/bonuts-api";
+
+import { useProfileLogic } from "@/entities/profile";
 
 export const useEmployeeLoader = (id?: number | string | null) => {
 	const { authTenant } = useProfileLogic();
@@ -9,6 +12,7 @@ export const useEmployeeLoader = (id?: number | string | null) => {
 		tenant: authTenant || undefined,
 	});
 
-	const employee = apiProfileAdaptor(data);
+	const employee = useMemo(() => apiProfileAdaptor(data), [data]);
+
 	return { employee, isLoading, error };
 };

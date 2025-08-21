@@ -1,12 +1,18 @@
 import { useParams } from "react-router-dom";
+
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
 import { Modules } from "constants/modules";
+
 import { useModal } from "hooks/use-modal";
-import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
-import { EmployeePreviewStyled } from "components/employee/employee-preview/employee-preview-styled";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
-import { useTransferUi } from "logic/ui/use-transfer-ui";
+
 import { useEmployee } from "logic/hooks/employee/use-employee";
+import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
+import { useTransferUi } from "logic/ui/use-transfer-ui";
+
+import { EmployeePreviewStyled } from "components/employee/employee-preview/employee-preview-styled";
+
+import { useProfileLogic } from "@/entities/profile";
 
 export const EmployeePreview = () => {
 	const { id } = useParams();

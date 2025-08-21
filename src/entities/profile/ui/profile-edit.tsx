@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid2 as Grid } from "@mui/material";
 
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
-
 import { BntProfileForm } from "./profile-form";
 import { BntProfileImage } from "./profile-image";
+
+import { useProfileLogic } from "@/entities/profile";
 
 export const ProfileEdit = () => {
 	const { profile, isLoading, error, updateProfile } = useProfileLogic();

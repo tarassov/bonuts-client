@@ -2,6 +2,7 @@ export enum texts_s {
 	save = "save",
 	search = "search",
 	selected = "selected",
+	settings = "settings",
 	show_only_mine = "show only mine",
 	select_all = "select all",
 	share = "share",

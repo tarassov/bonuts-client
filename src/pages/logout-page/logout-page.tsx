@@ -3,7 +3,7 @@ import { BntBox } from "shared/ui/box/bnt-box";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { LogoutOutlined } from "@mui/icons-material";
-import { useAuth } from "logic/hooks/auth/use-auth";
+import { useAuth } from "shared/model/auth/use-auth";
 import { Dictionary } from "constants/dictionary";
 
 export const LogoutPage: FC = () => {

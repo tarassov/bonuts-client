@@ -1,18 +1,22 @@
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { CommonStrings } from "constants/dictionary";
+
 import {
 	PostAccountOperationsApiResponse,
 	PostAdminDepositApiResponse,
 	usePostAccountOperationsMutation,
 	usePostAdminDepositMutation,
 } from "services/api/bonuts-api";
-import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
-import { useNotification } from "services/notification";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { texts_t } from "services/localization/texts/texts_t";
-import { CommonStrings } from "constants/dictionary";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { useNotification } from "services/notification";
+
+import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
+
+import { useProfileLogic } from "@/entities/profile";
 import { TransferProps } from "@/types/logic";
-import { AdminDepositProps } from "@/types/logic/transfer";
 import { TActionCallback } from "@/types/logic/action-callback";
+import { AdminDepositProps } from "@/types/logic/transfer";
 
 const OPERATION_NAME = "transferDonuts";
 export const useTransfer = () => {

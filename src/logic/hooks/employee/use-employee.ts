@@ -1,10 +1,12 @@
-import { profilesApi } from "services/api/extended/profiles-api";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { PostProfilesByIdSetActivityApiResponse } from "services/api/bonuts-api";
-import { useNotification } from "services/notification";
+import { profilesApi } from "services/api/extended/profiles-api";
 import { texts_a, texts_c, texts_d } from "services/localization/texts";
-import { useModal } from "hooks/use-modal";
+import { useNotification } from "services/notification";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useModal } from "hooks/use-modal";
+
+import { useProfileLogic } from "@/entities/profile";
 import { TActionCallback } from "@/types/logic/action-callback";
 
 export const useEmployee = () => {

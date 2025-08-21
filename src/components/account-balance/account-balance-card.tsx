@@ -1,8 +1,11 @@
-import { GradientCard } from "shared/ui/card/gradient-card";
 import { FC } from "react";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
+
+import { GradientCard } from "shared/ui/card/gradient-card";
+
 import { AccountBalanceDistrib } from "components/account-balance/account-balance-distrib";
 import { AccountBalanceSelf } from "components/account-balance/account-balance-self";
+
+import { useProfileLogic } from "@/entities/profile";
 
 export const AccountBalanceCard: FC<{ accountType: "self" | "distrib" }> = ({ accountType }) => {
 	const { profile } = useProfileLogic();

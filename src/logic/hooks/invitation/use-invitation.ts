@@ -1,4 +1,4 @@
-import { useAuth } from "logic/hooks/auth/use-auth";
+import { useAuth } from "shared/model/auth/use-auth";
 import {
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,

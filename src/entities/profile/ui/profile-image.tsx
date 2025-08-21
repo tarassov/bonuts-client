@@ -1,15 +1,14 @@
-import {
-	TFieldSize,
-	TFieldType,
-	TFormField,
-	TFormProps,
-	TFormValue,
-} from "shared/ui/form/types/bnt-form";
-import { BntForm } from "shared/ui/form/bnt-form";
-import { useModal } from "hooks/use-modal";
-import { CommonStrings } from "constants/dictionary";
-import { useUpdateAvatar } from "logic/hooks/profile/use-update-avatar";
 import { FC } from "react";
+
+import { BntForm } from "shared/ui/form/bnt-form";
+
+import { CommonStrings } from "constants/dictionary";
+
+import { useModal } from "hooks/use-modal";
+
+import type { TFieldSize, TFieldType, TFormField, TFormProps, TFormValue } from "shared/ui/form/types/bnt-form";
+
+import { useUpdateAvatar } from "@/entities/profile/model/use-update-avatar";
 import { TProfile } from "@/types/model";
 
 export const BntProfileImage: FC<{ profile?: TProfile }> = ({ profile }) => {

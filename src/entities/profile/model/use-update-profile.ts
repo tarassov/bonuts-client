@@ -1,6 +1,9 @@
+import { emptyFunction } from "utils/empty-function";
+
 import { usePutProfilesByIdMutation } from "services/api/bonuts-api";
-import { useAppSelector } from "services/redux/store/store";
 import { authTenantSelector } from "services/redux/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
+
 import { TProfile } from "@/types/model";
 
 export const useUpdateProfile = () => {
@@ -9,13 +12,15 @@ export const useUpdateProfile = () => {
 	const updateProfile = async (
 		profile: TProfile,
 		values: Record<string, any>,
-		callback?: VoidFunction
+		callback: VoidFunction = emptyFunction
 	) => {
 		const res = await putProfile({
 			id: profile?.id.toString(),
 			body: { ...values, tenant: authTenant },
 		});
-		callback?.();
+
+		callback();
+
 		return res;
 	};
 

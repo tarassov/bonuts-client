@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo } from "react";
 import _ from "lodash";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { useAuth } from "logic/hooks/auth/use-auth";
+import { useAuth } from "shared/model/auth/use-auth";
 import { useLocationTyped } from "hooks/use-location-typed";
 import { TAuthState } from "services/redux/types/auth-state";
 import { routesPath } from "routes/config/routes-path";
@@ -50,8 +50,9 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 	const location = useLocationTyped();
 	const { checkAuth, isAuthLoading, auth, currentRoles } = useAuth();
 	const { background, name, data } = location.state || {};
+
 	useEffect(() => {
-		checkAuth();
+		checkAuth().catch((e) => console.error("Check auth failed", e));
 	}, []);
 	// const from = location.state?.from?.pathname || "/";
 
@@ -103,13 +104,7 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 
 			{anonymousRoutes &&
 				anonymousRoutes.map((route) => {
-					return (
-						<Route
-							path={route.path}
-							element={getRoute(route, auth, location.pathname)}
-							key={route.path}
-						/>
-					);
+					return <Route path={route.path} element={getRoute(route, auth, location.pathname)} key={route.path} />;
 				})}
 		</Routes>
 	);

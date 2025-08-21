@@ -1,16 +1,21 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "services/redux/store/store";
-import { useGetProfileQuery } from "services/api/bonuts-api";
-import { authActions } from "services/redux/slice/auth-slice";
-import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
-import { authProfileSelector, authTenantSelector } from "services/redux/selectors/auth-selector";
-import { accountsApi } from "services/api/extended/accounts-api";
-import { invalidateId } from "services/redux/utils/rtk-cache-utils";
-import { useUpdateProfile } from "logic/hooks/profile/use-update-profile";
+
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { TProfile } from "@/types/model";
+
+import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
+import { useGetProfileQuery } from "services/api/bonuts-api";
+import { accountsApi } from "services/api/extended/accounts-api";
+import { authProfileSelector, authTenantSelector } from "services/redux/selectors/auth-selector";
+import { authActions } from "services/redux/slice/auth-slice";
+import { useAppDispatch, useAppSelector } from "services/redux/store/store";
+import { invalidateId } from "services/redux/utils/rtk-cache-utils";
+
+import { useUpdateProfile } from "./use-update-profile";
+
+import type { TProfile } from "@/types/model";
 
 const OPERATION_NAME = "profileLogic";
+
 export const useProfileLogic = () => {
 	const authProfile = useAppSelector(authProfileSelector);
 	const authTenant = useAppSelector(authTenantSelector);

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { push } from "redux-first-history";
-import { authActions } from "services/redux/slice/auth-slice";
-import { useAppDispatch, useAppSelector } from "services/redux/store/store";
+
+import { storage } from "shared/lib/localStorage";
 
 import {
 	bonutsApi,
@@ -11,7 +11,8 @@ import {
 	usePostDemoAuthenticateMutation,
 	usePostLogoutMutation,
 } from "services/api/bonuts-api";
-import { storage } from "shared/lib/localStorage";
+import { authActions } from "services/redux/slice/auth-slice";
+import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 
 // const MAX_RETRY_NUMBER = 3;
 
@@ -20,32 +21,13 @@ export function useAuth() {
 	const dispatch = useAppDispatch();
 	const { authenticate } = authActions;
 	const auth = useAppSelector((store) => store.auth);
-	const [skip, setSkip] = useState(true);
-	const [postAuthenticate, { isLoading: isLogging, error: authError }] =
-		usePostAuthenticateMutation();
 
-	const [postDemoAuthenticate, { isLoading: isDemoLogging, error: authDemoError }] =
-		usePostDemoAuthenticateMutation();
-
+	const [postAuthenticate, { isLoading: isLogging, error: authError }] = usePostAuthenticateMutation();
+	const [postDemoAuthenticate, { isLoading: isDemoLogging, error: authDemoError }] = usePostDemoAuthenticateMutation();
 	const [postLogout] = usePostLogoutMutation();
-
-	const { data: profile } = useGetProfileQuery(
-		{ tenant: auth.tenant || "" },
-		{
-			skip: skip || !auth.tenant,
-		}
-	);
 
 	const { getValue, setValue } = storage;
 	const [isAuthLoading, setIsAuthLoading] = useState(true);
-
-	useEffect(() => {
-		if (auth.token) {
-			setSkip(false);
-		} else {
-			setSkip(true);
-		}
-	}, [auth.token]);
 
 	const getAuth = (): TAuth => {
 		return {
@@ -136,7 +118,6 @@ export function useAuth() {
 		checkAuth,
 		auth,
 		setTenant,
-		profile,
 		currentRoles: auth.profile?.roles,
 	};
 }

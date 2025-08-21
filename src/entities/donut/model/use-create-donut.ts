@@ -1,19 +1,20 @@
-import { useCreateDonutMutation } from "services/api/injected-api";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { PostDonutsApiResponse } from "services/api/bonuts-api";
-import { TFormValue } from "shared/ui/form/types/bnt-form";
 import { donutsApi } from "services/api/extended/donuts-api";
+import { useCreateDonutMutation } from "services/api/injected-api";
 import { useAppDispatch } from "services/redux/store/store";
+
+import { useCurrentAuth } from "shared/model/auth";
+
+export type TPostDonutArgs = { logo?: File; price: number; name: string };
 
 export const useCreateDonut = () => {
 	const [createDonut] = useCreateDonutMutation();
 	const dispatch = useAppDispatch();
-	const { profile } = useProfileLogic();
-	const postDonut = async (
-		args: Record<string, TFormValue>,
-		options?: { onSuccess?: (result: PostDonutsApiResponse) => void }
-	) => {
-		const { logo, price, name } = args as { logo?: File; price: number; name: string };
+	const { profile } = useCurrentAuth();
+
+	const postDonut = async (args: TPostDonutArgs, options?: { onSuccess?: (result: PostDonutsApiResponse) => void }) => {
+		const { logo, price, name } = args;
+
 		if (profile?.tenant) {
 			const formPayLoad = new FormData();
 			if (logo) formPayLoad.append("logo", logo);

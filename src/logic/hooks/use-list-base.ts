@@ -13,10 +13,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 	skip?: boolean;
 	translator?: (response: GetResultType<Endpoint>) => Array<TModel>;
 }) => {
-	const { profilerStart, profilerStop } = usePerformance(
-		`apiTransaltor for ${props.endpoint.name}`,
-		0
-	);
+	const { profilerStart, profilerStop } = usePerformance(`apiTranslator for ${props.endpoint.name}`, 0);
 	const {
 		endpoint,
 		args,
@@ -36,11 +33,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 		},
 		{
 			// eslint-disable-next-line no-nested-ternary
-			pollingInterval: !USE_POLLING_INTERVAL
-				? 0
-				: pollingInterval !== undefined
-				? pollingInterval
-				: 5000,
+			pollingInterval: !USE_POLLING_INTERVAL ? 0 : pollingInterval !== undefined ? pollingInterval : 5000,
 			refetchOnMountOrArgChange: true,
 			skip,
 		}

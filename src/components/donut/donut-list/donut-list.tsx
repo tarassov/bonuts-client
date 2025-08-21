@@ -1,12 +1,18 @@
 import { FC, useMemo, useState } from "react";
 import { Grid } from "@mui/material";
-import { DonutSorter } from "logic/utils/sorter/donut-sorter";
-import { useDonutLoaderList } from "logic/hooks/donut/use-donut-loader-list";
+
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
 import { Modules } from "constants/modules";
+
+import { DonutSorter } from "logic/utils/sorter/donut-sorter";
+
 import { DonutCard } from "components/donut/donut-card/donut-card";
-import { TDonut } from "@/types/model";
+
 import { BntDonutsSearch } from "./donuts-search";
+
+import { useDonutLoaderList } from "@/entities/donut";
+import { TDonut } from "@/types/model";
 
 // TODO: extract pure component
 export const BntDonutsList: FC = () => {

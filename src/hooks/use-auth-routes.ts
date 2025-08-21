@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import { AppContext } from "context/app-context";
-import { useAuth } from "logic/hooks/auth/use-auth";
+import { useAuth } from "shared/model/auth/use-auth";
 import _ from "lodash";
 
 export const useAuthRoutes = () => {
