@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FieldSize, FieldType, type TFormField, type TFormProps, type TFormValue } from "shared/ui/form/types/bnt-form";
 
 import { BntForm } from "shared/ui/form/bnt-form";
 
@@ -6,12 +6,10 @@ import { CommonStrings } from "constants/dictionary";
 
 import { useModal } from "hooks/use-modal";
 
-import type { TFieldSize, TFieldType, TFormField, TFormProps, TFormValue } from "shared/ui/form/types/bnt-form";
-
 import { useUpdateAvatar } from "@/entities/profile/model/use-update-avatar";
 import { TProfile } from "@/types/model";
 
-export const BntProfileImage: FC<{ profile?: TProfile }> = ({ profile }) => {
+export function BntProfileImage({ profile }: { profile?: TProfile }) {
 	const { postAvatar } = useUpdateAvatar();
 	const { ImageModal } = useModal();
 
@@ -24,10 +22,10 @@ export const BntProfileImage: FC<{ profile?: TProfile }> = ({ profile }) => {
 	const fields: Array<TFormField> = [
 		{
 			image: true,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "user_avatar",
 			label: "Avatar",
-			type: TFieldType.imageUpload,
+			type: FieldType.imageUpload,
 			xs: 12,
 			onClick: (value) => onClick(value?.toString()),
 		},
@@ -44,4 +42,4 @@ export const BntProfileImage: FC<{ profile?: TProfile }> = ({ profile }) => {
 		return undefined;
 	};
 	return <BntForm hasInitial initialValues={initialValues} {...formProps} onSubmit={onSubmit} />;
-};
+}

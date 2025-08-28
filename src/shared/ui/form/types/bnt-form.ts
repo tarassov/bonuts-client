@@ -1,8 +1,8 @@
 import { Resolver, UseFormRegisterReturn } from "react-hook-form";
-import { SystemStyleObject } from "@mui/system/styleFunctionSx/styleFunctionSx";
 import { Theme } from "@mui/material/styles";
+import { SystemStyleObject } from "@mui/system/styleFunctionSx/styleFunctionSx";
 
-export enum TFieldSize {
+export enum FieldSize {
 	xs = "xs",
 	sm = "sm",
 	md = "md",
@@ -46,7 +46,7 @@ export type TFieldGroup = {
 } & TSizeProps &
 	TPaddingProps;
 
-export enum TFieldType {
+export enum FieldType {
 	password = "password",
 	tags = "tags",
 	imageUpload = "imageUpload",
@@ -79,14 +79,14 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	label: string;
 	// for switch type
 	disabledLabel?: string;
-	size: TFieldSize;
+	size: FieldSize;
 	offset?: TOffsetProps;
 	source?: TFormFieldSource;
 	disabled?: boolean;
 	readOnly?: boolean;
 	image: boolean;
 	placeholder?: string;
-	type?: TFieldType;
+	type?: FieldType;
 	rows?: number;
 	maxRows?: number;
 	minRows?: number;
@@ -94,18 +94,13 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	loading?: boolean;
 	maxValue?: number;
 	minValue?: number;
-	valueToOption?: (
-		value: any
-	) => string | number | Array<string | number> | Array<TFormFieldSourceItem>;
+	valueToOption?: (value: any) => string | number | Array<string | number> | Array<TFormFieldSourceItem>;
 	optionToValue?: (value: TFormFieldSourceItem) => any;
 	group?: number;
 	onClick?: (value: TFormValue) => void;
 };
 
-export type RegisterFunc = (
-	name: string,
-	options?: { required: boolean }
-) => UseFormRegisterReturn<any>;
+export type RegisterFunc = (name: string, options?: { required: boolean }) => UseFormRegisterReturn<any>;
 
 export type TFormProps<T extends Record<string, any>> = {
 	hasInitial?: boolean;

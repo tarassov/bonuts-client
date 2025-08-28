@@ -1,7 +1,8 @@
-import { TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useTransferValidation } from "components/transfer/use-transfer-validation";
 import { useMemo } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FieldSize, FieldType, TFormField } from "shared/ui/form/types/bnt-form";
+
+import { useTransferValidation } from "components/transfer/use-transfer-validation";
 
 export type TransferFormType = { comment: string; amount: number };
 export const useTransferFormFields = (args: { maxAmount?: number }) => {
@@ -14,8 +15,8 @@ export const useTransferFormFields = (args: { maxAmount?: number }) => {
 		() => [
 			{
 				image: false,
-				size: TFieldSize.xs,
-				type: TFieldType.number,
+				size: FieldSize.xs,
+				type: FieldType.number,
 				name: "amount",
 				label: "amount",
 				maxValue: maxAmount,
@@ -26,11 +27,11 @@ export const useTransferFormFields = (args: { maxAmount?: number }) => {
 			{
 				disabled: false,
 				image: false,
-				size: TFieldSize.xs,
+				size: FieldSize.xs,
 				name: "comment",
 				label: "comment",
 				placeholder: "comment",
-				type: TFieldType.textarea,
+				type: FieldType.textarea,
 				required: true,
 				xs: 12,
 			},

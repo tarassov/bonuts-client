@@ -1,7 +1,10 @@
-import { TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
+import { FieldSize, FieldType, TFormField } from "shared/ui/form/types/bnt-form";
+
 import { Currency } from "constants/currency";
-import { useBntTranslate } from "hooks/use-bnt-translate";
+
 import { texts_c, texts_d, texts_t } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
 
 export type TransferFormType = { comment: string; amount: number; type: Currency };
 export const useShareAllFormFields = () => {
@@ -9,8 +12,8 @@ export const useShareAllFormFields = () => {
 	const fields: Array<TFormField<TransferFormType>> = [
 		{
 			image: false,
-			size: TFieldSize.xs,
-			type: TFieldType.number,
+			size: FieldSize.xs,
+			type: FieldType.number,
 			name: "amount",
 			label: "amount",
 			xs: 12,
@@ -19,18 +22,18 @@ export const useShareAllFormFields = () => {
 		{
 			disabled: false,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "comment",
 			label: "comment",
 			placeholder: "comment",
-			type: TFieldType.textarea,
+			type: FieldType.textarea,
 			required: true,
 			xs: 12,
 		},
 		{
 			image: false,
 			required: true,
-			size: TFieldSize.md,
+			size: FieldSize.md,
 			name: "type",
 			label: t(texts_t.transfer_type, { capitalize: true }),
 			source: [
@@ -43,7 +46,7 @@ export const useShareAllFormFields = () => {
 					label: t(texts_c.coins),
 				},
 			],
-			type: TFieldType.radio,
+			type: FieldType.radio,
 			xs: 12,
 		},
 	];

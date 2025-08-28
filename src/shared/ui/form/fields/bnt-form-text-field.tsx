@@ -1,15 +1,17 @@
 import { ChangeEvent } from "react";
 import _ from "lodash";
-import { BntTextInputElement } from "shared/ui/input/text-input-element";
-import { TFieldType, TFormValue } from "../types/bnt-form";
-import { useBntForm } from "../hooks/use-bnt-form";
 
-export const BntFormTextField = (props: {
+import { BntTextInputElement } from "shared/ui/input/text-input-element";
+
+import { useBntForm } from "../hooks/use-bnt-form";
+import { FieldType, TFormValue } from "../types/bnt-form";
+
+export function BntFormTextField(props: {
 	name: string;
 	id?: string;
 	placeholder: string | undefined;
 	label?: string;
-	type: TFieldType | undefined;
+	type: FieldType | undefined;
 	value: TFormValue;
 	rows?: number;
 	maxValue?: number;
@@ -17,21 +19,8 @@ export const BntFormTextField = (props: {
 	disabled?: boolean;
 	readOnly?: boolean;
 	required?: boolean;
-}) => {
-	const {
-		name,
-		id,
-		minValue,
-		maxValue,
-		placeholder,
-		readOnly,
-		label,
-		type,
-		value,
-		rows,
-		required,
-		disabled,
-	} = props;
+}) {
+	const { name, id, minValue, maxValue, placeholder, readOnly, label, type, value, rows, required, disabled } = props;
 	const { onChange } = useBntForm();
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = _.isNumber(e.target.value) ? Number(e.target.value) : e.target.value;
@@ -45,7 +34,7 @@ export const BntFormTextField = (props: {
 			stringLabel={label}
 			type={type}
 			value={value}
-			multiline={type === TFieldType.text}
+			multiline={type === FieldType.text}
 			rows={rows}
 			required={required}
 			sx={{ width: "100%" }}
@@ -54,4 +43,4 @@ export const BntFormTextField = (props: {
 			InputProps={{ inputProps: { min: minValue, max: maxValue }, readOnly }}
 		/>
 	);
-};
+}

@@ -1,26 +1,29 @@
-import { FC } from "react";
-import { BntTextAreaField } from "shared/ui/form/fields/bnt-text-area-field";
-import { BntDatePickerField } from "shared/ui/form/fields/bnt-date-picker-field";
-import { BntSwitchField } from "shared/ui/form/fields/bnt-switch-field";
 import { useWatch } from "react-hook-form";
-import { BntRadioField } from "shared/ui/form/fields/bnt-radio-field";
-import { TFieldType, TFormField } from "./types/bnt-form";
-import { BntFormTextField } from "./fields/bnt-form-text-field";
-import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
-import { BntImageUpload } from "./fields/bnt-image-upload";
 
-export const BntFormField: FC<{
+import { BntDatePickerField } from "shared/ui/form/fields/bnt-date-picker-field";
+import { BntRadioField } from "shared/ui/form/fields/bnt-radio-field";
+import { BntSwitchField } from "shared/ui/form/fields/bnt-switch-field";
+import { BntTextAreaField } from "shared/ui/form/fields/bnt-text-area-field";
+
+import { BntFormTextField } from "./fields/bnt-form-text-field";
+import { BntImageUpload } from "./fields/bnt-image-upload";
+import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
+import { FieldType, TFormField } from "./types/bnt-form";
+
+interface IBntFormFieldProps {
 	field: TFormField<any>;
 	id: string;
-}> = ({ field, id }) => {
+}
+
+export function BntFormField({ field, id }: IBntFormFieldProps) {
 	const value = useWatch({ name: field.name.toString() });
-	if (field.type === TFieldType.tags) {
+	if (field.type === FieldType.tags) {
 		return <BntTagAutocomplete id={id} field={field} value={value} />;
 	}
-	if (field.type === TFieldType.imageUpload) {
+	if (field.type === FieldType.imageUpload) {
 		return <BntImageUpload field={field} value={value} />;
 	}
-	if (field.type === TFieldType.textarea) {
+	if (field.type === FieldType.textarea) {
 		return (
 			<BntTextAreaField
 				name={field.name.toString()}
@@ -36,7 +39,7 @@ export const BntFormField: FC<{
 			/>
 		);
 	}
-	if (field.type === TFieldType.date) {
+	if (field.type === FieldType.date) {
 		return (
 			<BntDatePickerField
 				name={field.name.toString()}
@@ -46,7 +49,7 @@ export const BntFormField: FC<{
 			/>
 		);
 	}
-	if (field.type === TFieldType.switch) {
+	if (field.type === FieldType.switch) {
 		return (
 			<BntSwitchField
 				name={field.name.toString()}
@@ -56,7 +59,7 @@ export const BntFormField: FC<{
 			/>
 		);
 	}
-	if (field.type === TFieldType.radio) {
+	if (field.type === FieldType.radio) {
 		return <BntRadioField field={field} />;
 	}
 	return (
@@ -77,4 +80,4 @@ export const BntFormField: FC<{
 			/>
 		</>
 	);
-};
+}
