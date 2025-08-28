@@ -6,7 +6,7 @@ import { BntProfileImage } from "./profile-image";
 
 import { useProfileLogic } from "@/entities/profile";
 
-export const ProfileEdit = () => {
+export function ProfileEdit() {
 	const { profile, isLoading, error, updateProfile } = useProfileLogic();
 	return (
 		<Grid container spacing={2} className="p-2">
@@ -14,13 +14,8 @@ export const ProfileEdit = () => {
 				<BntProfileImage profile={profile} />
 			</Grid>
 			<Grid size={{ xs: 12, sm: 6, lg: 6 }}>
-				<BntProfileForm
-					profile={profile}
-					isLoading={isLoading}
-					error={error}
-					updateProfile={updateProfile}
-				/>
+				<BntProfileForm profile={profile} isLoading={isLoading} error={error} updateProfile={updateProfile} />
 			</Grid>
 		</Grid>
 	);
-};
+}
