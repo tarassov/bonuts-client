@@ -25,6 +25,7 @@ const lightTheme = {
 			dark: "#c44e0d",
 			light: "#e6ad57",
 			veryLight: "#FFCF86",
+			contrastText: "#575555",
 		},
 		error: {
 			veryLight: red.A100,

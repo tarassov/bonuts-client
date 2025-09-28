@@ -22,18 +22,18 @@ export const AccountBalanceMainInfo: FC<{
 	return (
 		<BntStack>
 			<BntStack direction="row" gap={1}>
-				<BntTypography display="block" color="grey.700">
+				<BntTypography display="block" color="secondary.contrastText">
 					{title}:
 				</BntTypography>
 				<BntStack direction="row">
-					<BntTypography display="block" color="grey.main" className="mr-1">
+					<BntTypography display="block" color="textPrimary" className="mr-1">
 						{balance}
 					</BntTypography>
 					{value}
 				</BntStack>
 			</BntStack>
 			<Button sx={{ width: "fit-content" }} onClick={onClick}>
-				<BntTypography variant="caption" color="grey.700" textTransform="none">
+				<BntTypography variant="caption" color="secondary.contrastText" textTransform="none">
 					<BntStack direction="row">
 						{lastOperation
 							? `${lastOperation?.direction}${lastOperation?.amount} ${

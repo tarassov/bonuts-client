@@ -9,9 +9,11 @@ import { useProfileLogic } from "@/entities/profile";
 
 export const AccountBalanceCard: FC<{ accountType: "self" | "distrib" }> = ({ accountType }) => {
 	const { profile } = useProfileLogic();
+
 	if (!profile) return null;
+
 	return (
-		<GradientCard className="p-2 width-100" sx={{ maxWidth: 700 }}>
+		<GradientCard className="p-2 width-100" sx={{ maxWidth: 700 }} secondary>
 			{accountType === "distrib" ? (
 				<AccountBalanceDistrib profile={profile} />
 			) : (
