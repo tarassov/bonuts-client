@@ -1,8 +1,9 @@
-import { updateQueryData } from "services/api/update-query-data";
 import { GetEventsApiResponse } from "services/api/bonuts-api";
-import { bonutsApiOverride } from "services/api/injected-api";
 import { getPaginator } from "services/api/helpers/get-paginator";
+import { bonutsApiOverride } from "services/api/injected-api";
+import { updateQueryData } from "services/api/update-query-data";
 import { cacheByIdArgProperty } from "services/redux/utils/rtk-cache-utils";
+
 import { TPageable } from "@/types/api/api";
 
 // noinspection TypeScriptValidateJSTypes
@@ -22,8 +23,7 @@ export const eventsApi = bonutsApiOverride.enhanceEndpoints({
 				const events = eventsApi.util.selectInvalidatedBy(getState(), ["Event"]);
 				events.forEach((event) => {
 					const { endpointName, originalArgs } = event;
-					if (endpointName === "getEvents")
-						dispatch(updateQueryData(endpointName, originalArgs, response));
+					if (endpointName === "getEvents") dispatch(updateQueryData(endpointName, originalArgs, response));
 				});
 			},
 		},
