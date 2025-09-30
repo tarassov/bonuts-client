@@ -1,32 +1,30 @@
-import {
-	Button,
-	Checkbox,
-	CircularProgress,
-	FormControlLabel,
-	Grid,
-	useMediaQuery,
-	useTheme,
-} from "@mui/material";
-
-import React, { FC, useState } from "react";
-import { Dictionary } from "constants/dictionary";
-import { useEventListLogic } from "logic/hooks/event/use-event-list-logic";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
-import classnames from "classnames";
-import { BntTypography } from "shared/ui/typography/typography";
-import { texts_e, texts_s } from "services/localization/texts";
-import { BntStack } from "shared/ui/stack/stack";
-import { LightbulbCircleOutlined } from "@mui/icons-material";
-import { SearchString } from "components/search-string/search-string";
-import { BntBox } from "shared/ui/box/bnt-box";
+import React, { useState } from "react";
 import { InView } from "react-intersection-observer";
-import { BntStyledEventCard } from "../event-card/event-card-styled";
+import { LightbulbCircleOutlined } from "@mui/icons-material";
+import { Button, Checkbox, CircularProgress, FormControlLabel, Grid, useMediaQuery, useTheme } from "@mui/material";
+import classnames from "classnames";
 
+import { BntBox } from "shared/ui/box/bnt-box";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntStack } from "shared/ui/stack/stack";
+import { BntTypography } from "shared/ui/typography/typography";
 
-export const BntEventList: FC = () => {
+import { Dictionary } from "constants/dictionary";
+import { Modules } from "constants/modules";
+
+import { texts_e, texts_s } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { SearchString } from "components/search-string/search-string";
+
+import { EventCardStyled } from "./event-card-styled";
+
+import { useEventListLogic } from "@/entities/event/model/use-event-list-logic";
+
+export function EventList() {
 	const { translate } = useBntTranslate();
+	// todo: refactor or extract constant
 	const matchesBigScreen = useMediaQuery("(min-width:1980px)");
 	const theme = useTheme();
 	const matchesDownMd = useMediaQuery(theme.breakpoints.down("md"));
@@ -76,7 +74,7 @@ export const BntEventList: FC = () => {
 								page.map((post) => {
 									return (
 										<Grid item key={post.id} xs={12} sm={12} md={6} lg={matchesBigScreen ? 4 : 6}>
-											<BntStyledEventCard post={post} />
+											<EventCardStyled post={post} />
 										</Grid>
 									);
 								})
@@ -93,9 +91,7 @@ export const BntEventList: FC = () => {
 						}}
 					>
 						<LightbulbCircleOutlined sx={{ height: "100px", width: "100px" }} />
-						<BntTypography>
-							{translate(texts_e.empty_events_placeholder, { capitalize: true })}
-						</BntTypography>
+						<BntTypography>{translate(texts_e.empty_events_placeholder, { capitalize: true })}</BntTypography>
 					</BntStack>
 				) : null}
 				{hasNext && pages.length > 0 && (
@@ -115,4 +111,4 @@ export const BntEventList: FC = () => {
 			</BntBox>
 		</BntStack>
 	);
-};
+}

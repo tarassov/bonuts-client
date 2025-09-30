@@ -1,6 +1,7 @@
 import { apiAdaptor } from "services/adaptor/api-adaptor";
 import { eventsApi } from "services/api/extended/events-api";
-import { usePagintatedListBase } from "../use-pagintated-list-base";
+
+import { usePagintatedListBase } from "logic/hooks/use-pagintated-list-base";
 
 export const useEventListLogic = ({
 	showMine = false,

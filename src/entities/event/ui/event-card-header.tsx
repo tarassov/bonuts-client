@@ -1,7 +1,7 @@
-import { styled } from "@mui/material/styles";
 import { CardHeader } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-export const BntStyledCardHeader = styled(
+export const EventCardHeader = styled(
 	CardHeader,
 	{}
 )(({ theme }) => {
@@ -11,6 +11,7 @@ export const BntStyledCardHeader = styled(
 		position: "relative",
 		paddingBottom: "15px",
 		marginBottom: "5px",
+
 		"&::after": {
 			content: '""',
 			position: "absolute",

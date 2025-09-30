@@ -1,15 +1,19 @@
-import { FC } from "react";
-import { BntStyledEventCard } from "components/event/event-card/event-card-styled";
-import { useEventLoader } from "logic/hooks/event/use-event-loader";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
-import { BntStack } from "shared/ui/stack/stack";
-import { CommentList } from "components/comment/comment-list";
-import { CommentForm } from "components/comment/comment-form";
-import { useEventLogic } from "logic/hooks/event/use-event-logic";
 import { useMediaQuery, useTheme } from "@mui/material";
 
-export const EventDetailed: FC<{ postId?: number | string }> = ({ postId }) => {
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntStack } from "shared/ui/stack/stack";
+
+import { Modules } from "constants/modules";
+
+import { CommentForm } from "components/comment/comment-form";
+import { CommentList } from "components/comment/comment-list";
+
+import { useEventLoader } from "../model/use-event-loader";
+import { useEventLogic } from "../model/use-event-logic";
+
+import { EventCardStyled } from "./event-card-styled";
+
+export function EventDetailed({ postId }: { postId?: number | string }) {
 	// loading more detailed event
 	const { post: detailedPost, isLoading } = useEventLoader(postId);
 	const { createComment } = useEventLogic();
@@ -27,7 +31,7 @@ export const EventDetailed: FC<{ postId?: number | string }> = ({ postId }) => {
 			maxWidth={600}
 			width={matchesDownSm ? undefined : 500}
 		>
-			<BntStyledEventCard
+			<EventCardStyled
 				post={detailedPost}
 				preventNewModal
 				bodyMaxHeight={700}
@@ -37,4 +41,4 @@ export const EventDetailed: FC<{ postId?: number | string }> = ({ postId }) => {
 			<CommentList comments={detailedPost.comments} className="width-100 m-1 mt-3" />
 		</BntStack>
 	);
-};
+}

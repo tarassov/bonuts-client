@@ -1,11 +1,9 @@
-import { useAppDispatch, useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
-import {
-	usePostEventsByIdCommentsMutation,
-	usePutEventsByIdMutation,
-} from "services/api/bonuts-api";
+import { usePostEventsByIdCommentsMutation, usePutEventsByIdMutation } from "services/api/bonuts-api";
 import { eventsApi } from "services/api/extended/events-api";
+import { authTenantSelector } from "services/redux/selectors/auth-selector";
+import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
+
 import { TEvent } from "@/types/model";
 import { TLikeable } from "@/types/model/type-extension";
 

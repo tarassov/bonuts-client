@@ -1,27 +1,36 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { Android, Comment, Edit, Favorite, Lock } from "@mui/icons-material";
-import { Avatar, Tooltip, IconButton, Typography, TextField, Button, Box } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Android, Comment, Edit, Favorite, Lock } from "@mui/icons-material";
+import { Avatar, Box, Button, IconButton, TextField, Tooltip, Typography } from "@mui/material";
 import classNames from "classnames";
-import { Dictionary } from "constants/dictionary";
-import { useEventLogic } from "logic/hooks/event/use-event-logic";
-import { focusInput } from "utils/focus-input";
+
+import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
-import { BntCardContent } from "shared/ui/card/card-content";
 import { BntCardActions } from "shared/ui/card/card-actions";
-import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
+import { BntCardContent } from "shared/ui/card/card-content";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { emptyFunction } from "utils/empty-function";
+import { focusInput } from "utils/focus-input";
+import { formatStringDate } from "utils/format-string-date";
+
+import { Dictionary } from "constants/dictionary";
+
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { useEventUi } from "logic/ui/use-event-ui";
-import { emptyFunction } from "utils/empty-function";
-import { formatStringDate } from "utils/format-string-date";
-import { BntTypography } from "shared/ui/typography/typography";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { TPost } from "@/types/model/post";
-import { BntStyledCardHeader } from "./event-card-header";
-import { BntStyledOperationText } from "../../opearation-text/styled-operation-text";
 
-export type BntEventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
-export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNewModal }) => {
+import { BntStyledOperationText } from "components/opearation-text/styled-operation-text";
+
+import { useEventLogic } from "../model/use-event-logic";
+
+import { EVENT_CARD_CLASSES } from "./classes";
+import { EventCardHeader } from "./event-card-header";
+
+import { TPost } from "@/types/model/post";
+
+export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
+
+export function EventCard({ post, className, preventNewModal }: EventCardProps) {
 	const {
 		profile,
 		public: isPublic,
@@ -70,12 +79,10 @@ export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNe
 
 	return (
 		<BntCard className={className}>
-			<BntStyledCardHeader
+			<EventCardHeader
 				avatar={
 					<>
-						{isPublic && (
-							<Avatar src={user_avatar?.thumb?.url || undefined} alt={user_name || undefined} />
-						)}
+						{isPublic && <Avatar src={user_avatar?.thumb?.url || undefined} alt={user_name || undefined} />}
 						{!isPublic && (
 							<Avatar>
 								<Android />
@@ -86,10 +93,7 @@ export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNe
 				action={
 					<Tooltip title={isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)}>
 						<IconButton
-							aria-label={
-								(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) ||
-								Dictionary.PROFILE
-							}
+							aria-label={(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) || Dictionary.PROFILE}
 						>
 							{!isPublic && <Lock />}
 						</IconButton>
@@ -178,14 +182,10 @@ export const BntEventCard: FC<BntEventCardProps> = ({ post, className, preventNe
 					</IconButton>
 				)}
 
-				<Typography
-					variant="caption"
-					component="div"
-					className={EVENT_CARD_CLASSES.cardDateCaption}
-				>
+				<Typography variant="caption" component="div" className={EVENT_CARD_CLASSES.cardDateCaption}>
 					{formatStringDate(date_string_utc, false, true)}
 				</Typography>
 			</BntCardActions>
 		</BntCard>
 	);
-};
+}

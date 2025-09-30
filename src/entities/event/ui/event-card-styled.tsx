@@ -1,14 +1,15 @@
 import { styled } from "@mui/material/styles";
 import { cl } from "themes/helper";
+
 import { EVENT_CARD_CLASSES } from "./classes";
-import { BntEventCard, BntEventCardProps } from "./event-card";
+import { EventCard, EventCardProps } from "./event-card";
 
 const iconFontSize = "16px";
 
-export const BntStyledEventCard = styled(
-	BntEventCard,
+export const EventCardStyled = styled(
+	EventCard,
 	{}
-)<BntEventCardProps & { bodyMaxHeight?: string | number; maxWidth?: string | number }>(
+)<EventCardProps & { bodyMaxHeight?: string | number; maxWidth?: string | number }>(
 	({ theme, bodyMaxHeight = 300, maxWidth = 700 }) => {
 		return {
 			width: "100%",
