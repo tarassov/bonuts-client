@@ -187,6 +187,9 @@ const injectedRtkApi = api.injectEndpoints({
 				}),
 			}
 		),
+		getTelegramChat: build.query<GetTelegramChatApiResponse, GetTelegramChatApiArg>({
+			query: () => ({ url: `/telegram_chat` }),
+		}),
 		postTenantsByTenantNameJoin: build.mutation<
 			PostTenantsByTenantNameJoinApiResponse,
 			PostTenantsByTenantNameJoinApiArg
@@ -3027,6 +3030,19 @@ export type DeleteDonutsSchedulersByIdApiArg = {
 	id: string;
 	tenant?: string;
 };
+export type GetTelegramChatApiResponse = /** status 200 telegram chat not found will return empty object */ {
+	id?: number;
+	chat_id?: string;
+	username?: (string | null) | null;
+	last_message?: (string | null) | null;
+	next?: (string | null) | null;
+	next_params?: (object | null) | null;
+	user_id?: number;
+	created_at?: string;
+	updated_at?: string;
+	error: string;
+};
+export type GetTelegramChatApiArg = void;
 export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
 	data?: {
 		id: string;
@@ -3619,6 +3635,7 @@ export const {
 	useGetDonutsSchedulersByIdQuery,
 	usePatchDonutsSchedulersByIdMutation,
 	useDeleteDonutsSchedulersByIdMutation,
+	useGetTelegramChatQuery,
 	usePostTenantsByTenantNameJoinMutation,
 	useGetTenantCurrentQuery,
 	usePutTenantCurrentMutation,
