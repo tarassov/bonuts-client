@@ -1,16 +1,21 @@
-import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
-import { texts_i, texts_s } from "services/localization/texts";
 import { DonutSmallOutlined } from "@mui/icons-material";
-import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { BntStack } from "shared/ui/stack/stack";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
-import { TProfile } from "@/types/model";
 
-export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) => {
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
+import { BntStack } from "shared/ui/stack";
+
+import { texts_i, texts_s } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
+
+import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
+
+import type { TProfile } from "@/types/model";
+
+export function AccountBalanceDistrib({ profile }: { profile: TProfile }) {
 	const { t } = useBntTranslate();
 	const accountId = profile?.distrib_account?.id;
 	const { account, isLoading } = useAccountBalanceLoader(accountId);
@@ -42,4 +47,4 @@ export const AccountBalanceDistrib: FC<{ profile: TProfile }> = ({ profile }) =>
 			</BntBox>
 		</BntStack>
 	);
-};
+}

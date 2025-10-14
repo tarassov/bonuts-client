@@ -1,10 +1,14 @@
 import React, { FC } from "react";
-import { emptyFunction } from "utils/empty-function";
-import { BntStack } from "shared/ui/stack/stack";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { texts_t } from "services/localization/texts/texts_t";
 import { BlockOutlined, CakeOutlined, CheckOutlined, EditOutlined } from "@mui/icons-material";
+
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
+import { BntStack } from "shared/ui/stack";
+
+import { emptyFunction } from "utils/empty-function";
+
 import { texts_a, texts_d, texts_e } from "services/localization/texts";
+import { texts_t } from "services/localization/texts/texts_t";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 
@@ -34,11 +38,7 @@ export const EmployeeActions: FC<{
 
 	return (
 		<BntStack direction="row" className="mr-4" justifyContent="flex-end">
-			<BntIconButton
-				color="primary"
-				tooltip={translate(texts_t.transfer_donuts)}
-				onClick={onTransferClick}
-			>
+			<BntIconButton color="primary" tooltip={translate(texts_t.transfer_donuts)} onClick={onTransferClick}>
 				<CakeOutlined />
 			</BntIconButton>
 			{allowEdit && (
@@ -47,29 +47,17 @@ export const EmployeeActions: FC<{
 				</BntIconButton>
 			)}
 			{allowAdminDeposit && (
-				<BntIconButton
-					customIcon
-					tooltip={`${translate(texts_t.transfer_points)}`}
-					onClick={onAdminDepositClick}
-				>
+				<BntIconButton customIcon tooltip={`${translate(texts_t.transfer_points)}`} onClick={onAdminDepositClick}>
 					<BonutsCurrency />
 				</BntIconButton>
 			)}
 			{allowDisable && (
-				<BntIconButton
-					color="error"
-					tooltip={`${translate(texts_d.disable_account)}`}
-					onClick={onDisableClick}
-				>
+				<BntIconButton color="error" tooltip={`${translate(texts_d.disable_account)}`} onClick={onDisableClick}>
 					<BlockOutlined />
 				</BntIconButton>
 			)}
 			{allowActivate && (
-				<BntIconButton
-					color="primary"
-					tooltip={`${translate(texts_a.activate)}`}
-					onClick={onActivateClick}
-				>
+				<BntIconButton color="primary" tooltip={`${translate(texts_a.activate)}`} onClick={onActivateClick}>
 					<CheckOutlined />
 				</BntIconButton>
 			)}

@@ -81,21 +81,19 @@ export const providesList =
  * ```
  */
 export const invalidatesList =
-	<T extends string>(type: T) =>
-	(): readonly [CacheItem<T, "LIST">] =>
-		[{ type, id: "LIST" }] as const;
+	<T extends string>(type: T | Array<T>) =>
+	(): CacheItem<T, "LIST">[] => {
+		const tags = Array.isArray(type) ? type.map((t) => ({ type: t, id: "LIST" })) : [{ type, id: "LIST" }];
 
-type InnerProvidesNestedList<T> = <
-	Results extends { data: { id: unknown }[] },
-	Error extends FetchBaseQueryError
->(
+		return tags as CacheItem<T, "LIST">[];
+	};
+
+type InnerProvidesNestedList<T> = <Results extends { data: { id: unknown }[] }, Error extends FetchBaseQueryError>(
 	results: Results | undefined,
 	error: Error | undefined
 ) => CacheList<T, Results["data"][number]["id"]>;
 
-export const invalidateId = <T extends string, K>(type: T, id: K): [CacheItem<T, K>] | [] => [
-	{ type, id },
-];
+export const invalidateId = <T extends string, K>(type: T, id: K): [CacheItem<T, K>] | [] => [{ type, id }];
 
 /**
  * Similar to `providesList`, but for data located at a nested property,
@@ -127,11 +125,7 @@ export const providesNestedList =
  */
 export const cacheByIdArg =
 	<T extends string>(type: T) =>
-	<ID, Result = undefined, Error = undefined>(
-		result: Result,
-		error: Error,
-		id: ID
-	): readonly [CacheItem<T, ID>] =>
+	<ID, Result = undefined, Error = undefined>(result: Result, error: Error, id: ID): readonly [CacheItem<T, ID>] =>
 		[{ type, id }] as const;
 
 /**

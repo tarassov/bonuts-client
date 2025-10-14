@@ -3,11 +3,12 @@ import { invalidatesList, providesList } from "services/redux/utils/rtk-cache-ut
 
 // noinspection TypeScriptValidateJSTypes
 export const pluginsApi = bonutsApi.enhanceEndpoints({
-	addTagTypes: ["Plugins"],
+	addTagTypes: ["Plugins", "Notifications"],
 	endpoints: {
 		getPlugins: { providesTags: providesList("Plugins") },
-		postPluginsByIdActivate: { invalidatesTags: invalidatesList("Plugins") },
-		postPluginsByIdDeactivate: { invalidatesTags: invalidatesList("Plugins") },
+		getProfileNotifications: { providesTags: [{ type: "Notifications", id: "LIST" }] },
+		postPluginsByIdActivate: { invalidatesTags: invalidatesList(["Plugins", "Notifications"]) },
+		postPluginsByIdDeactivate: { invalidatesTags: invalidatesList(["Plugins", "Notifications"]) },
 		patchPluginsById: { invalidatesTags: invalidatesList("Plugins") },
 	},
 });

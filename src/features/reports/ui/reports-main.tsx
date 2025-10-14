@@ -1,17 +1,21 @@
-import { BntTabs } from "shared/ui/tab/bnt-tabs";
-import { BntTab } from "shared/ui/tab/bnt-tab";
 import { SyntheticEvent, useState } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
-import { TieGraph } from "components/tie-graph/tie-graph";
-import { BntStack } from "shared/ui/stack/stack";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+
 import { BetaNotice } from "shared/ui/beta-notice/beta-notice";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack";
+import { BntTab } from "shared/ui/tab/bnt-tab";
+import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
+import { BntTabs } from "shared/ui/tab/bnt-tabs";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { TieGraph } from "components/tie-graph/tie-graph";
 
 import reportsTexts from "../config/reports-texts";
+
 import { StatisticsDashboard } from "./statistics-dashboard";
 
-export const ReportsMain = () => {
+export function ReportsMain() {
 	const [value, setValue] = useState(0);
 	const { translate } = useBntTranslate();
 	const handleChange = (event: SyntheticEvent, newValue: number) => {
@@ -50,4 +54,4 @@ export const ReportsMain = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

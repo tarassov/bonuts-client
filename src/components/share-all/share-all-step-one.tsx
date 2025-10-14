@@ -1,19 +1,27 @@
-import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
-import { Grid } from "@mui/material";
-import { BntBox } from "shared/ui/box/bnt-box";
 import { FC, useState } from "react";
-import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_a, texts_c, texts_n, texts_s } from "services/localization/texts";
-import { BntStack } from "shared/ui/stack/stack";
+import { Grid } from "@mui/material";
+
+import { BntBox } from "shared/ui/box/bnt-box";
 import { BntRegularButton } from "shared/ui/buttons/regular-button";
 import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { texts_r } from "services/localization/texts/texts_r";
-import { BntTypography } from "shared/ui/typography/typography";
-import { emptyFunction } from "utils/empty-function";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { emptyFunction } from "utils/empty-function";
+
 import { Modules } from "constants/modules";
+
+import { texts_a, texts_c, texts_n, texts_s } from "services/localization/texts";
+import { texts_r } from "services/localization/texts/texts_r";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
 import { useSearch } from "logic/hooks/use-search";
+
+import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
+
 import { TProfile } from "@/types/model";
 
 export const ShareAllStepOne: FC<{
@@ -56,9 +64,7 @@ export const ShareAllStepOne: FC<{
 	return (
 		<>
 			<BntBox className="ml-4">
-				<BntTypography variant="h5">
-					{t(texts_c.choose_employees, { capitalize: true })}
-				</BntTypography>
+				<BntTypography variant="h5">{t(texts_c.choose_employees, { capitalize: true })}</BntTypography>
 			</BntBox>
 			<BntBox className="m-4">
 				<Grid container columnSpacing={2} rowSpacing={2}>

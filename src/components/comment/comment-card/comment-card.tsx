@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardActions } from "shared/ui/card/card-actions";
 import { BntCardContent } from "shared/ui/card/card-content";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { formatStringDate } from "utils/format-string-date";
@@ -21,10 +21,7 @@ import { CommentCardHeader } from "components/comment/comment-card/comment-card-
 
 import type { TComment } from "@/types/model/comment";
 
-export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
-	comment,
-	className,
-}) => {
+export const CommentCard: FC<{ comment: TComment; className?: string }> = ({ comment, className }) => {
 	const { profile, content, date_string_utc } = comment;
 	const { employee } = useEmployeeLoader(profile?.id);
 	const { t } = useBntTranslate();
@@ -34,10 +31,7 @@ export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
 				avatar={
 					<>
 						{profile?.user_avatar && (
-							<Avatar
-								src={profile?.user_avatar?.thumb?.url || undefined}
-								alt={profile.user_name || undefined}
-							/>
+							<Avatar src={profile?.user_avatar?.thumb?.url || undefined} alt={profile.user_name || undefined} />
 						)}
 						{!profile?.user_avatar && (
 							<Avatar>

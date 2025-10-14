@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 import { useCurrentAuth } from "shared/model/auth";
 import { BntBox } from "shared/ui/box/bnt-box";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { useGetProfileNotificationsQuery } from "services/api/bonuts-api";

@@ -1,7 +1,7 @@
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
 
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { AccountBalanceCard } from "components/account-balance/account-balance-card";
 

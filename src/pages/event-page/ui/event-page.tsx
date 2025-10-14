@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { EventDetailed } from "@/entities/event/ui/event-detailed";
 

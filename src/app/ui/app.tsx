@@ -15,11 +15,11 @@ import { history } from "services/redux/store/store";
 
 import { BntLayout } from "@/app/ui/layout";
 
-import "../styles/app.scss";
+import "./app.scss";
 
 import type { AppContextType } from "@/types/context/app-context-type";
 
-const App = () => {
+function App() {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
 
 	const toggleDrawer = useCallback(() => {
@@ -55,6 +55,6 @@ const App = () => {
 			</I18nextProvider>
 		</BntThemeProvider>
 	);
-};
+}
 
 export default App;

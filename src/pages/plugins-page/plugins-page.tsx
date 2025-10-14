@@ -5,13 +5,13 @@ import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { CommonStrings } from "constants/dictionary";
 
 import { PluginList } from "@/widgets/plugin-list";
 
-export const PluginsPage = () => {
+export function PluginsPage() {
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: "settings",
@@ -21,9 +21,7 @@ export const PluginsPage = () => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.path || "plugins",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.icon,
 		},
 	];
@@ -35,4 +33,4 @@ export const PluginsPage = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

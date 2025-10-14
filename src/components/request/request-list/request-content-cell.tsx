@@ -1,14 +1,21 @@
 import { FC } from "react";
-import { BntProfileButton } from "components/buttons/profile-button";
-import { emptyFunction } from "utils/empty-function";
-import { BntStack } from "shared/ui/stack/stack";
-import { DonutButton } from "components/buttons/donut-button";
-import { texts_t } from "services/localization/texts/texts_t";
-import { useFormattedDate } from "hooks/use-formatted-date";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTypography } from "shared/ui/typography/typography";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
+
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { emptyFunction } from "utils/empty-function";
+
 import { CommonStrings } from "constants/dictionary";
+
+import { texts_t } from "services/localization/texts/texts_t";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useFormattedDate } from "hooks/use-formatted-date";
+
+import { DonutButton } from "components/buttons/donut-button";
+import { BntProfileButton } from "components/buttons/profile-button";
+
 import { TDonut, TProfile } from "@/types/model";
 
 type RequestContentCellProps = {
@@ -39,11 +46,7 @@ export const RequestContentCell: FC<RequestContentCellProps> = ({ profile, donut
 			<Grid item>
 				<BntStack direction="row" alignItems="center">
 					{profile && <BntProfileButton profile={profile} onClick={emptyFunction} />}
-					<BntTypography
-						variant="body2"
-						color="grey"
-						className={matchesDownSm ? "pl-3" : CommonStrings.EMPTY_STRING}
-					>
+					<BntTypography variant="body2" color="grey" className={matchesDownSm ? "pl-3" : CommonStrings.EMPTY_STRING}>
 						{datetime ? getFormattedDate(datetime) : null}
 					</BntTypography>
 				</BntStack>

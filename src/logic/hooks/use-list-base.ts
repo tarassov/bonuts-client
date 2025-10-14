@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
-import { useAppSelector } from "services/redux/store/store";
+
 import { authTenantSelector } from "services/redux/selectors/auth-selector";
+import { useAppSelector } from "services/redux/store/store";
+
 import { usePerformance } from "hooks/use-performance";
+
+import { USE_POLLING_INTERVAL } from "@/app/config";
+
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
-import { USE_POLLING_INTERVAL } from "@/config";
 
 export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props: {
 	endpoint: Endpoint;

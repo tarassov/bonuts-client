@@ -6,7 +6,7 @@ import classnames from "classnames";
 
 import { BntBox } from "shared/ui/box/bnt-box";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { Dictionary } from "constants/dictionary";

@@ -3,7 +3,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { Modules } from "constants/modules";
 
@@ -20,7 +20,7 @@ import { SchedulerList } from "./scheduler-list";
 import { TNewScheduler } from "@/types/model/scheduler";
 import { NewSchedulerBlock } from "@/widgets/scheduler/ui/new-scheduler-block";
 
-export const TenantSchedulers = () => {
+export function TenantSchedulers() {
 	const { objects: schedulers, isLoading } = useSchedulerListLoader();
 	const { createScheduler, updateScheduler, deleteScheduler } = useScheduler();
 	const [createMode, setCreateMode] = useState(false);
@@ -61,4 +61,4 @@ export const TenantSchedulers = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

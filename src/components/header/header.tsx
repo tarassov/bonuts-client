@@ -1,15 +1,19 @@
+import { FC, MouseEvent, useContext, useState } from "react";
 import { Avatar, IconButton, Stack, useMediaQuery } from "@mui/material";
-import { FC, useContext, useState, MouseEvent } from "react";
-import { Theme } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
-import { BntAppBar } from "shared/ui/menu/app-bar";
-import { BntToolbar } from "src/shared/ui/toolbar";
-import { BntTypography } from "shared/ui/typography/typography";
+import { Theme } from "@mui/material/styles";
 import { AppContext } from "context/app-context";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntToolbar } from "src/shared/ui/toolbar";
+
+import { BntAppBar } from "shared/ui/menu/app-bar";
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
 import { AccountBalanceSmall } from "components/account-balance/account-balance-small";
-import { TProfile } from "@/types/model";
+
 import { BntRoutesMenu } from "../main-menu/routes-menu";
+
+import { TProfile } from "@/types/model";
 
 type BTNHeaderProps = {
 	profile?: TProfile | null;
@@ -79,10 +83,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 					<BntStack direction="row" alignItems="center" gap={2}>
 						<AccountBalanceSmall profile={profile || undefined} />
 						<IconButton edge="start" color="inherit" aria-label="Avatar" onClick={handleClick}>
-							<Avatar
-								src={profile?.user_avatar?.thumb?.url || undefined}
-								alt={`${profile?.user_name}`}
-							/>
+							<Avatar src={profile?.user_avatar?.thumb?.url || undefined} alt={`${profile?.user_name}`} />
 						</IconButton>
 						<Menu
 							anchorEl={anchorEl}

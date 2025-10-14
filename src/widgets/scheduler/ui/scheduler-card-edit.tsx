@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { emptyFunction } from "utils/empty-function";
@@ -37,9 +37,7 @@ export const SchedulerCardEdit: FC<{
 			{scheduler.profile && (
 				<BntStack direction="row" justifyContent="space-between">
 					<BntStack justifyContent="flex-start" direction="row" alignItems="center" gap={2}>
-						<BntTypography variant="caption2">
-							{t(texts_a.author, { capitalize: true })}
-						</BntTypography>
+						<BntTypography variant="caption2">{t(texts_a.author, { capitalize: true })}</BntTypography>
 						<BntProfileButton profile={scheduler.profile} onClick={emptyFunction} />
 					</BntStack>
 					<BntBox>

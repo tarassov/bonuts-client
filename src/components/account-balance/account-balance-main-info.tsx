@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Button } from "@mui/material";
 
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { formatStringDate } from "utils/format-string-date";

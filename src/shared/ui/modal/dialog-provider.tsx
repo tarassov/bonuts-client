@@ -1,26 +1,35 @@
 import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-import { ModalType } from "config/modal-config";
-import _uniqueId from "lodash/uniqueId";
-import {
-	BntDialogCloseContext,
-	BntDialogContext,
-	BntDialogValueContext,
-} from "shared/ui/modal/dialog-context";
-import { BntDialogContainer } from "shared/ui/modal/dialog-container";
-import { isFunction } from "lodash";
-import { CommonStrings } from "constants/dictionary";
-import { useLocationTyped } from "hooks/use-location-typed";
 import { useNavigate } from "react-router-dom";
-import { TBntModalConfig } from "../types/dialog-types";
+import { isFunction } from "lodash";
+import _uniqueId from "lodash/uniqueId";
 
-export const BntDialogProvider: FC<{
-	config: TBntModalConfig<ModalType>;
+import { BntDialogContainer } from "shared/ui/modal/dialog-container";
+import { BntDialogCloseContext, BntDialogContext, BntDialogValueContext } from "shared/ui/modal/dialog-context";
+
+import { CommonStrings } from "constants/dictionary";
+
+import { useLocationTyped } from "hooks/use-location-typed";
+
+import type { TModalConfig } from "@/app/config/modal-config";
+import type { TBntModalConfig } from "../types/dialog-types";
+
+interface IBntDialogProviderProps {
+	config: TBntModalConfig<TModalConfig>;
 	path: string;
 	addressPath: string; // could be different for modal path's
 	children: JSX.Element | Array<JSX.Element>;
-	defaultModal?: keyof ModalType;
+	defaultModal?: keyof TModalConfig;
 	defaultModalData?: any;
-}> = ({ children, config, path, addressPath, defaultModal, defaultModalData }) => {
+}
+
+export function BntDialogProvider({
+	children,
+	config,
+	path,
+	addressPath,
+	defaultModal,
+	defaultModalData,
+}: IBntDialogProviderProps) {
 	type ModalState = Record<
 		string,
 		{
@@ -43,7 +52,7 @@ export const BntDialogProvider: FC<{
 	}, [path]);
 
 	const showDialog = useCallback(
-		<T extends keyof typeof config.items>(name: T, data: ModalType[T], key?: string) => {
+		<T extends keyof typeof config.items>(name: T, data: TModalConfig[T], key?: string) => {
 			const modalKey = key || _uniqueId(`modal-${path}-`);
 			const { title, getPath } = config.items[name];
 			const modalTitle = isFunction(title) ? title(data as never) : title;
@@ -114,4 +123,4 @@ export const BntDialogProvider: FC<{
 			</BntDialogCloseContext.Provider>
 		</BntDialogContext.Provider>
 	);
-};
+}

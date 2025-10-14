@@ -1,9 +1,12 @@
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Box, Button, TextField } from "@mui/material";
-import { FC } from "react";
+
+import { BntStack } from "shared/ui/stack";
+
 import { texts_c, texts_s } from "services/localization/texts";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntStack } from "shared/ui/stack/stack";
 
 export const CommentForm: FC<{
 	onSubmit: (comment: string) => Promise<void>;
@@ -29,13 +32,7 @@ export const CommentForm: FC<{
 	};
 
 	return (
-		<Box
-			component="form"
-			className={className}
-			onSubmit={handleSubmit(submit)}
-			noValidate
-			sx={{ mt: 1 }}
-		>
+		<Box component="form" className={className} onSubmit={handleSubmit(submit)} noValidate sx={{ mt: 1 }}>
 			<TextField
 				multiline
 				minRows={4}

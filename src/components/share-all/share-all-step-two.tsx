@@ -1,14 +1,21 @@
 import { FC } from "react";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { texts_b } from "services/localization/texts";
-import { emptyFunction } from "utils/empty-function";
 import { Grid } from "@mui/material";
+
 import { BntBox } from "shared/ui/box/bnt-box";
-import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
-import { BntStack } from "shared/ui/stack/stack";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { ShareAllForm } from "components/share-all/share-all-form";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
+import { BntStack } from "shared/ui/stack";
+
+import { emptyFunction } from "utils/empty-function";
+
 import { Currency } from "constants/currency";
+
+import { texts_b } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
+import { ShareAllForm } from "components/share-all/share-all-form";
+
 import { TProfile } from "@/types/model";
 
 export const ShareAllStepTwo: FC<{
@@ -20,12 +27,7 @@ export const ShareAllStepTwo: FC<{
 	return (
 		<>
 			<BntBox className="m-4">
-				<BntStack
-					direction="row"
-					alignItems="center"
-					justifyContent="flex-start"
-					className="mt-4 mb-4"
-				>
+				<BntStack direction="row" alignItems="center" justifyContent="flex-start" className="mt-4 mb-4">
 					<BntRoundButton variant="outlined" onClick={back}>
 						{`< `}
 						{t(texts_b.back)}

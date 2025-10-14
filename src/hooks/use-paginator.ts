@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { deepEqual } from "fast-equals";
-import { RootState, store, useAppDispatch, useAppSelector } from "services/redux/store/store";
 import _ from "lodash";
-import { USE_POLLING_INTERVAL } from "@/config";
+
+import { RootState, store, useAppDispatch, useAppSelector } from "services/redux/store/store";
+
+import { USE_POLLING_INTERVAL } from "@/app/config";
 
 import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/api";
 
@@ -44,11 +46,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 		},
 		{
 			// eslint-disable-next-line no-nested-ternary
-			pollingInterval: !USE_POLLING_INTERVAL
-				? 0
-				: pollingInterval !== undefined
-				? pollingInterval
-				: 5000,
+			pollingInterval: !USE_POLLING_INTERVAL ? 0 : pollingInterval !== undefined ? pollingInterval : 5000,
 			refetchOnMountOrArgChange: true,
 			skip,
 		}

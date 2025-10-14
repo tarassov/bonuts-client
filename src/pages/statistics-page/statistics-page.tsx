@@ -1,6 +1,8 @@
 import React, { FC } from "react";
-import { BntStack } from "shared/ui/stack/stack";
+
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack";
+
 import { ReportsMain } from "@/features/reports";
 
 export const StatisticsPage: FC = () => {

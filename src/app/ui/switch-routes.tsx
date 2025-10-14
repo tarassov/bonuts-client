@@ -1,15 +1,19 @@
 import { FC, useEffect, useMemo } from "react";
-import _ from "lodash";
 import { Navigate, Route, Routes } from "react-router-dom";
+import _ from "lodash";
+import { BntRoutes } from "routes/config/routes";
+import { routesPath } from "routes/config/routes-path";
+import { TAuthState } from "services/redux/types/auth-state";
 
 import { useAuth } from "shared/model/auth/use-auth";
+
 import { useLocationTyped } from "hooks/use-location-typed";
-import { TAuthState } from "services/redux/types/auth-state";
-import { routesPath } from "routes/config/routes-path";
-import { BntRoutes } from "routes/config/routes";
+
 import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
-import { PageWrapper } from "pages/page-wrapper";
-import { ModalType } from "config/modal-config";
+
+import { TModalConfig } from "@/app/config/modal-config";
+
+import { PageWrapper } from "./page-wrapper";
 
 interface ISwitchRoutesProps {
 	routes: Array<TRoute<any>>;
@@ -21,7 +25,7 @@ const getRoute = (
 	route: TRoute<any>,
 	auth: TAuthState,
 	path: string,
-	modalName?: keyof ModalType,
+	modalName?: keyof TModalConfig,
 	modalData?: any
 ): JSX.Element => {
 	if (auth.isAuthenticated && !auth.tenant && (!route.tenantNotRequired || route.path === "/")) {
@@ -97,7 +101,7 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 							auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? (
 								<ForbiddenPage />
 							) : (
-								getRoute(route, auth, location.pathname, name as keyof ModalType, data)
+								getRoute(route, auth, location.pathname, name as keyof TModalConfig, data)
 							);
 						return <Route path={route.path} element={element} key={route.path} />;
 					})}

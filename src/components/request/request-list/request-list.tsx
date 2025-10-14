@@ -1,20 +1,25 @@
 import { FC } from "react";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
-import { useRequestListLogic } from "logic/hooks/request/use-request-list-logic";
-import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
-import { useRequestTableConfig } from "components/request/request-list/use-request-table-config";
-import { emptyFunction } from "utils/empty-function";
+import { ArchiveOutlined, ForwardToInboxOutlined, InboxOutlined } from "@mui/icons-material";
+import { routesPath } from "routes/config/routes-path";
 import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
-import { ArchiveOutlined, ForwardToInboxOutlined, InboxOutlined } from "@mui/icons-material";
-
-import { routesPath } from "routes/config/routes-path";
-import { texts_r } from "services/localization/texts/texts_r";
-import { texts_a, texts_c, texts_i } from "services/localization/texts";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
+import { BntStack } from "shared/ui/stack";
+
+import { emptyFunction } from "utils/empty-function";
+
+import { Modules } from "constants/modules";
+
+import { texts_a, texts_c, texts_i } from "services/localization/texts";
+import { texts_r } from "services/localization/texts/texts_r";
+
+import { useRequestListLogic } from "logic/hooks/request/use-request-list-logic";
+
+import { useRequestTableConfig } from "components/request/request-list/use-request-table-config";
+
 import { TRequest } from "@/types/model";
 
 export type BntRequestListProps = {
@@ -45,11 +50,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 	rollbackTooltip,
 	checkTooltip,
 }) => {
-	const {
-		objects: requests,
-		isLoading,
-		refetch,
-	} = useRequestListLogic({ active, archive, incoming, my });
+	const { objects: requests, isLoading, refetch } = useRequestListLogic({ active, archive, incoming, my });
 
 	const rollback = (id: number) => {
 		onRollback(id, { onSuccess: refetch });
@@ -73,13 +74,7 @@ export const RequestsList: FC<BntRequestListProps> = ({
 	const label = archive ? texts_c.closed_requests : active ? texts_a.activated : texts_i.incoming;
 
 	// eslint-disable-next-line no-nested-ternary
-	const icon = archive ? (
-		<ArchiveOutlined />
-	) : active ? (
-		<InboxOutlined />
-	) : (
-		<ForwardToInboxOutlined />
-	);
+	const icon = archive ? <ArchiveOutlined /> : active ? <InboxOutlined /> : <ForwardToInboxOutlined />;
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: texts_r.requests,

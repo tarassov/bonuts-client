@@ -1,17 +1,24 @@
 import React, { FC } from "react";
-import { BntCard } from "shared/ui/card/card";
+import { CakeOutlined } from "@mui/icons-material";
 import classNames from "classnames";
+
+import { BntCard } from "shared/ui/card/card";
 import { BntCardActionArea } from "shared/ui/card/card-action-area";
 import { BntCardBody } from "shared/ui/card/card-body";
-import { BntStack } from "shared/ui/stack/stack";
-import { BntTypography } from "shared/ui/typography/typography";
-import { emptyFunction } from "utils/empty-function";
-import { EMPLOYEE_CARD_CLASSES } from "components/employee/employee-card/classes";
-import { DEFAULT_AVATAR } from "constants/images";
-import { texts_t } from "services/localization/texts";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { CakeOutlined } from "@mui/icons-material";
 import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { emptyFunction } from "utils/empty-function";
+
+import { DEFAULT_AVATAR } from "constants/images";
+
+import { texts_t } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { EMPLOYEE_CARD_CLASSES } from "components/employee/employee-card/classes";
+
 import { TProfile } from "@/types/model";
 
 export type EmployeeCardPureProps = {
@@ -33,12 +40,7 @@ export const EmployeeCardPure: FC<EmployeeCardPureProps> = ({
 		<BntCard raised className={classNames(className)}>
 			<BntCardActionArea onClick={onCardClick} className={EMPLOYEE_CARD_CLASSES.cardActions}>
 				<BntCardBody className={`${EMPLOYEE_CARD_CLASSES.cardBody} mt-4 ml-10 mr-10 mb-4`}>
-					<BntStack
-						direction="column"
-						justifyContent="space-between"
-						alignItems="center"
-						spacing={3}
-					>
+					<BntStack direction="column" justifyContent="space-between" alignItems="center" spacing={3}>
 						<div className={EMPLOYEE_CARD_CLASSES.userPic}>
 							<img src={user_avatar?.url || DEFAULT_AVATAR} alt="..." />
 						</div>

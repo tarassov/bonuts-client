@@ -5,7 +5,7 @@ import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { CommonStrings } from "constants/dictionary";
 
@@ -20,9 +20,7 @@ export const StorePage: FC = () => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Store?.path || "store",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Store?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Store?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Store?.icon,
 		},
 	];

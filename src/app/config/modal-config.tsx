@@ -1,22 +1,23 @@
 import { TBntModalConfig } from "shared/ui/types/dialog-types";
-import { ModalImage } from "components/modals/modal-image/modal-image";
-import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
-import { CommonStrings } from "constants/dictionary";
-import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-employee-view";
-import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-create-circle";
-import { ConfirmationModal } from "components/modals/confirmation-modal";
-import { texts_c } from "services/localization/texts";
-import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-circle";
-import { ModalAdminDeposit } from "components/modals/modal-admin-deposit/modal-admin-deposit";
-import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
-import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal-detailed-event";
-import { TPost } from "@/types/model/post";
-import {
-	IntegrationModalType,
-	integrationsModalConfig,
-} from "@/widgets/integration-settings/ui/integrations-modal-config";
 
-export type ModalType = IntegrationModalType & {
+import { CommonStrings } from "constants/dictionary";
+
+import { texts_c } from "services/localization/texts";
+
+import { ConfirmationModal } from "components/modals/confirmation-modal";
+import { ModalAdminDeposit } from "components/modals/modal-admin-deposit/modal-admin-deposit";
+import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-create-circle";
+import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
+import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal-detailed-event";
+import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-circle";
+import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-employee-view";
+import { ModalImage } from "components/modals/modal-image/modal-image";
+import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
+
+import { telegramModalConfig, type TTelegramModalConfig } from "@/entities/telegram";
+import { TPost } from "@/types/model/post";
+
+export type TModalConfig = TTelegramModalConfig & {
 	SimpleTextModal: string;
 	ImageModal: { url: string; title?: string };
 	CreateDonut: { title?: string };
@@ -34,7 +35,7 @@ export type ModalTypeResponse = {
 	ImageModal: void;
 };
 
-export const modalConfig: TBntModalConfig<ModalType> = {
+export const modalConfig: TBntModalConfig<TModalConfig> = {
 	items: {
 		SimpleTextModal: {
 			renderItem: (modal) => <div>{modal.data}</div>,
@@ -46,7 +47,6 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 			title: (data) => data.title || texts_c.confirmation,
 			hasTopMenu: true,
 		},
-
 		ImageModal: {
 			renderItem: (modal) => <ModalImage url={modal.data.url} />,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
@@ -94,6 +94,6 @@ export const modalConfig: TBntModalConfig<ModalType> = {
 			getPath: (data) => `event/${data.post.id}`,
 			isTop: true,
 		},
-		...integrationsModalConfig.items,
+		...telegramModalConfig.items,
 	},
 };

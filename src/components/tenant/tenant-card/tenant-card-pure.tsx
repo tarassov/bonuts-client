@@ -1,14 +1,19 @@
-import { BntCard } from "shared/ui/card/card";
-import classNames from "classnames";
-import { BntCardBody } from "shared/ui/card/card-body";
-import { BntStack } from "shared/ui/stack/stack";
-import { DEFAULT_DONUT_IMAGE } from "constants/images";
-import { BntTypography } from "shared/ui/typography/typography";
 import { FC } from "react";
-import { TENANT_CARD_CLASSES } from "components/tenant/tenant-card/classes";
-import { BntRegularSecondaryButton } from "shared/ui/buttons/regular-secondary-button";
-import { emptyFunction } from "utils/empty-function";
+import classNames from "classnames";
+
 import { BntCancelButton } from "shared/ui/buttons/cancel-button";
+import { BntRegularSecondaryButton } from "shared/ui/buttons/regular-secondary-button";
+import { BntCard } from "shared/ui/card/card";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { emptyFunction } from "utils/empty-function";
+
+import { DEFAULT_DONUT_IMAGE } from "constants/images";
+
+import { TENANT_CARD_CLASSES } from "components/tenant/tenant-card/classes";
+
 import { TTenant } from "@/types/model/tenant";
 
 export type TenantCardPureProps = {
@@ -52,13 +57,7 @@ export const TenantCardPure: FC<TenantCardPureProps> = ({
 					</div>
 				</BntStack>
 			</BntCardBody>
-			<BntStack
-				direction="row"
-				justifyContent="center"
-				alignItems="center"
-				spacing={3}
-				className="mb-6"
-			>
+			<BntStack direction="row" justifyContent="center" alignItems="center" spacing={3} className="mb-6">
 				{submitActionName && (
 					<BntRegularSecondaryButton variant="contained" onClick={onSubmitActionClick} noTransform>
 						{submitActionName}

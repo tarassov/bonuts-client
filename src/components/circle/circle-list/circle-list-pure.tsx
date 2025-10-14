@@ -1,13 +1,17 @@
 import React, { FC } from "react";
+import { BntRoutes } from "routes/config/routes";
+import { routesConfig } from "routes/config/routes-config";
 import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-import { BntStack } from "shared/ui/stack/stack";
+
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
-import { routesConfig } from "routes/config/routes-config";
-import { BntRoutes } from "routes/config/routes";
+import { BntStack } from "shared/ui/stack";
+
 import { CommonStrings } from "constants/dictionary";
+
 import { useCirclesTableConfig } from "components/circle/circle-list/use-circles-table-config";
+
 import { TCircle } from "@/types/model/circle";
 
 export type CircleListPureProps = {
@@ -24,9 +28,7 @@ export const CircleListPure: FC<CircleListPureProps> = ({ circles }) => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.path || "circles",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.icon,
 		},
 	];

@@ -5,7 +5,7 @@ import { useDebounceCallback } from "usehooks-ts";
 
 import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { BntTextInput } from "shared/ui/input/text-input";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { emptyFunction } from "utils/empty-function";
 

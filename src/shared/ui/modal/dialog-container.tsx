@@ -1,21 +1,24 @@
 import { useContext, useState } from "react";
-import { BntDialog } from "shared/ui/modal/dialog";
-import { BntDialogCloseContext, BntDialogValueContext } from "shared/ui/modal/dialog-context";
-import { BntStack } from "shared/ui/stack/stack";
+import * as React from "react";
 import { CloseOutlined } from "@mui/icons-material";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { useMediaQuery, useTheme } from "@mui/material";
+import _ from "lodash";
+
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { texts_c } from "services/localization/texts/texts_c";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntDivider } from "shared/ui/divider/bnt-divider";
-import { BntTypography } from "shared/ui/typography/typography";
-import _ from "lodash";
-import * as React from "react";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { BntModalLoader } from "shared/ui/loader/modal-loader";
+import { BntDialog } from "shared/ui/modal/dialog";
+import { BntDialogCloseContext, BntDialogValueContext } from "shared/ui/modal/dialog-context";
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
 
-export const BntDialogContainer = () => {
+import { texts_c } from "services/localization/texts/texts_c";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+export function BntDialogContainer() {
 	const modals = useContext(BntDialogValueContext);
 	const { t } = useBntTranslate();
 	const handleClose = useContext(BntDialogCloseContext);
@@ -31,11 +34,7 @@ export const BntDialogContainer = () => {
 	return (
 		<>
 			{[...modals].map((modal) => {
-				const title = modal.title
-					? _.isFunction(modal.title)
-						? modal.title(modal)
-						: modal.title
-					: "";
+				const title = modal.title ? (_.isFunction(modal.title) ? modal.title(modal) : modal.title) : "";
 				const isLoading = loadingModal[modal.modalKey];
 				return (
 					<BntDialog
@@ -48,10 +47,7 @@ export const BntDialogContainer = () => {
 						isTop={modal.isTop}
 					>
 						<BntModalLoader loading={isLoading} />
-						<BntBox
-							className="bnt-dialog-box"
-							sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}
-						>
+						<BntBox className="bnt-dialog-box" sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}>
 							{modal.hasTopMenu && !fullScreen ? (
 								<>
 									<BntStack
@@ -86,4 +82,4 @@ export const BntDialogContainer = () => {
 			})}
 		</>
 	);
-};
+}

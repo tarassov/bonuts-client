@@ -1,16 +1,23 @@
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
-import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
 import { useMemo } from "react";
-import { BntProfileButton } from "components/buttons/profile-button";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
-import { Typography } from "@mui/material";
-import { Currency } from "constants/currency";
-import { useIcons } from "hooks/use-icons";
-import { BntStack } from "shared/ui/stack/stack";
 import { DonutSmallOutlined } from "@mui/icons-material";
-import { TProfile } from "@/types/model";
+import { Typography } from "@mui/material";
+import { CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
+
+import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
+import { BntStack } from "shared/ui/stack";
+
+import { Currency } from "constants/currency";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useIcons } from "hooks/use-icons";
+
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
+
+import { BntProfileButton } from "components/buttons/profile-button";
+
 import reportsTexts from "../config/reports-texts";
+
+import { TProfile } from "@/types/model";
 
 export const useStatisticsTableConfig = (totalFieldName: string, currency?: Currency) => {
 	const { translate } = useBntTranslate();

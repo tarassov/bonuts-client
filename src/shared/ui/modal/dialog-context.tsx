@@ -1,11 +1,12 @@
-import { modalConfig, ModalType } from "config/modal-config";
 import { createContext, ReactNode } from "react";
 import { TModalProps } from "shared/ui/types/dialog-types";
+
+import { modalConfig, TModalConfig } from "@/app/config/modal-config";
 
 type ModalNamesType = keyof typeof modalConfig.items;
 
 type ContextType = {
-	<T extends ModalNamesType>(name: T, data: ModalType[T], key?: string): void;
+	<T extends ModalNamesType>(name: T, data: TModalConfig[T], key?: string): void;
 };
 
 export const BntDialogContext = createContext<ContextType>(() => {});

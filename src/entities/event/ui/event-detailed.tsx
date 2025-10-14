@@ -1,7 +1,7 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { Modules } from "constants/modules";
 

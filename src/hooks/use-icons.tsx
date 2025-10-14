@@ -1,7 +1,9 @@
-import { ReactSVG } from "react-svg";
 import { ElementType } from "react";
+import { ReactSVG } from "react-svg";
+
 import { emptyFunction } from "utils/empty-function";
-import { iconNames } from "@/config/icon-names";
+
+import { iconNames } from "@/app/config/icon-names";
 
 const ROOT_PATH = "/assets/icons/";
 
@@ -21,10 +23,7 @@ export const useIcons = (attributes?: Partial<Attributes>) =>
 						attributes
 							? (svg) => {
 									svg.classList.add(`svg-icon-${name}`);
-									svg.setAttribute(
-										"style",
-										`width: ${attributes.width}; height: ${attributes.height}`
-									);
+									svg.setAttribute("style", `width: ${attributes.width}; height: ${attributes.height}`);
 							  }
 							: emptyFunction
 					}

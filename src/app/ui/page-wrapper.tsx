@@ -1,14 +1,16 @@
-import { FC } from "react";
-import { modalConfig, ModalType } from "config/modal-config";
-import { BntDialogProvider } from "shared/ui/modal/dialog-provider";
+import { BntDialogProvider } from "shared/ui/modal";
 
-export const PageWrapper: FC<{
+import { modalConfig, TModalConfig } from "../config/modal-config";
+
+interface IPageWrapperProps {
 	children: JSX.Element | Array<JSX.Element>;
 	path: string;
 	addressPath: string; // could be different for modal path's
-	modalName?: keyof ModalType;
+	modalName?: keyof TModalConfig;
 	modalData?: any;
-}> = ({ children, addressPath, path, modalName, modalData }) => {
+}
+
+export function PageWrapper({ children, addressPath, path, modalName, modalData }: IPageWrapperProps) {
 	return (
 		<BntDialogProvider
 			path={path}
@@ -20,4 +22,4 @@ export const PageWrapper: FC<{
 			{children}
 		</BntDialogProvider>
 	);
-};
+}

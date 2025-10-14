@@ -5,13 +5,13 @@ import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { CommonStrings } from "constants/dictionary";
 
 import { TenantSchedulers } from "@/widgets/scheduler";
 
-export const SchedulersPage = () => {
+export function SchedulersPage() {
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: "settings",
@@ -21,9 +21,7 @@ export const SchedulersPage = () => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Schedulers?.path || "schedulers",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Schedulers?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Schedulers?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Schedulers?.icon,
 		},
 	];
@@ -35,4 +33,4 @@ export const SchedulersPage = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

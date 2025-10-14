@@ -3,7 +3,7 @@ import { CloseOutlined } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 
 import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 import { emptyFunction } from "utils/empty-function";
 
@@ -11,9 +11,8 @@ import { texts_c } from "services/localization/texts";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { useUpdateProfile } from "@/entities/profile/model/use-update-profile";
-
 import { BntProfileForm, BntProfileImage } from "@/entities/profile";
+import { useUpdateProfile } from "@/entities/profile/model/use-update-profile";
 import { TProfile } from "@/types/model";
 
 export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = ({

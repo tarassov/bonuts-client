@@ -1,6 +1,8 @@
 import { useCallback, useContext, useMemo } from "react";
+
 import { BntDialogCloseContext, BntDialogContext } from "shared/ui/modal/dialog-context";
-import { modalConfig, ModalType } from "config/modal-config";
+
+import { modalConfig, TModalConfig } from "@/app/config/modal-config";
 
 export const useModal = () => {
 	const showModal = useContext(BntDialogContext);
@@ -15,16 +17,16 @@ export const useModal = () => {
 	const modalList = useMemo(
 		() =>
 			Object.keys(modalConfig.items).reduce((acc, curr) => {
-				const key = curr as any as keyof ModalType;
+				const key = curr as any as keyof TModalConfig;
 				acc[key] = {
 					name: key,
-					show: (data: ModalType[typeof key]) => {
+					show: (data: TModalConfig[typeof key]) => {
 						showModal(key, data);
 					},
 					hide: () => handleClose(key, key),
 				};
 				return acc;
-			}, {} as { [k in keyof ModalType]: { name: keyof ModalType; show: (data: ModalType[k]) => void; hide: VoidFunction } }),
+			}, {} as { [k in keyof TModalConfig]: { name: keyof TModalConfig; show: (data: TModalConfig[k]) => void; hide: VoidFunction } }),
 		[handleClose, showModal]
 	);
 
