@@ -15,11 +15,11 @@ import { Dictionary } from "constants/dictionary";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
-
 import { CommentCardHeader } from "components/comment/comment-card/comment-card-header";
 
 import type { TComment } from "@/types/model/comment";
+
+import { useEmployeeLoader } from "@/entities/profile/model/use-employee-loader";
 
 export const CommentCard: FC<{ comment: TComment; className?: string }> = ({ comment, className }) => {
 	const { profile, content, date_string_utc } = comment;

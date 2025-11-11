@@ -1,18 +1,19 @@
 import { PostProfilesByIdSetActivityApiResponse } from "services/api/bonuts-api";
-import { profilesApi } from "services/api/extended/profiles-api";
 import { texts_a, texts_c, texts_d } from "services/localization/texts";
 import { useNotification } from "services/notification";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useModal } from "hooks/use-modal";
 
-import { useProfileLogic } from "@/entities/profile";
+import { profilesApi } from "../api/profiles-api";
+
+import { useProfile } from "@/entities/profile";
 import { TActionCallback } from "@/types/logic/action-callback";
 
 export const useEmployee = () => {
 	const { usePostProfilesByIdSetActivityMutation } = profilesApi;
 	const [postEmployeeActivity] = usePostProfilesByIdSetActivityMutation();
-	const { authTenant } = useProfileLogic();
+	const { authTenant } = useProfile();
 	const { showNotification } = useNotification();
 	const { ConfirmationModal } = useModal();
 	const { t } = useBntTranslate();

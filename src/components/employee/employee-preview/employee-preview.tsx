@@ -6,19 +6,19 @@ import { Modules } from "constants/modules";
 
 import { useModal } from "hooks/use-modal";
 
-import { useEmployee } from "logic/hooks/employee/use-employee";
-import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
 import { useTransferUi } from "logic/ui/use-transfer-ui";
 
 import { EmployeePreviewStyled } from "components/employee/employee-preview/employee-preview-styled";
 
-import { useProfileLogic } from "@/entities/profile";
+import { useProfile } from "@/entities/profile";
+import { useEmployee } from "@/entities/profile/model/use-employee";
+import { useEmployeeLoader } from "@/entities/profile/model/use-employee-loader";
 
-export const EmployeePreview = () => {
+export function EmployeePreview() {
 	const { id } = useParams();
 	const { employee, isLoading, error } = useEmployeeLoader(id);
 	const { ImageModal } = useModal();
-	const { profile } = useProfileLogic();
+	const { profile } = useProfile();
 	const { showAdminDeposit, showTransfer } = useTransferUi();
 	const { setActivityWithConfirmation, setActivity } = useEmployee();
 
@@ -65,4 +65,4 @@ export const EmployeePreview = () => {
 			onDisableClick={onDisable}
 		/>
 	);
-};
+}

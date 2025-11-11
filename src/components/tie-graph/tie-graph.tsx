@@ -1,19 +1,16 @@
-import { useTiesList } from "logic/hooks/tie/use-ties-list";
-import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
-import {
-	GraphCanvas,
-	GraphEdge,
-	GraphNode,
-	Icon,
-	InternalGraphNode,
-	useSelection,
-	GraphCanvasRef,
-} from "reagraph";
 import React, { FC, useEffect, useMemo, useRef, useState } from "react";
-import { tieTheme } from "components/tie-graph/tie-theme";
 import { DatePicker } from "@mui/x-date-pickers";
-import { useBntTranslate } from "hooks/use-bnt-translate";
+import { GraphCanvas, GraphCanvasRef, GraphEdge, GraphNode, Icon, InternalGraphNode, useSelection } from "reagraph";
+
 import { texts_p } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+import { useTiesList } from "logic/hooks/tie/use-ties-list";
+
+import { tieTheme } from "components/tie-graph/tie-theme";
+
+import { useEmployeeList } from "@/entities/profile";
 
 export const TieGraph: FC = () => {
 	const { objects: profiles = [] } = useEmployeeList();
@@ -106,13 +103,7 @@ export const TieGraph: FC = () => {
 						edges={edges}
 						edgeInterpolation="curved"
 						renderNode={({ node, ...rest }) => {
-							return (
-								<Icon
-									{...rest}
-									node={node}
-									image={node.icon || "/assets/icons/default_profile.png" || ""}
-								/>
-							);
+							return <Icon {...rest} node={node} image={node.icon || "/assets/icons/default_profile.png" || ""} />;
 						}}
 					/>
 				) : undefined}

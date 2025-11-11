@@ -5,10 +5,10 @@ import { GradientCard } from "shared/ui/card/gradient-card";
 import { AccountBalanceDistrib } from "components/account-balance/account-balance-distrib";
 import { AccountBalanceSelf } from "components/account-balance/account-balance-self";
 
-import { useProfileLogic } from "@/entities/profile";
+import { useProfile } from "@/entities/profile";
 
 export const AccountBalanceCard: FC<{ accountType: "self" | "distrib" }> = ({ accountType }) => {
-	const { profile } = useProfileLogic();
+	const { profile } = useProfile();
 
 	if (!profile) return null;
 

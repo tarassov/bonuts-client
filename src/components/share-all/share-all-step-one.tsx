@@ -17,11 +17,11 @@ import { texts_r } from "services/localization/texts/texts_r";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { useEmployeeList } from "logic/hooks/employee/use-employee-list";
 import { useSearch } from "logic/hooks/use-search";
 
 import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
 
+import { useEmployeeList } from "@/entities/profile";
 import { TProfile } from "@/types/model";
 
 export const ShareAllStepOne: FC<{

@@ -4,13 +4,13 @@ import {
 	usePatchCirclesByIdMutation,
 } from "services/api/bonuts-api";
 
-import { useProfileLogic } from "@/entities/profile";
+import { useProfile } from "@/entities/profile";
 import { TCircle } from "@/types/model";
 
 export const useCircle = () => {
 	const [patchCircleApi] = usePatchCirclesByIdMutation();
 	const [deleteCircleApi] = useDeleteCirclesByIdMutation();
-	const { profile } = useProfileLogic();
+	const { profile } = useProfile();
 	const patchCircle = async (
 		circleId: number,
 		args: TCircle,

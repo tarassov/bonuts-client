@@ -16,7 +16,7 @@ import type { TProfile } from "@/types/model";
 
 const OPERATION_NAME = "profileLogic";
 
-export const useProfileLogic = () => {
+export const useProfile = () => {
 	const authProfile = useAppSelector(authProfileSelector);
 	const authTenant = useAppSelector(authTenantSelector);
 	const { updateProfile: update } = useUpdateProfile();
@@ -36,6 +36,7 @@ export const useProfileLogic = () => {
 		}
 	}, [data]);
 
+	// todo: extract to use-update-profile
 	const updateProfile = async (profile: TProfile, values: Record<string, any>) => {
 		openLoader();
 		return update(profile, values, refetch).finally(() => {
@@ -44,14 +45,10 @@ export const useProfileLogic = () => {
 	};
 
 	const invalidateDistribBalance = () => {
-		dispatch(
-			accountsApi.util.invalidateTags(invalidateId("Accounts", authProfile?.distrib_account?.id))
-		);
+		dispatch(accountsApi.util.invalidateTags(invalidateId("Accounts", authProfile?.distrib_account?.id)));
 	};
 	const invalidateSelfBalance = () => {
-		dispatch(
-			accountsApi.util.invalidateTags(invalidateId("Accounts", authProfile?.self_account?.id))
-		);
+		dispatch(accountsApi.util.invalidateTags(invalidateId("Accounts", authProfile?.self_account?.id)));
 	};
 
 	return {

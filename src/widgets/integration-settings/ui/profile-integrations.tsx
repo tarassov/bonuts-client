@@ -11,10 +11,10 @@ import { texts_c, texts_l, texts_n, texts_s } from "services/localization/texts"
 
 import { useModal } from "hooks/use-modal";
 
-import { useProfileLogic } from "@/entities/profile";
+import { useProfile } from "@/entities/profile";
 
 export function ProfileIntegrations() {
-	const { profile, isLoading } = useProfileLogic();
+	const { profile, isLoading } = useProfile();
 	const { t } = useTranslation();
 	const { ConnectTelegramModal } = useModal();
 	const { authTenant } = useCurrentAuth();
@@ -32,6 +32,7 @@ export function ProfileIntegrations() {
 				break;
 			// Add cases for other plugin types as needed
 			default:
+				// eslint-disable-next-line no-console
 				console.log(`No modal configured for plugin: ${pluginName}`);
 				break;
 		}

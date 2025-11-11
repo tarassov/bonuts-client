@@ -1,7 +1,6 @@
-import { cacheByIdArgProperty, providesList } from "services/redux/utils/rtk-cache-utils";
 import { bonutsApi } from "services/api/bonuts-api";
+import { cacheByIdArgProperty, providesList } from "services/redux/utils/rtk-cache-utils";
 
-// noinspection TypeScriptValidateJSTypes
 export const profilesApi = bonutsApi.enhanceEndpoints({
 	addTagTypes: ["Profiles"],
 	endpoints: {

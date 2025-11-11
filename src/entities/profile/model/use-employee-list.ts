@@ -1,6 +1,8 @@
 import { apiProfilesAdaptor } from "services/adaptor/api-profile-adaptor";
-import { profilesApi } from "services/api/extended/profiles-api";
-import { useListBase } from "../use-list-base";
+
+import { useListBase } from "logic/hooks/use-list-base";
+
+import { profilesApi } from "../api/profiles-api";
 
 export const useEmployeeList = (args: { searchText?: string } = {}) => {
 	const { searchText } = args;

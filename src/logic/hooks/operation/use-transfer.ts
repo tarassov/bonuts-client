@@ -13,7 +13,7 @@ import { useNotification } from "services/notification";
 
 import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
 
-import { useProfileLogic } from "@/entities/profile";
+import { useProfile } from "@/entities/profile";
 import { TransferProps } from "@/types/logic";
 import { TActionCallback } from "@/types/logic/action-callback";
 import { AdminDepositProps } from "@/types/logic/transfer";
@@ -23,7 +23,7 @@ export const useTransfer = () => {
 	const [postOperation] = usePostAccountOperationsMutation();
 	const [postAdminDeposit] = usePostAdminDepositMutation();
 	const tenant = useCurrentTenant();
-	const { profile, invalidateDistribBalance } = useProfileLogic();
+	const { profile, invalidateDistribBalance } = useProfile();
 	const { showNotification } = useNotification();
 	const { openLoader, closeLoader } = useLoader(OPERATION_NAME, false);
 
@@ -58,10 +58,7 @@ export const useTransfer = () => {
 				});
 		}
 	};
-	const adminDeposit = (
-		args: AdminDepositProps,
-		options?: TActionCallback<PostAdminDepositApiResponse>
-	) => {
+	const adminDeposit = (args: AdminDepositProps, options?: TActionCallback<PostAdminDepositApiResponse>) => {
 		const { amount, comment = CommonStrings.EMPTY_STRING, ids, toSelfAccount } = args;
 		if (tenant) {
 			openLoader();

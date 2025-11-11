@@ -18,12 +18,12 @@ import SwitchRoutes from "@/app/ui/switch-routes";
 
 import "@/app/ui/app.scss";
 
-import { useProfileLogic } from "@/entities/profile";
+import { useProfile } from "@/entities/profile";
 
 export function BntLayout() {
 	const { auth } = useAuth();
 	const { routes, redirects } = useContext(AppContext);
-	const { profile, isLoading } = useProfileLogic();
+	const { profile, isLoading } = useProfile();
 
 	useLoader(Modules.Profile, isLoading);
 
