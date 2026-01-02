@@ -1,7 +1,9 @@
-import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 import React, { FC } from "react";
+import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 import { push } from "redux-first-history";
+
 import { useAppDispatch } from "services/redux/store/store";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
 export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
@@ -20,11 +22,7 @@ export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 	};
 
 	return (
-		<Tooltip
-			placement="right"
-			title={translate(route.navbarName)}
-			disableHoverListener={!showTooltip}
-		>
+		<Tooltip placement="right" title={translate(route.navbarName)} disableHoverListener={!showTooltip}>
 			<ListItemButton
 				sx={{
 					minHeight: 24,
@@ -44,10 +42,7 @@ export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 				>
 					{route.icon}
 				</ListItemIcon>
-				<ListItemText
-					primary={translate(route.navbarName)}
-					sx={{ opacity: showFullName ? 1 : 0 }}
-				/>
+				<ListItemText primary={translate(route.navbarName)} sx={{ opacity: showFullName ? 1 : 0 }} />
 			</ListItemButton>
 		</Tooltip>
 	);

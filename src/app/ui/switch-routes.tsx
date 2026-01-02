@@ -1,19 +1,19 @@
-import { FC, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import _ from "lodash";
+import { ForbiddenPage } from "pages/forbidden-page";
 import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
 
-import { useAuth } from "shared/model/auth/use-auth";
-
 import { useLocationTyped } from "hooks/use-location-typed";
 
-import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
+import { type TAuthState, useAuth } from "@/shared/model/auth";
 
-import type { TAuthState } from "shared/model/auth/auth-state";
+import { useCurrentProfile } from "@/entities/profile";
+
 import { PageWrapper } from "./page-wrapper";
 
-import type { TModalConfig } from "@/app/config/modal-config";
+import type { TModalConfig } from "../config/modal-config";
 
 interface ISwitchRoutesProps {
 	routes: Array<TRoute<any>>;
@@ -50,23 +50,23 @@ const getRoute = (
 	);
 };
 
-const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
+function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	const location = useLocationTyped();
-	const { checkAuth, isAuthLoading, auth, currentRoles } = useAuth();
+	const { checkAuth, isAuthLoading, auth } = useAuth();
+	const { currentRoles } = useCurrentProfile();
 	const { background, name, data } = location.state || {};
 
 	useEffect(() => {
 		checkAuth().catch((e) => console.error("Check auth failed", e));
-	}, []);
-	// const from = location.state?.from?.pathname || "/";
+	}, [checkAuth]);
 
 	const authenticatedRoutes = useMemo(() => {
 		return routes.filter((r) => r.authenticated);
-	}, [routes, auth]);
+	}, [routes]);
 
 	const anonymousRoutes = useMemo(() => {
 		return routes.filter((r) => !r.authenticated);
-	}, [routes, auth]);
+	}, [routes]);
 
 	if (isAuthLoading) {
 		return <div>Checking auth...</div>;
@@ -112,6 +112,6 @@ const SwitchRoutes: FC<ISwitchRoutesProps> = ({ routes }) => {
 				})}
 		</Routes>
 	);
-};
+}
 
 export default SwitchRoutes;

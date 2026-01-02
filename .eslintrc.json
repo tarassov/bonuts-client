@@ -23,17 +23,22 @@
 					// Packages `react` related packages come first.
 					["^react", "^@?\\w"],
 					// Internal packages.
-					["^shared(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
 					["^utils(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
 					["^constants(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
 					["^services(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
 					["^hook(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
 					["^logic(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
 					["^components(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
-					["^features(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
-					["^widgets(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
-					["^pages(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
 					["^(?=.*(?:^app|/app))(?!.*(?:\\.css$|\\.scss$|\\u0000$))"],
+
+					// FSD layer imports
+					["^@/shared/"],
+					["^@/entities/"],
+					["^@/features/"],
+					["^@/widgets/"],
+					["^@/pages/"],
+					["^@/app/"],
+
 					// Parent imports. Put `..` last.
 					["^\\.\\.(?!/?$)", "^\\.\\./?$"],
 					// Other relative imports. Put same-folder imports and `.` last.

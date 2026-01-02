@@ -1,18 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import _ from "lodash";
-
-import { TAuthState } from "shared/model/auth/auth-state";
 
 import { bonutsApi } from "../../api/bonuts-api";
 
-import { TProfile } from "@/types/model";
+import type { TAuthState } from "@/shared/model/auth";
 
 const initialState: TAuthState = {
 	token: undefined,
 	tenant: undefined,
 	isAuthenticated: false,
 	isAuthenticating: false,
-	profile: undefined,
 };
 
 const slice = createSlice({
@@ -25,9 +21,6 @@ const slice = createSlice({
 			state.isAuthenticating = false;
 			state.token = action.payload.token;
 			state.tenant = action.payload.tenant;
-		},
-		setProfile: (state: TAuthState, action: PayloadAction<TProfile>) => {
-			if (!_.isEqual(state.profile, action.payload)) state.profile = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
@@ -56,7 +49,6 @@ const slice = createSlice({
 				state.isAuthenticating = false;
 				state.token = undefined;
 				state.tenant = undefined;
-				state.profile = undefined;
 			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchPending, (state) => {
 				state.isAuthenticating = true;
@@ -74,7 +66,6 @@ const slice = createSlice({
 				state.isAuthenticating = false;
 				state.token = undefined;
 				state.tenant = undefined;
-				state.profile = undefined;
 			})
 			.addMatcher(bonutsApi.endpoints.postLogout.matchPending, () => {
 				return initialState;

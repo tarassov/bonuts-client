@@ -1,5 +1,4 @@
 import { useCallback, useMemo } from "react";
-
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
@@ -8,11 +7,11 @@ import { accountsApi } from "services/api/extended/accounts-api";
 import { useAppDispatch } from "services/redux/store/store";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
 
+import { useCurrentProfile } from "@/entities/profile";
+
 import { useUpdateProfile } from "./use-update-profile";
 
 import type { TProfile } from "@/types/model";
-
-import { useCurrentProfile } from "@/entities/profile";
 
 const OPERATION_NAME = "profileLogic";
 
@@ -22,10 +21,7 @@ export const useProfile = () => {
 	const { updateProfile: update } = useUpdateProfile();
 	const { openLoader, closeLoader } = useLoader(OPERATION_NAME);
 	const dispatch = useAppDispatch();
-	const { data, error, isLoading, refetch } = useGetProfileQuery(
-		{ tenant: authTenant || undefined },
-		{ skip: !authTenant }
-	);
+	const { data, error, isLoading } = useGetProfileQuery({ tenant: authTenant || undefined }, { skip: !authTenant });
 
 	const profile = useMemo(() => {
 		if (data) return apiProfileAdaptor(data);
@@ -33,9 +29,11 @@ export const useProfile = () => {
 
 	const updateProfile = async (newProfile: TProfile, values: Record<string, any>) => {
 		openLoader();
-		return update(newProfile, values, refetch).finally(() => {
+		try {
+			await update(newProfile, values);
+		} finally {
 			closeLoader();
-		});
+		}
 	};
 
 	const invalidateDistribBalance = useCallback(() => {

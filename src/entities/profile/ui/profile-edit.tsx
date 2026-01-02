@@ -1,10 +1,9 @@
-import React from "react";
 import { Grid2 as Grid } from "@mui/material";
+
+import { useProfile } from "@/entities/profile";
 
 import { BntProfileForm } from "./profile-form";
 import { BntProfileImage } from "./profile-image";
-
-import { useProfile } from "@/entities/profile";
 
 export function ProfileEdit() {
 	const { profile, isLoading, error, updateProfile } = useProfile();

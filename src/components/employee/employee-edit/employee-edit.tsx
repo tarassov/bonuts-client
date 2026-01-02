@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { CloseOutlined } from "@mui/icons-material";
-import { Grid } from "@mui/material";
-
+import { Grid2 as Grid } from "@mui/material";
 import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { BntStack } from "shared/ui/stack";
 
@@ -13,7 +12,8 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { BntProfileForm, BntProfileImage } from "@/entities/profile";
 import { useUpdateProfile } from "@/entities/profile/model/use-update-profile";
-import { TProfile } from "@/types/model";
+
+import type { TProfile } from "@/types/model";
 
 export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = ({
 	profile,
@@ -21,6 +21,7 @@ export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = 
 }) => {
 	const { updateProfile } = useUpdateProfile();
 	const { translate } = useBntTranslate();
+
 	return (
 		<>
 			<BntStack direction="row" justifyContent="flex-end">
@@ -29,10 +30,10 @@ export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = 
 				</BntIconButton>
 			</BntStack>
 			<Grid container spacing={2} className="p-2">
-				<Grid item xs={12} sm={6} lg={4}>
+				<Grid size={{ xs: 12, sm: 6, lg: 4 }}>
 					<BntProfileImage profile={profile} />
 				</Grid>
-				<Grid item xs={12} sm={6} lg={6}>
+				<Grid size={{ xs: 12, sm: 6, lg: 6 }}>
 					<BntProfileForm profile={profile} updateProfile={updateProfile} />
 				</Grid>
 			</Grid>

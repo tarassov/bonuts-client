@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { push } from "redux-first-history";
-
 import { storage } from "shared/lib/localStorage";
 
 import {
@@ -117,6 +116,5 @@ export function useAuth() {
 		checkAuth,
 		auth,
 		setTenant,
-		currentRoles: auth.profile?.roles,
 	};
 }

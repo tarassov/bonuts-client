@@ -12,5 +12,7 @@ export const useCurrentProfile = () => {
 
 	const profile = useMemo(() => apiProfileAdaptor(data), [data]);
 
-	return { profile, isLoading, error, authTenant };
+	const currentRoles = useMemo(() => profile?.roles || [], [profile?.roles]);
+
+	return { profile, currentRoles, isLoading, error, authTenant };
 };

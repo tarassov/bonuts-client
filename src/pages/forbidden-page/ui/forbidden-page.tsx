@@ -1,11 +1,13 @@
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { Stack } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
-import { BntTypography } from "shared/ui/typography/typography";
-import { texts_a } from "services/localization/texts";
+import { Stack } from "@mui/material";
 import { BntBox } from "shared/ui/box/bnt-box";
+import { BntTypography } from "shared/ui/typography/typography";
 
-export const ForbiddenPage = () => {
+import { texts_a } from "services/localization/texts";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+export function ForbiddenPage() {
 	const { t } = useBntTranslate();
 	return (
 		<BntBox
@@ -24,4 +26,4 @@ export const ForbiddenPage = () => {
 			</Stack>
 		</BntBox>
 	);
-};
+}

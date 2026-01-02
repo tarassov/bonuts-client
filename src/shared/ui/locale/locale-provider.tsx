@@ -1,24 +1,14 @@
 import { FC, useEffect, useState } from "react";
-import { LocaleContext } from "shared/ui/locale/locale-context";
-import enLocale from "date-fns/locale/en-US";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
-import {
-	ruRU,
-	esES,
-	deDE,
-	enUS,
-	PickersInputComponentLocaleText,
-} from "@mui/x-date-pickers/locales";
+import { deDE, enUS, esES, PickersInputComponentLocaleText, ruRU } from "@mui/x-date-pickers/locales";
+import enLocale from "date-fns/locale/en-US";
+import { LocaleContext } from "shared/ui/locale/locale-context";
 import { PickerLocaleContext } from "shared/ui/locale/picker-locale-context";
 
 export const getDateLocale = () => navigator.language; // Intl.DateTimeFormat().resolvedOptions().locale;
-export const LocaleProvider: FC<{ children: JSX.Element | Array<JSX.Element> }> = ({
-	children,
-}) => {
+export const LocaleProvider: FC<{ children: JSX.Element | Array<JSX.Element> }> = ({ children }) => {
 	const [locale, setLocale] = useState(enLocale);
-	const [pickerLocaleText, setPickerLocaleText] = useState<
-		PickersInputComponentLocaleText<any> | undefined
-	>(undefined);
+	const [pickerLocaleText, setPickerLocaleText] = useState<PickersInputComponentLocaleText<any> | undefined>(undefined);
 
 	useEffect(() => {
 		const importLocaleFile = async () => {
