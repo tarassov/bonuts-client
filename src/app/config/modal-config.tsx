@@ -14,7 +14,8 @@ import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-e
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
 
-import { telegramModalConfig, type TTelegramModalConfig } from "@/entities/telegram";
+import { telegramModalConfig, type TTelegramModalConfig } from "@/features/profile/telegram";
+
 import { TPost } from "@/types/model/post";
 
 export type TModalConfig = TTelegramModalConfig & {

@@ -1,5 +1,5 @@
 import { TypedUseSelectorHook, useDispatch, useSelector as selectorHook } from "react-redux";
-import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { createBrowserHistory } from "history";
 import { createReduxHistoryContext } from "redux-first-history";
@@ -13,7 +13,7 @@ const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHisto
 	history: createBrowserHistory(),
 });
 
-export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | undefined) =>
+export const createStore = () =>
 	configureStore({
 		reducer: {
 			router: routerReducer,
@@ -22,7 +22,6 @@ export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | 
 		devTools: process.env.NODE_ENV !== "production",
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(routerMiddleware, api.middleware, rtkErrorHandler),
-		...options,
 	});
 export const store = createStore();
 

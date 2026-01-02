@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@mui/material";
-
 import { useCurrentProfile } from "shared/model/auth";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntStack } from "shared/ui/stack";
@@ -12,7 +11,8 @@ import { texts_c, texts_l, texts_n, texts_s } from "services/localization/texts"
 import { useModal } from "hooks/use-modal";
 
 import { useProfile } from "@/entities/profile";
-import { useTelegramChat } from "@/entities/telegram/model/use-telegram-chat";
+
+import { useTelegramChat } from "@/features/profile/telegram/model/use-telegram-chat";
 
 export function ProfileIntegrations() {
 	const { profile, isLoading } = useProfile();
@@ -30,7 +30,7 @@ export function ProfileIntegrations() {
 
 		switch (pluginName.toLowerCase()) {
 			case "telegram":
-				ConnectTelegramModal.show({ tg_code: profile?.tg_code });
+				ConnectTelegramModal.show();
 				break;
 			// Add cases for other plugin types as needed
 			default:

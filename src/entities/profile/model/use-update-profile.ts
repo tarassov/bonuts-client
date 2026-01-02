@@ -1,14 +1,15 @@
-import { authTenantSelector } from "shared/model/auth/auth-selector";
-
 import { emptyFunction } from "utils/empty-function";
 
-import { usePutProfilesByIdMutation } from "services/api/bonuts-api";
 import { useAppSelector } from "services/redux/store/store";
 
-import { TProfile } from "@/types/model";
+import { authTenantSelector } from "@/shared/model/auth";
+
+import { profilesApi } from "@/entities/profile";
+
+import { type TProfile } from "@/types/model";
 
 export const useUpdateProfile = () => {
-	const [putProfile] = usePutProfilesByIdMutation();
+	const [putProfile] = profilesApi.usePutProfilesByIdMutation();
 	const authTenant = useAppSelector(authTenantSelector);
 	const updateProfile = async (
 		profile: TProfile,

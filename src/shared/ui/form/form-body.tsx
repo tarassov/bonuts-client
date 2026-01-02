@@ -1,12 +1,12 @@
-import { Grid } from "@mui/material";
-import { BntFormContextProvider } from "shared/ui/form/context/bnt-form-provider";
-import { BntFormFieldList } from "shared/ui/form/bnt-form-field-list";
 import { FC, useEffect } from "react";
-import { TFormProps, TFormValue } from "shared/ui/form/types/bnt-form";
 import { useFormContext, useFormState } from "react-hook-form";
+import { Grid } from "@mui/material";
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntFormFieldList } from "shared/ui/form/bnt-form-field-list";
 import { BntFormGroups } from "shared/ui/form/bnt-form-groups";
 import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
-import { BntBox } from "shared/ui/box/bnt-box";
+import { BntFormContextProvider } from "shared/ui/form/context/bnt-form-provider";
+import { TFormProps, TFormValue } from "shared/ui/form/types/bnt-form";
 
 export const BntFormBody: FC<
 	TFormProps<any> & {
@@ -36,7 +36,11 @@ export const BntFormBody: FC<
 		if (isSubmitSuccessful) {
 			reset(initialValues, { keepValues: keepValuesOnSubmit });
 		}
-	}, [isSubmitSuccessful]);
+	}, [initialValues, isSubmitSuccessful, keepValuesOnSubmit, reset]);
+
+	useEffect(() => {
+		reset(initialValues, { keepValues: keepValuesOnSubmit });
+	}, [initialValues, keepValuesOnSubmit, reset]);
 
 	const onCancelClick = () => {
 		onDiscard();
@@ -63,11 +67,7 @@ export const BntFormBody: FC<
 					</>
 				</BntFormContextProvider>
 			</Grid>
-			<BntFormSubmit
-				visible={!!(isDirty || error)}
-				onCancelClick={onCancelClick}
-				submitCaption={submitCaption}
-			/>
+			<BntFormSubmit visible={!!(isDirty || error)} onCancelClick={onCancelClick} submitCaption={submitCaption} />
 		</BntBox>
 	);
 };

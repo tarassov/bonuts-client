@@ -1,6 +1,6 @@
 import { TBntModalConfig } from "shared/ui/types/dialog-types";
 
-import { TelegramModal } from "@/entities/telegram/ui/telegram-modal";
+import { TelegramModal } from "@/features/profile/telegram/ui/telegram-modal";
 
 export type TTelegramModalConfig = {
 	ConnectTelegramModal: { tg_code?: string };

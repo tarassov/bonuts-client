@@ -1,29 +1,27 @@
 import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "shared/ui/form/types/bnt-form";
 
-import { authProfileSelector } from "shared/model/auth/auth-selector";
-
 import { texts_a } from "services/localization/texts/texts_a";
 import { texts_e } from "services/localization/texts/texts_e";
-import { useAppSelector } from "services/redux/store/store";
 
 import { useRoleField } from "hooks/form-field/use-role-field";
 
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
 import { UserLogic } from "logic/utils/user-utils";
 
-import { TProfile } from "@/types/model";
-import { TCircle } from "@/types/model/circle";
+import { useCurrentProfile } from "@/entities/profile";
+
+import { type TCircle, type TProfile } from "@/types/model";
 
 export const useProfileFormFields = () => {
-	const authProfile = useAppSelector(authProfileSelector);
-	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(authProfile) });
+	const { profile } = useCurrentProfile();
+	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(profile) });
 	const { objects: circles, isLoading } = useCircleLoaderList();
 	const circleToOption = (circle: TCircle): TFormFieldSourceItem => {
 		return { key: circle.id, label: circle.name };
 	};
 	const fields: Array<TFormField<TProfile>> = [
 		{
-			readOnly: !UserLogic.isAdmin(authProfile),
+			readOnly: !UserLogic.isAdmin(profile),
 			image: false,
 			size: FieldSize.xs,
 			name: "email",
