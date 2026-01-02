@@ -152,6 +152,15 @@ export const cacheByIdArgProperty =
 			  ]
 			: ([{ type, id: arg.id }] as const);
 
+export const cacheByIdResultProperty =
+	<T extends string>(type: T, tag: string | string[] = []) =>
+	<Result extends { data?: { id?: string } }>(result: Result | undefined): CacheItem<T, string>[] | [] => {
+		if (!result?.data?.id) return [];
+
+		const tags = Array.isArray(tag) ? tag.map((t) => ({ type, id: t })) : [{ type, id: tag }];
+
+		return tags.length > 0 ? [{ type, id: result.data.id }, ...tags] : [{ type, id: result.data.id }];
+	};
 /**
  * HOF to invalidate the 'UNAUTHORIZED' type cache item.
  */

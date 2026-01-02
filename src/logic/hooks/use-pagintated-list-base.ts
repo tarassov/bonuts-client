@@ -1,8 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import _ from "lodash";
-import { usePaginator } from "hooks/use-paginator";
+
+import { authTenantSelector } from "shared/model/auth/auth-selector";
+
 import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
+
+import { usePaginator } from "hooks/use-paginator";
+
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
 
 export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props: {
@@ -40,10 +44,7 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 		if (!_.isEqual(objects, translated)) setObjects(translated);
 	}, [pages]);
 
-	const flatData = useMemo(
-		() => objects.reduce((acc, curr) => [...acc, ...curr], [] as Array<TModel>),
-		[objects]
-	);
+	const flatData = useMemo(() => objects.reduce((acc, curr) => [...acc, ...curr], [] as Array<TModel>), [objects]);
 
 	return {
 		hasNext,

@@ -1,14 +1,12 @@
 import { useCallback } from "react";
 
+import { authTenantSelector } from "shared/model/auth/auth-selector";
+
 import { texts_s } from "services/localization/texts";
 import { useNotification } from "services/notification";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { useAppSelector } from "services/redux/store/store";
 
-import {
-	usePostPluginsByIdActivateMutation,
-	usePostPluginsByIdDeactivateMutation,
-} from "@/entities/plugin";
+import { usePostPluginsByIdActivateMutation, usePostPluginsByIdDeactivateMutation } from "@/entities/plugin";
 
 export function usePluginActivate() {
 	const [activatePlugin] = usePostPluginsByIdActivateMutation();

@@ -1,5 +1,6 @@
+import { authTenantSelector } from "shared/model/auth/auth-selector";
+
 import { apiAdaptor } from "services/adaptor/api-adaptor";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { useAppSelector } from "services/redux/store/store";
 
 import { useGetEventsByIdQuery } from "@/entities/event/api/events-api";

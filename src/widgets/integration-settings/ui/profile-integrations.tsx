@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@mui/material";
 
-import { useCurrentAuth } from "shared/model/auth";
+import { useCurrentProfile } from "shared/model/auth";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
@@ -12,12 +12,14 @@ import { texts_c, texts_l, texts_n, texts_s } from "services/localization/texts"
 import { useModal } from "hooks/use-modal";
 
 import { useProfile } from "@/entities/profile";
+import { useTelegramChat } from "@/entities/telegram/model/use-telegram-chat";
 
 export function ProfileIntegrations() {
 	const { profile, isLoading } = useProfile();
 	const { t } = useTranslation();
 	const { ConnectTelegramModal } = useModal();
-	const { authTenant } = useCurrentAuth();
+	const { authTenant } = useCurrentProfile();
+	const { data: chatData } = useTelegramChat();
 	const { data: profileNotifications, isLoading: isLoadingNotifications } = useGetProfileNotificationsQuery({
 		tenant: authTenant,
 	});

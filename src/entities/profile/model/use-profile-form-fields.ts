@@ -1,8 +1,9 @@
 import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "shared/ui/form/types/bnt-form";
 
+import { authProfileSelector } from "shared/model/auth/auth-selector";
+
 import { texts_a } from "services/localization/texts/texts_a";
 import { texts_e } from "services/localization/texts/texts_e";
-import { authProfileSelector } from "services/redux/selectors/auth-selector";
 import { useAppSelector } from "services/redux/store/store";
 
 import { useRoleField } from "hooks/form-field/use-role-field";

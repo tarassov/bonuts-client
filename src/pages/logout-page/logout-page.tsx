@@ -1,12 +1,13 @@
-import { Avatar, Button } from "@mui/material";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { LogoutOutlined } from "@mui/icons-material";
+import { Avatar, Button } from "@mui/material";
+
 import { useAuth } from "shared/model/auth/use-auth";
+import { BntBox } from "shared/ui/box/bnt-box";
+
 import { Dictionary } from "constants/dictionary";
 
-export const LogoutPage: FC = () => {
+export function LogoutPage() {
 	const { signOut } = useAuth();
 	const { t } = useTranslation();
 	const onClick = () => {
@@ -42,4 +43,4 @@ export const LogoutPage: FC = () => {
 			</Button>
 		</BntBox>
 	);
-};
+}

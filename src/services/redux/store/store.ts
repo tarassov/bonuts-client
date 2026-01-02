@@ -1,9 +1,11 @@
+import { TypedUseSelectorHook, useDispatch, useSelector as selectorHook } from "react-redux";
 import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { createReduxHistoryContext } from "redux-first-history";
 import { createBrowserHistory } from "history";
-import { useDispatch, TypedUseSelectorHook, useSelector as selectorHook } from "react-redux";
+import { createReduxHistoryContext } from "redux-first-history";
+
 import { reducers } from "services/redux/store/reducers";
+
 import { emptySplitApi as api } from "../../api/empty-api";
 import { rtkErrorHandler } from "../../middlewares/rtk-error-handler";
 

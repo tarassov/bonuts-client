@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ReactNode } from "react";
 import { Button } from "@mui/material";
 
 import { BntStack } from "shared/ui/stack";
@@ -10,14 +10,17 @@ import { CommonStrings } from "constants/dictionary";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-export const AccountBalanceMainInfo: FC<{
+interface IProps {
 	title: string;
-	balance?: number;
-	value: React.ReactNode;
+	value: ReactNode;
 	lastOperation?: { direction?: "+" | "-"; amount?: number; date?: string; date_utc?: string };
-	onClick?: VoidFunction;
+	balance?: number;
 	name?: string;
-}> = ({ title, value, lastOperation, name, balance, onClick }) => {
+
+	onClick?: VoidFunction;
+}
+
+export function AccountBalanceMainInfo({ title, value, lastOperation, name, balance, onClick }: IProps) {
 	const { t } = useBntTranslate();
 	return (
 		<BntStack>
@@ -45,4 +48,4 @@ export const AccountBalanceMainInfo: FC<{
 			</Button>
 		</BntStack>
 	);
-};
+}

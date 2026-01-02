@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import _ from "lodash";
-import { TAuthState } from "services/redux/types/auth-state";
+
+import { TAuthState } from "shared/model/auth/auth-state";
+
 import { bonutsApi } from "../../api/bonuts-api";
+
 import { TProfile } from "@/types/model";
 
 const initialState: TAuthState = {

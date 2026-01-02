@@ -1,5 +1,6 @@
+import { authTenantSelector } from "shared/model/auth/auth-selector";
+
 import { usePostEventsByIdCommentsMutation, usePutEventsByIdMutation } from "services/api/bonuts-api";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
 

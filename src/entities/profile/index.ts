@@ -9,5 +9,6 @@ export { useUpdateProfile } from "./model/use-update-profile";
 export { useEmployeeList } from "./model/use-employee-list";
 export { useEmployee } from "./model/use-employee";
 export { useEmployeeLoader } from "./model/use-employee-loader";
+export { useCurrentProfile } from "./model/use-current-profile";
 
 export { profilesApi } from "./api/profiles-api";

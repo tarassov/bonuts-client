@@ -1,18 +1,25 @@
-import { Button, Grid, TextField, Stack, Box } from "@mui/material";
 import { FC, SyntheticEvent, useMemo, useState } from "react";
+import { AppRegistrationOutlined, LoginOutlined, RestoreOutlined } from "@mui/icons-material";
+import { Box, Button, Grid, Stack, TextField } from "@mui/material";
+import BonutsFullIcon from "icons/BonutsFullIcon.svg";
+import _ from "lodash";
+
 import { useAuth } from "shared/model/auth/use-auth";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
 import { Modules } from "constants/modules";
-import { useBntTranslate } from "hooks/use-bnt-translate";
+
 import { texts_d, texts_e, texts_p, texts_r, texts_s } from "services/localization/texts";
-import { AppRegistrationOutlined, LoginOutlined, RestoreOutlined } from "@mui/icons-material";
-import BonutsFullIcon from "icons/BonutsFullIcon.svg";
-import { useAuthUi } from "logic/ui/use-auth-ui";
-import { useSignUp } from "logic/hooks/auth/use-sign-up";
-import _ from "lodash";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
-import { Messenger } from "@/features/3cx/messenger";
+
+import { useSignUp } from "logic/hooks/auth/use-sign-up";
+import { useAuthUi } from "logic/ui/use-auth-ui";
+
 import styles from "./login-page.module.scss";
+
+import { Messenger } from "@/features/3cx/messenger";
 
 // import { useLocationTyped } from "../../hooks/use-location-typed";
 export const LoginPage: FC = () => {

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
+import { authTenantSelector } from "shared/model/auth/auth-selector";
+
 import { useAppSelector } from "services/redux/store/store";
 
 import { usePerformance } from "hooks/use-performance";

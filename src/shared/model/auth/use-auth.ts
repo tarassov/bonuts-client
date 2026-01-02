@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { push } from "redux-first-history";
 
 import { storage } from "shared/lib/localStorage";
@@ -6,7 +6,6 @@ import { storage } from "shared/lib/localStorage";
 import {
 	bonutsApi,
 	PostAuthenticateApiArg,
-	useGetProfileQuery,
 	usePostAuthenticateMutation,
 	usePostDemoAuthenticateMutation,
 	usePostLogoutMutation,

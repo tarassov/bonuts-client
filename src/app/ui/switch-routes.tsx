@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import _ from "lodash";
 import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
-import { TAuthState } from "services/redux/types/auth-state";
 
 import { useAuth } from "shared/model/auth/use-auth";
 
@@ -11,9 +10,10 @@ import { useLocationTyped } from "hooks/use-location-typed";
 
 import { ForbiddenPage } from "pages/forbidden-page/forbidden-page";
 
-import { TModalConfig } from "@/app/config/modal-config";
-
+import type { TAuthState } from "shared/model/auth/auth-state";
 import { PageWrapper } from "./page-wrapper";
+
+import type { TModalConfig } from "@/app/config/modal-config";
 
 interface ISwitchRoutesProps {
 	routes: Array<TRoute<any>>;

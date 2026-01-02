@@ -4,7 +4,7 @@
 		"es2021": true,
 		"jest": true
 	},
-	"extends": ["airbnb", "airbnb-typescript",  "plugin:react-hooks/recommended", "plugin:prettier/recommended"],
+	"extends": ["airbnb", "airbnb-typescript", "plugin:react-hooks/recommended", "plugin:prettier/recommended"],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -21,7 +21,7 @@
 			{
 				"groups": [
 					// Packages `react` related packages come first.
-					["^react", "^@?\\w"	],
+					["^react", "^@?\\w"],
 					// Internal packages.
 					["^shared(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
 					["^utils(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
@@ -33,26 +33,15 @@
 					["^features(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$)"],
 					["^widgets(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
 					["^pages(?!.*types).*$(?<!\\.css|\\.scss|\\u0000$ )"],
-					["^(?=.*(?:^app|\/app))(?!.*(?:\\.css$|\\.scss$|\\u0000$))"],
+					["^(?=.*(?:^app|/app))(?!.*(?:\\.css$|\\.scss$|\\u0000$))"],
 					// Parent imports. Put `..` last.
-					["^\\.\\.(?!/?$)", "^\\.\\./?$"	],
+					["^\\.\\.(?!/?$)", "^\\.\\./?$"],
 					// Other relative imports. Put same-folder imports and `.` last.
-					[
-						"^\\./(?=.*/)(?!/?$)",
-						"^\\.(?!/?$)",
-						"^\\./?$"
-					],
+					["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
 					// Style imports.
-					[
-						"^.+\\.?(scss)$",
-						"^.+\\.?(css)$"
-					],
+					["^.+\\.?(scss)$", "^.+\\.?(css)$"],
 					// Types
-					[
-						"^@?\\w.*\\u0000$",
-						"^[^.].*\\u0000$",
-						"^\\..*\\u0000$"
-					]
+					["^@?\\w.*\\u0000$", "^[^.].*\\u0000$", "^\\..*\\u0000$"]
 				]
 			}
 		],
@@ -83,6 +72,7 @@
 			}
 		],
 		"react/jsx-props-no-spreading": "off",
+		"consistent-return": "off",
 		"import/no-extraneous-dependencies": "off",
 		"react/require-default-props": "off",
 		"react/no-children-prop": "off",

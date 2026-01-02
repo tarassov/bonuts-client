@@ -1,7 +1,8 @@
+import { authTenantSelector } from "shared/model/auth/auth-selector";
+
 import { emptyFunction } from "utils/empty-function";
 
 import { usePutProfilesByIdMutation } from "services/api/bonuts-api";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { useAppSelector } from "services/redux/store/store";
 
 import { TProfile } from "@/types/model";
