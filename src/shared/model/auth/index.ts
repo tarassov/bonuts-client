@@ -1,5 +1,5 @@
 export { useAuth } from "./use-auth";
-export { useCurrentProfile } from "../../../entities/profile/model/use-current-profile";
+export { useCurrentProfile } from "./use-current-profile";
 export { useAuthTenant } from "./use-auth-tenant";
 export { authTenantSelector } from "./auth-selector";
 

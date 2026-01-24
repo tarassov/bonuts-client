@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-
 import { authTenantSelector } from "shared/model/auth/auth-selector";
 
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";

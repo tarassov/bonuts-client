@@ -7,7 +7,7 @@ import { accountsApi } from "services/api/extended/accounts-api";
 import { useAppDispatch } from "services/redux/store/store";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
 
-import { useCurrentProfile } from "@/entities/profile";
+import { useCurrentProfile } from "@/shared/model/auth";
 
 import { useUpdateProfile } from "./use-update-profile";
 

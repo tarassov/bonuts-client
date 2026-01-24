@@ -8,7 +8,7 @@ import { useRoleField } from "hooks/form-field/use-role-field";
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
 import { UserLogic } from "logic/utils/user-utils";
 
-import { useCurrentProfile } from "@/entities/profile";
+import { useCurrentProfile } from "@/shared/model/auth";
 
 import { type TCircle, type TProfile } from "@/types/model";
 

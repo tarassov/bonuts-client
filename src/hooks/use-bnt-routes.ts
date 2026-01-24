@@ -1,12 +1,8 @@
-import { useAppDispatch } from "services/redux/store/store";
-import { push } from "redux-first-history";
 import { useCallback, useContext } from "react";
-import { BntRoutes } from "routes/config/routes";
 import { AppContext } from "context/app-context";
+import { push } from "redux-first-history";
 
-export const getRouteIndex = (route: TRoute<BntRoutes>): number => {
-	return route.index !== undefined ? route.index : 10;
-};
+import { useAppDispatch } from "services/redux/store/store";
 
 export const useBntRoutes = () => {
 	const dispatch = useAppDispatch();

@@ -10,7 +10,7 @@ import { texts_g } from "services/localization/texts";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useIcons } from "hooks/use-icons";
 
-import { useCurrentProfile } from "@/entities/profile";
+import { useCurrentProfile } from "@/shared/model/auth";
 
 import { useTelegramCode } from "../model/use-telegram-code";
 

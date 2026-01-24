@@ -1,9 +1,8 @@
 import { useContext, useMemo } from "react";
 import { AppContext } from "context/app-context";
 import _ from "lodash";
-import { useAuth } from "shared/model/auth/use-auth";
 
-import { useCurrentProfile } from "@/entities/profile";
+import { useAuth, useCurrentProfile } from "@/shared/model/auth";
 
 export const useAuthRoutes = () => {
 	const { menuRoutes: routes } = useContext(AppContext);

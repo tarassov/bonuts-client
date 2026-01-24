@@ -7,9 +7,7 @@ import { routesPath } from "routes/config/routes-path";
 
 import { useLocationTyped } from "hooks/use-location-typed";
 
-import { type TAuthState, useAuth } from "@/shared/model/auth";
-
-import { useCurrentProfile } from "@/entities/profile";
+import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
 
 import { PageWrapper } from "./page-wrapper";
 
