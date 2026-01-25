@@ -1,6 +1,6 @@
 import { push } from "redux-first-history";
 import { useAppDispatch } from "services/redux/store/store";
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 import { CommonStrings } from "constants/dictionary";
 import { texts_p } from "services/localization/texts/texts_p";
 import { useBntTranslate } from "hooks/use-bnt-translate";

@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { TModalProps } from "shared/ui/types/dialog-types";
-
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
+import { TDialogProps } from "shared/ui/dialog/dialog-types";
 import { BntStack } from "shared/ui/stack";
 
 import { emptyFunction } from "utils/empty-function";
@@ -13,7 +12,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { texts_y } from "@/services/localization/texts/texts_y";
 
-export const ConfirmationModal: FC<TModalProps & { text?: string; onSubmit: VoidFunction }> = ({
+export const ConfirmationModal: FC<TDialogProps & { text?: string; onSubmit: VoidFunction }> = ({
 	text,
 	onSubmit,
 	close = emptyFunction,

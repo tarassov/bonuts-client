@@ -1,11 +1,13 @@
-import { BntDialogProvider } from "shared/ui/modal";
+import { BntDialogProvider } from "shared/ui/dialog";
 
-import { modalConfig, TModalConfig } from "../config/modal-config";
+import { TModalConfig } from "@/entities/modal";
+
+import { modalConfig } from "../config/modal-config";
 
 interface IPageWrapperProps {
 	children: JSX.Element | Array<JSX.Element>;
 	path: string;
-	addressPath: string; // could be different for modal path's
+	addressPath: string; // could be different for dialog path's
 	modalName?: keyof TModalConfig;
 	modalData?: any;
 }

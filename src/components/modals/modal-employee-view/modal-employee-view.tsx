@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import * as React from "react";
-import { TModalProps } from "shared/ui/types/dialog-types";
+import { TDialogProps } from "shared/ui/dialog/dialog-types";
 
 import { emptyFunction } from "utils/empty-function";
 
@@ -13,7 +13,7 @@ import { useEmployeeLoader } from "@/entities/profile";
 export type ModalEmployeeViewProps = {
 	id: number;
 };
-export const ModalEmployeeView: FC<ModalEmployeeViewProps & TModalProps> = ({
+export const ModalEmployeeView: FC<ModalEmployeeViewProps & TDialogProps> = ({
 	id,
 	close = emptyFunction,
 	setModalLoading = emptyFunction,

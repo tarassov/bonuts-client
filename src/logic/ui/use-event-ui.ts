@@ -1,4 +1,4 @@
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 import { TPost } from "@/types/model/post";
 
 export const useEventUi = (post: TPost) => {

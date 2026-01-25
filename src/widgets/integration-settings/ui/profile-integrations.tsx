@@ -1,14 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@mui/material";
+import { useModal } from "entities/modal";
+import { present } from "shared/lib/type-guards";
 import { useCurrentProfile } from "shared/model/auth";
 import { BntBox } from "shared/ui/box/bnt-box";
+import { UiCheckbox } from "shared/ui/checkbox";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { useGetProfileNotificationsQuery } from "services/api/bonuts-api";
 import { texts_c, texts_l, texts_n, texts_s } from "services/localization/texts";
-
-import { useModal } from "hooks/use-modal";
 
 import { useProfile } from "@/entities/profile";
 
@@ -24,7 +25,7 @@ export function ProfileIntegrations() {
 		tenant: authTenant,
 	});
 
-	// Function to handle showing the appropriate modal based on plugin name
+	// Function to handle showing the appropriate dialog based on plugin name
 	const handleShowModal = (pluginName: string, tenantPluginId: number) => {
 		if (isLoading) return;
 
@@ -40,11 +41,21 @@ export function ProfileIntegrations() {
 		}
 	};
 
+	const isConnected = (pluginName: string) => {
+		if (isLoading) return;
+
+		switch (pluginName.toLowerCase()) {
+			case "telegram":
+				return { needConnection: true, connected: present(chatData) };
+			default:
+				return { needConnection: false, connected: false };
+		}
+	};
+
 	return (
 		<BntBox className="d-flex flex-column pl-4 pt-4 pr-4">
-			{isLoadingNotifications ? (
-				<BntTypography variant="caption2">{t(texts_l.loading)}</BntTypography>
-			) : profileNotifications?.data?.length ? (
+			{isLoadingNotifications ? <BntTypography variant="caption2">{t(texts_l.loading)}</BntTypography> : null}
+			{!isLoadingNotifications && present(profileNotifications?.data) ? (
 				profileNotifications.data.map((notification) => (
 					<BntStack
 						key={notification.tenant_plugin_id}
@@ -70,6 +81,7 @@ export function ProfileIntegrations() {
 							>
 								{notification.active ? t(texts_s.settings) : t(texts_c.connect)}{" "}
 							</Button>
+							<UiCheckbox value={notification.active} disabled />
 						</BntStack>
 					</BntStack>
 				))

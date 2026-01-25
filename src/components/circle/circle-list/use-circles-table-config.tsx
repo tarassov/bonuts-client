@@ -5,7 +5,7 @@ import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
 import { useMemo } from "react";
 import { useCircleUi } from "logic/ui/use-circle-ui";
 import { useCircle } from "logic/hooks/cirlce/use-circle";
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 import { TCircle } from "@/types/model";
 
 export const useCirclesTableConfig = () => {

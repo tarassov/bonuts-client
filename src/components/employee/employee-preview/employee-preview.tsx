@@ -4,7 +4,7 @@ import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { Modules } from "constants/modules";
 
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 
 import { useTransferUi } from "logic/ui/use-transfer-ui";
 

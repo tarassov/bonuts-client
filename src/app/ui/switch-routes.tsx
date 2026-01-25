@@ -11,7 +11,7 @@ import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth
 
 import { PageWrapper } from "./page-wrapper";
 
-import type { TModalConfig } from "../config/modal-config";
+import type { TModalConfig } from "@/entities/modal";
 
 interface ISwitchRoutesProps {
 	routes: Array<TRoute<any>>;

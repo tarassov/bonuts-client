@@ -4,7 +4,7 @@ import { BntForm } from "shared/ui/form/bnt-form";
 
 import { CommonStrings } from "constants/dictionary";
 
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 
 import { useUpdateAvatar } from "@/entities/profile/model/use-update-avatar";
 import { TProfile } from "@/types/model";

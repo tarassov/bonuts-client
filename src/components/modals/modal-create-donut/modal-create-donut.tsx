@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TModalProps } from "shared/ui/types/dialog-types";
+import { TDialogProps } from "shared/ui/dialog/dialog-types";
 
 import { emptyFunction } from "utils/empty-function";
 
@@ -7,7 +7,7 @@ import { ModalCreateDonutPure } from "components/modals/modal-create-donut/modal
 
 import { type TPostDonutArgs, useCreateDonut } from "@/entities/donut";
 
-export const ModalCreateDonut: FC<TModalProps> = ({ close = emptyFunction }) => {
+export const ModalCreateDonut: FC<TDialogProps> = ({ close = emptyFunction }) => {
 	const { postDonut } = useCreateDonut();
 
 	const onSubmit = (values: TPostDonutArgs) => {

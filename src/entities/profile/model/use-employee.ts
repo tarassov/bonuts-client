@@ -3,7 +3,7 @@ import { texts_a, texts_c, texts_d } from "services/localization/texts";
 import { useNotification } from "services/notification";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 
 import { profilesApi } from "../api/profiles-api";
 

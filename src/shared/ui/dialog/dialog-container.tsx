@@ -3,14 +3,13 @@ import * as React from "react";
 import { CloseOutlined } from "@mui/icons-material";
 import { useMediaQuery, useTheme } from "@mui/material";
 import _ from "lodash";
-
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntRoundButton } from "shared/ui/buttons/round-button";
+import { BntDialog } from "shared/ui/dialog/dialog";
+import { DialogCloseContext, DialogValueContext } from "shared/ui/dialog/dialog-context";
 import { BntDivider } from "shared/ui/divider/bnt-divider";
 import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { BntModalLoader } from "shared/ui/loader/modal-loader";
-import { BntDialog } from "shared/ui/modal/dialog";
-import { BntDialogCloseContext, BntDialogValueContext } from "shared/ui/modal/dialog-context";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
@@ -19,9 +18,9 @@ import { texts_c } from "services/localization/texts/texts_c";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
 export function BntDialogContainer() {
-	const modals = useContext(BntDialogValueContext);
+	const modals = useContext(DialogValueContext);
 	const { t } = useBntTranslate();
-	const handleClose = useContext(BntDialogCloseContext);
+	const handleClose = useContext(DialogCloseContext);
 	const [loadingModal, setLoadingModal] = useState<Record<string, boolean>>({});
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));

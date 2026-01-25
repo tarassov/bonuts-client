@@ -1,5 +1,3 @@
-import { TBntModalConfig } from "shared/ui/types/dialog-types";
-
 import { CommonStrings } from "constants/dictionary";
 
 import { texts_c } from "services/localization/texts";
@@ -14,29 +12,12 @@ import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-e
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
 
-import { telegramModalConfig, type TTelegramModalConfig } from "@/features/profile/telegram";
+import { telegramModalConfig } from "@/features/profile/telegram";
 
-import { TPost } from "@/types/model/post";
+import type { TModalConfig } from "@/entities/modal";
+import type { TDialogConfig } from "@/shared/ui/dialog";
 
-export type TModalConfig = TTelegramModalConfig & {
-	SimpleTextModal: string;
-	ImageModal: { url: string; title?: string };
-	CreateDonut: { title?: string };
-	ViewEmployee: { id: number; title?: string };
-	CreateCircle: { title?: string };
-	EditCircle: { title?: string; circleId: number };
-	ConfirmationModal: { text: string; onSubmit: VoidFunction; title?: string };
-	AdminDepositModal: { title?: string; id: number };
-	TransferModal: { title?: string; id: number };
-	DetailedEvent: { post: TPost };
-};
-
-export type ModalTypeResponse = {
-	SimpleTextModal: number;
-	ImageModal: void;
-};
-
-export const modalConfig: TBntModalConfig<TModalConfig> = {
+export const modalConfig: TDialogConfig<TModalConfig> = {
 	items: {
 		SimpleTextModal: {
 			renderItem: (modal) => <div>{modal.data}</div>,

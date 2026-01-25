@@ -1,4 +1,4 @@
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_n } from "services/localization/texts";
 

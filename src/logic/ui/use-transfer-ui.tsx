@@ -1,5 +1,5 @@
 import { texts_a } from "services/localization/texts";
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_t } from "services/localization/texts/texts_t";
 

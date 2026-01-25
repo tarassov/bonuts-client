@@ -1,1 +1,1 @@
-export { type TBntModal, type TBntModalConfig } from "./dialog-types";
+export { type TDialog, type TDialogConfig } from "../dialog/dialog-types";

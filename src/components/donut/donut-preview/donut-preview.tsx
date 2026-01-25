@@ -4,13 +4,12 @@ import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import classNames from "classnames";
 import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardBody } from "shared/ui/card/card-body";
 import { ImagePreview } from "shared/ui/image/image-preview";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { Dictionary } from "constants/dictionary";
@@ -18,11 +17,11 @@ import { DEFAULT_DONUT_IMAGE } from "constants/images";
 import { Modules } from "constants/modules";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useModal } from "hooks/use-modal";
-
-import { DonutPurchaseBlock } from "./donut-purchase-block";
 
 import { useDonutLoader } from "@/entities/donut";
+import { useModal } from "@/entities/modal";
+
+import { DonutPurchaseBlock } from "./donut-purchase-block";
 
 export function BntDonutPreview() {
 	const { id } = useParams();

@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
+
 import { VoidResponseFunction } from "@/types/function-types";
 
-export enum BntDialogResponse {
+export enum DialogResponse {
 	None,
 	Yes,
 	YesNo,
@@ -10,19 +11,17 @@ export enum BntDialogResponse {
 	OkCancel,
 }
 
-export type TBntModalData = Record<string, string | number | undefined | null>;
-
-export type TModalProps = {
+export type TDialogProps = {
 	close?: VoidFunction;
 	setModalLoading?: VoidResponseFunction<boolean>;
 };
 
-export type TBntModal<T> = {
-	renderItem: (data: TBntModal<T>, props?: TModalProps) => ReactNode | Array<ReactNode>;
+export type TDialog<T> = {
+	renderItem: (data: TDialog<T>, props?: TDialogProps) => ReactNode | Array<ReactNode>;
 	isOpen?: boolean;
 	data: T;
 	modalKey: string;
-	reposeType?: BntDialogResponse;
+	reposeType?: DialogResponse;
 	onSuccess?: (values: Record<string, any>) => void;
 	onCancel?: () => void;
 	hasTopMenu?: boolean;
@@ -33,19 +32,13 @@ export type TBntModal<T> = {
 	isTop?: boolean;
 };
 
-export type TBntModalItems<T> = {
+export type TDialogItems<T> = {
 	[name in keyof T]: Pick<
-		TBntModal<T[name]>,
-		| "renderItem"
-		| "reposeType"
-		| "hasTopMenu"
-		| "preventCloseOnBackDropClick"
-		| "title"
-		| "getPath"
-		| "isTop"
+		TDialog<T[name]>,
+		"renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop"
 	>;
 };
 
-export type TBntModalConfig<T> = {
-	items: TBntModalItems<T>;
+export type TDialogConfig<T> = {
+	items: TDialogItems<T>;
 };

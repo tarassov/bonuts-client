@@ -1,5 +1,5 @@
+import { TDialogProps } from "shared/ui/dialog/dialog-types";
 import { TFormValue } from "shared/ui/form/types/bnt-form";
-import { TModalProps } from "shared/ui/types/dialog-types";
 
 import { emptyFunction } from "utils/empty-function";
 
@@ -10,7 +10,7 @@ import { ModalEditCirclePure } from "components/modals/modal-edit-circle/modal-e
 
 import { TCircle } from "@/types/model";
 
-export function ModalEditCircle({ close = emptyFunction, circleId }: TModalProps & { circleId: number }) {
+export function ModalEditCircle({ close = emptyFunction, circleId }: TDialogProps & { circleId: number }) {
 	const { circle } = useCircleLoader(circleId);
 	const { patchCircle } = useCircle();
 	const onSubmit = (values: Record<string, TFormValue>) => {

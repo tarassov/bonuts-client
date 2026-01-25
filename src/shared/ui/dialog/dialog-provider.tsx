@@ -1,35 +1,38 @@
-import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isFunction } from "lodash";
 import _uniqueId from "lodash/uniqueId";
-
-import { BntDialogContainer } from "shared/ui/modal/dialog-container";
-import { BntDialogCloseContext, BntDialogContext, BntDialogValueContext } from "shared/ui/modal/dialog-context";
+import { BntDialogContainer } from "shared/ui/dialog/dialog-container";
+import {
+	DialogCloseContext,
+	DialogContext,
+	DialogNamesContext,
+	DialogValueContext,
+} from "shared/ui/dialog/dialog-context";
 
 import { CommonStrings } from "constants/dictionary";
 
 import { useLocationTyped } from "hooks/use-location-typed";
 
-import type { TModalConfig } from "@/app/config/modal-config";
-import type { TBntModalConfig } from "../types/dialog-types";
+import type { TDialogConfig } from "./dialog-types";
 
-interface IBntDialogProviderProps {
-	config: TBntModalConfig<TModalConfig>;
+interface IBntDialogProviderProps<T extends Record<string, any>> {
+	config: TDialogConfig<T>;
 	path: string;
-	addressPath: string; // could be different for modal path's
+	addressPath: string; // could be different for dialog path's
 	children: JSX.Element | Array<JSX.Element>;
-	defaultModal?: keyof TModalConfig;
+	defaultModal?: keyof T;
 	defaultModalData?: any;
 }
 
-export function BntDialogProvider({
+export function BntDialogProvider<T extends Record<string, any>>({
 	children,
 	config,
 	path,
 	addressPath,
 	defaultModal,
 	defaultModalData,
-}: IBntDialogProviderProps) {
+}: IBntDialogProviderProps<T>) {
 	type ModalState = Record<
 		string,
 		{
@@ -43,6 +46,7 @@ export function BntDialogProvider({
 	>;
 	const navigate = useNavigate();
 	const location = useLocationTyped();
+	const openedDefaultRef = useRef(false);
 
 	const [modals, setModal] = useState<ModalState | null>(null);
 
@@ -52,7 +56,7 @@ export function BntDialogProvider({
 	}, [path]);
 
 	const showDialog = useCallback(
-		<T extends keyof typeof config.items>(name: T, data: TModalConfig[T], key?: string) => {
+		<TModalName extends keyof typeof config.items>(name: TModalName, data: T[TModalName], key?: string) => {
 			const modalKey = key || _uniqueId(`modal-${path}-`);
 			const { title, getPath } = config.items[name];
 			const modalTitle = isFunction(title) ? title(data as never) : title;
@@ -74,7 +78,7 @@ export function BntDialogProvider({
 						data,
 						modalKey,
 						title: modalTitle || CommonStrings.EMPTY_STRING,
-						renderItem: config.items[name]?.renderItem || ((d: T) => <div>{d}</div>),
+						renderItem: config.items[name]?.renderItem || ((d: any) => <div>{d}</div>),
 						hasTopMenu: config.items[name]?.hasTopMenu || false,
 						isTop: config.items[name]?.isTop || false,
 						preventCloseOnBackDropClick: config.items[name]?.preventCloseOnBackDropClick || false,
@@ -82,7 +86,7 @@ export function BntDialogProvider({
 				};
 			});
 		},
-		[path]
+		[addressPath, config, location, navigate, path]
 	);
 
 	const handleClose = useCallback(
@@ -106,21 +110,26 @@ export function BntDialogProvider({
 	);
 
 	useEffect(() => {
-		if (defaultModal && defaultModalData) {
-			showDialog(defaultModal, defaultModalData);
-		}
-	}, []);
+		if (!defaultModal || openedDefaultRef.current) return;
+
+		showDialog(defaultModal, defaultModalData);
+		openedDefaultRef.current = true;
+	}, [defaultModal, defaultModalData, showDialog]);
 
 	const modalsArray = useMemo(() => (modals ? Object.values(modals) : []), [modals]);
 
+	const modalNames = useMemo(() => Object.keys(config.items), [config.items]);
+
 	return (
-		<BntDialogContext.Provider value={showDialog}>
-			<BntDialogCloseContext.Provider value={handleClose}>
-				<BntDialogValueContext.Provider value={modalsArray}>
-					{children}
-					<BntDialogContainer />
-				</BntDialogValueContext.Provider>
-			</BntDialogCloseContext.Provider>
-		</BntDialogContext.Provider>
+		<DialogContext.Provider value={showDialog}>
+			<DialogNamesContext.Provider value={modalNames}>
+				<DialogCloseContext.Provider value={handleClose}>
+					<DialogValueContext.Provider value={modalsArray}>
+						{children}
+						<BntDialogContainer />
+					</DialogValueContext.Provider>
+				</DialogCloseContext.Provider>
+			</DialogNamesContext.Provider>
+		</DialogContext.Provider>
 	);
 }

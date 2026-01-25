@@ -8,7 +8,7 @@ import { texts_o } from "services/localization/texts/texts_o";
 import { texts_p } from "services/localization/texts/texts_p";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useModal } from "hooks/use-modal";
+import { useModal } from "entities/modal";
 
 import { TDonut } from "@/types/model";
 
