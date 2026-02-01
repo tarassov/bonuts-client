@@ -1,4 +1,4 @@
-import { type TTelegramModalConfig } from "@/entities/telegram/@x/modal";
+import { type TTelegramModalConfig, type TTelegramModalResponse } from "entities/telegram/@x/Modal";
 
 import { TPost } from "@/types/model/post";
 
@@ -13,6 +13,10 @@ export type TModalConfig = TTelegramModalConfig & {
 	AdminDepositModal: { title?: string; id: number };
 	TransferModal: { title?: string; id: number };
 	DetailedEvent: { post: TPost };
+};
+
+export type TModalResponse = TTelegramModalResponse & {
+	SimpleTextModal: string;
 };
 
 export type ModalTypeResponse = {

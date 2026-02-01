@@ -57,7 +57,7 @@ Coding standards
 - Forms: Use react-hook-form and validation with yup where applicable.
 - Styling: Use MUI + @emotion styled. Keep theme-aware styles in themes/helper.ts or via MUI theme.
 - File naming: kebab-case for files, PascalCase for React components, camelCase for variables/functions, UPPER_SNAKE_CASE for constants.
-- Exports: Use index.ts barrels per folder for public surface; avoid giant barrels that cause circular deps.
+- Exports: Use Modal.ts barrels per folder for public surface; avoid giant barrels that cause circular deps.
 - Imports: Use path aliases as configured via vite-tsconfig-paths; prefer absolute imports from src root over long relative chains.
 - i18n: Wrap user-visible strings with i18next; avoid hard-coded text.
 

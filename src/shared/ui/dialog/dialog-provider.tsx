@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isFunction } from "lodash";
 import _uniqueId from "lodash/uniqueId";
@@ -14,16 +14,28 @@ import { CommonStrings } from "constants/dictionary";
 
 import { useLocationTyped } from "hooks/use-location-typed";
 
-import type { TDialogConfig } from "./dialog-types";
+import { TDialog, TDialogConfig } from "./dialog-types";
 
 interface IBntDialogProviderProps<T extends Record<string, any>> {
 	config: TDialogConfig<T>;
 	path: string;
 	addressPath: string; // could be different for dialog path's
 	children: JSX.Element | Array<JSX.Element>;
-	defaultModal?: keyof T;
+	defaultModal?: Extract<keyof T, string>;
 	defaultModalData?: any;
 }
+
+type TModal = {
+	name: string;
+	data: unknown;
+	modalKey: string;
+	renderItem: TDialog<any>["renderItem"];
+	hasTopMenu: boolean;
+	title: string;
+};
+
+type ModalState = Record<string, TModal>;
+type ResolverMap = Map<string, (value: any) => void>;
 
 export function BntDialogProvider<T extends Record<string, any>>({
 	children,
@@ -33,20 +45,10 @@ export function BntDialogProvider<T extends Record<string, any>>({
 	defaultModal,
 	defaultModalData,
 }: IBntDialogProviderProps<T>) {
-	type ModalState = Record<
-		string,
-		{
-			name: keyof typeof config.items;
-			data: any;
-			modalKey: string;
-			renderItem: (d: any) => ReactNode | Array<ReactNode>;
-			hasTopMenu: boolean;
-			title: string;
-		}
-	>;
 	const navigate = useNavigate();
 	const location = useLocationTyped();
 	const openedDefaultRef = useRef(false);
+	const resolversRef = useRef<ResolverMap>(new Map());
 
 	const [modals, setModal] = useState<ModalState | null>(null);
 
@@ -56,7 +58,7 @@ export function BntDialogProvider<T extends Record<string, any>>({
 	}, [path]);
 
 	const showDialog = useCallback(
-		<TModalName extends keyof typeof config.items>(name: TModalName, data: T[TModalName], key?: string) => {
+		async <TModalName extends string>(name: TModalName, data: T[TModalName], key?: string) => {
 			const modalKey = key || _uniqueId(`modal-${path}-`);
 			const { title, getPath } = config.items[name];
 			const modalTitle = isFunction(title) ? title(data as never) : title;
@@ -85,12 +87,16 @@ export function BntDialogProvider<T extends Record<string, any>>({
 					},
 				};
 			});
+
+			return new Promise((resolve) => {
+				resolversRef.current.set(modalKey, resolve);
+			});
 		},
 		[addressPath, config, location, navigate, path]
 	);
 
 	const handleClose = useCallback(
-		(key: string, name: string) => {
+		(key: string, name: string, result: any) => {
 			const { items } = config;
 			if (name) {
 				const { getPath } = items[name as keyof typeof config.items];
@@ -105,6 +111,9 @@ export function BntDialogProvider<T extends Record<string, any>>({
 					return acc;
 				}, {} as ModalState);
 			});
+			const resolve = resolversRef.current.get(key);
+			if (resolve) resolve(result);
+			resolversRef.current.delete(key);
 		},
 		[config, navigate]
 	);

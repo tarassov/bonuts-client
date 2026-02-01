@@ -26,12 +26,15 @@ export function ProfileIntegrations() {
 	});
 
 	// Function to handle showing the appropriate dialog based on plugin name
-	const handleShowModal = (pluginName: string, tenantPluginId: number) => {
+	const handleShowModal = async (pluginName: string, tenantPluginId: number) => {
 		if (isLoading) return;
+		const showTg = ConnectTelegramModal.show;
+		let r: Awaited<ReturnType<typeof showTg>>;
 
 		switch (pluginName.toLowerCase()) {
 			case "telegram":
-				ConnectTelegramModal.show();
+				r = await ConnectTelegramModal.show();
+				console.log(r);
 				break;
 			// Add cases for other plugin types as needed
 			default:

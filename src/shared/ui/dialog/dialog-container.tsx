@@ -65,7 +65,7 @@ export function BntDialogContainer() {
 								</>
 							) : null}
 							{modal.renderItem(modal, {
-								close: () => handleClose(modal.modalKey, modal.name),
+								close: (result) => handleClose(modal.modalKey, modal.name, result),
 								setModalLoading: (value) => moduleSetLoading(modal.modalKey, value),
 							})}
 							{fullScreen && (

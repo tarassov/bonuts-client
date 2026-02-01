@@ -3,7 +3,6 @@ import { CircularProgress } from "@mui/material";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntButton } from "shared/ui/buttons/bnt-button";
 import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
 
 import { texts_g } from "services/localization/texts";
 
@@ -11,10 +10,14 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useIcons } from "hooks/use-icons";
 
 import { useCurrentProfile } from "@/shared/model/auth";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useTelegramCode } from "../model/use-telegram-code";
 
-export function TelegramModal() {
+import type { TModalResponse } from "@/entities/modal";
+import type { TDialogProps } from "@/shared/ui/dialog";
+
+export function TelegramModal({ close }: TDialogProps<TModalResponse["ConnectTelegramModal"]>) {
 	const { t } = useBntTranslate();
 	const { generateTgCode, isLoading: isGeneratingCode } = useTelegramCode();
 	const { profile } = useCurrentProfile();
@@ -32,6 +35,7 @@ export function TelegramModal() {
 		<BntBox className="d-flex flex-column align-items-center">
 			<BntStack direction="column">
 				<BntButton onClick={handleGenerateCode}>{t(texts_g.generate_code)}</BntButton>
+				{/* <BntButton onClick={() => close({ value: "hey" })}>Close</BntButton> */}
 				{isGeneratingCode ? <CircularProgress /> : <BntTypography variant="h3"> {profile?.tg_code} </BntTypography>}
 			</BntStack>
 			<BntBox>

@@ -11,13 +11,13 @@ export enum DialogResponse {
 	OkCancel,
 }
 
-export type TDialogProps = {
-	close?: VoidFunction;
+export type TDialogProps<TResult = any> = {
+	close: (result?: TResult) => void;
 	setModalLoading?: VoidResponseFunction<boolean>;
 };
 
-export type TDialog<T> = {
-	renderItem: (data: TDialog<T>, props?: TDialogProps) => ReactNode | Array<ReactNode>;
+export type TDialog<T = any, TResult = any> = {
+	renderItem: (data: TDialog<T, TResult>, props: TDialogProps<TResult>) => ReactNode | Array<ReactNode>;
 	isOpen?: boolean;
 	data: T;
 	modalKey: string;
@@ -32,13 +32,13 @@ export type TDialog<T> = {
 	isTop?: boolean;
 };
 
-export type TDialogItems<T> = {
+export type TDialogItems<T, R extends Record<keyof T, any> = any> = {
 	[name in keyof T]: Pick<
-		TDialog<T[name]>,
+		TDialog<T[name], R[name]>,
 		"renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop"
 	>;
 };
 
-export type TDialogConfig<T> = {
-	items: TDialogItems<T>;
+export type TDialogConfig<T, R extends Record<keyof T, any> = any> = {
+	items: TDialogItems<T, R>;
 };

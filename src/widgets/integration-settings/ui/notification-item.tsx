@@ -1,12 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@mui/material";
+import { useModal } from "entities/modal";
 import { UiCheckbox } from "shared/ui/checkbox";
 import { BntStack } from "shared/ui/stack";
 
 import { ProfileNotification } from "services/api/bonuts-api";
 import { texts_c, texts_n, texts_s } from "services/localization/texts";
-
-import { useModal } from "entities/modal";
 
 import { BntTypography } from "@/shared/ui/typography";
 
