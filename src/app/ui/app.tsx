@@ -5,13 +5,14 @@ import { SnackbarProvider } from "notistack";
 import { HistoryRouter } from "redux-first-history/rr6";
 import { routesConfig } from "routes/config/routes-config";
 import { getMenuRoutes } from "routes/get-menu-routes";
-import { BntThemeProvider } from "themes/theme-provider";
-
 import { BntLoadingProvider } from "shared/ui/loader/loading-provider";
 import { LocaleProvider } from "shared/ui/locale/locale-provider";
+import { BntThemeProvider } from "themes/theme-provider";
 
 import i18n from "services/localization/i18n";
 import { history } from "services/redux/store/store";
+
+import { PluginProvider } from "@/entities/plugin";
 
 import { BntLayout } from "@/app/ui/layout";
 
@@ -46,7 +47,9 @@ function App() {
 						<AppContext.Provider value={contextValue}>
 							<HistoryRouter history={history}>
 								<BntLoadingProvider>
-									<BntLayout />
+									<PluginProvider>
+										<BntLayout />
+									</PluginProvider>
 								</BntLoadingProvider>
 							</HistoryRouter>
 						</AppContext.Provider>

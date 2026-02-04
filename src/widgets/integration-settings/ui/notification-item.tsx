@@ -1,33 +1,32 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@mui/material";
-import { useModal } from "entities/modal";
-import { UiCheckbox } from "shared/ui/checkbox";
-import { BntStack } from "shared/ui/stack";
+import { present } from "shared/lib/type-guards";
 
 import { ProfileNotification } from "services/api/bonuts-api";
-import { texts_c, texts_n, texts_s } from "services/localization/texts";
+import { texts_c, texts_s } from "services/localization/texts";
 
+import { UiCheckbox } from "@/shared/ui/checkbox";
+import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
+
+import { usePlugin } from "@/entities/plugin";
 
 interface IProps {
 	notification: ProfileNotification;
 }
 export function NotificationItem({ notification }: IProps) {
 	const { t } = useTranslation();
-	const { ConnectTelegramModal } = useModal();
+	const api = usePlugin(notification.name);
+	const [connected, setConnected] = useState(present(api) ? api.isConnected() : false);
 
-	const handleShowModal = (pluginName: string) => {
-		switch (pluginName.toLowerCase()) {
-			case "telegram":
-				ConnectTelegramModal.show();
-				break;
-			// Add cases for other plugin types as needed
-			default:
-				// eslint-disable-next-line no-console
-				console.log(`No modal configured for plugin: ${pluginName}`);
-				break;
-		}
-	};
+	useEffect(() => {
+		const isConnected = present(api) ? api.isConnected() : false;
+		if (isConnected) setConnected(isConnected);
+
+		api?.onConnectChange(setConnected);
+	}, [api]);
+
 	return (
 		<BntStack
 			key={notification.tenant_plugin_id}
@@ -43,17 +42,16 @@ export function NotificationItem({ notification }: IProps) {
 		>
 			<BntTypography variant="caption2">{notification.name}</BntTypography>
 			<BntStack direction="row" alignItems="center">
-				<BntTypography variant="caption2">
-					{notification.active ? t(texts_c.connected) : t(texts_n.not_connected)}
-				</BntTypography>
-				<Button
-					sx={{ maxWidth: 200 }}
-					disabled={notification.disabled}
-					onClick={() => handleShowModal(notification.name)}
-				>
-					{notification.active ? t(texts_s.settings) : t(texts_c.connect)}{" "}
-				</Button>
-				<UiCheckbox value={notification.active} disabled />
+				{connected ? null : (
+					<Button
+						sx={{ maxWidth: 200 }}
+						disabled={notification.disabled}
+						onClick={present(api) ? api.connect : undefined}
+					>
+						{notification.active ? t(texts_s.settings) : t(texts_c.connect)}{" "}
+					</Button>
+				)}
+				{connected ? <UiCheckbox value={notification.active} disabled /> : null}
 			</BntStack>
 		</BntStack>
 	);
