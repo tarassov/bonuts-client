@@ -100,6 +100,26 @@ const injectedRtkApi = api.injectEndpoints({
 		getProfileNotifications: build.query<GetProfileNotificationsApiResponse, GetProfileNotificationsApiArg>({
 			query: (queryArg) => ({ url: `/profile_notifications`, params: { tenant: queryArg.tenant } }),
 		}),
+		postProfileNotificationsByIdActivate: build.mutation<
+			PostProfileNotificationsByIdActivateApiResponse,
+			PostProfileNotificationsByIdActivateApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/profile_notifications/${queryArg.id}/activate`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
+		postProfileNotificationsByIdDeactivate: build.mutation<
+			PostProfileNotificationsByIdDeactivateApiResponse,
+			PostProfileNotificationsByIdDeactivateApiArg
+		>({
+			query: (queryArg) => ({
+				url: `/profile_notifications/${queryArg.id}/deactivate`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
 			query: (queryArg) => ({ url: `/profile`, params: { tenant: queryArg.tenant } }),
 		}),
@@ -1288,6 +1308,22 @@ export type GetProfileNotificationsApiResponse = /** status 200 success */ {
 };
 export type GetProfileNotificationsApiArg = {
 	tenant?: string;
+};
+export type PostProfileNotificationsByIdActivateApiResponse = unknown;
+export type PostProfileNotificationsByIdActivateApiArg = {
+	/** tenant_plugin_id */
+	id: number;
+	body: {
+		tenant: string;
+	};
+};
+export type PostProfileNotificationsByIdDeactivateApiResponse = unknown;
+export type PostProfileNotificationsByIdDeactivateApiArg = {
+	/** tenant_plugin_id */
+	id: number;
+	body: {
+		tenant: string;
+	};
 };
 export type GetProfileApiResponse = /** status 200 success */ {
 	data?: {
@@ -3618,6 +3654,8 @@ export const {
 	usePostPluginsByIdDeactivateMutation,
 	usePatchPluginsByIdMutation,
 	useGetProfileNotificationsQuery,
+	usePostProfileNotificationsByIdActivateMutation,
+	usePostProfileNotificationsByIdDeactivateMutation,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,
 	usePutProfilesByIdMutation,

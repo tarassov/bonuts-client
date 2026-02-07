@@ -10,5 +10,7 @@ export const profilesApi = bonutsApi.enhanceEndpoints({
 		putProfilesById: { invalidatesTags: cacheByIdArgProperty("Profiles") },
 		getProfilesById: { providesTags: cacheByIdArgProperty("Profiles") },
 		postUsersGenerateTg: { invalidatesTags: [{ type: "Profiles", id: "CURRENT" }] },
+		postProfileNotificationsByIdActivate: { invalidatesTags: [{ type: "Profiles", id: "CURRENT" }] },
+		postProfileNotificationsByIdDeactivate: { invalidatesTags: [{ type: "Profiles", id: "CURRENT" }] },
 	},
 });
