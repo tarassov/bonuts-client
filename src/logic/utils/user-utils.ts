@@ -1,5 +1,6 @@
-import { Symbols } from "constants/symbols";
 import { Roles } from "constants/roles";
+import { Symbols } from "constants/symbols";
+
 import { TProfile } from "@/types/model";
 
 export const getUserName = (name?: string, surname?: string) => {

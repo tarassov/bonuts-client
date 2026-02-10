@@ -1,24 +1,19 @@
 import React, { FC } from "react";
 import { CloseOutlined } from "@mui/icons-material";
 import { Grid2 as Grid } from "@mui/material";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { BntStack } from "shared/ui/stack";
-
-import { emptyFunction } from "utils/empty-function";
-
-import { texts_c } from "services/localization/texts";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c } from "services/localization/texts";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
+import { BntStack } from "shared/ui/stack";
+import { emptyFunction } from "utils/empty-function";
 
 import { BntProfileForm, BntProfileImage } from "@/entities/profile";
 import { useUpdateProfile } from "@/entities/profile/model/use-update-profile";
 
 import type { TProfile } from "@/types/model";
 
-export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = ({
-	profile,
-	onClose = emptyFunction,
-}) => {
+export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = ({ profile, onClose = emptyFunction }) => {
 	const { updateProfile } = useUpdateProfile();
 	const { translate } = useBntTranslate();
 

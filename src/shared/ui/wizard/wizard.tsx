@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { TWizardConfig, TWizardProps } from "shared/ui/types/wizard-types";
-import { BntBox } from "shared/ui/box/bnt-box";
 
-export const Wizard = <TConfig, TInitialProps>(props: {
-	config: TWizardConfig<TConfig, TInitialProps>;
-}) => {
+import { BntBox } from "shared/ui/box/bnt-box";
+import { TWizardConfig, TWizardProps } from "shared/ui/types/wizard-types";
+
+export const Wizard = <TConfig, TInitialProps>(props: { config: TWizardConfig<TConfig, TInitialProps> }) => {
 	const { config } = props;
 	const { steps, initialValues, onSubmit } = config;
 

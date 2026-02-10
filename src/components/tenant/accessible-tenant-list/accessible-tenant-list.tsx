@@ -1,11 +1,13 @@
-import { useAccessibleTenantsLoaderList } from "logic/hooks/tenant/use-accessible-tenants-loader-list";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
-import { AccessibleTenantCard } from "components/tenant/accessible-tenant-list/accessible-tenant-card";
 import { Grid } from "@mui/material";
+
+import { AccessibleTenantCard } from "components/tenant/accessible-tenant-list/accessible-tenant-card";
+import { TenantList } from "components/tenant/tenant-list";
+import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_t } from "services/localization/texts";
-import { TenantList } from "components/tenant/tenant-list";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useAccessibleTenantsLoaderList } from "logic/hooks/tenant/use-accessible-tenants-loader-list";
 
 export const AccessibleTenantList = () => {
 	const { objects, isLoading } = useAccessibleTenantsLoaderList();

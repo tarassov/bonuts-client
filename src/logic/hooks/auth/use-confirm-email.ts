@@ -1,12 +1,8 @@
-import {
-	useGetConfirmEmailQuery,
-	usePostConfirmEmailMutation,
-	usePostRefreshTokenMutation,
-} from "services/api/bonuts-api";
-import { useNotification } from "services/notification";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_c } from "services/localization/texts";
 import { useProjectNavigate } from "hooks/use-project-navigate";
+import { useGetConfirmEmailQuery, usePostConfirmEmailMutation, usePostRefreshTokenMutation } from "services/api/bonuts-api";
+import { texts_c } from "services/localization/texts";
+import { useNotification } from "services/notification";
 import { storage } from "shared/lib/localStorage";
 
 export const useConfirmEmail = (token?: string) => {

@@ -1,6 +1,7 @@
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import * as Yup from "yup";
+
 import { TransferFormType } from "components/transfer/use-transfer-form-fields";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_m } from "services/localization/texts";
 
 export const useTransferValidation = (maxAmount?: number) => {

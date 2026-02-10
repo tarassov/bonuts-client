@@ -6,10 +6,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 export const defaultTags = ["UNAUTHORIZED", "UNKNOWN_ERROR"] as const;
 type DefaultTags = (typeof defaultTags)[number];
 
-function concatErrorCache<T, ID>(
-	existingCache: CacheList<T, ID>,
-	error: FetchBaseQueryError | undefined
-): CacheList<T, ID> {
+function concatErrorCache<T, ID>(existingCache: CacheList<T, ID>, error: FetchBaseQueryError | undefined): CacheList<T, ID> {
 	if (error && "status" in error && error.status === 401) {
 		// unauthorized error
 		return [...existingCache, "UNAUTHORIZED"];
@@ -63,7 +60,7 @@ export const providesList =
 		// is result available?
 		if (results?.data) {
 			// successful query
-			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id } as const))];
+			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id }) as const)];
 		}
 		// Received an error, include an error cache item to the cache list
 		return concatErrorCache([{ type, id: "LIST" }], error);
@@ -107,7 +104,7 @@ export const providesNestedList =
 		// is result available?
 		if (results) {
 			// successful query
-			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id } as const))];
+			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id }) as const)];
 		}
 		// Received an error, include an error cache item to the cache list
 		return concatErrorCache([{ type, id: "LIST" }], error);
@@ -149,7 +146,7 @@ export const cacheByIdArgProperty =
 			? [
 					{ type, id: arg.id },
 					{ type, id: tag },
-			  ]
+				]
 			: ([{ type, id: arg.id }] as const);
 
 export const cacheByIdResultProperty =
@@ -173,8 +170,7 @@ export const invalidatesUnauthorized =
 		error: Error,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		arg: Arg
-	): ["UNAUTHORIZED"] =>
-		["UNAUTHORIZED"];
+	): ["UNAUTHORIZED"] => ["UNAUTHORIZED"];
 
 /**
  * HOF to invalidate the 'UNKNOWN_ERROR' type cache item.
@@ -188,8 +184,7 @@ export const invalidatesUnknownErrors =
 		error: Error,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		arg: Arg
-	): ["UNKNOWN_ERROR"] =>
-		["UNKNOWN_ERROR"];
+	): ["UNKNOWN_ERROR"] => ["UNKNOWN_ERROR"];
 
 /**
  * Utility lib for common provides/invalidates scenarios

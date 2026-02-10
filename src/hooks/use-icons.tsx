@@ -24,7 +24,7 @@ export const useIcons = (attributes?: Partial<Attributes>) =>
 							? (svg) => {
 									svg.classList.add(`svg-icon-${name}`);
 									svg.setAttribute("style", `width: ${attributes.width}; height: ${attributes.height}`);
-							  }
+								}
 							: emptyFunction
 					}
 				/>

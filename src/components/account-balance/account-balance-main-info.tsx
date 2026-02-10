@@ -1,14 +1,11 @@
 import { ReactNode } from "react";
 import { Button } from "@mui/material";
 
+import { CommonStrings } from "constants/dictionary";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-
 import { formatStringDate } from "utils/format-string-date";
-
-import { CommonStrings } from "constants/dictionary";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
 
 interface IProps {
 	title: string;
@@ -41,7 +38,7 @@ export function AccountBalanceMainInfo({ title, value, lastOperation, name, bala
 						{lastOperation
 							? `${lastOperation?.direction}${lastOperation?.amount} ${
 									name ? t(name, { count: lastOperation.amount }) : CommonStrings.EMPTY_STRING
-							  } ${formatStringDate(lastOperation?.date_utc, false, true)}`
+								} ${formatStringDate(lastOperation?.date_utc, false, true)}`
 							: "..."}
 					</BntStack>
 				</BntTypography>

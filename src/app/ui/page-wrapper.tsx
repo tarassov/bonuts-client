@@ -14,13 +14,7 @@ interface IPageWrapperProps {
 
 export function PageWrapper({ children, addressPath, path, modalName, modalData }: IPageWrapperProps) {
 	return (
-		<BntDialogProvider
-			path={path}
-			addressPath={addressPath}
-			config={modalConfig}
-			defaultModalData={modalData}
-			defaultModal={modalName}
-		>
+		<BntDialogProvider path={path} addressPath={addressPath} config={modalConfig} defaultModalData={modalData} defaultModal={modalName}>
 			{children}
 		</BntDialogProvider>
 	);

@@ -1,10 +1,12 @@
 import { push } from "redux-first-history";
-import { useAppDispatch } from "services/redux/store/store";
-import { useModal } from "entities/modal";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_n } from "services/localization/texts";
-import { routesPath } from "routes/config/routes-path";
+import { useAppDispatch } from "services/redux/store/store";
+
+import { useModal } from "entities/modal";
 import { BntRoutes } from "routes/config/routes";
+import { routesPath } from "routes/config/routes-path";
 import { TBaseModel } from "@/types/model";
 
 export const useDonutUi = (donut?: TBaseModel) => {

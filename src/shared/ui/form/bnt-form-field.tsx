@@ -40,23 +40,11 @@ export function BntFormField({ field, id }: IBntFormFieldProps) {
 		);
 	}
 	if (field.type === FieldType.date) {
-		return (
-			<BntDatePickerField
-				name={field.name.toString()}
-				disabled={field.disabled}
-				required={field.required}
-				label={field.label}
-			/>
-		);
+		return <BntDatePickerField name={field.name.toString()} disabled={field.disabled} required={field.required} label={field.label} />;
 	}
 	if (field.type === FieldType.switch) {
 		return (
-			<BntSwitchField
-				name={field.name.toString()}
-				disabled={field.disabled}
-				label={field.label}
-				disabledLabel={field.disabledLabel}
-			/>
+			<BntSwitchField name={field.name.toString()} disabled={field.disabled} label={field.label} disabledLabel={field.disabledLabel} />
 		);
 	}
 	if (field.type === FieldType.radio) {

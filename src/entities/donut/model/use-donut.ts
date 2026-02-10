@@ -1,9 +1,8 @@
-import { isBlank, present } from "shared/lib/type-guards";
-
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { donutsApi } from "services/api/extended/donuts-api";
 import { useUpdateDonutMutation } from "services/api/injected-api";
 import { useAppDispatch } from "services/redux/store/store";
+import { isBlank, present } from "shared/lib/type-guards";
 
 import { ApiTags } from "@/shared/api";
 
@@ -15,11 +14,7 @@ export const useDonut = () => {
 	const [updateDonut] = useUpdateDonutMutation();
 	const dispatch = useAppDispatch();
 	const { profile } = useProfile();
-	const putDonut = async (
-		donutId: number,
-		args: TDonut,
-		options?: { onSuccess?: (result: PutDonutsByIdApiResponse) => void }
-	) => {
+	const putDonut = async (donutId: number, args: TDonut, options?: { onSuccess?: (result: PutDonutsByIdApiResponse) => void }) => {
 		if (profile?.tenant) {
 			const { id, logo, created_at, likes, liked, comments, commentable, likeable, ...props } = args;
 

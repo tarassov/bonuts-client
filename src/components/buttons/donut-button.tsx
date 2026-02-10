@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { Avatar, Typography } from "@mui/material";
+
 import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
+
 import { TDonut } from "@/types/model";
 
 export const DonutButton: FC<{

@@ -1,14 +1,13 @@
 import { useTranslation } from "react-i18next";
+
+import { Modules } from "constants/modules";
+import { useGetProfileNotificationsQuery } from "services/api/bonuts-api";
+import { texts_l, texts_n } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { useCurrentProfile } from "shared/model/auth";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntTypography } from "shared/ui/typography/typography";
-
-import { Modules } from "constants/modules";
-
-import { useGetProfileNotificationsQuery } from "services/api/bonuts-api";
-import { texts_l, texts_n } from "services/localization/texts";
 
 import { TelegramPlugin } from "@/features/profile/telegram/ui/TelegramPlugin";
 

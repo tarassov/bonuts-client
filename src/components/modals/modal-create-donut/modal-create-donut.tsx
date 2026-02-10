@@ -1,9 +1,8 @@
 import { FC } from "react";
-import { TDialogProps } from "shared/ui/dialog/dialog-types";
-
-import { emptyFunction } from "utils/empty-function";
 
 import { ModalCreateDonutPure } from "components/modals/modal-create-donut/modal-create-donut-pure";
+import { TDialogProps } from "shared/ui/dialog/dialog-types";
+import { emptyFunction } from "utils/empty-function";
 
 import { type TPostDonutArgs, useCreateDonut } from "@/entities/donut";
 

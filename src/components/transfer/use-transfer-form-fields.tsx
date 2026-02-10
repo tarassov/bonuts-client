@@ -1,8 +1,9 @@
 import { useMemo } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FieldSize, FieldType, TFormField } from "shared/ui/form/types/bnt-form";
 
 import { useTransferValidation } from "components/transfer/use-transfer-validation";
+import { FieldSize, FieldType, TFormField } from "shared/ui/form/types/bnt-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export type TransferFormType = { comment: string; amount: number };
 export const useTransferFormFields = (args: { maxAmount?: number }) => {

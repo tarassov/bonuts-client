@@ -1,7 +1,4 @@
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-
 import { CommonStrings } from "constants/dictionary";
-
 import {
 	PostAccountOperationsApiResponse,
 	PostAdminDepositApiResponse,
@@ -10,10 +7,11 @@ import {
 } from "services/api/bonuts-api";
 import { texts_t } from "services/localization/texts/texts_t";
 import { useNotification } from "services/notification";
-
-import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { useProfile } from "@/entities/profile";
+
+import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
 import { TransferProps } from "@/types/logic";
 import { TActionCallback } from "@/types/logic/action-callback";
 import { AdminDepositProps } from "@/types/logic/transfer";

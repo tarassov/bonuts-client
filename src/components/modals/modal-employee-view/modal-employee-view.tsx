@@ -1,14 +1,13 @@
-import { FC, useEffect } from "react";
 import * as React from "react";
-import { TDialogProps } from "shared/ui/dialog/dialog-types";
-
-import { emptyFunction } from "utils/empty-function";
-
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
+import { FC, useEffect } from "react";
 
 import { ModalEmployeeViewStyled } from "components/modals/modal-employee-view/modal-employee-view-styled";
+import { TDialogProps } from "shared/ui/dialog/dialog-types";
+import { emptyFunction } from "utils/empty-function";
 
 import { useEmployeeLoader } from "@/entities/profile";
+
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
 
 export type ModalEmployeeViewProps = {
 	id: number;
@@ -21,6 +20,7 @@ export const ModalEmployeeView: FC<ModalEmployeeViewProps & TDialogProps> = ({
 	const { isLoading, employee } = useEmployeeLoader(id);
 	const { showEmployee } = useEmployeeUi(employee);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: during migration
 	useEffect(() => {
 		setModalLoading(isLoading);
 	}, [isLoading]);
@@ -32,7 +32,5 @@ export const ModalEmployeeView: FC<ModalEmployeeViewProps & TDialogProps> = ({
 		}
 	};
 
-	return (
-		<ModalEmployeeViewStyled employee={employee} onGoToEmployeeClick={onGoToEmployeeClick} isLoading={isLoading} />
-	);
+	return <ModalEmployeeViewStyled employee={employee} onGoToEmployeeClick={onGoToEmployeeClick} isLoading={isLoading} />;
 };

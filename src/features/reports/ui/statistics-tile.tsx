@@ -1,21 +1,25 @@
-import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
-import { FC } from "react";
-import { CircularProgress } from "@mui/material";
 import * as React from "react";
-import { BntBox } from "shared/ui/box/bnt-box";
-import classNames from "classnames";
-import { BntCard } from "shared/ui/card/card";
-import { BntTypography } from "shared/ui/typography/typography";
+import { FC } from "react";
 import { CloseOutlined, FullscreenOutlined } from "@mui/icons-material";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { emptyFunction } from "utils/empty-function";
-import { texts_c } from "services/localization/texts";
+import { CircularProgress } from "@mui/material";
+
+import classNames from "classnames";
+
 import { Currency } from "constants/currency";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c } from "services/localization/texts";
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntCard } from "shared/ui/card/card";
 import { BntCardBody } from "shared/ui/card/card-body";
-import { TProfile } from "@/types/model";
-import { useStatisticsTableConfig } from "./use-statistics-table-config";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
+import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
+import { BntTypography } from "shared/ui/typography/typography";
+import { emptyFunction } from "utils/empty-function";
+
 import reportsTexts from "../config/reports-texts";
+
+import { useStatisticsTableConfig } from "./use-statistics-table-config";
+import { TProfile } from "@/types/model";
 
 export type StatisticsTileProps = {
 	totalFieldName: string;
@@ -72,21 +76,12 @@ export const StatisticsTile: FC<StatisticsTileProps> = ({
 					</BntIconButton>
 				)}
 			</BntBox>
-			<BntCardBody
-				className="flex-grow overflow-hidden pl-2 pr-2"
-				onClick={(e) => e.stopPropagation()}
-			>
+			<BntCardBody className="flex-grow overflow-hidden pl-2 pr-2" onClick={(e) => e.stopPropagation()}>
 				{isLoading ? (
 					<CircularProgress color="inherit" />
 				) : (
 					<BntBox className="height-100 scroll">
-						<BntReactTable
-							columns={tableConfig}
-							data={onlyHeader ? [] : data || []}
-							isVirtual
-							estimateSize={40}
-							noHeaders
-						/>
+						<BntReactTable columns={tableConfig} data={onlyHeader ? [] : data || []} isVirtual estimateSize={40} noHeaders />
 					</BntBox>
 				)}
 			</BntCardBody>

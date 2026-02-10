@@ -1,5 +1,6 @@
-import { TProfile } from "@/types/model";
 import { GetProfileApiResponse, GetProfilesApiResponse } from "../api/bonuts-api";
+
+import { TProfile } from "@/types/model";
 
 export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 	if (!data) return undefined;

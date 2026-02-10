@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from "react";
 import { FormContainer } from "react-hook-form-mui";
-import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
+
 import _ from "lodash";
 
 import { BntFormBody } from "shared/ui/form/form-body";
 import { useLocale } from "shared/ui/locale/hooks/use-locale";
 
 import { TFormFieldSourceItem, TFormProps, TFormValue } from "./types/bnt-form";
+import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 
 export function BntForm<T extends Record<string, any>>({
 	fields,

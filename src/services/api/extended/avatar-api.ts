@@ -1,6 +1,6 @@
-import { bonutsApiOverride } from "services/api/injected-api";
 import { PostAvatarsApiArg, PostAvatarsApiResponse } from "services/api/bonuts-api";
 import { ApiMethod } from "services/api/helpers/api-method";
+import { bonutsApiOverride } from "services/api/injected-api";
 
 export const avatarApi = bonutsApiOverride.injectEndpoints({
 	endpoints: (build) => ({

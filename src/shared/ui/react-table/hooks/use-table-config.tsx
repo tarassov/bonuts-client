@@ -1,10 +1,12 @@
-import { TTableConfig } from "shared/ui/react-table/types";
-import { CellContext, createColumnHelper, DeepKeys } from "@tanstack/react-table";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useMemo } from "react";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { ActionCell } from "shared/ui/react-table/cells/action-cell";
 import { cellFactory } from "shared/ui/react-table/factories/cell-factory";
 import { headerFactory } from "shared/ui/react-table/factories/header-factory";
-import { ActionCell } from "shared/ui/react-table/cells/action-cell";
+import { TTableConfig } from "shared/ui/react-table/types";
+
+import { CellContext, createColumnHelper, DeepKeys } from "@tanstack/react-table";
 import { TBaseModel } from "@/types/model";
 
 export const useTableConfig = <T extends TBaseModel>(config: TTableConfig<T>) => {
@@ -29,12 +31,8 @@ export const useTableConfig = <T extends TBaseModel>(config: TTableConfig<T>) =>
 			const headerActions = config.headerActions || {};
 			return [
 				columnHelper.accessor<any, any>("actions", {
-					cell: (info: CellContext<T, string>) => (
-						<ActionCell rowId={info.row.original.id} actions={Object.values(cellActions)} />
-					),
-					header: Object.values(headerActions).length
-						? () => <ActionCell actions={Object.values(headerActions)} />
-						: "",
+					cell: (info: CellContext<T, string>) => <ActionCell rowId={info.row.original.id} actions={Object.values(cellActions)} />,
+					header: Object.values(headerActions).length ? () => <ActionCell actions={Object.values(headerActions)} /> : "",
 					enableSorting: false,
 					enableColumnFilter: false,
 				}),

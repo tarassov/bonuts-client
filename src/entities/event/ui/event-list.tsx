@@ -2,25 +2,22 @@ import React, { useState } from "react";
 import { InView } from "react-intersection-observer";
 import { LightbulbCircleOutlined } from "@mui/icons-material";
 import { Button, Checkbox, CircularProgress, FormControlLabel, Grid, useMediaQuery, useTheme } from "@mui/material";
+
 import classnames from "classnames";
 
+import { SearchString } from "components/search-string/search-string";
+import { Dictionary } from "constants/dictionary";
+import { Modules } from "constants/modules";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_e, texts_s } from "services/localization/texts";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
-import { Dictionary } from "constants/dictionary";
-import { Modules } from "constants/modules";
-
-import { texts_e, texts_s } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
-import { SearchString } from "components/search-string/search-string";
+import { useEventListLogic } from "@/entities/event/model/use-event-list-logic";
 
 import { EventCardStyled } from "./event-card-styled";
-
-import { useEventListLogic } from "@/entities/event/model/use-event-list-logic";
 
 export function EventList() {
 	const { translate } = useBntTranslate();

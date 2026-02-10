@@ -1,5 +1,7 @@
 import { FC } from "react";
+
 import { TenantCardStyled } from "components/tenant/tenant-card/tenant-card-styled";
+
 import { TTenant } from "@/types/model/tenant";
 
 export type TenantCardProps = {

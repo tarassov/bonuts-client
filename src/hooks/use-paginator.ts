@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+
 import { deepEqual } from "fast-equals";
 import _ from "lodash";
 
 import { RootState, store, useAppDispatch, useAppSelector } from "services/redux/store/store";
 
 import { USE_POLLING_INTERVAL } from "@/app/config";
-
 import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/api";
 
 export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(

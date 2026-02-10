@@ -2,11 +2,9 @@ import { forwardRef } from "react";
 import { FieldError, TextFieldElement } from "react-hook-form-mui";
 import { TextFieldProps } from "@mui/material";
 
-import { getInputProps } from "shared/ui/input/helpers/get-input-props";
-
 import { EMPTY_FUNCTION } from "constants/functions";
-
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { getInputProps } from "shared/ui/input/helpers/get-input-props";
 
 /**
  *@param  props: clearable - if true show close icons in the of the string

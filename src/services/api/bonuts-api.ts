@@ -1,4 +1,5 @@
 import { emptySplitApi as api } from "./empty-api";
+
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
 		postAccountOperations: build.mutation<PostAccountOperationsApiResponse, PostAccountOperationsApiArg>({
@@ -66,11 +67,9 @@ const injectedRtkApi = api.injectEndpoints({
 		postInvitationsByIdAccept: build.mutation<PostInvitationsByIdAcceptApiResponse, PostInvitationsByIdAcceptApiArg>({
 			query: (queryArg) => ({ url: `/invitations/${queryArg.id}/accept`, method: "POST" }),
 		}),
-		postInvitationsByIdDecline: build.mutation<PostInvitationsByIdDeclineApiResponse, PostInvitationsByIdDeclineApiArg>(
-			{
-				query: (queryArg) => ({ url: `/invitations/${queryArg.id}/decline`, method: "POST" }),
-			}
-		),
+		postInvitationsByIdDecline: build.mutation<PostInvitationsByIdDeclineApiResponse, PostInvitationsByIdDeclineApiArg>({
+			query: (queryArg) => ({ url: `/invitations/${queryArg.id}/decline`, method: "POST" }),
+		}),
 		postInvitations: build.mutation<PostInvitationsApiResponse, PostInvitationsApiArg>({
 			query: (queryArg) => ({ url: `/invitations`, method: "POST", body: queryArg.body }),
 		}),
@@ -129,10 +128,7 @@ const injectedRtkApi = api.injectEndpoints({
 		putProfilesById: build.mutation<PutProfilesByIdApiResponse, PutProfilesByIdApiArg>({
 			query: (queryArg) => ({ url: `/profiles/${queryArg.id}`, method: "PUT", body: queryArg.body }),
 		}),
-		postProfilesByIdSetActivity: build.mutation<
-			PostProfilesByIdSetActivityApiResponse,
-			PostProfilesByIdSetActivityApiArg
-		>({
+		postProfilesByIdSetActivity: build.mutation<PostProfilesByIdSetActivityApiResponse, PostProfilesByIdSetActivityApiArg>({
 			query: (queryArg) => ({ url: `/profiles/${queryArg.id}/set_activity`, method: "POST", body: queryArg.body }),
 		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
@@ -198,22 +194,17 @@ const injectedRtkApi = api.injectEndpoints({
 		patchDonutsSchedulersById: build.mutation<PatchDonutsSchedulersByIdApiResponse, PatchDonutsSchedulersByIdApiArg>({
 			query: (queryArg) => ({ url: `/donuts_schedulers/${queryArg.id}`, method: "PATCH", body: queryArg.body }),
 		}),
-		deleteDonutsSchedulersById: build.mutation<DeleteDonutsSchedulersByIdApiResponse, DeleteDonutsSchedulersByIdApiArg>(
-			{
-				query: (queryArg) => ({
-					url: `/donuts_schedulers/${queryArg.id}`,
-					method: "DELETE",
-					params: { tenant: queryArg.tenant },
-				}),
-			}
-		),
+		deleteDonutsSchedulersById: build.mutation<DeleteDonutsSchedulersByIdApiResponse, DeleteDonutsSchedulersByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/donuts_schedulers/${queryArg.id}`,
+				method: "DELETE",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		getTelegramChat: build.query<GetTelegramChatApiResponse, GetTelegramChatApiArg>({
 			query: () => ({ url: `/telegram_chat` }),
 		}),
-		postTenantsByTenantNameJoin: build.mutation<
-			PostTenantsByTenantNameJoinApiResponse,
-			PostTenantsByTenantNameJoinApiArg
-		>({
+		postTenantsByTenantNameJoin: build.mutation<PostTenantsByTenantNameJoinApiResponse, PostTenantsByTenantNameJoinApiArg>({
 			query: (queryArg) => ({ url: `/tenants/${queryArg.tenantName}/join`, method: "POST" }),
 		}),
 		getTenantCurrent: build.query<GetTenantCurrentApiResponse, GetTenantCurrentApiArg>({

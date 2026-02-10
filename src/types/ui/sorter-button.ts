@@ -1,4 +1,5 @@
 import { Sorting } from "constants/dictionary";
+
 import { TBaseModel } from "@/types/model";
 
 export type TSorterButton<T extends TBaseModel> = {

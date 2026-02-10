@@ -14,6 +14,7 @@ import { texts_r } from "services/localization/texts/texts_r";
 import { useNotification } from "services/notification/use-notification";
 
 import { useProfile } from "@/entities/profile";
+
 import { TDonut } from "@/types/model";
 
 export const useRequestLogic = () => {
@@ -25,10 +26,7 @@ export const useRequestLogic = () => {
 	const [postRollbackRequest] = usePostRequestsRollbackMutation();
 	const { showNotification } = useNotification();
 
-	const createRequest = async (
-		args: { donut: TDonut },
-		options?: { onSuccess?: (result: PostRequestsApiResponse) => void }
-	) => {
+	const createRequest = async (args: { donut: TDonut }, options?: { onSuccess?: (result: PostRequestsApiResponse) => void }) => {
 		const { donut } = args;
 		if (authTenant) {
 			postRequest({

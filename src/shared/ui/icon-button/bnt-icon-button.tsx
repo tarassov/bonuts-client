@@ -1,5 +1,6 @@
 import { FC, ReactNode, useEffect, useState } from "react";
 import { Icon, IconButton, IconButtonProps, Tooltip } from "@mui/material";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntBadge } from "shared/ui/badge/bnt-badge";
 
@@ -8,15 +9,7 @@ export const BntIconButton: FC<
 		tooltip?: string;
 		customIcon?: boolean;
 		badgeContent?: ReactNode;
-		badgeColor?:
-			| "secondary"
-			| "primary"
-			| "default"
-			| "error"
-			| "info"
-			| "success"
-			| "warning"
-			| undefined;
+		badgeColor?: "secondary" | "primary" | "default" | "error" | "info" | "success" | "warning" | undefined;
 	}
 > = (props) => {
 	const { tooltip, customIcon, children, badgeContent, badgeColor, ...rest } = props;

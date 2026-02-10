@@ -2,30 +2,26 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Android, Comment, Edit, Favorite, Lock } from "@mui/icons-material";
 import { Avatar, Box, Button, IconButton, TextField, Tooltip, Typography } from "@mui/material";
+
 import classNames from "classnames";
 
+import { BntStyledOperationText } from "components/opearation-text/styled-operation-text";
+import { Dictionary } from "constants/dictionary";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardActions } from "shared/ui/card/card-actions";
 import { BntCardContent } from "shared/ui/card/card-content";
 import { BntTypography } from "shared/ui/typography/typography";
-
 import { emptyFunction } from "utils/empty-function";
 import { focusInput } from "utils/focus-input";
 import { formatStringDate } from "utils/format-string-date";
-
-import { Dictionary } from "constants/dictionary";
-
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
-import { useEventUi } from "logic/ui/use-event-ui";
-
-import { BntStyledOperationText } from "components/opearation-text/styled-operation-text";
 
 import { useEventLogic } from "../model/use-event-logic";
 
 import { EVENT_CARD_CLASSES } from "./classes";
 import { EventCardHeader } from "./event-card-header";
-
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
+import { useEventUi } from "logic/ui/use-event-ui";
 import { TPost } from "@/types/model/post";
 
 export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
@@ -92,9 +88,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 				}
 				action={
 					<Tooltip title={isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)}>
-						<IconButton
-							aria-label={(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) || Dictionary.PROFILE}
-						>
+						<IconButton aria-label={(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) || Dictionary.PROFILE}>
 							{!isPublic && <Lock />}
 						</IconButton>
 					</Tooltip>

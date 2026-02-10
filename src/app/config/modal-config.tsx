@@ -1,7 +1,3 @@
-import { CommonStrings } from "constants/dictionary";
-
-import { texts_c } from "services/localization/texts";
-
 import { ConfirmationModal } from "components/modals/confirmation-modal";
 import { ModalAdminDeposit } from "components/modals/modal-admin-deposit/modal-admin-deposit";
 import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-create-circle";
@@ -11,11 +7,14 @@ import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-
 import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-employee-view";
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
+import { CommonStrings } from "constants/dictionary";
+import { texts_c } from "services/localization/texts";
 
-import { telegramModalConfig } from "@/features/profile/telegram";
+import type { TDialogConfig } from "@/shared/ui/dialog";
 
 import type { TModalConfig } from "@/entities/modal";
-import type { TDialogConfig } from "@/shared/ui/dialog";
+
+import { telegramModalConfig } from "@/features/profile/telegram";
 
 export const modalConfig: TDialogConfig<TModalConfig> = {
 	items: {
@@ -23,9 +22,7 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 			renderItem: (modal) => <div>{modal.data}</div>,
 		},
 		ConfirmationModal: {
-			renderItem: (modal, props) => (
-				<ConfirmationModal onSubmit={modal.data.onSubmit} text={modal.data.text} {...props} />
-			),
+			renderItem: (modal, props) => <ConfirmationModal onSubmit={modal.data.onSubmit} text={modal.data.text} {...props} />,
 			title: (data) => data.title || texts_c.confirmation,
 			hasTopMenu: true,
 		},

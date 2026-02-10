@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { push } from "redux-first-history";
-import { storage } from "shared/lib/localStorage";
 
 import {
 	bonutsApi,
@@ -11,6 +10,7 @@ import {
 } from "services/api/bonuts-api";
 import { authActions } from "services/redux/slice/auth-slice";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
+import { storage } from "shared/lib/localStorage";
 
 // const MAX_RETRY_NUMBER = 3;
 

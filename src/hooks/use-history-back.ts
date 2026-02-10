@@ -1,17 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import {
-	NavigationType,
-	UNSAFE_NavigationContext,
-	useLocation,
-	useNavigate,
-} from "react-router-dom";
+import { NavigationType, UNSAFE_NavigationContext, useLocation, useNavigate } from "react-router-dom";
+
 import { History, Update } from "history";
 
-export const useHistoryBack = (args: {
-	key: string;
-	callback?: VoidFunction;
-	prevent?: boolean;
-}) => {
+export const useHistoryBack = (args: { key: string; callback?: VoidFunction; prevent?: boolean }) => {
 	const { callback, prevent, key } = args;
 	const navigate = useNavigate();
 	const location = useLocation();

@@ -1,5 +1,6 @@
-import { styled } from "@mui/material/styles";
 import { Dialog, DialogProps } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import { cl } from "themes/helper";
 
 export const DialogStyled = styled(Dialog, {

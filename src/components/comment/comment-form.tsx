@@ -2,11 +2,9 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Box, Button, TextField } from "@mui/material";
 
-import { BntStack } from "shared/ui/stack";
-
-import { texts_c, texts_s } from "services/localization/texts";
-
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c, texts_s } from "services/localization/texts";
+import { BntStack } from "shared/ui/stack";
 
 export const CommentForm: FC<{
 	onSubmit: (comment: string) => Promise<void>;

@@ -1,8 +1,15 @@
 import React, { FC, useState } from "react";
 import { ErrorOutline, ShieldOutlined, StorefrontOutlined } from "@mui/icons-material";
 import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+
 import classNames from "classnames";
 
+import { CircleTag } from "components/circle/circle-tag/circle-tag";
+import { EmployeeEdit } from "components/employee/employee-edit/employee-edit";
+import { EmployeePreviewBreadcrumbs } from "components/employee/employee-preview/employee-preview-breadcrumbs";
+import { BntLabel } from "components/employee/employee-preview/label";
+import { DEFAULT_AVATAR } from "constants/images";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardBody } from "shared/ui/card/card-body";
@@ -11,21 +18,10 @@ import { BntDivider } from "shared/ui/divider/bnt-divider";
 import { ImagePreview } from "shared/ui/image/image-preview";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-
 import { emptyFunction } from "utils/empty-function";
 import { formatStringDate } from "utils/format-string-date";
 
-import { DEFAULT_AVATAR } from "constants/images";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
-import { CircleTag } from "components/circle/circle-tag/circle-tag";
-import { EmployeeEdit } from "components/employee/employee-edit/employee-edit";
-import { EmployeePreviewBreadcrumbs } from "components/employee/employee-preview/employee-preview-breadcrumbs";
-import { BntLabel } from "components/employee/employee-preview/label";
-
 import { EmployeeActions } from "pages/employee/employee-actions";
-
 import { texts_a, texts_b, texts_c, texts_i, texts_n, texts_s } from "@/services/localization/texts";
 import { TProfile } from "@/types/model";
 
@@ -84,21 +80,8 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 					) : (
 						<>
 							<Grid container justifyItems="flex-start" spacing={4}>
-								<Grid
-									item
-									xs={12}
-									sm={8}
-									md={4}
-									lg={4}
-									xl={3}
-									className={classNames("", { "text-align-center": matchesDownSm })}
-								>
-									<ImagePreview
-										defaultImage={DEFAULT_AVATAR}
-										image={employee?.user_avatar?.url}
-										className="ml-3"
-										onClick={onImageClick}
-									/>
+								<Grid item xs={12} sm={8} md={4} lg={4} xl={3} className={classNames("", { "text-align-center": matchesDownSm })}>
+									<ImagePreview defaultImage={DEFAULT_AVATAR} image={employee?.user_avatar?.url} className="ml-3" onClick={onImageClick} />
 									<Stack
 										direction="row"
 										justifyContent="center"
@@ -114,18 +97,12 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 									</Stack>
 								</Grid>
 								<Grid item xs={12} sm={12} md={5} lg={6} order={{ xs: 3, md: 2 }}>
-									<Stack
-										direction={{ sm: "row", xs: "column" }}
-										alignItems={{ sm: "center", xs: "flex-start" }}
-										spacing={2}
-									>
+									<Stack direction={{ sm: "row", xs: "column" }} alignItems={{ sm: "center", xs: "flex-start" }} spacing={2}>
 										<BntTypography variant="h4" display="block">
 											{employee?.user_name}
 										</BntTypography>
 										<Stack direction={{ sm: "column", md: "row", xs: "column" }} spacing={2}>
-											{employee?.admin && (
-												<BntChip color="primary" icon={<ShieldOutlined />} label={translate(texts_a.admin)} />
-											)}
+											{employee?.admin && <BntChip color="primary" icon={<ShieldOutlined />} label={translate(texts_a.admin)} />}
 											{employee && !employee?.active && (
 												<BntChip color="error" icon={<ErrorOutline />} label={translate(texts_n.not_active)} />
 											)}
@@ -139,11 +116,7 @@ export const EmployeePreviewPure: FC<EmployeePreviewPureProps> = ({
 									</BntTypography>
 									<BntLabel name="email" value={employee?.email} className="mb-3" />
 									<BntLabel name={texts_c.contact} value={employee?.contact} className="mb-3" />
-									<BntLabel
-										name={texts_b.birthday}
-										value={formatStringDate(employee?.birthdate, true)}
-										className="mb-3"
-									/>
+									<BntLabel name={texts_b.birthday} value={formatStringDate(employee?.birthdate, true)} className="mb-3" />
 									<BntLabel name={texts_i.in_date} value={formatStringDate(employee?.in_date)} className="mb-3" />
 									<BntDivider className="mt-4 mb-4" />
 									<BntBox>

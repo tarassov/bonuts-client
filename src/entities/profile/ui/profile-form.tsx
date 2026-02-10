@@ -1,13 +1,12 @@
-import { SerializedError } from "@reduxjs/toolkit";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-
 import { Modules } from "constants/modules";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { BntForm, type TFormProps } from "@/shared/ui/form";
 
 import { useProfileFormFields } from "../model/use-profile-form-fields";
 
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import type { TProfile } from "@/types/model";
 
 interface IProfileFormProps {

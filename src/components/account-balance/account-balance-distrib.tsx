@@ -1,18 +1,14 @@
 import { DonutSmallOutlined } from "@mui/icons-material";
 
+import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_i, texts_s } from "services/localization/texts";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { BntStack } from "shared/ui/stack";
 
-import { texts_i, texts_s } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
-
-import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
-
 import type { TProfile } from "@/types/model";
 
 export function AccountBalanceDistrib({ profile }: { profile: TProfile }) {

@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+
 import { BntButton } from "shared/ui/buttons/bnt-button";
 
 export const BntRegularButton = styled(BntButton, {

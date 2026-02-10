@@ -1,12 +1,10 @@
+import { CommonStrings } from "constants/dictionary";
+import { BntForm } from "shared/ui/form/bnt-form";
 import { FieldSize, FieldType, type TFormField, type TFormProps, type TFormValue } from "shared/ui/form/types/bnt-form";
 
-import { BntForm } from "shared/ui/form/bnt-form";
-
-import { CommonStrings } from "constants/dictionary";
+import { useUpdateAvatar } from "@/entities/profile/model/use-update-avatar";
 
 import { useModal } from "entities/modal";
-
-import { useUpdateAvatar } from "@/entities/profile/model/use-update-avatar";
 import { TProfile } from "@/types/model";
 
 export function BntProfileImage({ profile }: { profile?: TProfile }) {
@@ -32,9 +30,7 @@ export function BntProfileImage({ profile }: { profile?: TProfile }) {
 	];
 	const formProps: TFormProps<any> = { fields, formId: "user-profile" };
 	const initialValues = profile;
-	const onSubmit = (
-		values: Record<string, TFormValue>
-	): Promise<{ data: any } | { error: any } | undefined> | undefined => {
+	const onSubmit = (values: Record<string, TFormValue>): Promise<{ data: any } | { error: any } | undefined> | undefined => {
 		if (profile && profile.tenant && profile.id) {
 			const file = values.user_avatar as File;
 			return postAvatar({ file, id: profile.id });

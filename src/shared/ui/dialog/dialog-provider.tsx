@@ -1,20 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { isFunction } from "lodash";
-import _uniqueId from "lodash/uniqueId";
-import { BntDialogContainer } from "shared/ui/dialog/dialog-container";
-import {
-	DialogCloseContext,
-	DialogContext,
-	DialogNamesContext,
-	DialogValueContext,
-} from "shared/ui/dialog/dialog-context";
 
 import { CommonStrings } from "constants/dictionary";
-
 import { useLocationTyped } from "hooks/use-location-typed";
+import { BntDialogContainer } from "shared/ui/dialog/dialog-container";
+import { DialogCloseContext, DialogContext, DialogNamesContext, DialogValueContext } from "shared/ui/dialog/dialog-context";
 
 import { TDialog, TDialogConfig } from "./dialog-types";
+import _uniqueId from "lodash/uniqueId";
 
 interface IBntDialogProviderProps<T extends Record<string, any>> {
 	config: TDialogConfig<T>;

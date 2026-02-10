@@ -64,14 +64,7 @@ export type TFormImageValue = {
 };
 export type TFormPrimitiveValue = string | number | boolean | null;
 export type TFormValueArray = Array<TFormPrimitiveValue>;
-export type TFormValue =
-	| TFormPrimitiveValue
-	| TFormValueArray
-	| TFormImageValue
-	| Array<TFormFieldSourceItem>
-	| File
-	| null
-	| undefined;
+export type TFormValue = TFormPrimitiveValue | TFormValueArray | TFormImageValue | Array<TFormFieldSourceItem> | File | null | undefined;
 export type TFormFieldSourceItem = { key: string | number; label?: string };
 export type TFormFieldSource = Array<TFormFieldSourceItem>;
 export type TFormField<T = Record<string, any>> = TSizeProps & {
@@ -111,10 +104,7 @@ export type TFormProps<T extends Record<string, any>> = {
 	groupGap?: number;
 	submitCaption?: string;
 	onLoad?: () => void;
-	onSubmit?: (
-		values: T,
-		onError?: (message?: string) => void
-	) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
+	onSubmit?: (values: T, onError?: (message?: string) => void) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
 	children?: JSX.Element | JSX.Element[];
 	locale?: Locale;

@@ -1,4 +1,5 @@
 import { CommonStrings } from "constants/dictionary";
+
 import { TProfile } from "@/types/model";
 
 const getNameForSort = (p: TProfile) => {

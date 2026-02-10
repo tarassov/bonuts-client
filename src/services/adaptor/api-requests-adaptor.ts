@@ -1,5 +1,6 @@
-import { GetRequestsApiResponse } from "services/api/bonuts-api";
 import { dataToProfile } from "services/adaptor/api-profile-adaptor";
+import { GetRequestsApiResponse } from "services/api/bonuts-api";
+
 import { TRequest } from "@/types/model/request";
 
 export const apiRequestsAdaptor = (response: GetRequestsApiResponse): Array<TRequest> => {

@@ -1,6 +1,7 @@
-import { TTableColumn } from "shared/ui/react-table/types";
-import { CellContext } from "@tanstack/react-table";
 import { StringCell } from "shared/ui/react-table/cells/string-cell";
+import { TTableColumn } from "shared/ui/react-table/types";
+
+import { CellContext } from "@tanstack/react-table";
 import { TBaseModel } from "@/types/model";
 
 export const cellFactory = <T extends TBaseModel>(column: TTableColumn<T>) => {

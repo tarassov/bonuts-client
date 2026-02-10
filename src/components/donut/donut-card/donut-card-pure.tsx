@@ -1,20 +1,17 @@
 import { FC } from "react";
+
 import classNames from "classnames";
 
+import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
+import { DEFAULT_DONUT_IMAGE } from "constants/images";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useBonutsIcon } from "hooks/use-bonuts-icon";
+import { texts_o } from "services/localization/texts/texts_o";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardActionArea } from "shared/ui/card/card-action-area";
 import { BntCardBody } from "shared/ui/card/card-body";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-
-import { DEFAULT_DONUT_IMAGE } from "constants/images";
-
-import { texts_o } from "services/localization/texts/texts_o";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useBonutsIcon } from "hooks/use-bonuts-icon";
-
-import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
 
 import { TDonut } from "@/types/model";
 

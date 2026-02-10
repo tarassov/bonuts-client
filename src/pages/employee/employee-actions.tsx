@@ -1,16 +1,13 @@
 import React, { FC } from "react";
 import { BlockOutlined, CakeOutlined, CheckOutlined, EditOutlined } from "@mui/icons-material";
 
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { BntStack } from "shared/ui/stack";
-
-import { emptyFunction } from "utils/empty-function";
-
-import { texts_a, texts_d, texts_e } from "services/localization/texts";
-import { texts_t } from "services/localization/texts/texts_t";
-
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
+import { texts_a, texts_d, texts_e } from "services/localization/texts";
+import { texts_t } from "services/localization/texts/texts_t";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
+import { BntStack } from "shared/ui/stack";
+import { emptyFunction } from "utils/empty-function";
 
 export const EmployeeActions: FC<{
 	onTransferClick?: VoidFunction;

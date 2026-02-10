@@ -1,16 +1,15 @@
 import { useCallback, useMemo } from "react";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 import { useGetProfileQuery } from "services/api/bonuts-api";
 import { accountsApi } from "services/api/extended/accounts-api";
 import { useAppDispatch } from "services/redux/store/store";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { useCurrentProfile } from "@/shared/model/auth";
 
 import { useUpdateProfile } from "./use-update-profile";
-
 import type { TProfile } from "@/types/model";
 
 const OPERATION_NAME = "profileLogic";

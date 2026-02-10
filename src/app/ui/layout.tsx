@@ -1,19 +1,17 @@
 import { useContext, useMemo } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { AppContext } from "context/app-context";
-import { getRoutes } from "routes/get-routes";
 
+import { BTNHeader } from "components/header/header";
+import BntSidebar from "components/sidebar/sidebar";
+import { Modules } from "constants/modules";
 import { useAuth } from "shared/model/auth/use-auth";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntDrawerHeader } from "shared/ui/drawer";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntStack } from "shared/ui/stack";
 
-import { Modules } from "constants/modules";
-
-import { BTNHeader } from "components/header/header";
-import BntSidebar from "components/sidebar/sidebar";
-
+import { AppContext } from "context/app-context";
+import { getRoutes } from "routes/get-routes";
 import SwitchRoutes from "@/app/ui/switch-routes";
 
 import "@/app/ui/app.scss";

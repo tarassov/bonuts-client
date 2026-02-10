@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-
 import { Modules } from "constants/modules";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { usePluginActivate, usePluginListLoader } from "@/features/plugin";
 import { usePluginUpdate } from "@/features/plugin/model/use-plugin-update";
+
 import { PluginCard } from "@/widgets/plugin-list/ui/plugin-card";
 import { PluginForm } from "@/widgets/plugin-list/ui/plugin-form";
 import { PluginStack } from "@/widgets/plugin-list/ui/plugin-stack";
@@ -25,12 +25,7 @@ export const PluginList = () => {
 				return (
 					<div key={x.id}>
 						{isEdit ? (
-							<PluginForm
-								plugin={x}
-								onCancel={() => setEditId(undefined)}
-								onSubmit={updatePlugin}
-								onSetActive={setActivatePlugin}
-							/>
+							<PluginForm plugin={x} onCancel={() => setEditId(undefined)} onSubmit={updatePlugin} onSetActive={setActivatePlugin} />
 						) : (
 							<PluginCard plugin={x} openEdit={() => setEditId(x.id)} />
 						)}

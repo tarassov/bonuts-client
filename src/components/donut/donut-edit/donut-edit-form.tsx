@@ -1,23 +1,19 @@
-import { TFormProps } from "shared/ui/form/types/bnt-form";
-import { BntForm } from "shared/ui/form/bnt-form";
 import { FC } from "react";
+
 import { useDonutEditFormFields } from "components/donut/donut-edit/hooks/use-donut-edit-form-fields";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { BntForm } from "shared/ui/form/bnt-form";
+import { TFormProps } from "shared/ui/form/types/bnt-form";
+
 import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { TDonut } from "@/types/model";
 
 export const DonutEditForm: FC<{
 	donut: TDonut;
 	onSubmit: (
 		values: TDonut
-	) =>
-		| Promise<
-				| { data: PutDonutsByIdApiResponse }
-				| { error: FetchBaseQueryError | SerializedError }
-				| undefined
-		  >
-		| undefined;
+	) => Promise<{ data: PutDonutsByIdApiResponse } | { error: FetchBaseQueryError | SerializedError } | undefined> | undefined;
 }> = ({ onSubmit, donut }) => {
 	const { fields, groups } = useDonutEditFormFields();
 	const handleSubmit = (values: TDonut) => {

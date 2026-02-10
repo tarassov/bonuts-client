@@ -1,16 +1,15 @@
 import React, { FC, useContext } from "react";
 import { ChevronLeft, Menu } from "@mui/icons-material";
 import { IconButton, List, ListItem, ListItemButton, ListItemIcon, useTheme } from "@mui/material";
-import { AppContext } from "context/app-context";
 
 import { BntRoutesMenu } from "./routes-menu";
+import { AppContext } from "context/app-context";
 
 export const BntMainMenu: FC<BntRoutesMenuProps> = (props) => {
 	const { showFullName } = props;
 
 	const { toggleDrawer } = useContext(AppContext);
 	const theme = useTheme();
-
 
 	return (
 		<List>
@@ -33,11 +32,11 @@ export const BntMainMenu: FC<BntRoutesMenuProps> = (props) => {
 						}}
 					>
 						{!showFullName ? (
-							<IconButton  sx={{ pt: 0.5, pb: 0.5 }}>
+							<IconButton sx={{ pt: 0.5, pb: 0.5 }}>
 								<Menu />
 							</IconButton>
 						) : (
-							<IconButton  sx={{ mr: 0, pr: 0, pt: 0.5, pb: 0.5 }}>
+							<IconButton sx={{ mr: 0, pr: 0, pt: 0.5, pb: 0.5 }}>
 								{theme.direction === "rtl" ? <ChevronLeft /> : <ChevronLeft />}
 							</IconButton>
 						)}

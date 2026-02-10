@@ -1,17 +1,11 @@
-import {
-	PostRegisterApiArg,
-	usePostRegisterMutation,
-	usePostSendConfirmEmailMutation,
-} from "services/api/bonuts-api";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useProjectNavigate } from "hooks/use-project-navigate";
+import { PostRegisterApiArg, usePostRegisterMutation, usePostSendConfirmEmailMutation } from "services/api/bonuts-api";
 import { texts_c } from "services/localization/texts";
 import { useNotification } from "services/notification";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useProjectNavigate } from "hooks/use-project-navigate";
-
 export const useSignUp = () => {
-	const [postRegister, { isLoading: isPostingRegister, error: registerError }] =
-		usePostRegisterMutation();
+	const [postRegister, { isLoading: isPostingRegister, error: registerError }] = usePostRegisterMutation();
 	const [sendEmail] = usePostSendConfirmEmailMutation();
 	const { showNotification } = useNotification();
 	const { translate } = useBntTranslate();

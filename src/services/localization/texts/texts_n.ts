@@ -3,7 +3,7 @@ export enum texts_n {
 	name = "name",
 	no_name = "no name",
 	name_is_required = "name is required",
-	"next" = "next",
+	next = "next",
 	new_donut = "new donut",
 	not_found = "not found",
 	new_circle = "new circle",

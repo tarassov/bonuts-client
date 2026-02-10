@@ -1,8 +1,7 @@
-import { authTenantSelector } from "shared/model/auth/auth-selector";
-
 import { apiTenantAdaptor } from "services/adaptor/api-tenant-adaptor";
 import { useGetTenantCurrentQuery } from "services/api/bonuts-api";
 import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "shared/model/auth/auth-selector";
 
 export const useTenantLoader = () => {
 	const authTenant = useAppSelector(authTenantSelector);

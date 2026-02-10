@@ -57,33 +57,20 @@
 		"test": "vitest",
 		"test:withoutWatch": "vitest run",
 		"generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts",
-		"lint": "tsc --noEmit && eslint src/**/*.ts{,x} --cache --max-warnings=0",
-		"lint:fix": "tsc --noEmit && eslint src/**/*.ts{,x}  --fix",
-		"prettier": "prettier --check src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc",
-		"prettier:fix": "prettier --write src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc",
+		"lint": "tsc --noEmit && biome check src",
+		"lint:fix": "tsc --noEmit && biome check --write src",
+		"biome": "biome check src --diagnostic-level=error",
+		"biome:fix": "biome check --write src",
 		"prepare": "husky",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d dist -t"
 	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
 	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+		"production": [">0.2%", "not dead", "not op_mini all"],
+		"development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.3.14",
 		"@rtk-query/codegen-openapi": "^1.0.0-alpha.1",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^14.0.0",
@@ -93,27 +80,13 @@
 		"@types/ramda": "^0.31.1",
 		"@types/react": "^18.0.28",
 		"@types/react-dom": "^18.0.11",
-		"@typescript-eslint/eslint-plugin": "^5.57.0",
-		"@typescript-eslint/parser": "^5.57.0",
 		"@vitejs/plugin-basic-ssl": "^1.1.0",
 		"@vitejs/plugin-react": "^4.2.1",
 		"@vitest/coverage-c8": "^0.31.0",
-		"eslint": "^8.39.0",
-		"eslint-config-airbnb": "^19.0.4",
-		"eslint-config-airbnb-typescript": "^17.0.0",
-		"eslint-config-prettier": "^8.8.0",
-		"eslint-plugin-import": "^2.27.5",
-		"eslint-plugin-jsx-a11y": "^6.7.1",
-		"eslint-plugin-prettier": "^4.2.1",
-		"eslint-plugin-react": "^7.32.2",
-		"eslint-plugin-react-hooks": "^4.6.2",
-		"eslint-plugin-simple-import-sort": "^12.1.1",
-		"eslint-plugin-testing-library": "^5.10.2",
 		"gh-pages": "^5.0.0",
 		"husky": "^9.1.7",
 		"jsdom": "^21.1.1",
 		"lint-staged": "^13.2.2",
-		"prettier": "^2.8.7",
 		"ts-node": "^10.9.1",
 		"vite": "7.3.0",
 		"vite-plugin-pwa": "^0.20.1",

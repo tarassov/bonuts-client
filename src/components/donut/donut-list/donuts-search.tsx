@@ -1,8 +1,9 @@
 import React, { FC } from "react";
+
+import { SearchString } from "components/search-string/search-string";
 import { Sorting } from "constants/dictionary";
 
 import { DonutSorter } from "logic/utils/sorter/donut-sorter";
-import { SearchString } from "components/search-string/search-string";
 import { TDonut } from "@/types/model";
 
 export const BntDonutsSearch: FC<{
@@ -33,12 +34,5 @@ export const BntDonutsSearch: FC<{
 		},
 	];
 
-	return (
-		<SearchString<TDonut>
-			setSearch={setSearch}
-			setFilter={setFilter}
-			setSorter={setSorter}
-			buttons={buttons}
-		/>
-	);
+	return <SearchString<TDonut> setSearch={setSearch} setFilter={setFilter} setSorter={setSorter} buttons={buttons} />;
 };

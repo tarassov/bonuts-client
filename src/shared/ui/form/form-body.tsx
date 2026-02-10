@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { useFormContext, useFormState } from "react-hook-form";
 import { Grid } from "@mui/material";
+
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntFormFieldList } from "shared/ui/form/bnt-form-field-list";
 import { BntFormGroups } from "shared/ui/form/bnt-form-groups";
@@ -56,13 +57,7 @@ export const BntFormBody: FC<
 						{!groups?.length ? (
 							<BntFormFieldList formId={formId} hasInitial={hasInitial} fields={fields} />
 						) : (
-							<BntFormGroups
-								groupGap={groupGap}
-								formId={formId}
-								groups={groups}
-								hasInitial={hasInitial}
-								fields={fields}
-							/>
+							<BntFormGroups groupGap={groupGap} formId={formId} groups={groups} hasInitial={hasInitial} fields={fields} />
 						)}
 					</>
 				</BntFormContextProvider>

@@ -1,8 +1,7 @@
-import { authTenantSelector } from "shared/model/auth/auth-selector";
-
 import { usePostEventsByIdCommentsMutation, usePutEventsByIdMutation } from "services/api/bonuts-api";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
+import { authTenantSelector } from "shared/model/auth/auth-selector";
 
 import { eventsApi } from "../api/events-api";
 
@@ -35,7 +34,7 @@ export const useEventLogic = () => {
 				body: { ...values, like: false, tenant: authTenant }, // like true toggles like (backend hooks)
 			});
 			if ("error" in res) {
-				throw Error();
+				throw new Error();
 			}
 			dispatch(eventsApi.util.invalidateTags(invalidateId("Event", event.id)));
 		}
@@ -48,7 +47,7 @@ export const useEventLogic = () => {
 				body: { text, tenant: authTenant }, // like true toggles like (backend hooks)
 			});
 			if ("error" in res) {
-				throw Error();
+				throw new Error();
 			}
 			dispatch(eventsApi.util.invalidateTags(invalidateId("Event", event.id)));
 		}

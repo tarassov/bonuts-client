@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 import { push } from "redux-first-history";
-
-import { useAppDispatch } from "services/redux/store/store";
+import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useAppDispatch } from "services/redux/store/store";
 
 export const BntRouteMenuButton: FC<BntRouteMenuButtonProps> = ({
 	route,

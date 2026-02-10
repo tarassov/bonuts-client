@@ -1,7 +1,10 @@
 import { createContext, FC, useCallback, useMemo, useState } from "react";
+
+import { emptyFunction } from "utils/empty-function";
+
 import { BntModalLoader } from "./modal-loader";
 
-export const BntSetLoadingContext = createContext<(name: string, value: boolean) => void>(() => {});
+export const BntSetLoadingContext = createContext<(name: string, value: boolean) => void>(emptyFunction);
 
 export const BntLoadingProvider: FC<{
 	children: JSX.Element | Array<JSX.Element>;

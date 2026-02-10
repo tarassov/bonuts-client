@@ -1,18 +1,14 @@
 import { FC, useEffect, useState } from "react";
 
-import { BntDivider } from "shared/ui/divider/bnt-divider";
-
-import { emptyFunction } from "utils/empty-function";
-
-import { texts_c } from "services/localization/texts";
-
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c } from "services/localization/texts";
+import { BntDivider } from "shared/ui/divider/bnt-divider";
+import { emptyFunction } from "utils/empty-function";
 
 import { SchedulerCard } from "./scheduler-card";
 import { SchedulerCardEdit } from "./scheduler-card-edit";
 import { SchedulerForm } from "./scheduler-form";
 import { SchedulerStack } from "./scheduler-stack";
-
 import type { TNewScheduler, TScheduler } from "@/types/model/scheduler";
 
 export type SchedulerListProps = {
@@ -36,6 +32,7 @@ export const SchedulerList: FC<SchedulerListProps> = ({
 	const [editId, setEditId] = useState<number | undefined>();
 	const { t } = useBntTranslate();
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: during migration
 	useEffect(() => {
 		if (editId !== undefined && createMode) setEditId(undefined);
 		// eslint-disable-next-line
@@ -43,13 +40,7 @@ export const SchedulerList: FC<SchedulerListProps> = ({
 
 	return (
 		<SchedulerStack direction="column" className={className} gap={2}>
-			{createMode && (
-				<SchedulerForm
-					onSubmit={onCreate}
-					onCancel={closeCreateMode}
-					submitCaption={t(texts_c.create)}
-				/>
-			)}
+			{createMode && <SchedulerForm onSubmit={onCreate} onCancel={closeCreateMode} submitCaption={t(texts_c.create)} />}
 			{createMode && <BntDivider />}
 			{schedulers?.map((scheduler) => {
 				const isEditMode = editId === scheduler.id;

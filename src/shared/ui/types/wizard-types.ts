@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import { VoidResponseFunction } from "@/types/function-types";
 
 export type TStepState = { prev?: any; next: any };
@@ -11,17 +12,12 @@ export type TWizardProps<TWizardState, TNextProps, TInitialValues> = {
 };
 
 export type TWizardStep<TWizardState, TNextProps, TInitialValues> = {
-	renderItem: (
-		props: TWizardProps<TWizardState, TNextProps, TInitialValues>
-	) => ReactNode | Array<ReactNode>;
+	renderItem: (props: TWizardProps<TWizardState, TNextProps, TInitialValues>) => ReactNode | Array<ReactNode>;
 	title?: string | ((data: TWizardState) => string);
 };
 
 type TWizardSteps<TWizardState, TInitialValues> = {
-	[name in keyof TWizardState]: Pick<
-		TWizardStep<TWizardState, TWizardState[name], TInitialValues>,
-		"renderItem" | "title"
-	>;
+	[name in keyof TWizardState]: Pick<TWizardStep<TWizardState, TWizardState[name], TInitialValues>, "renderItem" | "title">;
 };
 
 /*

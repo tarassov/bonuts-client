@@ -1,13 +1,12 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@mui/material";
-import { present } from "shared/lib/type-guards";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { Modules } from "constants/modules";
-
 import { ProfileNotification } from "services/api/bonuts-api";
 import { texts_c, texts_s } from "services/localization/texts";
+import { present } from "shared/lib/type-guards";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { UiCheckbox } from "@/shared/ui/checkbox";
 import { BntStack } from "@/shared/ui/stack";

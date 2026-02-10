@@ -1,13 +1,10 @@
+import { ModalEditCirclePure } from "components/modals/modal-edit-circle/modal-edit-circle-pure";
 import { TDialogProps } from "shared/ui/dialog/dialog-types";
 import { TFormValue } from "shared/ui/form/types/bnt-form";
-
 import { emptyFunction } from "utils/empty-function";
 
 import { useCircle } from "logic/hooks/cirlce/use-circle";
 import { useCircleLoader } from "logic/hooks/cirlce/use-circle-loader";
-
-import { ModalEditCirclePure } from "components/modals/modal-edit-circle/modal-edit-circle-pure";
-
 import { TCircle } from "@/types/model";
 
 export function ModalEditCircle({ close = emptyFunction, circleId }: TDialogProps & { circleId: number }) {

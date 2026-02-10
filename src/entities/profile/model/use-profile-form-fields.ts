@@ -1,15 +1,12 @@
-import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "shared/ui/form/types/bnt-form";
-
+import { useRoleField } from "hooks/form-field/use-role-field";
 import { texts_a } from "services/localization/texts/texts_a";
 import { texts_e } from "services/localization/texts/texts_e";
-
-import { useRoleField } from "hooks/form-field/use-role-field";
-
-import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
-import { UserLogic } from "logic/utils/user-utils";
+import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "shared/ui/form/types/bnt-form";
 
 import { useCurrentProfile } from "@/shared/model/auth";
 
+import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
+import { UserLogic } from "logic/utils/user-utils";
 import { type TCircle, type TProfile } from "@/types/model";
 
 export const useProfileFormFields = () => {

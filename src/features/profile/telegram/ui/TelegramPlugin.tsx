@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
-import { present } from "shared/lib/type-guards";
-
-import { emptyFunction } from "utils/empty-function";
 
 import { GetTelegramChatApiResponse } from "services/api/bonuts-api";
+import { present } from "shared/lib/type-guards";
+import { emptyFunction } from "utils/empty-function";
 
 import { useModal } from "@/entities/modal";
 import { useRegisterPlugin } from "@/entities/plugin";

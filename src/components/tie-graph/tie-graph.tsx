@@ -1,16 +1,15 @@
 import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers";
+
 import { GraphCanvas, GraphCanvasRef, GraphEdge, GraphNode, Icon, InternalGraphNode, useSelection } from "reagraph";
 
+import { tieTheme } from "components/tie-graph/tie-theme";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_p } from "services/localization/texts";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useEmployeeList } from "@/entities/profile";
 
 import { useTiesList } from "logic/hooks/tie/use-ties-list";
-
-import { tieTheme } from "components/tie-graph/tie-theme";
-
-import { useEmployeeList } from "@/entities/profile";
 
 export const TieGraph: FC = () => {
 	const { objects: profiles = [] } = useEmployeeList();

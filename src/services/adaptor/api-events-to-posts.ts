@@ -1,6 +1,7 @@
 import { GetEventsApiResponse, GetEventsByIdApiResponse } from "../api/bonuts-api";
-import { TPost } from "@/types/model/post";
+
 import { DealType } from "@/types/model/deal-type";
+import { TPost } from "@/types/model/post";
 
 const translateData = (target: Required<Required<GetEventsByIdApiResponse>["data"]>): TPost => {
 	const { attributes, id } = target;
@@ -26,10 +27,7 @@ const translateData = (target: Required<Required<GetEventsByIdApiResponse>["data
 			id: attributes.operation?.id!,
 			deal_type: attributes.operation?.deal_type as DealType,
 			created_at: attributes.operation?.created_at || target.attributes.date_string,
-			created_at_utc:
-				attributes.operation?.created_at_utc ||
-				attributes.operation?.created_at ||
-				target.attributes.date_string,
+			created_at_utc: attributes.operation?.created_at_utc || attributes.operation?.created_at || target.attributes.date_string,
 		},
 	};
 };

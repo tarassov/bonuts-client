@@ -2,9 +2,7 @@ import { GetInvitationsMyApiResponse } from "services/api/bonuts-api";
 
 import { TInvitation } from "@/types/model/inivtation";
 
-export const apiInvitationsAdaptor = (
-	response: GetInvitationsMyApiResponse
-): Array<TInvitation> => {
+export const apiInvitationsAdaptor = (response: GetInvitationsMyApiResponse): Array<TInvitation> => {
 	const { data } = response;
 
 	if (!data) return [];

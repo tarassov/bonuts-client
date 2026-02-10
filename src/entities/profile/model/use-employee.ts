@@ -1,8 +1,7 @@
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { PostProfilesByIdSetActivityApiResponse } from "services/api/bonuts-api";
 import { texts_a, texts_c, texts_d } from "services/localization/texts";
 import { useNotification } from "services/notification";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { useModal } from "@/entities/modal";
 import { useProfile } from "@/entities/profile";
@@ -19,10 +18,7 @@ export const useEmployee = () => {
 	const { ConfirmationModal } = useModal();
 	const { t } = useBntTranslate();
 
-	const setActivity = (
-		args: { id: number; active: boolean },
-		options?: TActionCallback<PostProfilesByIdSetActivityApiResponse>
-	) => {
+	const setActivity = (args: { id: number; active: boolean }, options?: TActionCallback<PostProfilesByIdSetActivityApiResponse>) => {
 		const { id, active } = args;
 		if (authTenant) {
 			postEmployeeActivity({

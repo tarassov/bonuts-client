@@ -1,7 +1,6 @@
 import { ReactNode, useCallback, useMemo, useRef } from "react";
 
 import { PluginContext } from "./plugin-contex";
-
 import type { IPluginApi } from "./plugin-types";
 
 interface IProps {

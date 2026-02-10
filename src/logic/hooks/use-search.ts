@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
+
 import _ from "lodash";
+
 import { TBaseModel } from "@/types/model";
 
 export const useSearch = <T extends TBaseModel>(
@@ -20,11 +22,7 @@ export const useSearch = <T extends TBaseModel>(
 
 	const filteredList = useMemo(() => {
 		return objects
-			.filter(
-				(x) =>
-					x[searchField] &&
-					(x[searchField] as string).toLowerCase().indexOf(search.toLowerCase()) >= 0
-			)
+			.filter((x) => x[searchField] && (x[searchField] as string).toLowerCase().indexOf(search.toLowerCase()) >= 0)
 			.sort(_.isFunction(sorter) ? sorter : undefined);
 	}, [search, filterFunction, objects, sorter]);
 

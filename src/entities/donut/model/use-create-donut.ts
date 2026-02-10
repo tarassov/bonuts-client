@@ -1,9 +1,8 @@
-import { useCurrentProfile } from "shared/model/auth";
-
 import { PostDonutsApiResponse } from "services/api/bonuts-api";
 import { donutsApi } from "services/api/extended/donuts-api";
 import { useCreateDonutMutation } from "services/api/injected-api";
 import { useAppDispatch } from "services/redux/store/store";
+import { useCurrentProfile } from "shared/model/auth";
 
 export type TPostDonutArgs = { logo?: File; price: number; name: string };
 

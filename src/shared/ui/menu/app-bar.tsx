@@ -1,6 +1,6 @@
+import AppBar, { AppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
 
-import AppBar, { AppBarProps } from "@mui/material/AppBar";
 import { DRAWER_SMALL_WIDTH, DRAWER_WIDTH } from "constants/layout";
 
 interface BntAppBarProps extends AppBarProps {

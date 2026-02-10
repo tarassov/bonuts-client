@@ -1,20 +1,16 @@
-import { FC } from "react";
 import * as React from "react";
+import { FC } from "react";
 import { MoreHoriz } from "@mui/icons-material";
 import { CircularProgress, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 
+import { CircleTag } from "components/circle/circle-tag/circle-tag";
+import { DEFAULT_AVATAR } from "constants/images";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_g } from "services/localization/texts";
 import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { ImagePreview } from "shared/ui/image/image-preview";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-
-import { DEFAULT_AVATAR } from "constants/images";
-
-import { texts_g } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
-import { CircleTag } from "components/circle/circle-tag/circle-tag";
 
 import { TProfile } from "@/types/model";
 
@@ -26,12 +22,7 @@ export type ModalEmployeeViewPureProps = {
 };
 
 const MAX_TAGS = 3;
-export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
-	employee,
-	onGoToEmployeeClick,
-	isLoading,
-	className,
-}) => {
+export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({ employee, onGoToEmployeeClick, isLoading, className }) => {
 	const { t } = useBntTranslate();
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));

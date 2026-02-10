@@ -1,9 +1,11 @@
-import spacetime, { Spacetime } from "spacetime";
 import { useMemo } from "react";
-import { getTimezones } from "shared/lib/get-timezones";
+
+import spacetime, { Spacetime } from "spacetime";
 import soft from "timezone-soft";
-import { ITimezone, ITimezoneOption } from "shared/ui/types/timezones";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { getTimezones } from "shared/lib/get-timezones";
+import { ITimezone, ITimezoneOption } from "shared/ui/types/timezones";
 
 // thanks to https://github.com/ndom91/react-timezone-select/
 export function useTimezone(): {
@@ -24,7 +26,7 @@ export function useTimezone(): {
 				const altName = tzStrings?.[0]?.[isDstString]?.name;
 
 				const min = tz.current.offset * 60;
-				// eslint-disable-next-line no-bitwise
+				// biome-ignore lint/suspicious/noBitwiseOperators: migration
 				const hr = `${(min / 60) ^ 0}:${min % 60 === 0 ? "00" : Math.abs(min % 60)}`;
 				const names = zone[1]
 					.split(",")
@@ -68,23 +70,13 @@ export function useTimezone(): {
 					currentTime.timezones[tz.value.toLowerCase()] &&
 					!!currentTime.timezones[tz.value.toLowerCase()].dst === currentTime.timezone().hasDst
 				) {
-					if (
-						tz.value
-							.toLowerCase()
-							.indexOf(currentTime.tz.substring(currentTime.tz.indexOf("/") + 1)) !== -1
-					) {
+					if (tz.value.toLowerCase().indexOf(currentTime.tz.substring(currentTime.tz.indexOf("/") + 1)) !== -1) {
 						score += 8;
 					}
-					if (
-						tz.label
-							.toLowerCase()
-							.indexOf(currentTime.tz.substring(currentTime.tz.indexOf("/") + 1)) !== -1
-					) {
+					if (tz.label.toLowerCase().indexOf(currentTime.tz.substring(currentTime.tz.indexOf("/") + 1)) !== -1) {
 						score += 4;
 					}
-					if (
-						tz.value.toLowerCase().indexOf(currentTime.tz.substring(0, currentTime.tz.indexOf("/")))
-					) {
+					if (tz.value.toLowerCase().indexOf(currentTime.tz.substring(0, currentTime.tz.indexOf("/")))) {
 						score += 2;
 					}
 					score += 1;
@@ -100,9 +92,7 @@ export function useTimezone(): {
 		if (!zone) return undefined;
 		if (typeof zone === "object" && zone.value && zone.label) return zone;
 		if (typeof zone === "string") {
-			return (
-				options.find((tz) => tz.value === zone) || (zone.indexOf("/") !== -1 && findFuzzyTz(zone))
-			);
+			return options.find((tz) => tz.value === zone) || (zone.indexOf("/") !== -1 && findFuzzyTz(zone));
 		}
 		if (zone.value && !zone.label) {
 			return options.find((tz) => tz.value === zone.value);

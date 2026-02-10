@@ -1,7 +1,8 @@
 import { Sorting } from "constants/dictionary";
+
 import { EmployeeSorter } from "logic/utils/sorter/employee-sorter";
-import { TSorterButton } from "@/types/ui/sorter-button";
 import { TProfile } from "@/types/model";
+import { TSorterButton } from "@/types/ui/sorter-button";
 
 export const getEmployeeSearchButtons = (): Array<TSorterButton<TProfile>> => {
 	return [

@@ -1,15 +1,13 @@
 import { FC, JSX } from "react";
 
+import { BntProfileButton } from "components/buttons/profile-button";
+import { getEmployeeSearchButtons } from "components/employee/get-employee-search-buttons";
+import { SearchString } from "components/search-string/search-string";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-
 import { emptyFunction } from "utils/empty-function";
-
-import { BntProfileButton } from "components/buttons/profile-button";
-import { getEmployeeSearchButtons } from "components/employee/get-employee-search-buttons";
-import { SearchString } from "components/search-string/search-string";
 
 import { VoidResponseFunction } from "@/types/function-types";
 import { TProfile } from "@/types/model";
@@ -41,9 +39,7 @@ export const EmployeeListCompact: FC<{
 					<BntTypography variant="body2" className="mb-2">
 						{subTitle}
 					</BntTypography>
-					{!hideSearch && (
-						<SearchString setSearch={setSearch} setFilter={emptyFunction} setSorter={setSorter} buttons={buttons} />
-					)}
+					{!hideSearch && <SearchString setSearch={setSearch} setFilter={emptyFunction} setSorter={setSorter} buttons={buttons} />}
 				</BntBox>
 				<BntBox className="m-2 flex-grow">
 					{profiles.map((x) => {

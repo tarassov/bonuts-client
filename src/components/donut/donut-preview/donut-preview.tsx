@@ -1,9 +1,13 @@
 import { useParams } from "react-router-dom";
 import { DonutSmall, ShoppingBag } from "@mui/icons-material";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
+
 import classNames from "classnames";
-import { BntRoutes } from "routes/config/routes";
-import { routesPath } from "routes/config/routes-path";
+
+import { Dictionary } from "constants/dictionary";
+import { DEFAULT_DONUT_IMAGE } from "constants/images";
+import { Modules } from "constants/modules";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardBody } from "shared/ui/card/card-body";
@@ -12,16 +16,12 @@ import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 import { BntTypography } from "shared/ui/typography/typography";
 
-import { Dictionary } from "constants/dictionary";
-import { DEFAULT_DONUT_IMAGE } from "constants/images";
-import { Modules } from "constants/modules";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
 import { useDonutLoader } from "@/entities/donut";
 import { useModal } from "@/entities/modal";
 
 import { DonutPurchaseBlock } from "./donut-purchase-block";
+import { BntRoutes } from "routes/config/routes";
+import { routesPath } from "routes/config/routes-path";
 
 export function BntDonutPreview() {
 	const { id } = useParams();
@@ -57,15 +57,7 @@ export function BntDonutPreview() {
 			<BntCard>
 				<BntCardBody className="m-3 p-3">
 					<Grid container justifyContent="space-between">
-						<Grid
-							item
-							xs={12}
-							sm={8}
-							md={4}
-							lg={3}
-							xl={2}
-							className={classNames("", { "text-align-center": matchesDownSm })}
-						>
+						<Grid item xs={12} sm={8} md={4} lg={3} xl={2} className={classNames("", { "text-align-center": matchesDownSm })}>
 							<ImagePreview
 								defaultImage={donut?.logo?.url ? undefined : DEFAULT_DONUT_IMAGE}
 								image={donut?.logo?.url}

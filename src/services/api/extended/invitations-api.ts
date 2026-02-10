@@ -20,8 +20,4 @@ export const invitationsApi = bonutsApi.enhanceEndpoints({
 	},
 });
 
-export const {
-	useGetInvitationsMyQuery,
-	usePostInvitationsByIdAcceptMutation,
-	usePostInvitationsByIdDeclineMutation,
-} = invitationsApi;
+export const { useGetInvitationsMyQuery, usePostInvitationsByIdAcceptMutation, usePostInvitationsByIdDeclineMutation } = invitationsApi;

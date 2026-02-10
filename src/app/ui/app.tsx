@@ -1,19 +1,20 @@
 import { useCallback, useMemo, useState } from "react";
 import { I18nextProvider } from "react-i18next";
-import { AppContext } from "context/app-context";
+
 import { SnackbarProvider } from "notistack";
-import { HistoryRouter } from "redux-first-history/rr6";
-import { routesConfig } from "routes/config/routes-config";
-import { getMenuRoutes } from "routes/get-menu-routes";
-import { BntLoadingProvider } from "shared/ui/loader/loading-provider";
-import { LocaleProvider } from "shared/ui/locale/locale-provider";
-import { BntThemeProvider } from "themes/theme-provider";
 
 import i18n from "services/localization/i18n";
 import { history } from "services/redux/store/store";
+import { BntLoadingProvider } from "shared/ui/loader/loading-provider";
+import { LocaleProvider } from "shared/ui/locale/locale-provider";
 
 import { PluginProvider } from "@/entities/plugin";
 
+import { AppContext } from "context/app-context";
+import { HistoryRouter } from "redux-first-history/rr6";
+import { routesConfig } from "routes/config/routes-config";
+import { getMenuRoutes } from "routes/get-menu-routes";
+import { BntThemeProvider } from "themes/theme-provider";
 import { BntLayout } from "@/app/ui/layout";
 
 import "./app.scss";

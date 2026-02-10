@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { TAuthState } from "@/shared/model/auth";
 
 import { bonutsApi } from "../../api/bonuts-api";
 
-import type { TAuthState } from "@/shared/model/auth";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: TAuthState = {
 	token: undefined,

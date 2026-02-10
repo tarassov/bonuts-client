@@ -1,8 +1,7 @@
 import * as Yup from "yup";
 
-import { texts_p } from "services/localization/texts";
-
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_p } from "services/localization/texts";
 
 import { PasswordSetFields } from "@/types/form/password-set";
 

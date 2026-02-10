@@ -1,23 +1,19 @@
 import React, { FC } from "react";
 import { CakeOutlined } from "@mui/icons-material";
+
 import classNames from "classnames";
 
+import { EMPLOYEE_CARD_CLASSES } from "components/employee/employee-card/classes";
+import { DEFAULT_AVATAR } from "constants/images";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_t } from "services/localization/texts";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardActionArea } from "shared/ui/card/card-action-area";
 import { BntCardBody } from "shared/ui/card/card-body";
 import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-
 import { emptyFunction } from "utils/empty-function";
-
-import { DEFAULT_AVATAR } from "constants/images";
-
-import { texts_t } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
-import { EMPLOYEE_CARD_CLASSES } from "components/employee/employee-card/classes";
 
 import { TProfile } from "@/types/model";
 

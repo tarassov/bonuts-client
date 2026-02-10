@@ -1,6 +1,6 @@
-import { bonutsApiOverride } from "services/api/injected-api";
 import { PutTenantCurrentApiArg, PutTenantCurrentApiResponse } from "services/api/bonuts-api";
 import { ApiMethod } from "services/api/helpers/api-method";
+import { bonutsApiOverride } from "services/api/injected-api";
 
 const baseApiTenantApi = bonutsApiOverride.enhanceEndpoints({
 	addTagTypes: ["Tenant", "Tenants"],
@@ -19,10 +19,7 @@ const baseApiTenantApi = bonutsApiOverride.enhanceEndpoints({
 
 export const tenantsApi = baseApiTenantApi.injectEndpoints({
 	endpoints: (build) => ({
-		updateCurrentTenantFormData: build.mutation<
-			PutTenantCurrentApiResponse,
-			PutTenantCurrentApiArg
-		>({
+		updateCurrentTenantFormData: build.mutation<PutTenantCurrentApiResponse, PutTenantCurrentApiArg>({
 			invalidatesTags: ["Tenant"],
 			query(data) {
 				return ApiMethod(`/tenant/current`, "PUT", data);

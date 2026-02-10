@@ -1,8 +1,12 @@
-import { useContext, useState } from "react";
 import * as React from "react";
+import { useContext, useState } from "react";
 import { CloseOutlined } from "@mui/icons-material";
 import { useMediaQuery, useTheme } from "@mui/material";
+
 import _ from "lodash";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c } from "services/localization/texts/texts_c";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntRoundButton } from "shared/ui/buttons/round-button";
 import { BntDialog } from "shared/ui/dialog/dialog";
@@ -12,10 +16,6 @@ import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { BntModalLoader } from "shared/ui/loader/modal-loader";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-
-import { texts_c } from "services/localization/texts/texts_c";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
 
 export function BntDialogContainer() {
 	const modals = useContext(DialogValueContext);
@@ -70,9 +70,7 @@ export function BntDialogContainer() {
 							})}
 							{fullScreen && (
 								<BntStack justifyContent="center">
-									<BntRoundButton onClick={() => handleClose(modal.modalKey, modal.name)}>
-										{t(texts_c.close)}
-									</BntRoundButton>
+									<BntRoundButton onClick={() => handleClose(modal.modalKey, modal.name)}>{t(texts_c.close)}</BntRoundButton>
 								</BntStack>
 							)}
 						</BntBox>

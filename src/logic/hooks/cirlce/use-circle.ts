@@ -1,21 +1,14 @@
-import {
-	PatchCirclesByIdApiResponse,
-	useDeleteCirclesByIdMutation,
-	usePatchCirclesByIdMutation,
-} from "services/api/bonuts-api";
+import { PatchCirclesByIdApiResponse, useDeleteCirclesByIdMutation, usePatchCirclesByIdMutation } from "services/api/bonuts-api";
 
 import { useProfile } from "@/entities/profile";
+
 import { TCircle } from "@/types/model";
 
 export const useCircle = () => {
 	const [patchCircleApi] = usePatchCirclesByIdMutation();
 	const [deleteCircleApi] = useDeleteCirclesByIdMutation();
 	const { profile } = useProfile();
-	const patchCircle = async (
-		circleId: number,
-		args: TCircle,
-		options?: { onSuccess?: (result: PatchCirclesByIdApiResponse) => void }
-	) => {
+	const patchCircle = async (circleId: number, args: TCircle, options?: { onSuccess?: (result: PatchCirclesByIdApiResponse) => void }) => {
 		const { name } = args;
 		if (profile?.tenant && name) {
 			const res = await patchCircleApi({
@@ -32,10 +25,7 @@ export const useCircle = () => {
 		return undefined;
 	};
 
-	const deleteCircle = async (
-		circleId?: number,
-		options?: { onSuccess?: (result: PatchCirclesByIdApiResponse) => void }
-	) => {
+	const deleteCircle = async (circleId?: number, options?: { onSuccess?: (result: PatchCirclesByIdApiResponse) => void }) => {
 		if (profile?.tenant && circleId) {
 			const res = await deleteCircleApi({
 				id: circleId.toString(),

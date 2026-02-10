@@ -1,6 +1,7 @@
-import { BntForm } from "shared/ui/form/bnt-form";
-import { useTenantLoader } from "logic/hooks/tenant/use-tenant-loader";
 import { useTenantFormFields } from "components/tenant/hooks/use-tenant-form-fields";
+import { BntForm } from "shared/ui/form/bnt-form";
+
+import { useTenantLoader } from "logic/hooks/tenant/use-tenant-loader";
 import { useUpdateCurrentTenant } from "logic/hooks/tenant/use-update-current-tenant";
 import { TTenant } from "@/types/model/tenant";
 
@@ -13,13 +14,5 @@ export const TenantEditForm = () => {
 		return updateTenant(values);
 	};
 
-	return (
-		<BntForm
-			formId="current_tenant"
-			hasInitial
-			initialValues={tenant}
-			{...fieldsProps}
-			onSubmit={handleSubmit}
-		/>
-	);
+	return <BntForm formId="current_tenant" hasInitial initialValues={tenant} {...fieldsProps} onSubmit={handleSubmit} />;
 };

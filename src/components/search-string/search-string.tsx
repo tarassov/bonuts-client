@@ -1,17 +1,15 @@
 import React, { ChangeEvent, useState } from "react";
+
 import classnames from "classnames";
-import { FieldType } from "shared/ui/form/types/bnt-form";
 import { useDebounceCallback } from "usehooks-ts";
 
+import { Dictionary } from "constants/dictionary";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntRoundButton } from "shared/ui/buttons/round-button";
+import { FieldType } from "shared/ui/form/types/bnt-form";
 import { BntTextInput } from "shared/ui/input/text-input";
 import { BntStack } from "shared/ui/stack";
-
 import { emptyFunction } from "utils/empty-function";
-
-import { Dictionary } from "constants/dictionary";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { TBaseModel } from "@/types/model";
 import { TSorterButton } from "@/types/ui/sorter-button";

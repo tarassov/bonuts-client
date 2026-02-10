@@ -1,15 +1,12 @@
-import { FieldSize, FieldType, TFieldGroup, TFormField } from "shared/ui/form/types/bnt-form";
-
 import { CommonStrings } from "constants/dictionary";
-
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_b, texts_e } from "services/localization/texts";
 import { texts_d } from "services/localization/texts/texts_d";
 import { texts_p } from "services/localization/texts/texts_p";
 import { texts_w } from "services/localization/texts/texts_w";
+import { FieldSize, FieldType, TFieldGroup, TFormField } from "shared/ui/form/types/bnt-form";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useModal } from "entities/modal";
-
 import { TTenant } from "@/types/model/tenant";
 
 export const useTenantFormFields = () => {

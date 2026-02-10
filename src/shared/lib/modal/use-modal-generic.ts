@@ -1,10 +1,8 @@
 import { useCallback, useContext, useMemo } from "react";
+
 import { DialogCloseContext, DialogContext } from "shared/ui/dialog/dialog-context";
 
-export const useModalGeneric = <
-	TConfig extends Record<string, any>,
-	TResultConfig extends Partial<Record<keyof TConfig, any>>
->(
+export const useModalGeneric = <TConfig extends Record<string, any>, TResultConfig extends Partial<Record<keyof TConfig, any>>>(
 	modalNames: string[]
 ) => {
 	const showModal = useContext(DialogContext);
@@ -18,17 +16,20 @@ export const useModalGeneric = <
 
 	const modalList = useMemo(
 		() =>
-			modalNames.reduce((acc, curr) => {
-				const key = curr as keyof TConfig;
-				acc[key] = {
-					name: key,
-					show: async (data: TConfig[typeof key] = {} as any) => {
-						return showModal(key as string, data);
-					},
-					hide: () => handleClose(key as string, key as string),
-				};
-				return acc;
-			}, {} as { [k in keyof TConfig]: { name: k; show: (data?: TConfig[k]) => Promise<TResultConfig[k]>; hide: VoidFunction } }),
+			modalNames.reduce(
+				(acc, curr) => {
+					const key = curr as keyof TConfig;
+					acc[key] = {
+						name: key,
+						show: async (data: TConfig[typeof key] = {} as any) => {
+							return showModal(key as string, data);
+						},
+						hide: () => handleClose(key as string, key as string),
+					};
+					return acc;
+				},
+				{} as { [k in keyof TConfig]: { name: k; show: (data?: TConfig[k]) => Promise<TResultConfig[k]>; hide: VoidFunction } }
+			),
 		[handleClose, showModal, modalNames]
 	);
 

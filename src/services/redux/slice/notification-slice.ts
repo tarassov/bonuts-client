@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { TNotificationState } from "services/redux/types/notification-state";
 import { ESeverity } from "services/notification/types/severity";
+import { TNotificationState } from "services/redux/types/notification-state";
+
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: TNotificationState = {
 	isOpen: false,

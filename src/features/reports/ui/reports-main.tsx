@@ -1,15 +1,13 @@
 import { SyntheticEvent, useState } from "react";
 
+import { TieGraph } from "components/tie-graph/tie-graph";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BetaNotice } from "shared/ui/beta-notice/beta-notice";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { BntStack } from "shared/ui/stack";
 import { BntTab } from "shared/ui/tab/bnt-tab";
 import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
 import { BntTabs } from "shared/ui/tab/bnt-tabs";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
-import { TieGraph } from "components/tie-graph/tie-graph";
 
 import reportsTexts from "../config/reports-texts";
 

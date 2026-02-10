@@ -1,4 +1,5 @@
 import { GetTenantCurrentApiResponse, GetTenantsApiResponse } from "services/api/bonuts-api";
+
 import { TTenant } from "@/types/model/tenant";
 
 const dataToTenant = (data: Required<GetTenantCurrentApiResponse>["data"]) => {

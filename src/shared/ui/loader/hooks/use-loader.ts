@@ -1,7 +1,8 @@
 import { useCallback, useContext, useEffect, useMemo } from "react";
-import debounce from "lodash/debounce";
 
 import { BntSetLoadingContext } from "../loading-provider";
+
+import debounce from "lodash/debounce";
 
 export const useLoader = (name: string, isLoading: boolean = false, openDebounceMs: number = 200) => {
 	const setLoading = useContext(BntSetLoadingContext);

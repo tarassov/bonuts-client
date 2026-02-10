@@ -1,15 +1,15 @@
 import React from "react";
-import { BntRoutes } from "routes/config/routes";
-import { routesConfig } from "routes/config/routes-config";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
+import { CommonStrings } from "constants/dictionary";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { BntStack } from "shared/ui/stack";
-
-import { CommonStrings } from "constants/dictionary";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
 import { PluginList } from "@/widgets/plugin-list";
+
+import { BntRoutes } from "routes/config/routes";
+import { routesConfig } from "routes/config/routes-config";
 
 export function PluginsPage() {
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [

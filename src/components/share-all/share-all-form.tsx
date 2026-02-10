@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { BntForm } from "shared/ui/form/bnt-form";
 
 import { useShareAllFormFields } from "components/share-all/use-share-all-form-fields";
+import { Currency } from "constants/currency";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_o } from "services/localization/texts/texts_o";
-import { Currency } from "constants/currency";
+import { BntForm } from "shared/ui/form/bnt-form";
 
 export const ShareAllForm: FC<{
 	onSuccess?: (args: { amount: number; comment: string; type: Currency }) => void;
@@ -15,12 +15,5 @@ export const ShareAllForm: FC<{
 		onSuccess?.(args);
 	};
 
-	return (
-		<BntForm
-			formId="transfer-donuts"
-			onSubmit={onSubmit}
-			fields={fields}
-			submitCaption={t(texts_o.ok)}
-		/>
-	);
+	return <BntForm formId="transfer-donuts" onSubmit={onSubmit} fields={fields} submitCaption={t(texts_o.ok)} />;
 };

@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
+
 import _ from "lodash";
 
-import { authTenantSelector } from "shared/model/auth/auth-selector";
-
-import { useAppSelector } from "services/redux/store/store";
-
 import { usePaginator } from "hooks/use-paginator";
+import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "shared/model/auth/auth-selector";
 
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
 
@@ -37,10 +36,13 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 
 	useEffect(() => {
 		if (!pages) setObjects(() => []);
-		const translated = Object.values(pages).reduce((acc, curr) => {
-			acc.push(translator(curr));
-			return acc;
-		}, [] as Array<Array<TModel>>);
+		const translated = Object.values(pages).reduce(
+			(acc, curr) => {
+				acc.push(translator(curr));
+				return acc;
+			},
+			[] as Array<Array<TModel>>
+		);
 		if (!_.isEqual(objects, translated)) setObjects(translated);
 	}, [pages]);
 

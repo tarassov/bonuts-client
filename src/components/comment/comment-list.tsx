@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import { BntStack } from "shared/ui/stack";
-
 import { CommentCardStyled } from "components/comment/comment-card/comment-card-styled";
+import { BntStack } from "shared/ui/stack";
 
 import { TComment } from "@/types/model/comment";
 

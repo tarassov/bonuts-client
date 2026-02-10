@@ -1,6 +1,8 @@
 import { styled } from "@mui/material/styles";
-import { cl, hover } from "themes/helper";
+
 import { BntReactTablePure } from "shared/ui/react-table/bnt-react-table-pure";
+
+import { cl, hover } from "themes/helper";
 
 export const BntReactTable = styled(
 	BntReactTablePure,

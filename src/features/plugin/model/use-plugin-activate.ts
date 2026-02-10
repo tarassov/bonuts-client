@@ -1,10 +1,9 @@
 import { useCallback } from "react";
 
-import { authTenantSelector } from "shared/model/auth/auth-selector";
-
 import { texts_s } from "services/localization/texts";
 import { useNotification } from "services/notification";
 import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "shared/model/auth/auth-selector";
 
 import { usePostPluginsByIdActivateMutation, usePostPluginsByIdDeactivateMutation } from "@/entities/plugin";
 

@@ -1,9 +1,11 @@
 import { FC } from "react";
+
 import { useAccountHistoryTableConfig } from "components/account-history/use-account-history-table-config";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { Modules } from "constants/modules";
-import { useOperationHistory } from "logic/hooks/operation/use-operation-history";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
+
+import { useOperationHistory } from "logic/hooks/operation/use-operation-history";
 
 export const AccountHistory: FC<{ accountId?: number }> = ({ accountId }) => {
 	const { tableConfig } = useAccountHistoryTableConfig();

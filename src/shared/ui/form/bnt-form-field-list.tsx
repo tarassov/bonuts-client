@@ -1,11 +1,9 @@
 import { FC } from "react";
+
 import { BntFormItem } from "./bnt-form-item";
 import { TFormProps } from "./types/bnt-form";
 
-export const BntFormFieldList: FC<Pick<TFormProps<any>, "fields" | "formId" | "hasInitial">> = ({
-	fields,
-	formId,
-}) => {
+export const BntFormFieldList: FC<Pick<TFormProps<any>, "fields" | "formId" | "hasInitial">> = ({ fields, formId }) => {
 	return (
 		<>
 			{fields &&

@@ -1,4 +1,5 @@
 import { GetDonutsApiResponse, GetDonutsByIdApiResponse } from "../api/bonuts-api";
+
 import { TDonut } from "@/types/model";
 
 export const apiDonutsToDonuts = (response: GetDonutsApiResponse): Array<TDonut> => {
@@ -17,9 +18,7 @@ export const apiDonutsToDonuts = (response: GetDonutsApiResponse): Array<TDonut>
 	});
 };
 
-export const apiDonutToDonut = (
-	response: GetDonutsByIdApiResponse | null | undefined
-): TDonut | null => {
+export const apiDonutToDonut = (response: GetDonutsByIdApiResponse | null | undefined): TDonut | null => {
 	if (!response || !response.data) return null;
 	const { attributes, id } = response.data;
 	return {

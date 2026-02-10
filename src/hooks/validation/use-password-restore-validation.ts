@@ -1,10 +1,8 @@
 import * as Yup from "yup";
 
-import { emailRegex } from "shared/lib/regex/email-regex";
-
-import { texts_e } from "services/localization/texts";
-
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_e } from "services/localization/texts";
+import { emailRegex } from "shared/lib/regex/email-regex";
 
 import { PasswordRestoreFields } from "@/types/form/password-restore";
 

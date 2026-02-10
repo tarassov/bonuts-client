@@ -1,6 +1,5 @@
-import { useAuth } from "shared/model/auth/use-auth";
-
 import { usePostTenantsByTenantNameJoinMutation } from "services/api/bonuts-api";
+import { useAuth } from "shared/model/auth/use-auth";
 
 import { TTenant } from "@/types/model/tenant";
 

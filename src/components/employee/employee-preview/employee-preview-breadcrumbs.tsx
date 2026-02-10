@@ -1,10 +1,12 @@
 import { FC } from "react";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-import { routesPath } from "routes/config/routes-path";
-import { BntRoutes } from "routes/config/routes";
 import { PeopleAltOutlined, PersonOutlined } from "@mui/icons-material";
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+
 import { texts_e } from "services/localization/texts";
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
+import { BntRoutes } from "routes/config/routes";
+import { routesPath } from "routes/config/routes-path";
 import { TProfile } from "@/types/model";
 
 export const EmployeePreviewBreadcrumbs: FC<{ employee?: TProfile }> = ({ employee }) => {
