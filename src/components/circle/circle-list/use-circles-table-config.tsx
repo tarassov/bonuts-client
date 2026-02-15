@@ -5,7 +5,8 @@ import { texts_a, texts_c, texts_e, texts_n } from "services/localization/texts"
 import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
 import { ActionType, CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
 
-import { useModal } from "entities/modal";
+import { useModal } from "@/entities/modal";
+
 import { useCircle } from "logic/hooks/cirlce/use-circle";
 import { useCircleUi } from "logic/ui/use-circle-ui";
 import { TCircle } from "@/types/model";

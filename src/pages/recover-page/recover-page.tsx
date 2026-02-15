@@ -10,8 +10,9 @@ import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { Messenger } from "@/features/3cx/messenger";
 
+import styles from "@/pages/registration-page/registration-page.module.scss";
+
 import { usePasswordRecover } from "logic/hooks/auth/use-password-recover";
-import styles from "pages/registration-page/registration-page.module.scss";
 
 export const RecoverPage: FC = () => {
 	const { token } = useParams();

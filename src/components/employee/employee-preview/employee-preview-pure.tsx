@@ -21,7 +21,8 @@ import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";
 import { formatStringDate } from "utils/format-string-date";
 
-import { EmployeeActions } from "pages/employee/employee-actions";
+import { EmployeeActions } from "@/pages/employee/employee-actions";
+
 import { texts_a, texts_b, texts_c, texts_i, texts_n, texts_s } from "@/services/localization/texts";
 import { TProfile } from "@/types/model";
 

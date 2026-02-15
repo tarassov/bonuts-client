@@ -1,17 +1,12 @@
-/// <reference types="vitest" />
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
-import * as path from "path";
+
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vitest/config";
+
 export default defineConfig({
-	plugins: [react({ fastRefresh: false }), tsconfigPaths()],
+	plugins: [react(), tsconfigPaths()],
 	worker: {
-		plugins: [react()],
-	},
-	resolve: {
-		alias: {
-			// scss: path.resolve(__dirname, 'src/scss')
-		},
+		plugins: () => [react()],
 	},
 	test: {
 		setupFiles: ["./src/__tests__/config/setup.ts"],
@@ -20,9 +15,5 @@ export default defineConfig({
 		coverage: {
 			reporter: ["text", "json", "html"],
 		},
-		transformMode: {
-			web: [/\.[jt]sx$/],
-		},
-		//  deps: { experimentalOptimizer: { include: ['react-abac'], enabled: true } }
 	},
 });

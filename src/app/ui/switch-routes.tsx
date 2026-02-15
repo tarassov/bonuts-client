@@ -9,8 +9,9 @@ import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth
 
 import type { TModalConfig } from "@/entities/modal";
 
+import { ForbiddenPage } from "@/pages/forbidden-page";
+
 import { PageWrapper } from "./page-wrapper";
-import { ForbiddenPage } from "pages/forbidden-page";
 import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
 

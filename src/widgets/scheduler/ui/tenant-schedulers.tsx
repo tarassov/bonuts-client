@@ -8,10 +8,11 @@ import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntStack } from "shared/ui/stack";
 
+import { useModal } from "@/entities/modal";
+
 import { NewSchedulerBlock } from "@/widgets/scheduler/ui/new-scheduler-block";
 
 import { SchedulerList } from "./scheduler-list";
-import { useModal } from "entities/modal";
 import { useScheduler } from "logic/hooks/scheduler/use-scheduler";
 import { useSchedulerListLoader } from "logic/hooks/scheduler/use-scheduler-list-loader";
 import { TNewScheduler } from "@/types/model/scheduler";

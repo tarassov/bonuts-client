@@ -2,9 +2,9 @@ import { CommonStrings } from "constants/dictionary";
 import { BntForm } from "shared/ui/form/bnt-form";
 import { FieldSize, FieldType, type TFormField, type TFormProps, type TFormValue } from "shared/ui/form/types/bnt-form";
 
+import { useModal } from "@/entities/modal";
 import { useUpdateAvatar } from "@/entities/profile/model/use-update-avatar";
 
-import { useModal } from "entities/modal";
 import { TProfile } from "@/types/model";
 
 export function BntProfileImage({ profile }: { profile?: TProfile }) {

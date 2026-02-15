@@ -1,4 +1,5 @@
-import { type TTelegramModalConfig, type TTelegramModalResponse } from "entities/telegram/@x/Modal";
+import { type TTelegramModalConfig, type TTelegramModalResponse } from "@/entities/telegram/@x/Modal";
+
 import { TPost } from "@/types/model/post";
 
 export type TModalConfig = TTelegramModalConfig & {
