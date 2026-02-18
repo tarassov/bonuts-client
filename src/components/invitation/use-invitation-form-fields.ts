@@ -1,11 +1,12 @@
-import { TFieldSize, TFormField } from "shared/ui/form/types/bnt-form";
+import { FieldSize, TFormField } from "shared/ui/form/types/bnt-form";
+
 import { TUser } from "@/types/model";
 
 export const useInvitationFormFields = () => {
 	const fields: Array<TFormField<TUser>> = [
 		{
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "email",
 			label: "Email",
 			xs: 12,
@@ -14,7 +15,7 @@ export const useInvitationFormFields = () => {
 		{
 			disabled: false,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "first_name",
 			label: "Name",
 			xs: 12,
@@ -24,7 +25,7 @@ export const useInvitationFormFields = () => {
 		{
 			disabled: false,
 			image: false,
-			size: TFieldSize.md,
+			size: FieldSize.md,
 			name: "last_name",
 			label: "Surname",
 			xs: 12,

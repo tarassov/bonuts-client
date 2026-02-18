@@ -1,13 +1,17 @@
-import classNames from "classnames";
-import { Button, Grid, Typography } from "@mui/material";
 import { FC } from "react";
+import { Button, Grid, Typography } from "@mui/material";
+
+import classNames from "classnames";
+
+import { OPERATION_CLASSES } from "components/opearation-text/classes";
 import { EMPTY_FUNCTION } from "constants/functions";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { OPERATION_CLASSES } from "components/opearation-text/classes";
 import { formatStringDate } from "utils/format-string-date";
-import { TOperation } from "@/types/model/operation";
+
 import { BntProfileButton } from "../buttons/profile-button";
+
 import { DealType } from "@/types/model/deal-type";
+import { TOperation } from "@/types/model/operation";
 
 type BntOperationTextProps = {
 	operation: TOperation;
@@ -69,18 +73,11 @@ export const BntOperationText: FC<BntOperationTextProps> = ({
 					)}
 					{showDateTime && created_at !== undefined && created_at !== null && (
 						<span className={OPERATION_CLASSES.operationText}>
-							<Typography variant="body2">
-								{formatStringDate(created_at_utc, false, true)}
-							</Typography>
+							<Typography variant="body2">{formatStringDate(created_at_utc, false, true)}</Typography>
 						</span>
 					)}
-					{(operation.deal_type === DealType.Buy ||
-						operation.deal_type === DealType.RefundRequest) && (
-						<Button onClick={purchaseClick}>
-							{translate(
-								deal_type === DealType.RefundRequest ? DealType.Refund : DealType.Purchase
-							)}
-						</Button>
+					{(operation.deal_type === DealType.Buy || operation.deal_type === DealType.RefundRequest) && (
+						<Button onClick={purchaseClick}>{translate(deal_type === DealType.RefundRequest ? DealType.Refund : DealType.Purchase)}</Button>
 					)}
 				</Grid>
 			)}

@@ -3,6 +3,8 @@ import { useFormState, useWatch } from "react-hook-form";
 import { ErrorOutlineOutlined } from "@mui/icons-material";
 import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "services/localization/texts";
 import { getMonthDayOptions } from "shared/lib/get-month-day-array";
 import { TimezoneSelect } from "shared/ui/form/special-fileds/timezone-select";
 import { WeekdayDaySelect } from "shared/ui/form/special-fileds/weekday-day-select";
@@ -11,17 +13,14 @@ import { BntSelectElement } from "shared/ui/input/select-element";
 import { BntTextAreaInput } from "shared/ui/input/text-area-input";
 import { BntTextInputElement } from "shared/ui/input/text-input-element";
 import { BntTimePickerElement } from "shared/ui/input/time-picker-element";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
-import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
-import { TScheduler } from "@/types/model/scheduler";
 import { SchedulerTypes } from "@/widgets/scheduler/constants/scheduler-types";
 
-export const SchedulerFormFields = () => {
+import { TScheduler } from "@/types/model/scheduler";
+
+export function SchedulerFormFields() {
 	const { t } = useBntTranslate();
 	const { errors } = useFormState<TScheduler>();
 	const theme = useTheme();
@@ -97,30 +96,16 @@ export const SchedulerFormFields = () => {
 				</Grid>
 			)}
 			<Grid item xs={12} sm={6} className="mt-2">
-				<BntTimePickerElement
-					stringLabel={texts_c.choose_time}
-					name="time"
-					ampm={false}
-					format="HH:mm"
-					required
-					fullWidth
-				/>
+				<BntTimePickerElement stringLabel={texts_c.choose_time} name="time" ampm={false} format="HH:mm" required fullWidth />
 				<BntStack direction="row" className="pt-1" gap={1}>
 					<Tooltip title={t(texts_t.tooltip_scheduler_time, { capitalize: true })}>
 						<ErrorOutlineOutlined color="secondary" sx={{ height: 16, width: 16 }} />
 					</Tooltip>
-					<BntTypography variant="caption">
-						{t(texts_a.approximate_action_time, { capitalize: true })}
-					</BntTypography>
+					<BntTypography variant="caption">{t(texts_a.approximate_action_time, { capitalize: true })}</BntTypography>
 				</BntStack>
 			</Grid>
 			<Grid item xs={12} sm={6} className="mt-2">
-				<TimezoneSelect
-					className="pl-2"
-					name="timezoneValue"
-					fullWidth
-					stringLabel={texts_c.choose_timezone}
-				/>
+				<TimezoneSelect className="pl-2" name="timezoneValue" fullWidth stringLabel={texts_c.choose_timezone} />
 			</Grid>
 			<Grid item xs={12}>
 				<BntTextInputElement
@@ -135,18 +120,11 @@ export const SchedulerFormFields = () => {
 				/>
 			</Grid>
 			<Grid item xs={12} className="mt-2">
-				<BntTextAreaInput
-					name="comment"
-					required
-					fullWidth
-					placeholder={texts_a.add_comment}
-					stringLabel={texts_c.comment}
-					rows={6}
-				/>
+				<BntTextAreaInput name="comment" required fullWidth placeholder={texts_a.add_comment} stringLabel={texts_c.comment} rows={6} />
 			</Grid>
 			<Grid item xs={12} className="mt-2">
 				<BntSwitchElement name="burn_old" stringLabel={texts_b.burn_unused_donuts} />
 			</Grid>
 		</Grid>
 	);
-};
+}

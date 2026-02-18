@@ -1,4 +1,4 @@
 export enum texts_u {
-	"under_construct" = "under construct",
+	under_construct = "under construct",
 	updated = "updated",
 }

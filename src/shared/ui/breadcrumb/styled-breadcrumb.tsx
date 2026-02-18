@@ -1,5 +1,6 @@
 import { Chip, emphasize } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
 import { cl } from "themes/helper";
 
 interface StyledBreadcrumbProps {
@@ -8,8 +9,7 @@ interface StyledBreadcrumbProps {
 export const BntStyledBreadcrumb = styled(Chip, {
 	shouldForwardProp: (prop) => prop !== "hasLink",
 })<StyledBreadcrumbProps>(({ theme, hasLink }) => {
-	const backgroundColor =
-		theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
+	const backgroundColor = theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.grey[800];
 	return {
 		maxWidth: "100%",
 		backgroundColor,

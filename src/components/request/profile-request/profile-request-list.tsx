@@ -1,15 +1,16 @@
 import { SyntheticEvent, useState } from "react";
-import { BntTabs } from "shared/ui/tab/bnt-tabs";
-import { BntTab } from "shared/ui/tab/bnt-tab";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
+
 import { ProfileActiveRequestList } from "components/request/profile-request/profile-active-request-list";
 import { ProfileClosedRequestList } from "components/request/profile-request/profile-closed-request-list";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_c } from "services/localization/texts";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack";
+import { BntTab } from "shared/ui/tab/bnt-tab";
+import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
+import { BntTabs } from "shared/ui/tab/bnt-tabs";
 
-export const ProfileRequestList = () => {
+export function ProfileRequestList() {
 	const { translate } = useBntTranslate();
 	const [value, setValue] = useState(0);
 
@@ -40,4 +41,4 @@ export const ProfileRequestList = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

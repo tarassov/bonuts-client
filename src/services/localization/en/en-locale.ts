@@ -22,11 +22,9 @@ export const enLocale = {
 		"Recover password": "Recover password",
 
 		// CONSTS
-		CONST_GREETINGS:
-			"Fast and simple way to   encourage your colleagues and thank them for their patience and help.",
+		CONST_GREETINGS: "Fast and simple way to   encourage your colleagues and thank them for their patience and help.",
 
 		// Tooltips
-		[texts_t.tooltip_scheduler_time]:
-			"the actual action will be fired within 1 hour after the specified time.",
+		[texts_t.tooltip_scheduler_time]: "the actual action will be fired within 1 hour after the specified time.",
 	},
 };

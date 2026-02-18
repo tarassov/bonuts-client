@@ -1,8 +1,9 @@
 import { FC, Fragment } from "react";
-import { TFieldGroup, TFormField, TFormProps } from "shared/ui/form/types/bnt-form";
-import { BntFormFieldList } from "shared/ui/form/bnt-form-field-list";
 import { Grid } from "@mui/material";
+
+import { BntFormFieldList } from "shared/ui/form/bnt-form-field-list";
 import { GridOffset } from "shared/ui/form/grid-offset";
+import { TFieldGroup, TFormField, TFormProps } from "shared/ui/form/types/bnt-form";
 
 export const BntFormGroups: FC<
 	Pick<TFormProps<any>, "fields" | "formId" | "hasInitial" | "groupGap"> & {
@@ -13,10 +14,7 @@ export const BntFormGroups: FC<
 		<Grid container gap={groupGap}>
 			{groups.map((group) => {
 				const { xs, sm, lg, md, gap, id, padding, sx, ...rest } = group;
-				const groupFields =
-					fields?.filter(
-						(x: TFormField<any>) => x.group === id || (x.group === undefined && id === 0)
-					) || [];
+				const groupFields = fields?.filter((x: TFormField<any>) => x.group === id || (x.group === undefined && id === 0)) || [];
 				return (
 					<Fragment key={group.id}>
 						<GridOffset offset={group.offset?.offsetBeforeElement} />
@@ -38,13 +36,7 @@ export const BntFormGroups: FC<
 							}}
 						>
 							{group?.groups?.length && (
-								<BntFormGroups
-									formId={formId}
-									groups={group.groups}
-									fields={fields}
-									hasInitial={hasInitial}
-									groupGap={group.gap}
-								/>
+								<BntFormGroups formId={formId} groups={group.groups} fields={fields} hasInitial={hasInitial} groupGap={group.gap} />
 							)}
 							{groupFields.length > 0 && (
 								<Grid container spacing={2}>

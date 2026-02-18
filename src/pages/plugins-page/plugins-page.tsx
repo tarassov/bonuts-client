@@ -1,17 +1,17 @@
 import React from "react";
-import { BntRoutes } from "routes/config/routes";
-import { routesConfig } from "routes/config/routes-config";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
 
 import { CommonStrings } from "constants/dictionary";
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
 import { PluginList } from "@/widgets/plugin-list";
 
-export const PluginsPage = () => {
+import { BntRoutes } from "routes/config/routes";
+import { routesConfig } from "routes/config/routes-config";
+
+export function PluginsPage() {
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: "settings",
@@ -21,9 +21,7 @@ export const PluginsPage = () => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.path || "plugins",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Plugins?.icon,
 		},
 	];
@@ -35,4 +33,4 @@ export const PluginsPage = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

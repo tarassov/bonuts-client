@@ -1,5 +1,7 @@
 import { format, lightFormat } from "date-fns";
+
 import { CommonStrings } from "constants/dictionary";
+
 import { ru } from "date-fns/locale";
 
 export const formatStringDate = (

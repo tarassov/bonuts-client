@@ -1,7 +1,9 @@
 import { styled } from "@mui/material/styles";
-import { MenuCardPure } from "components/child-path/menu-card/menu-card-pure";
-import { cl } from "themes/helper";
+
 import { MENU_CARD_CLASSES } from "components/child-path/menu-card/classes";
+import { MenuCardPure } from "components/child-path/menu-card/menu-card-pure";
+
+import { cl } from "themes/helper";
 
 export const MenuCardStyled = styled(
 	MenuCardPure,

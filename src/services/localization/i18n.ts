@@ -1,8 +1,8 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import { ruLocale } from "services/localization/ru/ru-locale";
 import { enLocale } from "services/localization/en/en-locale";
+import { ruLocale } from "services/localization/ru/ru-locale";
 
 i18n.use(LanguageDetector).init({
 	resources: {

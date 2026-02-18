@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { DatePickerElement, DatePickerElementProps } from "react-hook-form-mui";
 
-export const BntDatePicker: FC<
-	DatePickerElementProps<any, any> & { stringLabel?: string; name: string } & {}
-> = (props) => {
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+export const BntDatePicker: FC<DatePickerElementProps<any, any> & { stringLabel?: string; name: string } & {}> = (props) => {
 	const { translate } = useBntTranslate();
 	const { stringLabel, ...rest } = props;
 	return (

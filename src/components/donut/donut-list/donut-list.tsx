@@ -1,12 +1,15 @@
 import { FC, useMemo, useState } from "react";
 import { Grid } from "@mui/material";
-import { DonutSorter } from "logic/utils/sorter/donut-sorter";
-import { useDonutLoaderList } from "logic/hooks/donut/use-donut-loader-list";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
+
 import { DonutCard } from "components/donut/donut-card/donut-card";
-import { TDonut } from "@/types/model";
+import { Modules } from "constants/modules";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useDonutLoaderList } from "@/entities/donut";
+
 import { BntDonutsSearch } from "./donuts-search";
+import { DonutSorter } from "logic/utils/sorter/donut-sorter";
+import { TDonut } from "@/types/model";
 
 // TODO: extract pure component
 export const BntDonutsList: FC = () => {
@@ -27,10 +30,8 @@ export const BntDonutsList: FC = () => {
 	useLoader(Modules.Donuts, isLoading);
 
 	const filteredList = useMemo(() => {
-		return objects
-			.filter((donut) => donut.name && donut.name.toLowerCase().indexOf(search.toLowerCase()) >= 0)
-			.sort(sorter);
-	}, [search, filterFunction, objects, sorter]);
+		return objects.filter((donut) => donut.name && donut.name.toLowerCase().indexOf(search.toLowerCase()) >= 0).sort(sorter);
+	}, [search, objects, sorter]);
 	return (
 		<>
 			<BntDonutsSearch setSearch={setSearch} setFilter={updateFilter} setSorter={updateSorter} />

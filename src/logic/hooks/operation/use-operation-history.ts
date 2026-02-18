@@ -1,6 +1,7 @@
-import { usePagintatedListBase } from "logic/hooks/use-pagintated-list-base";
 import { apiAdaptor } from "services/adaptor/api-adaptor";
 import { accountsApi } from "services/api/extended/accounts-api";
+
+import { usePagintatedListBase } from "logic/hooks/use-pagintated-list-base";
 
 export const useOperationHistory = (args: { id?: number }) => {
 	const { id } = args;

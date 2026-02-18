@@ -1,13 +1,13 @@
 import React, { FC, Suspense } from "react";
-import { BntRoutes } from "routes/config/routes";
-import { routesConfig } from "routes/config/routes-config";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
 
 import { CommonStrings } from "constants/dictionary";
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "shared/ui/stack";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
+import { BntRoutes } from "routes/config/routes";
+import { routesConfig } from "routes/config/routes-config";
 
 const StoreManager = React.lazy(() => import("components/store-manager/store-manager"));
 export const StorePage: FC = () => {
@@ -20,9 +20,7 @@ export const StorePage: FC = () => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Store?.path || "store",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Store?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Store?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Store?.icon,
 		},
 	];

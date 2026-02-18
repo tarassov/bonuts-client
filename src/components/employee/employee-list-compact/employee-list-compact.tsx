@@ -1,14 +1,16 @@
 import { FC, JSX } from "react";
-import { BntCard } from "shared/ui/card/card";
+
 import { BntProfileButton } from "components/buttons/profile-button";
-import { BntTypography } from "shared/ui/typography/typography";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { SearchString } from "components/search-string/search-string";
-import { emptyFunction } from "utils/empty-function";
 import { getEmployeeSearchButtons } from "components/employee/get-employee-search-buttons";
-import { BntStack } from "shared/ui/stack/stack";
-import { TProfile } from "@/types/model";
+import { SearchString } from "components/search-string/search-string";
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntCard } from "shared/ui/card/card";
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+import { emptyFunction } from "utils/empty-function";
+
 import { VoidResponseFunction } from "@/types/function-types";
+import { TProfile } from "@/types/model";
 import { TSorterButton } from "@/types/ui/sorter-button";
 
 export const EmployeeListCompact: FC<{
@@ -20,16 +22,7 @@ export const EmployeeListCompact: FC<{
 	children?: JSX.Element;
 	setSorter?: (sorter: any) => void;
 	setSearch?: (searchText: string) => void;
-}> = ({
-	title,
-	onClick,
-	profiles,
-	setSorter,
-	setSearch = emptyFunction,
-	subTitle,
-	children,
-	hideSearch,
-}) => {
+}> = ({ title, onClick, profiles, setSorter, setSearch = emptyFunction, subTitle, children, hideSearch }) => {
 	// const { filteredList, setSorter, setSearch } = useSearch<TProfile>(profiles, {
 	// 	searchField: "name",
 	// });
@@ -46,14 +39,7 @@ export const EmployeeListCompact: FC<{
 					<BntTypography variant="body2" className="mb-2">
 						{subTitle}
 					</BntTypography>
-					{!hideSearch && (
-						<SearchString
-							setSearch={setSearch}
-							setFilter={emptyFunction}
-							setSorter={setSorter}
-							buttons={buttons}
-						/>
-					)}
+					{!hideSearch && <SearchString setSearch={setSearch} setFilter={emptyFunction} setSorter={setSorter} buttons={buttons} />}
 				</BntBox>
 				<BntBox className="m-2 flex-grow">
 					{profiles.map((x) => {

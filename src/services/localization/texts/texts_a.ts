@@ -15,5 +15,5 @@ export enum texts_a {
 	activate = "activate",
 	access_denied = "access denied",
 	admin = "admin",
-	"about_myself" = "About myself",
+	about_myself = "About myself",
 }

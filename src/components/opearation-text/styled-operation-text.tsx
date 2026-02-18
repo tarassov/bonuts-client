@@ -1,7 +1,9 @@
 import { styled } from "@mui/material/styles";
+
 import { OPERATION_CLASSES } from "components/opearation-text/classes";
-import { cl } from "themes/helper";
+
 import { BntOperationText } from "./operation-text";
+import { cl } from "themes/helper";
 
 export const BntStyledOperationText = styled(
 	BntOperationText,

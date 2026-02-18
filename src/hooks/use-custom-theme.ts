@@ -1,7 +1,7 @@
-import { useState, useMemo } from "react";
-
-import { Theme, createTheme, ThemeOptions } from "@mui/material/styles";
+import { useMemo, useState } from "react";
 import { useMediaQuery } from "@mui/material";
+import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
+
 import { ThemeContextType, ThemeName } from "@/types/theme";
 
 export const useCustomTheme = (themes: Record<string, ThemeOptions>): [Theme, ThemeContextType] => {
@@ -13,8 +13,7 @@ export const useCustomTheme = (themes: Record<string, ThemeOptions>): [Theme, Th
 
 	const savedThemeName = localStorage.getItem("theme") as string | null;
 
-	const initialThemeName =
-		savedThemeName && savedThemeName in themes ? (savedThemeName as ThemeName) : OSThemeName;
+	const initialThemeName = savedThemeName && savedThemeName in themes ? (savedThemeName as ThemeName) : OSThemeName;
 
 	const [themeName, setThemeName] = useState<ThemeName>(initialThemeName);
 

@@ -1,7 +1,7 @@
-import { TProfile } from "./profile";
 import { DealType } from "./deal-type";
-import { TDeal } from "@/types/model/deal";
+import { TProfile } from "./profile";
 import { TBaseModel } from "@/types/model/base-model";
+import { TDeal } from "@/types/model/deal";
 
 export type TOperation = TBaseModel & {
 	direction?: number;

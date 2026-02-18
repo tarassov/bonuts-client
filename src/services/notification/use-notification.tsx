@@ -1,10 +1,12 @@
+import { CloseOutlined } from "@mui/icons-material";
+import { Button } from "@mui/material";
+
 import { useSnackbar } from "notistack";
-import { ESeverity } from "services/notification/types/severity";
-import { TNotify } from "services/notification/types/notify";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e } from "services/localization/texts/texts_e";
-import { Button } from "@mui/material";
-import { CloseOutlined } from "@mui/icons-material";
+import { TNotify } from "services/notification/types/notify";
+import { ESeverity } from "services/notification/types/severity";
 
 export const useNotification = () => {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -15,10 +17,7 @@ export const useNotification = () => {
 			variant: severity || ESeverity.Success,
 			action: (snackbarId) => {
 				return (
-					<Button
-						sx={{ textTransform: "none", color: "black" }}
-						onClick={() => closeSnackbar(snackbarId)}
-					>
+					<Button sx={{ textTransform: "none", color: "black" }} onClick={() => closeSnackbar(snackbarId)}>
 						<CloseOutlined />
 					</Button>
 				);
@@ -31,10 +30,7 @@ export const useNotification = () => {
 			variant: ESeverity.Error,
 			action: (snackbarId) => {
 				return (
-					<Button
-						sx={{ textTransform: "none", color: "black" }}
-						onClick={() => closeSnackbar(snackbarId)}
-					>
+					<Button sx={{ textTransform: "none", color: "black" }} onClick={() => closeSnackbar(snackbarId)}>
 						<CloseOutlined />
 					</Button>
 				);

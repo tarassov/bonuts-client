@@ -1,4 +1,23 @@
 import React, { useState } from "react";
+import { ArrowDropDownOutlined, ArrowDropUpOutlined } from "@mui/icons-material";
+import { FormControl, Grid, MenuItem, Select, Stack, TableCell, TableHead, useMediaQuery, useTheme } from "@mui/material";
+// @mui material components
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
+
+import classnames from "classnames";
+import { matchSorter } from "match-sorter";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_n } from "services/localization/texts";
+import { texts_p } from "services/localization/texts/texts_p";
+import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
+import { ColumnFilter } from "shared/ui/react-table/column-filter";
+import { fuzzyFilter } from "shared/ui/react-table/filters";
+import { emptyFunction } from "utils/empty-function";
+
 import {
 	ColumnDef,
 	ColumnFiltersState,
@@ -14,37 +33,7 @@ import {
 	SortingState,
 	useReactTable,
 } from "@tanstack/react-table";
-
-import classnames from "classnames";
-import { matchSorter } from "match-sorter";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
 import { defaultRangeExtractor, useVirtualizer } from "@tanstack/react-virtual";
-
-// @mui material components
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
-import {
-	FormControl,
-	Grid,
-	MenuItem,
-	Select,
-	Stack,
-	TableCell,
-	TableHead,
-	useMediaQuery,
-	useTheme,
-} from "@mui/material";
-import { fuzzyFilter } from "shared/ui/react-table/filters";
-import { ColumnFilter } from "shared/ui/react-table/column-filter";
-import { ArrowDropDownOutlined, ArrowDropUpOutlined } from "@mui/icons-material";
-import { texts_p } from "services/localization/texts/texts_p";
-import { texts_n } from "services/localization/texts";
-import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
-import { emptyFunction } from "utils/empty-function";
 
 function fuzzyTextFilterFn(rows: Array<any>, id: number, filterValue: string) {
 	return matchSorter<any>(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -126,8 +115,7 @@ export const BntReactTablePure = <T,>({
 		rangeExtractor: (range) => {
 			return defaultRangeExtractor({
 				...range,
-				startIndex:
-					range.startIndex % 2 === 0 ? range.startIndex : Math.max(0, range.startIndex - 1),
+				startIndex: range.startIndex % 2 === 0 ? range.startIndex : Math.max(0, range.startIndex - 1),
 			});
 		},
 	});
@@ -152,9 +140,7 @@ export const BntReactTablePure = <T,>({
 	const virtualRows = virtualizer.getVirtualItems();
 
 	const [paddingTop, paddingBottom] =
-		virtualRows.length > 0
-			? [virtualRows[0].start, virtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end]
-			: [0, 0];
+		virtualRows.length > 0 ? [virtualRows[0].start, virtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end] : [0, 0];
 
 	return (
 		<TableContainer
@@ -177,13 +163,9 @@ export const BntReactTablePure = <T,>({
 										scope="row"
 										key={columnHeader.id}
 										colSpan={columnHeader.colSpan}
-										className={classnames(
-											"bnt-table-th bnt-table-header",
-											`-sort-${columnHeader.column.getIsSorted()}`,
-											{
-												"-cursor-pointer": headerGroup.headers.length - 1 !== key,
-											}
-										)}
+										className={classnames("bnt-table-th bnt-table-header", `-sort-${columnHeader.column.getIsSorted()}`, {
+											"-cursor-pointer": headerGroup.headers.length - 1 !== key,
+										})}
 									>
 										{columnHeader.isPlaceholder ? null : (
 											<Stack
@@ -193,20 +175,11 @@ export const BntReactTablePure = <T,>({
 												className="sorter"
 												onClick={columnHeader.column.getToggleSortingHandler()}
 											>
-												{flexRender(
-													columnHeader.column.columnDef.header,
-													columnHeader.getContext()
-												)}
+												{flexRender(columnHeader.column.columnDef.header, columnHeader.getContext())}
 												{columnHeader.column.getCanSort() && (
-													<Stack
-														className={classnames(`sort-${columnHeader.column.getIsSorted()}`)}
-													>
-														<ArrowDropUpOutlined
-															className={classnames("sort-icon", "sort-icon__asc")}
-														/>
-														<ArrowDropDownOutlined
-															className={classnames("sort-icon", "sort-icon__desc")}
-														/>
+													<Stack className={classnames(`sort-${columnHeader.column.getIsSorted()}`)}>
+														<ArrowDropUpOutlined className={classnames("sort-icon", "sort-icon__asc")} />
+														<ArrowDropDownOutlined className={classnames("sort-icon", "sort-icon__desc")} />
 													</Stack>
 												)}
 											</Stack>
@@ -235,16 +208,10 @@ export const BntReactTablePure = <T,>({
 								key={row.id}
 								ref={isVirtual ? virtualizer.measureElement : undefined}
 								data-index={i}
-								className={classnames(
-									"bnt-table-tr",
-									{ "bnt-table-tr-odd": i % 2 === 0 },
-									{ "bnt-table-tr-even": i % 2 === 1 }
-								)}
+								className={classnames("bnt-table-tr", { "bnt-table-tr-odd": i % 2 === 0 }, { "bnt-table-tr-even": i % 2 === 1 })}
 							>
 								{row.getVisibleCells().map((cell) => (
-									<TableCell key={cell.id}>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
-									</TableCell>
+									<TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
 								))}
 							</TableRow>
 						);
@@ -258,13 +225,7 @@ export const BntReactTablePure = <T,>({
 			</Table>
 			{data.length && !isVirtual ? (
 				<div className="bnt-table-footer">
-					<Stack
-						direction="row"
-						gap={2}
-						justifyContent="space-between"
-						alignItems="stretch"
-						flexWrap={{ xs: "wrap", sm: "nowrap" }}
-					>
+					<Stack direction="row" gap={2} justifyContent="space-between" alignItems="stretch" flexWrap={{ xs: "wrap", sm: "nowrap" }}>
 						<BntTransparentButton
 							disabled={!table.getCanPreviousPage()}
 							className="bnt-navigation-button"
@@ -320,11 +281,7 @@ export const BntReactTablePure = <T,>({
 								</FormControl>
 							</Grid>
 						</Grid>
-						<BntTransparentButton
-							disabled={!table.getCanNextPage()}
-							className="bnt-navigation-button"
-							onClick={() => table.nextPage()}
-						>
+						<BntTransparentButton disabled={!table.getCanNextPage()} className="bnt-navigation-button" onClick={() => table.nextPage()}>
 							{translate(texts_n.next, { capitalize: true })}
 						</BntTransparentButton>
 					</Stack>

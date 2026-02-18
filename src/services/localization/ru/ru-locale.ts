@@ -84,8 +84,7 @@ export const ruLocale = {
 		confirmation: "подтверждение",
 		[texts_c.coins]: "монеты",
 		[texts_c.comment]: "комментарий",
-		[texts_c.confirmation_email_was_sent_to]:
-			"Письмо для подтверждения было отправлено на ваш электронный адрес",
+		[texts_c.confirmation_email_was_sent_to]: "Письмо для подтверждения было отправлено на ваш электронный адрес",
 		"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
 		"Confirm your email first": "Для продолжения подтвердите адрес электронной почты ",
 		"Connect to space": "Присоединиться к пространству",
@@ -149,8 +148,7 @@ export const ruLocale = {
 		domain: "домен",
 		"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file":
 			"Перетащите сюда файл или кликните, для выбора",
-		"Drag and drop an image here or click to select a file":
-			"Перетащите сюда файл или кликните, для выбора",
+		"Drag and drop an image here or click to select a file": "Перетащите сюда файл или кликните, для выбора",
 
 		// E
 		Edit: "Редактировать",
@@ -388,8 +386,7 @@ export const ruLocale = {
 		"to can transfer to others": "можно дарить коллегам",
 		"This field is required": "Это поле является обязательным",
 		[texts_t.teams_you_can_join]: "команды, к которым можно присоединиться",
-		[texts_t.tooltip_scheduler_time]:
-			"фактическое действие будет запущено в течении 1 часа после указанного времени.",
+		[texts_t.tooltip_scheduler_time]: "фактическое действие будет запущено в течении 1 часа после указанного времени.",
 		"Teams I can join": "Команды, к которым могу присоединиться",
 		// U
 		"Update donut": "Обновить пончик",

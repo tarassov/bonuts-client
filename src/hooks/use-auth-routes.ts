@@ -1,17 +1,21 @@
 import { useContext, useMemo } from "react";
-import { AppContext } from "context/app-context";
-import { useAuth } from "logic/hooks/auth/use-auth";
+
 import _ from "lodash";
+
+import { useAuth, useCurrentProfile } from "@/shared/model/auth";
+
+import { AppContext } from "context/app-context";
 
 export const useAuthRoutes = () => {
 	const { menuRoutes: routes } = useContext(AppContext);
-	const { currentRoles, auth } = useAuth();
+	const { auth } = useAuth();
+	const { currentRoles } = useCurrentProfile();
 
 	const menuRoutes = useMemo(() => {
 		return routes
 			.filter((x) => x.tenantNotRequired || auth.tenant)
 			.filter((x) => !x.roles?.length || _.intersection(x.roles, currentRoles).length);
-	}, [routes, currentRoles]);
+	}, [routes, auth.tenant, currentRoles]);
 
 	return { menuRoutes };
 };

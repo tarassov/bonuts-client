@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
 import { Grid, useMediaQuery } from "@mui/material";
 import { Theme } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+
 import classnames from "classnames";
+
 import { BntBox } from "shared/ui/box/bnt-box";
+
 import { TotalBalanceTable } from "./total-balance-table";
-import { TotalDonutsSentReport } from "./total-donuts-sent-report";
 import { TotalDonutsReceivedReport } from "./total-donuts-received-report";
+import { TotalDonutsSentReport } from "./total-donuts-sent-report";
 
 export const StatisticsDashboard = () => {
 	const matchesSmUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("md"));
@@ -16,9 +19,7 @@ export const StatisticsDashboard = () => {
 		if (matchesSmUp) setFullScreenValue(undefined);
 	}, [matchesSmUp]);
 	const getScreenProps = (name: string) =>
-		fullscreenValue !== name
-			? { md: 5, lg: 4, sm: 12, xs: 12 }
-			: { md: 12, lg: 12, sm: 12, xs: 12 };
+		fullscreenValue !== name ? { md: 5, lg: 4, sm: 12, xs: 12 } : { md: 12, lg: 12, sm: 12, xs: 12 };
 	const getDisplayProps = (name: string) => {
 		if (!matchesSmUp) {
 			return {};
@@ -31,7 +32,7 @@ export const StatisticsDashboard = () => {
 						zIndex: 50,
 						opacity: "0.2",
 						transition: "opacity 0.5s ease-out",
-				  }
+					}
 			: {
 					position: "absolute",
 					width: "90%",
@@ -40,7 +41,7 @@ export const StatisticsDashboard = () => {
 					top: "20px",
 					zIndex: 100,
 					transition: "max-width 0.5s ease-out,opacity 0.5s ease-out",
-			  };
+				};
 	};
 	const getMaxHeight = (name: string) => {
 		if (matchesSmUp) {
@@ -48,7 +49,7 @@ export const StatisticsDashboard = () => {
 				? { maxHeight: "100%" }
 				: {
 						maxHeight: "40%",
-				  };
+					};
 		}
 		return fullscreenValue === name ? { minHeight: "200px" } : { maxHeight: "100px" };
 	};

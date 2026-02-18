@@ -1,14 +1,12 @@
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { Stack } from "@mui/material";
-import { BntTypography } from "shared/ui/typography/typography";
+
 import classNames from "classnames";
 
-export const BntLabel: FC<{ name: string; value?: string; className?: string }> = ({
-	name,
-	value,
-	className,
-}) => {
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { BntTypography } from "shared/ui/typography/typography";
+
+export const BntLabel: FC<{ name: string; value?: string; className?: string }> = ({ name, value, className }) => {
 	const { translate } = useBntTranslate();
 	return (
 		<Stack direction="row" alignItems="baseline" className={classNames(className, "mt-2")}>

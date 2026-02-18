@@ -1,14 +1,9 @@
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import {
-	FieldError,
-	TextareaAutosizeElement,
-	TextareaAutosizeElementProps,
-} from "react-hook-form-mui";
+import { FieldError, TextareaAutosizeElement, TextareaAutosizeElementProps } from "react-hook-form-mui";
 
-export const BntTextAreaInput: FC<
-	TextareaAutosizeElementProps & { stringLabel?: string; name: string } & {}
-> = (props) => {
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
+export const BntTextAreaInput: FC<TextareaAutosizeElementProps & { stringLabel?: string; name: string } & {}> = (props) => {
 	const { translate } = useBntTranslate();
 	const { stringLabel, placeholder, onAnimationStart, onBlur, onFocus, name, ...rest } = props;
 

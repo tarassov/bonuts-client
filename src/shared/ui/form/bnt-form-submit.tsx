@@ -1,8 +1,9 @@
-import { Stack } from "@mui/material";
-import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
-import { texts_c, texts_s } from "services/localization/texts";
 import { FC } from "react";
+import { Stack } from "@mui/material";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c, texts_s } from "services/localization/texts";
+import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
 
 export const BntFormSubmit: FC<{
 	onCancelClick?: VoidFunction;
@@ -18,9 +19,7 @@ export const BntFormSubmit: FC<{
 						{translate(texts_c.cancel)}
 					</BntTransparentButton>
 
-					<BntTransparentButton type="submit">
-						{submitCaption || translate(texts_s.save)}
-					</BntTransparentButton>
+					<BntTransparentButton type="submit">{submitCaption || translate(texts_s.save)}</BntTransparentButton>
 				</>
 			)}
 		</Stack>

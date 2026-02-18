@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
 export const SchedulerStack = styled(
 	BntStack,

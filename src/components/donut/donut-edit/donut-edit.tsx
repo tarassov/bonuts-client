@@ -1,22 +1,25 @@
 import { useParams } from "react-router-dom";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { useDonutLoader } from "logic/hooks/donut/use-donut-loader";
-import { Modules } from "constants/modules";
-import { DonutEditForm } from "components/donut/donut-edit/donut-edit-form";
-import { useDonut } from "logic/hooks/donut/use-donut";
-import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { SerializedError } from "@reduxjs/toolkit";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-import { Dictionary } from "constants/dictionary";
 import { DonutSmall, SettingsOutlined } from "@mui/icons-material";
-import { routesPath } from "routes/config/routes-path";
+
+import { DonutEditForm } from "components/donut/donut-edit/donut-edit-form";
+import { Dictionary } from "constants/dictionary";
+import { Modules } from "constants/modules";
+import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { BntCardBody } from "shared/ui/card/card-body";
 import { BntCard } from "shared/ui/card/card";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
+import { useDonut } from "@/entities/donut";
+import { useDonutLoader } from "@/entities/donut/model/use-donut-loader";
+
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { routesPath } from "routes/config/routes-path";
 import { TDonut } from "@/types/model";
 
-export const DonutEdit = () => {
+export function DonutEdit() {
 	const { id } = useParams();
 
 	const { donut, isLoading, refetch } = useDonutLoader(id);
@@ -40,13 +43,7 @@ export const DonutEdit = () => {
 
 	const onSubmit = (
 		values: TDonut
-	):
-		| Promise<
-				| { data: PutDonutsByIdApiResponse }
-				| { error: FetchBaseQueryError | SerializedError }
-				| undefined
-		  >
-		| undefined => {
+	): Promise<{ data: PutDonutsByIdApiResponse } | { error: FetchBaseQueryError | SerializedError } | undefined> | undefined => {
 		if (donut) {
 			return putDonut(donut?.id, { ...values }, { onSuccess: () => refetch() });
 		}
@@ -56,10 +53,8 @@ export const DonutEdit = () => {
 		<>
 			<BntBreadcrumbs items={breadcrumbs} className="mb-3" />
 			<BntCard>
-				<BntCardBody className="m-3 p-3">
-					{donut ? <DonutEditForm donut={donut} onSubmit={onSubmit} /> : null}
-				</BntCardBody>
+				<BntCardBody className="m-3 p-3">{donut ? <DonutEditForm donut={donut} onSubmit={onSubmit} /> : null}</BntCardBody>
 			</BntCard>
 		</>
 	);
-};
+}

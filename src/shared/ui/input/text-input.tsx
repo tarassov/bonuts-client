@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { TextField, TextFieldProps } from "@mui/material";
-import { useBntTranslate } from "hooks/use-bnt-translate";
+
 import { EMPTY_FUNCTION } from "constants/functions";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { getInputProps } from "shared/ui/input/helpers/get-input-props";
 
 /**
@@ -18,14 +19,7 @@ export const BntTextInput: FC<
 	}
 > = (props) => {
 	const { translate } = useBntTranslate();
-	const {
-		stringLabel,
-		onClear = EMPTY_FUNCTION,
-		name,
-		clearable = false,
-		shouldTranslate = true,
-		...rest
-	} = props;
+	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, shouldTranslate = true, ...rest } = props;
 
 	const { InputProps = {}, value, placeholder, label } = rest;
 

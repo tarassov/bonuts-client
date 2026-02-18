@@ -1,5 +1,5 @@
-import { TPicture } from "./picture";
 import { TBaseModel } from "./base-model";
+import { TPicture } from "./picture";
 import { TCircle } from "@/types/model/circle";
 
 export type TProfile = TBaseModel & {

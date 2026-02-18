@@ -6,7 +6,9 @@ export const BntCardBody: FC<{
 	className?: string;
 }> = ({ children, className, onClick }) => {
 	return (
-		// eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+		// biome-ignore lint/a11y/noNoninteractiveElementInteractions: <explanation>
+		// biome-ignore lint/a11y/noStaticElementInteractions: <explanation>
+		// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 		<div className={className} onClick={onClick}>
 			{children}
 		</div>

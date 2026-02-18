@@ -1,11 +1,13 @@
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
 import { Grid } from "@mui/material";
+
+import { InvitationCard } from "components/invitation/invitation-card";
+import { TenantList } from "components/tenant/tenant-list";
+import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_i } from "services/localization/texts";
-import { TenantList } from "components/tenant/tenant-list";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
 import { useInvitationLoaderList } from "logic/hooks/invitation/use-invitation-loader-list";
-import { InvitationCard } from "components/invitation/invitation-card";
 
 export const UserInvitationsList = () => {
 	const { objects, isLoading } = useInvitationLoaderList();

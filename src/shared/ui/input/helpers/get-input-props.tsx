@@ -1,12 +1,6 @@
-import {
-	FilledInputProps,
-	IconButton,
-	InputAdornment,
-	InputProps,
-	OutlinedInputProps,
-} from "@mui/material";
 import { SyntheticEvent } from "react";
 import { Close } from "@mui/icons-material";
+import { FilledInputProps, IconButton, InputAdornment, InputProps, OutlinedInputProps } from "@mui/material";
 
 export const getInputProps = (args: {
 	clearable: boolean;

@@ -1,8 +1,9 @@
 import { forwardRef } from "react";
-import { TextFieldProps } from "@mui/material";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { EMPTY_FUNCTION } from "constants/functions";
 import { FieldError, TextFieldElement } from "react-hook-form-mui";
+import { TextFieldProps } from "@mui/material";
+
+import { EMPTY_FUNCTION } from "constants/functions";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { getInputProps } from "shared/ui/input/helpers/get-input-props";
 
 /**
@@ -14,14 +15,7 @@ export const BntTextInputElement = forwardRef<
 	TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string }
 >((props, ref) => {
 	const { translate } = useBntTranslate();
-	const {
-		stringLabel,
-		onClear = EMPTY_FUNCTION,
-		name,
-		clearable = false,
-		component,
-		...rest
-	} = props;
+	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, component, ...rest } = props;
 
 	const { InputProps = {}, value, placeholder, label } = rest;
 

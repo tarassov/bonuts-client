@@ -1,11 +1,13 @@
-import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
-import { texts_o } from "services/localization/texts/texts_o";
+import { CommonStrings } from "constants/dictionary";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_e } from "services/localization/texts";
 import { texts_d } from "services/localization/texts/texts_d";
-import { useModal } from "hooks/use-modal";
-import { CommonStrings } from "constants/dictionary";
+import { texts_o } from "services/localization/texts/texts_o";
 import { texts_p } from "services/localization/texts/texts_p";
-import { useBntTranslate } from "hooks/use-bnt-translate";
+import { FieldSize, FieldType, TFieldGroup, TFormField } from "shared/ui/form/types/bnt-form";
+
+import { useModal } from "@/entities/modal";
+
 import { TDonut } from "@/types/model";
 
 export const useDonutEditFormFields = () => {
@@ -55,10 +57,10 @@ export const useDonutEditFormFields = () => {
 	const fields: Array<TFormField<TDonut>> = [
 		{
 			image: true,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "logo",
 			label: "Logo",
-			type: TFieldType.imageUpload,
+			type: FieldType.imageUpload,
 			xs: 12,
 			md: 12,
 			group: 1,
@@ -66,7 +68,7 @@ export const useDonutEditFormFields = () => {
 		},
 		{
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "name",
 			label: "name",
 			xs: 12,
@@ -75,9 +77,9 @@ export const useDonutEditFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.switch,
+			type: FieldType.switch,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "active",
 			label: texts_a.active,
 			required: false,
@@ -86,9 +88,9 @@ export const useDonutEditFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.number,
+			type: FieldType.number,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "price",
 			label: "price",
 			required: true,
@@ -99,9 +101,9 @@ export const useDonutEditFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.date,
+			type: FieldType.date,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "expiration_date",
 			label: texts_e.expiration_date,
 			required: false,
@@ -115,9 +117,9 @@ export const useDonutEditFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.number,
+			type: FieldType.number,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "on_stock",
 			label: texts_o.on_stock,
 			required: false,
@@ -128,9 +130,9 @@ export const useDonutEditFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.number,
+			type: FieldType.number,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "supply_days",
 			label: texts_d.delivery_days,
 			required: false,
@@ -142,9 +144,9 @@ export const useDonutEditFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.textarea,
+			type: FieldType.textarea,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "description",
 			label: texts_d.description,
 			required: false,

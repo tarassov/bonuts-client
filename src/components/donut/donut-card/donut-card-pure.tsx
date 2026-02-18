@@ -1,15 +1,18 @@
 import { FC } from "react";
-import { BntCard } from "shared/ui/card/card";
+
+import classNames from "classnames";
+
+import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
+import { DEFAULT_DONUT_IMAGE } from "constants/images";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useBonutsIcon } from "hooks/use-bonuts-icon";
+import { texts_o } from "services/localization/texts/texts_o";
+import { BntCard } from "shared/ui/card/card";
 import { BntCardActionArea } from "shared/ui/card/card-action-area";
 import { BntCardBody } from "shared/ui/card/card-body";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-import { BntStack } from "shared/ui/stack/stack";
-import { DONUT_CARD_CLASSES } from "components/donut/donut-card/classes";
-import { texts_o } from "services/localization/texts/texts_o";
-import classNames from "classnames";
-import { DEFAULT_DONUT_IMAGE } from "constants/images";
-import { useBonutsIcon } from "hooks/use-bonuts-icon";
+
 import { TDonut } from "@/types/model";
 
 export const DonutCardPure: FC<{
@@ -25,18 +28,9 @@ export const DonutCardPure: FC<{
 		<BntCard raised className={classNames(DONUT_CARD_CLASSES.donutCard, className)}>
 			<BntCardActionArea onClick={onDonutClick} className={DONUT_CARD_CLASSES.cardHover}>
 				<BntCardBody className={`${DONUT_CARD_CLASSES.cardBody} m-10`}>
-					<BntStack
-						direction="column"
-						justifyContent="space-between"
-						alignItems="center"
-						spacing={3}
-					>
+					<BntStack direction="column" justifyContent="space-between" alignItems="center" spacing={3}>
 						<div className={DONUT_CARD_CLASSES.cardHeaderHover}>
-							<img
-								src={logo?.thumb?.url || DEFAULT_DONUT_IMAGE}
-								alt="..."
-								className={DONUT_CARD_CLASSES.logo}
-							/>
+							<img src={logo?.thumb?.url || DEFAULT_DONUT_IMAGE} alt="..." className={DONUT_CARD_CLASSES.logo} />
 						</div>
 						<div className={DONUT_CARD_CLASSES.captions}>
 							<BntTypography variant="body1">

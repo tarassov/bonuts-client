@@ -1,9 +1,5 @@
 import { bonutsApi } from "services/api/bonuts-api";
-import {
-	cacheByIdArgProperty,
-	invalidatesList,
-	providesList,
-} from "services/redux/utils/rtk-cache-utils";
+import { cacheByIdArgProperty, invalidatesList, providesList } from "services/redux/utils/rtk-cache-utils";
 
 // noinspection TypeScriptValidateJSTypes
 export const schedulersApi = bonutsApi.enhanceEndpoints({

@@ -3,7 +3,7 @@ export enum texts_n {
 	name = "name",
 	no_name = "no name",
 	name_is_required = "name is required",
-	"next" = "next",
+	next = "next",
 	new_donut = "new donut",
 	not_found = "not found",
 	new_circle = "new circle",
@@ -12,4 +12,5 @@ export enum texts_n {
 	new_invitation_was_created = "new invitation was created",
 	new_invitation_email_was_sent = "new invitation email was sent",
 	not_connected = "not connected",
+	no_integrations_available = "no integrations available",
 }

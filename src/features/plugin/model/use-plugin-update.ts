@@ -2,10 +2,11 @@ import { useCallback } from "react";
 
 import { texts_s } from "services/localization/texts";
 import { useNotification } from "services/notification";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
 import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "shared/model/auth/auth-selector";
 
 import { usePatchPluginsByIdMutation } from "@/entities/plugin";
+
 import { TPlugin } from "@/types/model";
 
 export function usePluginUpdate() {

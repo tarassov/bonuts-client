@@ -1,9 +1,10 @@
-import { TWizardConfig } from "shared/ui/types/wizard-types";
 import { ShareAllStepOne } from "components/share-all/share-all-step-one";
 import { ShareAllStepTwo } from "components/share-all/share-all-step-two";
-import { Wizard } from "shared/ui/wizard/wizard";
-import { useTransfer } from "logic/hooks/operation/use-transfer";
 import { Currency } from "constants/currency";
+import { TWizardConfig } from "shared/ui/types/wizard-types";
+import { Wizard } from "shared/ui/wizard/wizard";
+
+import { useTransfer } from "logic/hooks/operation/use-transfer";
 import { TProfile } from "@/types/model";
 
 type ShareAllWizardType = {
@@ -19,10 +20,7 @@ export const ShareAllWizard = () => {
 		if (Step1 && Step2) {
 			const { profiles } = Step1;
 			const { amount, comment, type } = Step2;
-			adminDeposit(
-				{ amount, comment, toSelfAccount: type === Currency.coin, ids: profiles.map((x) => x.id) },
-				{ onSuccess }
-			);
+			adminDeposit({ amount, comment, toSelfAccount: type === Currency.coin, ids: profiles.map((x) => x.id) }, { onSuccess });
 		}
 	};
 	const shareAllConfig: TWizardConfig<ShareAllWizardType, undefined> = {
@@ -30,18 +28,10 @@ export const ShareAllWizard = () => {
 		onSubmit,
 		steps: {
 			Step1: {
-				renderItem: (args) => (
-					<ShareAllStepOne next={args.next} initialProfiles={args.wizardState.Step1?.profiles} />
-				),
+				renderItem: (args) => <ShareAllStepOne next={args.next} initialProfiles={args.wizardState.Step1?.profiles} />,
 			},
 			Step2: {
-				renderItem: (args) => (
-					<ShareAllStepTwo
-						profiles={args.wizardState.Step1?.profiles}
-						back={args.back}
-						next={args.next}
-					/>
-				),
+				renderItem: (args) => <ShareAllStepTwo profiles={args.wizardState.Step1?.profiles} back={args.back} next={args.next} />,
 			},
 		},
 	};

@@ -1,25 +1,29 @@
 import { useParams } from "react-router-dom";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
 import { DonutSmall, ShoppingBag } from "@mui/icons-material";
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { BntCardBody } from "shared/ui/card/card-body";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
+
 import classNames from "classnames";
-import { useDonutLoader } from "logic/hooks/donut/use-donut-loader";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
 import { Dictionary } from "constants/dictionary";
-import { BntCard } from "shared/ui/card/card";
-import { ImagePreview } from "shared/ui/image/image-preview";
 import { DEFAULT_DONUT_IMAGE } from "constants/images";
-import { BntTypography } from "shared/ui/typography/typography";
+import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useModal } from "hooks/use-modal";
+import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
+import { BntCard } from "shared/ui/card/card";
+import { BntCardBody } from "shared/ui/card/card-body";
+import { ImagePreview } from "shared/ui/image/image-preview";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+import { BntTypography } from "shared/ui/typography/typography";
+
+import { useDonutLoader } from "@/entities/donut";
+import { useModal } from "@/entities/modal";
+
+import { DonutPurchaseBlock } from "./donut-purchase-block";
 import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
-import { DonutPurchaseBlock } from "./donut-purchase-block";
 
-export const BntDonutPreview = () => {
+export function BntDonutPreview() {
 	const { id } = useParams();
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -53,15 +57,7 @@ export const BntDonutPreview = () => {
 			<BntCard>
 				<BntCardBody className="m-3 p-3">
 					<Grid container justifyContent="space-between">
-						<Grid
-							item
-							xs={12}
-							sm={8}
-							md={4}
-							lg={3}
-							xl={2}
-							className={classNames("", { "text-align-center": matchesDownSm })}
-						>
+						<Grid item xs={12} sm={8} md={4} lg={3} xl={2} className={classNames("", { "text-align-center": matchesDownSm })}>
 							<ImagePreview
 								defaultImage={donut?.logo?.url ? undefined : DEFAULT_DONUT_IMAGE}
 								image={donut?.logo?.url}
@@ -89,4 +85,4 @@ export const BntDonutPreview = () => {
 			</BntCard>
 		</>
 	);
-};
+}

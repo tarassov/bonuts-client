@@ -1,12 +1,12 @@
-import { TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
+import { FieldSize, FieldType, TFormField } from "shared/ui/form/types/bnt-form";
 
 export type AdminDepositFormType = { comment: string; amount: number; toSelfAccount: boolean };
 export const useAdminDepositFormFields = () => {
 	const fields: Array<TFormField<AdminDepositFormType>> = [
 		{
 			image: false,
-			size: TFieldSize.xs,
-			type: TFieldType.number,
+			size: FieldSize.xs,
+			type: FieldType.number,
 			name: "amount",
 			label: "amount",
 			xs: 12,
@@ -15,19 +15,19 @@ export const useAdminDepositFormFields = () => {
 		{
 			disabled: false,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "comment",
 			label: "comment",
 			xs: 12,
 		},
 		{
 			image: false,
-			size: TFieldSize.md,
+			size: FieldSize.md,
 			name: "toSelfAccount",
 			label: "user can spend in store",
 			disabledLabel: "to can transfer to others",
 			placeholder: "type",
-			type: TFieldType.switch,
+			type: FieldType.switch,
 			xs: 12,
 		},
 	];

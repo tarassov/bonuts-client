@@ -1,13 +1,15 @@
 import React, { FC } from "react";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-import { BntStack } from "shared/ui/stack/stack";
+
+import { useCirclesTableConfig } from "components/circle/circle-list/use-circles-table-config";
+import { CommonStrings } from "constants/dictionary";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
-import { routesConfig } from "routes/config/routes-config";
+import { BntStack } from "shared/ui/stack";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
 import { BntRoutes } from "routes/config/routes";
-import { CommonStrings } from "constants/dictionary";
-import { useCirclesTableConfig } from "components/circle/circle-list/use-circles-table-config";
+import { routesConfig } from "routes/config/routes-config";
 import { TCircle } from "@/types/model/circle";
 
 export type CircleListPureProps = {
@@ -24,9 +26,7 @@ export const CircleListPure: FC<CircleListPureProps> = ({ circles }) => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.path || "circles",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Circles?.icon,
 		},
 	];

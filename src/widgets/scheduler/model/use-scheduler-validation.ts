@@ -1,6 +1,8 @@
 import * as Yup from "yup";
-import { texts_c, texts_m, texts_n, texts_t } from "services/localization/texts";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c, texts_m, texts_n, texts_t } from "services/localization/texts";
+
 import { TScheduler } from "@/types/model/scheduler";
 
 export const useSchedulerValidation = () => {

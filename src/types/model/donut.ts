@@ -1,6 +1,6 @@
-import { TCommentable, TLikeable } from "./type-extension";
-import { TPicture } from "./picture";
 import { TBaseModel } from "./base-model";
+import { TPicture } from "./picture";
+import { TCommentable, TLikeable } from "./type-extension";
 
 export type TDonut = TBaseModel &
 	TCommentable &

@@ -1,17 +1,17 @@
+import * as React from "react";
 import { FC } from "react";
-import { BntStack } from "shared/ui/stack/stack";
-import { ImagePreview } from "shared/ui/image/image-preview";
+import { MoreHoriz } from "@mui/icons-material";
+import { CircularProgress, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+
+import { CircleTag } from "components/circle/circle-tag/circle-tag";
 import { DEFAULT_AVATAR } from "constants/images";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_g } from "services/localization/texts";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
+import { ImagePreview } from "shared/ui/image/image-preview";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { CircularProgress, Tooltip, useMediaQuery, useTheme } from "@mui/material";
-import * as React from "react";
-
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { MoreHoriz } from "@mui/icons-material";
-import { CircleTag } from "components/circle/circle-tag/circle-tag";
-import { texts_g } from "services/localization/texts";
 import { TProfile } from "@/types/model";
 
 export type ModalEmployeeViewPureProps = {
@@ -22,12 +22,7 @@ export type ModalEmployeeViewPureProps = {
 };
 
 const MAX_TAGS = 3;
-export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
-	employee,
-	onGoToEmployeeClick,
-	isLoading,
-	className,
-}) => {
+export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({ employee, onGoToEmployeeClick, isLoading, className }) => {
 	const { t } = useBntTranslate();
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
@@ -62,9 +57,7 @@ export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({
 									.map((circle) => {
 										return <CircleTag title={circle.name} />;
 									})}
-								{matchesDownSm &&
-								employee?.circles?.length &&
-								employee?.circles?.length > MAX_TAGS ? (
+								{matchesDownSm && employee?.circles?.length && employee?.circles?.length > MAX_TAGS ? (
 									<Tooltip
 										title={employee.circles
 											.filter((x, i) => i >= MAX_TAGS)

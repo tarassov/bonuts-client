@@ -1,6 +1,6 @@
-import { styled, Theme, CSSObject } from "@mui/material/styles";
-
 import MuiDrawer from "@mui/material/Drawer";
+import { CSSObject, styled, Theme } from "@mui/material/styles";
+
 import { DRAWER_WIDTH } from "constants/layout";
 
 const openedMixin = (theme: Theme): CSSObject => ({

@@ -1,24 +1,27 @@
+import { useContext, useMemo } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import { useContext, useMemo } from "react";
-import { BntDrawerHeader } from "shared/ui/drawer";
-import { useAuth } from "logic/hooks/auth/use-auth";
-import { AppContext } from "context/app-context";
-import "@/app/styles/app.scss";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
-import { getRoutes } from "routes/get-routes";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntStack } from "shared/ui/stack/stack";
-import SwitchRoutes from "components/switch-routes/switch-routes";
-import BntSidebar from "components/sidebar/sidebar";
 import { BTNHeader } from "components/header/header";
+import BntSidebar from "components/sidebar/sidebar";
+import { Modules } from "constants/modules";
+import { useAuth } from "shared/model/auth/use-auth";
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntDrawerHeader } from "shared/ui/drawer";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntStack } from "shared/ui/stack";
 
-export const BntLayout = () => {
+import { AppContext } from "context/app-context";
+import { getRoutes } from "routes/get-routes";
+import SwitchRoutes from "@/app/ui/switch-routes";
+
+import "@/app/ui/app.scss";
+
+import { useProfile } from "@/entities/profile";
+
+export function BntLayout() {
 	const { auth } = useAuth();
 	const { routes, redirects } = useContext(AppContext);
-	const { profile, isLoading } = useProfileLogic();
+	const { profile, isLoading } = useProfile();
 
 	useLoader(Modules.Profile, isLoading);
 
@@ -29,10 +32,7 @@ export const BntLayout = () => {
 			<CssBaseline />
 			{auth.isAuthenticated && <BTNHeader profile={profile} />}
 			{auth.isAuthenticated && <BntSidebar />}
-			<BntBox
-				component="main"
-				sx={{ flexGrow: 1, maxWidth: "100%", height: "100%", overflow: "hidden" }}
-			>
+			<BntBox component="main" sx={{ flexGrow: 1, maxWidth: "100%", height: "100%", overflow: "hidden" }}>
 				<BntStack direction="column" sx={{ height: "100%", p: 0, m: 0, overflow: "hidden" }}>
 					{auth.isAuthenticated && <BntDrawerHeader />}
 					<BntBox sx={{ flexGrow: 1, height: "100%", overflowY: "auto", p: 1 }}>
@@ -42,4 +42,4 @@ export const BntLayout = () => {
 			</BntBox>
 		</BntBox>
 	);
-};
+}

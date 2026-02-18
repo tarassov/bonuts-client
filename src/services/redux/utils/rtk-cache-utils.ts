@@ -6,10 +6,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 export const defaultTags = ["UNAUTHORIZED", "UNKNOWN_ERROR"] as const;
 type DefaultTags = (typeof defaultTags)[number];
 
-function concatErrorCache<T, ID>(
-	existingCache: CacheList<T, ID>,
-	error: FetchBaseQueryError | undefined
-): CacheList<T, ID> {
+function concatErrorCache<T, ID>(existingCache: CacheList<T, ID>, error: FetchBaseQueryError | undefined): CacheList<T, ID> {
 	if (error && "status" in error && error.status === 401) {
 		// unauthorized error
 		return [...existingCache, "UNAUTHORIZED"];
@@ -63,7 +60,7 @@ export const providesList =
 		// is result available?
 		if (results?.data) {
 			// successful query
-			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id } as const))];
+			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id }) as const)];
 		}
 		// Received an error, include an error cache item to the cache list
 		return concatErrorCache([{ type, id: "LIST" }], error);
@@ -81,21 +78,19 @@ export const providesList =
  * ```
  */
 export const invalidatesList =
-	<T extends string>(type: T) =>
-	(): readonly [CacheItem<T, "LIST">] =>
-		[{ type, id: "LIST" }] as const;
+	<T extends string>(type: T | Array<T>) =>
+	(): CacheItem<T, "LIST">[] => {
+		const tags = Array.isArray(type) ? type.map((t) => ({ type: t, id: "LIST" })) : [{ type, id: "LIST" }];
 
-type InnerProvidesNestedList<T> = <
-	Results extends { data: { id: unknown }[] },
-	Error extends FetchBaseQueryError
->(
+		return tags as CacheItem<T, "LIST">[];
+	};
+
+type InnerProvidesNestedList<T> = <Results extends { data: { id: unknown }[] }, Error extends FetchBaseQueryError>(
 	results: Results | undefined,
 	error: Error | undefined
 ) => CacheList<T, Results["data"][number]["id"]>;
 
-export const invalidateId = <T extends string, K>(type: T, id: K): [CacheItem<T, K>] | [] => [
-	{ type, id },
-];
+export const invalidateId = <T extends string, K>(type: T, id: K): [CacheItem<T, K>] | [] => [{ type, id }];
 
 /**
  * Similar to `providesList`, but for data located at a nested property,
@@ -109,7 +104,7 @@ export const providesNestedList =
 		// is result available?
 		if (results) {
 			// successful query
-			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id } as const))];
+			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id }) as const)];
 		}
 		// Received an error, include an error cache item to the cache list
 		return concatErrorCache([{ type, id: "LIST" }], error);
@@ -127,11 +122,7 @@ export const providesNestedList =
  */
 export const cacheByIdArg =
 	<T extends string>(type: T) =>
-	<ID, Result = undefined, Error = undefined>(
-		result: Result,
-		error: Error,
-		id: ID
-	): readonly [CacheItem<T, ID>] =>
+	<ID, Result = undefined, Error = undefined>(result: Result, error: Error, id: ID): readonly [CacheItem<T, ID>] =>
 		[{ type, id }] as const;
 
 /**
@@ -155,9 +146,18 @@ export const cacheByIdArgProperty =
 			? [
 					{ type, id: arg.id },
 					{ type, id: tag },
-			  ]
+				]
 			: ([{ type, id: arg.id }] as const);
 
+export const cacheByIdResultProperty =
+	<T extends string>(type: T, tag: string | string[] = []) =>
+	<Result extends { data?: { id?: string } }>(result: Result | undefined): CacheItem<T, string>[] | [] => {
+		if (!result?.data?.id) return [];
+
+		const tags = Array.isArray(tag) ? tag.map((t) => ({ type, id: t })) : [{ type, id: tag }];
+
+		return tags.length > 0 ? [{ type, id: result.data.id }, ...tags] : [{ type, id: result.data.id }];
+	};
 /**
  * HOF to invalidate the 'UNAUTHORIZED' type cache item.
  */
@@ -170,8 +170,7 @@ export const invalidatesUnauthorized =
 		error: Error,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		arg: Arg
-	): ["UNAUTHORIZED"] =>
-		["UNAUTHORIZED"];
+	): ["UNAUTHORIZED"] => ["UNAUTHORIZED"];
 
 /**
  * HOF to invalidate the 'UNKNOWN_ERROR' type cache item.
@@ -185,8 +184,7 @@ export const invalidatesUnknownErrors =
 		error: Error,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		arg: Arg
-	): ["UNKNOWN_ERROR"] =>
-		["UNKNOWN_ERROR"];
+	): ["UNKNOWN_ERROR"] => ["UNKNOWN_ERROR"];
 
 /**
  * Utility lib for common provides/invalidates scenarios

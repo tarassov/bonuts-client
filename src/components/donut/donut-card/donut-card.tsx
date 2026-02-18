@@ -1,5 +1,7 @@
 import { FC } from "react";
+
 import { DonutCardStyled } from "components/donut/donut-card/donut-card-styled";
+
 import { useDonutUi } from "logic/ui/use-donut-ui";
 import { TDonut } from "@/types/model";
 

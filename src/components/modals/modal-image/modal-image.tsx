@@ -1,7 +1,9 @@
 import { styled } from "@mui/material/styles";
-import { ModalImageComponent } from "components/modals/modal-image/modal-image-component";
-import { cl } from "themes/helper";
+
 import { MODAL_IMAGE_CLASSES } from "components/modals/modal-image/classes";
+import { ModalImageComponent } from "components/modals/modal-image/modal-image-component";
+
+import { cl } from "themes/helper";
 
 export const ModalImage = styled(
 	ModalImageComponent,

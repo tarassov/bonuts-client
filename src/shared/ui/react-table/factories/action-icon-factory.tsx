@@ -1,4 +1,3 @@
-import { ActionType } from "shared/ui/react-table/types";
 import {
 	AddOutlined,
 	CheckCircleOutline,
@@ -7,6 +6,8 @@ import {
 	EditOutlined,
 	HighlightOffOutlined,
 } from "@mui/icons-material";
+
+import { ActionType } from "shared/ui/react-table/types";
 
 export const actionIconFactory = (actionType?: ActionType) => {
 	switch (actionType) {

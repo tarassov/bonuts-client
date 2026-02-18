@@ -1,6 +1,3 @@
-import { BntRoutes } from "routes/config/routes";
-import { redirectConfig } from "routes/config/redirects-config";
-import { routesPath } from "routes/config/routes-path";
 import {
 	ArchiveOutlined,
 	CalendarMonthOutlined,
@@ -21,30 +18,37 @@ import {
 	StoreMallDirectoryOutlined,
 	WidgetsOutlined,
 } from "@mui/icons-material";
-import { SharePage } from "pages/share-page/share-page";
-import { TenantPage } from "pages/tenant-page/tenant-page";
-import { PluginsPage } from "pages/plugins-page/plugins-page";
-import { SchedulersPage } from "pages/schedulers-page/schedulers-page";
-import { EmployeePreviewPage } from "pages/employee/employee-preview-page";
-import { DonutEditPage } from "pages/donut/donut-edit-page";
+
 import { Roles } from "constants/roles";
 import { useIcons } from "hooks/use-icons";
-import { ConfirmEmailPage } from "pages/confirm-email-page/confirm-email-page";
-import { InvitationPage } from "pages/invitation/invitation-page";
+
+import { ConfirmEmailPage } from "@/pages/confirm-email-page/confirm-email-page";
+import { DonutEditPage } from "@/pages/donut/donut-edit-page";
+import { EmployeePreviewPage } from "@/pages/employee/employee-preview-page";
+import { InvitationPage } from "@/pages/invitation/invitation-page";
+import { PluginsPage } from "@/pages/plugins-page/plugins-page";
+import { SchedulersPage } from "@/pages/schedulers-page/schedulers-page";
+import { SharePage } from "@/pages/share-page/share-page";
+import { TenantPage } from "@/pages/tenant-page/tenant-page";
+
+import { redirectConfig } from "routes/config/redirects-config";
+import { BntRoutes } from "routes/config/routes";
+import { routesPath } from "routes/config/routes-path";
 import {
 	AccountOperationsPage,
-	CirclesPage,
 	ActiveRequestsPage,
+	CirclesPage,
 	ClosedRequestsPage,
 	DashboardPage,
 	DonutPreviewPage,
 	DonutsPage,
+	EmployeesPage,
+	EventPage,
 	HomePage,
 	IncomingRequestsPage,
 	LoginPage,
 	LogoutPage,
 	MyRequestsPage,
-	EmployeesPage,
 	ProfilePage,
 	RecoverPage,
 	RegistrationPage,
@@ -53,10 +57,11 @@ import {
 	StatisticsPage,
 	StorePage,
 	TenantsListPage,
-	EventPage,
 } from "@/pages";
+
 // fixme: hook is called outside of component
-// eslint-disable-next-line react-hooks/rules-of-hooks
+
+// biome-ignore lint/correctness/useHookAtTopLevel: temporary for migrate
 const { CirclesIcon } = useIcons();
 
 const groupAdmins = [Roles.moderator, Roles.admin, Roles.admin];

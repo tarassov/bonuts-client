@@ -1,20 +1,41 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useMemo } from "react";
+
 import { BntSetLoadingContext } from "../loading-provider";
 
-export const useLoader = (name: string, isLoading: boolean = false) => {
+import debounce from "lodash/debounce";
+
+export const useLoader = (name: string, isLoading: boolean = false, openDebounceMs: number = 200) => {
 	const setLoading = useContext(BntSetLoadingContext);
+
+	const debouncedOpen = useMemo(() => {
+		return debounce(() => {
+			setLoading(name, true);
+		}, openDebounceMs);
+	}, [name, openDebounceMs, setLoading]);
+
 	useEffect(() => {
-		setLoading(name, isLoading);
-		return () => setLoading(name, false);
-	}, [isLoading]);
+		return () => {
+			debouncedOpen.cancel();
+		};
+	}, [debouncedOpen]);
 
 	const openLoader = useCallback(() => {
-		setLoading(name, true);
-	}, []);
+		debouncedOpen();
+	}, [debouncedOpen]);
 
 	const closeLoader = useCallback(() => {
+		debouncedOpen.cancel(); // prevents pending open from firing after close
 		setLoading(name, false);
-	}, []);
+	}, [debouncedOpen, name, setLoading]);
+
+	useEffect(() => {
+		if (isLoading) debouncedOpen();
+
+		return () => {
+			debouncedOpen.cancel();
+			setLoading(name, false);
+		};
+	}, [debouncedOpen, isLoading, name, setLoading]);
 
 	return { openLoader, closeLoader };
 };

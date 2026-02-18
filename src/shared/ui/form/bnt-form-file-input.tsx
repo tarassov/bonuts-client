@@ -1,9 +1,10 @@
-import { Stack } from "@mui/material";
 import React, { FC } from "react";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { Dictionary } from "constants/dictionary";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 import { ModeEditOutlineRounded } from "@mui/icons-material";
+import { Stack } from "@mui/material";
+
+import { Dictionary } from "constants/dictionary";
+import { BntBox } from "shared/ui/box/bnt-box";
+import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
 
 export const BntFormFileInput: FC<{
 	handleFileInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

@@ -1,13 +1,16 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { Dictionary } from "constants/dictionary";
-import { TFieldType } from "shared/ui/form/types/bnt-form";
-import { BntStack } from "shared/ui/stack/stack";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTextInput } from "shared/ui/input/text-input";
-import { emptyFunction } from "utils/empty-function";
+import React, { ChangeEvent, useState } from "react";
+
 import classnames from "classnames";
-import { useDebounce } from "usehooks-ts";
+import { useDebounceCallback } from "usehooks-ts";
+
+import { Dictionary } from "constants/dictionary";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { BntRoundButton } from "shared/ui/buttons/round-button";
+import { FieldType } from "shared/ui/form/types/bnt-form";
+import { BntTextInput } from "shared/ui/input/text-input";
+import { BntStack } from "shared/ui/stack";
+import { emptyFunction } from "utils/empty-function";
+
 import { TBaseModel } from "@/types/model";
 import { TSorterButton } from "@/types/ui/sorter-button";
 
@@ -21,19 +24,23 @@ export type SearchStringProps<T extends TBaseModel = TBaseModel> = {
 	className?: string;
 };
 
-export const SearchString = <T extends TBaseModel>(props: SearchStringProps<T>) => {
+export function SearchString<T extends TBaseModel>(props: SearchStringProps<T>) {
 	const { setSorter = emptyFunction, setSearch, buttons, debounceDelay = 0, className } = props;
 	const { translate } = useBntTranslate();
 	const [text, setText] = useState<string>("");
-	const debouncedValue = useDebounce<string>(text, debounceDelay);
-	const setValue = (value: string) => {
-		if (!debounceDelay) setSearch(value);
-		setText(value);
-	};
+	const debouncedSetSearch = useDebounceCallback(setSearch, debounceDelay);
 
-	useEffect(() => {
-		if (debounceDelay) setSearch(debouncedValue);
-	}, [debouncedValue]);
+	const setValue = (value: string) => {
+		setText(value);
+
+		if (debounceDelay) {
+			debouncedSetSearch(value);
+
+			return;
+		}
+
+		setSearch(value);
+	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value || "");
@@ -48,7 +55,7 @@ export const SearchString = <T extends TBaseModel>(props: SearchStringProps<T>) 
 				color="primary"
 				name="filter-donuts"
 				placeholder={`${Dictionary.SEARCH_STRING}`}
-				type={TFieldType.text}
+				type={FieldType.text}
 				value={text}
 				clearable
 				onClear={handleClear}
@@ -58,11 +65,7 @@ export const SearchString = <T extends TBaseModel>(props: SearchStringProps<T>) 
 				sx={{ width: "100%" }}
 			/>
 			{buttons?.length ? (
-				<BntStack
-					direction={{ xs: "column", sm: "row" }}
-					className="mb-5"
-					spacing={{ xs: 1, sm: 2 }}
-				>
+				<BntStack direction={{ xs: "column", sm: "row" }} className="mb-5" spacing={{ xs: 1, sm: 2 }}>
 					{buttons?.map((button) => {
 						return (
 							<BntRoundButton
@@ -82,4 +85,4 @@ export const SearchString = <T extends TBaseModel>(props: SearchStringProps<T>) 
 			) : null}
 		</>
 	);
-};
+}

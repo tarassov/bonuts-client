@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Badge, BadgeProps } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const BntBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 	"& .MuiBadge-badge": {

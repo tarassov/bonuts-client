@@ -1,6 +1,7 @@
 import { bonutsApi, GetAccountOperationsApiResponse } from "services/api/bonuts-api";
-import { cacheByIdArgProperty } from "services/redux/utils/rtk-cache-utils";
 import { getPaginator } from "services/api/helpers/get-paginator";
+import { cacheByIdArgProperty } from "services/redux/utils/rtk-cache-utils";
+
 import { TPageable } from "@/types/api/api";
 
 // noinspection TypeScriptValidateJSTypes

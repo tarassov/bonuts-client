@@ -1,0 +1,1 @@
+export { BntTypography } from "./typography";

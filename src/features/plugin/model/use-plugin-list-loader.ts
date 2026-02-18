@@ -1,6 +1,6 @@
-import { useListBase } from "logic/hooks/use-list-base";
-
 import { apiPluginAdaptor, pluginsApi } from "@/entities/plugin";
+
+import { useListBase } from "logic/hooks/use-list-base";
 
 export const usePluginListLoader = () => {
 	return useListBase({

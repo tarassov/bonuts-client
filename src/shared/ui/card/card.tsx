@@ -1,6 +1,5 @@
 import { Card, CardProps } from "@mui/material";
-import { FC } from "react";
 
-export const BntCard: FC<CardProps> = (props) => {
+export function BntCard(props: CardProps) {
 	return <Card {...props} />;
-};
+}

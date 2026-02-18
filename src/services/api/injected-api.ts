@@ -1,10 +1,6 @@
 import { ApiMethod } from "services/api/helpers/api-method";
-import {
-	bonutsApi,
-	PostDonutsApiResponse,
-	PutDonutsByIdApiArg,
-	PutDonutsByIdApiResponse,
-} from "./bonuts-api";
+
+import { bonutsApi, PostDonutsApiResponse, PutDonutsByIdApiArg, PutDonutsByIdApiResponse } from "./bonuts-api";
 
 export const bonutsApiOverride = bonutsApi.injectEndpoints({
 	endpoints: (build) => ({

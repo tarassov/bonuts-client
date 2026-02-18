@@ -1,22 +1,22 @@
 import React, { SyntheticEvent, useState } from "react";
-import { ProfileIntegrations } from "src/widgets/integration-settings";
 
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useSearchQuery } from "hooks/use-search-query";
+import { texts_i, texts_p } from "services/localization/texts";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 import { BntTab } from "shared/ui/tab/bnt-tab";
 import { BntTabPanel } from "shared/ui/tab/bnt-tab-panel";
 import { BntTabs } from "shared/ui/tab/bnt-tabs";
 
-import { texts_i, texts_p } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useQuery } from "hooks/use-query";
-
 import { ProfileEdit } from "@/entities/profile";
+
 import { Messenger } from "@/features/3cx/messenger";
 
-export const ProfilePage: React.FC = () => {
-	const query = useQuery();
+import { ProfileIntegrations } from "src/widgets/integration-settings";
+
+export function ProfilePage() {
+	const query = useSearchQuery();
 	const { translate } = useBntTranslate();
 	const [value, setValue] = useState(query.get("tab") === "integrations" ? 1 : 0);
 
@@ -50,4 +50,4 @@ export const ProfilePage: React.FC = () => {
 			<Messenger />
 		</>
 	);
-};
+}

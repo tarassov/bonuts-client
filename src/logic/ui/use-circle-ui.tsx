@@ -1,6 +1,7 @@
-import { useModal } from "hooks/use-modal";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_n } from "services/localization/texts";
+
+import { useModal } from "@/entities/modal";
 
 export const useCircleUi = () => {
 	const { CreateCircle } = useModal();

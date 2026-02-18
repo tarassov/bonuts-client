@@ -1,9 +1,10 @@
-import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
-import { tenantsApi } from "services/api/extended/tenants-api";
 import { PutTenantCurrentApiResponse } from "services/api/bonuts-api";
-import { useNotification } from "services/notification";
+import { tenantsApi } from "services/api/extended/tenants-api";
 import { texts_s } from "services/localization/texts";
+import { useNotification } from "services/notification";
+import { useAppSelector } from "services/redux/store/store";
+import { authTenantSelector } from "shared/model/auth/auth-selector";
+
 import { TTenant } from "@/types/model/tenant";
 
 export const useUpdateCurrentTenant = () => {
@@ -20,8 +21,7 @@ export const useUpdateCurrentTenant = () => {
 		if (authTenant) {
 			const { logo } = tenant;
 			// @ts-ignore
-			const logoNew: File | undefined =
-				logo && !Object.getOwnPropertyDescriptor(logo, "url") ? logo : undefined;
+			const logoNew: File | undefined = logo && !Object.getOwnPropertyDescriptor(logo, "url") ? logo : undefined;
 
 			const res = await putTenant({
 				body: { ...tenant, ...(logoNew && { logo: logoNew }), tenant: authTenant },

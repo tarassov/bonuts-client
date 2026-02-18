@@ -10,13 +10,15 @@ import {
 	usePostRequestsRefundMutation,
 	usePostRequestsRollbackMutation,
 } from "services/api/bonuts-api";
-import { useNotification } from "services/notification/use-notification";
 import { texts_r } from "services/localization/texts/texts_r";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
+import { useNotification } from "services/notification/use-notification";
+
+import { useProfile } from "@/entities/profile";
+
 import { TDonut } from "@/types/model";
 
 export const useRequestLogic = () => {
-	const { authTenant, invalidateSelfBalance, profile } = useProfileLogic();
+	const { authTenant, invalidateSelfBalance, profile } = useProfile();
 	const [postRequest] = usePostRequestsMutation();
 	const [postActivateRequest] = usePostRequestsActivateMutation();
 	const [postRefundRequest] = usePostRequestsRefundMutation();
@@ -24,10 +26,7 @@ export const useRequestLogic = () => {
 	const [postRollbackRequest] = usePostRequestsRollbackMutation();
 	const { showNotification } = useNotification();
 
-	const createRequest = async (
-		args: { donut: TDonut },
-		options?: { onSuccess?: (result: PostRequestsApiResponse) => void }
-	) => {
+	const createRequest = async (args: { donut: TDonut }, options?: { onSuccess?: (result: PostRequestsApiResponse) => void }) => {
 		const { donut } = args;
 		if (authTenant) {
 			postRequest({
@@ -42,10 +41,7 @@ export const useRequestLogic = () => {
 		}
 	};
 
-	const activateRequest = (
-		id: number,
-		options?: { onSuccess?: (result: PostRequestsActivateApiResponse) => void }
-	) => {
+	const activateRequest = (id: number, options?: { onSuccess?: (result: PostRequestsActivateApiResponse) => void }) => {
 		postActivateRequest({ body: { id, tenant: authTenant } })
 			.unwrap()
 			.then((result) => {
@@ -54,23 +50,16 @@ export const useRequestLogic = () => {
 			});
 	};
 
-	const refundRequest = (
-		id: number,
-		options?: { onSuccess?: (result: PostRequestsRefundApiResponse) => void }
-	) => {
+	const refundRequest = (id: number, options?: { onSuccess?: (result: PostRequestsRefundApiResponse) => void }) => {
 		postRefundRequest({ body: { id, tenant: authTenant } })
 			.unwrap()
 			.then((result) => {
 				options?.onSuccess?.(result);
-				if (result?.data?.some((x) => x?.attributes?.profile.id === profile?.id))
-					invalidateSelfBalance();
+				if (result?.data?.some((x) => x?.attributes?.profile.id === profile?.id)) invalidateSelfBalance();
 				showNotification(texts_r.request_has_been_refunded);
 			});
 	};
-	const closeRequest = (
-		id: number,
-		options?: { onSuccess?: (result: PostRequestsCloseApiResponse) => void }
-	) => {
+	const closeRequest = (id: number, options?: { onSuccess?: (result: PostRequestsCloseApiResponse) => void }) => {
 		postCloseRequest({ body: { id, tenant: authTenant } })
 			.unwrap()
 			.then((result) => {
@@ -78,10 +67,7 @@ export const useRequestLogic = () => {
 				showNotification(texts_r.request_been_set_closed);
 			});
 	};
-	const rollbackRequest = (
-		id: number,
-		options?: { onSuccess?: (result: PostRequestsRollbackApiResponse) => void }
-	) => {
+	const rollbackRequest = (id: number, options?: { onSuccess?: (result: PostRequestsRollbackApiResponse) => void }) => {
 		postRollbackRequest({ body: { id, tenant: authTenant } })
 			.unwrap()
 			.then((result) => {

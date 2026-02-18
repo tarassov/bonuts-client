@@ -1,17 +1,13 @@
-import { Column, Table as ReactTable } from "@tanstack/react-table";
-import { BntTextInput } from "shared/ui/input/text-input";
 import { Stack } from "@mui/material";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_s } from "services/localization/texts";
 import { texts_r } from "services/localization/texts/texts_r";
+import { BntTextInput } from "shared/ui/input/text-input";
 
-export const ColumnFilter = ({
-	column,
-	table,
-}: {
-	column: Column<any, any>;
-	table: ReactTable<any>;
-}) => {
+import { Column, Table as ReactTable } from "@tanstack/react-table";
+
+export const ColumnFilter = ({ column, table }: { column: Column<any, any>; table: ReactTable<any> }) => {
 	const count = table.getPreFilteredRowModel().flatRows.length;
 	const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id);
 	const { translate } = useBntTranslate();
@@ -23,18 +19,14 @@ export const ColumnFilter = ({
 			<BntTextInput
 				type="number"
 				value={(columnFilterValue as [number, number])?.[0] ?? ""}
-				onChange={(e) =>
-					column.setFilterValue((old: [number, number]) => [e.target.value, old?.[1]])
-				}
+				onChange={(e) => column.setFilterValue((old: [number, number]) => [e.target.value, old?.[1]])}
 				placeholder="Min"
 				variant="standard"
 			/>
 			<BntTextInput
 				type="number"
 				value={(columnFilterValue as [number, number])?.[1] ?? ""}
-				onChange={(e) =>
-					column.setFilterValue((old: [number, number]) => [old?.[0], e.target.value])
-				}
+				onChange={(e) => column.setFilterValue((old: [number, number]) => [old?.[0], e.target.value])}
 				placeholder="Max"
 				variant="standard"
 			/>
@@ -44,10 +36,7 @@ export const ColumnFilter = ({
 			className="bnt-table-filter"
 			value={(columnFilterValue ?? "") as string}
 			onChange={(e) => column.setFilterValue(e.target.value)}
-			placeholder={`${translate(texts_s.search, { capitalize: true })}...${count} ${translate(
-				texts_r.records,
-				{ count }
-			)}`}
+			placeholder={`${translate(texts_s.search, { capitalize: true })}...${count} ${translate(texts_r.records, { count })}`}
 			variant="standard"
 			shouldTranslate={false}
 		/>

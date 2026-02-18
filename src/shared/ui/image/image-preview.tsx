@@ -1,5 +1,7 @@
 import React, { FC } from "react";
-import { useModal } from "hooks/use-modal";
+
+import { useModal } from "@/entities/modal";
+
 import { ImageContainer } from "./image-container";
 
 export const ImagePreview: FC<{

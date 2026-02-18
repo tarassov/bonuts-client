@@ -1,11 +1,13 @@
 import { useMemo } from "react";
-import { createColumnHelper } from "@tanstack/react-table";
-import { RequestContentCell } from "components/request/request-list/request-content-cell";
+
 import { RequestActionsCell } from "components/request/request-list/request-actions-cell";
+import { RequestContentCell } from "components/request/request-list/request-content-cell";
 import { requestFilter } from "components/request/request-list/request-filter";
-import { texts_r } from "services/localization/texts/texts_r";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_r } from "services/localization/texts/texts_r";
 import { emptyFunction } from "utils/empty-function";
+
+import { createColumnHelper } from "@tanstack/react-table";
 import { TRequest } from "@/types/model/request";
 
 export const useRequestTableConfig = (args: {
@@ -29,15 +31,12 @@ export const useRequestTableConfig = (args: {
 	} = args;
 	const { translate } = useBntTranslate();
 	const columnHelper = createColumnHelper<TRequest & { actions?: any }>();
+	// biome-ignore lint/correctness/useExhaustiveDependencies: during migration
 	const tableConfig = useMemo(
 		() => [
 			columnHelper.accessor("donut.name", {
 				cell: (info) => (
-					<RequestContentCell
-						donut={info.row.original.donut}
-						profile={info.row.original.profile}
-						datetime={info.row.original.created_at}
-					/>
+					<RequestContentCell donut={info.row.original.donut} profile={info.row.original.profile} datetime={info.row.original.created_at} />
 				),
 				header: translate(texts_r.requests, { capitalize: true }),
 				footer: (info) => info.column.id,
@@ -46,8 +45,7 @@ export const useRequestTableConfig = (args: {
 			}),
 			columnHelper.accessor("actions", {
 				cell: (info) => {
-					const rollbackIsDisabled =
-						checkRollbackEnabled && !checkRollbackEnabled(info.row.original);
+					const rollbackIsDisabled = checkRollbackEnabled && !checkRollbackEnabled(info.row.original);
 					const checkIsDisabled = checkCheckEnabled && !checkCheckEnabled(info.row.original);
 					return (
 						<RequestActionsCell

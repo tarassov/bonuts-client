@@ -1,6 +1,7 @@
 import { apiAdaptor } from "services/adaptor/api-adaptor";
-import { useListBase } from "logic/hooks/use-list-base";
 import { requestsApi } from "services/api/extended/requests-api";
+
+import { useListBase } from "logic/hooks/use-list-base";
 
 export const useRequestListLogic = ({
 	archive,

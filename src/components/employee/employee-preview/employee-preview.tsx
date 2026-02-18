@@ -1,18 +1,21 @@
 import { useParams } from "react-router-dom";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { Modules } from "constants/modules";
-import { useModal } from "hooks/use-modal";
-import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
-import { EmployeePreviewStyled } from "components/employee/employee-preview/employee-preview-styled";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
-import { useTransferUi } from "logic/ui/use-transfer-ui";
-import { useEmployee } from "logic/hooks/employee/use-employee";
 
-export const EmployeePreview = () => {
+import { EmployeePreviewStyled } from "components/employee/employee-preview/employee-preview-styled";
+import { Modules } from "constants/modules";
+import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useModal } from "@/entities/modal";
+import { useProfile } from "@/entities/profile";
+import { useEmployee } from "@/entities/profile/model/use-employee";
+import { useEmployeeLoader } from "@/entities/profile/model/use-employee-loader";
+
+import { useTransferUi } from "logic/ui/use-transfer-ui";
+
+export function EmployeePreview() {
 	const { id } = useParams();
 	const { employee, isLoading, error } = useEmployeeLoader(id);
 	const { ImageModal } = useModal();
-	const { profile } = useProfileLogic();
+	const { profile } = useProfile();
 	const { showAdminDeposit, showTransfer } = useTransferUi();
 	const { setActivityWithConfirmation, setActivity } = useEmployee();
 
@@ -60,4 +63,4 @@ export const EmployeePreview = () => {
 			onDisableClick={onDisable}
 		/>
 	);
-};
+}

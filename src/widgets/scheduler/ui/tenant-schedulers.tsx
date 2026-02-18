@@ -1,26 +1,23 @@
 import { useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 
+import { Modules } from "constants/modules";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_a, texts_s } from "services/localization/texts";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { BntStack } from "shared/ui/stack/stack";
+import { BntStack } from "shared/ui/stack";
 
-import { Modules } from "constants/modules";
+import { useModal } from "@/entities/modal";
 
-import { texts_a, texts_s } from "services/localization/texts";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useModal } from "hooks/use-modal";
-
-import { useScheduler } from "logic/hooks/scheduler/use-scheduler";
-import { useSchedulerListLoader } from "logic/hooks/scheduler/use-scheduler-list-loader";
-
-import { SchedulerList } from "./scheduler-list";
-
-import { TNewScheduler } from "@/types/model/scheduler";
 import { NewSchedulerBlock } from "@/widgets/scheduler/ui/new-scheduler-block";
 
-export const TenantSchedulers = () => {
+import { SchedulerList } from "./scheduler-list";
+import { useScheduler } from "logic/hooks/scheduler/use-scheduler";
+import { useSchedulerListLoader } from "logic/hooks/scheduler/use-scheduler-list-loader";
+import { TNewScheduler } from "@/types/model/scheduler";
+
+export function TenantSchedulers() {
 	const { objects: schedulers, isLoading } = useSchedulerListLoader();
 	const { createScheduler, updateScheduler, deleteScheduler } = useScheduler();
 	const [createMode, setCreateMode] = useState(false);
@@ -43,11 +40,7 @@ export const TenantSchedulers = () => {
 	};
 
 	return (
-		<BntStack
-			direction="column"
-			sx={{ height: "100%", overflow: "hidden" }}
-			className={!smallScreen ? "ml-4" : undefined}
-		>
+		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }} className={!smallScreen ? "ml-4" : undefined}>
 			{!createMode ? <NewSchedulerBlock onClick={() => setCreateMode(true)} /> : null}
 			<CardWrapper className="flex-grow scroll" transparent>
 				<SchedulerList
@@ -61,4 +54,4 @@ export const TenantSchedulers = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

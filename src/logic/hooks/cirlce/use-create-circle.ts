@@ -1,9 +1,10 @@
-import { circlesApi } from "services/api/extended/circles-api";
 import { PostCirclesApiResponse } from "services/api/bonuts-api";
-import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
-import { useNotification } from "services/notification";
+import { circlesApi } from "services/api/extended/circles-api";
 import { texts_c } from "services/localization/texts";
+import { useNotification } from "services/notification";
 import { TFormValue } from "shared/ui/form/types/bnt-form";
+
+import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
 
 export const useCreateCircle = () => {
 	const { usePostCirclesMutation } = circlesApi;
@@ -11,10 +12,7 @@ export const useCreateCircle = () => {
 	const tenant = useCurrentTenant();
 	const { showNotification } = useNotification();
 
-	const createCircle = (
-		args: Record<string, TFormValue>,
-		options?: { onSuccess?: (result: PostCirclesApiResponse) => void }
-	) => {
+	const createCircle = (args: Record<string, TFormValue>, options?: { onSuccess?: (result: PostCirclesApiResponse) => void }) => {
 		const { name } = args;
 		if (tenant && name) {
 			postCircle({ body: { tenant, name: name.toString() } })

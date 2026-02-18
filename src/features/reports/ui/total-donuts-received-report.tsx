@@ -1,9 +1,12 @@
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
+
 import { Currency } from "constants/currency";
-import { StatisticsTile, StatisticsTileProps } from "./statistics-tile";
-import { useProfileReports } from "../model/useProfileReports";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+
 import reportsTexts from "../config/reports-texts";
+import { useProfileReports } from "../model/useProfileReports";
+
+import { StatisticsTile, StatisticsTileProps } from "./statistics-tile";
 
 export type TTotalDonutsReceivedReportProps = Pick<
 	StatisticsTileProps,

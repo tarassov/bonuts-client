@@ -1,15 +1,17 @@
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntCard } from "shared/ui/card/card";
+
 import { Dictionary } from "constants/dictionary";
-import { BntTypography } from "shared/ui/typography/typography";
-import { BntRegularButton } from "shared/ui/buttons/regular-button";
-import { useRequestLogic } from "logic/hooks/request/use-request-logic";
-import { texts_o } from "services/localization/texts/texts_o";
-import { BntStack } from "shared/ui/stack/stack";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
-import { DonutRemainGrey } from "./donut-remain-grey";
+import { texts_o } from "services/localization/texts/texts_o";
+import { BntRegularButton } from "shared/ui/buttons/regular-button";
+import { BntCard } from "shared/ui/card/card";
+import { BntStack } from "shared/ui/stack";
+import { BntTypography } from "shared/ui/typography/typography";
+
 import { DonutPrice } from "./donut-price";
+import { DonutRemainGrey } from "./donut-remain-grey";
+import { useRequestLogic } from "logic/hooks/request/use-request-logic";
 import { TDonut } from "@/types/model";
 
 export const DonutPurchaseBlock: FC<{

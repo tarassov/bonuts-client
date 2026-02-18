@@ -1,6 +1,8 @@
-import { cleanup } from "@testing-library/react";
-import { GetProfileApiResponse } from "services/api/bonuts-api";
+/** biome-ignore-all lint/correctness/noUndeclaredVariables: <explanation> */
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
+import { GetProfileApiResponse } from "services/api/bonuts-api";
+
+import { cleanup } from "@testing-library/react";
 
 const mockResponse: GetProfileApiResponse = {
 	data: {

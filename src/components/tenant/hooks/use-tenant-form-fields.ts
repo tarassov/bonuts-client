@@ -1,11 +1,13 @@
-import { TFieldGroup, TFieldSize, TFieldType, TFormField } from "shared/ui/form/types/bnt-form";
+import { CommonStrings } from "constants/dictionary";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_b, texts_e } from "services/localization/texts";
 import { texts_d } from "services/localization/texts/texts_d";
-import { useModal } from "hooks/use-modal";
-import { CommonStrings } from "constants/dictionary";
 import { texts_p } from "services/localization/texts/texts_p";
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_w } from "services/localization/texts/texts_w";
+import { FieldSize, FieldType, TFieldGroup, TFormField } from "shared/ui/form/types/bnt-form";
+
+import { useModal } from "@/entities/modal";
+
 import { TTenant } from "@/types/model/tenant";
 
 export const useTenantFormFields = () => {
@@ -37,10 +39,10 @@ export const useTenantFormFields = () => {
 	const fields: Array<TFormField<TTenant>> = [
 		{
 			image: true,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "logo",
 			label: "Logo",
-			type: TFieldType.imageUpload,
+			type: FieldType.imageUpload,
 			xs: 12,
 			md: 12,
 			group: 1,
@@ -49,7 +51,7 @@ export const useTenantFormFields = () => {
 		{
 			image: false,
 			readOnly: true,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "name",
 			label: "name",
 			xs: 12,
@@ -58,7 +60,7 @@ export const useTenantFormFields = () => {
 		},
 		{
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "caption",
 			label: "caption",
 			xs: 12,
@@ -67,9 +69,9 @@ export const useTenantFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.text,
+			type: FieldType.text,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "domain",
 			label: texts_d.domain,
 			required: false,
@@ -78,9 +80,9 @@ export const useTenantFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.number,
+			type: FieldType.number,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "welcome_donuts",
 			label: texts_w.welcome_donuts,
 			required: true,
@@ -91,9 +93,9 @@ export const useTenantFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.number,
+			type: FieldType.number,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "welcome_points",
 			label: texts_w.welcome_points,
 			required: true,
@@ -109,9 +111,9 @@ export const useTenantFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.number,
+			type: FieldType.number,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "birthday_donuts",
 			label: texts_b.birthday_donuts,
 			required: false,
@@ -122,9 +124,9 @@ export const useTenantFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.number,
+			type: FieldType.number,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "birthday_points",
 			label: texts_b.birthday_points,
 			required: false,
@@ -135,9 +137,9 @@ export const useTenantFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.switch,
+			type: FieldType.switch,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "email_notification",
 			label: texts_e.email_notification,
 			required: false,
@@ -146,9 +148,9 @@ export const useTenantFormFields = () => {
 		},
 		{
 			disabled: false,
-			type: TFieldType.text,
+			type: FieldType.text,
 			image: false,
-			size: TFieldSize.xs,
+			size: FieldSize.xs,
 			name: "birthday_message",
 			label: texts_b.birthday_message,
 			required: false,

@@ -1,14 +1,16 @@
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
-import { routesConfig } from "routes/config/routes-config";
-import { BntRoutes } from "routes/config/routes";
+import React from "react";
+
+import { TenantEditForm } from "components/tenant/tenant-edit-form";
 import { CommonStrings } from "constants/dictionary";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import React from "react";
-import { BntStack } from "shared/ui/stack/stack";
-import { TenantEditForm } from "components/tenant/tenant-edit-form";
+import { BntStack } from "shared/ui/stack";
+import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
-export const TenantEdit = () => {
+import { BntRoutes } from "routes/config/routes";
+import { routesConfig } from "routes/config/routes-config";
+
+export function TenantEdit() {
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
 		{
 			key: "settings",
@@ -18,9 +20,7 @@ export const TenantEdit = () => {
 		},
 		{
 			key: routesConfig.routes[BntRoutes.Settings]?.children?.Tenant?.path || "tenant",
-			label:
-				routesConfig.routes[BntRoutes.Settings]?.children?.Tenant?.navbarName ||
-				CommonStrings.EMPTY_STRING,
+			label: routesConfig.routes[BntRoutes.Settings]?.children?.Tenant?.navbarName || CommonStrings.EMPTY_STRING,
 			icon: routesConfig.routes[BntRoutes.Settings]?.children?.Tenant?.icon,
 		},
 	];
@@ -33,4 +33,4 @@ export const TenantEdit = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

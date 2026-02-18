@@ -1,7 +1,9 @@
 import { styled } from "@mui/material/styles";
-import { cl } from "themes/helper";
-import { EmployeeCardPure } from "components/employee/employee-card/employee-card-pure";
+
 import { EMPLOYEE_CARD_CLASSES } from "components/employee/employee-card/classes";
+import { EmployeeCardPure } from "components/employee/employee-card/employee-card-pure";
+
+import { cl } from "themes/helper";
 
 export const EmployeeCardStyled = styled(
 	EmployeeCardPure,

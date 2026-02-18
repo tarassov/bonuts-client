@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Box, Button, TextField } from "@mui/material";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_p, texts_s } from "services/localization/texts";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Box, Button, TextField } from "@mui/material";
 
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { usePasswordSetValidation } from "hooks/validation/use-password-set-validation";
+import { texts_p, texts_s } from "services/localization/texts";
+
+import { yupResolver } from "@hookform/resolvers/yup";
 import { PasswordSetFields } from "@/types/form/password-set";
 
 export const PasswordRecoverSet: FC<{ onSubmit: (password: string) => void }> = ({ onSubmit }) => {

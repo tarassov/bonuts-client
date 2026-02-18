@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { Button, TextField, Box } from "@mui/material";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_e, texts_r } from "services/localization/texts";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Box, Button, TextField } from "@mui/material";
 
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { usePasswordRestoreValidation } from "hooks/validation/use-password-restore-validation";
+import { texts_e, texts_r } from "services/localization/texts";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { PasswordRestoreFields } from "@/types/form/password-restore";
 
 export const PasswordRecoverRequest: FC<{ onSubmit: (email: string) => void }> = ({ onSubmit }) => {

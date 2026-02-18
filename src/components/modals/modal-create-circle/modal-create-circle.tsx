@@ -1,15 +1,15 @@
-import { TFormValue } from "shared/ui/form/types/bnt-form";
-import { FC } from "react";
-import { TModalProps } from "shared/ui/types/dialog-types";
-import { emptyFunction } from "utils/empty-function";
-import { useCreateCircle } from "logic/hooks/cirlce/use-create-circle";
 import { ModalCreateCirclePure } from "components/modals/modal-create-circle/modal-create-circle-pure";
+import { TDialogProps } from "shared/ui/dialog/dialog-types";
+import { TFormValue } from "shared/ui/form/types/bnt-form";
+import { emptyFunction } from "utils/empty-function";
 
-export const ModalCreateCircle: FC<TModalProps> = ({ close = emptyFunction }) => {
+import { useCreateCircle } from "logic/hooks/cirlce/use-create-circle";
+
+export function ModalCreateCircle({ close = emptyFunction }: TDialogProps) {
 	const { createCircle } = useCreateCircle();
 
 	const onSubmit = (values: Record<string, TFormValue>) => {
 		return createCircle(values, { onSuccess: close });
 	};
 	return <ModalCreateCirclePure onSubmit={onSubmit} />;
-};
+}

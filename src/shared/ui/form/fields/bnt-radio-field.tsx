@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { FieldError, RadioButtonGroup } from "react-hook-form-mui";
-import { TFormField } from "shared/ui/form/types/bnt-form";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { TFormField } from "shared/ui/form/types/bnt-form";
 
 export const BntRadioField: FC<{
 	field: TFormField<any>;

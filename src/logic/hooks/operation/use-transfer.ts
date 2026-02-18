@@ -1,25 +1,27 @@
+import { CommonStrings } from "constants/dictionary";
 import {
 	PostAccountOperationsApiResponse,
 	PostAdminDepositApiResponse,
 	usePostAccountOperationsMutation,
 	usePostAdminDepositMutation,
 } from "services/api/bonuts-api";
-import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
-import { useNotification } from "services/notification";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
 import { texts_t } from "services/localization/texts/texts_t";
-import { CommonStrings } from "constants/dictionary";
+import { useNotification } from "services/notification";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useProfile } from "@/entities/profile";
+
+import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
 import { TransferProps } from "@/types/logic";
-import { AdminDepositProps } from "@/types/logic/transfer";
 import { TActionCallback } from "@/types/logic/action-callback";
+import { AdminDepositProps } from "@/types/logic/transfer";
 
 const OPERATION_NAME = "transferDonuts";
 export const useTransfer = () => {
 	const [postOperation] = usePostAccountOperationsMutation();
 	const [postAdminDeposit] = usePostAdminDepositMutation();
 	const tenant = useCurrentTenant();
-	const { profile, invalidateDistribBalance } = useProfileLogic();
+	const { profile, invalidateDistribBalance } = useProfile();
 	const { showNotification } = useNotification();
 	const { openLoader, closeLoader } = useLoader(OPERATION_NAME, false);
 
@@ -54,10 +56,7 @@ export const useTransfer = () => {
 				});
 		}
 	};
-	const adminDeposit = (
-		args: AdminDepositProps,
-		options?: TActionCallback<PostAdminDepositApiResponse>
-	) => {
+	const adminDeposit = (args: AdminDepositProps, options?: TActionCallback<PostAdminDepositApiResponse>) => {
 		const { amount, comment = CommonStrings.EMPTY_STRING, ids, toSelfAccount } = args;
 		if (tenant) {
 			openLoader();

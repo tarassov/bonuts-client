@@ -1,16 +1,19 @@
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
-import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
 import { useMemo } from "react";
-import { BntProfileButton } from "components/buttons/profile-button";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
-import { Typography } from "@mui/material";
-import { Currency } from "constants/currency";
-import { useIcons } from "hooks/use-icons";
-import { BntStack } from "shared/ui/stack/stack";
 import { DonutSmallOutlined } from "@mui/icons-material";
-import { TProfile } from "@/types/model";
+import { Typography } from "@mui/material";
+
+import { BntProfileButton } from "components/buttons/profile-button";
+import { Currency } from "constants/currency";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useIcons } from "hooks/use-icons";
+import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
+import { CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
+import { BntStack } from "shared/ui/stack";
+
 import reportsTexts from "../config/reports-texts";
+
+import { useEmployeeUi } from "logic/ui/use-employee-ui";
+import { TProfile } from "@/types/model";
 
 export const useStatisticsTableConfig = (totalFieldName: string, currency?: Currency) => {
 	const { translate } = useBntTranslate();
@@ -27,11 +30,7 @@ export const useStatisticsTableConfig = (totalFieldName: string, currency?: Curr
 					enableColumnFilter: false,
 					cell: (info) =>
 						info ? (
-							<BntProfileButton
-								profile={info.row.original}
-								onClick={() => showEmployeeModal(info?.row.original.id)}
-								className="pl-4"
-							/>
+							<BntProfileButton profile={info.row.original} onClick={() => showEmployeeModal(info?.row.original.id)} className="pl-4" />
 						) : (
 							<span />
 						),
