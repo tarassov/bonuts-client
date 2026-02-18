@@ -4,6 +4,7 @@ import { useGetConfirmEmailQuery, usePostConfirmEmailMutation, usePostRefreshTok
 import { texts_c } from "services/localization/texts";
 import { useNotification } from "services/notification";
 import { storage } from "shared/lib/localStorage";
+import { present } from "shared/lib/type-guards";
 
 export const useConfirmEmail = (token?: string) => {
 	const { data, isLoading } = useGetConfirmEmailQuery({ token }, { skip: !token });
@@ -17,7 +18,7 @@ export const useConfirmEmail = (token?: string) => {
 	const confirm = () => {
 		if (token) {
 			postConfirm({ body: { token } }).then((res) => {
-				if ("data" in res) {
+				if ("data" in res && present(res.data)) {
 					showNotification(translate(texts_c.confirmed, { capitalize: true }));
 					setValue<string>("auth_token", res.data.auth_token);
 					postRefreshToken().finally(() => navigateToRoot());

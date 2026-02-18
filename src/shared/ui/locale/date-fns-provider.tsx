@@ -1,13 +1,13 @@
 import { LocalizationProvider, LocalizationProviderProps, MuiPickersAdapter } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
-import { Locale } from "date-fns/locale";
+import { Locale } from "date-fns";
 
 export type DateFnsProviderProps<TDate extends Date> =
-	| (Omit<LocalizationProviderProps<TDate>, "dateAdapter"> & {
+	| (Omit<LocalizationProviderProps<TDate, Locale>, "dateAdapter"> & {
 			dateAdapter?: new (..._args: any) => MuiPickersAdapter<TDate>;
 	  })
-	| (Omit<LocalizationProviderProps<TDate>, "adapterLocale"> & {
+	| (Omit<LocalizationProviderProps<TDate, Locale>, "adapterLocale"> & {
 			adapterLocale: Locale;
 	  });
 

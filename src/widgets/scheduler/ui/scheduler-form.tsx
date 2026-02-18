@@ -30,7 +30,7 @@ export const SchedulerForm: FC<{
 	const { parseTimezone } = useTimezone();
 	const { formSchema } = useSchedulerValidation();
 
-	const formContext = useForm<TSchedulerFormFields>({
+	const formContext = useForm<TSchedulerFormFields, unknown, TSchedulerFormFields>({
 		shouldUseNativeValidation: false,
 		// @ts-ignore
 		resolver: yupResolver(formSchema),

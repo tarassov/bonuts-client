@@ -10,5 +10,5 @@ export function useRegisterPlugin(name: string, api: IPluginApi) {
 		if (!ctx) throw new Error("useRegisterPlugin must be used inside PluginProvider");
 
 		ctx.register(name, api);
-	}, [ctx]);
+	}, [ctx, api, name]);
 }

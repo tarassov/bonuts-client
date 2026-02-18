@@ -1,6 +1,6 @@
 export interface IPluginApi {
 	isConnected(): boolean;
-	connect(): Promise<void>;
+	connect(): Promise<unknown>;
 	onConnectChange(callback: (connected: boolean) => void): void;
 }
 
