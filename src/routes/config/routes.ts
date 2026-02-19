@@ -30,4 +30,5 @@ export enum BntRoutes {
 	ConfirmEmail = "ConfirmEmail",
 	Event = "Event",
 	Invitations = "Invitations",
+	VkCallback = "VkCallback",
 }

@@ -9,7 +9,8 @@ import { BntBox } from "shared/ui/box/bnt-box";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntTypography } from "shared/ui/typography/typography";
 
-import { TelegramPlugin } from "@/features/profile/telegram/ui/TelegramPlugin";
+import { VkPlugin } from "@/features/profile/ vk";
+import { TelegramPlugin } from "@/features/profile/telegram/ui/telegram-plugin";
 
 import { NotificationItem } from "./notification-item";
 
@@ -39,6 +40,7 @@ export function ProfileIntegrations() {
 				)}
 			</BntBox>
 			<TelegramPlugin />
+			<VkPlugin />
 		</>
 	);
 }

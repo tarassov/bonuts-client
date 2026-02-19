@@ -15,6 +15,7 @@
 		"@tanstack/match-sorter-utils": "^8.8.4",
 		"@tanstack/react-table": "^8.9.7",
 		"@tanstack/react-virtual": "^3.0.0-beta.59",
+		"@vkid/sdk": "^2.6.5",
 		"classnames": "^2.3.2",
 		"date-fns": "^2.30.0",
 		"date-fns-tz": "^2.0.0",
@@ -66,8 +67,16 @@
 		"deploy": "gh-pages -d dist -t"
 	},
 	"browserslist": {
-		"production": [">0.2%", "not dead", "not op_mini all"],
-		"development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.14",

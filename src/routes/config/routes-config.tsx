@@ -30,6 +30,7 @@ import { PluginsPage } from "@/pages/plugins-page/plugins-page";
 import { SchedulersPage } from "@/pages/schedulers-page/schedulers-page";
 import { SharePage } from "@/pages/share-page/share-page";
 import { TenantPage } from "@/pages/tenant-page/tenant-page";
+import { VkCallbackPage } from "@/pages/vk-callback";
 
 import { redirectConfig } from "routes/config/redirects-config";
 import { BntRoutes } from "routes/config/routes";
@@ -362,6 +363,14 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 		hideInMenu: false,
 		component: <TenantsListPage />,
 		icon: <Diversity2Outlined />,
+		tenantNotRequired: true,
+	},
+	VkCallback: {
+		path: routesPath[BntRoutes.VkCallback],
+		anonymous: true,
+		authenticated: true,
+		hideInMenu: true,
+		component: <VkCallbackPage />,
 		tenantNotRequired: true,
 	},
 };
