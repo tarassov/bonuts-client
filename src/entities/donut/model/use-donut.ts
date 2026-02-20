@@ -2,13 +2,18 @@ import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { donutsApi } from "services/api/extended/donuts-api";
 import { useUpdateDonutMutation } from "services/api/injected-api";
 import { useAppDispatch } from "services/redux/store/store";
-import { isBlank, present } from "shared/lib/type-guards";
+import { isBlank } from "shared/lib/type-guards";
 
 import { ApiTags } from "@/shared/api";
 
 import { useProfile } from "@/entities/profile";
 
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import type { TDonut } from "@/types/model";
+
+type TDonutUpdateResult = { data: PutDonutsByIdApiResponse } | { error: FetchBaseQueryError | SerializedError };
+const hasData = (result: TDonutUpdateResult): result is { data: PutDonutsByIdApiResponse } => "data" in result;
 
 export const useDonut = () => {
 	const [updateDonut] = useUpdateDonutMutation();
@@ -26,7 +31,7 @@ export const useDonut = () => {
 
 			dispatch(donutsApi.util.invalidateTags([ApiTags.Donuts]));
 
-			if (present(res.data)) {
+			if (hasData(res)) {
 				options?.onSuccess?.(res.data);
 			}
 			return res;

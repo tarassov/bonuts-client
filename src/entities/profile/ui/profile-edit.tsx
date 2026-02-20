@@ -1,4 +1,4 @@
-import { Grid2 as Grid } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 import { useProfile } from "@/entities/profile";
 

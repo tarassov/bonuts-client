@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { CloseOutlined } from "@mui/icons-material";
-import { Grid2 as Grid } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
