@@ -1,4 +1,5 @@
 import type { TAuthState } from "@/shared/model/auth";
+import { resolveCurrentTenant } from "@/shared/model/auth/resolve-current-tenant";
 
 import { bonutsApi } from "../../api/bonuts-api";
 
@@ -30,17 +31,13 @@ const slice = createSlice({
 			})
 			.addMatcher(bonutsApi.endpoints.postDemoAuthenticate.matchFulfilled, (state, action) => {
 				state.token = action.payload.auth_token;
-				if (action.payload.tenants.length === 1) {
-					state.tenant = action.payload.tenants[0]?.name || "";
-				}
+				state.tenant = resolveCurrentTenant(action.payload);
 				state.isAuthenticated = true;
 				state.isAuthenticating = false;
 			})
 			.addMatcher(bonutsApi.endpoints.postRefreshToken.matchFulfilled, (state, action) => {
 				state.token = action.payload.auth_token;
-				if (action.payload.tenants.length === 1) {
-					state.tenant = action.payload.tenants[0]?.name || "";
-				}
+				state.tenant = resolveCurrentTenant(action.payload);
 				state.isAuthenticated = true;
 				state.isAuthenticating = false;
 			})
@@ -55,9 +52,7 @@ const slice = createSlice({
 			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchFulfilled, (state, action) => {
 				state.token = action.payload.auth_token;
-				if (action.payload.tenants.length === 1) {
-					state.tenant = action.payload.tenants[0]?.name || "";
-				}
+				state.tenant = resolveCurrentTenant(action.payload);
 				state.isAuthenticated = true;
 				state.isAuthenticating = false;
 			})
