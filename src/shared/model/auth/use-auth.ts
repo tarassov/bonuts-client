@@ -12,6 +12,8 @@ import { authActions } from "services/redux/slice/auth-slice";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 import { storage } from "shared/lib/localStorage";
 
+import { resolveCurrentTenant } from "./resolve-current-tenant";
+
 // const MAX_RETRY_NUMBER = 3;
 
 // TODO: now we use localStorage for saving auth_token. We should remove it as soon as new backend will be deployed since it is unsave and we should use only cookie for jwt
@@ -27,6 +29,11 @@ export function useAuth() {
 	const { getValue, setValue } = storage;
 	const [isAuthLoading, setIsAuthLoading] = useState(true);
 
+	const persistAuth = (payload: { auth_token: string; currentTenant?: string; tenants: Array<{ name?: string | null }> }) => {
+		setValue<string>("auth_token", payload.auth_token);
+		setValue<string>("tenant", resolveCurrentTenant(payload));
+	};
+
 	const getAuth = (): TAuth => {
 		return {
 			token: getValue("auth_token") || "",
@@ -41,14 +48,7 @@ export function useAuth() {
 				body: { email: credentials.body.email.trim(), password: credentials.body.password },
 			};
 			const payload = await postAuthenticate(trimmedCredentials).unwrap();
-			let current_tenant = "";
-			if (payload.currentTenant) {
-				current_tenant = payload.currentTenant;
-			} else if (payload.tenants.length === 1) {
-				current_tenant = payload.tenants[0]?.name || "";
-			}
-			setValue<string>("auth_token", payload.auth_token);
-			setValue<string>("tenant", current_tenant);
+			persistAuth(payload);
 		} catch (err) {
 			// eslint-disable-next-line no-console
 			console.log(err);
@@ -58,14 +58,7 @@ export function useAuth() {
 	const demoSignIn = async () => {
 		try {
 			const payload = await postDemoAuthenticate().unwrap();
-			let current_tenant = "";
-			if (payload.currentTenant) {
-				current_tenant = payload.currentTenant;
-			} else if (payload.tenants.length === 1) {
-				current_tenant = payload.tenants[0]?.name || "";
-			}
-			setValue<string>("auth_token", payload.auth_token);
-			setValue<string>("tenant", current_tenant);
+			persistAuth(payload);
 		} catch (err) {
 			// eslint-disable-next-line no-console
 			console.log(err);
