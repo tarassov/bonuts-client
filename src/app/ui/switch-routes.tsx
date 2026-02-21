@@ -28,11 +28,18 @@ const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?
 	if (auth.isAuthenticated && route.authenticatedRedirect) {
 		return <Navigate to={route.authenticatedRedirect} />;
 	}
-	if (auth.isAuthenticated && !route.authenticated) {
+	if (auth.isAuthenticated && !route.authenticated && route.anonymous) {
 		return <Navigate to="/" />;
 	}
 	return auth.isAuthenticated || route.anonymous ? (
-		<PageWrapper children={route.component} path={route.path} addressPath={path} modalData={modalData} modalName={modalName} />
+		<PageWrapper
+			isRoot={route.isRoot}
+			children={route.component}
+			path={route.path}
+			addressPath={path}
+			modalData={modalData}
+			modalName={modalName}
+		/>
 	) : (
 		<Navigate to={route.redirect || routesPath[BntRoutes.Login]} />
 	);

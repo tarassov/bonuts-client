@@ -367,11 +367,11 @@ const routes: { [name in BntRoutes]?: TRoute<BntRoutes> } = {
 	},
 	VkCallback: {
 		path: routesPath[BntRoutes.VkCallback],
-		anonymous: true,
-		authenticated: true,
+		anonymous: false,
 		hideInMenu: true,
 		component: <VkCallbackPage />,
-		tenantNotRequired: true,
+		authenticated: false,
+		isRoot: true,
 	},
 };
 
