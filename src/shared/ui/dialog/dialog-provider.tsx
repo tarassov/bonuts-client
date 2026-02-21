@@ -42,7 +42,6 @@ export function BntDialogProvider<T extends Record<string, any>>({
 }: IBntDialogProviderProps<T>) {
 	const navigate = useNavigate();
 	const location = useLocationTyped();
-	const openedDefaultRef = useRef(false);
 	const resolversRef = useRef<ResolverMap>(new Map());
 
 	const [modals, setModal] = useState<ModalState | null>(null);
@@ -114,11 +113,10 @@ export function BntDialogProvider<T extends Record<string, any>>({
 	);
 
 	useEffect(() => {
-		if (!defaultModal || openedDefaultRef.current) return;
+		if (!defaultModal) return;
 
 		showDialog(defaultModal, defaultModalData);
-		openedDefaultRef.current = true;
-	}, [defaultModal, defaultModalData, showDialog]);
+	}, []);
 
 	const modalsArray = useMemo(() => (modals ? Object.values(modals) : []), [modals]);
 
