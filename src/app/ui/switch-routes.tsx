@@ -1,14 +1,14 @@
 import { useEffect, useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { CircularProgress, Stack } from "@mui/material";
 
 import _ from "lodash";
 
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useLocationTyped } from "hooks/use-location-typed";
-import { BntStack } from "shared/ui/stack";
+import { texts_c, texts_p } from "services/localization/texts";
+import { BntLoader } from "shared/ui/loader";
 
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
-import { BntTypography } from "@/shared/ui/typography";
 
 import type { TModalConfig } from "@/entities/modal";
 
@@ -53,6 +53,7 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	const { checkAuth, isAuthLoading, auth } = useAuth();
 	const { currentRoles } = useCurrentProfile();
 	const { background, name, data } = location.state || {};
+	const { t } = useBntTranslate();
 
 	useEffect(() => {
 		checkAuth().catch((e) => console.error("Check auth failed", e));
@@ -66,17 +67,8 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 		return routes.filter((r) => !r.authenticated);
 	}, [routes]);
 
-	useEffect(() => {
-		console.log("isAuthLoading", isAuthLoading);
-	}, [isAuthLoading]);
-
 	if (isAuthLoading) {
-		return (
-			<BntStack direction="column" alignItems="center" justifyContent="center" spacing={2} sx={{ minHeight: "60vh" }}>
-				<CircularProgress size={48} />
-				<BntTypography variant="h6">Checking auth...</BntTypography>
-			</BntStack>
-		);
+		return <BntLoader text={t(texts_c.checking_auth, { capitalize: true })} secondaryText={t(texts_p.please_wait)} />;
 	}
 
 	const hasAccess = (route: TRoute<BntRoutes>) => {

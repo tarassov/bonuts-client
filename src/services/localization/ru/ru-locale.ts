@@ -109,6 +109,7 @@ export const ruLocale = {
 		created: "создан(а)",
 		create: "создать",
 		[texts_c.choose_employees]: "выберите сотрудников",
+		[texts_c.checking_auth]: "Проверка авторизации",
 
 		// D
 		"Date of birth": "Дата рождения",
@@ -285,6 +286,7 @@ export const ruLocale = {
 		pts: "бон.",
 		PTS: "БОН.",
 		place: "место",
+		[texts_p.please_wait]: "Пожалуйста, подождите",
 		Previous: "Назад",
 		previous: "назад",
 		Purchase: "Покупка",

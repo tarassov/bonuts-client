@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { push } from "redux-first-history";
 
 import {
@@ -34,13 +34,14 @@ export function useAuth() {
 		setValue<string>("tenant", resolveCurrentTenant(payload));
 	};
 
-	const getAuth = (): TAuth => {
+	const getAuth = useCallback((): TAuth => {
 		return {
 			token: getValue("auth_token") || "",
 			tenant: getValue("tenant") || "",
 		};
-	};
-	const validateAuth = async (authToValidate: TAuth): Promise<boolean> => !!authToValidate.token;
+	}, []);
+
+	const validateAuth = useCallback(async (authToValidate: TAuth): Promise<boolean> => !!authToValidate.token, []);
 
 	const signIn = async (credentials: PostAuthenticateApiArg) => {
 		try {
@@ -51,7 +52,7 @@ export function useAuth() {
 			persistAuth(payload);
 		} catch (err) {
 			// eslint-disable-next-line no-console
-			console.log(err);
+			console.error(err);
 		}
 	};
 
@@ -61,7 +62,7 @@ export function useAuth() {
 			persistAuth(payload);
 		} catch (err) {
 			// eslint-disable-next-line no-console
-			console.log(err);
+			console.error(err);
 		}
 	};
 
@@ -74,8 +75,7 @@ export function useAuth() {
 		});
 	};
 
-	const checkAuth = async () => {
-		console.log("checking Auth");
+	const checkAuth = useCallback(async () => {
 		setIsAuthLoading(true);
 		try {
 			const savedAuth = getAuth(); // get token from the storage
@@ -91,15 +91,17 @@ export function useAuth() {
 			}
 			return false;
 		} finally {
-			console.log("checking Auth finally");
-
 			setIsAuthLoading(false);
 		}
-	};
-	const setTenant = (name: string) => {
-		setValue<string | null>("tenant", name);
-		checkAuth();
-	};
+	}, [dispatch, getAuth, validateAuth]);
+
+	const setTenant = useCallback(
+		(name: string) => {
+			setValue<string | null>("tenant", name);
+			checkAuth();
+		},
+		[checkAuth]
+	);
 
 	return {
 		isLogging: isLogging || isDemoLogging,

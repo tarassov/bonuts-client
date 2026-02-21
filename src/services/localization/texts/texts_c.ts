@@ -22,4 +22,5 @@ export enum texts_c {
 	connect_to_telegram = "connect to telegram",
 	connect = "connect",
 	connected = "connected",
+	checking_auth = "checking auth",
 }
