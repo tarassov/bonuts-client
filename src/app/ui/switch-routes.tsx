@@ -5,6 +5,7 @@ import { CircularProgress, Stack } from "@mui/material";
 import _ from "lodash";
 
 import { useLocationTyped } from "hooks/use-location-typed";
+import { BntStack } from "shared/ui/stack";
 
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
 import { BntTypography } from "@/shared/ui/typography";
@@ -65,12 +66,16 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 		return routes.filter((r) => !r.authenticated);
 	}, [routes]);
 
+	useEffect(() => {
+		console.log("isAuthLoading", isAuthLoading);
+	}, [isAuthLoading]);
+
 	if (isAuthLoading) {
 		return (
-			<Stack alignItems="center" justifyContent="center" spacing={2} sx={{ minHeight: "60vh" }}>
+			<BntStack direction="column" alignItems="center" justifyContent="center" spacing={2} sx={{ minHeight: "60vh" }}>
 				<CircularProgress size={48} />
 				<BntTypography variant="h6">Checking auth...</BntTypography>
-			</Stack>
+			</BntStack>
 		);
 	}
 

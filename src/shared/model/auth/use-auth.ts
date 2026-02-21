@@ -75,6 +75,7 @@ export function useAuth() {
 	};
 
 	const checkAuth = async () => {
+		console.log("checking Auth");
 		setIsAuthLoading(true);
 		try {
 			const savedAuth = getAuth(); // get token from the storage
@@ -90,6 +91,8 @@ export function useAuth() {
 			}
 			return false;
 		} finally {
+			console.log("checking Auth finally");
+
 			setIsAuthLoading(false);
 		}
 	};
