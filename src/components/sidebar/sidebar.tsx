@@ -8,8 +8,8 @@ import { BntDrawer, BntDrawerHeader } from "@/shared/ui/drawer";
 import { BntMainMenu } from "../main-menu/main-menu";
 
 import { AppContext } from "context/app-context";
-import BonutsFullIcon from "icons/BonutsFullIcon.svg";
 import BonutsIcon from "icons/BonutsIcon.svg";
+import BonutsFullIcon from "icons/bonuts_wordmark.svg";
 
 const BntSidebar: FC = () => {
 	const { isDrawerOpen } = useContext(AppContext);
