@@ -7,7 +7,7 @@ import _ from "lodash";
 import { useLocationTyped } from "hooks/use-location-typed";
 
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import type { TModalConfig } from "@/entities/modal";
 
