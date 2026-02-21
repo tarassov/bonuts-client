@@ -1,11 +1,13 @@
 import { useEffect, useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { CircularProgress, Stack } from "@mui/material";
 
 import _ from "lodash";
 
 import { useLocationTyped } from "hooks/use-location-typed";
 
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
+import { BntTypography } from "@/shared/ui/typography";
 
 import type { TModalConfig } from "@/entities/modal";
 
@@ -64,7 +66,12 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	}, [routes]);
 
 	if (isAuthLoading) {
-		return <div>Checking auth...</div>;
+		return (
+			<Stack alignItems="center" justifyContent="center" spacing={2} sx={{ minHeight: "60vh" }}>
+				<CircularProgress size={48} />
+				<BntTypography variant="h6">Checking auth...</BntTypography>
+			</Stack>
+		);
 	}
 
 	const hasAccess = (route: TRoute<BntRoutes>) => {
