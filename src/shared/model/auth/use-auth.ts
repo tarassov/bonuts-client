@@ -29,7 +29,7 @@ export function useAuth() {
 	const { getValue, setValue } = storage;
 	const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-	const persistAuth = (payload: { auth_token: string; currentTenant?: string; tenants: Array<{ name?: string | null }> }) => {
+	const persistAuth = (payload: { auth_token: string; currentTenant?: string | null; tenants: Array<{ name?: string | null }> }) => {
 		setValue<string>("auth_token", payload.auth_token);
 		setValue<string>("tenant", resolveCurrentTenant(payload));
 	};
