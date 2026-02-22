@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress test */
 describe("Login page", () => {
 	it("renders login form fields and submit button", () => {
 		cy.visit("/login");

@@ -29,8 +29,14 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
-#    - name: Run the tests and generate coverage report
-#      run: yarn test --coverage
+    - name: Run Cypress tests
+      uses: cypress-io/github-action@v7
+      with:
+        build: yarn build
+        start: yarn start
+
+    - name: Run the tests and generate coverage report
+      run: yarn test --coverage
 
     - name: Build
       run: yarn build-staging
