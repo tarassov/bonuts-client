@@ -29,17 +29,16 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
+    - name: Build
+      run: yarn build-staging
+
     - name: Run Cypress tests
       uses: cypress-io/github-action@v7
       with:
-        build: yarn build
         start: yarn start
 
-    - name: Run the tests and generate coverage report
-      run: yarn test --coverage
-
-    - name: Build
-      run: yarn build-staging
+    - name: Run the tests
+      run: yarn test
 
     - name: RUN DEPLOY TO GITHUB-PAGES
       uses: peaceiris/actions-gh-pages@v3
