@@ -64,7 +64,10 @@
 		"biome:fix": "biome check --write src",
 		"prepare": "husky",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist -t"
+		"deploy": "gh-pages -d dist -t",
+		"cypress:open": "npx cypress open",
+		"cypress:run": "npx cypress run",
+		"cypress:run:login": "npx cypress run --spec cypress/e2e/login.cy.ts"
 	},
 	"browserslist": {
 		"production": [
