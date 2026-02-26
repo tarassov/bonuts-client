@@ -1,13 +1,12 @@
 import { FC, SyntheticEvent, useMemo, useState } from "react";
 import { AppRegistrationOutlined, LoginOutlined, RestoreOutlined } from "@mui/icons-material";
-import { Box, Button, Grid, Stack, TextField } from "@mui/material";
-
-import _ from "lodash";
+import { Box, Button, Grid2 as Grid, Stack, TextField } from "@mui/material";
 
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { texts_d, texts_e, texts_p, texts_r, texts_s } from "services/localization/texts";
+import { present } from "shared/lib/type-guards";
 import { useAuth } from "shared/model/auth/use-auth";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
@@ -18,11 +17,7 @@ import BonutsFullIcon from "icons/BonutsFullIcon.svg";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import { useAuthUi } from "logic/ui/use-auth-ui";
 
-// import { useLocationTyped } from "../../hooks/use-location-typed";
 export const LoginPage: FC = () => {
-	// const location = useLocationTyped();
-	//	const from = location.state?.from?.pathname || "/";
-
 	const { signIn, demoSignIn, isLogging, authError } = useAuth();
 	const { showRegister } = useAuthUi();
 	const { translate } = useBntTranslate();
@@ -81,16 +76,15 @@ export const LoginPage: FC = () => {
 				<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
 					{translate(texts_s.sign_in)}
 				</Button>
-				<Grid container>
-					<Grid item xs>
+				<Grid container justifyContent="space-between">
+					<Grid>
 						<Button sx={{ textTransform: "none" }} onClick={demoSignIn}>
 							<LoginOutlined />
 							{translate(texts_d.demo, { capitalize: true })}
 						</Button>
 					</Grid>
 
-					<Grid item>
-						{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+					<Grid>
 						<Stack flexDirection={{ xs: "column", sm: "row" }} gap={1} alignItems="flex-start">
 							<Button sx={{ textTransform: "none" }} onClick={navigateToRestorePassword}>
 								<RestoreOutlined color="primary" />
@@ -109,7 +103,7 @@ export const LoginPage: FC = () => {
 						color="secondary"
 						sx={{ textTransform: "none", mt: 4 }}
 						onClick={() => {
-							if (!_.isEmpty(credentials.email)) sendConfirmEmail(credentials.email);
+							if (present(credentials.email)) sendConfirmEmail(credentials.email);
 						}}
 					>
 						{translate(texts_s.send_confirmation_email, { capitalize: true })}

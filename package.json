@@ -64,7 +64,10 @@
 		"biome:fix": "biome check --write src",
 		"prepare": "husky",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist -t"
+		"deploy": "gh-pages -d dist -t",
+		"cypress:open": "npx cypress open",
+		"cypress:run": "npx cypress run",
+		"cypress:run:login": "npx cypress run --spec cypress/e2e/login.cy.ts"
 	},
 	"browserslist": {
 		"production": [
@@ -92,6 +95,7 @@
 		"@vitejs/plugin-basic-ssl": "^1.1.0",
 		"@vitejs/plugin-react": "^5.1.4",
 		"@vitest/coverage-c8": "^0.31.0",
+		"cypress": "^15.10.0",
 		"gh-pages": "^5.0.0",
 		"husky": "^9.1.7",
 		"jsdom": "^21.1.1",

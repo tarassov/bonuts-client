@@ -49,6 +49,15 @@ Runs tests once without watch mode.
 ### `yarn generate-api`
 Generates API code from OpenAPI specification.
 
+### `yarn cypress:open`
+Opens Cypress Test Runner for interactive end-to-end testing.
+
+### `yarn cypress:run`
+Runs all Cypress end-to-end tests in headless mode.
+
+### `yarn cypress:run:login`
+Runs only the login page Cypress test.
+
 ### `yarn lint`
 Checks for linting errors.
 
@@ -63,3 +72,21 @@ Fixes code formatting issues.
 
 ### `yarn deploy`
 Deploys the application to GitHub Pages.
+
+## Running Cypress tests
+
+1. Start the app in a separate terminal:
+   ```bash
+   yarn dev
+   ```
+2. Run Cypress tests:
+   ```bash
+   yarn cypress:run
+   ```
+
+For interactive mode, use:
+```bash
+yarn cypress:open
+```
+
+The first test is located at `cypress/e2e/login.cy.ts` and verifies that the login page renders email/password fields and a submit button.
