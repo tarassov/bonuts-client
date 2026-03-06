@@ -19,6 +19,7 @@ import {
 	texts_s,
 	texts_t,
 	texts_u,
+	texts_v,
 } from "services/localization/texts";
 
 import { reportsRu } from "@/features/reports";
@@ -110,6 +111,14 @@ export const ruLocale = {
 		create: "создать",
 		[texts_c.choose_employees]: "выберите сотрудников",
 		[texts_c.checking_auth]: "Проверка авторизации",
+		[texts_v.vk_connecting_title]: "Подключаем VK…",
+		[texts_v.vk_connecting_description]: "Проверяем доступ и создаём сессию. Обычно это занимает пару секунд.",
+		[texts_v.vk_do_not_close]: "Не закрывайте это окно.",
+		[texts_v.vk_success_title]: "Готово!",
+		[texts_v.vk_success_description]: "VK успешно подключён. Сейчас перенаправим вас в Bonuts.",
+		[texts_v.vk_error_title]: "Не удалось подключить VK",
+		[texts_v.vk_error_description]: "Похоже, произошла техническая ошибка. Попробуйте ещё раз.",
+		[texts_v.vk_try_again]: "Попробовать снова",
 
 		// D
 		"Date of birth": "Дата рождения",

@@ -1,9 +1,7 @@
 import messageListener from "./message-listener";
 
 export type TAuthResponse = {
-	accessToken?: string;
-	refreshToken?: string;
-	expiresIn?: number;
+	success?: boolean;
 	error?: string;
 };
 
@@ -22,7 +20,7 @@ export function authWindow(url: string, callback: (response: TAuthResponse) => v
 	if (popup) {
 		messageListener<TAuthResponse>(popup, (e, closeListener) => {
 			// Check if it is a right method
-			if (e.data.accessToken) {
+			if (e.data.success) {
 				closeListener();
 				callback(e.data);
 			}

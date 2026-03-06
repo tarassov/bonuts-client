@@ -7,6 +7,8 @@ import { useRegisterPlugin } from "@/entities/plugin";
 import { authWindow } from "../lib/auth-window";
 import { getVkAuthParams } from "../lib/get-vk-auth-params";
 
+import { routesPath } from "routes/config/routes-path";
+
 const NAME = "vk";
 
 export function VkPlugin() {
@@ -20,10 +22,8 @@ export function VkPlugin() {
 			onConnectRef.current = { callback };
 		},
 		connect: async () => {
-			const { url } = await getVkAuthParams();
-
-			const promise = new Promise((resolve, reject) => {
-				authWindow(url, (response) => {
+			const promise = new Promise((resolve) => {
+				authWindow(routesPath.VkCallback, (response) => {
 					resolve(response);
 				});
 			});

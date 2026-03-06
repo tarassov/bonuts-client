@@ -1,5 +1,43 @@
 import { blue, grey, red } from "@mui/material/colors";
 
+const colors = {
+	primary: {
+		700: "#f66402",
+		500: "#FF8A3D",
+		400: "#FFB066",
+		100: "#FFE2CC",
+	},
+	success: {
+		500: "#3BB273",
+		100: "#DDF3E8",
+	},
+	accent: {
+		500: "#7C5CFC",
+		100: "#E7E2FF",
+	},
+	neutral: {
+		900: "#1E1F25",
+		600: "#6B7280",
+		300: "#E5E7EB",
+		100: "#F7F8FA",
+		0: "#FFFFFF",
+	},
+	system: {
+		error500: "#E5484D",
+		warning500: "#F59E0B",
+		info500: "#3B82F6",
+	},
+	dark: {
+		bgApp: "#111318",
+		bgSurface: "#1A1D24",
+		textPrimary: "#E5E7EB",
+		textSecondary: "#9CA3AF",
+		border: "#2A2E36",
+	},
+} as const;
+
+export type BonutsColors = typeof colors;
+
 const lightTheme = {
 	typography: {
 		caption2: {
@@ -15,10 +53,10 @@ const lightTheme = {
 			palette: "#FFF",
 		},
 		primary: {
-			main: "#5a985f",
-			light: "#97cf9e",
-			veryLight: "#ebffed",
-			dark: "#426644",
+			main: colors.primary[500],
+			light: colors.primary[100],
+			veryLight: colors.primary[400],
+			dark: colors.primary[700],
 		},
 		secondary: {
 			main: "#d4741a",
