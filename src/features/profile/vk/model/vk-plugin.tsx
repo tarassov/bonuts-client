@@ -17,7 +17,7 @@ import { routesPath } from "routes/config/routes-path";
 const NAME = "vk";
 
 export function VkPlugin() {
-	const { user, isLoading } = useVkUser();
+	const { user, isLoading, refetch } = useVkUser();
 	const { authTenant, profile } = useCurrentProfile();
 	const [deleteVkDisconnect] = useDeleteVkDisconnectMutation();
 	const onConnectRef = useRef<{ callback: (connected: boolean) => void }>({ callback: emptyFunction });
@@ -39,14 +39,16 @@ export function VkPlugin() {
 			onConnectRef.current = { callback };
 		},
 		connect: async () => {
-			const promise = new Promise((resolve) => {
+			await new Promise((resolve) => {
 				authWindow(routesPath.VkCallback, (response) => {
 					resolve(response);
 				});
 			});
 
-			await promise;
-			if (present(onConnectRef.current.callback)) onConnectRef.current.callback(true);
+			if (present(onConnectRef.current.callback)) {
+				onConnectRef.current.callback(true);
+				refetch();
+			}
 		},
 		disconnect: async () => {
 			await deleteVkDisconnect({ tenant: authTenant || undefined, userId: profile?.id }).unwrap();

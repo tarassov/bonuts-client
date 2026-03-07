@@ -12,7 +12,7 @@ import { useTelegramChat } from "../model/use-telegram-chat";
 const NAME = "Telegram";
 
 export function TelegramPlugin() {
-	const { data, isLoading } = useTelegramChat();
+	const { data, isLoading, refetch } = useTelegramChat();
 	const { ConnectTelegramModal } = useModal();
 	const onConnectRef = useRef<{ callback: (connected: boolean) => void }>({ callback: emptyFunction });
 	const dataRef = useRef<{ data?: GetTelegramChatApiResponse }>({ data: undefined });
@@ -21,7 +21,10 @@ export function TelegramPlugin() {
 		dataRef.current.data = data;
 
 		if (!isLoading && data) {
-			if (present(onConnectRef.current.callback)) onConnectRef.current.callback(present(data) && present(data.chat_id));
+			if (present(onConnectRef.current.callback)) {
+				onConnectRef.current.callback(present(data) && present(data.chat_id));
+				refetch();
+			}
 		}
 	}, [isLoading, data]);
 
