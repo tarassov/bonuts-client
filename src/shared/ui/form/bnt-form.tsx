@@ -1,8 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FormContainer } from "react-hook-form-mui";
 
 import _ from "lodash";
 
+import { present } from "shared/lib/type-guards";
 import { BntFormBody } from "shared/ui/form/form-body";
 import { useLocale } from "shared/ui/locale/hooks/use-locale";
 
@@ -27,22 +28,23 @@ export function BntForm<T extends Record<string, any>>({
 	const [initials, setInitials] = useState<Record<string, TFormValue> | undefined>(undefined);
 	const locale = useLocale();
 
-	useEffect(() => {
-		if (initialValues) {
-			const transformedInitials = _.mapValues(initialValues, (value, key) => {
-				const field = fields?.find((x) => x.name === key);
-				if (field?.valueToOption) {
-					return field?.valueToOption?.(value);
-				}
-				return value;
-			});
+	const transformedInitials = useMemo(() => {
+		if (!initialValues) return;
 
-			if (!Object.keys(values).length) {
-				setValues(transformedInitials || {});
+		return _.mapValues(initialValues, (value, key) => {
+			const field = fields?.find((x) => x.name === key);
+			if (field?.valueToOption) {
+				return field?.valueToOption?.(value);
 			}
-			setInitials(transformedInitials);
-		}
+			return value;
+		});
 	}, [initialValues, fields]);
+
+	useEffect(() => {
+		if (!transformedInitials) return;
+		setValues((prev) => (present(prev) ? prev : transformedInitials));
+		setInitials(transformedInitials || {});
+	}, [transformedInitials]);
 
 	const onError = (message?: string) => {
 		setError(message);
@@ -60,14 +62,15 @@ export function BntForm<T extends Record<string, any>>({
 			return { ...acc, [key]: value };
 		}, submitValues);
 		if (error) setError(undefined);
-		try {
-			const response = await onSubmit?.(transformedValues, onError);
 
-			if (response && !response.error) {
-				setInitials(submitValues);
-			}
-		} catch (e) {
-			setError("saving error");
+		const response = await onSubmit?.(transformedValues, onError);
+
+		if (response && !response.error) {
+			setInitials(submitValues);
+		}
+		if (response?.error) {
+			setError(response?.error || "saving error");
+			throw new Error("saving error");
 		}
 	};
 
