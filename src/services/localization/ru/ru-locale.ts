@@ -145,6 +145,7 @@ export const ruLocale = {
 		"Donut added": "Пончик добавлен",
 		"Share donuts": "Перевести пончики",
 		Discard: "Отменить изменения",
+		[texts_d.disconnect]: "Отключить",
 		Donut: "Пончик",
 		Donuts: "Пончики",
 		"Donut description": "Описание пончика",

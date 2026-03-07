@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 
 import { Modules } from "constants/modules";
 import { ProfileNotification } from "services/api/bonuts-api";
-import { texts_c, texts_s } from "services/localization/texts";
+import { texts_c, texts_d, texts_s } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
@@ -12,7 +12,7 @@ import { UiCheckbox } from "@/shared/ui/checkbox";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
-import { IPluginApi, usePlugin } from "@/entities/plugin";
+import { type IPluginApi, usePlugin } from "@/entities/plugin";
 import { useProfileNotification } from "@/entities/profile";
 
 interface IProps {
@@ -37,6 +37,11 @@ export function NotificationItem({ notification }: IProps) {
 		},
 		[activatePlugin, deactivatePlugin]
 	);
+	const handleDisconnect = useCallback(() => {
+		if (present(api) && present(api.disconnect)) {
+			api.disconnect();
+		}
+	}, [api]);
 
 	useEffect(() => {
 		const isConnected = getIsConnected(api);
@@ -67,6 +72,11 @@ export function NotificationItem({ notification }: IProps) {
 						{notification.active ? t(texts_s.settings) : t(texts_c.connect)}{" "}
 					</Button>
 				)}
+				{connected && present(api) && present(api.disconnect) ? (
+					<Button sx={{ maxWidth: 200 }} disabled={notification.disabled} onClick={handleDisconnect}>
+						{t(texts_d.disconnect)}
+					</Button>
+				) : null}
 				{connected ? <UiCheckbox checked={notification.active} onChange={handleActiveChange} /> : null}
 			</BntStack>
 		</BntStack>

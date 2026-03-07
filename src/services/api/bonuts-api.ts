@@ -444,10 +444,20 @@ const injectedRtkApi = api.injectEndpoints({
 		}),
 		postVkConnect: build.mutation<PostVkConnectApiResponse, PostVkConnectApiArg>({
 			query: (queryArg) => ({
-				url: `/vk_connect`,
+				url: `/vk/connect`,
 				method: "POST",
 				body: queryArg.body,
 			}),
+		}),
+		deleteVkDisconnect: build.mutation<DeleteVkDisconnectApiResponse, DeleteVkDisconnectApiArg>({
+			query: (queryArg) => ({
+				url: `/vk/disconnect`,
+				method: "DELETE",
+				params: { tenant: queryArg.tenant, user_id: queryArg.userId },
+			}),
+		}),
+		getVkMe: build.query<GetVkMeApiResponse, GetVkMeApiArg>({
+			query: () => ({ url: `/vk/me` }),
 		}),
 	}),
 	overrideExisting: false,
@@ -3796,6 +3806,15 @@ export type PostVkConnectApiArg = {
 		redirect_url: string;
 	};
 };
+export type DeleteVkDisconnectApiResponse = /** status 200 admin can disconnect vk for another user */ object;
+export type DeleteVkDisconnectApiArg = {
+	tenant?: string;
+	userId?: number;
+};
+export type GetVkMeApiResponse = /** status 200 vk token not found will return empty object */ {
+	vk_user_id: string;
+};
+export type GetVkMeApiArg = void;
 export type TenantPlugin = {
 	id: number;
 	name: string;
@@ -3882,4 +3901,6 @@ export const {
 	usePostUsersPasswordMutation,
 	usePostUsersGenerateTgMutation,
 	usePostVkConnectMutation,
+	useDeleteVkDisconnectMutation,
+	useGetVkMeQuery,
 } = injectedRtkApi;

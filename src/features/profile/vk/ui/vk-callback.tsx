@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 import snakeCase from "snakecase-keys";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { type PostVkConnectApiArg, usePostVkConnectMutation } from "services/api/bonuts-api";
+import { type PostVkConnectApiArg } from "services/api/bonuts-api";
 import { texts_c, texts_v } from "services/localization/texts";
 
 import { storage } from "@/shared/lib/localStorage";
@@ -13,6 +13,7 @@ import { isBlank } from "@/shared/lib/type-guards";
 import { BntButton } from "@/shared/ui/buttons/bnt-button";
 import headerLogo from "@/shared/ui/icons/bonuts_wordmark.png";
 
+import { vkApi } from "../api/vk-api";
 import { VK_REDIRECT_URI } from "../constants/vk-constants";
 import { getVkAuthParams } from "../lib/get-vk-auth-params";
 import { TVkResponse } from "../model/vk-plugin-types";
@@ -52,7 +53,7 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 	const [status, setStatus] = useState(VK_AUTH_STATUS.redirect);
 	const { getValue, setValue } = storage;
 
-	const [connectVk] = usePostVkConnectMutation();
+	const [connectVk] = vkApi.usePostVkConnectMutation();
 
 	const postMessage = (message: any) => {
 		if (window.opener) window.opener.postMessage(message);
@@ -85,7 +86,10 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 
 			connectVk({ body })
 				.unwrap()
-				.then((res) => postMessage({ success: true }))
+				.then((res) => {
+					setValue(COOKIE_NAME, undefined);
+					postMessage({ success: true });
+				})
 				.catch((error) => {
 					postMessage({ error });
 				});
