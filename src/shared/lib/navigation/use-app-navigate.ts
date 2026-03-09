@@ -26,5 +26,9 @@ export function useAppNavigate() {
 		[dispatch]
 	);
 
-	return { location, navigate, goBack };
+	const back = useCallback(() => {
+		return dispatch(goBack());
+	}, [dispatch]);
+
+	return { location, navigate, goBack: back };
 }
