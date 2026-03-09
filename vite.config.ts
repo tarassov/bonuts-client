@@ -29,7 +29,8 @@ export default defineConfig({
 			injectRegister: "auto",
 			manifest: false, // keep if you're using your own file
 			workbox: {
-				globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+				cleanupOutdatedCaches: true,
+				globPatterns: ["**/*.{js,css,ico,png,svg}"],
 			},
 			devOptions: {
 				enabled: true,

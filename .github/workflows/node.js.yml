@@ -45,6 +45,7 @@ jobs:
       with:
         deploy_key: ${{ secrets.DEPLOY_TOKEN }}
         publish_dir: ./dist
+        keep_files: true
       env:
         VITE_API_URL: 'https://api-develop.bonuts.ru/api/v1/'
 
