@@ -4,8 +4,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import _ from "lodash";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { useLocationTyped } from "hooks/use-location-typed";
 import { texts_c, texts_p } from "services/localization/texts";
-import { useAppNavigate } from "shared/lib/navigation";
 import { BntLoader } from "shared/ui/loader";
 
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
@@ -49,7 +49,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?
 };
 
 function SwitchRoutes({ routes }: ISwitchRoutesProps) {
-	const { location } = useAppNavigate();
+	const location = useLocationTyped();
 	const { checkAuth, isAuthLoading, auth } = useAuth();
 	const { currentRoles } = useCurrentProfile();
 	const { background, name, data } = location.state || {};
