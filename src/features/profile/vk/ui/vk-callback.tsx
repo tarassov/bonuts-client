@@ -86,11 +86,12 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 
 			connectVk({ body })
 				.unwrap()
-				.then((res) => {
+				.then(() => {
 					setValue(COOKIE_NAME, undefined);
 					postMessage({ success: true });
 				})
 				.catch((error) => {
+					setValue(COOKIE_NAME, undefined);
 					postMessage({ error });
 				});
 		}
