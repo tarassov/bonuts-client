@@ -56,6 +56,11 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	const { t } = useBntTranslate();
 
 	useEffect(() => {
+	  console.log("location", location);
+	  console.log("window", window.history);	
+	}, []);
+
+	useEffect(() => {
 		checkAuth().catch((e) => console.error("Check auth failed", e));
 	}, [checkAuth]);
 
