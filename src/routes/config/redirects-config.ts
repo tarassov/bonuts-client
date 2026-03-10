@@ -1,4 +1,5 @@
-import { BntRoutes } from "routes/config/routes";
+import { BntRoutes } from "shared/config/routes";
+
 import { routesPath } from "routes/config/routes-path";
 
 export const redirectConfig: RedirectConfig = {

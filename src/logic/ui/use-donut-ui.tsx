@@ -3,10 +3,10 @@ import { push } from "redux-first-history";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_n } from "services/localization/texts";
 import { useAppDispatch } from "services/redux/store/store";
+import { BntRoutes } from "shared/config/routes";
 
 import { useModal } from "@/entities/modal";
 
-import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
 import { TBaseModel } from "@/types/model";
 

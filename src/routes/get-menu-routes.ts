@@ -1,4 +1,5 @@
-import { BntRoutes } from "routes/config/routes";
+import { BntRoutes } from "shared/config/routes";
+
 import { getRouteIndex } from "routes/get-route-index";
 
 export const getMenuRoutes = (config: TRouteConfig<BntRoutes>) => {

@@ -1,9 +1,8 @@
 import { FC, useCallback } from "react";
 
 import { MenuCardStyled } from "components/child-path/menu-card/menu-card-styled";
-import { useBntRoutes } from "hooks/use-bnt-routes";
-
-import { BntRoutes } from "routes/config/routes";
+import { BntRoutes } from "shared/config/routes";
+import { useBntRoutes } from "shared/lib/router";
 
 export type MenuCardProps = {
 	route: TRoute<BntRoutes>;

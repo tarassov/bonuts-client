@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { ChildPathMenu } from "components/child-path";
-import { useBntRoutes } from "hooks/use-bnt-routes";
+import { useBntRoutes } from "shared/lib/router";
 
 import { getChildrenRoutes } from "routes/get-children-routes";
 

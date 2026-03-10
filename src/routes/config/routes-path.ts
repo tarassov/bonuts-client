@@ -1,4 +1,4 @@
-import { BntRoutes } from "routes/config/routes";
+import { BntRoutes } from "shared/config/routes";
 
 export const routesPath: Record<BntRoutes, string> = {
 	Home: "/home",
