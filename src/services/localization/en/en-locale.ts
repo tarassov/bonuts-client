@@ -1,4 +1,4 @@
-import { texts_t } from "services/localization/texts";
+import { texts_t, texts_v } from "services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -26,5 +26,13 @@ export const enLocale = {
 
 		// Tooltips
 		[texts_t.tooltip_scheduler_time]: "the actual action will be fired within 1 hour after the specified time.",
+		[texts_v.vk_connecting_title]: "Connecting VK...",
+		[texts_v.vk_connecting_description]: "Checking access and creating a session. This usually takes a couple of seconds.",
+		[texts_v.vk_do_not_close]: "Do not close this window.",
+		[texts_v.vk_success_title]: "Ready!",
+		[texts_v.vk_success_description]: "VK connected successfully. We will redirect you to Bonuts.",
+		[texts_v.vk_error_title]: "Unable to connect VK",
+		[texts_v.vk_error_description]: "It looks like a technical error occurred. Please try again.",
+		[texts_v.vk_try_again]: "Try again",
 	},
 };

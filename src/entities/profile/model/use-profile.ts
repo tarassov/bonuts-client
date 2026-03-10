@@ -29,7 +29,7 @@ export const useProfile = () => {
 	const updateProfile = async (newProfile: TProfile, values: Record<string, any>) => {
 		openLoader();
 		try {
-			await update(newProfile, values);
+			return await update(newProfile, values);
 		} finally {
 			closeLoader();
 		}

@@ -79,7 +79,7 @@ Deploys the application to GitHub Pages.
    ```bash
    yarn dev
    ```
-2. Run Cypress tests:
+2. Run Cypress:
    ```bash
    yarn cypress:run
    ```

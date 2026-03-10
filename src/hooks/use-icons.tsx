@@ -1,4 +1,4 @@
-import { ElementType } from "react";
+import { ComponentType } from "react";
 import { ReactSVG } from "react-svg";
 
 import { emptyFunction } from "utils/empty-function";
@@ -30,5 +30,5 @@ export const useIcons = (attributes?: Partial<Attributes>) =>
 				/>
 			),
 		}),
-		{} as { [k in (typeof iconNames)[number]]: ElementType }
+		{} as { [k in (typeof iconNames)[number]]: ComponentType }
 	);

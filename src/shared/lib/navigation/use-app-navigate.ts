@@ -1,0 +1,38 @@
+import { useCallback, useEffect } from "react";
+import { goBack, push } from "redux-first-history";
+
+import { useAppDispatch, useAppSelector } from "services/redux/store/store";
+
+type TNavigateParams = Parameters<typeof push>;
+
+export interface ILocationProps extends Location {
+	state: {
+		from?: Location;
+		background?: Location;
+		modal?: boolean;
+		name?: string;
+		data?: any;
+	};
+}
+
+export function useAppNavigate() {
+	const dispatch = useAppDispatch();
+	const location = useAppSelector((state) => state.router.location as unknown as ILocationProps);
+
+	useEffect(() => {
+		console.log("navigate location", location);
+	}, [location]);
+
+	const navigate = useCallback(
+		(...params: TNavigateParams) => {
+			return dispatch(push(...params));
+		},
+		[dispatch]
+	);
+
+	const back = useCallback(() => {
+		return dispatch(goBack());
+	}, [dispatch]);
+
+	return { location, navigate, goBack: back };
+}

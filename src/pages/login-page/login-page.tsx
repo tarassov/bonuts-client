@@ -8,12 +8,12 @@ import { useProjectNavigate } from "hooks/use-project-navigate";
 import { texts_d, texts_e, texts_p, texts_r, texts_s } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { useAuth } from "shared/model/auth/use-auth";
+import BonutsFullIcon from "shared/ui/icons/BonutsFullIcon.svg";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { Messenger } from "@/features/3cx/messenger";
 
 import styles from "./login-page.module.scss";
-import BonutsFullIcon from "icons/BonutsFullIcon.svg";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import { useAuthUi } from "logic/ui/use-auth-ui";
 

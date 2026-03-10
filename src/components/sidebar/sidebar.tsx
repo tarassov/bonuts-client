@@ -2,14 +2,15 @@ import { FC, useContext } from "react";
 import { Divider, useMediaQuery } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 
+import BonutsIcon from "shared/ui/icons/BonutsIcon.svg";
+import BonutsFullIcon from "shared/ui/icons/bonuts_wordmark.svg";
+
 import { BntTransparentButton } from "@/shared/ui/buttons";
 import { BntDrawer, BntDrawerHeader } from "@/shared/ui/drawer";
 
 import { BntMainMenu } from "../main-menu/main-menu";
 
 import { AppContext } from "context/app-context";
-import BonutsIcon from "icons/BonutsIcon.svg";
-import BonutsFullIcon from "icons/bonuts_wordmark.svg";
 
 const BntSidebar: FC = () => {
 	const { isDrawerOpen } = useContext(AppContext);

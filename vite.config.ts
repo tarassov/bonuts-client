@@ -13,6 +13,7 @@ export default defineConfig({
 	server: {
 		port: 3002,
 		strictPort: true,
+		// allowedHosts: ["localhost", "127.0.0.1", "interzooecial-jean-subventrally.ngrok-free.dev"],
 	},
 
 	plugins: [
@@ -28,7 +29,8 @@ export default defineConfig({
 			injectRegister: "auto",
 			manifest: false, // keep if you're using your own file
 			workbox: {
-				globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+				cleanupOutdatedCaches: true,
+				globPatterns: ["**/*.{js,css,ico,png,svg}"],
 			},
 			devOptions: {
 				enabled: true,

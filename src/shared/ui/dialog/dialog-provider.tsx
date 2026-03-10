@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { isFunction } from "lodash";
+import { filter } from "ramda";
 
 import { CommonStrings } from "constants/dictionary";
-import { useLocationTyped } from "hooks/use-location-typed";
+import { useAppNavigate } from "shared/lib/navigation";
+import { isBlank, present } from "shared/lib/type-guards";
 import { BntDialogContainer } from "shared/ui/dialog/dialog-container";
 import { DialogCloseContext, DialogContext, DialogNamesContext, DialogValueContext } from "shared/ui/dialog/dialog-context";
 
@@ -27,6 +28,7 @@ type TModal = {
 	renderItem: TDialog<any>["renderItem"];
 	hasTopMenu: boolean;
 	title: string;
+	path?: string | null;
 };
 
 type ModalState = Record<string, TModal>;
@@ -40,31 +42,48 @@ export function BntDialogProvider<T extends Record<string, any>>({
 	defaultModal,
 	defaultModalData,
 }: IBntDialogProviderProps<T>) {
-	const navigate = useNavigate();
-	const location = useLocationTyped();
+	const { goBack, location, navigate } = useAppNavigate();
 	const resolversRef = useRef<ResolverMap>(new Map());
 
 	const [modals, setModal] = useState<ModalState | null>(null);
 
 	// close all modals after path has changed
 	useEffect(() => {
-		setModal(null);
-	}, [path]);
+		if (isBlank(location?.pathname)) return;
+
+		setModal((prev) => {
+			if (isBlank(prev)) return null;
+
+			const hasModalsToClose = Object.values(prev).some((modal) => present(modal.path) && modal.path !== location.pathname);
+
+			if (!hasModalsToClose) return prev;
+
+			return filter((modal) => isBlank(modal.path) || modal.path === location.pathname, prev);
+		});
+	}, [location.pathname]);
+
+	useEffect(() => {
+		console.log("modals", JSON.parse(JSON.stringify(modals)));
+		console.log("location", JSON.parse(JSON.stringify(window.history.state)));
+	}, [modals]);
 
 	const showDialog = useCallback(
 		async <TModalName extends string>(name: TModalName, data: T[TModalName], key?: string) => {
 			const modalKey = key || _uniqueId(`modal-${path}-`);
 			const { title, getPath } = config.items[name];
 			const modalTitle = isFunction(title) ? title(data as never) : title;
+			const routePath = getPath ? getPath(data) : null;
+			const parsedPath = routePath ? (routePath[0] === "/" ? routePath : `/${routePath}`) : null;
 
-			if (getPath) {
-				let newPath = getPath(data);
-				newPath = newPath[0] === "/" ? newPath : `/${newPath}`;
-				if (addressPath !== newPath) {
-					navigate(getPath(data), {
-						state: { background: location, name, data, modal: true },
-					});
-				}
+			console.log("showDialog", JSON.parse(JSON.stringify({ parsedPath, addressPath, name, data, key })));
+
+			if (present(parsedPath) && parsedPath !== addressPath) {
+				navigate(parsedPath, {
+					background: location,
+					name,
+					data,
+					modal: true,
+				});
 			}
 			setModal((prev) => {
 				return {
@@ -73,6 +92,7 @@ export function BntDialogProvider<T extends Record<string, any>>({
 						name,
 						data,
 						modalKey,
+						path: parsedPath,
 						title: modalTitle || CommonStrings.EMPTY_STRING,
 						renderItem: config.items[name]?.renderItem || ((d: any) => <div>{d}</div>),
 						hasTopMenu: config.items[name]?.hasTopMenu || false,
@@ -95,7 +115,7 @@ export function BntDialogProvider<T extends Record<string, any>>({
 			if (name) {
 				const { getPath } = items[name as keyof typeof config.items];
 				if (getPath) {
-					navigate(-1);
+					goBack();
 				}
 			}
 			setModal((prev) => {
@@ -109,13 +129,14 @@ export function BntDialogProvider<T extends Record<string, any>>({
 			if (resolve) resolve(result);
 			resolversRef.current.delete(key);
 		},
-		[config, navigate]
+		[config, goBack]
 	);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <runs only once>
 	useEffect(() => {
 		if (!defaultModal) return;
 
-		showDialog(defaultModal, defaultModalData);
+		showDialog(defaultModal, defaultModalData, "default");
 	}, []);
 
 	const modalsArray = useMemo(() => (modals ? Object.values(modals) : []), [modals]);

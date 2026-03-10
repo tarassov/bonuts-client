@@ -2,6 +2,7 @@ export interface IPluginApi {
 	isConnected(): boolean;
 	connect(): Promise<unknown>;
 	onConnectChange(callback: (connected: boolean) => void): void;
+	disconnect?: () => Promise<unknown>;
 }
 
 export type TPluginState = {
