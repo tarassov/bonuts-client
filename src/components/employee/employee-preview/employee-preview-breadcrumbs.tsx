@@ -2,10 +2,10 @@ import { FC } from "react";
 import { PeopleAltOutlined, PersonOutlined } from "@mui/icons-material";
 
 import { texts_e } from "services/localization/texts";
+import { BntRoutes } from "shared/config/routes";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 
-import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
 import { TProfile } from "@/types/model";
 

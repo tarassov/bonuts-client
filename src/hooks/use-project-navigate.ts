@@ -1,8 +1,8 @@
 import { push } from "redux-first-history";
 
 import { useAppDispatch } from "services/redux/store/store";
+import { BntRoutes } from "shared/config/routes";
 
-import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
 
 export const useProjectNavigate = () => {

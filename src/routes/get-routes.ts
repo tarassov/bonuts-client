@@ -1,4 +1,4 @@
-import { BntRoutes } from "routes/config/routes";
+import { BntRoutes } from "shared/config/routes";
 
 export const getRoutes = (
 	routes: Partial<Record<BntRoutes, TRoute<BntRoutes>>>,

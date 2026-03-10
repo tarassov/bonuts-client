@@ -6,6 +6,7 @@ import _ from "lodash";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useLocationTyped } from "hooks/use-location-typed";
 import { texts_c, texts_p } from "services/localization/texts";
+import { BntRoutes } from "shared/config/routes";
 import { BntLoader } from "shared/ui/loader";
 
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
@@ -15,7 +16,6 @@ import type { TModalConfig } from "@/entities/modal";
 import { ForbiddenPage } from "@/pages/forbidden-page";
 
 import { PageWrapper } from "./page-wrapper";
-import { BntRoutes } from "routes/config/routes";
 import { routesPath } from "routes/config/routes-path";
 
 interface ISwitchRoutesProps {
@@ -56,8 +56,8 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	const { t } = useBntTranslate();
 
 	useEffect(() => {
-	  console.log("location", location);
-	  console.log("window", window.history);	
+		console.log("location", location);
+		console.log("window", window.history);
 	}, []);
 
 	useEffect(() => {

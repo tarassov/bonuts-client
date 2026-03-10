@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 
 import { MenuCard } from "components/child-path/";
 
-import { BntRoutes } from "routes/config/routes";
+import { BntRoutes } from "@/shared/config/routes";
 
 export type ChildPathMenuPureProps = {
 	routes: Array<TRoute<BntRoutes>>;
