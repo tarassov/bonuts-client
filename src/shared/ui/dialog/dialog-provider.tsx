@@ -63,8 +63,8 @@ export function BntDialogProvider<T extends Record<string, any>>({
 	}, [location.pathname]);
 
 	useEffect(() => {
-		console.log("modals", modals);
-		console.log("location", window.history);
+		console.log("modals", JSON.parse(JSON.stringify(modals)));
+		console.log("location", JSON.parse(JSON.stringify(window.history.state)));
 	}, [modals]);
 
 	const showDialog = useCallback(
@@ -75,7 +75,7 @@ export function BntDialogProvider<T extends Record<string, any>>({
 			const routePath = getPath ? getPath(data) : null;
 			const parsedPath = routePath ? (routePath[0] === "/" ? routePath : `/${routePath}`) : null;
 
-			console.log("showDialog", { parsedPath, addressPath, name, data, key });
+			console.log("showDialog", JSON.parse(JSON.stringify({ parsedPath, addressPath, name, data, key })));
 
 			if (present(parsedPath) && parsedPath !== addressPath) {
 				navigate(parsedPath, {

@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { goBack, push } from "redux-first-history";
 
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
@@ -18,6 +18,10 @@ export interface ILocationProps extends Location {
 export function useAppNavigate() {
 	const dispatch = useAppDispatch();
 	const location = useAppSelector((state) => state.router.location as unknown as ILocationProps);
+
+	useEffect(() => {
+		console.log("navigate location", location);
+	}, [location]);
 
 	const navigate = useCallback(
 		(...params: TNavigateParams) => {
