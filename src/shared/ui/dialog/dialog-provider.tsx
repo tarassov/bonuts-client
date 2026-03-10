@@ -53,12 +53,18 @@ export function BntDialogProvider<T extends Record<string, any>>({
 
 		setModal((prev) => {
 			if (isBlank(prev)) return null;
+
+			const hasModalsToClose = Object.values(prev).some((modal) => present(modal.path) && modal.path !== location.pathname);
+
+			if (!hasModalsToClose) return prev;
+
 			return filter((modal) => isBlank(modal.path) || modal.path === location.pathname, prev);
 		});
 	}, [location.pathname]);
 
 	useEffect(() => {
 		console.log("modals", modals);
+		console.log("location", window.history);
 	}, [modals]);
 
 	const showDialog = useCallback(
