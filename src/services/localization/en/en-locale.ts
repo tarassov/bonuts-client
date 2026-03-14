@@ -1,4 +1,4 @@
-import { texts_t, texts_v } from "services/localization/texts";
+import { texts_n, texts_t, texts_v } from "services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -34,5 +34,9 @@ export const enLocale = {
 		[texts_v.vk_error_title]: "Unable to connect VK",
 		[texts_v.vk_error_description]: "It looks like a technical error occurred. Please try again.",
 		[texts_v.vk_try_again]: "Try again",
+		[texts_v.vk_notifications_disabled_prefix]: "Write a message to the VK group",
+		[texts_v.vk_notifications_disabled_link]: "here",
+		[texts_v.vk_notifications_disabled_suffix]: "then enable notifications.",
+		[texts_n.notifications]: "Notifications",
 	},
 };

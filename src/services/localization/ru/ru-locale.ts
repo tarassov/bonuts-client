@@ -120,6 +120,9 @@ export const ruLocale = {
 		[texts_v.vk_error_title]: "Не удалось подключить VK",
 		[texts_v.vk_error_description]: "Похоже, произошла техническая ошибка. Попробуйте ещё раз.",
 		[texts_v.vk_try_again]: "Попробовать снова",
+		[texts_v.vk_notifications_disabled_prefix]: "Напишите сообщение в группу VK",
+		[texts_v.vk_notifications_disabled_link]: "здесь",
+		[texts_v.vk_notifications_disabled_suffix]: "затем включите уведомления.",
 
 		// D
 		"Date of birth": "Дата рождения",
@@ -158,8 +161,7 @@ export const ruLocale = {
 		"Domain not found": "Не найден почтовый домен",
 		Domain: "Домен",
 		domain: "домен",
-		"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file":
-			"Перетащите сюда файл или кликните, для выбора",
+		"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file": "Перетащите сюда файл или кликните, для выбора",
 		"Drag and drop an image here or click to select a file": "Перетащите сюда файл или кликните, для выбора",
 
 		// E
@@ -258,6 +260,7 @@ export const ruLocale = {
 		"No options": "Нет вариантов",
 		"not active": "не активен",
 		[texts_n.no_name]: "без имени",
+		[texts_n.notifications]: "Уведомления",
 		[texts_n.not_found]: "не найдено",
 		[texts_n.new_invitation]: "новое приглашение",
 		[texts_n.new_scheduler]: "новый планировщик",

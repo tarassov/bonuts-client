@@ -12,5 +12,6 @@ export enum texts_n {
 	new_invitation_was_created = "new invitation was created",
 	new_invitation_email_was_sent = "new invitation email was sent",
 	not_connected = "not connected",
+	notifications = "notifications",
 	no_integrations_available = "no integrations available",
 }

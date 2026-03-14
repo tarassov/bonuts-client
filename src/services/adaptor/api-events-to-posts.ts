@@ -1,10 +1,42 @@
 import { GetEventsApiResponse, GetEventsByIdApiResponse } from "../api/bonuts-api";
 
 import { DealType } from "@/types/model/deal-type";
-import { TPost } from "@/types/model/post";
+import type { TPost } from "@/types/model/post";
+import type { TUser } from "@/types/model/user";
 
-const translateData = (target: Required<Required<GetEventsByIdApiResponse>["data"]>): TPost => {
+type TEventAttributes = NonNullable<GetEventsApiResponse["data"]>[number]["attributes"];
+type TEventWithOptionalUser = {
+	id: string;
+	attributes: TEventAttributes & {
+		last_seen_at?: string | null;
+		user?: TUser | null;
+	};
+};
+
+const resolveUser = (attributes: TEventWithOptionalUser["attributes"]): TUser | undefined => {
+	if (attributes.user) {
+		return {
+			...attributes.user,
+			user_name: attributes.user.user_name || attributes.user.name || attributes.user_name,
+			last_seen_at: attributes.user.last_seen_at ?? attributes.last_seen_at ?? null,
+		};
+	}
+
+	if (attributes.last_seen_at) {
+		return {
+			id: attributes.user_id,
+			user_name: attributes.user_name,
+			last_seen_at: attributes.last_seen_at,
+		};
+	}
+
+	return undefined;
+};
+
+const translateData = (target: TEventWithOptionalUser): TPost => {
 	const { attributes, id } = target;
+	const user = resolveUser(attributes);
+
 	return {
 		...attributes,
 		id: Number(id),
@@ -18,6 +50,7 @@ const translateData = (target: Required<Required<GetEventsByIdApiResponse>["data
 			position: attributes.position,
 			admin: false,
 			user_avatar: attributes.user_avatar,
+			last_seen_at: user?.last_seen_at || attributes.last_seen_at || undefined,
 		},
 		title: attributes.user_name,
 		extra_content: attributes.extra_content || "",
