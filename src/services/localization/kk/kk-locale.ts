@@ -112,14 +112,6 @@ export const kkLocale = {
 		[texts_c.choose_employees]: "қызметкерлерді таңдаңыз",
 		[texts_c.checking_auth]: "авторизация тексерілуде",
 		[texts_c.connect]: "қосу",
-		[texts_v.vk_connecting_title]: "VK қосылуда…",
-		[texts_v.vk_connecting_description]: "Қолжетімділік тексеріліп, сессия жасалуда. Әдетте бұл бірнеше секунд алады.",
-		[texts_v.vk_do_not_close]: "Бұл терезені жаппаңыз.",
-		[texts_v.vk_success_title]: "Дайын!",
-		[texts_v.vk_success_description]: "VK сәтті қосылды. Қазір сізді Bonuts-қа бағыттаймыз.",
-		[texts_v.vk_error_title]: "VK қосу сәтсіз аяқталды",
-		[texts_v.vk_error_description]: "Техникалық қате орын алған сияқты. Қайтадан байқап көріңіз.",
-		[texts_v.vk_try_again]: "Қайтадан көру",
 
 		// D
 		"Date of birth": "Дата рождения",
@@ -158,8 +150,7 @@ export const kkLocale = {
 		"Domain not found": "Не найден почтовый домен",
 		Domain: "Домен",
 		domain: "домен",
-		"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file":
-			"Перетащите сюда файл или кликните, для выбора",
+		"Drag and drop an image here or click to select a file Drag and drop an image here or click to select a file": "Перетащите сюда файл или кликните, для выбора",
 		"Drag and drop an image here or click to select a file": "Перетащите сюда файл или кликните, для выбора",
 
 		// E
@@ -258,6 +249,7 @@ export const kkLocale = {
 		"No options": "Нет вариантов",
 		"not active": "не активен",
 		[texts_n.no_name]: "атаусыз",
+		[texts_n.notifications]: "Хабарламалар",
 		[texts_n.not_found]: "табылмады",
 		[texts_n.new_invitation]: "жаңа шақыру",
 		[texts_n.new_scheduler]: "жаңа жоспарлағыш",
@@ -413,6 +405,17 @@ export const kkLocale = {
 		"Update is available": "Обновление доступно",
 		"user can spend in store": "можно тратить в магазине",
 		// V
+		[texts_v.vk_connecting_title]: "VK қосылуда…",
+		[texts_v.vk_connecting_description]: "Қолжетімділік тексеріліп, сессия жасалуда. Әдетте бұл бірнеше секунд алады.",
+		[texts_v.vk_do_not_close]: "Бұл терезені жаппаңыз.",
+		[texts_v.vk_success_title]: "Дайын!",
+		[texts_v.vk_success_description]: "VK сәтті қосылды. Қазір сізді Bonuts-қа бағыттаймыз.",
+		[texts_v.vk_error_title]: "VK қосу сәтсіз аяқталды",
+		[texts_v.vk_error_description]: "Техникалық қате орын алған сияқты. Қайтадан байқап көріңіз.",
+		[texts_v.vk_try_again]: "Қайтадан көру",
+		[texts_v.vk_notifications_disabled_prefix]: "VK тобына хабарлама жазыңыз",
+		[texts_v.vk_notifications_disabled_link]: "осында",
+		[texts_v.vk_notifications_disabled_suffix]: "содан кейін хабарламаларды қосыңыз.",
 
 		// W
 		"welcome points": "приветственные монеты",

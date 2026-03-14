@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { LanguageOutlined } from "@mui/icons-material";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 
@@ -51,7 +52,10 @@ export function ProfileLocaleSettings() {
 
 	return (
 		<BntStack direction="column" spacing={2}>
-			<BntTypography variant="h6">{translate("locale")}</BntTypography>
+			<BntStack direction="row" sx={{ gap: 2, alignItems: "center", mb: 2 }}>
+				<LanguageOutlined color="primary" sx={{ fontSize: 32 }} />
+				<BntTypography variant="h6">{translate("locale", { capitalize: true })}</BntTypography>
+			</BntStack>
 			<FormControl variant="standard" sx={{ maxWidth: 280 }}>
 				<InputLabel id="profile-locale-select-label">{translate("locale")}</InputLabel>
 				<Select labelId="profile-locale-select-label" id="profile-locale-select" value={locale} onChange={handleLocaleChange}>

@@ -8,6 +8,8 @@ import { useCurrentProfile } from "shared/model/auth";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntTypography } from "shared/ui/typography/typography";
 
+import { EmailPlugin } from "@/features/profile/email";
+import { MattermostPlugin } from "@/features/profile/mattermost";
 import { TelegramPlugin } from "@/features/profile/telegram/";
 import { VkPlugin } from "@/features/profile/vk";
 
@@ -30,12 +32,12 @@ export function ProfileIntegrations() {
 		<>
 			{isLoadingNotifications ? <BntTypography variant="caption2">{t(texts_l.loading)}</BntTypography> : null}
 			{!isLoadingNotifications && present(profileNotifications?.data) ? (
-				profileNotifications.data.map((notification) => (
-					<NotificationItem key={notification.tenant_plugin_id} notification={notification} />
-				))
+				profileNotifications.data.map((notification) => <NotificationItem key={notification.tenant_plugin_id} notification={notification} />)
 			) : (
 				<BntTypography variant="caption2">{t(texts_n.no_integrations_available)}</BntTypography>
 			)}
+			<EmailPlugin />
+			<MattermostPlugin />
 			<TelegramPlugin />
 			<VkPlugin />
 		</>

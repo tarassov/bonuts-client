@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 
+import { useIcons } from "hooks/use-icons";
 import { GetTelegramChatApiResponse } from "services/api/bonuts-api";
 import { present } from "shared/lib/type-guards";
 import { emptyFunction } from "utils/empty-function";
@@ -14,6 +15,7 @@ const NAME = "Telegram";
 export function TelegramPlugin() {
 	const { data, isLoading, refetch } = useTelegramChat();
 	const { ConnectTelegramModal } = useModal();
+	const { Telegram } = useIcons({ width: "30px", height: "30px", variant: "primary" });
 	const onConnectRef = useRef<{ callback: (connected: boolean) => void }>({ callback: emptyFunction });
 	const dataRef = useRef<{ data?: GetTelegramChatApiResponse }>({ data: undefined });
 
@@ -26,7 +28,7 @@ export function TelegramPlugin() {
 				refetch();
 			}
 		}
-	}, [isLoading, data]);
+	}, [isLoading, data, refetch]);
 
 	useRegisterPlugin(NAME, {
 		isConnected: () => {
@@ -38,6 +40,8 @@ export function TelegramPlugin() {
 		connect: () => {
 			return ConnectTelegramModal.show();
 		},
+		icon: <Telegram />,
+		hideName: false,
 	});
 
 	return null;

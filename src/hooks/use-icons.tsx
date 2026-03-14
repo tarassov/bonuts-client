@@ -10,16 +10,29 @@ import { iconNames } from "@/app/config/icon-names";
 
 const ROOT_PATH = "/assets/icons/";
 
+export enum ICON_VARIANTS {
+	PRIMARY = "primary",
+	SECONDARY = "secondary",
+	ERROR = "error",
+	INFO = "info",
+	SUCCESS = "success",
+	WARNING = "warning",
+}
+
 export type Attributes = {
 	width?: string | number;
 	height?: string | number;
+	variant?: `${ICON_VARIANTS}`;
 	color?: string;
 	fill?: string;
 };
 
 export const useIcons = (attributes: Partial<Attributes> = {}) => {
 	const theme = useTheme();
-	const { width, height, color = theme.palette.text.primary, fill } = attributes;
+	const { width, height, color, fill, variant } = attributes;
+
+	const variantColor = present(variant) ? theme.palette[variant]?.main : theme.palette.text.primary;
+	const currentColor = present(color) ? color : variantColor;
 
 	return iconNames.reduce(
 		(acc, name) => ({
@@ -32,7 +45,7 @@ export const useIcons = (attributes: Partial<Attributes> = {}) => {
 							? (svg) => {
 									svg.classList.add(`svg-icon-${name}`);
 									svg.setAttribute("style", `width: ${width}; height: ${height}`);
-									svg.setAttribute("stroke", color);
+									svg.setAttribute("color", currentColor);
 									if (fill) svg.setAttribute("fill", fill);
 								}
 							: emptyFunction

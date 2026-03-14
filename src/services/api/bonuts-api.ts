@@ -177,20 +177,14 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
-		postProfileNotificationsByIdActivate: build.mutation<
-			PostProfileNotificationsByIdActivateApiResponse,
-			PostProfileNotificationsByIdActivateApiArg
-		>({
+		postProfileNotificationsByIdActivate: build.mutation<PostProfileNotificationsByIdActivateApiResponse, PostProfileNotificationsByIdActivateApiArg>({
 			query: (queryArg) => ({
 				url: `/profile_notifications/${queryArg.id}/activate`,
 				method: "POST",
 				body: queryArg.body,
 			}),
 		}),
-		postProfileNotificationsByIdDeactivate: build.mutation<
-			PostProfileNotificationsByIdDeactivateApiResponse,
-			PostProfileNotificationsByIdDeactivateApiArg
-		>({
+		postProfileNotificationsByIdDeactivate: build.mutation<PostProfileNotificationsByIdDeactivateApiResponse, PostProfileNotificationsByIdDeactivateApiArg>({
 			query: (queryArg) => ({
 				url: `/profile_notifications/${queryArg.id}/deactivate`,
 				method: "POST",
@@ -454,6 +448,13 @@ const injectedRtkApi = api.injectEndpoints({
 				url: `/vk/disconnect`,
 				method: "DELETE",
 				params: { tenant: queryArg.tenant, user_id: queryArg.userId },
+			}),
+		}),
+		postVkLogin: build.mutation<PostVkLoginApiResponse, PostVkLoginApiArg>({
+			query: (queryArg) => ({
+				url: `/vk/login`,
+				method: "POST",
+				body: queryArg.body,
 			}),
 		}),
 		getVkMe: build.query<GetVkMeApiResponse, GetVkMeApiArg>({
@@ -1395,6 +1396,7 @@ export type PostInvitationsByIdAcceptApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -1561,6 +1563,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -1593,6 +1596,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
 			name: string;
+			last_seen_at: (string | null) | null;
 		};
 	}[];
 };
@@ -1649,6 +1653,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -1681,6 +1686,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
 			name: string;
+			last_seen_at: (string | null) | null;
 		};
 	}[];
 };
@@ -1738,6 +1744,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -1770,6 +1777,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
 			name: string;
+			last_seen_at: (string | null) | null;
 		};
 	}[];
 };
@@ -1836,6 +1844,7 @@ export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -1906,6 +1915,7 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -1976,6 +1986,7 @@ export type GetReportsProfilesApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -2117,6 +2128,7 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -2258,6 +2270,7 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -2398,6 +2411,7 @@ export type PostRequestsActivateApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -2538,6 +2552,7 @@ export type PostRequestsRefundApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -2678,6 +2693,7 @@ export type PostRequestsRollbackApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -2818,6 +2834,7 @@ export type PostRequestsCloseApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -2901,6 +2918,7 @@ export type GetDonutsSchedulersApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -2980,6 +2998,7 @@ export type PostDonutsSchedulersApiResponse = /** status 201 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3071,6 +3090,7 @@ export type GetDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3151,6 +3171,7 @@ export type PatchDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3234,6 +3255,7 @@ export type DeleteDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 					};
 				};
 				score_total?: number;
+				last_seen_at: (string | null) | null;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3315,6 +3337,7 @@ export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -3566,6 +3589,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 				};
 			};
 			score_total?: number;
+			last_seen_at: (string | null) | null;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -3598,6 +3622,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
 			name: string;
+			last_seen_at: (string | null) | null;
 		};
 	}[];
 };
@@ -3639,6 +3664,7 @@ export type GetConfirmEmailApiResponse = /** status 200 receives user */ {
 			note?: string;
 			email_confirmed?: boolean;
 			name?: string;
+			last_seen_at?: (string | null) | null;
 		};
 	};
 };
@@ -3765,6 +3791,7 @@ export type GetUsersRecoverApiResponse = /** status 200 success */ {
 			note?: string;
 			email_confirmed?: boolean;
 			name?: string;
+			last_seen_at?: (string | null) | null;
 		};
 	};
 };
@@ -3811,8 +3838,47 @@ export type DeleteVkDisconnectApiArg = {
 	tenant?: string;
 	userId?: number;
 };
+export type PostVkLoginApiResponse = /** status 200 success */ {
+	tenants: {
+		id: number;
+		name: string;
+		caption?: string | null;
+		active: boolean;
+		created_at: string;
+		updated_at: string;
+		domain: string;
+		demo: boolean;
+		logo?: any;
+		welcome_points: number;
+		welcome_donuts: number;
+		email_notification: boolean;
+		birthday_donuts: number;
+		birthday_points: number;
+		birthday_message?: string;
+		join_to_project_donuts: number;
+		join_to_company_donuts: number;
+		join_to_project_points: number;
+		join_to_company_points: number;
+		use_departments: boolean;
+		test?: boolean;
+	}[];
+	auth_token: string;
+	username?: string | null;
+	currentTenant?: (string | null) | null;
+};
+export type PostVkLoginApiArg = {
+	body: {
+		code: string;
+		state: string;
+		code_verifier: string;
+		device_id: string;
+		redirect_url: string;
+	};
+};
 export type GetVkMeApiResponse = /** status 200 vk token not found will return empty object */ {
 	vk_user_id: string;
+	messages_available: boolean;
+	message_link: string;
 };
 export type GetVkMeApiArg = void;
 export type TenantPlugin = {
@@ -3902,5 +3968,6 @@ export const {
 	usePostUsersGenerateTgMutation,
 	usePostVkConnectMutation,
 	useDeleteVkDisconnectMutation,
+	usePostVkLoginMutation,
 	useGetVkMeQuery,
 } = injectedRtkApi;

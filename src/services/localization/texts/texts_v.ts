@@ -7,4 +7,7 @@ export enum texts_v {
 	vk_error_title = "Unable to connect VK",
 	vk_error_description = "It looks like a technical error occurred. Please try again.",
 	vk_try_again = "Try again",
+	vk_notifications_disabled_prefix = "Write a message to the VK group",
+	vk_notifications_disabled_link = "here",
+	vk_notifications_disabled_suffix = "then enable notifications.",
 }
