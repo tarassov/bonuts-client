@@ -27,6 +27,7 @@ const mockResponse: GetProfileApiResponse = {
 			user_avatar: { url: "", thumb: { url: "" }, preview: { url: "" } },
 			logo: undefined,
 			score_total: 0,
+			last_seen_at: null,
 			contact: "12312",
 			circles: [],
 			bio: "",

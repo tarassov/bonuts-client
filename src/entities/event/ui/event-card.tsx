@@ -7,6 +7,8 @@ import classNames from "classnames";
 
 import { BntStyledOperationText } from "components/opearation-text/styled-operation-text";
 import { Dictionary } from "constants/dictionary";
+import { UserLogic } from "shared/lib";
+import { OnlineBadge } from "shared/ui/badge/online-badge";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardActions } from "shared/ui/card/card-actions";
@@ -27,20 +29,9 @@ import { TPost } from "@/types/model/post";
 export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
 
 export function EventCard({ post, className, preventNewModal }: EventCardProps) {
-	const {
-		profile,
-		public: isPublic,
-		title,
-		content,
-		commentable,
-		likeable,
-		comments_count,
-		likes,
-		liked,
-		editable,
-		date_string_utc,
-	} = post;
+	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, liked, editable, date_string_utc } = post;
 	const { user_name, user_avatar, position } = profile;
+	const isUserOnline = UserLogic.isOnline(profile.last_seen_at);
 	const { t } = useTranslation();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
@@ -78,7 +69,11 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 			<EventCardHeader
 				avatar={
 					<>
-						{isPublic && <Avatar src={user_avatar?.thumb?.url || undefined} alt={user_name || undefined} />}
+						{isPublic && (
+							<OnlineBadge online={isUserOnline}>
+								<Avatar src={user_avatar?.thumb?.url || undefined} alt={user_name || undefined} />
+							</OnlineBadge>
+						)}
 						{!isPublic && (
 							<Avatar>
 								<Android />
@@ -88,9 +83,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 				}
 				action={
 					<Tooltip title={isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)}>
-						<IconButton aria-label={(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) || Dictionary.PROFILE}>
-							{!isPublic && <Lock />}
-						</IconButton>
+						<IconButton aria-label={(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) || Dictionary.PROFILE}>{!isPublic && <Lock />}</IconButton>
 					</Tooltip>
 				}
 				title={isPublic ? title : "Сервис бот"}
@@ -165,9 +158,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 						<IconButton aria-label="Comment" onClick={handleComment}>
 							<Comment />
 						</IconButton>
-						<BntBox className={classNames(EVENT_CARD_CLASSES.iconCaption)}>
-							{comments_count !== undefined && comments_count !== 0 && comments_count}
-						</BntBox>
+						<BntBox className={classNames(EVENT_CARD_CLASSES.iconCaption)}>{comments_count !== undefined && comments_count !== 0 && comments_count}</BntBox>
 					</>
 				)}
 				{editable && (
