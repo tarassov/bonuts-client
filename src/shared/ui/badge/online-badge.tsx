@@ -1,27 +1,24 @@
 import { ReactNode } from "react";
-import { Box } from "@mui/material";
-
-import { BntBadge } from "./bnt-badge";
+import { Badge } from "@mui/material";
+import { BadgeProps } from "@mui/material/Badge";
 
 type OnlineBadgeProps = {
 	children: ReactNode;
 	online?: boolean;
+	overlap?: BadgeProps["overlap"];
 };
 
-export function OnlineBadge({ children, online = false }: OnlineBadgeProps) {
+export function OnlineBadge({ children, online = false, overlap = "circular" }: OnlineBadgeProps) {
 	return (
-		<BntBadge
-			overlap="circular"
+		<Badge
+			overlap={overlap}
 			variant="dot"
 			anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
 			invisible={!online}
+			badgeContent=" "
 			sx={(theme) => ({
 				"& .MuiBadge-badge": {
-					right: 1,
-					top: "auto",
-					bottom: 1,
 					width: 10,
-					height: 10,
 					minWidth: 10,
 					borderRadius: "50%",
 					backgroundColor: theme.palette.success.main,
@@ -29,7 +26,7 @@ export function OnlineBadge({ children, online = false }: OnlineBadgeProps) {
 				},
 			})}
 		>
-			<Box sx={{ display: "inline-flex" }}>{children}</Box>
-		</BntBadge>
+			{children}
+		</Badge>
 	);
 }
