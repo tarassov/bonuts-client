@@ -62,7 +62,9 @@
 		"prettier:fix": "prettier --write src/**/*.{js,jsx,ts,tsx} --config ./.prettierrc",
 		"prepare": "husky install",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist -t"
+		"deploy": "gh-pages -d dist -t",
+		"cypress:open": "cypress open",
+		"cypress:run": "cypress run"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -116,6 +118,7 @@
 		"vite-plugin-rewrite-all": "^1.0.2",
 		"vite-plugin-svgr": "^2.4.0",
 		"vite-tsconfig-paths": "^4.2.0",
-		"vitest": "^0.29.8"
+		"vitest": "^0.29.8",
+		"cypress": "^13.17.0"
 	}
 }
