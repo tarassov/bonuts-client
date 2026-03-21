@@ -9,3 +9,4 @@ export { useUpdateProfile } from "./model/use-update-profile";
 export { ProfileEdit } from "./ui/profile-edit";
 export { BntProfileForm } from "./ui/profile-form";
 export { BntProfileImage } from "./ui/profile-image";
+export { ProfileStatusChips } from "./ui/profile-status-chips";

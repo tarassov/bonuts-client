@@ -10,10 +10,7 @@ import { getInputProps } from "shared/ui/input/helpers/get-input-props";
  *@param  props: clearable - if true show close icons in the of the string
  *
  * */
-export const BntTextInputElement = forwardRef<
-	HTMLDivElement,
-	TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string }
->((props, ref) => {
+export const BntTextInputElement = forwardRef<HTMLDivElement, TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string }>((props, ref) => {
 	const { translate } = useBntTranslate();
 	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, component, ...rest } = props;
 
@@ -29,6 +26,7 @@ export const BntTextInputElement = forwardRef<
 			placeholder={translate(placeholder)}
 			label={translate(stringLabel) || label}
 			InputProps={inputProps}
+			InputLabelProps={{ shrink: true, ...rest.InputLabelProps }}
 			value={value}
 			parseError={(error: FieldError) => translate(error.message)}
 			variant="standard"

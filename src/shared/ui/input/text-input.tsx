@@ -31,7 +31,9 @@ export const BntTextInput: FC<
 			placeholder={shouldTranslate ? translate(placeholder) : placeholder}
 			label={shouldTranslate ? translate(stringLabel) || label : stringLabel || label}
 			InputProps={inputProps}
+			InputLabelProps={{ shrink: true, ...rest.InputLabelProps }}
 			value={value}
+			variant="standard"
 		/>
 	);
 };

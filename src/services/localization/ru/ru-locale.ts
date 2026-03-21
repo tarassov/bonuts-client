@@ -80,6 +80,7 @@ export const ruLocale = {
 		Change: "Изменить",
 		"Can not be empty": "Не может быть пустым",
 		"Change password": "Сменить пароль",
+		"Change avatar": "Сменить",
 		Confirm: "Подтвердить почтовый адрес",
 		"Confirmation dialog": "Подтверждение",
 		confirmation: "подтверждение",
@@ -207,6 +208,13 @@ export const ruLocale = {
 		"How many points do you want to send": "Сколько монет вы хотите отправить",
 		"How many donuts do you want to send": "Сколько пончиков вы хотите отправить",
 		"Hide snow": "Убрать снег",
+		"Main information": "Основная информация",
+		"Name, surname and position": "Имя, фамилия и должность",
+		Contacts: "Контакты",
+		"Email and direct contact": "Email и контакт для связи",
+		"Additional information": "Дополнительно",
+		"Dates, circles and access": "Даты, круги и доступы",
+		"The most human part of the profile": "Самая человеческая часть профиля",
 
 		// I
 		Invitations: "Приглашения",
