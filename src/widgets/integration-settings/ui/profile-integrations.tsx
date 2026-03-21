@@ -6,6 +6,7 @@ import { texts_l, texts_n } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { useCurrentProfile } from "shared/model/auth";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
 import { EmailPlugin } from "@/features/profile/email";
@@ -32,7 +33,11 @@ export function ProfileIntegrations() {
 		<>
 			{isLoadingNotifications ? <BntTypography variant="caption2">{t(texts_l.loading)}</BntTypography> : null}
 			{!isLoadingNotifications && present(profileNotifications?.data) ? (
-				profileNotifications.data.map((notification) => <NotificationItem key={notification.tenant_plugin_id} notification={notification} />)
+				<BntStack direction="column" spacing={2}>
+					{profileNotifications.data.map((notification) => (
+						<NotificationItem key={notification.tenant_plugin_id} notification={notification} />
+					))}
+				</BntStack>
 			) : (
 				<BntTypography variant="caption2">{t(texts_n.no_integrations_available)}</BntTypography>
 			)}

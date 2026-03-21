@@ -23,4 +23,5 @@ export enum texts_c {
 	connect = "connect",
 	connected = "connected",
 	checking_auth = "checking auth",
+	configure = "configure",
 }
