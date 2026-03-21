@@ -20,6 +20,8 @@ export function OnlineBadge({ children, online = false, overlap = "circular" }: 
 				"& .MuiBadge-badge": {
 					width: 10,
 					minWidth: 10,
+					height: 10,
+					minHeight: 10,
 					borderRadius: "50%",
 					backgroundColor: theme.palette.success.main,
 					border: `2px solid ${theme.palette.background.paper}`,
