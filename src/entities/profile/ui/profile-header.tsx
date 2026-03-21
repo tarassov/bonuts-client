@@ -8,7 +8,7 @@ import { BntTypography } from "shared/ui/typography";
 import { ProfileStatusChips, useUpdateAvatar } from "@/entities/profile";
 
 import classes from "./profile-header.module.scss";
-import { TProfile } from "@/types/model";
+import type { TProfile } from "@/types/model";
 
 function getDisplayName(profile?: TProfile) {
 	const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(" ").trim();
@@ -64,7 +64,7 @@ export function ProfileHeader({ profile }: { profile?: TProfile }) {
 	};
 
 	return (
-		<BntCard className={classes.card}>
+		<BntCard data-testid="profile-header" className={classes.card}>
 			<div className={classes.layout}>
 				<div>
 					<button type="button" className={classes.avatarButton} onClick={handleAvatarClick}>
@@ -83,7 +83,7 @@ export function ProfileHeader({ profile }: { profile?: TProfile }) {
 						</BntTypography>
 					) : null}
 					{profile?.admin || profile?.active === false || profile?.store_admin ? (
-						<div className={classes.roles}>
+						<div data-testid="profile-header-statuses" className={classes.roles}>
 							<ProfileStatusChips
 								profile={profile}
 								adminSx={{

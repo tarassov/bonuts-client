@@ -21,7 +21,7 @@ export function ProfileEdit() {
 					<BntProfileForm profile={profile} isLoading={isLoading} error={error} updateProfile={updateProfile} />
 				</Grid>
 				<Grid size={{ xs: 12, lg: 4 }}>
-					<BntCard sx={{ p: 3 }}>
+					<BntCard data-testid="profile-locale-card" sx={{ p: 3 }}>
 						<ProfileLocaleSettings />
 					</BntCard>
 				</Grid>

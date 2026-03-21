@@ -72,7 +72,7 @@ export function ProfileFormLayout({
 				</div>
 			</BntFormContextProvider>
 			{showSubmit ? (
-				<div className={classes.submit}>
+				<div data-testid="profile-form-submit" className={classes.submit}>
 					<BntFormSubmit visible={!!(isDirty || error)} onCancelClick={handleCancelClick} />
 				</div>
 			) : null}

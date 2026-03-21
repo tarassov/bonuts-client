@@ -18,3 +18,9 @@
 
 - Import types using `import type` whenever possible.
 - If you touch code where types are imported incorrectly, fix those imports as part of the change.
+
+## Cypress
+
+- For responsive UI changes, prefer a reusable viewport-based Cypress pattern instead of testing only one screen size.
+- Reuse shared helpers to run the same assertions on desktop and mobile when the behavior should match on both.
+- Keep viewport-specific assertions in separate tests or branches only when the behavior is intentionally different.
