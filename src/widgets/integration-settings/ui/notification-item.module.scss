@@ -1,38 +1,89 @@
-.root {
-	max-width: 420px;
-	border-bottom: 1px dotted;
-	padding-bottom: 8px;
-	margin-bottom: 16px;
-	gap: 4px;
+.card {
+	border: 1px solid var(--mui-palette-divider);
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow: none;
 	line-height: normal;
 }
 
 .header {
 	gap: 16px;
+	justify-content: space-between;
+	align-items: flex-start;
 }
 
-.pluginMeta {
+.identity {
+	gap: 14px;
+	align-items: center;
+	min-width: 0;
+}
+
+.iconWrap {
+	width: 48px;
+	height: 48px;
+	border-radius: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	background: var(--mui-palette-primary-light);
+}
+
+.status {
+	gap: 8px;
+	align-items: center;
 	min-height: 24px;
 }
 
 .statusDot {
-	width: 8px;
-	height: 8px;
+	width: 16px;
+	height: 16px;
 	border-radius: 50%;
+	flex-shrink: 0;
 }
 
-.actionLink {
+.body {
+	gap: 16px;
+}
+
+.description {
+	max-width: 720px;
+}
+
+.footer {
+	gap: 16px;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.notifications {
+	gap: 12px;
+}
+
+.notificationsRow {
+	gap: 12px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.actionButton {
 	min-width: 0;
 	padding: 0;
 	text-transform: none;
-	line-height: 1;
-	font-size: 0.75rem;
-}
-
-.notificationRow {
-	gap: 8px;
 }
 
 .disableReason {
-	text-align: right;
+	max-width: 520px;
+}
+
+@media (max-width: 767px) {
+	.header,
+	.footer {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.actionButton {
+		align-self: stretch;
+	}
 }

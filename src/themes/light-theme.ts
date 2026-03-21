@@ -1,5 +1,7 @@
 import { blue, grey, red } from "@mui/material/colors";
 
+import { formComponents } from "./form-components";
+
 const colors = {
 	primary: {
 		700: "#f66402",
@@ -47,6 +49,7 @@ const lightTheme = {
 			letterSpacing: "0.03333em",
 		},
 	},
+	components: formComponents,
 	palette: {
 		background: {
 			default: grey.A100,
@@ -57,6 +60,12 @@ const lightTheme = {
 			light: colors.primary[100],
 			veryLight: colors.primary[400],
 			dark: colors.primary[700],
+		},
+		accent: {
+			main: colors.accent[500],
+			light: colors.accent[100],
+			veryLight: colors.accent[100],
+			dark: colors.accent[500],
 		},
 		secondary: {
 			main: "#d4741a",

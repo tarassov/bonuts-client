@@ -5,4 +5,9 @@ export enum texts_i {
 	i_can_spend = "i can spend",
 	i_can_share = "i can share",
 	integrations = "integrations",
+	integration_channels = "integration channels",
+	integration_email_description = "integration email description",
+	integration_mattermost_description = "integration mattermost description",
+	integration_telegram_description = "integration telegram description",
+	integration_vk_description = "integration vk description",
 }
