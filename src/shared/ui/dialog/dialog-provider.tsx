@@ -34,14 +34,7 @@ type TModal = {
 type ModalState = Record<string, TModal>;
 type ResolverMap = Map<string, (value: any) => void>;
 
-export function BntDialogProvider<T extends Record<string, any>>({
-	children,
-	config,
-	path,
-	addressPath,
-	defaultModal,
-	defaultModalData,
-}: IBntDialogProviderProps<T>) {
+export function BntDialogProvider<T extends Record<string, any>>({ children, config, path, addressPath, defaultModal, defaultModalData }: IBntDialogProviderProps<T>) {
 	const { goBack, location, navigate } = useAppNavigate();
 	const resolversRef = useRef<ResolverMap>(new Map());
 
@@ -62,11 +55,6 @@ export function BntDialogProvider<T extends Record<string, any>>({
 		});
 	}, [location.pathname]);
 
-	useEffect(() => {
-		console.log("modals", JSON.parse(JSON.stringify(modals)));
-		console.log("location", JSON.parse(JSON.stringify(window.history.state)));
-	}, [modals]);
-
 	const showDialog = useCallback(
 		async <TModalName extends string>(name: TModalName, data: T[TModalName], key?: string) => {
 			const modalKey = key || _uniqueId(`modal-${path}-`);
@@ -74,8 +62,6 @@ export function BntDialogProvider<T extends Record<string, any>>({
 			const modalTitle = isFunction(title) ? title(data as never) : title;
 			const routePath = getPath ? getPath(data) : null;
 			const parsedPath = routePath ? (routePath[0] === "/" ? routePath : `/${routePath}`) : null;
-
-			console.log("showDialog", JSON.parse(JSON.stringify({ parsedPath, addressPath, name, data, key })));
 
 			if (present(parsedPath) && parsedPath !== addressPath) {
 				navigate(parsedPath, {

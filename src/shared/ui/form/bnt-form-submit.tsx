@@ -15,11 +15,13 @@ export const BntFormSubmit: FC<{
 		<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
 			{visible && (
 				<>
-					<BntTransparentButton color="secondary" onClick={onCancelClick}>
+					<BntTransparentButton data-testid="form-cancel-button" color="secondary" onClick={onCancelClick}>
 						{translate(texts_c.cancel)}
 					</BntTransparentButton>
 
-					<BntTransparentButton type="submit">{submitCaption || translate(texts_s.save)}</BntTransparentButton>
+					<BntTransparentButton data-testid="form-submit-button" type="submit">
+						{submitCaption || translate(texts_s.save)}
+					</BntTransparentButton>
 				</>
 			)}
 		</Stack>

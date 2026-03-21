@@ -13,6 +13,7 @@ export const BntDatePicker: FC<DatePickerElementProps<any, any> & { stringLabel?
 				placeholder: translate(stringLabel),
 				label: translate(stringLabel),
 				variant: "standard",
+				InputLabelProps: { shrink: true },
 			}}
 		/>
 	);

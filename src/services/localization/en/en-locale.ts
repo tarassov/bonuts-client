@@ -20,6 +20,14 @@ export const enLocale = {
 		Sign_Out: "Sign Out",
 		Sign_Up: "Sign Up",
 		"Recover password": "Recover password",
+		"Change avatar": "Change",
+		"Main information": "Main information",
+		"Name, surname and position": "Name, surname and position",
+		Contacts: "Contacts",
+		"Email and direct contact": "Email and direct contact",
+		"Additional information": "Additional information",
+		"Dates, circles and access": "Dates, circles and access",
+		"The most human part of the profile": "The most human part of the profile",
 
 		// CONSTS
 		CONST_GREETINGS: "Fast and simple way to   encourage your colleagues and thank them for their patience and help.",

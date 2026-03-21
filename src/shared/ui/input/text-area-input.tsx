@@ -14,6 +14,8 @@ export const BntTextAreaInput: FC<TextareaAutosizeElementProps & { stringLabel?:
 			label={translate(stringLabel)}
 			name={name}
 			parseError={(error: FieldError) => translate(error.message)}
+			InputLabelProps={{ shrink: true, ...rest.InputLabelProps }}
+			variant="standard"
 		/>
 	);
 };

@@ -36,7 +36,8 @@ export const BntTagAutocomplete: FC<{
 					{...params}
 					variant="standard"
 					label={translate(label)}
-					placeholder={!value ? translate(placeholder) : CommonStrings.EMPTY_STRING}
+					placeholder={!value?.length ? translate(placeholder) : CommonStrings.EMPTY_STRING}
+					InputLabelProps={{ shrink: true, ...params.InputLabelProps }}
 				/>
 			)}
 			onChange={handleChange}
