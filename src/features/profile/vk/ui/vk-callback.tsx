@@ -1,22 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useState } from "react";
 import { Box, CircularProgress, Divider, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
 import snakeCase from "snakecase-keys";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { type PostVkConnectApiArg } from "services/api/bonuts-api";
+import { type PostVkConnectApiArg, type PostVkLoginApiArg, usePostVkLoginMutation } from "services/api/bonuts-api";
 import { texts_c, texts_v } from "services/localization/texts";
 
 import { storage } from "@/shared/lib/localStorage";
 import { isBlank } from "@/shared/lib/type-guards";
+import { persistAuthSession } from "@/shared/model/auth";
 import { BntButton } from "@/shared/ui/buttons/bnt-button";
 import headerLogo from "@/shared/ui/icons/bonuts_wordmark.png";
 
 import { vkApi } from "../api/vk-api";
 import { VK_REDIRECT_URI } from "../constants/vk-constants";
 import { getVkAuthParams } from "../lib/get-vk-auth-params";
-import { TVkResponse } from "../model/vk-plugin-types";
+import { clearVkAuthFlow, getVkAuthFlow, VKAuthFlow } from "../lib/vk-auth-flow";
+import type { TVkResponse } from "../model/vk-plugin-types";
 
 enum VK_AUTH_STATUS {
 	redirect,
@@ -52,12 +54,13 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 	const derived = useMemo(() => pickStatusFromParams(params), [params]);
 	const [status, setStatus] = useState(VK_AUTH_STATUS.redirect);
 	const { getValue, setValue } = storage;
-
 	const [connectVk] = vkApi.usePostVkConnectMutation();
+	const [loginWithVk] = usePostVkLoginMutation();
+	const authFlow = useMemo(() => getVkAuthFlow(), []);
 
-	const postMessage = (message: any) => {
+	const postMessage = useEffectEvent((message: any) => {
 		if (window.opener) window.opener.postMessage(message);
-	};
+	});
 
 	useEffect(() => {
 		setStatus(derived.status);
@@ -82,27 +85,33 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 		if (isBlank(codeVerifier)) return;
 
 		if (isVkConnectPayload(params, codeVerifier)) {
-			const body: PostVkConnectApiArg["body"] = snakeCase({ ...params, codeVerifier, redirectUrl: VK_REDIRECT_URI });
+			const body = snakeCase({ ...params, codeVerifier, redirectUrl: VK_REDIRECT_URI });
+			const submitVkAuth = authFlow === VKAuthFlow.Login ? loginWithVk({ body: body as PostVkLoginApiArg["body"] }) : connectVk({ body: body as PostVkConnectApiArg["body"] });
 
-			connectVk({ body })
+			submitVkAuth
 				.unwrap()
-				.then(() => {
+				.then((response) => {
+					if (authFlow === VKAuthFlow.Login && "auth_token" in response) {
+						persistAuthSession(response);
+					}
 					setValue(COOKIE_NAME, undefined);
+					clearVkAuthFlow();
 					postMessage({ success: true });
 				})
 				.catch((error) => {
 					setValue(COOKIE_NAME, undefined);
-					postMessage({ error });
+					clearVkAuthFlow();
+					postMessage({ error: error?.data?.message || error?.data?.errorText || error?.message || "VK auth failed" });
 				});
 		}
-	}, [params, connectVk]);
+	}, [authFlow, connectVk, loginWithVk, params]);
 
 	const ui = useMemo(() => {
 		switch (status) {
 			case VK_AUTH_STATUS.redirect:
 				return {
-					title: translate(texts_v.vk_connecting_title),
-					description: translate(texts_v.vk_connecting_description),
+					title: translate(authFlow === VKAuthFlow.Login ? texts_v.vk_login_connecting_title : texts_v.vk_connecting_title),
+					description: translate(authFlow === VKAuthFlow.Login ? texts_v.vk_login_connecting_description : texts_v.vk_connecting_description),
 					showSpinner: true,
 					actions: (
 						<Stack direction="row" gap={1.5} justifyContent="center" flexWrap="wrap">
@@ -117,12 +126,12 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 			case VK_AUTH_STATUS.validate:
 				return {
 					title: translate(texts_v.vk_success_title),
-					description: translate(texts_v.vk_success_description),
+					description: translate(authFlow === VKAuthFlow.Login ? texts_v.vk_login_success_description : texts_v.vk_success_description),
 					showSpinner: true,
 				};
 			default:
 				return {
-					title: translate(texts_v.vk_error_title),
+					title: translate(authFlow === VKAuthFlow.Login ? texts_v.vk_login_error_title : texts_v.vk_error_title),
 					description: translate(texts_v.vk_error_description),
 					showSpinner: false,
 					actions: (
@@ -137,7 +146,7 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 					),
 				};
 		}
-	}, [status, translate]);
+	}, [authFlow, status, translate]);
 
 	return (
 		<Stack gap={2.5} alignItems="center" textAlign="center">

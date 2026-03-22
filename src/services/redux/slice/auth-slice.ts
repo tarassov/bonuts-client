@@ -62,6 +62,21 @@ const slice = createSlice({
 				state.token = undefined;
 				state.tenant = undefined;
 			})
+			.addMatcher(bonutsApi.endpoints.postVkLogin.matchPending, (state) => {
+				state.isAuthenticating = true;
+			})
+			.addMatcher(bonutsApi.endpoints.postVkLogin.matchFulfilled, (state, action) => {
+				state.token = action.payload.auth_token;
+				state.tenant = resolveCurrentTenant(action.payload);
+				state.isAuthenticated = true;
+				state.isAuthenticating = false;
+			})
+			.addMatcher(bonutsApi.endpoints.postVkLogin.matchRejected, (state) => {
+				state.isAuthenticated = false;
+				state.isAuthenticating = false;
+				state.token = undefined;
+				state.tenant = undefined;
+			})
 			.addMatcher(bonutsApi.endpoints.postLogout.matchPending, () => {
 				return initialState;
 			});

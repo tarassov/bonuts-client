@@ -1,5 +1,135 @@
-.box {
+.page {
+	min-height: 100dvh;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 40px 16px 24px;
+	background: linear-gradient(180deg, #f7f8fa 0%, #ffffff 100%);
+}
+
+.shell {
+	width: min(100%, 420px);
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding: 28px 20px;
+	border-radius: 16px;
+	background: #ffffff;
+	border: 1px solid rgba(107, 114, 128, 0.12);
+	box-shadow:
+		0 1px 3px rgba(30, 31, 37, 0.08),
+		0 12px 32px rgba(30, 31, 37, 0.06);
+}
+
+.brand {
+	display: flex;
+	justify-content: center;
+}
+
+.header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 8px;
+	text-align: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.fields {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+}
+
+.field :global(.MuiFormHelperText-root) {
+	min-height: 20px;
+	margin-top: 6px;
+	font-size: 12px;
+	line-height: 1.2;
+	color: rgba(107, 114, 128, 0.9);
+}
+
+.field :global(.MuiFormHelperText-root.Mui-error) {
+	color: rgba(107, 114, 128, 0.9);
+}
+
+.actions {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.vkButton {
+	background: #f7f8fa;
+	border-color: rgba(107, 114, 128, 0.22);
+	color: #1e1f25;
+}
+
+.vkButton:hover {
+	background: #eef4ff;
+	border-color: rgba(59, 130, 246, 0.24);
+}
+
+.links {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+}
+
+.registerButton {
+	font-weight: 600;
+	color: #f66402;
+}
+
+.registerButton:hover {
+	background: rgba(246, 100, 2, 0.08);
+}
+
+.linkButton {
+	min-width: auto;
+	padding: 4px 0;
+}
+
+.linkSeparator {
+	display: none;
+	color: rgba(107, 114, 128, 0.55);
+}
+
+.confirmButton {
+	align-self: stretch;
+}
+
+@media (min-width: 600px) {
+	.page {
+		padding-top: 56px;
+	}
+
+	.card {
+		padding: 32px;
+	}
+
+	.links {
+		flex-direction: row;
+		justify-content: center;
+		gap: 12px;
+	}
+
+	.linkSeparator {
+		display: inline-flex;
+		align-items: center;
+	}
 }
