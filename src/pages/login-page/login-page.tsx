@@ -3,11 +3,13 @@ import { useMemo, useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { Alert, Box, Button, CircularProgress, Divider, TextField, Typography } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useIcons } from "hooks/use-icons";
+import { ICON_VARIANTS, useIcons } from "hooks/use-icons";
 import { useProjectNavigate } from "hooks/use-project-navigate";
+import { useLoginValidation } from "hooks/validation/use-login-validation";
 import { texts_d, texts_e, texts_p, texts_r, texts_s, texts_v } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { useAuth } from "shared/model/auth/use-auth";
@@ -18,12 +20,9 @@ import { Messenger } from "@/features/3cx/messenger";
 import { openVkLoginWindow } from "@/features/profile/vk";
 
 import styles from "./login-page.module.scss";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
-
-type LoginFormValues = {
-	email: string;
-	password: string;
-};
+import type { TLoginFields } from "@/types/form/login";
 
 type TApiErrorData = {
 	errorCode?: number;
@@ -34,9 +33,10 @@ type TApiErrorData = {
 export const LoginPage: FC = () => {
 	const { signIn, demoSignIn, isLogging, authError, checkAuth } = useAuth();
 	const { translate } = useBntTranslate();
+	const { formSchema } = useLoginValidation();
 	const { sendConfirmEmail } = useSignUp();
 	const { navigateToRestorePassword, navigateToSignUp } = useProjectNavigate();
-	const { Vk } = useIcons({ width: 18, height: 18, color: "#0077FF" });
+	const { Vk } = useIcons({ width: 18, height: 18, variant: ICON_VARIANTS.INFO });
 	const [isVkLoading, setIsVkLoading] = useState(false);
 	const [vkError, setVkError] = useState<string>();
 	const {
@@ -44,12 +44,13 @@ export const LoginPage: FC = () => {
 		handleSubmit,
 		watch,
 		formState: { errors },
-	} = useForm<LoginFormValues>({
+	} = useForm<TLoginFields>({
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 		mode: "onChange",
+		resolver: yupResolver(formSchema),
 	});
 
 	useLoader(Modules.Default, isLogging);
@@ -70,7 +71,7 @@ export const LoginPage: FC = () => {
 	const isFormDisabled = !emailValue.trim() || !passwordValue || isLogging || isVkLoading;
 	const passwordErrorText = errors.password?.message || (!errors.password ? authErrorData?.message || authErrorData?.errorText : undefined);
 
-	const onSubmit: SubmitHandler<LoginFormValues> = async (values) => {
+	const onSubmit: SubmitHandler<TLoginFields> = async (values) => {
 		setVkError(undefined);
 		await signIn({
 			body: {
@@ -92,15 +93,33 @@ export const LoginPage: FC = () => {
 				return;
 			}
 
+			if (response.error === texts_v.vk_auth_cancelled) {
+				setVkError(translate(texts_v.vk_auth_cancelled));
+				return;
+			}
+
 			setVkError(typeof response.error === "string" ? response.error : translate(texts_v.vk_error_description));
 		});
 	};
 
 	return (
-		<Box component="div" className={styles.page}>
+		<Box
+			component="div"
+			className={styles.page}
+			sx={(theme) => ({
+				background: `linear-gradient(180deg, ${theme.palette.neutral.light} 0%, ${theme.palette.common.white} 100%)`,
+			})}
+		>
 			<Messenger />
 			<Box className={styles.shell}>
-				<Box className={styles.card}>
+				<Box
+					className={styles.card}
+					sx={(theme) => ({
+						backgroundColor: theme.palette.common.white,
+						border: `1px solid ${alpha(theme.palette.text.secondary, 0.12)}`,
+						boxShadow: `0 1px 3px ${alpha(theme.palette.common.black, 0.08)}, 0 12px 32px ${alpha(theme.palette.common.black, 0.06)}`,
+					})}
+				>
 					<Box className={styles.brand}>
 						<BonutsWordmark style={{ width: "128px", height: "50px" }} />
 					</Box>
@@ -126,13 +145,19 @@ export const LoginPage: FC = () => {
 									autoFocus
 									error={!!errors.email}
 									helperText={errors.email?.message || " "}
-									{...register("email", {
-										required: "Введите email",
-										pattern: {
-											value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-											message: "Введите корректный email",
+									sx={(theme) => ({
+										"& .MuiFormHelperText-root": {
+											minHeight: 20,
+											marginTop: "6px",
+											fontSize: 12,
+											lineHeight: 1.2,
+											color: theme.palette.text.secondary,
+										},
+										"& .MuiFormHelperText-root.Mui-error": {
+											color: theme.palette.text.secondary,
 										},
 									})}
+									{...register("email")}
 								/>
 							</Box>
 							<Box className={styles.field}>
@@ -147,9 +172,19 @@ export const LoginPage: FC = () => {
 									autoComplete="current-password"
 									error={!!errors.password || (!!passwordErrorText && !errors.password)}
 									helperText={passwordErrorText || " "}
-									{...register("password", {
-										required: "Введите пароль",
+									sx={(theme) => ({
+										"& .MuiFormHelperText-root": {
+											minHeight: 20,
+											marginTop: "6px",
+											fontSize: 12,
+											lineHeight: 1.2,
+											color: theme.palette.text.secondary,
+										},
+										"& .MuiFormHelperText-root.Mui-error": {
+											color: theme.palette.text.secondary,
+										},
 									})}
+									{...register("password")}
 								/>
 							</Box>
 						</Box>
@@ -161,14 +196,14 @@ export const LoginPage: FC = () => {
 								size="large"
 								disabled={isFormDisabled}
 								endIcon={isLogging ? <CircularProgress size={18} color="inherit" /> : undefined}
-								sx={{
+								sx={(theme) => ({
 									minHeight: 48,
 									borderRadius: 3,
 									"&.Mui-disabled": {
-										backgroundColor: "#f9b785",
-										color: "rgba(30, 31, 37, 0.78)",
+										backgroundColor: theme.palette.primary.veryLight,
+										color: alpha(theme.palette.text.primary, 0.78),
 									},
-								}}
+								})}
 							>
 								{translate(texts_s.sign_in, { capitalize: true })}
 							</Button>
@@ -178,22 +213,43 @@ export const LoginPage: FC = () => {
 								fullWidth
 								variant="outlined"
 								size="large"
-								className={styles.vkButton}
 								disabled={isLogging || isVkLoading}
 								onClick={handleVkLogin}
 								startIcon={<Vk />}
 								endIcon={isVkLoading ? <CircularProgress size={18} color="inherit" /> : undefined}
-								sx={{ minHeight: 48, borderRadius: 3 }}
+								sx={(theme) => ({
+									minHeight: 48,
+									borderRadius: 3,
+									backgroundColor: theme.palette.neutral.light,
+									borderColor: alpha(theme.palette.text.secondary, 0.22),
+									color: theme.palette.text.primary,
+									"&:hover": {
+										backgroundColor: alpha(theme.palette.info.main, 0.08),
+										borderColor: alpha(theme.palette.info.main, 0.24),
+									},
+								})}
 							>
 								{translate(isVkLoading ? texts_v.login_with_vk_loading : texts_v.login_with_vk)}
 							</Button>
 							{vkError ? <Alert severity="error">{vkError}</Alert> : null}
 						</Box>
 						<Box className={styles.links}>
-							<Button type="button" className={`${styles.linkButton} ${styles.registerButton}`} variant="text" sx={{ textTransform: "none" }} onClick={navigateToSignUp}>
+							<Button
+								type="button"
+								className={`${styles.linkButton} ${styles.registerButton}`}
+								variant="text"
+								sx={(theme) => ({
+									textTransform: "none",
+									color: theme.palette.primary.dark,
+									"&:hover": {
+										backgroundColor: alpha(theme.palette.primary.main, 0.08),
+									},
+								})}
+								onClick={navigateToSignUp}
+							>
 								{translate(texts_s.sign_up, { capitalize: true })}
 							</Button>
-							<Typography variant="body2" className={styles.linkSeparator}>
+							<Typography variant="body2" className={styles.linkSeparator} sx={{ color: "text.secondary" }}>
 								/
 							</Typography>
 							<Button type="button" className={styles.linkButton} variant="text" sx={{ textTransform: "none" }} onClick={navigateToRestorePassword}>

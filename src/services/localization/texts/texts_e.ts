@@ -9,6 +9,7 @@ export enum texts_e {
 	email_notification = "email notification",
 	email_confirmation = "email confirmation",
 	email_address = "email address",
+	email_address_is_required = "email address is required",
 	email_address_must_be_valid = "email address must be valid",
 	every_week = "every week",
 	every_month = "every month",

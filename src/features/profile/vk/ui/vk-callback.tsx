@@ -149,16 +149,16 @@ export const VkCallback = ({ params }: { params: TVkResponse }) => {
 	}, [authFlow, status, translate]);
 
 	return (
-		<Stack gap={2.5} alignItems="center" textAlign="center">
+		<Stack gap={2.5} alignItems="center" textAlign="center" data-testid="vk-callback-page">
 			{/* Header */}
-			<Stack gap={1} alignItems="center">
+			<Stack gap={1} alignItems="center" data-testid="vk-callback-header">
 				<Box sx={{ display: "grid", placeItems: "center" }}>
 					<Box component="img" src={headerLogo} alt="Bonuts" sx={{ height: 24 }} />
 				</Box>
-				<Typography variant="h6" fontWeight={700}>
+				<Typography variant="h6" fontWeight={700} data-testid="vk-callback-title">
 					{ui.title}
 				</Typography>
-				<Typography variant="body2" color="text.secondary" sx={{ maxWidth: 360 }}>
+				<Typography variant="body2" color="text.secondary" sx={{ maxWidth: 360 }} data-testid="vk-callback-description">
 					{ui.description}
 				</Typography>
 			</Stack>

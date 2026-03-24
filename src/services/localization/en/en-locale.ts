@@ -1,4 +1,4 @@
-import { texts_n, texts_t, texts_v } from "services/localization/texts";
+import { texts_e, texts_n, texts_t, texts_v } from "services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -38,6 +38,7 @@ export const enLocale = {
 		[texts_v.login_with_vk]: "Sign in with VK",
 		[texts_v.login_with_vk_loading]: "Connecting VK...",
 		[texts_v.or]: "or",
+		[texts_v.vk_auth_cancelled]: "VK sign-in was cancelled",
 		[texts_t.tooltip_scheduler_time]: "the actual action will be fired within 1 hour after the specified time.",
 		[texts_v.vk_connecting_title]: "Connecting VK...",
 		[texts_v.vk_connecting_description]: "Checking access and creating a session. This usually takes a couple of seconds.",
@@ -54,6 +55,7 @@ export const enLocale = {
 		[texts_v.vk_notifications_disabled_prefix]: "Write a message to the VK group",
 		[texts_v.vk_notifications_disabled_link]: "here",
 		[texts_v.vk_notifications_disabled_suffix]: "then enable notifications.",
+		[texts_e.email_address_is_required]: "Email is required",
 		[texts_n.notifications]: "Notifications",
 	},
 };

@@ -373,6 +373,7 @@ export const useRouteConfig = (): TRouteConfig<BntRoutes> => {
 					hideInMenu: true,
 					component: <VkCallbackPage />,
 					authenticated: false,
+					public: true,
 					isRoot: true,
 				},
 			}) satisfies { [name in BntRoutes]?: TRoute<BntRoutes> },

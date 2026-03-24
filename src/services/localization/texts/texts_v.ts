@@ -4,6 +4,7 @@ export enum texts_v {
 	login_with_vk = "login with vk",
 	login_with_vk_loading = "login with vk loading",
 	or = "or",
+	vk_auth_cancelled = "vk auth cancelled",
 	vk_connecting_title = "Connecting VK...",
 	vk_connecting_description = "Checking access and creating a session. This usually takes a couple of seconds.",
 	vk_do_not_close = "Do not close this window.",

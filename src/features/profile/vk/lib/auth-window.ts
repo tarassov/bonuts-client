@@ -20,7 +20,7 @@ export function authWindow(url: string, callback: (response: TAuthResponse) => v
 
 			window.clearInterval(closeWatcher);
 			isSettled = true;
-			callback({ error: "Authentication cancelled" });
+			callback({ error: "vk auth cancelled" });
 		}, 500);
 
 		messageListener<TAuthResponse>(popup, (e, closeListener) => {
