@@ -1,5 +1,100 @@
-.box {
+.page {
+	min-height: 100dvh;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 40px 16px 24px;
+}
+
+.shell {
+	width: min(100%, 420px);
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding: 28px 20px;
+	border-radius: 16px;
+}
+
+.brand {
+	display: flex;
+	justify-content: center;
+}
+
+.header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 8px;
+	text-align: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.fields {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+}
+
+.actions {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.links {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+}
+
+.registerButton {
+	font-weight: 600;
+}
+
+.linkButton {
+	min-width: auto;
+	padding: 4px 0;
+}
+
+.linkSeparator {
+	display: none;
+}
+
+.confirmButton {
+	align-self: stretch;
+}
+
+@media (min-width: 600px) {
+	.page {
+		padding-top: 56px;
+	}
+
+	.card {
+		padding: 32px;
+	}
+
+	.links {
+		flex-direction: row;
+		justify-content: center;
+		gap: 12px;
+	}
+
+	.linkSeparator {
+		display: inline-flex;
+		align-items: center;
+	}
 }

@@ -1,18 +1,12 @@
 import { useCallback, useState } from "react";
 import { push } from "redux-first-history";
 
-import {
-	bonutsApi,
-	PostAuthenticateApiArg,
-	usePostAuthenticateMutation,
-	usePostDemoAuthenticateMutation,
-	usePostLogoutMutation,
-} from "services/api/bonuts-api";
+import { bonutsApi, PostAuthenticateApiArg, usePostAuthenticateMutation, usePostDemoAuthenticateMutation, usePostLogoutMutation } from "services/api/bonuts-api";
 import { authActions } from "services/redux/slice/auth-slice";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 import { storage } from "shared/lib/localStorage";
 
-import { resolveCurrentTenant } from "./resolve-current-tenant";
+import { persistAuthSession } from "./persist-auth-session";
 
 // const MAX_RETRY_NUMBER = 3;
 
@@ -29,11 +23,6 @@ export function useAuth() {
 	const { getValue, setValue } = storage;
 	const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-	const persistAuth = (payload: { auth_token: string; currentTenant?: string | null; tenants: Array<{ name?: string | null }> }) => {
-		setValue<string>("auth_token", payload.auth_token);
-		setValue<string>("tenant", resolveCurrentTenant(payload));
-	};
-
 	const getAuth = useCallback((): TAuth => {
 		return {
 			token: getValue("auth_token") || "",
@@ -49,7 +38,7 @@ export function useAuth() {
 				body: { email: credentials.body.email.trim(), password: credentials.body.password },
 			};
 			const payload = await postAuthenticate(trimmedCredentials).unwrap();
-			persistAuth(payload);
+			persistAuthSession(payload);
 		} catch (err) {
 			// eslint-disable-next-line no-console
 			console.error(err);
@@ -59,7 +48,7 @@ export function useAuth() {
 	const demoSignIn = async () => {
 		try {
 			const payload = await postDemoAuthenticate().unwrap();
-			persistAuth(payload);
+			persistAuthSession(payload);
 		} catch (err) {
 			// eslint-disable-next-line no-console
 			console.error(err);

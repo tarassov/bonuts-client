@@ -13,6 +13,7 @@ type TRoute<T, K = string> = {
 	redirect?: string;
 	modal?: boolean;
 	authenticatedRedirect?: string;
+	public?: boolean;
 	parentRoute?: TRoute<T>;
 	icon?: JSX.Element;
 	index?: number;
