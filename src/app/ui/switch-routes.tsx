@@ -25,6 +25,10 @@ interface ISwitchRoutesProps {
 }
 
 const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?: keyof TModalConfig, modalData?: any): JSX.Element => {
+	if (route.public) {
+		return route.component;
+	}
+
 	if (auth.isAuthenticated && !auth.tenant && (!route.tenantNotRequired || route.path === "/")) {
 		return <Navigate to={routesPath[BntRoutes.TenantList]} />;
 	}
@@ -35,14 +39,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?
 		return <Navigate to="/" />;
 	}
 	return auth.isAuthenticated || route.anonymous ? (
-		<PageWrapper
-			isRoot={route.isRoot}
-			children={route.component}
-			path={route.path}
-			addressPath={path}
-			modalData={modalData}
-			modalName={modalName}
-		/>
+		<PageWrapper isRoot={route.isRoot} children={route.component} path={route.path} addressPath={path} modalData={modalData} modalName={modalName} />
 	) : (
 		<Navigate to={route.redirect || routesPath[BntRoutes.Login]} />
 	);
@@ -56,11 +53,6 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	const { t } = useBntTranslate();
 
 	useEffect(() => {
-		console.log("location", location);
-		console.log("window", window.history);
-	}, []);
-
-	useEffect(() => {
 		checkAuth().catch((e) => console.error("Check auth failed", e));
 	}, [checkAuth]);
 
@@ -69,7 +61,7 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	}, [routes]);
 
 	const anonymousRoutes = useMemo(() => {
-		return routes.filter((r) => !r.authenticated);
+		return routes.filter((r) => !r.authenticated || r.public);
 	}, [routes]);
 
 	if (isAuthLoading) {
@@ -83,22 +75,12 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 
 	return (
 		<Routes location={background || location}>
-			<Route
-				path="*"
-				element={
-					<Navigate to={auth.isAuthenticated ? (!auth.tenant ? routesPath[BntRoutes.TenantList] : "/") : routesPath[BntRoutes.Login]} />
-				}
-			/>
+			<Route path="*" element={<Navigate to={auth.isAuthenticated ? (!auth.tenant ? routesPath[BntRoutes.TenantList] : "/") : routesPath[BntRoutes.Login]} />} />
 			{authenticatedRoutes &&
 				authenticatedRoutes
 					.filter((x) => x.tenantNotRequired || auth.tenant)
 					.map((route) => {
-						const element =
-							auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? (
-								<ForbiddenPage />
-							) : (
-								getRoute(route, auth, location.pathname, name as keyof TModalConfig, data)
-							);
+						const element = auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? <ForbiddenPage /> : getRoute(route, auth, location.pathname, name as keyof TModalConfig, data);
 						return <Route path={route.path} element={element} key={route.path} />;
 					})}
 
