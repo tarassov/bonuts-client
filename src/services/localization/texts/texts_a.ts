@@ -1,5 +1,7 @@
 export enum texts_a {
 	author = "author",
+	auth_fill_required_fields = "auth fill required fields",
+	auth_action_in_progress = "auth action in progress",
 	accept = "accept",
 	amount = "amount",
 	approximate_action_time = "approximate action time",

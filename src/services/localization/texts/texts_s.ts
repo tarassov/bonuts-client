@@ -4,6 +4,7 @@ export enum texts_s {
 	selected = "selected",
 	settings = "settings",
 	show_only_mine = "show only mine",
+	show_password = "show password",
 	select_all = "select all",
 	share = "share",
 	selected_employees = "selected employees",
