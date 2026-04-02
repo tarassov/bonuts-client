@@ -1,13 +1,8 @@
 import { CommonStrings } from "constants/dictionary";
-import {
-	PostAccountOperationsApiResponse,
-	PostAdminDepositApiResponse,
-	usePostAccountOperationsMutation,
-	usePostAdminDepositMutation,
-} from "services/api/bonuts-api";
+import { PostAccountOperationsApiResponse, PostAdminDepositApiResponse, usePostAccountOperationsMutation, usePostAdminDepositMutation } from "services/api/bonuts-api";
 import { texts_t } from "services/localization/texts/texts_t";
-import { useNotification } from "services/notification";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { useNotification } from "shared/ui/notification";
 
 import { useProfile } from "@/entities/profile";
 
@@ -25,10 +20,7 @@ export const useTransfer = () => {
 	const { showNotification } = useNotification();
 	const { openLoader, closeLoader } = useLoader(OPERATION_NAME, false);
 
-	const transferMyDonuts = (
-		args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">,
-		options?: TActionCallback<PostAccountOperationsApiResponse>
-	) => {
+	const transferMyDonuts = (args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">, options?: TActionCallback<PostAccountOperationsApiResponse>) => {
 		const { amount, comment, ids } = args;
 		if (tenant) {
 			openLoader();

@@ -3,19 +3,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { deepEqual } from "fast-equals";
 import _ from "lodash";
 
-import { RootState, store, useAppDispatch, useAppSelector } from "services/redux/store/store";
+import { store, useAppDispatch } from "services/redux/store/store";
 
 import { USE_POLLING_INTERVAL } from "@/app/config";
 import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/api";
 
-export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
-	endpoint: Endpoint,
-	args: GetArgsType<Endpoint>,
-	pollingInterval: number | undefined,
-	skip?: boolean
-) {
+export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: Endpoint, args: GetArgsType<Endpoint>, pollingInterval: number | undefined, skip?: boolean) {
 	const dispatch = useAppDispatch();
-	const queries = useAppSelector((state: RootState) => state.api.queries);
 	const { page, ...restArgs } = args;
 	const [queryArgs, setQueryArgs] = useState(restArgs);
 	const [pages, setPages] = useState<Record<number, GetResultType<Endpoint>>>([]);
@@ -24,20 +18,6 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 	const [currentPage, setCurrentPage] = useState(0);
 	const [hasNew, setHasNew] = useState(false);
 	const [hasNext, setHasNext] = useState(false);
-	//
-	// useEffect(() => {
-	// 	console.log(restArgs);
-	// 	console.log(queryArgs);
-	// 	if (!_.isEqual(restArgs, queryArgs)) setQueryArgs(restArgs);
-	// 	if (!_.isEqual(restArgs, queryArgs) && currentPage > 1) {
-	// 		setQueryArgs(restArgs);
-	// 		setCurrentPage(1);
-	// 		setPages([]);
-	// 		// setResults([]);
-	// 		// setTemp(undefined);
-	// 		// setHasNext(false);
-	// 	}
-	// }, [restArgs, queryArgs, currentPage]);
 
 	const { data, isLoading, isSuccess } = endpoint.useQuery(
 		{
@@ -61,6 +41,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 		}
 	}, [currentPage, data]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		setCurrentPage(args.page || 0);
 	}, []);
@@ -73,15 +54,17 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 
 	const fetchNext = useCallback(() => {
 		setCurrentPage(currentPage + 1);
-	}, [setCurrentPage, currentPage]);
+	}, [currentPage]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		if (currentPage > 1) {
 			const result = dispatch(endpoint.initiate({ ...args, page: currentPage }));
-			setResults([...results, result]);
+			setResults((prev) => [...prev, result]);
 		}
 	}, [currentPage]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		if (currentPage > 1) {
 			const rootState = store.getState();
@@ -96,8 +79,9 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			}
 			if (Object.keys(newPages).length) setPages({ ...pages, ...newPages });
 		}
-	}, [queries, results, args]);
+	}, [results, args]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		if (isSuccess) {
 			// if only one page is loaded then update immediately
@@ -126,7 +110,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			setPages([temp]);
 			setTemp(undefined);
 		}
-	}, [pages, temp]);
+	}, [temp]);
 
 	const paginatedPages = useMemo(() => {
 		return pages as Array<TPageable<GetResultType<Endpoint>>>;

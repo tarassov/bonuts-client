@@ -15,15 +15,5 @@ export const AccountHistory: FC<{ accountId?: number }> = ({ accountId }) => {
 
 	useLoader(Modules.Events, isLoading);
 
-	return (
-		<BntReactTable
-			columns={tableConfig}
-			data={flatData}
-			isVirtual
-			estimateSize={100}
-			fetchNext={fetchNext}
-			isFetching={isFetching}
-			hasNext={hasNext}
-		/>
-	);
+	return <BntReactTable columns={tableConfig} data={flatData} isVirtual estimateSize={100} fetchNext={fetchNext} isFetching={isFetching} hasNext={hasNext} />;
 };

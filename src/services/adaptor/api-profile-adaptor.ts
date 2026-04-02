@@ -22,6 +22,7 @@ export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 		in_date: data.attributes?.in_date || null,
 		bio: data.attributes?.bio || undefined,
 		contact: data.attributes?.contact || undefined,
+		locale: data.attributes?.locale || undefined,
 		self_account: data.attributes?.self_account,
 		distrib_account: data.attributes?.distrib_account,
 		created_at: data.attributes?.created_at,
@@ -48,6 +49,7 @@ export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TPro
 			in_date: attributes?.in_date || null,
 			bio: attributes?.bio || undefined,
 			contact: attributes?.contact || undefined,
+			locale: attributes?.locale || undefined,
 			tg_code: attributes?.tg_code || undefined,
 			id: Number(id),
 		};

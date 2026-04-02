@@ -15,20 +15,7 @@ export const BntFormBody: FC<
 		onDiscard: VoidFunction;
 		error?: string;
 	}
-> = ({
-	fields,
-	groups,
-	groupGap,
-	hasInitial,
-	initialValues,
-	formId,
-	submitCaption,
-	children,
-	values,
-	onDiscard,
-	error,
-	keepValuesOnSubmit = true,
-}) => {
+> = ({ fields, groups, groupGap, hasInitial, initialValues, formId, submitCaption, children, values, onDiscard, error, keepValuesOnSubmit = true }) => {
 	const { reset } = useFormContext();
 	const formState = useFormState();
 	const { isDirty, isSubmitSuccessful } = formState;

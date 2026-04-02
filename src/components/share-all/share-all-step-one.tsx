@@ -82,12 +82,7 @@ export const ShareAllStepOne: FC<{
 						</EmployeeListCompact>
 					</Grid>
 					<Grid item xs={12} sm={6}>
-						<EmployeeListCompact
-							title={t(texts_s.selected_employees, { capitalize: true })}
-							profiles={selected}
-							onClick={removeProfile}
-							hideSearch={!selected.length}
-						>
+						<EmployeeListCompact title={t(texts_s.selected_employees, { capitalize: true })} profiles={selected} onClick={removeProfile} hideSearch={!selected.length}>
 							<>
 								{selected.length ? (
 									<BntBox className="m-4">

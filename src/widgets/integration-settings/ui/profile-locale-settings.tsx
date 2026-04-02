@@ -3,37 +3,16 @@ import { LanguageOutlined } from "@mui/icons-material";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 
-import i18n from "i18next";
-
-import { useStorage } from "shared/lib/localStorage";
+import { useLocale } from "shared/ui/locale/hooks/use-locale";
+import { LOCALES } from "shared/ui/locale/locale-context";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 
-const LOCALE_STORAGE_KEY = "locale";
-
-enum LOCALES {
-	en = "en",
-	kk = "kk",
-	ru = "ru",
-}
-
-type TProfileStorageConfig = { locale: LOCALES };
-
-const getDetectedLocale = () => {
-	const detectedLocale = i18n.resolvedLanguage || i18n.language || navigator.language || LOCALES.en;
-	const normalizedLocale = detectedLocale.toLowerCase();
-
-	if (normalizedLocale.startsWith(LOCALES.kk)) return LOCALES.kk;
-	if (normalizedLocale.startsWith(LOCALES.ru)) return LOCALES.ru;
-
-	return LOCALES.en;
-};
-
 export function ProfileLocaleSettings() {
 	const { translate } = useBntTranslate();
-	const [locale, setLocale] = useStorage<TProfileStorageConfig, typeof LOCALE_STORAGE_KEY>(LOCALE_STORAGE_KEY, getDetectedLocale());
+	const { locale, setLocale } = useLocale();
 
 	const localeOptions = useMemo(
 		() => [
@@ -47,7 +26,6 @@ export function ProfileLocaleSettings() {
 	const handleLocaleChange = (event: SelectChangeEvent) => {
 		const nextLocale = String(event.target.value) as LOCALES;
 		setLocale(nextLocale);
-		i18n.changeLanguage(nextLocale);
 	};
 
 	return (

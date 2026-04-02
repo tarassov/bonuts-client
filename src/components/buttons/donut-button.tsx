@@ -10,11 +10,7 @@ export const DonutButton: FC<{
 	onClick: () => void;
 }> = ({ donut, onClick }) => {
 	return (
-		<BntTransparentButton
-			onClick={onClick}
-			disableRipple
-			startIcon={<Avatar src={donut.logo?.thumb?.url || undefined} alt={`${donut.name} `} />}
-		>
+		<BntTransparentButton onClick={onClick} disableRipple startIcon={<Avatar src={donut.logo?.thumb?.url || undefined} alt={`${donut.name} `} />}>
 			<Typography variant="body2">{donut.name && <span>{donut.name}</span>}</Typography>
 		</BntTransparentButton>
 	);

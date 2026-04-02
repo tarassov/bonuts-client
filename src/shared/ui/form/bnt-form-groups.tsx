@@ -35,9 +35,7 @@ export const BntFormGroups: FC<
 								};
 							}}
 						>
-							{group?.groups?.length && (
-								<BntFormGroups formId={formId} groups={group.groups} fields={fields} hasInitial={hasInitial} groupGap={group.gap} />
-							)}
+							{group?.groups?.length && <BntFormGroups formId={formId} groups={group.groups} fields={fields} hasInitial={hasInitial} groupGap={group.gap} />}
 							{groupFields.length > 0 && (
 								<Grid container spacing={2}>
 									<BntFormFieldList formId={formId} hasInitial={hasInitial} fields={groupFields} />

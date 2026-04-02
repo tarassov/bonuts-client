@@ -28,12 +28,7 @@ export const useStatisticsTableConfig = (totalFieldName: string, currency?: Curr
 					cellType: CellType.CellString,
 					enableSorting: false,
 					enableColumnFilter: false,
-					cell: (info) =>
-						info ? (
-							<BntProfileButton profile={info.row.original} onClick={() => showEmployeeModal(info?.row.original.id)} className="pl-4" />
-						) : (
-							<span />
-						),
+					cell: (info) => (info ? <BntProfileButton profile={info.row.original} onClick={() => showEmployeeModal(info?.row.original.id)} className="pl-4" /> : <span />),
 					header: {
 						headerType: HeaderType.StringHeader,
 						value: translate(reportsTexts.employee_name, { capitalize: true }),
@@ -50,13 +45,7 @@ export const useStatisticsTableConfig = (totalFieldName: string, currency?: Curr
 								{info?.row.original.score_total !== undefined && (
 									<BntStack direction="row" alignItems="center">
 										{info?.row.original.score_total}
-										{currency ? (
-											currency === Currency.coin ? (
-												<BonutsCurrency />
-											) : (
-												<DonutSmallOutlined color="primary" sx={{ width: "16px" }} />
-											)
-										) : null}
+										{currency ? currency === Currency.coin ? <BonutsCurrency /> : <DonutSmallOutlined color="primary" sx={{ width: "16px" }} /> : null}
 									</BntStack>
 								)}
 							</Typography>
@@ -70,7 +59,7 @@ export const useStatisticsTableConfig = (totalFieldName: string, currency?: Curr
 				},
 			],
 		};
-	}, [totalFieldName, currency]);
+	}, [currency, showEmployeeModal, totalFieldName, translate]);
 
 	const { tableConfig } = useTableConfig(storeConfig);
 	return { tableConfig };

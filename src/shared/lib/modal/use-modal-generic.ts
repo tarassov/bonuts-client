@@ -2,9 +2,7 @@ import { useCallback, useContext, useMemo } from "react";
 
 import { DialogCloseContext, DialogContext } from "shared/ui/dialog/dialog-context";
 
-export const useModalGeneric = <TConfig extends Record<string, any>, TResultConfig extends Partial<Record<keyof TConfig, any>>>(
-	modalNames: string[]
-) => {
+export const useModalGeneric = <TConfig extends Record<string, any>, TResultConfig extends Partial<Record<keyof TConfig, any>>>(modalNames: string[]) => {
 	const showModal = useContext(DialogContext);
 	const handleClose = useContext(DialogCloseContext);
 

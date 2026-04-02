@@ -33,10 +33,7 @@ export type TDialog<T = any, TResult = any> = {
 };
 
 export type TDialogItems<T, R extends Record<keyof T, any> = any> = {
-	[name in keyof T]: Pick<
-		TDialog<T[name], R[name]>,
-		"renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop"
-	>;
+	[name in keyof T]: Pick<TDialog<T[name], R[name]>, "renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop">;
 };
 
 export type TDialogConfig<T, R extends Record<keyof T, any> = any> = {

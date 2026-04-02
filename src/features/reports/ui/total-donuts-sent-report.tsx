@@ -13,13 +13,5 @@ export const TotalDonutsSentReport: FC<TotalDonutsSentReportProps> = (props) => 
 	const { onlyHeader } = props;
 	const { objects = [], isLoading } = useProfileReports({ reportType: "show_sent" }, onlyHeader);
 	const { t } = useBntTranslate();
-	return (
-		<StatisticsTile
-			totalFieldName={t(reportsTexts.total_donuts_sent, { capitalize: true })}
-			data={objects}
-			isLoading={isLoading}
-			currency={Currency.donut}
-			{...props}
-		/>
-	);
+	return <StatisticsTile totalFieldName={t(reportsTexts.total_donuts_sent, { capitalize: true })} data={objects} isLoading={isLoading} currency={Currency.donut} {...props} />;
 };

@@ -139,16 +139,10 @@ export const BntReactTablePure = <T,>({
 
 	const virtualRows = virtualizer.getVirtualItems();
 
-	const [paddingTop, paddingBottom] =
-		virtualRows.length > 0 ? [virtualRows[0].start, virtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end] : [0, 0];
+	const [paddingTop, paddingBottom] = virtualRows.length > 0 ? [virtualRows[0].start, virtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end] : [0, 0];
 
 	return (
-		<TableContainer
-			sx={{ boxShadow: "none", height: "100%", overflow: "auto" }}
-			className={className}
-			onScroll={(e) => fetchMoreOnBottomReached(e.target as HTMLDivElement)}
-			ref={tableContainerRef}
-		>
+		<TableContainer sx={{ boxShadow: "none", height: "100%", overflow: "auto" }} className={className} onScroll={(e) => fetchMoreOnBottomReached(e.target as HTMLDivElement)} ref={tableContainerRef}>
 			<Table
 				stickyHeader
 				// style={isVirtual ? { height: virtualizer.getTotalSize(), position: "relative" } : {}}
@@ -168,13 +162,7 @@ export const BntReactTablePure = <T,>({
 										})}
 									>
 										{columnHeader.isPlaceholder ? null : (
-											<Stack
-												direction="row"
-												alignItems="center"
-												gap={2}
-												className="sorter"
-												onClick={columnHeader.column.getToggleSortingHandler()}
-											>
+											<Stack direction="row" alignItems="center" gap={2} className="sorter" onClick={columnHeader.column.getToggleSortingHandler()}>
 												{flexRender(columnHeader.column.columnDef.header, columnHeader.getContext())}
 												{columnHeader.column.getCanSort() && (
 													<Stack className={classnames(`sort-${columnHeader.column.getIsSorted()}`)}>
@@ -226,11 +214,7 @@ export const BntReactTablePure = <T,>({
 			{data.length && !isVirtual ? (
 				<div className="bnt-table-footer">
 					<Stack direction="row" gap={2} justifyContent="space-between" alignItems="stretch" flexWrap={{ xs: "wrap", sm: "nowrap" }}>
-						<BntTransparentButton
-							disabled={!table.getCanPreviousPage()}
-							className="bnt-navigation-button"
-							onClick={() => table.previousPage()}
-						>
+						<BntTransparentButton disabled={!table.getCanPreviousPage()} className="bnt-navigation-button" onClick={() => table.previousPage()}>
 							{translate(texts_p.previous, { capitalize: true })}
 						</BntTransparentButton>
 						<Grid container gap={2} justifyContent="center">

@@ -18,8 +18,7 @@ export const StatisticsDashboard = () => {
 	useEffect(() => {
 		if (matchesSmUp) setFullScreenValue(undefined);
 	}, [matchesSmUp]);
-	const getScreenProps = (name: string) =>
-		fullscreenValue !== name ? { md: 5, lg: 4, sm: 12, xs: 12 } : { md: 12, lg: 12, sm: 12, xs: 12 };
+	const getScreenProps = (name: string) => (fullscreenValue !== name ? { md: 5, lg: 4, sm: 12, xs: 12 } : { md: 12, lg: 12, sm: 12, xs: 12 });
 	const getDisplayProps = (name: string) => {
 		if (!matchesSmUp) {
 			return {};
@@ -56,14 +55,7 @@ export const StatisticsDashboard = () => {
 
 	return (
 		<div className="position-relative height-100">
-			<Grid
-				container
-				className={classnames("p-2", { "height-100": matchesSmUp })}
-				alignItems="stretch"
-				gap={4}
-				sx={{ position: "relative" }}
-				onClick={() => setFullScreenValue(undefined)}
-			>
+			<Grid container className={classnames("p-2", { "height-100": matchesSmUp })} alignItems="stretch" gap={4} sx={{ position: "relative" }} onClick={() => setFullScreenValue(undefined)}>
 				<Grid
 					item
 					{...getScreenProps("balance")}
@@ -104,12 +96,7 @@ export const StatisticsDashboard = () => {
 					/>
 				</Grid>
 			</Grid>
-			{fullscreenValue && matchesSmUp ? (
-				<BntBox
-					onClick={() => setFullScreenValue(undefined)}
-					sx={{ position: "absolute", width: "100%", height: "100%", zIndex: 80, top: 0, left: 0 }}
-				/>
-			) : null}
+			{fullscreenValue && matchesSmUp ? <BntBox onClick={() => setFullScreenValue(undefined)} sx={{ position: "absolute", width: "100%", height: "100%", zIndex: 80, top: 0, left: 0 }} /> : null}
 		</div>
 	);
 };

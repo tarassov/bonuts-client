@@ -13,5 +13,4 @@ export const pluginsApi = bonutsApi.enhanceEndpoints({
 	},
 });
 
-export const { useGetPluginsQuery, usePatchPluginsByIdMutation, usePostPluginsByIdActivateMutation, usePostPluginsByIdDeactivateMutation } =
-	pluginsApi;
+export const { useGetPluginsQuery, usePatchPluginsByIdMutation, usePostPluginsByIdActivateMutation, usePostPluginsByIdDeactivateMutation } = pluginsApi;

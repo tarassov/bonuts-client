@@ -43,15 +43,7 @@ export const ModalEmployeeViewPure: FC<ModalEmployeeViewPureProps> = ({ employee
 								</BntRoundButton>
 							</BntStack>
 
-							<BntStack
-								direction="row"
-								justifyContent="center"
-								alignItems={{ sm: "center", xs: "center" }}
-								flexWrap="wrap"
-								spacing={1}
-								gap={1}
-								className="ml-2 mt-2"
-							>
+							<BntStack direction="row" justifyContent="center" alignItems={{ sm: "center", xs: "center" }} flexWrap="wrap" spacing={1} gap={1} className="ml-2 mt-2">
 								{employee?.circles
 									?.filter((x, i) => i < MAX_TAGS || !matchesDownSm)
 									.map((circle) => {

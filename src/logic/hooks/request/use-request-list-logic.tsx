@@ -3,17 +3,7 @@ import { requestsApi } from "services/api/extended/requests-api";
 
 import { useListBase } from "logic/hooks/use-list-base";
 
-export const useRequestListLogic = ({
-	archive,
-	active,
-	incoming,
-	my,
-}: {
-	archive?: boolean;
-	active?: boolean;
-	incoming?: boolean;
-	my?: boolean;
-}) => {
+export const useRequestListLogic = ({ archive, active, incoming, my }: { archive?: boolean; active?: boolean; incoming?: boolean; my?: boolean }) => {
 	return useListBase({
 		endpoint: requestsApi.endpoints.getRequests,
 		args: {

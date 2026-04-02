@@ -36,9 +36,7 @@ export const BntMainMenu: FC<BntRoutesMenuProps> = (props) => {
 								<Menu />
 							</IconButton>
 						) : (
-							<IconButton sx={{ mr: 0, pr: 0, pt: 0.5, pb: 0.5 }}>
-								{theme.direction === "rtl" ? <ChevronLeft /> : <ChevronLeft />}
-							</IconButton>
+							<IconButton sx={{ mr: 0, pr: 0, pt: 0.5, pb: 0.5 }}>{theme.direction === "rtl" ? <ChevronLeft /> : <ChevronLeft />}</IconButton>
 						)}
 					</ListItemIcon>
 				</ListItemButton>

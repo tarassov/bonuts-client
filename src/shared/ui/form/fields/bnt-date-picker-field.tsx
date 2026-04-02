@@ -9,7 +9,5 @@ export const BntDatePickerField = (props: { name: string; label?: string; requir
 	const handleChange = (date: Date) => {
 		onChange(name, date?.toDateString() || CommonStrings.EMPTY_STRING);
 	};
-	return (
-		<BntDatePicker readOnly={readOnly} name={name} stringLabel={label} onChange={handleChange} required={required} disabled={disabled} />
-	);
+	return <BntDatePicker readOnly={readOnly} name={name} stringLabel={label} onChange={handleChange} required={required} disabled={disabled} />;
 };

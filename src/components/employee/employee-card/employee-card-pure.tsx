@@ -23,12 +23,7 @@ export type EmployeeCardPureProps = {
 	onTransferClick?: VoidFunction;
 	className?: string;
 };
-export const EmployeeCardPure: FC<EmployeeCardPureProps> = ({
-	employee,
-	onCardClick = emptyFunction,
-	className,
-	onTransferClick = emptyFunction,
-}) => {
+export const EmployeeCardPure: FC<EmployeeCardPureProps> = ({ employee, onCardClick = emptyFunction, className, onTransferClick = emptyFunction }) => {
 	const { user_avatar, name } = employee;
 	const { translate } = useBntTranslate();
 

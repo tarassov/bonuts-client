@@ -2,7 +2,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { PostRegisterApiArg, usePostRegisterMutation, usePostSendConfirmEmailMutation } from "services/api/bonuts-api";
 import { texts_c } from "services/localization/texts";
-import { useNotification } from "services/notification";
+import { useNotification } from "shared/ui/notification";
 
 export const useSignUp = () => {
 	const [postRegister, { isLoading: isPostingRegister, error: registerError }] = usePostRegisterMutation();

@@ -20,14 +20,7 @@ export function ProfileRequestList() {
 
 	return (
 		<BntStack direction="column" className="height-100">
-			<BntTabs
-				value={value}
-				onChange={handleChange}
-				indicatorColor="primary"
-				textColor="primary"
-				variant="fullWidth"
-				aria-label="requests tabs"
-			>
+			<BntTabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="fullWidth" aria-label="requests tabs">
 				<BntTab label={translate(texts_a.active_request)} tabValue={0} />
 				<BntTab label={translate(texts_c.closed_requests)} tabValue={1} />
 			</BntTabs>

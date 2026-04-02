@@ -1,4 +1,4 @@
-import { ESeverity } from "services/notification/types/severity";
+import { ESeverity } from "shared/ui/notification";
 
 export type TNotificationState = {
 	isOpen: boolean;
