@@ -446,6 +446,13 @@ const injectedRtkApi = api.injectEndpoints({
 				body: queryArg.body,
 			}),
 		}),
+		putUserLocale: build.mutation<PutUserLocaleApiResponse, PutUserLocaleApiArg>({
+			query: (queryArg) => ({
+				url: `/user/locale`,
+				method: "PUT",
+				body: queryArg.body,
+			}),
+		}),
 		postUsersGenerateTg: build.mutation<PostUsersGenerateTgApiResponse, PostUsersGenerateTgApiArg>({
 			query: (queryArg) => ({
 				url: `/users/generate_tg`,
@@ -1827,7 +1834,6 @@ export type PutProfilesByIdApiArg = {
 	id: string;
 	body: {
 		email?: string;
-		locale?: string;
 		first_name?: string;
 		last_name?: string;
 		department_id?: number | null;
@@ -3897,6 +3903,30 @@ export type PostUsersPasswordApiArg = {
 		password: string;
 	};
 };
+export type PutUserLocaleApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			type?: string;
+			email?: string;
+			last_name?: string;
+			first_name?: string;
+			locale?: string;
+			sex?: string;
+			note?: string;
+			email_confirmed?: boolean;
+			name?: string;
+			last_seen_at?: (string | null) | null;
+		};
+	};
+};
+export type PutUserLocaleApiArg = {
+	body: {
+		locale: string;
+	};
+};
 export type PostUsersGenerateTgApiResponse = /** status 200 success */ {
 	code?: number;
 };
@@ -4072,6 +4102,7 @@ export const {
 	useGetUsersRecoverQuery,
 	usePutUsersPasswordMutation,
 	usePostUsersPasswordMutation,
+	usePutUserLocaleMutation,
 	usePostUsersGenerateTgMutation,
 	usePostVkConnectMutation,
 	useDeleteVkDisconnectMutation,
