@@ -62,6 +62,8 @@ For UI tasks, also mention:
 - The only exception is when the more readable version would cause a meaningful performance regression.
 - Prefer explicit naming over compact cleverness.
 - Prefer small understandable transformations over dense chained logic.
+- Prefer named callback methods over inline event handlers when the handler contains non-trivial logic or is reused.
+- Prefer an empty line before `return` when it improves visual separation after preceding logic.
 
 ---
 
@@ -96,6 +98,8 @@ For UI tasks, also mention:
 - Do not leave new user-facing strings hardcoded in components.
 - Localize button labels, helper text, validation messages, empty states, and error/fallback copy.
 - If you touch a component with hardcoded user-facing strings, fix those strings as part of the change when practical.
+- Keep localization keys in the `texts_*` enum that matches the first meaningful letter of the phrase or concept.
+- Do not add unrelated keys to `texts_v` or any other letter bucket just because it is already imported nearby.
 
 ---
 
@@ -105,11 +109,20 @@ This project uses three styling layers intentionally.
 
 ### CSS Modules
 Use CSS Modules for:
-- page layout
-- section layout
-- grids
-- structural wrappers
-- composition of larger screen areas
+- page and section layout
+- structural wrappers and grid composition
+- complex responsive layout composition
+
+In complex layouts, prefer CSS Modules by default.
+
+For layout structure:
+- prefer `Stack` or grid for simple local composition inside a component
+- prefer CSS Modules for page-level layout and more complex responsive composition
+
+Exceptions:
+- `sx` is acceptable for theme-specific styles
+- `sx` is acceptable for dynamically calculated styles
+- `sx` is acceptable for small base layout adjustments like local margin or padding, but it must stay light and readable
 
 ### MUI styled()
 Use `styled()` for:
@@ -117,22 +130,43 @@ Use `styled()` for:
 - shared visual primitives
 - components with repeated visual rules
 - design-system-aligned wrappers
+- reusable components created in `shared/ui`
+- components that redefine or wrap MUI classes in a consistent way
+
+Prefer `styled()` for reusable visual components in `shared/ui`.
+
+Use CSS Modules in `shared/ui` only when a reusable component has substantial internal layout structure and `styled()` would make the code less readable.
+
+Do not extract trivial one-property or very small wrappers into `styled()` just because the component is reused.
+
+If styling only sets a very small number of simple properties, keep it local instead of creating a separate styled primitive.
+
+If a component redefines MUI internal classes or repeatedly applies the same MUI visual overrides, that is a strong signal to extract a dedicated reusable component instead of repeating overrides inline.
+
+If a component is used in 2 or more places, or repeats the same MUI override pattern, strongly consider extracting it into `shared/ui`.
 
 ### MUI sx
 Use `sx` only for:
 - small local adjustments
 - spacing tweaks
 - one-off overrides close to usage
+- theme-specific visual adjustments that should stay near the component
+- dynamic values that are awkward to express in static CSS
+- small local style blocks with no more than 5 properties, and preferably no more than 4
 
 Do NOT:
 - build large reusable components mainly with `sx`
 - scatter layout logic across many inline `sx` props
 - mix CSS Modules, `styled()`, and large inline `sx` without a clear reason
+- use heavy `sx` objects for reusable shared UI when a `styled()` component would be clearer
+- use deprecated MUI styling props when `slotProps` or the current API solves the same problem
 
 Preferred rule:
 - layout in CSS Modules
 - reusable component styling in `styled()`
 - tiny local tweaks in `sx`
+- `Stack` or grid for simple component-level layout structure
+- if styling only defines one simple property, do not extract it into a separate `styled()` component
 
 ---
 

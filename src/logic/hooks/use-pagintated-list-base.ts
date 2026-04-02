@@ -15,27 +15,20 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 	translator?: (response: GetResultType<Endpoint>) => Array<TModel>;
 	skip?: boolean;
 }) => {
-	const {
-		endpoint,
-		args,
-		pollingInterval = 1000,
-		translator = (response: GetResultType<Endpoint>) => response as Array<TModel>,
-		skip,
-	} = props;
+	const { endpoint, args, pollingInterval = 1000, translator = (response: GetResultType<Endpoint>) => response as Array<TModel>, skip } = props;
 
 	const [objects, setObjects] = useState<Array<Array<TModel>>>([]);
 
 	const authTenant = useAppSelector(authTenantSelector);
 
-	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates, isFetching } = usePaginator(
-		endpoint,
-		{ ...args, tenant: authTenant },
-		pollingInterval,
-		skip
-	);
+	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates, isFetching } = usePaginator(endpoint, { ...args, tenant: authTenant }, pollingInterval, skip);
 
 	useEffect(() => {
-		if (!pages) setObjects(() => []);
+		if (!pages) {
+			setObjects((prevObjects) => (_.isEqual(prevObjects, []) ? prevObjects : []));
+			return;
+		}
+
 		const translated = Object.values(pages).reduce(
 			(acc, curr) => {
 				acc.push(translator(curr));
@@ -43,8 +36,8 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 			},
 			[] as Array<Array<TModel>>
 		);
-		if (!_.isEqual(objects, translated)) setObjects(translated);
-	}, [pages]);
+		setObjects((prevObjects) => (_.isEqual(prevObjects, translated) ? prevObjects : translated));
+	}, [pages, translator]);
 
 	const flatData = useMemo(() => objects.reduce((acc, curr) => [...acc, ...curr], [] as Array<TModel>), [objects]);
 

@@ -65,6 +65,13 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
+		postClientRequests: build.mutation<PostClientRequestsApiResponse, PostClientRequestsApiArg>({
+			query: (queryArg) => ({
+				url: `/client_requests`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts`,
@@ -321,8 +328,18 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
+		getStatus: build.query<GetStatusApiResponse, GetStatusApiArg>({
+			query: () => ({ url: `/status` }),
+		}),
 		getTelegramChat: build.query<GetTelegramChatApiResponse, GetTelegramChatApiArg>({
 			query: () => ({ url: `/telegram_chat` }),
+		}),
+		patchTenantPluginsById: build.mutation<PatchTenantPluginsByIdApiResponse, PatchTenantPluginsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/tenant_plugins/${queryArg.id}`,
+				method: "PATCH",
+				body: queryArg.body,
+			}),
 		}),
 		postTenantsByTenantNameJoin: build.mutation<PostTenantsByTenantNameJoinApiResponse, PostTenantsByTenantNameJoinApiArg>({
 			query: (queryArg) => ({
@@ -429,6 +446,13 @@ const injectedRtkApi = api.injectEndpoints({
 				body: queryArg.body,
 			}),
 		}),
+		putUserLocale: build.mutation<PutUserLocaleApiResponse, PutUserLocaleApiArg>({
+			query: (queryArg) => ({
+				url: `/user/locale`,
+				method: "PUT",
+				body: queryArg.body,
+			}),
+		}),
 		postUsersGenerateTg: build.mutation<PostUsersGenerateTgApiResponse, PostUsersGenerateTgApiArg>({
 			query: (queryArg) => ({
 				url: `/users/generate_tg`,
@@ -459,6 +483,12 @@ const injectedRtkApi = api.injectEndpoints({
 		}),
 		getVkMe: build.query<GetVkMeApiResponse, GetVkMeApiArg>({
 			query: () => ({ url: `/vk/me` }),
+		}),
+		getWeeklyRecognitionBadgesLatest: build.query<GetWeeklyRecognitionBadgesLatestApiResponse, GetWeeklyRecognitionBadgesLatestApiArg>({
+			query: (queryArg) => ({
+				url: `/weekly_recognition_badges/latest`,
+				params: { tenant: queryArg.tenant },
+			}),
 		}),
 	}),
 	overrideExisting: false,
@@ -651,6 +681,14 @@ export type DeleteCirclesByIdApiResponse = /** status 200 success */ {
 export type DeleteCirclesByIdApiArg = {
 	id: string;
 	tenant?: string;
+};
+export type PostClientRequestsApiResponse = unknown;
+export type PostClientRequestsApiArg = {
+	body: {
+		contact: string;
+		name: string;
+		description: string;
+	};
 };
 export type GetDonutsApiResponse = /** status 200 success */ {
 	data: {
@@ -956,6 +994,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 			profile_id: number;
 			user_id: number;
 			user_name: string;
+			last_seen_at: (string | null) | null;
 			comments: {
 				id: number;
 				content: string;
@@ -1056,6 +1095,7 @@ export type GetEventsByIdApiResponse = /** status 200 success */ {
 			profile_id: number;
 			user_id: number;
 			user_name: string;
+			last_seen_at: (string | null) | null;
 			comments: {
 				id: number;
 				content: string;
@@ -1155,6 +1195,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 				profile_id: number;
 				user_id: number;
 				user_name: string;
+				last_seen_at: (string | null) | null;
 				comments: {
 					id: number;
 					content: string;
@@ -1258,6 +1299,7 @@ export type PostEventsByIdCommentsApiResponse = /** status 200 new comment creat
 				profile_id: number;
 				user_id: number;
 				user_name: string;
+				last_seen_at: (string | null) | null;
 				comments: {
 					id: number;
 					content: string;
@@ -1371,6 +1413,7 @@ export type PostInvitationsByIdAcceptApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -1538,6 +1581,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -1592,6 +1636,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			email: string;
 			last_name: string;
 			first_name: string;
+			locale?: string;
 			sex: string;
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
@@ -1628,6 +1673,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -1682,6 +1728,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			email: string;
 			last_name: string;
 			first_name: string;
+			locale?: string;
 			sex: string;
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
@@ -1694,7 +1741,7 @@ export type GetProfilesByIdApiArg = {
 	id: string;
 	tenant?: string;
 };
-export type PutProfilesByIdApiResponse = /** status 200 success */ {
+export type PutProfilesByIdApiResponse = /** status 200 admin updates another tenant user */ {
 	data?: {
 		id?: string;
 		type?: string;
@@ -1719,6 +1766,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -1773,6 +1821,7 @@ export type PutProfilesByIdApiResponse = /** status 200 success */ {
 			email: string;
 			last_name: string;
 			first_name: string;
+			locale?: string;
 			sex: string;
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
@@ -1791,6 +1840,7 @@ export type PutProfilesByIdApiArg = {
 		position?: string;
 		admin?: boolean;
 		active?: boolean;
+		roles?: string[];
 		tenant?: string;
 	};
 };
@@ -1819,6 +1869,7 @@ export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -1890,6 +1941,7 @@ export type GetProfilesApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -1961,6 +2013,7 @@ export type GetReportsProfilesApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -2103,6 +2156,7 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -2245,6 +2299,7 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -2386,6 +2441,7 @@ export type PostRequestsActivateApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -2527,6 +2583,7 @@ export type PostRequestsRefundApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -2668,6 +2725,7 @@ export type PostRequestsRollbackApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -2809,6 +2867,7 @@ export type PostRequestsCloseApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -2893,6 +2952,7 @@ export type GetDonutsSchedulersApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -2973,6 +3033,7 @@ export type PostDonutsSchedulersApiResponse = /** status 201 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -3065,6 +3126,7 @@ export type GetDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -3146,6 +3208,7 @@ export type PatchDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -3230,6 +3293,7 @@ export type DeleteDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 				last_name?: string;
 				name?: string;
 				email: string;
+				locale: string;
 				tenant?: string;
 				sex?: string;
 				tg_code?: (string | null) | null;
@@ -3274,6 +3338,12 @@ export type DeleteDonutsSchedulersByIdApiArg = {
 	id: string;
 	tenant?: string;
 };
+export type GetStatusApiResponse = /** status 200 application and database are ready */ {
+	status: "ok";
+	database: "ok";
+	migrations: "ok";
+};
+export type GetStatusApiArg = void;
 export type GetTelegramChatApiResponse = /** status 200 telegram chat not found will return empty object */ {
 	id?: number;
 	chat_id?: string;
@@ -3287,6 +3357,19 @@ export type GetTelegramChatApiResponse = /** status 200 telegram chat not found 
 	error: string;
 };
 export type GetTelegramChatApiArg = void;
+export type PatchTenantPluginsByIdApiResponse = unknown;
+export type PatchTenantPluginsByIdApiArg = {
+	/** plugin_id */
+	id: number;
+	body: {
+		tenant: string;
+		active: boolean;
+		default_state?: boolean;
+		tenant_settings?: {
+			[key: string]: any;
+		};
+	};
+};
 export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
 	data?: {
 		id: string;
@@ -3312,6 +3395,7 @@ export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -3564,6 +3648,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			last_name?: string;
 			name?: string;
 			email: string;
+			locale: string;
 			tenant?: string;
 			sex?: string;
 			tg_code?: (string | null) | null;
@@ -3618,6 +3703,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			email: string;
 			last_name: string;
 			first_name: string;
+			locale?: string;
 			sex: string;
 			notes?: (string | null) | null;
 			email_confirmed: boolean;
@@ -3660,6 +3746,7 @@ export type GetConfirmEmailApiResponse = /** status 200 receives user */ {
 			email?: string;
 			last_name?: string;
 			first_name?: string;
+			locale?: string;
 			sex?: string;
 			note?: string;
 			email_confirmed?: boolean;
@@ -3787,6 +3874,7 @@ export type GetUsersRecoverApiResponse = /** status 200 success */ {
 			email?: string;
 			last_name?: string;
 			first_name?: string;
+			locale?: string;
 			sex?: string;
 			note?: string;
 			email_confirmed?: boolean;
@@ -3813,6 +3901,30 @@ export type PostUsersPasswordApiArg = {
 	body: {
 		recover_token: string;
 		password: string;
+	};
+};
+export type PutUserLocaleApiResponse = /** status 200 success */ {
+	data?: {
+		id?: string;
+		type?: string;
+		attributes?: {
+			id?: number;
+			type?: string;
+			email?: string;
+			last_name?: string;
+			first_name?: string;
+			locale?: string;
+			sex?: string;
+			note?: string;
+			email_confirmed?: boolean;
+			name?: string;
+			last_seen_at?: (string | null) | null;
+		};
+	};
+};
+export type PutUserLocaleApiArg = {
+	body: {
+		locale: string;
 	};
 };
 export type PostUsersGenerateTgApiResponse = /** status 200 success */ {
@@ -3881,10 +3993,32 @@ export type GetVkMeApiResponse = /** status 200 vk token not found will return e
 	message_link: string;
 };
 export type GetVkMeApiArg = void;
+export type GetWeeklyRecognitionBadgesLatestApiResponse = /** status 200 success */ {
+	week_start: string;
+	week_end: string;
+	badges: {
+		badge_type: string;
+		title: string;
+		description: string;
+		score: number;
+		profile: {
+			id: number;
+			first_name: string;
+			last_name: string;
+			full_name: string;
+			avatar: string;
+		};
+		meta_json: object;
+	}[];
+};
+export type GetWeeklyRecognitionBadgesLatestApiArg = {
+	tenant?: string;
+};
 export type TenantPlugin = {
 	id: number;
 	name: string;
 	active?: boolean;
+	default_state?: boolean | null;
 	settings?:
 		| {
 				id: number;
@@ -3910,6 +4044,7 @@ export const {
 	useGetCirclesByIdQuery,
 	usePatchCirclesByIdMutation,
 	useDeleteCirclesByIdMutation,
+	usePostClientRequestsMutation,
 	useGetDonutsQuery,
 	usePostDonutsMutation,
 	useGetDonutsByIdQuery,
@@ -3946,7 +4081,9 @@ export const {
 	useGetDonutsSchedulersByIdQuery,
 	usePatchDonutsSchedulersByIdMutation,
 	useDeleteDonutsSchedulersByIdMutation,
+	useGetStatusQuery,
 	useGetTelegramChatQuery,
+	usePatchTenantPluginsByIdMutation,
 	usePostTenantsByTenantNameJoinMutation,
 	useGetTenantCurrentQuery,
 	usePutTenantCurrentMutation,
@@ -3965,9 +4102,11 @@ export const {
 	useGetUsersRecoverQuery,
 	usePutUsersPasswordMutation,
 	usePostUsersPasswordMutation,
+	usePutUserLocaleMutation,
 	usePostUsersGenerateTgMutation,
 	usePostVkConnectMutation,
 	useDeleteVkDisconnectMutation,
 	usePostVkLoginMutation,
 	useGetVkMeQuery,
+	useGetWeeklyRecognitionBadgesLatestQuery,
 } = injectedRtkApi;

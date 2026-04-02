@@ -21,6 +21,7 @@ export type TProfile = TBaseModel & {
 	in_date?: string | null;
 	bio?: string;
 	contact?: string;
+	locale?: string;
 	score_total?: number;
 	self_account?: {
 		id?: number;

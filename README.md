@@ -3,6 +3,19 @@
 ## Project Overview
 Bonuts.ru is a React-based web application built with TypeScript, Vite, and Material UI.
 
+## Code Style
+
+Frontend code-style rules are documented separately in [docs/code-style.md](docs/code-style.md).
+
+Use that page as the source of truth for:
+
+- readability and naming
+- Feature-Sliced Design boundaries
+- TypeScript rules
+- localization rules
+- styling rules for CSS Modules, `styled()`, and `sx`
+- design-system consistency
+
 ## Environment Configuration
 
 The application uses different environment configurations:

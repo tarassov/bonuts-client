@@ -12,9 +12,7 @@ export const useAuthRoutes = () => {
 	const { currentRoles } = useCurrentProfile();
 
 	const menuRoutes = useMemo(() => {
-		return routes
-			.filter((x) => x.tenantNotRequired || auth.tenant)
-			.filter((x) => !x.roles?.length || _.intersection(x.roles, currentRoles).length);
+		return routes.filter((x) => x.tenantNotRequired || auth.tenant).filter((x) => !x.roles?.length || _.intersection(x.roles, currentRoles).length);
 	}, [routes, auth.tenant, currentRoles]);
 
 	return { menuRoutes };

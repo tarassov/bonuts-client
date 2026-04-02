@@ -13,13 +13,5 @@ export const TotalBalanceTable: FC<TotalBalanceTableProps> = (props) => {
 	const { onlyHeader } = props;
 	const { objects = [], isLoading } = useProfileReports({ reportType: "show_balance" }, onlyHeader);
 	const { t } = useBntTranslate();
-	return (
-		<StatisticsTile
-			totalFieldName={t(texts_b.balance, { capitalize: true })}
-			data={objects}
-			isLoading={isLoading}
-			currency={Currency.coin}
-			{...props}
-		/>
-	);
+	return <StatisticsTile totalFieldName={t(texts_b.balance, { capitalize: true })} data={objects} isLoading={isLoading} currency={Currency.coin} {...props} />;
 };

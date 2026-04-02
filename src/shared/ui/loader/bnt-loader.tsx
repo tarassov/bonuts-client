@@ -38,10 +38,7 @@ export function BntLoader({ text, secondaryText, size = 28, surface = true, sx }
 			sx={{
 				px: 3,
 				py: 4,
-				backgroundColor: (theme) =>
-					theme.palette.mode === "dark"
-						? (theme.palette.background?.default ?? TOKENS.bgAppDark)
-						: (theme.palette.background?.default ?? TOKENS.bgAppLight),
+				backgroundColor: (theme) => (theme.palette.mode === "dark" ? (theme.palette.background?.default ?? TOKENS.bgAppDark) : (theme.palette.background?.default ?? TOKENS.bgAppLight)),
 				...sx,
 			}}
 		>
@@ -49,13 +46,9 @@ export function BntLoader({ text, secondaryText, size = 28, surface = true, sx }
 				className={`${styles.card} ${surface ? styles.surface : styles.noSurface}`}
 				sx={{
 					p: surface ? 3 : 0,
-					borderColor: (theme) =>
-						theme.palette.mode === "dark" ? (theme.palette.divider ?? TOKENS.borderDark) : (theme.palette.divider ?? TOKENS.borderLight),
+					borderColor: (theme) => (theme.palette.mode === "dark" ? (theme.palette.divider ?? TOKENS.borderDark) : (theme.palette.divider ?? TOKENS.borderLight)),
 					backgroundColor: surface
-						? (theme) =>
-								theme.palette.mode === "dark"
-									? (theme.palette.background?.paper ?? TOKENS.bgSurfaceDark)
-									: (theme.palette.background?.paper ?? TOKENS.bgSurfaceLight)
+						? (theme) => (theme.palette.mode === "dark" ? (theme.palette.background?.paper ?? TOKENS.bgSurfaceDark) : (theme.palette.background?.paper ?? TOKENS.bgSurfaceLight))
 						: undefined,
 				}}
 			>
@@ -71,10 +64,7 @@ export function BntLoader({ text, secondaryText, size = 28, surface = true, sx }
 					variant="body2"
 					className={styles.primaryText}
 					sx={{
-						color: (theme) =>
-							theme.palette.mode === "dark"
-								? (theme.palette.text?.primary ?? TOKENS.textPrimaryDark)
-								: (theme.palette.text?.primary ?? TOKENS.textPrimaryLight),
+						color: (theme) => (theme.palette.mode === "dark" ? (theme.palette.text?.primary ?? TOKENS.textPrimaryDark) : (theme.palette.text?.primary ?? TOKENS.textPrimaryLight)),
 					}}
 				>
 					{text}
@@ -84,10 +74,7 @@ export function BntLoader({ text, secondaryText, size = 28, surface = true, sx }
 					variant="caption"
 					className={styles.secondaryText}
 					sx={{
-						color: (theme) =>
-							theme.palette.mode === "dark"
-								? (theme.palette.text?.secondary ?? TOKENS.textSecondaryDark)
-								: (theme.palette.text?.secondary ?? TOKENS.textSecondaryLight),
+						color: (theme) => (theme.palette.mode === "dark" ? (theme.palette.text?.secondary ?? TOKENS.textSecondaryDark) : (theme.palette.text?.secondary ?? TOKENS.textSecondaryLight)),
 					}}
 				>
 					{secondaryText}

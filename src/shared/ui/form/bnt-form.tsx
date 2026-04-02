@@ -5,7 +5,7 @@ import _ from "lodash";
 
 import { present } from "shared/lib/type-guards";
 import { BntFormBody } from "shared/ui/form/form-body";
-import { useLocale } from "shared/ui/locale/hooks/use-locale";
+import { useDateLocale } from "shared/ui/locale/hooks/use-date-locale";
 
 import { TFormFieldSourceItem, TFormProps, TFormValue } from "./types/bnt-form";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
@@ -26,7 +26,7 @@ export function BntForm<T extends Record<string, any>>({
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
 	const [error, setError] = useState<string>();
 	const [initials, setInitials] = useState<Record<string, TFormValue> | undefined>(undefined);
-	const locale = useLocale();
+	const locale = useDateLocale();
 
 	const transformedInitials = useMemo(() => {
 		if (!initialValues) return;
@@ -54,9 +54,7 @@ export function BntForm<T extends Record<string, any>>({
 			const field = fields?.find((x) => x.name === key);
 
 			if (field?.optionToValue) {
-				const newValue = _.isArray(value)
-					? value.map((x) => field?.optionToValue?.(x))
-					: field.optionToValue(value as TFormFieldSourceItem);
+				const newValue = _.isArray(value) ? value.map((x) => field?.optionToValue?.(x)) : field.optionToValue(value as TFormFieldSourceItem);
 				return { ...acc, [key]: newValue };
 			}
 			return { ...acc, [key]: value };

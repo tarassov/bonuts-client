@@ -13,7 +13,7 @@ export const useSearch = <T extends TBaseModel>(
 ) => {
 	const { searchField, initialSorter } = args;
 	const [search, setSearch] = useState<string>("");
-	const [filterFunction, setFilterFunction] = useState<Array<{ (a: T): boolean }>>([]);
+	const [_filterFunction, setFilterFunction] = useState<Array<{ (a: T): boolean }>>([]);
 	const [sorter, setSorter] = useState<((a: T, b: T) => number) | undefined>(initialSorter);
 
 	const updateSorter = (sorterFunction: any) => {
@@ -21,10 +21,8 @@ export const useSearch = <T extends TBaseModel>(
 	};
 
 	const filteredList = useMemo(() => {
-		return objects
-			.filter((x) => x[searchField] && (x[searchField] as string).toLowerCase().indexOf(search.toLowerCase()) >= 0)
-			.sort(_.isFunction(sorter) ? sorter : undefined);
-	}, [search, filterFunction, objects, sorter]);
+		return objects.filter((x) => x[searchField] && (x[searchField] as string).toLowerCase().indexOf(search.toLowerCase()) >= 0).sort(_.isFunction(sorter) ? sorter : undefined);
+	}, [objects, search, searchField, sorter]);
 
 	return { filteredList, setSorter: updateSorter, setFilterFunction, setSearch };
 };

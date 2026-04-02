@@ -22,11 +22,7 @@ const BntSidebar: FC = () => {
 				<BntDrawer variant="permanent" open={isDrawerOpen}>
 					<BntDrawerHeader sx={{ padding: 0 }}>
 						<BntTransparentButton onClick={toggleDrawer} sx={{ width: "100%", height: "100%", padding: 0 }}>
-							{isDrawerOpen ? (
-								<BonutsFullIcon style={{ width: "128px", height: "50px" }} />
-							) : (
-								<BonutsIcon style={{ width: "50px", height: "50px" }} />
-							)}
+							{isDrawerOpen ? <BonutsFullIcon style={{ width: "128px", height: "50px" }} /> : <BonutsIcon style={{ width: "50px", height: "50px" }} />}
 						</BntTransparentButton>
 					</BntDrawerHeader>
 					<Divider />

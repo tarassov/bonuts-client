@@ -1,9 +1,4 @@
 export enum texts_v {
-	login_page_title = "login page title",
-	login_page_subtitle = "login page subtitle",
-	login_with_vk = "login with vk",
-	login_with_vk_loading = "login with vk loading",
-	or = "or",
 	vk_auth_cancelled = "vk auth cancelled",
 	vk_connecting_title = "Connecting VK...",
 	vk_connecting_description = "Checking access and creating a session. This usually takes a couple of seconds.",

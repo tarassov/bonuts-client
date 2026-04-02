@@ -52,13 +52,13 @@ export function useTimezone(): {
 		return filtered.sort((a, b) => {
 			return (a.offset || 0) - (b.offset || 0);
 		});
-	}, []);
+	}, [t]);
 
 	const findFuzzyTz = (zone: string): ITimezoneOption => {
 		let currentTime: Spacetime;
 		try {
 			currentTime = spacetime.now(zone);
-		} catch (err) {
+		} catch (_err) {
 			currentTime = spacetime.now("GMT");
 		}
 
@@ -66,10 +66,7 @@ export function useTimezone(): {
 			.filter((tz: ITimezoneOption) => tz.offset === currentTime.timezone().current.offset)
 			.map((tz: ITimezoneOption) => {
 				let score = 0;
-				if (
-					currentTime.timezones[tz.value.toLowerCase()] &&
-					!!currentTime.timezones[tz.value.toLowerCase()].dst === currentTime.timezone().hasDst
-				) {
+				if (currentTime.timezones[tz.value.toLowerCase()] && !!currentTime.timezones[tz.value.toLowerCase()].dst === currentTime.timezone().hasDst) {
 					if (tz.value.toLowerCase().indexOf(currentTime.tz.substring(currentTime.tz.indexOf("/") + 1)) !== -1) {
 						score += 8;
 					}

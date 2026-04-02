@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 import { closeSnackbar, enqueueSnackbar } from "notistack";
 
-import { ESeverity } from "services/notification/types/severity";
+import { ESeverity } from "./types/severity";
 
 export const showError = (error: string) => {
 	enqueueSnackbar(error, {

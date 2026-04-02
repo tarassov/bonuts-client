@@ -12,11 +12,7 @@ import { useEmployeeUi } from "logic/ui/use-employee-ui";
 export type ModalEmployeeViewProps = {
 	id: number;
 };
-export const ModalEmployeeView: FC<ModalEmployeeViewProps & TDialogProps> = ({
-	id,
-	close = emptyFunction,
-	setModalLoading = emptyFunction,
-}) => {
+export const ModalEmployeeView: FC<ModalEmployeeViewProps & TDialogProps> = ({ id, close = emptyFunction, setModalLoading = emptyFunction }) => {
 	const { isLoading, employee } = useEmployeeLoader(id);
 	const { showEmployee } = useEmployeeUi(employee);
 

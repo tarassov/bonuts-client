@@ -1,5 +1,5 @@
-import { ESeverity } from "services/notification/types/severity";
 import { TNotificationState } from "services/redux/types/notification-state";
+import { ESeverity } from "shared/ui/notification";
 
 import { createSlice } from "@reduxjs/toolkit";
 

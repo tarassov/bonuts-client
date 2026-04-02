@@ -43,9 +43,7 @@ export function BntFormField({ field, id }: IBntFormFieldProps) {
 		return <BntDatePickerField name={field.name.toString()} disabled={field.disabled} required={field.required} label={field.label} />;
 	}
 	if (field.type === FieldType.switch) {
-		return (
-			<BntSwitchField name={field.name.toString()} disabled={field.disabled} label={field.label} disabledLabel={field.disabledLabel} />
-		);
+		return <BntSwitchField name={field.name.toString()} disabled={field.disabled} label={field.label} disabledLabel={field.disabledLabel} />;
 	}
 	if (field.type === FieldType.radio) {
 		return <BntRadioField field={field} />;

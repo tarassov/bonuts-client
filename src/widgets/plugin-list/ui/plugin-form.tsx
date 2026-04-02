@@ -56,26 +56,14 @@ export const PluginForm: FC<{
 			{plugin.active ? (
 				<FormContainer formContext={formContext} onSuccess={handleSubmit} onError={(e) => console.error(e)}>
 					{fields.map((item, index) => (
-						<BntTextInputElement
-							margin="normal"
-							fullWidth
-							required
-							key={item.id}
-							name={`settings.${index}.value`}
-							label={item.name}
-							autoFocus
-						/>
+						<BntTextInputElement margin="normal" fullWidth required key={item.id} name={`settings.${index}.value`} label={item.name} autoFocus />
 					))}
 
 					{isDirty ? <BntFormSubmit visible onCancelClick={onCancel} submitCaption={submitCaption} /> : null}
 				</FormContainer>
 			) : null}
 			<FormGroup>
-				<FormControlLabel
-					labelPlacement="end"
-					control={<UiCheckbox onChange={handleCheck} checked={plugin.active} />}
-					label={plugin.active ? t(texts_d.deactivate) : t(texts_a.activate)}
-				/>
+				<FormControlLabel labelPlacement="end" control={<UiCheckbox onChange={handleCheck} checked={plugin.active} />} label={plugin.active ? t(texts_d.deactivate) : t(texts_a.activate)} />
 			</FormGroup>
 		</BntCard>
 	);

@@ -8,8 +8,4 @@ export const telegramApi = bonutsApiOverride.enhanceEndpoints({
 		postProfileNotificationsByIdDeactivate: { invalidatesTags: ["Telegram", "Notifications"] },
 	},
 });
-export const {
-	useGetTelegramChatQuery,
-	usePostProfileNotificationsByIdDeactivateMutation,
-	usePostProfileNotificationsByIdActivateMutation,
-} = telegramApi;
+export const { useGetTelegramChatQuery, usePostProfileNotificationsByIdDeactivateMutation, usePostProfileNotificationsByIdActivateMutation } = telegramApi;

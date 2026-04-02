@@ -2,9 +2,9 @@ import i18next from "i18next";
 
 import { Errors } from "constants/dictionary";
 import { bonutsApi } from "services/api/bonuts-api";
-import { showError } from "services/notification";
 import { authActions } from "services/redux/slice/auth-slice";
 import { storage } from "shared/lib/localStorage/storage";
+import { showError } from "shared/ui/notification";
 
 import type { Middleware } from "@reduxjs/toolkit";
 import { isRejectedWithValue } from "@reduxjs/toolkit";
@@ -14,8 +14,6 @@ export const rtkErrorHandler: Middleware = (api) => (next) => (action) => {
 	const { setValue } = storage;
 	if (isRejectedWithValue(action)) {
 		console.warn("We got a rejected action!");
-		// eslint-disable-next-line no-console
-		console.log(action);
 
 		if (!action.payload || typeof action.payload !== "object") return next(action);
 

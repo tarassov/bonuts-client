@@ -1,4 +1,4 @@
-import { texts_e, texts_n, texts_t, texts_v } from "services/localization/texts";
+import { texts_a, texts_e, texts_h, texts_l, texts_n, texts_o, texts_s, texts_t, texts_v } from "services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -33,11 +33,19 @@ export const enLocale = {
 		CONST_GREETINGS: "Fast and simple way to   encourage your colleagues and thank them for their patience and help.",
 
 		// Tooltips
-		[texts_v.login_page_title]: "Sign in to Bonuts",
-		[texts_v.login_page_subtitle]: "Recognition system for your team",
-		[texts_v.login_with_vk]: "Sign in with VK",
-		[texts_v.login_with_vk_loading]: "Connecting VK...",
-		[texts_v.or]: "or",
+		[texts_l.login_page_title]: "Sign in to Bonuts",
+		[texts_l.login_page_subtitle]: "Recognition system for your team",
+		[texts_l.login_page_hero_title]: "Recognition starts here",
+		[texts_l.login_page_hero_subtitle]: "Build a culture where appreciation is visible.",
+		[texts_l.login_page_social_proof]: "Used by teams in IT, Digital & Startups",
+		[texts_l.login_page_invite]: "Join your team and start recognizing colleagues today.",
+		[texts_a.auth_fill_required_fields]: "Fill in email and password to continue.",
+		[texts_a.auth_action_in_progress]: "Please wait until the current sign-in action finishes.",
+		[texts_s.show_password]: "Show password",
+		[texts_h.hide_password]: "Hide password",
+		[texts_l.login_with_vk]: "Sign in with VK",
+		[texts_l.login_with_vk_loading]: "Connecting VK...",
+		[texts_o.or]: "or",
 		[texts_v.vk_auth_cancelled]: "VK sign-in was cancelled",
 		[texts_t.tooltip_scheduler_time]: "the actual action will be fired within 1 hour after the specified time.",
 		[texts_v.vk_connecting_title]: "Connecting VK...",

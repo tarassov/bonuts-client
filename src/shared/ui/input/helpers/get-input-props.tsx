@@ -2,12 +2,7 @@ import { SyntheticEvent } from "react";
 import { Close } from "@mui/icons-material";
 import { FilledInputProps, IconButton, InputAdornment, InputProps, OutlinedInputProps } from "@mui/material";
 
-export const getInputProps = (args: {
-	clearable: boolean;
-	value: unknown;
-	onClear: VoidFunction;
-	props: Partial<FilledInputProps> | Partial<OutlinedInputProps> | Partial<InputProps>;
-}) => {
+export const getInputProps = (args: { clearable: boolean; value: unknown; onClear: VoidFunction; props: Partial<FilledInputProps> | Partial<OutlinedInputProps> | Partial<InputProps> }) => {
 	const { props, onClear, value, clearable } = args;
 	return {
 		...props,

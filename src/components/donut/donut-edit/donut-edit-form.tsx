@@ -11,9 +11,7 @@ import { TDonut } from "@/types/model";
 
 export const DonutEditForm: FC<{
 	donut: TDonut;
-	onSubmit: (
-		values: TDonut
-	) => Promise<{ data: PutDonutsByIdApiResponse } | { error: FetchBaseQueryError | SerializedError } | undefined> | undefined;
+	onSubmit: (values: TDonut) => Promise<{ data: PutDonutsByIdApiResponse } | { error: FetchBaseQueryError | SerializedError } | undefined> | undefined;
 }> = ({ onSubmit, donut }) => {
 	const { fields, groups } = useDonutEditFormFields();
 	const handleSubmit = (values: TDonut) => {

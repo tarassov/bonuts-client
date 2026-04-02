@@ -10,11 +10,7 @@ import { emptyFunction } from "utils/empty-function";
 
 import { texts_y } from "@/services/localization/texts/texts_y";
 
-export const ConfirmationModal: FC<TDialogProps & { text?: string; onSubmit: VoidFunction }> = ({
-	text,
-	onSubmit,
-	close = emptyFunction,
-}) => {
+export const ConfirmationModal: FC<TDialogProps & { text?: string; onSubmit: VoidFunction }> = ({ text, onSubmit, close = emptyFunction }) => {
 	const { t } = useBntTranslate();
 	const handleSubmit = () => {
 		onSubmit();

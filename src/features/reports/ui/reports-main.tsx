@@ -21,14 +21,7 @@ export function ReportsMain() {
 	};
 	return (
 		<BntStack direction="column" className="height-100">
-			<BntTabs
-				value={value}
-				onChange={handleChange}
-				indicatorColor="primary"
-				textColor="primary"
-				variant="fullWidth"
-				aria-label="donuts tabs"
-			>
+			<BntTabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="fullWidth" aria-label="donuts tabs">
 				<BntTab label={translate(reportsTexts.dashboard)} tabValue={0} />
 				<BntTab
 					label={

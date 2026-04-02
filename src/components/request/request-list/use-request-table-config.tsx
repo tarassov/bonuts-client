@@ -20,24 +20,14 @@ export const useRequestTableConfig = (args: {
 	checkTooltip?: string;
 	rollbackTooltip?: string;
 }) => {
-	const {
-		onRollback = emptyFunction,
-		onCheck = emptyFunction,
-		hideActions = false,
-		checkRollbackEnabled,
-		checkCheckEnabled,
-		checkTooltip,
-		rollbackTooltip,
-	} = args;
+	const { onRollback = emptyFunction, onCheck = emptyFunction, hideActions = false, checkRollbackEnabled, checkCheckEnabled, checkTooltip, rollbackTooltip } = args;
 	const { translate } = useBntTranslate();
 	const columnHelper = createColumnHelper<TRequest & { actions?: any }>();
 	// biome-ignore lint/correctness/useExhaustiveDependencies: during migration
 	const tableConfig = useMemo(
 		() => [
 			columnHelper.accessor("donut.name", {
-				cell: (info) => (
-					<RequestContentCell donut={info.row.original.donut} profile={info.row.original.profile} datetime={info.row.original.created_at} />
-				),
+				cell: (info) => <RequestContentCell donut={info.row.original.donut} profile={info.row.original.profile} datetime={info.row.original.created_at} />,
 				header: translate(texts_r.requests, { capitalize: true }),
 				footer: (info) => info.column.id,
 				enableSorting: true,

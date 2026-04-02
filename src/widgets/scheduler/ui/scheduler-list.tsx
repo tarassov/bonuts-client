@@ -20,15 +20,7 @@ export type SchedulerListProps = {
 	onUpdate?: (scheduler: TNewScheduler) => void;
 	onDelete?: (id: number) => void;
 };
-export const SchedulerList: FC<SchedulerListProps> = ({
-	schedulers,
-	createMode,
-	className,
-	closeCreateMode = emptyFunction,
-	onCreate,
-	onUpdate,
-	onDelete = emptyFunction,
-}) => {
+export const SchedulerList: FC<SchedulerListProps> = ({ schedulers, createMode, className, closeCreateMode = emptyFunction, onCreate, onUpdate, onDelete = emptyFunction }) => {
 	const [editId, setEditId] = useState<number | undefined>();
 	const { t } = useBntTranslate();
 

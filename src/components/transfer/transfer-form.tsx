@@ -28,15 +28,5 @@ export const TransferForm: FC<{ id: number; onSuccess?: VoidFunction }> = ({ id,
 		};
 	}, []);
 
-	return (
-		<BntForm
-			formId="transfer-donuts"
-			onSubmit={onSubmit}
-			fields={fields}
-			resolver={resolver}
-			submitCaption={t(texts_t.transfer_donuts)}
-			hasInitial
-			initialValues={initialValues}
-		/>
-	);
+	return <BntForm formId="transfer-donuts" onSubmit={onSubmit} fields={fields} resolver={resolver} submitCaption={t(texts_t.transfer_donuts)} hasInitial initialValues={initialValues} />;
 };

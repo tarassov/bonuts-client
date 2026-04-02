@@ -41,9 +41,7 @@ export function DonutEdit() {
 		},
 	];
 
-	const onSubmit = (
-		values: TDonut
-	): Promise<{ data: PutDonutsByIdApiResponse } | { error: FetchBaseQueryError | SerializedError } | undefined> | undefined => {
+	const onSubmit = (values: TDonut): Promise<{ data: PutDonutsByIdApiResponse } | { error: FetchBaseQueryError | SerializedError } | undefined> | undefined => {
 		if (donut) {
 			return putDonut(donut?.id, { ...values }, { onSuccess: () => refetch() });
 		}

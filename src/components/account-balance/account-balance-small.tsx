@@ -23,34 +23,17 @@ export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => 
 
 	return (
 		<BntStack direction="column" minWidth={smallScreen ? 20 : 100} maxWidth={smallScreen ? 50 : 200}>
-			<BntBox
-				color="grey.400"
-				sx={{ lineHeight: "16px", borderBottom: "1px solid" }}
-				className="pr-1 pointer"
-				onClick={toSelfBalanceHistory}
-			>
+			<BntBox color="grey.400" sx={{ lineHeight: "16px", borderBottom: "1px solid" }} className="pr-1 pointer" onClick={toSelfBalanceHistory}>
 				<BntStack sx={{ lineHeight: "16px" }} direction="row" gap={1} alignItems="center" justifyContent="flex-end">
 					<BntTypography variant="caption" color="grey.700" sx={{ lineHeight: "22px", textWrap: "nowrap" }}>
-						{!isLoadingSelf && profile ? (
-							<>{!smallScreen ? `${selfAccount?.balance} ${t("point", { count: selfAccount?.balance })}` : selfAccount?.balance}</>
-						) : null}
+						{!isLoadingSelf && profile ? <>{!smallScreen ? `${selfAccount?.balance} ${t("point", { count: selfAccount?.balance })}` : selfAccount?.balance}</> : null}
 					</BntTypography>
 					<BonutsCurrency />
 				</BntStack>
 			</BntBox>
-			<BntStack
-				className="pr-1 pointer"
-				sx={{ lineHeight: "16px" }}
-				direction="row"
-				gap={1}
-				alignItems="center"
-				justifyContent="flex-end"
-				onClick={toDistribBalanceHistory}
-			>
+			<BntStack className="pr-1 pointer" sx={{ lineHeight: "16px" }} direction="row" gap={1} alignItems="center" justifyContent="flex-end" onClick={toDistribBalanceHistory}>
 				<BntTypography variant="caption" color="grey.700" sx={{ lineHeight: "22px", textWrap: "nowrap" }}>
-					{!isLoadingDistrib && profile ? (
-						<>{!smallScreen ? `${distribAccount?.balance} ${t("donut", { count: distribAccount?.balance })}` : distribAccount?.balance}</>
-					) : null}
+					{!isLoadingDistrib && profile ? <>{!smallScreen ? `${distribAccount?.balance} ${t("donut", { count: distribAccount?.balance })}` : distribAccount?.balance}</> : null}
 				</BntTypography>
 				<DonutSmallOutlined color="primary" sx={{ width: "16px", height: "16px" }} />
 			</BntStack>

@@ -58,12 +58,7 @@ export function BntDonutPreview() {
 				<BntCardBody className="m-3 p-3">
 					<Grid container justifyContent="space-between">
 						<Grid item xs={12} sm={8} md={4} lg={3} xl={2} className={classNames("", { "text-align-center": matchesDownSm })}>
-							<ImagePreview
-								defaultImage={donut?.logo?.url ? undefined : DEFAULT_DONUT_IMAGE}
-								image={donut?.logo?.url}
-								className="ml-3"
-								onClick={onClick}
-							/>
+							<ImagePreview defaultImage={donut?.logo?.url ? undefined : DEFAULT_DONUT_IMAGE} image={donut?.logo?.url} className="ml-3" onClick={onClick} />
 						</Grid>
 						<Grid item xs={12} sm={12} md={5} lg={7} order={{ xs: 3, md: 2 }}>
 							<BntTypography sx={{ overflowWrap: "break-word" }} variant="h5" display="block">
