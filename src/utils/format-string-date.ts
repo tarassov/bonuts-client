@@ -4,14 +4,7 @@ import { CommonStrings } from "constants/dictionary";
 
 import { ru } from "date-fns/locale";
 
-export const formatStringDate = (
-	date?: string | null,
-	short?: boolean,
-	useTime?: boolean,
-	locale?: Locale,
-	onlyTime?: boolean,
-	utc?: boolean
-): string => {
+export const formatStringDate = (date?: string | null, short?: boolean, useTime?: boolean, locale?: Locale, onlyTime?: boolean, utc?: boolean): string => {
 	if (!date) return CommonStrings.EMPTY_STRING;
 	try {
 		const dateObject = new Date(date);

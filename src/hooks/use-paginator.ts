@@ -8,14 +8,8 @@ import { RootState, store, useAppDispatch, useAppSelector } from "services/redux
 import { USE_POLLING_INTERVAL } from "@/app/config";
 import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/api";
 
-export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
-	endpoint: Endpoint,
-	args: GetArgsType<Endpoint>,
-	pollingInterval: number | undefined,
-	skip?: boolean
-) {
+export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: Endpoint, args: GetArgsType<Endpoint>, pollingInterval: number | undefined, skip?: boolean) {
 	const dispatch = useAppDispatch();
-	const queries = useAppSelector((state: RootState) => state.api.queries);
 	const { page, ...restArgs } = args;
 	const [queryArgs, setQueryArgs] = useState(restArgs);
 	const [pages, setPages] = useState<Record<number, GetResultType<Endpoint>>>([]);
@@ -63,7 +57,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 
 	useEffect(() => {
 		setCurrentPage(args.page || 0);
-	}, []);
+	}, [args.page]);
 
 	useEffect(() => {
 		return () => {
@@ -73,14 +67,14 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 
 	const fetchNext = useCallback(() => {
 		setCurrentPage(currentPage + 1);
-	}, [setCurrentPage, currentPage]);
+	}, [currentPage]);
 
 	useEffect(() => {
 		if (currentPage > 1) {
 			const result = dispatch(endpoint.initiate({ ...args, page: currentPage }));
-			setResults([...results, result]);
+			setResults((prev) => [...prev, result]);
 		}
-	}, [currentPage]);
+	}, [args, currentPage, dispatch, endpoint]);
 
 	useEffect(() => {
 		if (currentPage > 1) {
@@ -96,7 +90,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			}
 			if (Object.keys(newPages).length) setPages({ ...pages, ...newPages });
 		}
-	}, [queries, results, args]);
+	}, [args, currentPage, data, endpoint, pages]);
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -111,7 +105,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 				// setHasNew(true);
 			}
 		}
-	}, [data, isSuccess]);
+	}, [data, isSuccess, pages, queryArgs, results]);
 
 	useEffect(() => {
 		if (!temp) setHasNew(false);
@@ -126,7 +120,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(
 			setPages([temp]);
 			setTemp(undefined);
 		}
-	}, [pages, temp]);
+	}, [temp]);
 
 	const paginatedPages = useMemo(() => {
 		return pages as Array<TPageable<GetResultType<Endpoint>>>;

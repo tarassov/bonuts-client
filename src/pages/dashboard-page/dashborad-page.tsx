@@ -12,12 +12,7 @@ export function DashboardPage() {
 	const matchesDownMd = useMediaQuery(theme.breakpoints.down("md"));
 
 	return (
-		<Grid
-			container
-			flexDirection={matchesDownMd ? "column-reverse" : "row"}
-			gap={matchesDownMd ? 2 : 0}
-			className={classNames({ "height-100": !matchesDownMd })}
-		>
+		<Grid container flexDirection={matchesDownMd ? "column-reverse" : "row"} gap={matchesDownMd ? 2 : 0} className={classNames({ "height-100": !matchesDownMd })}>
 			<Grid item xs={12} sm={12} md={8} lg={9} className="height-100">
 				<EventList />
 			</Grid>

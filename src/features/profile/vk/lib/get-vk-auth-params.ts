@@ -1,13 +1,4 @@
-import {
-	BASE_CHARS,
-	BASE_URL,
-	VK_APP_ID,
-	VK_CHALLENGE_METHOD,
-	VK_CODE_LENGTH,
-	VK_REDIRECT_URI,
-	VK_RESPONSE_TYPE,
-	VK_SCOPES,
-} from "../constants/vk-constants";
+import { BASE_CHARS, BASE_URL, VK_APP_ID, VK_CHALLENGE_METHOD, VK_CODE_LENGTH, VK_REDIRECT_URI, VK_RESPONSE_TYPE, VK_SCOPES } from "../constants/vk-constants";
 
 function generateRandomString(length = VK_CODE_LENGTH) {
 	let result = "";

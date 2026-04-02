@@ -5,9 +5,10 @@ import _ from "lodash";
 
 import { Modules } from "constants/modules";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { useLocale } from "shared/ui/locale/hooks/use-locale";
+import { useDateLocale } from "shared/ui/locale/hooks/use-date-locale";
 
 import { useProfileFormFields } from "../model/use-profile-form-fields";
+import type { TUpdateProfileValues } from "../model/use-update-profile";
 
 import { ProfileFormLayout } from "./profile-form-layout";
 import { SerializedError } from "@reduxjs/toolkit";
@@ -20,12 +21,12 @@ interface IProfileFormProps {
 	isLoading?: boolean;
 	error?: FetchBaseQueryError | SerializedError;
 
-	updateProfile: (profile: TProfile, values: Record<string, any>) => Promise<{ data?: unknown; error?: unknown } | undefined>;
+	updateProfile: (profile: TProfile, values: TUpdateProfileValues) => Promise<{ data?: unknown; error?: unknown } | undefined>;
 }
 
 export function BntProfileForm({ profile, isLoading = false, error, updateProfile }: IProfileFormProps) {
 	const { fields } = useProfileFormFields();
-	const locale = useLocale();
+	const locale = useDateLocale();
 	const [values, setValues] = useState<Record<string, any>>({});
 	const [formError, setFormError] = useState<string>();
 	const [initials, setInitials] = useState<Record<string, any> | undefined>(undefined);

@@ -19,16 +19,7 @@ export const BntFormFileInput: FC<{
 
 	return (
 		<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-			<input
-				accept="image/*"
-				style={{ display: "none" }}
-				id="raised-button-file"
-				name="uploaded_file"
-				multiple
-				type="file"
-				ref={inputRef}
-				onChange={handleFileInputChange}
-			/>
+			<input accept="image/*" style={{ display: "none" }} id="raised-button-file" name="uploaded_file" multiple type="file" ref={inputRef} onChange={handleFileInputChange} />
 			<BntBox sx={{ textAlign: "center", width: "100%" }} className="pr-2">
 				<BntIconButton onClick={handleButtonClick} tooltip={Dictionary.EDIT}>
 					<ModeEditOutlineRounded />

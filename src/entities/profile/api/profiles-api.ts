@@ -7,7 +7,10 @@ export const profilesApi = bonutsApi.enhanceEndpoints({
 		getProfiles: { providesTags: providesList("Profiles") },
 		getProfile: { providesTags: cacheByIdResultProperty("Profiles", "CURRENT") },
 		postProfilesByIdSetActivity: { invalidatesTags: cacheByIdArgProperty("Profiles") },
-		putProfilesById: { invalidatesTags: cacheByIdArgProperty("Profiles") },
+		putProfilesById: {
+			invalidatesTags: (result, error, arg) => [...cacheByIdArgProperty("Profiles")(result, error, arg), { type: "Profiles", id: "CURRENT" }],
+		},
+		putUserLocale: { invalidatesTags: [{ type: "Profiles", id: "CURRENT" }] },
 		getProfilesById: { providesTags: cacheByIdArgProperty("Profiles") },
 		postUsersGenerateTg: { invalidatesTags: [{ type: "Profiles", id: "CURRENT" }] },
 		postProfileNotificationsByIdActivate: { invalidatesTags: [{ type: "Profiles", id: "CURRENT" }] },

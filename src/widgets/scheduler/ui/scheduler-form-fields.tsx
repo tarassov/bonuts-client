@@ -32,32 +32,16 @@ export function SchedulerFormFields() {
 			{ id: SchedulerTypes.daily, label: t(texts_e.every_month) },
 			{ id: SchedulerTypes.weekly, label: t(texts_e.every_week) },
 		],
-		[]
+		[t]
 	);
 
 	return (
 		<Grid container>
 			<Grid item xs={12} sm={12} lg={8}>
-				<BntTextInputElement
-					margin="normal"
-					fullWidth
-					error={!!errors}
-					helperText={errors.name?.message}
-					required
-					name="name"
-					label={t(texts_n.name, { capitalize: true })}
-					autoFocus
-				/>
+				<BntTextInputElement margin="normal" fullWidth error={!!errors} helperText={errors.name?.message} required name="name" label={t(texts_n.name, { capitalize: true })} autoFocus />
 			</Grid>
 			<Grid item xs={12} sm={6}>
-				<BntSelectElement
-					fullWidth
-					name="every"
-					options={types}
-					required
-					label={t(texts_c.choose_type)}
-					placeholder={t(texts_c.choose_type)}
-				/>
+				<BntSelectElement fullWidth name="every" options={types} required label={t(texts_c.choose_type)} placeholder={t(texts_c.choose_type)} />
 			</Grid>
 			{every === "daily" ? (
 				<Grid item xs={12} sm={6}>
@@ -108,16 +92,7 @@ export function SchedulerFormFields() {
 				<TimezoneSelect className="pl-2" name="timezoneValue" fullWidth stringLabel={texts_c.choose_timezone} />
 			</Grid>
 			<Grid item xs={12}>
-				<BntTextInputElement
-					margin="normal"
-					fullWidth
-					error={!!errors}
-					helperText={errors.amount?.message}
-					required
-					name="amount"
-					stringLabel={texts_a.amount}
-					type="number"
-				/>
+				<BntTextInputElement margin="normal" fullWidth error={!!errors} helperText={errors.amount?.message} required name="amount" stringLabel={texts_a.amount} type="number" />
 			</Grid>
 			<Grid item xs={12} className="mt-2">
 				<BntTextAreaInput name="comment" required fullWidth placeholder={texts_a.add_comment} stringLabel={texts_c.comment} rows={6} />

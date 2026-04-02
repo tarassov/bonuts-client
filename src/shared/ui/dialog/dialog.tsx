@@ -24,13 +24,5 @@ export function BntDialog({ handleClose, modal, preventCloseOnBackDropClick, isL
 		},
 		[handleClose, modal, preventCloseOnBackDropClick]
 	);
-	return (
-		<DialogStyled
-			{...sharedProps}
-			onClose={onClose}
-			fullScreen={fullScreen && !isLoading && modal.allowFullscreen}
-			isLoading={isLoading}
-			isTop={isTop}
-		/>
-	);
+	return <DialogStyled {...sharedProps} onClose={onClose} fullScreen={fullScreen && !isLoading && modal.allowFullscreen} isLoading={isLoading} isTop={isTop} />;
 }

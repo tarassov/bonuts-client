@@ -17,13 +17,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 	translator?: (response: GetResultType<Endpoint>) => Array<TModel>;
 }) => {
 	const { profilerStart, profilerStop } = usePerformance(`apiTranslator for ${props.endpoint.name}`, 0);
-	const {
-		endpoint,
-		args,
-		pollingInterval = 1000,
-		translator = (response: GetResultType<Endpoint>) => response as Array<TModel>,
-		skip,
-	} = props;
+	const { endpoint, args, pollingInterval = 1000, translator = (response: GetResultType<Endpoint>) => response as Array<TModel>, skip } = props;
 
 	const [objects, setObjects] = useState<Array<TModel>>([]);
 
@@ -44,14 +38,14 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 
 	useEffect(() => {
 		if (!data) {
-			setObjects(() => []);
+			setObjects((prevObjects) => (_.isEqual(prevObjects, []) ? prevObjects : []));
 		} else {
 			profilerStart();
 			const translated = translator(data);
-			if (!_.isEqual(objects, translated)) setObjects(translated);
+			setObjects((prevObjects) => (_.isEqual(prevObjects, translated) ? prevObjects : translated));
 			profilerStop();
 		}
-	}, [data]);
+	}, [data, profilerStart, profilerStop, translator]);
 
 	return {
 		objects,

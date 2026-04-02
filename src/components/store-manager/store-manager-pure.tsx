@@ -32,14 +32,7 @@ export const StoreManagerPure: FC<StoreManagerPureProps> = ({ donuts, onCreateCl
 	if (!donuts) return null;
 	return (
 		<BntStack direction="column" className="height-100">
-			<BntTabs
-				value={value}
-				onChange={handleChange}
-				indicatorColor="primary"
-				textColor="primary"
-				variant="fullWidth"
-				aria-label="donuts tabs"
-			>
+			<BntTabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="fullWidth" aria-label="donuts tabs">
 				<BntTab label={translate("Active donuts")} tabValue={0} />
 				<BntTab label={translate("Not active donuts")} tabValue={1} />
 			</BntTabs>

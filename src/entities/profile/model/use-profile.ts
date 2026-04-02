@@ -9,6 +9,7 @@ import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { useCurrentProfile } from "@/shared/model/auth";
 
+import type { TUpdateProfileValues } from "./use-update-profile";
 import { useUpdateProfile } from "./use-update-profile";
 import type { TProfile } from "@/types/model";
 
@@ -26,7 +27,7 @@ export const useProfile = () => {
 		if (data) return apiProfileAdaptor(data);
 	}, [data]);
 
-	const updateProfile = async (newProfile: TProfile, values: Record<string, any>) => {
+	const updateProfile = async (newProfile: TProfile, values: TUpdateProfileValues) => {
 		openLoader();
 		try {
 			return await update(newProfile, values);

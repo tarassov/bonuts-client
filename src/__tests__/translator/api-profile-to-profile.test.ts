@@ -1,6 +1,7 @@
-/** biome-ignore-all lint/correctness/noUndeclaredVariables: <explanation> */
+import { afterAll, describe, expect, test } from "vitest";
+
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
-import { GetProfileApiResponse } from "services/api/bonuts-api";
+import type { GetProfileApiResponse } from "services/api/bonuts-api";
 
 import { cleanup } from "@testing-library/react";
 
@@ -33,6 +34,7 @@ const mockResponse: GetProfileApiResponse = {
 			bio: "",
 			birthdate: "2023-01-01",
 			in_date: "2023-01-01",
+			locale: "ru",
 		},
 	},
 };

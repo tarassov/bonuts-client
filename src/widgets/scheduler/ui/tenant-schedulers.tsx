@@ -43,14 +43,7 @@ export function TenantSchedulers() {
 		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }} className={!smallScreen ? "ml-4" : undefined}>
 			{!createMode ? <NewSchedulerBlock onClick={() => setCreateMode(true)} /> : null}
 			<CardWrapper className="flex-grow scroll" transparent>
-				<SchedulerList
-					schedulers={schedulers}
-					createMode={createMode}
-					closeCreateMode={() => setCreateMode(false)}
-					onCreate={onCreate}
-					onUpdate={updateScheduler}
-					onDelete={onDelete}
-				/>
+				<SchedulerList schedulers={schedulers} createMode={createMode} closeCreateMode={() => setCreateMode(false)} onCreate={onCreate} onUpdate={updateScheduler} onDelete={onDelete} />
 			</CardWrapper>
 		</BntStack>
 	);

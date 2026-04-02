@@ -49,13 +49,7 @@ export function BntDialogContainer() {
 						<BntBox className="bnt-dialog-box" sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}>
 							{modal.hasTopMenu && !fullScreen ? (
 								<>
-									<BntStack
-										className="p-3"
-										direction="row"
-										justifyContent="space-between"
-										alignItems="center"
-										sx={{ color: "success.dark" }}
-									>
+									<BntStack className="p-3" direction="row" justifyContent="space-between" alignItems="center" sx={{ color: "success.dark" }}>
 										<BntTypography variant="h5">{title}</BntTypography>
 										<BntIconButton onClick={() => handleClose(modal.modalKey, modal.name)}>
 											<CloseOutlined />

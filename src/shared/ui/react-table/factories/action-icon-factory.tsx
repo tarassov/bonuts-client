@@ -1,11 +1,4 @@
-import {
-	AddOutlined,
-	CheckCircleOutline,
-	DeleteOutlined,
-	DonutSmallOutlined,
-	EditOutlined,
-	HighlightOffOutlined,
-} from "@mui/icons-material";
+import { AddOutlined, CheckCircleOutline, DeleteOutlined, DonutSmallOutlined, EditOutlined, HighlightOffOutlined } from "@mui/icons-material";
 
 import { ActionType } from "shared/ui/react-table/types";
 

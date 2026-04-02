@@ -1,9 +1,17 @@
-import { FC, useMemo } from "react";
-import { enUS, PickersInputComponentLocaleText, ruRU } from "@mui/x-date-pickers/locales";
+import { type FC, type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { enUS, type PickersInputComponentLocaleText, ruRU } from "@mui/x-date-pickers/locales";
+
+import i18n from "i18next";
 
 import { useStorage } from "shared/lib/localStorage";
-import { LocaleContext } from "shared/ui/locale/locale-context";
+import { getBrowserLocale, normalizeLocale } from "shared/ui/locale/LocaleHelpers";
+import { DateLocaleContext, LOCALES, LocaleContext } from "shared/ui/locale/locale-context";
 import { PickerLocaleContext } from "shared/ui/locale/picker-locale-context";
+import { useNotification } from "shared/ui/notification";
+
+import { useCurrentProfile } from "@/shared/model/auth";
+
+import { profilesApi } from "@/entities/profile";
 
 import enLocale from "date-fns/locale/en-GB";
 import kkLocale from "date-fns/locale/kk";
@@ -11,42 +19,73 @@ import ruLocale from "date-fns/locale/ru";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 
 const LOCALE_STORAGE_KEY = "locale";
-enum LOCALES {
-	en = "en",
-	kk = "kk",
-	ru = "ru",
-}
+
 type TProfileStorageConfig = { locale: LOCALES };
 
-export const getDateLocale = () => {
-	const browserLocale = (navigator.language || LOCALES.en).toLowerCase();
+export const LocaleProvider: FC<{ children: ReactNode }> = ({ children }) => {
+	const [storedLocale, setStoredLocale] = useStorage<TProfileStorageConfig, typeof LOCALE_STORAGE_KEY>(LOCALE_STORAGE_KEY, getBrowserLocale());
+	const { profile } = useCurrentProfile();
+	const { showResponseError } = useNotification();
+	const [putUserLocale] = profilesApi.usePutUserLocaleMutation();
+	const [optimisticLocale, setOptimisticLocale] = useState<LOCALES | null>(null);
 
-	if (browserLocale.startsWith(LOCALES.kk)) return LOCALES.kk;
-	if (browserLocale.startsWith(LOCALES.ru)) return LOCALES.ru;
+	const profileLocale = useMemo(() => {
+		return profile?.locale ? normalizeLocale(profile.locale) : null;
+	}, [profile?.locale]);
 
-	return LOCALES.en;
-};
+	const locale = optimisticLocale || profileLocale || normalizeLocale(storedLocale);
 
-export const LocaleProvider: FC<{ children: JSX.Element | Array<JSX.Element> }> = ({ children }) => {
-	const [savedLocale] = useStorage<TProfileStorageConfig, typeof LOCALE_STORAGE_KEY>(LOCALE_STORAGE_KEY, getDateLocale());
+	useEffect(() => {
+		if (!optimisticLocale) return;
+		if (profileLocale !== optimisticLocale) return;
 
-	const normalizedLocale = useMemo(() => {
-		if (savedLocale.toLowerCase().startsWith(LOCALES.kk)) return LOCALES.kk;
-		if (savedLocale.toLowerCase().startsWith(LOCALES.ru)) return LOCALES.ru;
+		setOptimisticLocale(null);
+	}, [optimisticLocale, profileLocale]);
 
-		return LOCALES.en;
-	}, [savedLocale]);
+	useEffect(() => {
+		if (storedLocale !== locale) {
+			setStoredLocale(locale);
+		}
 
-	const locale = normalizedLocale === LOCALES.kk ? kkLocale : normalizedLocale === LOCALES.ru ? ruLocale : enLocale;
+		if (i18n.resolvedLanguage !== locale) {
+			i18n.changeLanguage(locale);
+		}
+	}, [locale, setStoredLocale, storedLocale]);
+
+	const setLocale = useCallback(
+		async (nextLocale: LOCALES) => {
+			const normalizedNextLocale = normalizeLocale(nextLocale);
+
+			if (normalizedNextLocale === locale) return;
+
+			setOptimisticLocale(normalizedNextLocale);
+			setStoredLocale(normalizedNextLocale);
+
+			if (!profile) {
+				setOptimisticLocale(null);
+				return;
+			}
+
+			try {
+				await putUserLocale({ body: { locale: normalizedNextLocale } }).unwrap();
+			} catch (error) {
+				setOptimisticLocale(null);
+				showResponseError(error);
+			}
+		},
+		[locale, profile, putUserLocale, setStoredLocale, showResponseError]
+	);
+
+	const dateLocale = locale === LOCALES.kk ? kkLocale : locale === LOCALES.ru ? ruLocale : enLocale;
 	const pickerLocaleText: PickersInputComponentLocaleText<any> | undefined =
-		normalizedLocale === LOCALES.ru || normalizedLocale === LOCALES.kk
-			? ruRU.components.MuiLocalizationProvider.defaultProps.localeText
-			: enUS.components.MuiLocalizationProvider.defaultProps.localeText;
+		locale === LOCALES.ru || locale === LOCALES.kk ? ruRU.components.MuiLocalizationProvider.defaultProps.localeText : enUS.components.MuiLocalizationProvider.defaultProps.localeText;
 
 	return (
-		<LocaleContext.Provider value={locale}>
+		<LocaleContext.Provider value={{ locale, setLocale }}>
 			<PickerLocaleContext.Provider value={pickerLocaleText}>
-				<DateFnsProvider adapterLocale={locale}>{children}</DateFnsProvider>
+				<DateLocaleContext.Provider value={dateLocale}>
+					<DateFnsProvider adapterLocale={dateLocale}>{children}</DateFnsProvider>
+				</DateLocaleContext.Provider>
 			</PickerLocaleContext.Provider>
 		</LocaleContext.Provider>
 	);
