@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { deepEqual } from "fast-equals";
 import _ from "lodash";
 
-import { RootState, store, useAppDispatch, useAppSelector } from "services/redux/store/store";
+import { store, useAppDispatch } from "services/redux/store/store";
 
 import { USE_POLLING_INTERVAL } from "@/app/config";
 import { GetArgsType, GetResultType, TEndpoint, TPageable } from "@/types/api/api";
@@ -18,20 +18,6 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: End
 	const [currentPage, setCurrentPage] = useState(0);
 	const [hasNew, setHasNew] = useState(false);
 	const [hasNext, setHasNext] = useState(false);
-	//
-	// useEffect(() => {
-	// 	console.log(restArgs);
-	// 	console.log(queryArgs);
-	// 	if (!_.isEqual(restArgs, queryArgs)) setQueryArgs(restArgs);
-	// 	if (!_.isEqual(restArgs, queryArgs) && currentPage > 1) {
-	// 		setQueryArgs(restArgs);
-	// 		setCurrentPage(1);
-	// 		setPages([]);
-	// 		// setResults([]);
-	// 		// setTemp(undefined);
-	// 		// setHasNext(false);
-	// 	}
-	// }, [restArgs, queryArgs, currentPage]);
 
 	const { data, isLoading, isSuccess } = endpoint.useQuery(
 		{
@@ -55,9 +41,10 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: End
 		}
 	}, [currentPage, data]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		setCurrentPage(args.page || 0);
-	}, [args.page]);
+	}, []);
 
 	useEffect(() => {
 		return () => {
@@ -69,13 +56,15 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: End
 		setCurrentPage(currentPage + 1);
 	}, [currentPage]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		if (currentPage > 1) {
 			const result = dispatch(endpoint.initiate({ ...args, page: currentPage }));
 			setResults((prev) => [...prev, result]);
 		}
-	}, [args, currentPage, dispatch, endpoint]);
+	}, [currentPage]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		if (currentPage > 1) {
 			const rootState = store.getState();
@@ -90,8 +79,9 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: End
 			}
 			if (Object.keys(newPages).length) setPages({ ...pages, ...newPages });
 		}
-	}, [args, currentPage, data, endpoint, pages]);
+	}, [results, args]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <old code>
 	useEffect(() => {
 		if (isSuccess) {
 			// if only one page is loaded then update immediately
@@ -105,7 +95,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: End
 				// setHasNew(true);
 			}
 		}
-	}, [data, isSuccess, pages, queryArgs, results]);
+	}, [data, isSuccess]);
 
 	useEffect(() => {
 		if (!temp) setHasNew(false);
