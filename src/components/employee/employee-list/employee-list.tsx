@@ -3,9 +3,9 @@ import { Grid } from "@mui/material";
 
 import { EmployeeCard } from "components/employee/employee-card/employee-card";
 import { getEmployeeSearchButtons } from "components/employee/get-employee-search-buttons";
-import { SearchString } from "components/search-string/search-string";
 import { Modules } from "constants/modules";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { SearchString } from "shared/ui/search-string";
 import { emptyFunction } from "utils/empty-function";
 
 import { useEmployeeList } from "@/entities/profile/model/use-employee-list";

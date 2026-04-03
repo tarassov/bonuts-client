@@ -1,4 +1,5 @@
 export enum texts_t {
+	team_star = "team star",
 	teams_you_can_join = "teams you can join",
 	to = "to",
 	to_profile = "to profile",

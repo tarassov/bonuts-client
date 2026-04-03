@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Android, Comment, Edit, Favorite, Lock } from "@mui/icons-material";
-import { Avatar, Box, Button, IconButton, TextField, Tooltip, Typography } from "@mui/material";
+import { Avatar, Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
 
 import classNames from "classnames";
 
-import { BntStyledOperationText } from "components/opearation-text/styled-operation-text";
 import { Dictionary } from "constants/dictionary";
+import { texts_n } from "services/localization/texts";
 import { UserLogic } from "shared/lib";
 import { OnlineBadge } from "shared/ui/badge/online-badge";
 import { BntBox } from "shared/ui/box/bnt-box";
@@ -22,6 +22,7 @@ import { useEventLogic } from "../model/use-event-logic";
 
 import { EVENT_CARD_CLASSES } from "./classes";
 import { EventCardHeader } from "./event-card-header";
+import { EventOperationText } from "./event-operation-text";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { useEventUi } from "logic/ui/use-event-ui";
 import { TPost } from "@/types/model/post";
@@ -29,7 +30,7 @@ import { TPost } from "@/types/model/post";
 export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
 
 export function EventCard({ post, className, preventNewModal }: EventCardProps) {
-	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, liked, editable, date_string_utc } = post;
+	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, editable, date_string_utc } = post;
 	const { user_name, user_avatar, position } = profile;
 	const isUserOnline = UserLogic.isOnline(profile.last_seen_at);
 	const { t } = useTranslation();
@@ -38,6 +39,9 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 	const { toggleLike, updateEvent } = useEventLogic();
 	const { showEmployeeModal } = useEmployeeUi();
 	const { showDetailedPost } = useEventUi(post);
+	const likesCount = likes.length;
+	const commentsCount = comments_count || 0;
+	const notification = !isPublic;
 
 	const handleSubmitEdit = (e: any) => {
 		updateEvent(post, { content: e.target.content.value });
@@ -65,8 +69,9 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 	}, [edit]);
 
 	return (
-		<BntCard className={className}>
+		<BntCard className={classNames(className, EVENT_CARD_CLASSES.cardRoot)}>
 			<EventCardHeader
+				notification={notification}
 				avatar={
 					<>
 						{isPublic && (
@@ -82,37 +87,34 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 					</>
 				}
 				action={
-					<Tooltip title={isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)}>
-						<IconButton aria-label={(!isPublic ? t(Dictionary.ONLY_YOU_CAN_SEE_IT) : t(Dictionary.PROFILE)) || Dictionary.PROFILE}>{!isPublic && <Lock />}</IconButton>
-					</Tooltip>
+					notification ? (
+						<Tooltip title={t(Dictionary.ONLY_YOU_CAN_SEE_IT)}>
+							<IconButton aria-label={t(Dictionary.ONLY_YOU_CAN_SEE_IT) || Dictionary.ONLY_YOU_CAN_SEE_IT}>
+								<Lock />
+							</IconButton>
+						</Tooltip>
+					) : null
 				}
-				title={isPublic ? title : "Сервис бот"}
+				title={notification ? t(texts_n.notification, { capitalize: true }) : title}
 				subheader={isPublic && position}
 			/>
 
 			<BntCardContent className={EVENT_CARD_CLASSES.cardContent}>
 				{post.operation && (
-					<BntStyledOperationText
+					<EventOperationText
+						variant="event"
 						operation={post.operation}
 						onFromProfileClick={() => showEmployeeModal(post.operation?.from_profile?.id)}
 						onToProfileClick={() => showEmployeeModal(post.operation?.to_profile?.id)}
 					/>
 				)}
 				{!edit && (
-					<BntTypography variant="body2" isPreformatted>
+					<BntTypography variant="body2" isPreformatted className={EVENT_CARD_CLASSES.cardBodyText}>
 						{content}
 					</BntTypography>
 				)}
 				{edit && (
-					<Box
-						component="form"
-						onSubmit={handleSubmitEdit}
-						sx={{
-							"& .MuiTextField-root": { m: 1, width: "90%" },
-						}}
-						noValidate
-						autoComplete="off"
-					>
+					<Box component="form" onSubmit={handleSubmitEdit} className={EVENT_CARD_CLASSES.cardEditForm} noValidate autoComplete="off">
 						<TextField
 							autoFocus
 							margin="dense"
@@ -132,45 +134,37 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 				)}
 			</BntCardContent>
 
-			<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
-				{likeable && (
-					<>
-						<IconButton
-							aria-label="Add to favorites"
-							onClick={handleLike}
-							className={classNames({
-								[EVENT_CARD_CLASSES.liked]: liked,
-							})}
-						>
-							<Favorite />
-						</IconButton>
-						<BntBox
-							className={classNames(EVENT_CARD_CLASSES.iconCaption, {
-								[EVENT_CARD_CLASSES.liked]: liked,
-							})}
-						>
-							{likes.length > 0 && likes.length}
+			{!notification ? (
+				<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
+					{likeable && (
+						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
+							<IconButton aria-label="Add to favorites" onClick={handleLike} className={EVENT_CARD_CLASSES.cardActionButton}>
+								<Favorite />
+							</IconButton>
+							<BntBox className={EVENT_CARD_CLASSES.iconCaption}>{likesCount > 0 && likesCount}</BntBox>
 						</BntBox>
-					</>
-				)}
-				{commentable && (
-					<>
-						<IconButton aria-label="Comment" onClick={handleComment}>
-							<Comment />
-						</IconButton>
-						<BntBox className={classNames(EVENT_CARD_CLASSES.iconCaption)}>{comments_count !== undefined && comments_count !== 0 && comments_count}</BntBox>
-					</>
-				)}
-				{editable && (
-					<IconButton onClick={handleEdit} aria-label="edit">
-						<Edit />
-					</IconButton>
-				)}
+					)}
+					{commentable && (
+						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
+							<IconButton aria-label="Comment" onClick={handleComment} className={EVENT_CARD_CLASSES.cardActionButton}>
+								<Comment />
+							</IconButton>
+							<BntBox className={EVENT_CARD_CLASSES.iconCaption}>{commentsCount > 0 && commentsCount}</BntBox>
+						</BntBox>
+					)}
+					{editable && (
+						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
+							<IconButton onClick={handleEdit} aria-label="edit" className={EVENT_CARD_CLASSES.cardActionButton}>
+								<Edit />
+							</IconButton>
+						</BntBox>
+					)}
 
-				<Typography variant="caption" component="div" className={EVENT_CARD_CLASSES.cardDateCaption}>
-					{formatStringDate(date_string_utc, false, true)}
-				</Typography>
-			</BntCardActions>
+					<BntTypography variant="caption" className={EVENT_CARD_CLASSES.cardDateCaption}>
+						{formatStringDate(date_string_utc, false, true)}
+					</BntTypography>
+				</BntCardActions>
+			) : null}
 		</BntCard>
 	);
 }

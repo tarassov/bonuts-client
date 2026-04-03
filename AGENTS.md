@@ -85,6 +85,7 @@ For UI tasks, also mention:
 - If you touch code where types are imported incorrectly, fix those imports as part of the change.
 - Type aliases should start with `T`.
 - Interfaces should start with `I`.
+- Prefer boolean variables and props to use `is*`, `has*`, `can*`, or similarly explicit boolean naming.
 - Prefer defining reusable types outside the component body.
 - Prefer moving non-props component-local types out of the component body and, when it improves readability, out of the component file to reduce visual noise in the component.
 - Component props are the exception: keep component props types/interfaces in the same file as the component.
