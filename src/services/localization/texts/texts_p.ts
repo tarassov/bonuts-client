@@ -1,6 +1,7 @@
 export enum texts_p {
 	profile = "profile",
 	profiles = "profiles",
+	points_to_next_status = "points to next status",
 	price = "price",
 	previous = "previous",
 	preview = "preview",

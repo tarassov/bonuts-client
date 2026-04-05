@@ -2,9 +2,9 @@ import { FC, JSX } from "react";
 
 import { BntProfileButton } from "components/buttons/profile-button";
 import { getEmployeeSearchButtons } from "components/employee/get-employee-search-buttons";
-import { SearchString } from "components/search-string/search-string";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCard } from "shared/ui/card/card";
+import { SearchString } from "shared/ui/search-string";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";

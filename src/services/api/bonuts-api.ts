@@ -104,6 +104,8 @@ const injectedRtkApi = api.injectEndpoints({
 				params: {
 					tenant: queryArg.tenant,
 					showMine: queryArg.showMine,
+					showOnlyNotifications: queryArg.showOnlyNotifications,
+					exceptNotifications: queryArg.exceptNotifications,
 					searchText: queryArg.searchText,
 					page: queryArg.page,
 				},
@@ -119,6 +121,13 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/events/${queryArg.id}`,
 				method: "PUT",
+				body: queryArg.body,
+			}),
+		}),
+		postEventsByIdLike: build.mutation<PostEventsByIdLikeApiResponse, PostEventsByIdLikeApiArg>({
+			query: (queryArg) => ({
+				url: `/events/${queryArg.id}/like`,
+				method: "POST",
 				body: queryArg.body,
 			}),
 		}),
@@ -980,7 +989,7 @@ export type PutDonutsByIdApiArg = {
 		logo?: any;
 	};
 };
-export type GetEventsApiResponse = /** status 200 success */ {
+export type GetEventsApiResponse = /** status 200 excludes notifications when exceptNotifications is true */ {
 	data?: {
 		id: string;
 		type: string;
@@ -1048,6 +1057,7 @@ export type GetEventsApiResponse = /** status 200 success */ {
 				likeable_id?: number;
 			}[];
 			public: boolean;
+			is_notify: boolean;
 			position: string;
 			operation?: {
 				id: number;
@@ -1078,10 +1088,12 @@ export type GetEventsApiResponse = /** status 200 success */ {
 export type GetEventsApiArg = {
 	tenant?: string;
 	showMine?: string;
+	showOnlyNotifications?: string;
+	exceptNotifications?: string;
 	searchText?: string;
 	page?: number;
 };
-export type GetEventsByIdApiResponse = /** status 200 success */ {
+export type GetEventsByIdApiResponse = /** status 200 user can view own private event */ {
 	data?: {
 		id: string;
 		type: string;
@@ -1149,6 +1161,7 @@ export type GetEventsByIdApiResponse = /** status 200 success */ {
 				likeable_id?: number;
 			}[];
 			public: boolean;
+			is_notify: boolean;
 			position: string;
 			operation?: {
 				id: number;
@@ -1180,7 +1193,15 @@ export type GetEventsByIdApiArg = {
 	id: string;
 	tenant?: string;
 };
-export type PutEventsByIdApiResponse = /** status 200 event liked */ {
+export type PutEventsByIdApiResponse = unknown;
+export type PutEventsByIdApiArg = {
+	id: string;
+	body: {
+		content: string;
+		tenant: string;
+	};
+};
+export type PostEventsByIdLikeApiResponse = /** status 200 event unliked */ {
 	data?: {
 		data?: {
 			id: string;
@@ -1249,6 +1270,7 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 					likeable_id?: number;
 				}[];
 				public: boolean;
+				is_notify: boolean;
 				position: string;
 				operation?: {
 					id: number;
@@ -1277,10 +1299,9 @@ export type PutEventsByIdApiResponse = /** status 200 event liked */ {
 		}[];
 	};
 };
-export type PutEventsByIdApiArg = {
+export type PostEventsByIdLikeApiArg = {
 	id: string;
 	body: {
-		like: boolean;
 		tenant: string;
 	};
 };
@@ -1353,6 +1374,7 @@ export type PostEventsByIdCommentsApiResponse = /** status 200 new comment creat
 					likeable_id?: number;
 				}[];
 				public: boolean;
+				is_notify: boolean;
 				position: string;
 				operation?: {
 					id: number;
@@ -4052,6 +4074,7 @@ export const {
 	useGetEventsQuery,
 	useGetEventsByIdQuery,
 	usePutEventsByIdMutation,
+	usePostEventsByIdLikeMutation,
 	usePostEventsByIdCommentsMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,

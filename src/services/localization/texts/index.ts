@@ -20,3 +20,5 @@ export { texts_s } from "services/localization/texts/texts_s";
 export { texts_t } from "services/localization/texts/texts_t";
 export { texts_u } from "services/localization/texts/texts_u";
 export { texts_v } from "services/localization/texts/texts_v";
+export { texts_w } from "services/localization/texts/texts_w";
+export { texts_y } from "services/localization/texts/texts_y";

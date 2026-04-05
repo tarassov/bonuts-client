@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { isFunction } from "lodash";
@@ -16,7 +17,7 @@ interface IBntDialogProviderProps<T extends Record<string, any>> {
 	config: TDialogConfig<T>;
 	path: string;
 	addressPath: string; // could be different for dialog path's
-	children: JSX.Element | Array<JSX.Element>;
+	children: ReactNode;
 	defaultModal?: Extract<keyof T, string>;
 	defaultModalData?: any;
 }

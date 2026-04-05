@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { useEffect, useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -24,7 +25,7 @@ interface ISwitchRoutesProps {
 	redirects?: Array<TRedirect>;
 }
 
-const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?: keyof TModalConfig, modalData?: any): JSX.Element => {
+const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?: keyof TModalConfig, modalData?: any): ReactElement => {
 	if (route.public) {
 		return route.component;
 	}

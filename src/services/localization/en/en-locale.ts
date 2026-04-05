@@ -1,4 +1,4 @@
-import { texts_a, texts_e, texts_h, texts_l, texts_n, texts_o, texts_s, texts_t, texts_v } from "services/localization/texts";
+import { texts_a, texts_e, texts_f, texts_h, texts_l, texts_n, texts_o, texts_p, texts_r, texts_s, texts_t, texts_v, texts_y } from "services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -34,6 +34,7 @@ export const enLocale = {
 
 		// Tooltips
 		[texts_l.login_page_title]: "Sign in to Bonuts",
+		[texts_l.leaders_of_the_week]: "Leaders of the week",
 		[texts_l.login_page_subtitle]: "Recognition system for your team",
 		[texts_l.login_page_hero_title]: "Recognition starts here",
 		[texts_l.login_page_hero_subtitle]: "Build a culture where appreciation is visible.",
@@ -64,6 +65,20 @@ export const enLocale = {
 		[texts_v.vk_notifications_disabled_link]: "here",
 		[texts_v.vk_notifications_disabled_suffix]: "then enable notifications.",
 		[texts_e.email_address_is_required]: "Email is required",
+		[texts_f.filter]: "Filter",
+		[texts_n.notification]: "Notification",
+		[texts_n.no_rank_yet]: "No rank yet",
+		[texts_n.no_weekly_leaders_yet]: "No weekly leaders yet",
+		[texts_n.next_status]: "Next status",
 		[texts_n.notifications]: "Notifications",
+		[texts_p.points_to_next_status]: "{{count}} points to {{status}}",
+		[texts_r.recognized_voice]: "Recognized voice",
+		[texts_s.service_bot]: "Service bot",
+		[texts_s.social_newcomer]: "Social newcomer",
+		[texts_s.status]: "Status",
+		[texts_s.steady_contributor]: "Steady contributor",
+		[texts_t.team_star]: "Team star",
+		[texts_y.your_position]: "Your position",
+		[texts_y.your_status]: "Your status",
 	},
 };

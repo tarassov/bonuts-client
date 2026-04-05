@@ -21,6 +21,7 @@ import {
 	texts_t,
 	texts_u,
 	texts_v,
+	texts_y,
 } from "services/localization/texts";
 
 import { reportsRu } from "@/features/reports";
@@ -120,6 +121,7 @@ export const ruLocale = {
 		[texts_v.vk_connecting_description]: "Проверяем доступ и создаём сессию. Обычно это занимает пару секунд.",
 		[texts_v.vk_do_not_close]: "Не закрывайте это окно.",
 		[texts_l.login_page_title]: "Вход",
+		[texts_l.leaders_of_the_week]: "Лидеры недели",
 		[texts_l.login_page_subtitle]: "Система благодарностей для вашей команды",
 		[texts_l.login_page_hero_title]: "Система благодарностей для команды",
 		[texts_l.login_page_hero_subtitle]: "Отмечайте вклад коллег\nи усиливайте командную культуру",
@@ -145,6 +147,20 @@ export const ruLocale = {
 		[texts_v.vk_notifications_disabled_prefix]: "Напишите сообщение в группу VK",
 		[texts_v.vk_notifications_disabled_link]: "здесь",
 		[texts_v.vk_notifications_disabled_suffix]: "затем включите уведомления.",
+		[texts_f.filter]: "Фильтр",
+		[texts_n.notification]: "Уведомление",
+		[texts_n.no_rank_yet]: "Пока без позиции",
+		[texts_n.no_weekly_leaders_yet]: "На этой неделе лидеров пока нет",
+		[texts_n.next_status]: "Следующий статус",
+		[texts_p.points_to_next_status]: "Ещё {{count}} баллов до статуса «{{status}}»",
+		[texts_r.recognized_voice]: "Заметный голос",
+		[texts_s.service_bot]: "Сервис бот",
+		[texts_s.social_newcomer]: "Новый участник",
+		[texts_s.status]: "Статус",
+		[texts_s.steady_contributor]: "Стабильный вклад",
+		[texts_t.team_star]: "Звезда команды",
+		[texts_y.your_position]: "Ваша позиция",
+		[texts_y.your_status]: "Ваш статус",
 
 		// D
 		"Date of birth": "Дата рождения",

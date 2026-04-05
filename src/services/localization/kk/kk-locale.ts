@@ -21,6 +21,7 @@ import {
 	texts_t,
 	texts_u,
 	texts_v,
+	texts_y,
 } from "services/localization/texts";
 
 import { reportsKk } from "@/features/reports/config/reports-kk";
@@ -113,6 +114,21 @@ export const kkLocale = {
 		[texts_c.choose_employees]: "қызметкерлерді таңдаңыз",
 		[texts_c.checking_auth]: "авторизация тексерілуде",
 		[texts_c.connect]: "қосу",
+		[texts_f.filter]: "Сүзгі",
+		[texts_l.leaders_of_the_week]: "Апта көшбасшылары",
+		[texts_n.notification]: "Хабарлама",
+		[texts_n.no_rank_yet]: "Әзірге орын жоқ",
+		[texts_n.no_weekly_leaders_yet]: "Бұл аптада әлі көшбасшылар жоқ",
+		[texts_n.next_status]: "Келесі мәртебе",
+		[texts_p.points_to_next_status]: "{{status}} мәртебесіне дейін {{count}} ұпай қалды",
+		[texts_r.recognized_voice]: "Танымал дауыс",
+		[texts_s.service_bot]: "Сервис бот",
+		[texts_s.social_newcomer]: "Жаңа қатысушы",
+		[texts_s.status]: "Мәртебе",
+		[texts_s.steady_contributor]: "Тұрақты үлес",
+		[texts_t.team_star]: "Команда жұлдызы",
+		[texts_y.your_position]: "Сіздің орныңыз",
+		[texts_y.your_status]: "Сіздің мәртебеңіз",
 
 		// D
 		"Date of birth": "Дата рождения",

@@ -1,4 +1,5 @@
-import { createContext, FC } from "react";
+import type { FC, ReactNode } from "react";
+import { createContext } from "react";
 
 import { emptyFunction } from "utils/empty-function";
 
@@ -12,7 +13,7 @@ export const BntFormInitialsValuesContext = createContext<Record<string, any>>({
 export const BntFormContextProvider: FC<{
 	values: Record<string, TFormValue>;
 	initialValues?: Record<string, any>;
-	children: JSX.Element | JSX.Element[];
+	children: ReactNode;
 }> = ({ children, values, initialValues = {} }) => {
 	return (
 		<BntFormValuesContext.Provider value={values}>

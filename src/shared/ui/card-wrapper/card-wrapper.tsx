@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 import classNames from "classnames";
 
@@ -6,7 +6,7 @@ import { BntCard } from "shared/ui/card/card";
 import { BntCardBody } from "shared/ui/card/card-body";
 
 export const CardWrapper: FC<{
-	children?: JSX.Element | Array<JSX.Element>;
+	children?: ReactNode;
 	transparent?: boolean;
 	className?: string;
 }> = ({ children, className, transparent }) => {
