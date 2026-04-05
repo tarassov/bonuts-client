@@ -3,18 +3,20 @@ import { styled } from "@mui/material/styles";
 
 type TEventCardHeaderProps = {
 	notification?: boolean;
+	isClickable?: boolean;
 };
 
 export const EventCardHeader = styled(CardHeader, {
-	shouldForwardProp: (prop) => prop !== "notification",
-})<TEventCardHeaderProps>(({ theme, notification }) => {
+	shouldForwardProp: (prop) => prop !== "notification" && prop !== "isClickable",
+})<TEventCardHeaderProps>(({ theme, notification, isClickable = false }) => {
 	return {
 		backgroundColor: notification ? "transparent" : theme.palette.background.paper,
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		position: "relative",
 		padding: theme.spacing(2.5, 2.5, 2),
 		marginBottom: 0,
-		alignItems: "flex-start",
+		alignItems: "center",
+		cursor: isClickable ? "pointer" : "default",
 
 		"& .MuiCardHeader-avatar": {
 			marginRight: theme.spacing(1.75),
@@ -45,6 +47,11 @@ export const EventCardHeader = styled(CardHeader, {
 			color: theme.palette.neutral.dark,
 			opacity: 0.72,
 		},
+		"&:hover": isClickable
+			? {
+					backgroundColor: theme.palette.action.hover,
+				}
+			: undefined,
 
 		"&::after": {
 			content: '""',

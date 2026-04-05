@@ -1,55 +1,74 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Android, Comment, Edit, Favorite, Lock } from "@mui/icons-material";
-import { Avatar, Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
+import { Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
 
 import classNames from "classnames";
 
-import { Dictionary } from "constants/dictionary";
-import { texts_n } from "services/localization/texts";
-import { UserLogic } from "shared/lib";
-import { OnlineBadge } from "shared/ui/badge/online-badge";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntCard } from "shared/ui/card/card";
-import { BntCardActions } from "shared/ui/card/card-actions";
-import { BntCardContent } from "shared/ui/card/card-content";
-import { BntTypography } from "shared/ui/typography/typography";
-import { emptyFunction } from "utils/empty-function";
-import { focusInput } from "utils/focus-input";
-import { formatStringDate } from "utils/format-string-date";
+import { UserLogic } from "@/shared/lib";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntCard } from "@/shared/ui/card/card";
+import { BntCardActions } from "@/shared/ui/card/card-actions";
+import { BntCardContent } from "@/shared/ui/card/card-content";
+import { useNotification } from "@/shared/ui/notification";
+import { ProfileAvatar } from "@/shared/ui/profile-avatar";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { useEventLogic } from "../model/use-event-logic";
 
 import { EVENT_CARD_CLASSES } from "./classes";
 import { EventCardHeader } from "./event-card-header";
 import { EventOperationText } from "./event-operation-text";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
-import { useEventUi } from "logic/ui/use-event-ui";
-import { TPost } from "@/types/model/post";
+import { Dictionary } from "@/constants/dictionary";
+import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
+import { useEventUi } from "@/logic/ui/use-event-ui";
+import { texts_n } from "@/services/localization/texts";
+import type { TPost } from "@/types/model/post";
+import { emptyFunction } from "@/utils/empty-function";
+import { focusInput } from "@/utils/focus-input";
+import { formatStringDate } from "@/utils/format-string-date";
 
 export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
 
 export function EventCard({ post, className, preventNewModal }: EventCardProps) {
-	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, editable, date_string_utc } = post;
+	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, liked, editable, date_string_utc } = post;
 	const { user_name, user_avatar, position } = profile;
 	const isUserOnline = UserLogic.isOnline(profile.last_seen_at);
 	const { t } = useTranslation();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
 	const { toggleLike, updateEvent } = useEventLogic();
+	const { showResponseError } = useNotification();
 	const { showEmployeeModal } = useEmployeeUi();
 	const { showDetailedPost } = useEventUi(post);
 	const likesCount = likes.length;
 	const commentsCount = comments_count || 0;
 	const notification = !isPublic;
+	const canOpenProfile = isPublic;
 
-	const handleSubmitEdit = (e: any) => {
-		updateEvent(post, { content: e.target.content.value });
-		setEdit(false);
+	const handleSubmitEdit = async (e: any) => {
 		e.preventDefault();
+
+		try {
+			await updateEvent(post, { content: e.target.content.value });
+			setEdit(false);
+		} catch (error) {
+			showResponseError(error);
+		}
 	};
-	const handleLike = () => toggleLike(post);
+	const handleLike = async () => {
+		try {
+			await toggleLike(post);
+		} catch (error) {
+			showResponseError(error);
+		}
+	};
 	const handleComment = !preventNewModal ? showDetailedPost : emptyFunction;
+	const handleHeaderClick = () => {
+		if (!canOpenProfile) return;
+
+		showEmployeeModal(profile.id);
+	};
 	const handleEdit = (e: any) => {
 		e.preventDefault();
 		setEdit(() => !edit);
@@ -72,18 +91,24 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 		<BntCard className={classNames(className, EVENT_CARD_CLASSES.cardRoot)}>
 			<EventCardHeader
 				notification={notification}
+				isClickable={canOpenProfile}
+				onClick={canOpenProfile ? handleHeaderClick : undefined}
+				role={canOpenProfile ? "button" : undefined}
+				tabIndex={canOpenProfile ? 0 : undefined}
+				onKeyDown={
+					canOpenProfile
+						? (e) => {
+								if (e.key === "Enter" || e.key === " ") {
+									e.preventDefault();
+									handleHeaderClick();
+								}
+							}
+						: undefined
+				}
 				avatar={
 					<>
-						{isPublic && (
-							<OnlineBadge online={isUserOnline}>
-								<Avatar src={user_avatar?.thumb?.url || undefined} alt={user_name || undefined} />
-							</OnlineBadge>
-						)}
-						{!isPublic && (
-							<Avatar>
-								<Android />
-							</Avatar>
-						)}
+						{isPublic && <ProfileAvatar avatarUrl={user_avatar?.thumb?.url} name={user_name} hasOnlineBadge isOnline={isUserOnline} />}
+						{!isPublic && <ProfileAvatar fallback={<Android />} />}
 					</>
 				}
 				action={
@@ -138,7 +163,13 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 				<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
 					{likeable && (
 						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
-							<IconButton aria-label="Add to favorites" onClick={handleLike} className={EVENT_CARD_CLASSES.cardActionButton}>
+							<IconButton
+								aria-label="Add to favorites"
+								onClick={handleLike}
+								className={classNames(EVENT_CARD_CLASSES.cardActionButton, {
+									[EVENT_CARD_CLASSES.liked]: liked,
+								})}
+							>
 								<Favorite />
 							</IconButton>
 							<BntBox className={EVENT_CARD_CLASSES.iconCaption}>{likesCount > 0 && likesCount}</BntBox>

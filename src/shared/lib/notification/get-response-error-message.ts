@@ -1,4 +1,4 @@
-import { present } from "shared/lib/type-guards";
+import { present } from "@/shared/lib/type-guards";
 
 import type { SerializedError } from "@reduxjs/toolkit";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
@@ -47,6 +47,14 @@ const getObjectErrorMessage = (value: unknown) => {
 
 		if (error) {
 			return error;
+		}
+	}
+
+	if ("errors" in value) {
+		const errors = getStringValue(value.errors);
+
+		if (errors) {
+			return errors;
 		}
 	}
 

@@ -124,7 +124,7 @@ export const LoginPage: FC = () => {
 					})}
 				>
 					<AuthHero title={translate(texts_l.login_page_hero_title)} subtitle={translate(texts_l.login_page_hero_subtitle)} socialProof={translate(texts_l.login_page_social_proof)} />
-					<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form}>
+					<Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="on" className={styles.form}>
 						<AuthFormPanel
 							translate={translate}
 							register={register}

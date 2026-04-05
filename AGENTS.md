@@ -72,6 +72,8 @@ For UI tasks, also mention:
 - Follow Feature-Sliced Design when making changes in this repository.
 - Prefer public interfaces for cross-slice imports.
     - Good: `@/entities/profile`
+    - Good: `@/shared/ui/profile-avatar`
+    - Avoid: bare outer aliases like `shared/...`, `entities/...`, `features/...`
     - Avoid: imports from internal files of another slice
 - When touching existing code, try to move it closer to FSD-compliant structure instead of adding new violations.
 - If you notice an FSD violation that is relevant to the task, call it out explicitly in your response.
@@ -83,6 +85,8 @@ For UI tasks, also mention:
 
 - Import types using `import type` whenever possible.
 - If you touch code where types are imported incorrectly, fix those imports as part of the change.
+- For outer imports from `src`, prefer the `@/…` alias form.
+- Do not introduce new bare top-level aliases like `shared/...`, `entities/...`, `features/...`, `widgets/...`, `services/...`, or similar when `@/...` can be used.
 - Type aliases should start with `T`.
 - Interfaces should start with `I`.
 - Prefer boolean variables and props to use `is*`, `has*`, `can*`, or similarly explicit boolean naming.

@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Android } from "@mui/icons-material";
-import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 
 import classNames from "classnames";
 
@@ -10,6 +10,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardActions } from "shared/ui/card/card-actions";
 import { BntCardContent } from "shared/ui/card/card-content";
+import { ProfileAvatar } from "shared/ui/profile-avatar";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 import { formatStringDate } from "utils/format-string-date";
@@ -27,12 +28,7 @@ export const CommentCard: FC<{ comment: TComment; className?: string }> = ({ com
 			<CommentCardHeader
 				avatar={
 					<>
-						{profile?.user_avatar && <Avatar src={profile?.user_avatar?.thumb?.url || undefined} alt={profile.user_name || undefined} />}
-						{!profile?.user_avatar && (
-							<Avatar>
-								<Android />
-							</Avatar>
-						)}
+						<ProfileAvatar avatarUrl={profile?.user_avatar?.thumb?.url} name={profile?.user_name} fallback={<Android />} />
 					</>
 				}
 				action={

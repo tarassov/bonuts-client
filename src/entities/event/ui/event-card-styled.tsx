@@ -86,6 +86,10 @@ export const EventCardStyled = styled(EventCard, {
 				opacity: 1,
 			},
 		},
+		[cl(EVENT_CARD_CLASSES.liked)]: {
+			color: theme.palette.primary.main,
+			opacity: 1,
+		},
 		[cl(EVENT_CARD_CLASSES.cardBodyText)]: {
 			maxWidth: "46ch",
 			lineHeight: 1.7,

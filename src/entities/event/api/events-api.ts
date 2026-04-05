@@ -1,13 +1,12 @@
-import { GetEventsApiResponse } from "services/api/bonuts-api";
-import { getPaginator } from "services/api/helpers/get-paginator";
-import { bonutsApiOverride } from "services/api/injected-api";
-import { updateQueryData } from "services/api/update-query-data";
-import { cacheByIdArgProperty } from "services/redux/utils/rtk-cache-utils";
-
+import type { GetEventsApiResponse } from "@/services/api/bonuts-api";
+import { bonutsApi } from "@/services/api/bonuts-api";
+import { getPaginator } from "@/services/api/helpers/get-paginator";
+import { updateQueryData } from "@/services/api/update-query-data";
+import { cacheByIdArgProperty } from "@/services/redux/utils/rtk-cache-utils";
 import { TPageable } from "@/types/api/api";
 
 // noinspection TypeScriptValidateJSTypes
-export const eventsApi = bonutsApiOverride.enhanceEndpoints({
+export const eventsApi = bonutsApi.enhanceEndpoints({
 	addTagTypes: ["Event"],
 	endpoints: {
 		getEvents(endpoint) {
@@ -27,7 +26,17 @@ export const eventsApi = bonutsApiOverride.enhanceEndpoints({
 				});
 			},
 		},
+		postEventsByIdLike: {
+			async onQueryStarted(_, { dispatch, queryFulfilled, getState }) {
+				const response = await queryFulfilled;
+				const events = eventsApi.util.selectInvalidatedBy(getState(), ["Event"]);
+				events.forEach((event) => {
+					const { endpointName, originalArgs } = event;
+					if (endpointName === "getEvents") dispatch(updateQueryData(endpointName, originalArgs, response));
+				});
+			},
+		},
 		getEventsById: { providesTags: cacheByIdArgProperty("Event") },
 	},
 });
-export const { useGetEventsByIdQuery } = eventsApi;
+export const { useGetEventsByIdQuery, usePostEventsByIdLikeMutation } = eventsApi;
