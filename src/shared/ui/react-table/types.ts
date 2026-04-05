@@ -1,3 +1,5 @@
+import type { ReactElement } from "react";
+
 import { CellContext, FilterFn } from "@tanstack/react-table";
 import { TBaseModel } from "@/types/model";
 
@@ -22,7 +24,7 @@ export enum ActionType {
 
 export type ColumnHeader = {
 	headerType: HeaderType;
-	value?: string | JSX.Element;
+	value?: string | ReactElement;
 };
 
 export type TTableColumn<T extends TBaseModel> = {
@@ -30,14 +32,14 @@ export type TTableColumn<T extends TBaseModel> = {
 	cellType?: CellType;
 	header?: ColumnHeader;
 	enableSorting?: boolean;
-	cell?: (info?: CellContext<T, string>) => JSX.Element;
+	cell?: (info?: CellContext<T, string>) => ReactElement;
 	enableColumnFilter?: boolean;
 	filterFn?: FilterFn<T>;
 };
 export type TTableAction = {
 	onClick?: (id?: number) => void;
 	actionType?: ActionType;
-	icon?: JSX.Element;
+	icon?: ReactElement;
 };
 
 export type TTableConfig<T extends TBaseModel> = {

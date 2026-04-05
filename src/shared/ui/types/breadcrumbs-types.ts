@@ -1,8 +1,10 @@
+import type { ReactElement } from "react";
+
 export type TBntBreadcrumbItem = {
 	link?: string;
 	onClick?: (item: TBntBreadcrumbItem) => void;
 	label: string;
-	icon?: JSX.Element;
+	icon?: ReactElement;
 	key: string;
 	noTranslation?: boolean;
 };

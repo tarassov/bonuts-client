@@ -1,0 +1,5 @@
+@use "../../../app/ui/mixins" as mixins;
+
+.scrollArea {
+	@include mixins.hide-scroll;
+}

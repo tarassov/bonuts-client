@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Grid, useMediaQuery } from "@mui/material";
-import { Theme } from "@mui/material/styles";
+import { Grid2 as Grid, useMediaQuery } from "@mui/material";
+import type { Theme } from "@mui/material/styles";
+import type { SystemStyleObject } from "@mui/system";
 
 import classnames from "classnames";
 
@@ -18,8 +19,8 @@ export const StatisticsDashboard = () => {
 	useEffect(() => {
 		if (matchesSmUp) setFullScreenValue(undefined);
 	}, [matchesSmUp]);
-	const getScreenProps = (name: string) => (fullscreenValue !== name ? { md: 5, lg: 4, sm: 12, xs: 12 } : { md: 12, lg: 12, sm: 12, xs: 12 });
-	const getDisplayProps = (name: string) => {
+	const getScreenProps = (name: string) => (fullscreenValue !== name ? { xs: 12, sm: 12, md: 5, lg: 4 } : { xs: 12, sm: 12, md: 12, lg: 12 });
+	const getDisplayProps = (name: string): SystemStyleObject<Theme> => {
 		if (!matchesSmUp) {
 			return {};
 		}
@@ -42,7 +43,7 @@ export const StatisticsDashboard = () => {
 					transition: "max-width 0.5s ease-out,opacity 0.5s ease-out",
 				};
 	};
-	const getMaxHeight = (name: string) => {
+	const getMaxHeight = (name: string): SystemStyleObject<Theme> => {
 		if (matchesSmUp) {
 			return fullscreenValue === name
 				? { maxHeight: "100%" }
@@ -56,12 +57,7 @@ export const StatisticsDashboard = () => {
 	return (
 		<div className="position-relative height-100">
 			<Grid container className={classnames("p-2", { "height-100": matchesSmUp })} alignItems="stretch" gap={4} sx={{ position: "relative" }} onClick={() => setFullScreenValue(undefined)}>
-				<Grid
-					item
-					{...getScreenProps("balance")}
-					// @ts-ignore
-					sx={{ ...getMaxHeight("balance"), ...getDisplayProps("balance") }}
-				>
+				<Grid size={getScreenProps("balance")} sx={[getMaxHeight("balance"), getDisplayProps("balance")]}>
 					<TotalBalanceTable
 						onFullScreenOpen={() => setFullScreenValue("balance")}
 						onFullScreenExit={() => setFullScreenValue(undefined)}
@@ -69,12 +65,7 @@ export const StatisticsDashboard = () => {
 						onlyHeader={!matchesSmUp && fullscreenValue !== "balance"}
 					/>
 				</Grid>
-				<Grid
-					item
-					{...getScreenProps("sent")}
-					// @ts-ignore
-					sx={{ ...getMaxHeight("sent"), ...getDisplayProps("sent") }}
-				>
+				<Grid size={getScreenProps("sent")} sx={[getMaxHeight("sent"), getDisplayProps("sent")]}>
 					<TotalDonutsSentReport
 						onFullScreenOpen={() => setFullScreenValue("sent")}
 						onFullScreenExit={() => setFullScreenValue(undefined)}
@@ -82,12 +73,7 @@ export const StatisticsDashboard = () => {
 						onlyHeader={!matchesSmUp && fullscreenValue !== "sent"}
 					/>
 				</Grid>
-				<Grid
-					item
-					{...getScreenProps("score")}
-					// @ts-ignore
-					sx={{ ...getMaxHeight("score"), ...getDisplayProps("score") }}
-				>
+				<Grid size={getScreenProps("score")} sx={[getMaxHeight("score"), getDisplayProps("score")]}>
 					<TotalDonutsReceivedReport
 						onFullScreenOpen={() => setFullScreenValue("score")}
 						onFullScreenExit={() => setFullScreenValue(undefined)}

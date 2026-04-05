@@ -1,10 +1,10 @@
-import { usePostEventsByIdCommentsMutation, usePutEventsByIdMutation } from "services/api/bonuts-api";
-import { useAppDispatch, useAppSelector } from "services/redux/store/store";
-import { invalidateId } from "services/redux/utils/rtk-cache-utils";
-import { authTenantSelector } from "shared/model/auth/auth-selector";
+import { authTenantSelector } from "@/shared/model/auth/auth-selector";
 
-import { eventsApi } from "../api/events-api";
+import { eventsApi, usePostEventsByIdLikeMutation } from "../api/events-api";
 
+import { usePostEventsByIdCommentsMutation, usePutEventsByIdMutation } from "@/services/api/bonuts-api";
+import { useAppDispatch, useAppSelector } from "@/services/redux/store/store";
+import { invalidateId } from "@/services/redux/utils/rtk-cache-utils";
 import { TEvent } from "@/types/model";
 import { TLikeable } from "@/types/model/type-extension";
 
@@ -13,16 +13,21 @@ type TEventUpdate = {
 };
 export const useEventLogic = () => {
 	const [putEvent] = usePutEventsByIdMutation();
+	const [postEventLike] = usePostEventsByIdLikeMutation();
 	const [postComment] = usePostEventsByIdCommentsMutation();
 	const dispatch = useAppDispatch();
-	// const [postComment] = usePostE
 	const authTenant = useAppSelector(authTenantSelector);
 	const toggleLike = async (event: TEvent & TLikeable) => {
 		if (authTenant) {
-			await putEvent({
+			const res = await postEventLike({
 				id: event.id.toString(),
-				body: { like: true, tenant: authTenant }, // like true toggles like (backend hooks)
+				body: { tenant: authTenant },
 			});
+
+			if ("error" in res) {
+				throw res.error;
+			}
+
 			dispatch(eventsApi.util.invalidateTags(invalidateId("Event", event.id)));
 		}
 	};
@@ -31,11 +36,13 @@ export const useEventLogic = () => {
 		if (authTenant) {
 			const res = await putEvent({
 				id: event.id.toString(),
-				body: { ...values, like: false, tenant: authTenant }, // like true toggles like (backend hooks)
+				body: { ...values, tenant: authTenant }, // like true toggles like (backend hooks)
 			});
+
 			if ("error" in res) {
-				throw new Error();
+				throw res.error;
 			}
+
 			dispatch(eventsApi.util.invalidateTags(invalidateId("Event", event.id)));
 		}
 	};

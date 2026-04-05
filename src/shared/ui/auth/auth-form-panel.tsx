@@ -80,6 +80,7 @@ export const AuthFormPanel: FC<TAuthFormPanelProps> = ({
 						required
 						fullWidth
 						id="email"
+						type="email"
 						label={translate(texts_e.email_address, { capitalize: true })}
 						variant="standard"
 						slotProps={{

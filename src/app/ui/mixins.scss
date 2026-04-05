@@ -36,6 +36,15 @@ $k: 4;
   right: $size  + px;;
 }
 
+@mixin hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @for $i from 0 through 40 {
   .mb-#{$i} { @include mb-mixin($i); }
   .mt-#{$i} { @include mt-mixin($i); }
