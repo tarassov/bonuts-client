@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { BTNHeader } from "components/header/header";
 import BntSidebar from "components/sidebar/sidebar";
 import { useAuth } from "shared/model/auth";
@@ -12,7 +14,7 @@ import { useProfile } from "@/entities/profile";
 import { modalConfig } from "../config/modal-config";
 
 interface IPageWrapperProps {
-	children: JSX.Element | Array<JSX.Element>;
+	children: ReactNode;
 	path: string;
 	addressPath: string; // could be different for dialog path's
 	modalName?: keyof TModalConfig;

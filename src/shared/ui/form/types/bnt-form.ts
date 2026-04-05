@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Resolver, UseFormRegisterReturn } from "react-hook-form";
 import { Theme } from "@mui/material/styles";
 import { SystemStyleObject } from "@mui/system/styleFunctionSx/styleFunctionSx";
@@ -106,7 +107,7 @@ export type TFormProps<T extends Record<string, any>> = {
 	onLoad?: () => void;
 	onSubmit?: (values: T, onError?: (message?: string) => void) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;
-	children?: JSX.Element | JSX.Element[];
+	children?: ReactNode;
 	locale?: Locale;
 	keepValuesOnSubmit?: boolean;
 	resolver?: Resolver<any, any>;
