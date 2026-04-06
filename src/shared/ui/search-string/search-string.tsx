@@ -28,15 +28,13 @@ export type SearchStringProps<T extends TBaseModel = TBaseModel> = {
 	variant?: TSearchStringVariant;
 };
 
-const surfaceInputSx: SxProps<Theme> = {
-	px: 1.5,
-	py: 0.5,
-	borderRadius: 2,
-	backgroundColor: "neutral.light",
-	border: "1px solid",
-	borderColor: "neutral.light",
+const searchInputSx: SxProps<Theme> = {
+	backgroundColor: "background.paper",
 	"& .MuiInputBase-root": {
-		px: 1,
+		borderRadius: 2,
+		backgroundColor: "background.paper",
+		border: "1px solid",
+		borderColor: "neutral.light",
 	},
 	"& .MuiInput-root": {
 		"&::before, &::after": {
@@ -46,14 +44,20 @@ const surfaceInputSx: SxProps<Theme> = {
 			display: "none",
 		},
 	},
+	"& .MuiInputBase-root:hover": {
+		borderColor: "primary.main",
+	},
+	"& .MuiInputBase-root.Mui-focused": {
+		borderColor: "primary.main",
+	},
 };
 
 export function SearchString<T extends TBaseModel>(props: SearchStringProps<T>) {
-	const { setSorter = emptyFunction, setSearch, buttons, debounceDelay = 0, className, inputSx, variant = "default" } = props;
+	const { setSorter = emptyFunction, setSearch, buttons, debounceDelay = 0, className, inputSx } = props;
 	const { translate } = useBntTranslate();
 	const [text, setText] = useState<string>("");
 	const debouncedSetSearch = useDebounceCallback(setSearch, debounceDelay);
-	const resolvedInputSx: SxProps<Theme> = [{ width: "100%" }, ...(variant === "surface" ? [surfaceInputSx] : []), ...(Array.isArray(inputSx) ? inputSx : inputSx ? [inputSx] : [])];
+	const resolvedInputSx: SxProps<Theme> = [{ width: "100%" }, searchInputSx, ...(Array.isArray(inputSx) ? inputSx : inputSx ? [inputSx] : [])];
 
 	const setValue = (value: string) => {
 		setText(value);
