@@ -40,4 +40,7 @@ signing-key-info.txt
 
 # cypress
 /cypress/videos
-/cypress/screenshots
+*/cert.pem
+*/td.binlog
+/tqueue.binlog
+/webhooks_db.binlog

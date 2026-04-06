@@ -2,9 +2,9 @@ import { Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
 
 import classNames from "classnames";
 
-import { BntStack } from "shared/ui/stack";
+import { BntStack } from "@/shared/ui/stack";
 
-import { EventList } from "@/entities/event/ui/event-list";
+import { EventList } from "@/entities/event";
 
 import { DashboardSocialSidebar } from "./ui/dashboard-social-sidebar";
 
