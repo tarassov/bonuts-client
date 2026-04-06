@@ -44,3 +44,4 @@ signing-key-info.txt
 */td.binlog
 /tqueue.binlog
 /webhooks_db.binlog
+/cypress/screenshots
