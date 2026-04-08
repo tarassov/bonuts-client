@@ -1,4 +1,4 @@
-import { texts_a, texts_e, texts_f, texts_h, texts_l, texts_n, texts_o, texts_p, texts_r, texts_s, texts_t, texts_v, texts_y } from "services/localization/texts";
+import { texts_a, texts_e, texts_f, texts_h, texts_i, texts_l, texts_n, texts_o, texts_p, texts_r, texts_s, texts_t, texts_v, texts_y } from "services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -67,10 +67,14 @@ export const enLocale = {
 		[texts_e.email_address_is_required]: "Email is required",
 		[texts_f.filter]: "Filter",
 		[texts_n.notification]: "Notification",
+		[texts_n.no_data_yet]: "No data yet",
 		[texts_n.no_rank_yet]: "No rank yet",
 		[texts_n.no_weekly_leaders_yet]: "No weekly leaders yet",
 		[texts_n.next_status]: "Next status",
 		[texts_n.notifications]: "Notifications",
+		[texts_i.in_top_most_active_percent]: "In the top {{percent}}% most active",
+		[texts_i.into_top_most_active_percent]: "A bit more to reach the top {{percent}}% most active",
+		[texts_p.poka_you_were_not_very_active]: "You have not been very active yet",
 		[texts_p.points_to_next_status]: "{{count}} points to {{status}}",
 		[texts_r.recognized_voice]: "Recognized voice",
 		[texts_s.service_bot]: "Service bot",

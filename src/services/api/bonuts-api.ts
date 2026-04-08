@@ -160,6 +160,19 @@ const injectedRtkApi = api.injectEndpoints({
 		getInvitationsMy: build.query<GetInvitationsMyApiResponse, GetInvitationsMyApiArg>({
 			query: () => ({ url: `/invitations/my` }),
 		}),
+		getParticipationCurrentWeek: build.query<GetParticipationCurrentWeekApiResponse, GetParticipationCurrentWeekApiArg>({
+			query: (queryArg) => ({
+				url: `/participation/current_week`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		postParticipationFeedRead: build.mutation<PostParticipationFeedReadApiResponse, PostParticipationFeedReadApiArg>({
+			query: (queryArg) => ({
+				url: `/participation/feed_read`,
+				method: "POST",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		getPlugins: build.query<GetPluginsApiResponse, GetPluginsApiArg>({
 			query: (queryArg) => ({
 				url: `/plugins`,
@@ -1529,6 +1542,33 @@ export type GetInvitationsMyApiResponse = /** status 200 success */ {
 	}[];
 };
 export type GetInvitationsMyApiArg = void;
+export type GetParticipationCurrentWeekApiResponse = /** status 200 success */ {
+	week_start: string;
+	weekly_score: string;
+	weekly_score_scaled: number;
+	percentile_available: boolean;
+	position_percentile?: string | null;
+	current_bucket?: string | null;
+	next_bucket?: string | null;
+	next_bucket_threshold_score_scaled?: number | null;
+	delta_score_to_next_bucket_scaled: number;
+	suggestions: {
+		type: string;
+		count: number;
+		estimated_gain_scaled: number;
+		message: string;
+	}[];
+	population_size: number;
+	highest_bucket_reached: boolean;
+	generated_at: string;
+};
+export type GetParticipationCurrentWeekApiArg = {
+	tenant?: string;
+};
+export type PostParticipationFeedReadApiResponse = unknown;
+export type PostParticipationFeedReadApiArg = {
+	tenant?: string;
+};
 export type GetPluginsApiResponse = /** status 200 success */ {
 	data?: TenantPlugin[];
 };
@@ -4080,6 +4120,8 @@ export const {
 	usePostInvitationsByIdDeclineMutation,
 	usePostInvitationsMutation,
 	useGetInvitationsMyQuery,
+	useGetParticipationCurrentWeekQuery,
+	usePostParticipationFeedReadMutation,
 	useGetPluginsQuery,
 	usePostPluginsByIdActivateMutation,
 	usePostPluginsByIdDeactivateMutation,
