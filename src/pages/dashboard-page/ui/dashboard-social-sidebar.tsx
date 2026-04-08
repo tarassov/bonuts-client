@@ -6,10 +6,9 @@ import { useProfile } from "@/entities/profile";
 import { BalanceOverviewWidget } from "@/widgets/balance-overview";
 import type { IDashboardWidgetSizingProps, TDashboardWidgetColumns } from "@/widgets/dashboard-social";
 import { LeaderboardWidget } from "@/widgets/leaderboard";
-import { YourPositionWidget } from "@/widgets/your-position";
 import { YourStatusWidget } from "@/widgets/your-status";
 
-type TDashboardSocialWidgetId = "leaderboard" | "your_position" | "your_status" | "balance_overview";
+type TDashboardSocialWidgetId = "leaderboard" | "your_status" | "balance_overview";
 
 export interface IDashboardSocialWidgetContext {
 	hasDistribAccount: boolean;
@@ -35,14 +34,12 @@ const SidebarGrid = styled(Box)(({ theme }) => ({
 
 const WIDGET_COMPONENTS: Record<TDashboardSocialWidgetId, ComponentType<IDashboardWidgetSizingProps>> = {
 	leaderboard: LeaderboardWidget,
-	your_position: YourPositionWidget,
 	your_status: YourStatusWidget,
 	balance_overview: BalanceOverviewWidget,
 };
 
 const DEFAULT_WIDGET_CONFIG: IDashboardSocialSidebarWidgetConfig[] = [
 	{ id: "leaderboard", columns: 1 },
-	{ id: "your_position", columns: 1 },
 	{ id: "your_status", columns: 1 },
 	{
 		id: "balance_overview",
