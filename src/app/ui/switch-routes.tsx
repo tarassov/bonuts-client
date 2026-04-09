@@ -13,6 +13,7 @@ import { BntLoader } from "shared/ui/loader";
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
 
 import type { TModalConfig } from "@/entities/modal";
+import { useUserActivityHeartbit } from "@/entities/user";
 
 import { ForbiddenPage } from "@/pages/forbidden-page";
 
@@ -52,6 +53,11 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	const { currentRoles } = useCurrentProfile();
 	const { background, name, data } = location.state || {};
 	const { t } = useBntTranslate();
+
+	useUserActivityHeartbit({
+		isEnabled: auth.isAuthenticated,
+		tenant: auth.tenant || undefined,
+	});
 
 	useEffect(() => {
 		checkAuth().catch((e) => console.error("Check auth failed", e));

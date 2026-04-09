@@ -166,6 +166,12 @@ const injectedRtkApi = api.injectEndpoints({
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
+		getParticipationWeeklyRecognitionCurrent: build.query<GetParticipationWeeklyRecognitionCurrentApiResponse, GetParticipationWeeklyRecognitionCurrentApiArg>({
+			query: (queryArg) => ({
+				url: `/participation/weekly_recognition_current`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		postParticipationFeedRead: build.mutation<PostParticipationFeedReadApiResponse, PostParticipationFeedReadApiArg>({
 			query: (queryArg) => ({
 				url: `/participation/feed_read`,
@@ -396,6 +402,13 @@ const injectedRtkApi = api.injectEndpoints({
 					date_from: queryArg.dateFrom,
 					date_to: queryArg.dateTo,
 				},
+			}),
+		}),
+		postUserActivityHeartbeat: build.mutation<PostUserActivityHeartbeatApiResponse, PostUserActivityHeartbeatApiArg>({
+			query: (queryArg) => ({
+				url: `/user_activity/heartbeat`,
+				method: "POST",
+				params: { tenant: queryArg.tenant },
 			}),
 		}),
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
@@ -1563,6 +1576,17 @@ export type GetParticipationCurrentWeekApiResponse = /** status 200 success */ {
 	generated_at: string;
 };
 export type GetParticipationCurrentWeekApiArg = {
+	tenant?: string;
+};
+export type GetParticipationWeeklyRecognitionCurrentApiResponse = /** status 200 success */ {
+	week_start: string;
+	week_end: string;
+	likes_given_count: number;
+	comments_given_count: number;
+	sent_donuts_count: number;
+	received_donuts_count: number;
+};
+export type GetParticipationWeeklyRecognitionCurrentApiArg = {
 	tenant?: string;
 };
 export type PostParticipationFeedReadApiResponse = unknown;
@@ -3685,6 +3709,12 @@ export type GetTiesApiArg = {
 	dateFrom?: string;
 	dateTo?: string;
 };
+export type PostUserActivityHeartbeatApiResponse = /** status 200 success */ {
+	last_seen_at: string | null;
+};
+export type PostUserActivityHeartbeatApiArg = {
+	tenant?: string;
+};
 export type PostAvatarsApiResponse = /** status 200 success */ {
 	data?: {
 		id?: string;
@@ -4121,6 +4151,7 @@ export const {
 	usePostInvitationsMutation,
 	useGetInvitationsMyQuery,
 	useGetParticipationCurrentWeekQuery,
+	useGetParticipationWeeklyRecognitionCurrentQuery,
 	usePostParticipationFeedReadMutation,
 	useGetPluginsQuery,
 	usePostPluginsByIdActivateMutation,
@@ -4155,6 +4186,7 @@ export const {
 	useGetTenantsAccessibleQuery,
 	useGetTenantsQuery,
 	useGetTiesQuery,
+	usePostUserActivityHeartbeatMutation,
 	usePostAvatarsMutation,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
