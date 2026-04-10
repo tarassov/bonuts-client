@@ -5,6 +5,7 @@ import { Theme } from "@mui/material/styles";
 
 import { AccountBalanceSmall } from "components/account-balance/account-balance-small";
 import { BntAppBar } from "shared/ui/menu/app-bar";
+import { ThemeMenu } from "shared/ui/menu/theme-menu";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
@@ -12,7 +13,9 @@ import { BntRoutesMenu } from "../main-menu/routes-menu";
 
 import { AppContext } from "context/app-context";
 import { BntToolbar } from "src/shared/ui/toolbar";
+import { CustomThemeContext } from "themes/theme-provider";
 import { TProfile } from "@/types/model";
+import { EThemeName } from "@/types/theme";
 
 type BTNHeaderProps = {
 	profile?: TProfile | null;
@@ -20,6 +23,7 @@ type BTNHeaderProps = {
 
 export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 	const { isDrawerOpen } = useContext(AppContext);
+	const { setTheme, themeName } = useContext(CustomThemeContext);
 	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.up("sm"));
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -28,6 +32,9 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 	};
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+	const handleThemeSelect = (nextThemeName: EThemeName) => {
+		setTheme(nextThemeName);
 	};
 
 	return (
@@ -120,6 +127,7 @@ export const BTNHeader: FC<BTNHeaderProps> = ({ profile }) => {
 							anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 						>
 							<BntRoutesMenu showFullName />
+							<ThemeMenu themeName={themeName} onThemeSelect={handleThemeSelect} />
 						</Menu>
 					</BntStack>
 				</Stack>

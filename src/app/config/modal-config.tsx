@@ -4,7 +4,6 @@ import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-c
 import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
 import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal-detailed-event";
 import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-circle";
-import { ModalEmployeeView } from "components/modals/modal-employee-view/modal-employee-view";
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
 import { CommonStrings } from "constants/dictionary";
@@ -14,6 +13,7 @@ import type { TDialogConfig } from "@/shared/ui/dialog";
 
 import type { TModalConfig } from "@/entities/modal";
 
+import { ModalEmployeeView } from "@/features/profile/modal";
 import { telegramModalConfig } from "@/features/profile/telegram";
 
 export const modalConfig: TDialogConfig<TModalConfig> = {
@@ -40,7 +40,13 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 		ViewEmployee: {
 			renderItem: (modal, props) => <ModalEmployeeView id={modal.data?.id} {...props} />,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
-			hasTopMenu: true,
+			hasTopMenu: false,
+			dialogPaperSx: {
+				borderRadius: "20px",
+				width: { xs: "calc(100% - 24px)", sm: "520px" },
+				minWidth: { sm: "480px" },
+				maxWidth: "520px",
+			},
 		},
 		CreateCircle: {
 			renderItem: (_, props) => <ModalCreateCircle {...props} />,

@@ -463,6 +463,10 @@ export const ruLocale = {
 		[texts_t.to_store]: "в магазин",
 		"Transfer donuts or coins": "Перевести пончики или монеты", // route name!
 		[texts_t.time_is_required]: "необходимо указать время",
+		[texts_t.theme]: "Тема",
+		[texts_t.theme_light]: "Светлая",
+		[texts_t.theme_dark]: "Тёмная",
+		[texts_t.theme_system]: "Системная",
 		"to can transfer to others": "можно дарить коллегам",
 		"This field is required": "Это поле является обязательным",
 		[texts_t.teams_you_can_join]: "команды, к которым можно присоединиться",

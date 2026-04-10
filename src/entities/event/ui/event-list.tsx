@@ -8,7 +8,7 @@ import classnames from "classnames";
 import { Dictionary } from "constants/dictionary";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_e, texts_s } from "services/localization/texts";
+import { texts_e } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { useLoader } from "shared/ui/loader/hooks/use-loader";
@@ -25,6 +25,7 @@ import classes from "./event-list.module.scss";
 export function EventList() {
 	const { translate } = useBntTranslate();
 	const theme = useTheme();
+	const isDarkTheme = theme.palette.mode === "dark";
 	const matchesDownMd = useMediaQuery(theme.breakpoints.down("md"));
 	const [searchText, setSearchText] = useState<string>();
 	const [showMine, setShowMine] = useState<boolean>(false);
@@ -60,9 +61,9 @@ export function EventList() {
 					width: "100%",
 					alignSelf: "center",
 					borderRadius: 2,
-					backgroundColor: theme.palette.common.white,
-					border: `1px solid ${theme.palette.neutral.light}`,
-					boxShadow: "0 8px 24px rgba(30,31,37,0.05)",
+					backgroundColor: isDarkTheme ? theme.palette.background.paper : theme.palette.common.white,
+					border: `1px solid ${isDarkTheme ? theme.palette.divider : theme.palette.neutral.light}`,
+					boxShadow: isDarkTheme ? "0 8px 24px rgba(0,0,0,0.28)" : "0 8px 24px rgba(30,31,37,0.05)",
 				}}
 			>
 				{pages.length > 0 ? (

@@ -6,7 +6,7 @@ import { emptyFunction } from "utils/empty-function";
 
 import darkTheme from "./dark-theme";
 import lightTheme from "./light-theme";
-import { ThemeContextType } from "@/types/theme";
+import { EThemeName, ThemeContextType } from "@/types/theme";
 
 const themes = {
 	dark: darkTheme,
@@ -16,6 +16,8 @@ const themes = {
 export const CustomThemeContext = createContext<ThemeContextType>({
 	setTheme: emptyFunction,
 	toggleTheme: emptyFunction,
+	themeName: EThemeName.System,
+	resolvedThemeName: EThemeName.Light,
 });
 
 type ThemeProviderProps = {

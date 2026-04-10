@@ -1,8 +1,16 @@
-export type ThemeName = "dark" | "light";
+export enum EThemeName {
+	Dark = "dark",
+	Light = "light",
+	System = "system",
+}
+
+export type TResolvedThemeName = EThemeName.Dark | EThemeName.Light;
 
 export type ThemeContextType = {
-	setTheme: (themeName: ThemeName) => void;
+	setTheme: (themeName: EThemeName) => void;
 	toggleTheme: () => void;
+	themeName: EThemeName;
+	resolvedThemeName: TResolvedThemeName;
 };
 
 declare module "@mui/material/styles" {
@@ -28,13 +36,11 @@ declare module "@mui/material/styles" {
 		caption2: React.CSSProperties;
 	}
 
-	// allow configuration using `createTheme`
 	interface TypographyVariantsOptions {
 		caption2?: React.CSSProperties;
 	}
 }
 
-// Update the Typography's variant prop options
 declare module "@mui/material/Typography" {
 	interface TypographyPropsVariantOverrides {
 		caption2: true;

@@ -419,6 +419,10 @@ export const kkLocale = {
 		[texts_t.to_store]: "дүкенге",
 		"Transfer donuts or coins": "Перевести пончики или монеты", // route name!
 		[texts_t.time_is_required]: "уақытты көрсету қажет",
+		[texts_t.theme]: "Тақырып",
+		[texts_t.theme_light]: "Жарық",
+		[texts_t.theme_dark]: "Қараңғы",
+		[texts_t.theme_system]: "Жүйелік",
 		"to can transfer to others": "можно дарить коллегам",
 		"This field is required": "Это поле является обязательным",
 		[texts_t.teams_you_can_join]: "қосылуға болатын командалар",
