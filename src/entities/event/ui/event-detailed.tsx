@@ -22,7 +22,7 @@ export function EventDetailed({ postId }: { postId?: number | string }) {
 	if (!detailedPost) return null;
 
 	return (
-		<BntStack direction="column" className="width-100 p-2" alignItems="center" maxWidth={600} width={matchesDownSm ? undefined : 500}>
+		<BntStack direction="column" className="width-100 p-4" alignItems="center" maxWidth={600} width={matchesDownSm ? undefined : 500}>
 			<EventCardStyled post={detailedPost} preventNewModal bodyMaxHeight={700} maxWidth={matchesDownSm ? undefined : 600} />
 			<CommentForm onSubmit={(text) => createComment(detailedPost, text)} className="width-100" />
 			<CommentList comments={detailedPost.comments} className="width-100 m-1 mt-3" />

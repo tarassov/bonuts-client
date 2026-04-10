@@ -44,6 +44,15 @@ export function BntDialogContainer() {
 						preventCloseOnBackDropClick={modal.preventCloseOnBackDropClick}
 						isLoading={isLoading}
 						isTop={modal.isTop}
+						slotProps={{
+							paper: {
+								sx: {
+									borderRadius: 4,
+									overflow: "hidden",
+									...(modal.dialogPaperSx || {}),
+								},
+							},
+						}}
 					>
 						<BntModalLoader loading={isLoading} />
 						<BntBox className="bnt-dialog-box" sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}>

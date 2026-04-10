@@ -1,4 +1,6 @@
 import { ReactNode } from "react";
+import { Theme } from "@mui/material";
+import { SystemStyleObject } from "@mui/system";
 
 import { VoidResponseFunction } from "@/types/function-types";
 
@@ -30,10 +32,11 @@ export type TDialog<T = any, TResult = any> = {
 	allowFullscreen?: boolean;
 	getPath?: (data: T) => string;
 	isTop?: boolean;
+	dialogPaperSx?: SystemStyleObject<Theme>;
 };
 
 export type TDialogItems<T, R extends Record<keyof T, any> = any> = {
-	[name in keyof T]: Pick<TDialog<T[name], R[name]>, "renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop">;
+	[name in keyof T]: Pick<TDialog<T[name], R[name]>, "renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop" | "dialogPaperSx">;
 };
 
 export type TDialogConfig<T, R extends Record<keyof T, any> = any> = {

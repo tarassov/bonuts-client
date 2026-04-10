@@ -14,6 +14,7 @@ type TEventFilterMenuProps = {
 export function EventFilterMenu({ showMine, onShowMineToggle }: TEventFilterMenuProps) {
 	const { translate } = useBntTranslate();
 	const theme = useTheme();
+	const isDarkTheme = theme.palette.mode === "dark";
 	const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 	const isOpen = Boolean(anchorEl);
 
@@ -37,12 +38,12 @@ export function EventFilterMenu({ showMine, onShowMineToggle }: TEventFilterMenu
 					alignSelf: { xs: "flex-end", sm: "center" },
 					width: 40,
 					height: 40,
-					border: `1px solid ${showMine ? theme.palette.primary.main : theme.palette.neutral.light}`,
-					color: showMine ? theme.palette.primary.main : theme.palette.neutral.dark,
-					backgroundColor: showMine ? theme.palette.primary.light : theme.palette.common.white,
+					border: `1px solid ${showMine ? theme.palette.primary.main : isDarkTheme ? theme.palette.divider : theme.palette.neutral.light}`,
+					color: showMine ? theme.palette.primary.main : isDarkTheme ? theme.palette.text.secondary : theme.palette.neutral.dark,
+					backgroundColor: showMine ? (isDarkTheme ? theme.palette.primary.dark : theme.palette.primary.light) : isDarkTheme ? theme.palette.background.paper : theme.palette.common.white,
 					"&:hover": {
 						border: `1px solid ${theme.palette.primary.main}`,
-						backgroundColor: theme.palette.primary.light,
+						backgroundColor: isDarkTheme ? theme.palette.primary.dark : theme.palette.primary.light,
 					},
 				}}
 				aria-label={translate(texts_s.show_only_mine)}

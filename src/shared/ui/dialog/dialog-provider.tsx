@@ -30,6 +30,7 @@ type TModal = {
 	hasTopMenu: boolean;
 	title: string;
 	path?: string | null;
+	dialogPaperSx?: TDialog<any>["dialogPaperSx"];
 };
 
 type ModalState = Record<string, TModal>;
@@ -84,6 +85,7 @@ export function BntDialogProvider<T extends Record<string, any>>({ children, con
 						renderItem: config.items[name]?.renderItem || ((d: any) => <div>{d}</div>),
 						hasTopMenu: config.items[name]?.hasTopMenu || false,
 						isTop: config.items[name]?.isTop || false,
+						dialogPaperSx: config.items[name]?.dialogPaperSx,
 						preventCloseOnBackDropClick: config.items[name]?.preventCloseOnBackDropClick || false,
 					},
 				};

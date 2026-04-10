@@ -1,6 +1,10 @@
 export enum texts_t {
 	team_star = "team star",
 	teams_you_can_join = "teams you can join",
+	theme = "theme",
+	theme_dark = "theme dark",
+	theme_light = "theme light",
+	theme_system = "theme system",
 	to = "to",
 	to_profile = "to profile",
 	to_store = "to store",

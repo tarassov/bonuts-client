@@ -1,0 +1,148 @@
+.loadingContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 180px;
+	padding: 24px;
+}
+
+.container {
+	--modal-border-color: #d7dde6;
+	--modal-text-primary: #1f2937;
+	--modal-text-secondary: #667085;
+	--modal-meta-bg: #f5f7fa;
+	--modal-identity-bg: #f7f8fa;
+
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 24px;
+}
+
+.header {
+	padding: 12px;
+	border-radius: 12px;
+	background-color: var(--modal-identity-bg);
+	border-bottom: 1px solid var(--modal-border-color);
+}
+
+.headerRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.identityRow {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-width: 0;
+}
+
+.avatar {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.identityText {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 0;
+}
+
+.name {
+	color: var(--modal-text-primary);
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.position {
+	color: var(--modal-text-secondary);
+	font-size: 14px;
+	line-height: 1.3;
+}
+
+.closeButton {
+	flex-shrink: 0;
+	padding: 4px !important;
+}
+
+.metaCard {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 16px;
+	border-radius: 12px;
+	background-color: var(--modal-meta-bg);
+}
+
+.metaRow {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.metaLabel {
+	color: var(--modal-text-secondary);
+	font-size: 13px;
+}
+
+.metaValue {
+	color: var(--modal-text-primary);
+	font-size: 14px;
+	font-weight: 500;
+	text-align: right;
+}
+
+.circlesRow {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.moreIcon {
+	color: var(--modal-text-secondary);
+	font-size: 22px;
+}
+
+.footer {
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 8px;
+}
+
+.goToButton {
+	padding: 8px 16px !important;
+	border-radius: 12px !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+}
+
+html[data-app-theme="dark"] .container {
+	--modal-border-color: #2a2e36;
+	--modal-text-primary: #e5e7eb;
+	--modal-text-secondary: #9ca3af;
+	--modal-meta-bg: #1a1d24;
+	--modal-identity-bg: #171b24;
+}
+
+@media (max-width: 600px) {
+	.name {
+		font-size: 20px;
+	}
+
+	.footer {
+		justify-content: stretch;
+	}
+
+	.goToButton {
+		width: 100%;
+	}
+}

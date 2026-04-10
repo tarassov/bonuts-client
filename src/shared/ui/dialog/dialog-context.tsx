@@ -1,4 +1,6 @@
 import { createContext, ReactNode } from "react";
+import { Theme } from "@mui/material";
+import { SystemStyleObject } from "@mui/system";
 
 import { TDialogProps } from "shared/ui/dialog/dialog-types";
 import { emptyFunction } from "utils/empty-function";
@@ -7,7 +9,7 @@ type ContextType = {
 	<T extends string>(name: T, data: any, key?: string): Promise<any>;
 };
 
-// biome-ignore lint/suspicious/noEmptyBlockStatements: <explanation>
+// biome-ignore lint/suspicious/noEmptyBlockStatements: context default
 export const DialogContext = createContext<ContextType>(async () => {});
 
 export const DialogNamesContext = createContext<string[]>([]);
@@ -23,6 +25,7 @@ export const DialogValueContext = createContext<
 		title: string;
 		preventCloseOnBackDropClick?: boolean;
 		isTop?: boolean;
+		dialogPaperSx?: SystemStyleObject<Theme>;
 
 		renderItem: (d: any, props: TDialogProps<any>) => ReactNode | Array<ReactNode>;
 	}>

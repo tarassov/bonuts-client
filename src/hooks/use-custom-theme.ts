@@ -1,38 +1,44 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from "@mui/material";
 import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
 
-import { ThemeContextType, ThemeName } from "@/types/theme";
+import { EThemeName, ThemeContextType, TResolvedThemeName } from "@/types/theme";
 
 export const useCustomTheme = (themes: Record<string, ThemeOptions>): [Theme, ThemeContextType] => {
-	const OSThemeName: ThemeName = useMediaQuery("(prefers-color-scheme: light)", {
+	const OSThemeName: TResolvedThemeName = useMediaQuery("(prefers-color-scheme: light)", {
 		noSsr: true,
 	})
-		? "light"
-		: "dark";
+		? EThemeName.Light
+		: EThemeName.Dark;
 
 	const savedThemeName = localStorage.getItem("theme") as string | null;
+	const isSavedThemeValid = savedThemeName === EThemeName.Light || savedThemeName === EThemeName.Dark || savedThemeName === EThemeName.System;
+	const initialThemeName: EThemeName = isSavedThemeValid ? (savedThemeName as EThemeName) : EThemeName.Light;
 
-	const initialThemeName = savedThemeName && savedThemeName in themes ? (savedThemeName as ThemeName) : OSThemeName;
+	const [themeName, setThemeName] = useState<EThemeName>(initialThemeName);
+	const resolvedThemeName: TResolvedThemeName = themeName === EThemeName.System ? OSThemeName : themeName;
 
-	const [themeName, setThemeName] = useState<ThemeName>(initialThemeName);
-
-	const setTheme = (name: ThemeName) => {
+	const setTheme = (name: EThemeName) => {
 		localStorage.setItem("theme", name);
 		setThemeName(name);
 	};
 
 	const toggleTheme = () => {
-		if (themeName === "dark") {
-			setTheme("light");
+		if (resolvedThemeName === EThemeName.Dark) {
+			setTheme(EThemeName.Light);
 		} else {
-			setTheme("dark");
+			setTheme(EThemeName.Dark);
 		}
 	};
 
-	const themeOptions = themes[themeName];
+	const themeOptions = themes[resolvedThemeName];
 
 	const theme = useMemo(() => createTheme({ ...themeOptions, cssVariables: true }), [themeOptions]);
 
-	return [theme, { setTheme, toggleTheme }];
+	useEffect(() => {
+		document.documentElement.setAttribute("data-app-theme", resolvedThemeName);
+		document.documentElement.setAttribute("data-app-theme-preference", themeName);
+	}, [resolvedThemeName, themeName]);
+
+	return [theme, { setTheme, toggleTheme, themeName, resolvedThemeName }];
 };
