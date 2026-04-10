@@ -1,5 +1,7 @@
-import { timezonesKk } from "services/localization/kk/timezones-kk";
-import { weekdaysKk } from "services/localization/kk/weekdays-kk";
+import { reportsKk } from "@/features/reports/config/reports-kk";
+
+import { timezonesKk } from "@/services/localization/kk/timezones-kk";
+import { weekdaysKk } from "@/services/localization/kk/weekdays-kk";
 import {
 	texts_a,
 	texts_b,
@@ -22,9 +24,7 @@ import {
 	texts_u,
 	texts_v,
 	texts_y,
-} from "services/localization/texts";
-
-import { reportsKk } from "@/features/reports/config/reports-kk";
+} from "@/services/localization/texts";
 
 export const kkLocale = {
 	translations: {
@@ -87,6 +87,7 @@ export const kkLocale = {
 		confirmation: "подтверждение",
 		[texts_c.coins]: "монеталар",
 		[texts_c.comment]: "пікір",
+		[texts_c.comments_written]: "Пікірлер жазылды",
 		[texts_c.confirmation_email_was_sent_to]: "Растау хаты электрондық поштаңызға жіберілді",
 		"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
 		"Confirm your email first": "Для продолжения подтвердите адрес электронной почты ",
@@ -114,8 +115,10 @@ export const kkLocale = {
 		[texts_c.choose_employees]: "қызметкерлерді таңдаңыз",
 		[texts_c.checking_auth]: "авторизация тексерілуде",
 		[texts_c.connect]: "қосу",
+		[texts_c.current_week_statistics]: "Ағымдағы апта статистикасы",
 		[texts_f.filter]: "Сүзгі",
 		[texts_l.leaders_of_the_week]: "Апта көшбасшылары",
+		[texts_l.likes_given]: "Лайк қойылды",
 		[texts_n.notification]: "Хабарлама",
 		[texts_n.no_data_yet]: "Әзірге дерек жоқ",
 		[texts_n.no_rank_yet]: "Әзірге орын жоқ",
@@ -144,6 +147,8 @@ export const kkLocale = {
 		Dashboard: "Лента",
 		Delete: "Удалить",
 		[texts_d.donuts]: "пончиктер",
+		[texts_d.donuts_received]: "Пончик алынды",
+		[texts_d.donuts_sent]: "Пончик жіберілді",
 		[texts_d.decline]: "қабылдамау",
 		[texts_d.deactivate]: "белсенділігін өшіру",
 		"delivery days": "через сколько дней будет",

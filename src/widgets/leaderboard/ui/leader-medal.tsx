@@ -2,7 +2,7 @@ import { EmojiEventsRounded } from "@mui/icons-material";
 import { keyframes } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import type { TLeaderMedalTone } from "@/widgets/leaderboard/model/leaderboard-helper";
+import type { TLeaderMedalTone } from "../model/leaderboard-helper";
 
 interface ILeaderMedalProps {
 	medalTone: TLeaderMedalTone;

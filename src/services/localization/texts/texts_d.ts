@@ -7,6 +7,8 @@ export enum texts_d {
 	disable_account = "disable account",
 	disabled = "disabled",
 	disconnect = "disconnect",
+	donuts_received = "weekly donuts received",
+	donuts_sent = "weekly donuts sent",
 	domain = "domain",
 	demo = "demo",
 	donuts = "donuts",

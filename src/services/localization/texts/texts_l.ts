@@ -1,6 +1,7 @@
 export enum texts_l {
 	last_name = "last name",
 	leaders_of_the_week = "leaders of the week",
+	likes_given = "weekly likes given",
 	login_page_title = "login page title",
 	login_page_subtitle = "login page subtitle",
 	login_page_hero_title = "login page hero title",

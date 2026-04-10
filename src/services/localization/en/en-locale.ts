@@ -1,4 +1,4 @@
-import { texts_a, texts_e, texts_f, texts_h, texts_i, texts_l, texts_n, texts_o, texts_p, texts_r, texts_s, texts_t, texts_v, texts_y } from "services/localization/texts";
+import { texts_a, texts_c, texts_d, texts_e, texts_f, texts_h, texts_i, texts_l, texts_n, texts_o, texts_p, texts_r, texts_s, texts_t, texts_v, texts_y } from "@/services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -66,6 +66,11 @@ export const enLocale = {
 		[texts_v.vk_notifications_disabled_suffix]: "then enable notifications.",
 		[texts_e.email_address_is_required]: "Email is required",
 		[texts_f.filter]: "Filter",
+		[texts_c.current_week_statistics]: "Current week statistics",
+		[texts_l.likes_given]: "Likes given",
+		[texts_c.comments_written]: "Comments written",
+		[texts_d.donuts_sent]: "Donuts sent",
+		[texts_d.donuts_received]: "Donuts received",
 		[texts_n.notification]: "Notification",
 		[texts_n.no_data_yet]: "No data yet",
 		[texts_n.no_rank_yet]: "No rank yet",

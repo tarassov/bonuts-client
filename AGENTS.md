@@ -75,6 +75,8 @@ For UI tasks, also mention:
 - Prefer public interfaces for cross-slice imports.
     - Good: `@/entities/profile`
     - Good: `@/shared/ui/profile-avatar`
+    - For imports within the same slice segment (for example `ui` -> `model` or `ui` -> `ui` in one widget), use relative paths.
+    - Avoid using `@/...` absolute imports for same-segment local imports.
     - Avoid: bare outer aliases like `shared/...`, `entities/...`, `features/...`
     - Avoid: imports from internal files of another slice
 - When touching existing code, try to move it closer to FSD-compliant structure instead of adding new violations.
