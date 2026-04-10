@@ -4,14 +4,14 @@ import { useTranslation } from "react-i18next";
 import { EmojiEventsOutlined, LocalFireDepartmentOutlined, WorkspacePremiumOutlined } from "@mui/icons-material";
 import { Box, Divider, LinearProgress } from "@mui/material";
 
+import type { IDashboardWidgetSizingProps } from "@/shared/ui/dashboard-widget-card";
+import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useProfile } from "@/entities/profile";
 
-import type { IDashboardWidgetSizingProps } from "@/widgets/dashboard-social";
-import { DashboardSocialWidgetCard } from "@/widgets/dashboard-social";
-import type { TStatusTone } from "@/widgets/your-status/model/your-status-helper";
+import type { TStatusTone } from "../model/your-status-helper";
 import {
 	formatStatusBucketLabel,
 	getNextBucketTargetPercent,
@@ -20,7 +20,7 @@ import {
 	getStatusTone,
 	getTopMostActivePercentFromPositionPercentile,
 	getTopStatusSuggestions,
-} from "@/widgets/your-status/model/your-status-helper";
+} from "../model/your-status-helper";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useGetParticipationCurrentWeekQuery } from "@/services/api/bonuts-api";
@@ -69,7 +69,7 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 
 	if (!data) {
 		return (
-			<DashboardSocialWidgetCard columns={columns}>
+			<DashboardWidgetCard columns={columns}>
 				<BntStack gap={1.5}>
 					<BntTypography variant="subtitle1" fontWeight={700}>
 						{t(texts_y.your_status, { capitalize: true })}
@@ -78,12 +78,12 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 						{t(texts_n.no_data_yet, { capitalize: true })}
 					</BntTypography>
 				</BntStack>
-			</DashboardSocialWidgetCard>
+			</DashboardWidgetCard>
 		);
 	}
 
 	return (
-		<DashboardSocialWidgetCard columns={columns}>
+		<DashboardWidgetCard columns={columns}>
 			<BntStack gap={1.5}>
 				<BntTypography variant="subtitle1" fontWeight={700}>
 					{t(texts_y.your_status, { capitalize: true })}
@@ -137,6 +137,6 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 					</BntStack>
 				) : null}
 			</BntStack>
-		</DashboardSocialWidgetCard>
+		</DashboardWidgetCard>
 	);
 }

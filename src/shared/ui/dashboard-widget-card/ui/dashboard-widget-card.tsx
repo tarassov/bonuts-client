@@ -3,9 +3,9 @@ import { Box, styled } from "@mui/material";
 
 import { BntCard } from "@/shared/ui/card/card";
 
-import type { IDashboardWidgetSizingProps } from "@/widgets/dashboard-social/model/types";
+import type { IDashboardWidgetSizingProps } from "../model/types";
 
-interface IDashboardSocialWidgetCardProps extends IDashboardWidgetSizingProps {
+interface IDashboardWidgetCardProps extends IDashboardWidgetSizingProps {
 	children: ReactNode;
 }
 
@@ -23,7 +23,7 @@ const SidebarCard = styled(BntCard)(({ theme }) => ({
 	height: "100%",
 }));
 
-export function DashboardSocialWidgetCard({ children, columns = 1 }: IDashboardSocialWidgetCardProps) {
+export function DashboardWidgetCard({ children, columns = 1 }: IDashboardWidgetCardProps) {
 	return (
 		<WidgetContainer columns={columns}>
 			<SidebarCard>{children}</SidebarCard>

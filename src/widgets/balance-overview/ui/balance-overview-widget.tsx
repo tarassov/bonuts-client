@@ -1,13 +1,12 @@
 import { DonutSmallOutlined, WorkspacePremiumOutlined } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
+import type { IDashboardWidgetSizingProps } from "@/shared/ui/dashboard-widget-card";
+import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useProfile } from "@/entities/profile";
-
-import type { IDashboardWidgetSizingProps } from "@/widgets/dashboard-social";
-import { DashboardSocialWidgetCard } from "@/widgets/dashboard-social";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useAccountBalanceLoader } from "@/logic/hooks/account/use-account-balance-loader";
@@ -20,7 +19,7 @@ export function BalanceOverviewWidget({ columns = 1 }: IDashboardWidgetSizingPro
 	const { account: distribAccount, isLoading: isDistribBalanceLoading } = useAccountBalanceLoader(profile?.distrib_account?.id);
 
 	return (
-		<DashboardSocialWidgetCard columns={columns}>
+		<DashboardWidgetCard columns={columns}>
 			<BntStack gap={1.5}>
 				<BntTypography variant="subtitle1" fontWeight={700}>
 					{t(texts_b.balance, { capitalize: true })}
@@ -48,6 +47,6 @@ export function BalanceOverviewWidget({ columns = 1 }: IDashboardWidgetSizingPro
 					</Box>
 				</BntStack>
 			</BntStack>
-		</DashboardSocialWidgetCard>
+		</DashboardWidgetCard>
 	);
 }

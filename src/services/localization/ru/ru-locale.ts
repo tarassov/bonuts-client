@@ -1,5 +1,7 @@
-import { timezonesRu } from "services/localization/ru/timezones-ru";
-import { weekdaysRu } from "services/localization/ru/weekdays-ru";
+import { reportsRu } from "@/features/reports";
+
+import { timezonesRu } from "@/services/localization/ru/timezones-ru";
+import { weekdaysRu } from "@/services/localization/ru/weekdays-ru";
 import {
 	texts_a,
 	texts_b,
@@ -22,9 +24,7 @@ import {
 	texts_u,
 	texts_v,
 	texts_y,
-} from "services/localization/texts";
-
-import { reportsRu } from "@/features/reports";
+} from "@/services/localization/texts";
 
 export const ruLocale = {
 	translations: {
@@ -88,6 +88,7 @@ export const ruLocale = {
 		confirmation: "подтверждение",
 		[texts_c.coins]: "монеты",
 		[texts_c.comment]: "комментарий",
+		[texts_c.comments_written]: "Комментариев написано",
 		[texts_c.confirmation_email_was_sent_to]: "Письмо для подтверждения было отправлено на ваш электронный адрес",
 		"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
 		"Confirm your email first": "Для продолжения подтвердите адрес электронной почты ",
@@ -117,11 +118,13 @@ export const ruLocale = {
 		[texts_c.choose_employees]: "выберите сотрудников",
 		[texts_c.checking_auth]: "Проверка авторизации",
 		[texts_c.connect]: "подключить",
+		[texts_c.current_week_statistics]: "Статистика за текущую неделю",
 		[texts_v.vk_connecting_title]: "Подключаем VK…",
 		[texts_v.vk_connecting_description]: "Проверяем доступ и создаём сессию. Обычно это занимает пару секунд.",
 		[texts_v.vk_do_not_close]: "Не закрывайте это окно.",
 		[texts_l.login_page_title]: "Вход",
 		[texts_l.leaders_of_the_week]: "Лидеры прошедшей недели",
+		[texts_l.likes_given]: "Лайков поставлено",
 		[texts_l.login_page_subtitle]: "Система благодарностей для вашей команды",
 		[texts_l.login_page_hero_title]: "Система благодарностей для команды",
 		[texts_l.login_page_hero_subtitle]: "Отмечайте вклад коллег\nи усиливайте командную культуру",
@@ -176,6 +179,8 @@ export const ruLocale = {
 		Dashboard: "Лента",
 		Delete: "Удалить",
 		[texts_d.donuts]: "пончики",
+		[texts_d.donuts_received]: "Пончиков получено",
+		[texts_d.donuts_sent]: "Пончиков переведено",
 		[texts_d.decline]: "отклонить",
 		[texts_d.deactivate]: "деактивировать",
 		"delivery days": "через сколько дней будет",

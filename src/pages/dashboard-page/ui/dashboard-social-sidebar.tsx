@@ -1,14 +1,16 @@
 import type { ComponentType } from "react";
 import { Box, styled } from "@mui/material";
 
+import type { IDashboardWidgetSizingProps, TDashboardWidgetColumns } from "@/shared/ui/dashboard-widget-card";
+
 import { useProfile } from "@/entities/profile";
 
 import { BalanceOverviewWidget } from "@/widgets/balance-overview";
-import type { IDashboardWidgetSizingProps, TDashboardWidgetColumns } from "@/widgets/dashboard-social";
+import { CurrentWeekStatisticsWidget } from "@/widgets/current-week-statistics";
 import { LeaderboardWidget } from "@/widgets/leaderboard";
 import { YourStatusWidget } from "@/widgets/your-status";
 
-type TDashboardSocialWidgetId = "leaderboard" | "your_status" | "balance_overview";
+type TDashboardSocialWidgetId = "leaderboard" | "your_status" | "balance_overview" | "current_week_statistics";
 
 export interface IDashboardSocialWidgetContext {
 	hasDistribAccount: boolean;
@@ -36,11 +38,13 @@ const WIDGET_COMPONENTS: Record<TDashboardSocialWidgetId, ComponentType<IDashboa
 	leaderboard: LeaderboardWidget,
 	your_status: YourStatusWidget,
 	balance_overview: BalanceOverviewWidget,
+	current_week_statistics: CurrentWeekStatisticsWidget,
 };
 
 const DEFAULT_WIDGET_CONFIG: IDashboardSocialSidebarWidgetConfig[] = [
 	{ id: "leaderboard", columns: 1 },
 	{ id: "your_status", columns: 1 },
+	{ id: "current_week_statistics", columns: 1 },
 	{
 		id: "balance_overview",
 		columns: 1,
