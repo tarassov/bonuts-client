@@ -50,6 +50,11 @@ function mockProfilePageRequests() {
 			body: CIRCLES_RESPONSE,
 		});
 	}).as("getCircles");
+
+	cy.intercept("POST", "**/user_activity/heartbeat*", {
+		statusCode: 200,
+		body: {},
+	}).as("postHeartbeat");
 }
 
 function visitProfilePage() {

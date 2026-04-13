@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Android, Comment, Edit, Favorite, Lock } from "@mui/icons-material";
+import { Comment, Edit, Favorite, Lock } from "@mui/icons-material";
 import { Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
 
 import classNames from "classnames";
@@ -88,7 +88,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 	}, [edit]);
 
 	return (
-		<BntCard className={classNames(className, EVENT_CARD_CLASSES.cardRoot)}>
+		<BntCard className={classNames(className, EVENT_CARD_CLASSES.cardRoot)} data-testid={notification ? "event-card-notification" : "event-card-public"}>
 			<EventCardHeader
 				notification={notification}
 				isClickable={canOpenProfile}
@@ -105,12 +105,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 							}
 						: undefined
 				}
-				avatar={
-					<>
-						{isPublic && <ProfileAvatar avatarUrl={user_avatar?.thumb?.url} name={user_name} hasOnlineBadge isOnline={isUserOnline} />}
-						{!isPublic && <ProfileAvatar fallback={<Android />} />}
-					</>
-				}
+				avatar={isPublic ? <ProfileAvatar avatarUrl={user_avatar?.thumb?.url} name={user_name} hasOnlineBadge isOnline={isUserOnline} /> : undefined}
 				action={
 					notification ? (
 						<Tooltip title={t(Dictionary.ONLY_YOU_CAN_SEE_IT)}>

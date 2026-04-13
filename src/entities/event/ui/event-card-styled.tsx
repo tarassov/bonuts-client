@@ -15,6 +15,11 @@ export const EventCardStyled = styled(EventCard, {
 	shouldForwardProp: (prop) => prop !== "bodyMaxHeight" && prop !== "maxWidth",
 })<TEventCardStyledProps>(({ theme, bodyMaxHeight = 300, maxWidth = 700, post }) => {
 	const isNotification = !post.public;
+	const notificationSurface = theme.palette.mode === "dark" ? alpha(theme.palette.background.paper, 0.6) : alpha(theme.palette.background.paper, 0.95);
+	const notificationBorder = alpha(theme.palette.divider, theme.palette.mode === "dark" ? 0.7 : 0.85);
+	const cardBoxShadow = isNotification ? "none" : "0 8px 24px rgba(30,31,37,0.06)";
+	const cardHoverTransform = isNotification ? "none" : "translateY(-2px)";
+	const cardHoverShadow = isNotification ? "none" : "0 14px 34px rgba(30,31,37,0.12)";
 
 	return {
 		width: "100%",
@@ -22,14 +27,14 @@ export const EventCardStyled = styled(EventCard, {
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		maxWidth,
 		borderRadius: 16,
-		boxShadow: "0 8px 24px rgba(30,31,37,0.06)",
+		boxShadow: cardBoxShadow,
 		transition: theme.transitions.create(["width", "margin", "transform", "box-shadow"], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 		"&:hover": {
-			transform: "translateY(-2px)",
-			boxShadow: "0 14px 34px rgba(30,31,37,0.12)",
+			transform: cardHoverTransform,
+			boxShadow: cardHoverShadow,
 		},
 		[cl(EVENT_CARD_CLASSES.cardRoot)]: {
 			borderRadius: 16,
@@ -48,8 +53,8 @@ export const EventCardStyled = styled(EventCard, {
 		},
 		...(isNotification
 			? {
-					background: `linear-gradient(180deg, ${alpha(theme.palette.accent.main, 0.14)} 0%, ${alpha(theme.palette.accent.main, 0.05)} 58%, ${theme.palette.common.white} 100%)`,
-					border: `1px solid ${alpha(theme.palette.accent.main, 0.18)}`,
+					background: `linear-gradient(180deg, ${alpha(theme.palette.accent.main, theme.palette.mode === "dark" ? 0.08 : 0.06)} 0%, ${alpha(theme.palette.accent.main, theme.palette.mode === "dark" ? 0.03 : 0.02)} 52%, ${notificationSurface} 100%)`,
+					border: `1px solid ${notificationBorder}`,
 				}
 			: null),
 		[cl(EVENT_CARD_CLASSES.iconCaption)]: {

@@ -19,6 +19,20 @@ const injectedRtkApi = api.injectEndpoints({
 				},
 			}),
 		}),
+		postAccountOperationsTransfer: build.mutation<PostAccountOperationsTransferApiResponse, PostAccountOperationsTransferApiArg>({
+			query: (queryArg) => ({
+				url: `/account_operations/transfer`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
+		postAccountOperationsShareAll: build.mutation<PostAccountOperationsShareAllApiResponse, PostAccountOperationsShareAllApiArg>({
+			query: (queryArg) => ({
+				url: `/account_operations/share_all`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		getAccountsById: build.query<GetAccountsByIdApiResponse, GetAccountsByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/accounts/${queryArg.id}`,
@@ -586,6 +600,63 @@ export type GetAccountOperationsApiArg = {
 	tenant?: string;
 	accountId?: string;
 	page?: number;
+};
+export type PostAccountOperationsTransferApiResponse = /** status 201 success */ {
+	error?: boolean;
+	message?: string;
+	errorText?: string;
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			amount: any;
+			parent_operation_id?: (number | null) | null;
+			direction: number;
+			comment?: (string | null) | null;
+			deal_id?: number;
+			created_at: string;
+			created_at_utc: string;
+			updated_at?: string;
+		};
+	}[];
+};
+export type PostAccountOperationsTransferApiArg = {
+	body: {
+		tenant: string;
+		amount: number;
+		to_profile_ids: number[];
+		comment: string;
+	};
+};
+export type PostAccountOperationsShareAllApiResponse = /** status 200 success */ {
+	error?: boolean;
+	message?: string;
+	errorText?: string;
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			id: number;
+			amount: any;
+			parent_operation_id?: (number | null) | null;
+			direction: number;
+			comment?: (string | null) | null;
+			deal_id?: number;
+			created_at: string;
+			created_at_utc: string;
+			updated_at?: string;
+		};
+	}[];
+};
+export type PostAccountOperationsShareAllApiArg = {
+	body: {
+		tenant: string;
+		amount: number;
+		comment: string;
+		burn_old?: boolean;
+		to_self_account?: boolean;
+	};
 };
 export type GetAccountsByIdApiResponse = /** status 200 success */ {
 	data?: {
@@ -4129,6 +4200,8 @@ export type ProfileNotification = {
 export const {
 	usePostAccountOperationsMutation,
 	useGetAccountOperationsQuery,
+	usePostAccountOperationsTransferMutation,
+	usePostAccountOperationsShareAllMutation,
 	useGetAccountsByIdQuery,
 	usePostAdminDepositMutation,
 	useGetCirclesQuery,
