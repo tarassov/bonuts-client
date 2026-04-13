@@ -1,11 +1,12 @@
 import { ShareAllStepOne } from "components/share-all/share-all-step-one";
 import { ShareAllStepTwo } from "components/share-all/share-all-step-two";
 import { Currency } from "constants/currency";
-import { TWizardConfig } from "shared/ui/types/wizard-types";
 import { Wizard } from "shared/ui/wizard/wizard";
 
+import type { TWizardConfig } from "@/shared/ui/types/wizard-types";
+
 import { useTransfer } from "logic/hooks/operation/use-transfer";
-import { TProfile } from "@/types/model";
+import type { TProfile } from "@/types/model";
 
 type ShareAllWizardType = {
 	Step1: { profiles: Array<TProfile> };
@@ -13,14 +14,13 @@ type ShareAllWizardType = {
 };
 
 export const ShareAllWizard = () => {
-	const { adminDeposit } = useTransfer();
+	const { shareAllDonuts } = useTransfer();
 
 	const onSubmit = async (values: Partial<ShareAllWizardType & { onSuccess?: VoidFunction }>) => {
 		const { Step1, Step2, onSuccess } = values;
 		if (Step1 && Step2) {
-			const { profiles } = Step1;
 			const { amount, comment, type } = Step2;
-			adminDeposit({ amount, comment, toSelfAccount: type === Currency.coin, ids: profiles.map((x) => x.id) }, { onSuccess });
+			shareAllDonuts({ amount, comment, toSelfAccount: type === Currency.coin }, { onSuccess });
 		}
 	};
 	const shareAllConfig: TWizardConfig<ShareAllWizardType, undefined> = {

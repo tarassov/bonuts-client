@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { EmojiEventsOutlined, LocalFireDepartmentOutlined, WorkspacePremiumOutlined } from "@mui/icons-material";
 import { Box, Divider, LinearProgress } from "@mui/material";
 
+import { present } from "shared/lib/type-guards";
+
 import type { IDashboardWidgetSizingProps } from "@/shared/ui/dashboard-widget-card";
 import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
 import { BntStack } from "@/shared/ui/stack";
@@ -22,6 +24,7 @@ import {
 	getTopStatusSuggestions,
 } from "../model/your-status-helper";
 
+import { YourStatusEmptyPlaceholder } from "./your-status-empty-placeholder";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useGetParticipationCurrentWeekQuery } from "@/services/api/bonuts-api";
 import { texts_i, texts_n, texts_p, texts_r, texts_s, texts_t, texts_y } from "@/services/localization/texts";
@@ -70,14 +73,7 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	if (!data) {
 		return (
 			<DashboardWidgetCard columns={columns}>
-				<BntStack gap={1.5}>
-					<BntTypography variant="subtitle1" fontWeight={700}>
-						{t(texts_y.your_status, { capitalize: true })}
-					</BntTypography>
-					<BntTypography variant="body2" color="text.secondary">
-						{t(texts_n.no_data_yet, { capitalize: true })}
-					</BntTypography>
-				</BntStack>
+				<YourStatusEmptyPlaceholder />
 			</DashboardWidgetCard>
 		);
 	}
@@ -93,6 +89,7 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 						sx={(theme) => ({
 							width: 44,
 							height: 44,
+							minWidth: 44,
 							borderRadius: "50%",
 							display: "flex",
 							alignItems: "center",
@@ -126,7 +123,7 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 						</BntStack>
 					</>
 				) : null}
-				{topSuggestions.length > 0 ? (
+				{present(topSuggestions) ? (
 					<BntStack gap={0.5}>
 						<Divider sx={{ my: 0.5 }} />
 						{topSuggestions.map((suggestion) => (

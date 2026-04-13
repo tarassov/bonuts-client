@@ -9,17 +9,22 @@ type TEventCardHeaderProps = {
 export const EventCardHeader = styled(CardHeader, {
 	shouldForwardProp: (prop) => prop !== "notification" && prop !== "isClickable",
 })<TEventCardHeaderProps>(({ theme, notification, isClickable = false }) => {
+	const headerPadding = notification ? theme.spacing(1.25, 2, 1) : theme.spacing(2.5, 2.5, 2);
+	const avatarMarginRight = notification ? 0 : theme.spacing(1.75);
+	const titleFontSize = notification ? theme.typography.body1.fontSize : theme.typography.subtitle1.fontSize;
+	const titleFontWeight = notification ? 600 : 700;
+
 	return {
 		backgroundColor: notification ? "transparent" : theme.palette.background.paper,
 		color: theme.palette.getContrastText(theme.palette.background.default),
 		position: "relative",
-		padding: theme.spacing(2.5, 2.5, 2),
+		padding: headerPadding,
 		marginBottom: 0,
 		alignItems: "center",
 		cursor: isClickable ? "pointer" : "default",
 
 		"& .MuiCardHeader-avatar": {
-			marginRight: theme.spacing(1.75),
+			marginRight: avatarMarginRight,
 		},
 		"& .MuiAvatar-root": {
 			width: 48,
@@ -29,8 +34,8 @@ export const EventCardHeader = styled(CardHeader, {
 			minWidth: 0,
 		},
 		"& .MuiCardHeader-title": {
-			fontSize: theme.typography.subtitle1.fontSize,
-			fontWeight: 700,
+			fontSize: titleFontSize,
+			fontWeight: titleFontWeight,
 			lineHeight: 1.25,
 		},
 		"& .MuiCardHeader-subheader": {
@@ -58,8 +63,8 @@ export const EventCardHeader = styled(CardHeader, {
 			position: "absolute",
 			bottom: "0",
 			height: "1px",
-			right: theme.spacing(2.5),
-			width: `calc(100% - ${theme.spacing(5)})`,
+			right: notification ? theme.spacing(2) : theme.spacing(2.5),
+			width: notification ? `calc(100% - ${theme.spacing(4)})` : `calc(100% - ${theme.spacing(5)})`,
 			backgroundColor: theme.palette.neutral.light,
 		},
 	};
