@@ -1,23 +1,25 @@
-import { FC, useState } from "react";
+import type { FC } from "react";
+import { useState } from "react";
 import { Grid } from "@mui/material";
 
-import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
-import { Modules } from "constants/modules";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_a, texts_c, texts_n, texts_s } from "services/localization/texts";
-import { texts_r } from "services/localization/texts/texts_r";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntRegularButton } from "shared/ui/buttons/regular-button";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
-import { emptyFunction } from "utils/empty-function";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntRegularButton } from "@/shared/ui/buttons/regular-button";
+import { BntRoundButton } from "@/shared/ui/buttons/round-button";
+import { useLoader } from "@/shared/ui/loader/hooks/use-loader";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { useEmployeeList } from "@/entities/profile";
 
-import { useSearch } from "logic/hooks/use-search";
-import { TProfile } from "@/types/model";
+import { EmployeeListCompact } from "@/widgets/employee-directory";
+
+import { Modules } from "@/constants/modules";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { useSearch } from "@/logic/hooks/use-search";
+import { texts_a, texts_c, texts_n, texts_s } from "@/services/localization/texts";
+import { texts_r } from "@/services/localization/texts/texts_r";
+import type { TProfile } from "@/types/model";
+import { emptyFunction } from "@/utils/empty-function";
 
 export const ShareAllStepOne: FC<{
 	next?: (args: { profiles: Array<TProfile> }) => void;

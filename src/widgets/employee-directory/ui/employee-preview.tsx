@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 
-import { EmployeePreviewStyled } from "components/employee/employee-preview/employee-preview-styled";
-import { Modules } from "constants/modules";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+import { useLoader } from "@/shared/ui/loader/hooks/use-loader";
 
 import { useModal } from "@/entities/modal";
 import { useProfile } from "@/entities/profile";
 import { useEmployee } from "@/entities/profile/model/use-employee";
 import { useEmployeeLoader } from "@/entities/profile/model/use-employee-loader";
 
-import { useTransferUi } from "logic/ui/use-transfer-ui";
+import { EmployeePreviewStyled } from "./employee-preview-styled";
+import { Modules } from "@/constants/modules";
+import { useTransferUi } from "@/logic/ui/use-transfer-ui";
 
 export function EmployeePreview() {
 	const { id } = useParams();
@@ -23,27 +23,29 @@ export function EmployeePreview() {
 
 	const onImageClick = () => {
 		if (employee?.user_avatar?.url) {
-			ImageModal.show({ url: employee?.user_avatar?.url || "" });
+			ImageModal.show({ url: employee.user_avatar.url });
 		}
 	};
 
-	const onAdminDeposit = () => {
+	const onAdminDepositClick = () => {
 		if (employee) {
 			showAdminDeposit(employee.id);
 		}
 	};
-	const onTransfer = () => {
+
+	const onTransferClick = () => {
 		if (employee) {
 			showTransfer(employee.id);
 		}
 	};
-	const onActivate = () => {
+
+	const onActivateClick = () => {
 		if (employee) {
 			setActivity({ id: employee.id, active: true });
 		}
 	};
 
-	const onDisable = () => {
+	const onDisableClick = () => {
 		if (employee) {
 			setActivityWithConfirmation({ id: employee.id, active: false });
 		}
@@ -57,10 +59,10 @@ export function EmployeePreview() {
 			allowDisable={profile?.admin}
 			allowEdit={profile?.admin}
 			allowActivate={profile?.admin}
-			onAdminDepositClick={onAdminDeposit}
-			onTransferClick={onTransfer}
-			onActivateClick={onActivate}
-			onDisableClick={onDisable}
+			onAdminDepositClick={onAdminDepositClick}
+			onTransferClick={onTransferClick}
+			onActivateClick={onActivateClick}
+			onDisableClick={onDisableClick}
 		/>
 	);
 }

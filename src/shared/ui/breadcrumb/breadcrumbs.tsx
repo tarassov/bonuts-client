@@ -14,7 +14,7 @@ export const BntBreadcrumbs: FC<TBntBreadcrumb> = ({ items, className }) => {
 	const { translate } = useBntTranslate();
 	return (
 		<div>
-			<BntStyledBreadcrumbs className={className} separator={<NavigateNext fontSize="small" color="action" />}>
+			<BntStyledBreadcrumbs className={className} separator={<NavigateNext fontSize="small" sx={{ color: "text.secondary" }} />}>
 				{items.map((item) => {
 					const { onClick = EMPTY_FUNCTION, link, label, icon, key, noTranslation } = item;
 					const linkComponent: {
