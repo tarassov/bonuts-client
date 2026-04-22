@@ -1,19 +1,22 @@
-import React, { FC } from "react";
 import { CloseOutlined } from "@mui/icons-material";
 import { Grid2 as Grid } from "@mui/material";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_c } from "services/localization/texts";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { BntStack } from "shared/ui/stack";
-import { emptyFunction } from "utils/empty-function";
+import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntStack } from "@/shared/ui/stack";
 
-import { BntProfileForm, BntProfileImage } from "@/entities/profile";
-import { useUpdateProfile } from "@/entities/profile/model/use-update-profile";
+import { BntProfileForm, ProfileHeader, useUpdateProfile } from "@/entities/profile";
 
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_c } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
+import { emptyFunction } from "@/utils/empty-function";
 
-export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = ({ profile, onClose = emptyFunction }) => {
+type TEmployeeEditProps = {
+	profile?: TProfile;
+	onClose?: VoidFunction;
+};
+
+export function EmployeeEdit({ profile, onClose = emptyFunction }: TEmployeeEditProps) {
 	const { updateProfile } = useUpdateProfile();
 	const { translate } = useBntTranslate();
 
@@ -26,7 +29,7 @@ export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = 
 			</BntStack>
 			<Grid container spacing={2} className="p-2">
 				<Grid size={{ xs: 12, sm: 6, lg: 4 }}>
-					<BntProfileImage profile={profile} />
+					<ProfileHeader profile={profile} />
 				</Grid>
 				<Grid size={{ xs: 12, sm: 6, lg: 6 }}>
 					<BntProfileForm profile={profile} updateProfile={updateProfile} />
@@ -34,4 +37,4 @@ export const EmployeeEdit: FC<{ profile?: TProfile; onClose?: VoidFunction }> = 
 			</Grid>
 		</>
 	);
-};
+}

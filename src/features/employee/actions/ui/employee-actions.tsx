@@ -1,15 +1,16 @@
-import React, { FC } from "react";
+import type { FC } from "react";
 import { BlockOutlined, CakeOutlined, CheckOutlined, EditOutlined } from "@mui/icons-material";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useBonutsIcon } from "hooks/use-bonuts-icon";
-import { texts_a, texts_d, texts_e } from "services/localization/texts";
-import { texts_t } from "services/localization/texts/texts_t";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { BntStack } from "shared/ui/stack";
-import { emptyFunction } from "utils/empty-function";
+import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntStack } from "@/shared/ui/stack";
 
-export const EmployeeActions: FC<{
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { useBonutsIcon } from "@/hooks/use-bonuts-icon";
+import { texts_a, texts_d, texts_e } from "@/services/localization/texts";
+import { texts_t } from "@/services/localization/texts/texts_t";
+import { emptyFunction } from "@/utils/empty-function";
+
+type TEmployeeActionsProps = {
 	onTransferClick?: VoidFunction;
 	onAdminDepositClick?: VoidFunction;
 	onDisableClick?: VoidFunction;
@@ -19,7 +20,9 @@ export const EmployeeActions: FC<{
 	allowActivate?: boolean;
 	allowAdminDeposit?: boolean;
 	allowEdit?: boolean;
-}> = ({
+};
+
+export const EmployeeActions: FC<TEmployeeActionsProps> = ({
 	onAdminDepositClick = emptyFunction,
 	onEditClick = emptyFunction,
 	onTransferClick = emptyFunction,
@@ -38,26 +41,26 @@ export const EmployeeActions: FC<{
 			<BntIconButton color="primary" tooltip={translate(texts_t.transfer_donuts)} onClick={onTransferClick}>
 				<CakeOutlined />
 			</BntIconButton>
-			{allowEdit && (
+			{allowEdit ? (
 				<BntIconButton customIcon tooltip={`${translate(texts_e.edit)}`} onClick={onEditClick}>
 					<EditOutlined color="secondary" />
 				</BntIconButton>
-			)}
-			{allowAdminDeposit && (
+			) : null}
+			{allowAdminDeposit ? (
 				<BntIconButton customIcon tooltip={`${translate(texts_t.transfer_points)}`} onClick={onAdminDepositClick}>
 					<BonutsCurrency />
 				</BntIconButton>
-			)}
-			{allowDisable && (
+			) : null}
+			{allowDisable ? (
 				<BntIconButton color="error" tooltip={`${translate(texts_d.disable_account)}`} onClick={onDisableClick}>
 					<BlockOutlined />
 				</BntIconButton>
-			)}
-			{allowActivate && (
+			) : null}
+			{allowActivate ? (
 				<BntIconButton color="primary" tooltip={`${translate(texts_a.activate)}`} onClick={onActivateClick}>
 					<CheckOutlined />
 				</BntIconButton>
-			)}
+			) : null}
 		</BntStack>
 	);
 };

@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { EmployeePreview } from "components/employee/employee-preview/employee-preview";
+import { EmployeePreview } from "@/widgets/employee-directory";
 
 export const EmployeePreviewPage: FC = () => {
 	return <EmployeePreview />;
