@@ -1,17 +1,18 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Grid } from "@mui/material";
 
-import { EmployeeListCompact } from "components/employee/employee-list-compact/employee-list-compact";
-import { ShareAllForm } from "components/share-all/share-all-form";
-import { Currency } from "constants/currency";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_b } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { BntStack } from "shared/ui/stack";
-import { emptyFunction } from "utils/empty-function";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntRoundButton } from "@/shared/ui/buttons/round-button";
+import { BntStack } from "@/shared/ui/stack";
 
-import { TProfile } from "@/types/model";
+import { EmployeeListCompact } from "@/widgets/employee-directory";
+
+import { ShareAllForm } from "@/components/share-all/share-all-form";
+import { Currency } from "@/constants/currency";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_b } from "@/services/localization/texts";
+import type { TProfile } from "@/types/model";
+import { emptyFunction } from "@/utils/empty-function";
 
 export const ShareAllStepTwo: FC<{
 	profiles?: Array<TProfile>;

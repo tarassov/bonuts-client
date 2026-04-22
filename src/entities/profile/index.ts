@@ -8,5 +8,6 @@ export { useUpdateAvatar } from "./model/use-update-avatar";
 export { useUpdateProfile } from "./model/use-update-profile";
 export { ProfileEdit } from "./ui/profile-edit";
 export { BntProfileForm } from "./ui/profile-form";
+export { ProfileHeader } from "./ui/profile-header";
 export { BntProfileImage } from "./ui/profile-image";
 export { ProfileStatusChips } from "./ui/profile-status-chips";
