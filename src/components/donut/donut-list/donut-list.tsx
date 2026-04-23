@@ -3,7 +3,8 @@ import { Grid } from "@mui/material";
 
 import { DonutCard } from "components/donut/donut-card/donut-card";
 import { Modules } from "constants/modules";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { useDonutLoaderList } from "@/entities/donut";
 

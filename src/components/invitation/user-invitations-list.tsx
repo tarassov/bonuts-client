@@ -5,7 +5,8 @@ import { TenantList } from "components/tenant/tenant-list";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_i } from "services/localization/texts";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { useInvitationLoaderList } from "logic/hooks/invitation/use-invitation-loader-list";
 

@@ -1,6 +1,7 @@
 import { StoreManagerPure } from "components/store-manager/store-manager-pure";
 import { Modules } from "constants/modules";
-import { useModuleLoader } from "shared/ui/loader/hooks/use-module-loader";
+
+import { useModuleLoader } from "@/shared/ui/loader";
 
 import { useDonutLoaderList } from "@/entities/donut";
 

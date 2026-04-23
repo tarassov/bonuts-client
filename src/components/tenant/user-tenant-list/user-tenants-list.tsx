@@ -5,7 +5,8 @@ import { UserTenantCard } from "components/tenant/user-tenant-list/user-tenant-c
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_m } from "services/localization/texts";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { useTenantsLoaderList } from "logic/hooks/tenant/use-tenants-loader-list";
 

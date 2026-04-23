@@ -6,7 +6,8 @@ import { PasswordRecoverSet } from "components/password-recover/password-recover
 import { Modules } from "constants/modules";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { BntBox } from "shared/ui/box/bnt-box";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { Messenger } from "@/features/3cx/messenger";
 

@@ -5,15 +5,6 @@ import { BntCard } from "@/shared/ui/card/card";
 import { BntCardBody } from "@/shared/ui/card/card-body";
 import { BntStack } from "@/shared/ui/stack";
 
-import { EmployeePreviewPure } from "./employee-preview-pure";
-
-export const EmployeePreviewStyled = styled(
-	EmployeePreviewPure,
-	{}
-)(() => {
-	return {};
-});
-
 export const EmployeePreviewRoot = styled(BntStack)(({ theme }) => {
 	return {
 		minHeight: "100%",

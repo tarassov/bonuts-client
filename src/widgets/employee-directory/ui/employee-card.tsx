@@ -17,14 +17,17 @@ import { texts_t } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
 
 const EmployeeCardRoot = styled(BntCard)(({ theme }) => {
+	const isDarkMode = theme.palette.mode === "dark";
+
 	return {
-		backgroundColor: theme.palette.secondary.veryLight,
+		backgroundColor: isDarkMode ? theme.palette.background.paper : theme.palette.secondary.veryLight,
 		maxWidth: 300,
 		color: theme.palette.neutral.dark,
 		margin: "auto",
+		border: `1px solid ${theme.palette.divider}`,
 		"&:hover": {
 			outline: "2px solid",
-			outlineColor: theme.palette.primary.light,
+			outlineColor: isDarkMode ? theme.palette.primary.main : theme.palette.primary.light,
 		},
 	};
 });
@@ -41,6 +44,8 @@ const EmployeeCardBody = styled(BntCardBody)({
 });
 
 const EmployeeCardAvatar = styled("img")(({ theme }) => {
+	const isDarkMode = theme.palette.mode === "dark";
+
 	return {
 		width: "auto",
 		height: "auto",
@@ -49,7 +54,7 @@ const EmployeeCardAvatar = styled("img")(({ theme }) => {
 		verticalAlign: "middle",
 		margin: "0 auto",
 		border: 0,
-		boxShadow: "0px 0px 48px rgba(255, 255, 255, 0.8)",
+		boxShadow: isDarkMode ? "0px 0px 28px rgba(255, 176, 102, 0.28)" : "0px 0px 48px rgba(255, 255, 255, 0.8)",
 		transition: "transform 500ms cubic-bezier(0.34, 1.61, 0.7, 1)",
 		[theme.breakpoints.down("sm")]: {
 			maxHeight: "90px",

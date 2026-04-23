@@ -9,10 +9,11 @@ import { ProfileNotification } from "services/api/bonuts-api";
 import { texts_c, texts_d, texts_i, texts_n } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { BntCard } from "shared/ui/card/card";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntStack } from "shared/ui/stack";
 import { UiSwitch } from "shared/ui/switch";
 import { BntTypography } from "shared/ui/typography";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { type IPluginApi, usePlugin } from "@/entities/plugin";
 import { useProfileNotification } from "@/entities/profile";
