@@ -22,7 +22,8 @@ import {
 
 import { Roles } from "constants/roles";
 import { useIcons } from "hooks/use-icons";
-import { BntRoutes } from "shared/config/routes";
+
+import { BntRoutes } from "@/shared/config/routes";
 
 import { ConfirmEmailPage } from "@/pages/confirm-email-page/confirm-email-page";
 import { DonutEditPage } from "@/pages/donut/donut-edit-page";

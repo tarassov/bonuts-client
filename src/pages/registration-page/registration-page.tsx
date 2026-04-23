@@ -6,17 +6,17 @@ import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
 import { texts_e, texts_f, texts_l, texts_p, texts_s } from "services/localization/texts";
-import BonutsFullIcon from "shared/ui/icons/BonutsFullIcon.svg";
-import { BntTypography } from "shared/ui/typography/typography";
 
+import BonutsFullIcon from "@/shared/ui/icons/BonutsFullIcon.svg";
 import { useLoader } from "@/shared/ui/loader";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { Messenger } from "@/features/3cx/messenger";
 
 import styles from "./registration-page.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
-import { RegisterFields } from "@/types/form/register";
+import { RegisterFields } from "types/form/register";
 
 export const RegistrationPage: FC = () => {
 	const { formSchema } = useRegisterValidation();

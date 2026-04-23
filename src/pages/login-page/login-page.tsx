@@ -11,10 +11,10 @@ import { ICON_VARIANTS, useIcons } from "hooks/use-icons";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { useLoginValidation } from "hooks/validation/use-login-validation";
 import { texts_l, texts_s, texts_v } from "services/localization/texts";
-import { present } from "shared/lib/type-guards";
-import { useAuth } from "shared/model/auth/use-auth";
-import { AuthFormPanel, AuthHero } from "shared/ui/auth";
 
+import { present } from "@/shared/lib/type-guards";
+import { useAuth } from "@/shared/model/auth/use-auth";
+import { AuthFormPanel, AuthHero } from "@/shared/ui/auth";
 import { useLoader } from "@/shared/ui/loader";
 
 import { Messenger } from "@/features/3cx/messenger";
@@ -23,7 +23,7 @@ import { openVkLoginWindow } from "@/features/profile/vk";
 import styles from "./login-page.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
-import type { TLoginFields } from "@/types/form/login";
+import type { TLoginFields } from "types/form/login";
 
 type TApiErrorData = {
 	errorCode?: number;

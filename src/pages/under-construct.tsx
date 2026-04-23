@@ -4,8 +4,9 @@ import { Stack } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_s } from "services/localization/texts";
 import { texts_u } from "services/localization/texts/texts_u";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntTypography } from "shared/ui/typography/typography";
+
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 export const UnderConstruct = () => {
 	const { t } = useBntTranslate();

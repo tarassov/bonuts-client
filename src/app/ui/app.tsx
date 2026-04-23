@@ -5,9 +5,10 @@ import { SnackbarProvider } from "notistack";
 
 import i18n from "services/localization/i18n";
 import { history } from "services/redux/store/store";
-import { RouterContext, type TRouterContextType } from "shared/lib/router";
-import { BntLoadingProvider } from "shared/ui/loader/loading-provider";
-import { LocaleProvider } from "shared/ui/locale/locale-provider";
+
+import { RouterContext, type TRouterContextType } from "@/shared/lib/router";
+import { BntLoadingProvider } from "@/shared/ui/loader/loading-provider";
+import { LocaleProvider } from "@/shared/ui/locale/locale-provider";
 
 import { PluginProvider } from "@/entities/plugin";
 
@@ -21,7 +22,7 @@ import { BntThemeProvider } from "themes/theme-provider";
 
 import "./app.scss";
 
-import type { AppContextType } from "@/types/context/app-context-type";
+import type { AppContextType } from "types/context/app-context-type";
 
 function App() {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);

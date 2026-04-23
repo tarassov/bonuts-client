@@ -6,11 +6,11 @@ import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { texts_c, texts_e, texts_n } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import BonutsFullIcon from "shared/ui/icons/BonutsFullIcon.svg";
-import { BntTypography } from "shared/ui/typography/typography";
 
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import BonutsFullIcon from "@/shared/ui/icons/BonutsFullIcon.svg";
 import { useLoader } from "@/shared/ui/loader";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import styles from "./confirm-email-page.module.scss";
 import { useConfirmEmail } from "logic/hooks/auth/use-confirm-email";
