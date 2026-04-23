@@ -8,8 +8,9 @@ import { useProjectNavigate } from "hooks/use-project-navigate";
 import { texts_c, texts_e, texts_n } from "services/localization/texts";
 import { BntBox } from "shared/ui/box/bnt-box";
 import BonutsFullIcon from "shared/ui/icons/BonutsFullIcon.svg";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntTypography } from "shared/ui/typography/typography";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import styles from "./confirm-email-page.module.scss";
 import { useConfirmEmail } from "logic/hooks/auth/use-confirm-email";

@@ -182,6 +182,16 @@ Preferred rule:
 - `Stack` or grid for simple component-level layout structure
 - if styling only defines one simple property, do not extract it into a separate `styled()` component
 
+### Golden Middle Convention
+
+- Use an intent-based choice, not a forced single styling method.
+- Choose by responsibility:
+  - layout/structural composition and complex responsive composition: CSS Modules
+  - reusable visual primitives and repeated MUI override patterns: `styled()`
+  - tiny local or dynamic tweaks near usage: `sx`
+- Do not force styling rewrites only for consistency; migrate styling approach when touching code or when duplication clearly appears.
+- If the styling choice is non-obvious for the file, briefly note the reason in the PR/task response.
+
 ---
 
 ## Design System and Tokens

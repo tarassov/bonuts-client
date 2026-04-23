@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import { Modules } from "constants/modules";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { usePluginActivate, usePluginListLoader } from "@/features/plugin";
 import { usePluginUpdate } from "@/features/plugin/model/use-plugin-update";

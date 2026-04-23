@@ -7,8 +7,9 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
 import { texts_e, texts_f, texts_l, texts_p, texts_s } from "services/localization/texts";
 import BonutsFullIcon from "shared/ui/icons/BonutsFullIcon.svg";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntTypography } from "shared/ui/typography/typography";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { Messenger } from "@/features/3cx/messenger";
 

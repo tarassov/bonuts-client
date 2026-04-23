@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useRef, useState } from "react";
+import { ChangeEvent, type CSSProperties, useMemo, useRef, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -43,6 +43,13 @@ export function ProfileHeader({ profile }: { profile?: TProfile }) {
 	const displayName = useMemo(() => getDisplayName(profile), [profile]);
 	const initials = useMemo(() => getAvatarInitials(profile), [profile]);
 	const avatarUrl = previewUrl || profile?.user_avatar?.url || "";
+	const isDarkMode = theme.palette.mode === "dark";
+
+	const cardThemeStyle: CSSProperties = {
+		"--profile-header-bg-start": isDarkMode ? theme.palette.background.paper : "#FFFFFF",
+		"--profile-header-bg-end": isDarkMode ? theme.palette.background.paper : "rgba(255, 255, 255, 0.96)",
+		"--profile-header-accent-glow": isDarkMode ? theme.palette.accent.veryLight : theme.palette.accent.light,
+	} as CSSProperties;
 
 	const handleAvatarClick = () => {
 		inputRef.current?.click();
@@ -64,7 +71,7 @@ export function ProfileHeader({ profile }: { profile?: TProfile }) {
 	};
 
 	return (
-		<BntCard data-testid="profile-header" className={classes.card}>
+		<BntCard data-testid="profile-header" className={classes.card} style={cardThemeStyle}>
 			<div className={classes.layout}>
 				<div>
 					<button type="button" className={classes.avatarButton} onClick={handleAvatarClick}>

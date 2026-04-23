@@ -14,7 +14,8 @@ import { texts_l, texts_s, texts_v } from "services/localization/texts";
 import { present } from "shared/lib/type-guards";
 import { useAuth } from "shared/model/auth/use-auth";
 import { AuthFormPanel, AuthHero } from "shared/ui/auth";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { Messenger } from "@/features/3cx/messenger";
 import { openVkLoginWindow } from "@/features/profile/vk";

@@ -3,8 +3,9 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { CommentForm } from "components/comment/comment-form";
 import { CommentList } from "components/comment/comment-list";
 import { Modules } from "constants/modules";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntStack } from "shared/ui/stack";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { useEventLoader } from "../model/use-event-loader";
 import { useEventLogic } from "../model/use-event-logic";

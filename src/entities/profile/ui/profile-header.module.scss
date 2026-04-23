@@ -4,8 +4,8 @@
 	box-shadow: none;
 	border: 1px solid var(--mui-palette-divider);
 	background:
-		radial-gradient(circle at top right, var(--mui-palette-accent-light) 0, transparent 40%),
-		linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.96) 100%);
+		radial-gradient(circle at top right, var(--profile-header-accent-glow, var(--mui-palette-accent-light)) 0, transparent 40%),
+		linear-gradient(180deg, var(--profile-header-bg-start, #fff) 0%, var(--profile-header-bg-end, rgba(255, 255, 255, 0.96)) 100%);
 }
 
 .layout {

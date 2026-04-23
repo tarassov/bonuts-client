@@ -7,6 +7,7 @@ import { ImagePreview } from "@/shared/ui/image/image-preview";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography/typography";
 
+import { CircleChip } from "@/entities/circle";
 import { ProfileStatusChips } from "@/entities/profile";
 
 import { EmployeeActions } from "@/features/employee/actions";
@@ -25,14 +26,13 @@ import {
 	EmployeePreviewIdentity,
 	EmployeePreviewRoot,
 } from "./employee-preview-styled";
-import { CircleTag } from "@/components/circle/circle-tag/circle-tag";
 import { DEFAULT_AVATAR } from "@/constants/images";
 import { texts_b, texts_c, texts_i } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
 import { emptyFunction } from "@/utils/empty-function";
 import { formatStringDate } from "@/utils/format-string-date";
 
-type TEmployeePreviewPureProps = {
+type TEmployeePreviewViewProps = {
 	className?: string;
 	employee?: TProfile;
 	onImageClick: VoidFunction;
@@ -46,7 +46,7 @@ type TEmployeePreviewPureProps = {
 	allowEdit?: boolean;
 };
 
-export const EmployeePreviewPure: FC<TEmployeePreviewPureProps> = ({
+export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 	className,
 	employee,
 	onImageClick = emptyFunction,
@@ -94,7 +94,7 @@ export const EmployeePreviewPure: FC<TEmployeePreviewPureProps> = ({
 								</EmployeePreviewAvatarWrap>
 								<EmployeePreviewCircles direction="row" justifyContent="center" alignItems={{ sm: "center", xs: "center" }} flexWrap="wrap" spacing={1} gap={1}>
 									{employee?.circles?.map((circle) => {
-										return <CircleTag key={circle.id} title={circle.name} />;
+										return <CircleChip key={circle.id} label={circle.name || ""} />;
 									})}
 								</EmployeePreviewCircles>
 							</EmployeePreviewAvatarColumn>

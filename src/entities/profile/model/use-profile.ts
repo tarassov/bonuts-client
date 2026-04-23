@@ -5,9 +5,9 @@ import { useGetProfileQuery } from "services/api/bonuts-api";
 import { accountsApi } from "services/api/extended/accounts-api";
 import { useAppDispatch } from "services/redux/store/store";
 import { invalidateId } from "services/redux/utils/rtk-cache-utils";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 
 import { useCurrentProfile } from "@/shared/model/auth";
+import { useLoader } from "@/shared/ui/loader";
 
 import type { TUpdateProfileValues } from "./use-update-profile";
 import { useUpdateProfile } from "./use-update-profile";

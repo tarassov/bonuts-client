@@ -1,13 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import { useLoader } from "@/shared/ui/loader/hooks/use-loader";
+import { useLoader } from "@/shared/ui/loader";
 
 import { useModal } from "@/entities/modal";
-import { useProfile } from "@/entities/profile";
-import { useEmployee } from "@/entities/profile/model/use-employee";
-import { useEmployeeLoader } from "@/entities/profile/model/use-employee-loader";
+import { useEmployee, useEmployeeLoader, useProfile } from "@/entities/profile";
 
-import { EmployeePreviewStyled } from "./employee-preview-styled";
+import { EmployeePreviewView } from "./employee-preview-pure";
 import { Modules } from "@/constants/modules";
 import { useTransferUi } from "@/logic/ui/use-transfer-ui";
 
@@ -52,7 +50,7 @@ export function EmployeePreview() {
 	};
 
 	return (
-		<EmployeePreviewStyled
+		<EmployeePreviewView
 			employee={employee}
 			onImageClick={onImageClick}
 			allowAdminDeposit={profile?.admin}

@@ -5,8 +5,9 @@ import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_s } from "services/localization/texts";
 import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { BntStack } from "shared/ui/stack";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { useModal } from "@/entities/modal";
 
