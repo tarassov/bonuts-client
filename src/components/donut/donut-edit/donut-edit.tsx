@@ -8,8 +8,9 @@ import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardBody } from "shared/ui/card/card-body";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { useDonut } from "@/entities/donut";
 import { useDonutLoader } from "@/entities/donut/model/use-donut-loader";

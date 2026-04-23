@@ -13,9 +13,10 @@ import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
 import { BntCard } from "shared/ui/card/card";
 import { BntCardBody } from "shared/ui/card/card-body";
 import { ImagePreview } from "shared/ui/image/image-preview";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
 import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 import { BntTypography } from "shared/ui/typography/typography";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { useDonutLoader } from "@/entities/donut";
 import { useModal } from "@/entities/modal";

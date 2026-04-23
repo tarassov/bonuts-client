@@ -4,7 +4,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Modules } from "constants/modules";
 import { RouterContext } from "shared/lib/router";
 import { BntBox } from "shared/ui/box/bnt-box";
-import { useLoader } from "shared/ui/loader/hooks/use-loader";
+
+import { useLoader } from "@/shared/ui/loader";
 
 import { getRoutes } from "routes/get-routes";
 import SwitchRoutes from "@/app/ui/switch-routes";

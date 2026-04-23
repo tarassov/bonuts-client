@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { Grid } from "@mui/material";
 
-import { useLoader } from "@/shared/ui/loader/hooks/use-loader";
+import { useLoader } from "@/shared/ui/loader";
 import { SearchString } from "@/shared/ui/search-string";
 
 import { useEmployeeList } from "@/entities/profile/model/use-employee-list";

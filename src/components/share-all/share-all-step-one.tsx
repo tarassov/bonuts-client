@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 import { BntBox } from "@/shared/ui/box/bnt-box";
 import { BntRegularButton } from "@/shared/ui/buttons/regular-button";
 import { BntRoundButton } from "@/shared/ui/buttons/round-button";
-import { useLoader } from "@/shared/ui/loader/hooks/use-loader";
+import { useLoader } from "@/shared/ui/loader";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography/typography";
 
