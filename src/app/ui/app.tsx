@@ -22,7 +22,7 @@ import { BntThemeProvider } from "themes/theme-provider";
 
 import "./app.scss";
 
-import type { AppContextType } from "types/context/app-context-type";
+import type { AppContextType } from "@/types/context/app-context-type";
 
 function App() {
 	const [isDrawerOpen, setDrawerOpen] = useState(false);

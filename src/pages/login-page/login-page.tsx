@@ -12,6 +12,7 @@ import { useProjectNavigate } from "hooks/use-project-navigate";
 import { useLoginValidation } from "hooks/validation/use-login-validation";
 import { texts_l, texts_s, texts_v } from "services/localization/texts";
 
+import { getResponseErrorMessage } from "@/shared/lib/notification";
 import { present } from "@/shared/lib/type-guards";
 import { useAuth } from "@/shared/model/auth/use-auth";
 import { AuthFormPanel, AuthHero } from "@/shared/ui/auth";
@@ -23,12 +24,16 @@ import { openVkLoginWindow } from "@/features/profile/vk";
 import styles from "./login-page.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
-import type { TLoginFields } from "types/form/login";
+import type { TLoginFields } from "@/types/form/login";
 
 type TApiErrorData = {
 	errorCode?: number;
 	message?: string;
 	errorText?: string;
+};
+
+const getStringErrorMessage = (message: unknown): string | undefined => {
+	return typeof message === "string" ? message : undefined;
 };
 
 export const LoginPage: FC = () => {
@@ -68,7 +73,9 @@ export const LoginPage: FC = () => {
 	const emailValue = watch("email") || "";
 	const passwordValue = watch("password") || "";
 	const isFormDisabled = !emailValue.trim() || !passwordValue || isLogging;
-	const passwordErrorText = errors.password?.message || (!errors.password ? authErrorData?.message || authErrorData?.errorText : undefined);
+	const passwordValidationError = getStringErrorMessage(errors.password?.message);
+	const responseErrorMessage = getResponseErrorMessage(authError) ?? undefined;
+	const passwordErrorText = passwordValidationError ?? (!errors.password ? responseErrorMessage : undefined);
 
 	const onSubmit: SubmitHandler<TLoginFields> = async (values) => {
 		await signIn({
