@@ -2,7 +2,7 @@ import * as React from "react";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
-import { parseSearchString } from "shared/lib/navigation";
+import { parseSearchString } from "@/shared/lib/navigation";
 
 import { type TVkResponse, VkCallback } from "@/features/profile/vk";
 

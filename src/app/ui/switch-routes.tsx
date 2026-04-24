@@ -7,10 +7,10 @@ import _ from "lodash";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useLocationTyped } from "hooks/use-location-typed";
 import { texts_c, texts_p } from "services/localization/texts";
-import { BntRoutes } from "shared/config/routes";
-import { BntLoader } from "shared/ui/loader";
 
+import { BntRoutes } from "@/shared/config/routes";
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
+import { BntLoader } from "@/shared/ui/loader";
 
 import type { TModalConfig } from "@/entities/modal";
 import { useUserActivityHeartbit } from "@/entities/user";
