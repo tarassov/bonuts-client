@@ -87,13 +87,17 @@ export const EventCardStyled = styled(EventCard, {
 			opacity: 0.72,
 			transition: theme.transitions.create(["color", "opacity", "background-color"]),
 			"&:hover": {
-				color: theme.palette.primary.main,
+				color: theme.palette.primary.light,
 				opacity: 1,
 			},
 		},
 		[cl(EVENT_CARD_CLASSES.liked)]: {
 			color: theme.palette.primary.main,
 			opacity: 1,
+			"&:hover": {
+				color: theme.palette.primary.main,
+				opacity: 1,
+			},
 		},
 		[cl(EVENT_CARD_CLASSES.cardBodyText)]: {
 			maxWidth: "46ch",

@@ -1,4 +1,23 @@
-import { texts_a, texts_c, texts_d, texts_e, texts_f, texts_h, texts_i, texts_l, texts_n, texts_o, texts_p, texts_r, texts_s, texts_t, texts_v, texts_y } from "@/services/localization/texts";
+import {
+	texts_a,
+	texts_c,
+	texts_d,
+	texts_e,
+	texts_f,
+	texts_g,
+	texts_h,
+	texts_i,
+	texts_l,
+	texts_n,
+	texts_o,
+	texts_p,
+	texts_r,
+	texts_s,
+	texts_t,
+	texts_v,
+	texts_w,
+	texts_y,
+} from "@/services/localization/texts";
 
 export const enLocale = {
 	translations: {
@@ -70,6 +89,7 @@ export const enLocale = {
 		[texts_v.vk_notifications_disabled_suffix]: "then enable notifications.",
 		[texts_e.email_address_is_required]: "Email is required",
 		[texts_f.filter]: "Filter",
+		[texts_g.give_donuts]: "Give donuts",
 		[texts_c.current_week_statistics]: "Current week statistics",
 		[texts_l.likes_given]: "Likes given",
 		[texts_c.comments_written]: "Comments written",
@@ -81,6 +101,8 @@ export const enLocale = {
 		[texts_n.no_weekly_leaders_yet]: "No weekly leaders yet",
 		[texts_n.next_status]: "Next status",
 		[texts_n.notifications]: "Notifications",
+		[texts_w.week_from_to_caption]: "Week from {{from}} to {{to}}",
+		[texts_w.week_from_to_tooltip]: "Information is for the week from {{from}} to {{to}}",
 		[texts_i.in_top_most_active_percent]: "In the top {{percent}}% most active",
 		[texts_i.into_top_most_active_percent]: "A bit more to reach the top {{percent}}% most active",
 		[texts_p.poka_you_were_not_very_active]: "You have not been very active yet",

@@ -65,6 +65,7 @@ For UI tasks, also mention:
 - Prefer named callback methods over inline event handlers when the handler contains non-trivial logic or is reused.
 - Prefer an empty line before `return` when it improves visual separation after preceding logic.
 - Prefer one component per file as a general rule. Small internal helpers are acceptable only when extraction would clearly hurt readability.
+- Use this heuristic: if a file grows beyond 10 lines, treat it as likely needing refactor and check whether logic or styling should be extracted.
 - Move non-UI helpers (sorting, mapping, formatting, ranking, presenter-style transformations) out of component files into dedicated helper/presenter files (for example `LeaderboardHelper.ts`) and export the required methods from there.
 
 ---

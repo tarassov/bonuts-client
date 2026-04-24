@@ -55,6 +55,11 @@ const lightTheme = {
 			default: grey.A100,
 			palette: "#FFF",
 		},
+		text: {
+			primary: "#1E1F25",
+			heading: "#2D3442",
+			secondary: "#6B7280",
+		},
 		primary: {
 			main: colors.primary[500],
 			light: colors.primary[100],

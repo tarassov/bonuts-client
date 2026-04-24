@@ -178,7 +178,7 @@ export const AuthFormPanel: FC<TAuthFormPanelProps> = ({
 				</Stack>
 				<Divider sx={{ my: "2px" }} />
 				<Stack alignItems="center" spacing={2} textAlign="center">
-					<Typography variant="body1" sx={{ maxWidth: 320, lineHeight: 1.6, color: "rgba(73, 73, 91, 0.78)" }}>
+					<Typography variant="body1" sx={{ maxWidth: 320, lineHeight: 1.6, color: "text.secondary" }}>
 						{translate(texts_l.login_page_invite)}
 					</Typography>
 					<Tooltip title={isLogging || isVkLoading ? secondaryDisabledReason : ""} disableHoverListener={!(isLogging || isVkLoading)}>

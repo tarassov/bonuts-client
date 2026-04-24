@@ -118,7 +118,10 @@ export const LoginPage: FC = () => {
 			component="div"
 			className={styles.page}
 			sx={(theme) => ({
-				background: `linear-gradient(180deg, ${theme.palette.neutral.light} 0%, ${theme.palette.common.white} 100%)`,
+				background:
+					theme.palette.mode === "dark"
+						? `linear-gradient(180deg, ${theme.palette.background.default} 0%, ${theme.palette.background.paper} 100%)`
+						: `linear-gradient(180deg, ${theme.palette.neutral.light} 0%, ${theme.palette.common.white} 100%)`,
 			})}
 		>
 			<Messenger />
@@ -126,9 +129,12 @@ export const LoginPage: FC = () => {
 				<Box
 					className={styles.card}
 					sx={(theme) => ({
-						backgroundColor: theme.palette.common.white,
-						border: `1px solid ${alpha(theme.palette.text.secondary, 0.12)}`,
-						boxShadow: `0 1px 3px ${alpha(theme.palette.common.black, 0.08)}, 0 12px 32px ${alpha(theme.palette.common.black, 0.06)}`,
+						backgroundColor: theme.palette.mode === "dark" ? theme.palette.background.paper : theme.palette.common.white,
+						border: theme.palette.mode === "dark" ? `1px solid ${theme.palette.divider}` : `1px solid ${alpha(theme.palette.text.secondary, 0.12)}`,
+						boxShadow:
+							theme.palette.mode === "dark"
+								? `0 1px 2px ${alpha(theme.palette.common.black, 0.38)}, 0 12px 28px ${alpha(theme.palette.common.black, 0.28)}`
+								: `0 1px 3px ${alpha(theme.palette.common.black, 0.08)}, 0 12px 32px ${alpha(theme.palette.common.black, 0.06)}`,
 					})}
 				>
 					<AuthHero title={translate(texts_l.login_page_hero_title)} subtitle={translate(texts_l.login_page_hero_subtitle)} socialProof={translate(texts_l.login_page_social_proof)} />

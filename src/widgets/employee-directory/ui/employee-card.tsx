@@ -1,76 +1,15 @@
 import type { FC } from "react";
 import { CakeOutlined } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
 
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardActionArea } from "@/shared/ui/card/card-action-area";
-import { BntCardBody } from "@/shared/ui/card/card-body";
-import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
 
+import { EmployeeCardActionArea, EmployeeCardAvatar, EmployeeCardBody, EmployeeCardCaption, EmployeeCardFooter, EmployeeCardRoot, EmployeeName, EmployeeTransferButton } from "./employee-card.styled";
 import { DEFAULT_AVATAR } from "@/constants/images";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { useTransferUi } from "@/logic/ui/use-transfer-ui";
-import { texts_t } from "@/services/localization/texts";
+import { texts_g } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
-
-const EmployeeCardRoot = styled(BntCard)(({ theme }) => {
-	const isDarkMode = theme.palette.mode === "dark";
-
-	return {
-		backgroundColor: isDarkMode ? theme.palette.background.paper : theme.palette.secondary.veryLight,
-		maxWidth: 300,
-		color: theme.palette.neutral.dark,
-		margin: "auto",
-		border: `1px solid ${theme.palette.divider}`,
-		"&:hover": {
-			outline: "2px solid",
-			outlineColor: isDarkMode ? theme.palette.primary.main : theme.palette.primary.light,
-		},
-	};
-});
-
-const EmployeeCardActionArea = styled(BntCardActionArea)({
-	width: "100%",
-});
-
-const EmployeeCardBody = styled(BntCardBody)({
-	display: "flex",
-	justifyContent: "center",
-	minHeight: 200,
-	padding: "16px 40px",
-});
-
-const EmployeeCardAvatar = styled("img")(({ theme }) => {
-	const isDarkMode = theme.palette.mode === "dark";
-
-	return {
-		width: "auto",
-		height: "auto",
-		maxHeight: "160px",
-		maxWidth: "100%",
-		verticalAlign: "middle",
-		margin: "0 auto",
-		border: 0,
-		boxShadow: isDarkMode ? "0px 0px 28px rgba(255, 176, 102, 0.28)" : "0px 0px 48px rgba(255, 255, 255, 0.8)",
-		transition: "transform 500ms cubic-bezier(0.34, 1.61, 0.7, 1)",
-		[theme.breakpoints.down("sm")]: {
-			maxHeight: "90px",
-		},
-		[`${EmployeeCardRoot}:hover &`]: {
-			transform: "translate3d(0, -3px, 2px)",
-		},
-	};
-});
-
-const EmployeeCardCaption = styled("div")({
-	display: "flex",
-	flexDirection: "column",
-	gap: "12px",
-	alignItems: "center",
-});
 
 type TEmployeeCardProps = {
 	employee: TProfile;
@@ -91,20 +30,19 @@ export const EmployeeCard: FC<TEmployeeCardProps> = ({ employee }) => {
 							<EmployeeCardAvatar src={user_avatar?.url || DEFAULT_AVATAR} alt={name} />
 						</div>
 						<EmployeeCardCaption>
-							<BntStack direction="row" alignItems="center">
-								<BntTypography variant="body1">{name}</BntTypography>
-								<BntIconButton
-									color="primary"
+							<EmployeeName variant="body1">{name}</EmployeeName>
+							<EmployeeCardFooter>
+								<EmployeeTransferButton
+									startIcon={<CakeOutlined />}
 									onClick={(event) => {
 										event.preventDefault();
 										event.stopPropagation();
 										showTransfer(employee.id);
 									}}
-									tooltip={translate(texts_t.transfer_donuts, { capitalize: true })}
 								>
-									<CakeOutlined />
-								</BntIconButton>
-							</BntStack>
+									{translate(texts_g.give_donuts, { capitalize: true })}
+								</EmployeeTransferButton>
+							</EmployeeCardFooter>
 						</EmployeeCardCaption>
 					</BntStack>
 				</EmployeeCardBody>
