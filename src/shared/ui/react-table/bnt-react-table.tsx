@@ -1,4 +1,4 @@
-import { styled } from "@mui/material/styles";
+import { alpha, styled } from "@mui/material/styles";
 
 import { BntReactTablePure } from "shared/ui/react-table/bnt-react-table-pure";
 
@@ -8,6 +8,10 @@ export const BntReactTable = styled(
 	BntReactTablePure,
 	{}
 )(({ theme }) => {
+	const isDarkTheme = theme.palette.mode === "dark";
+	const rowEvenBackground = isDarkTheme ? alpha(theme.palette.common.white, 0.02) : theme.palette.grey[100];
+	const rowHoverBackground = isDarkTheme ? alpha(theme.palette.common.white, 0.06) : theme.palette.grey[200];
+
 	return {
 		overflowX: "unset",
 		"& table": {
@@ -24,7 +28,7 @@ export const BntReactTable = styled(
 			paddingLeft: 0,
 			paddingRight: 0,
 			fontSize: "1.1rem",
-			color: theme.palette.grey[800],
+			color: isDarkTheme ? theme.palette.text.primary : theme.palette.grey[800],
 		},
 		"& tr": {
 			border: 0,
@@ -40,11 +44,11 @@ export const BntReactTable = styled(
 			width: "100%",
 		},
 		[cl("bnt-table-tr-even")]: {
-			background: theme.palette.grey[100],
+			background: rowEvenBackground,
 		},
 		[cl("bnt-table-tr")]: {
 			[hover]: {
-				background: theme.palette.grey[200],
+				background: rowHoverBackground,
 			},
 		},
 		[cl("bnt-navigation-button")]: {
