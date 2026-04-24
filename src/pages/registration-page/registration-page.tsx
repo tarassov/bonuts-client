@@ -1,22 +1,27 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { useForm } from "react-hook-form";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, FormHelperText, TextField } from "@mui/material";
 
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
 import { texts_e, texts_f, texts_l, texts_p, texts_s } from "services/localization/texts";
-import BonutsFullIcon from "shared/ui/icons/BonutsFullIcon.svg";
-import { BntTypography } from "shared/ui/typography/typography";
 
+import { getResponseErrorMessage } from "@/shared/lib/notification";
+import BonutsFullIcon from "@/shared/ui/icons/BonutsFullIcon.svg";
 import { useLoader } from "@/shared/ui/loader";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { Messenger } from "@/features/3cx/messenger";
 
 import styles from "./registration-page.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
-import { RegisterFields } from "@/types/form/register";
+import type { RegisterFields } from "@/types/form/register";
+
+const getErrorMessage = (message: unknown): string | undefined => {
+	return typeof message === "string" ? message : undefined;
+};
 
 export const RegistrationPage: FC = () => {
 	const { formSchema } = useRegisterValidation();
@@ -28,7 +33,8 @@ export const RegistrationPage: FC = () => {
 		shouldUseNativeValidation: false,
 		resolver: yupResolver(formSchema),
 	});
-	const { isPostingRegister, register } = useSignUp();
+	const { isPostingRegister, register, registerError } = useSignUp();
+	const registerErrorText = getResponseErrorMessage(registerError);
 
 	const { translate } = useBntTranslate();
 
@@ -52,7 +58,7 @@ export const RegistrationPage: FC = () => {
 						margin="normal"
 						fullWidth
 						error={!!errors.first_name}
-						helperText={errors.first_name?.message}
+						helperText={getErrorMessage(errors.first_name?.message)}
 						required
 						{...fieldRegister("first_name", {
 							required: translate(texts_f.first_name),
@@ -64,7 +70,7 @@ export const RegistrationPage: FC = () => {
 					<TextField
 						margin="normal"
 						error={!!errors.last_name}
-						helperText={errors.last_name?.message}
+						helperText={getErrorMessage(errors.last_name?.message)}
 						fullWidth
 						required
 						{...fieldRegister("last_name", { required: translate(texts_l.last_name) })}
@@ -73,7 +79,7 @@ export const RegistrationPage: FC = () => {
 					<TextField
 						margin="normal"
 						error={!!errors.email}
-						helperText={errors.email?.message}
+						helperText={getErrorMessage(errors.email?.message)}
 						required
 						fullWidth
 						{...fieldRegister("email", { required: translate(texts_e.email_address) })}
@@ -82,7 +88,7 @@ export const RegistrationPage: FC = () => {
 					<TextField
 						margin="normal"
 						error={!!errors.password}
-						helperText={errors.password?.message}
+						helperText={getErrorMessage(errors.password?.message)}
 						required
 						fullWidth
 						{...fieldRegister("password", { required: texts_p.password })}
@@ -92,7 +98,7 @@ export const RegistrationPage: FC = () => {
 					<TextField
 						margin="normal"
 						error={!!errors.passwordRepeat}
-						helperText={errors.passwordRepeat?.message}
+						helperText={getErrorMessage(errors.passwordRepeat?.message)}
 						required
 						fullWidth
 						label={translate(texts_p.password_repeat, { capitalize: true })}
@@ -102,6 +108,7 @@ export const RegistrationPage: FC = () => {
 					<Button type="submit" variant="contained" fullWidth sx={{ mt: 3, mb: 2 }}>
 						{translate(texts_s.sign_up)}
 					</Button>
+					{registerErrorText && <FormHelperText error>{registerErrorText}</FormHelperText>}
 				</Box>
 			</Box>
 			<Messenger />

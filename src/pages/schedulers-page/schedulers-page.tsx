@@ -1,12 +1,13 @@
 import React from "react";
 
 import { CommonStrings } from "constants/dictionary";
-import { BntRoutes } from "shared/config/routes";
-import { useBntRoutes } from "shared/lib/router";
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
+import { BntRoutes } from "@/shared/config/routes";
+import { useBntRoutes } from "@/shared/lib/router";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
+import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "@/shared/ui/stack";
+import { TBntBreadcrumbItem } from "@/shared/ui/types/breadcrumbs-types";
 
 import { TenantSchedulers } from "@/widgets/scheduler";
 

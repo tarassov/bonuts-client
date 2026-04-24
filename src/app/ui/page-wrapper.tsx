@@ -2,11 +2,12 @@ import type { ReactNode } from "react";
 
 import { BTNHeader } from "components/header/header";
 import BntSidebar from "components/sidebar/sidebar";
-import { useAuth } from "shared/model/auth";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntDialogProvider } from "shared/ui/dialog";
-import { BntDrawerHeader } from "shared/ui/drawer";
-import { BntStack } from "shared/ui/stack";
+
+import { useAuth } from "@/shared/model/auth";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntDialogProvider } from "@/shared/ui/dialog";
+import { BntDrawerHeader } from "@/shared/ui/drawer";
+import { BntStack } from "@/shared/ui/stack";
 
 import type { TModalConfig } from "@/entities/modal";
 import { useProfile } from "@/entities/profile";

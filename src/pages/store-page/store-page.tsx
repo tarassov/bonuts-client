@@ -1,12 +1,13 @@
 import React, { FC, Suspense } from "react";
 
 import { CommonStrings } from "constants/dictionary";
-import { BntRoutes } from "shared/config/routes";
-import { useBntRoutes } from "shared/lib/router";
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntStack } from "shared/ui/stack";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
+
+import { BntRoutes } from "@/shared/config/routes";
+import { useBntRoutes } from "@/shared/lib/router";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
+import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
+import { BntStack } from "@/shared/ui/stack";
+import { TBntBreadcrumbItem } from "@/shared/ui/types/breadcrumbs-types";
 
 const StoreManager = React.lazy(() => import("components/store-manager/store-manager"));
 export const StorePage: FC = () => {
