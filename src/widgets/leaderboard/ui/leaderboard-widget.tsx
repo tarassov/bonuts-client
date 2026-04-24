@@ -1,5 +1,7 @@
 import { useMemo } from "react";
-import { Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { HelpOutlineOutlined } from "@mui/icons-material";
+import { Box, IconButton, Tooltip } from "@mui/material";
 
 import type { IDashboardWidgetSizingProps } from "@/shared/ui/dashboard-widget-card";
 import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
@@ -8,28 +10,45 @@ import { BntTypography } from "@/shared/ui/typography";
 
 import { useProfile } from "@/entities/profile";
 
-import { getLeaderMedalTone, getRankedLeaderboardProfiles } from "../model/leaderboard-helper";
+import { formatLeaderboardWeekDate, getLeaderMedalTone, getRankedLeaderboardProfiles } from "../model/leaderboard-helper";
 
 import { LeaderButton } from "./leader-button";
 import { LeaderMedal } from "./leader-medal";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { useGetWeeklyRecognitionBadgesLatestQuery } from "@/services/api/bonuts-api";
-import { texts_l, texts_n } from "@/services/localization/texts";
+import { texts_l, texts_n, texts_w } from "@/services/localization/texts";
 
 export function LeaderboardWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	const { t } = useBntTranslate();
+	const { t: i18nT, i18n } = useTranslation();
 	const { authTenant } = useProfile();
 	const { showEmployeeModal } = useEmployeeUi();
 	const { data } = useGetWeeklyRecognitionBadgesLatestQuery({ tenant: authTenant || undefined }, { skip: !authTenant });
 
 	const rankedProfiles = useMemo(() => getRankedLeaderboardProfiles(data?.badges || []), [data?.badges]);
 	const topThree = rankedProfiles.slice(0, 5);
+	const weekStart = formatLeaderboardWeekDate(data?.week_start, i18n.language);
+	const weekEnd = formatLeaderboardWeekDate(data?.week_end, i18n.language);
+	const hasWeekRange = Boolean(weekStart && weekEnd);
+	const weekCaption = hasWeekRange ? i18nT(texts_w.week_from_to_caption, { from: weekStart, to: weekEnd }) : "";
+	const weekTooltip = hasWeekRange ? i18nT(texts_w.week_from_to_tooltip, { from: weekStart, to: weekEnd }) : "";
 
 	return (
 		<DashboardWidgetCard columns={columns}>
 			<BntStack gap={2}>
-				<BntTypography variant="h6">{t(texts_l.leaders_of_the_week, { capitalize: true })}</BntTypography>
+				<BntStack direction="row" alignItems="center" justifyContent="space-between">
+					<BntTypography variant="subtitle1" fontWeight={700}>
+						{t(texts_l.leaders_of_the_week, { capitalize: true })}
+					</BntTypography>
+					{hasWeekRange ? (
+						<Tooltip title={weekTooltip}>
+							<IconButton size="small" aria-label={weekCaption} sx={{ p: 0.25 }}>
+								<HelpOutlineOutlined fontSize="inherit" />
+							</IconButton>
+						</Tooltip>
+					) : null}
+				</BntStack>
 				{topThree.length ? (
 					<BntStack gap={1.25}>
 						{topThree.map((leader, index) => (

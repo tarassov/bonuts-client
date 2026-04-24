@@ -23,6 +23,7 @@ import {
 	texts_t,
 	texts_u,
 	texts_v,
+	texts_w,
 	texts_y,
 } from "@/services/localization/texts";
 
@@ -123,7 +124,7 @@ export const ruLocale = {
 		[texts_v.vk_connecting_description]: "Проверяем доступ и создаём сессию. Обычно это занимает пару секунд.",
 		[texts_v.vk_do_not_close]: "Не закрывайте это окно.",
 		[texts_l.login_page_title]: "Вход",
-		[texts_l.leaders_of_the_week]: "Лидеры прошедшей недели",
+		[texts_l.leaders_of_the_week]: "Результаты недели",
 		[texts_l.likes_given]: "Лайков поставлено",
 		[texts_l.login_page_subtitle]: "Система благодарностей для вашей команды",
 		[texts_l.login_page_hero_title]: "Система благодарностей для команды",
@@ -156,6 +157,8 @@ export const ruLocale = {
 		[texts_n.no_rank_yet]: "Пока без позиции",
 		[texts_n.no_weekly_leaders_yet]: "На этой неделе лидеров пока нет",
 		[texts_n.next_status]: "Следующий статус",
+		[texts_w.week_from_to_caption]: "Неделя с {{from}} по {{to}}",
+		[texts_w.week_from_to_tooltip]: "Информация отображается за неделю с {{from}} по {{to}}",
 		[texts_i.in_top_most_active_percent]: "В {{percent}}% самых активных",
 		[texts_i.into_top_most_active_percent]: "Ещё немного, чтобы попасть в {{percent}}% самых активных",
 		[texts_p.poka_you_were_not_very_active]: "Пока вы были не очень активны",
@@ -244,6 +247,7 @@ export const ruLocale = {
 		"Go to shop": "В магазин",
 		"Go to": "Перейти",
 		[texts_g.go_to]: "перейти",
+		[texts_g.give_donuts]: "подарить пончики",
 		Goods: "Товары",
 
 		// H

@@ -114,7 +114,7 @@ export const AuthSubmitButton = styled(Button)(({ theme }) => ({
 		boxShadow: `0 14px 28px ${alpha(theme.palette.primary.main, 0.28)}`,
 	},
 	"&.Mui-disabled": {
-		background: theme.palette.grey[300],
+		background: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.14) : theme.palette.grey[300],
 		color: theme.palette.text.disabled,
 		boxShadow: "none",
 	},
@@ -131,8 +131,8 @@ export const AuthOutlinedButton = styled(Button)(({ theme }) => ({
 		borderColor: alpha(theme.palette.info.main, 0.24),
 	},
 	"&.Mui-disabled": {
-		backgroundColor: theme.palette.grey[100],
-		borderColor: theme.palette.grey[300],
+		backgroundColor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.06) : theme.palette.grey[100],
+		borderColor: theme.palette.mode === "dark" ? theme.palette.divider : theme.palette.grey[300],
 		color: theme.palette.text.disabled,
 	},
 }));
@@ -156,8 +156,8 @@ export const AuthDemoButton = styled(Button)(({ theme }) => ({
 	borderRadius: 14,
 	textTransform: "none",
 	"&.Mui-disabled": {
-		backgroundColor: theme.palette.grey[100],
-		borderColor: theme.palette.grey[300],
+		backgroundColor: theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.06) : theme.palette.grey[100],
+		borderColor: theme.palette.mode === "dark" ? theme.palette.divider : theme.palette.grey[300],
 		color: theme.palette.text.disabled,
 	},
 }));

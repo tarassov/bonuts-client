@@ -1,6 +1,8 @@
-import { ButtonBase, styled } from "@mui/material";
+import { ButtonBase } from "@mui/material";
+import { alpha, styled } from "@mui/material/styles";
 
 export const LeaderButton = styled(ButtonBase)(({ theme }) => ({
+	"--leader-button-hover-background": theme.palette.mode === "dark" ? alpha(theme.palette.common.white, 0.08) : alpha(theme.palette.common.black, 0.04),
 	width: "100%",
 	display: "flex",
 	alignItems: "center",
@@ -11,7 +13,7 @@ export const LeaderButton = styled(ButtonBase)(({ theme }) => ({
 	justifyContent: "flex-start",
 	transition: theme.transitions.create(["background-color", "transform"]),
 	"&:hover": {
-		backgroundColor: theme.palette.common.white,
+		backgroundColor: "var(--leader-button-hover-background)",
 		transform: "translateX(2px)",
 	},
 }));

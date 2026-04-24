@@ -23,6 +23,7 @@ import {
 	texts_t,
 	texts_u,
 	texts_v,
+	texts_w,
 	texts_y,
 } from "@/services/localization/texts";
 
@@ -124,6 +125,8 @@ export const kkLocale = {
 		[texts_n.no_rank_yet]: "Әзірге орын жоқ",
 		[texts_n.no_weekly_leaders_yet]: "Бұл аптада әлі көшбасшылар жоқ",
 		[texts_n.next_status]: "Келесі мәртебе",
+		[texts_w.week_from_to_caption]: "{{from}}-дан {{to}}-ға дейінгі апта",
+		[texts_w.week_from_to_tooltip]: "Ақпарат {{from}}-дан {{to}}-ға дейінгі апта үшін көрсетілген",
 		[texts_i.in_top_most_active_percent]: "{{percent}}% ең белсенділер қатарында",
 		[texts_i.into_top_most_active_percent]: "{{percent}}% ең белсенділер қатарына кіруге аз қалды",
 		[texts_p.poka_you_were_not_very_active]: "Әзірге белсенділігіңіз жоғары емес",
@@ -212,6 +215,7 @@ export const kkLocale = {
 		"Go to shop": "В магазин",
 		"Go to": "Перейти",
 		[texts_g.go_to]: "өту",
+		[texts_g.give_donuts]: "пончик сыйлау",
 		Goods: "Товары",
 
 		// H

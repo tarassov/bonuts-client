@@ -66,6 +66,7 @@ export const EventCardHeader = styled(CardHeader, {
 			right: notification ? theme.spacing(2) : theme.spacing(2.5),
 			width: notification ? `calc(100% - ${theme.spacing(4)})` : `calc(100% - ${theme.spacing(5)})`,
 			backgroundColor: theme.palette.neutral.light,
+			display: theme.palette.mode === "dark" ? "none" : "block",
 		},
 	};
 });

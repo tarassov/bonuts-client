@@ -1,3 +1,5 @@
+import { intlFormat, parse, parseISO } from "date-fns";
+
 export type TLeaderboardRecognitionBadge = {
 	score: number;
 	title: string;
@@ -68,4 +70,29 @@ export function getLeaderMedalTone(index: number): TLeaderMedalTone {
 	}
 
 	return "bronze";
+}
+
+export function formatLeaderboardWeekDate(isoDate?: string, locale?: string): string {
+	if (!isoDate) {
+		return "";
+	}
+
+	const dateOnlyMatch = isoDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+	const date = dateOnlyMatch ? parse(isoDate, "yyyy-MM-dd", new Date()) : parseISO(isoDate);
+
+	if (Number.isNaN(date.getTime())) {
+		return "";
+	}
+
+	return intlFormat(
+		date,
+		{
+			day: "2-digit",
+			month: "short",
+			year: "numeric",
+		},
+		{
+			...(locale ? { locale } : {}),
+		}
+	);
 }

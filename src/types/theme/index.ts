@@ -17,6 +17,7 @@ declare module "@mui/material/styles" {
 	interface PaletteColor {
 		veryLight?: string;
 	}
+
 	interface Palette {
 		accent: Palette["primary"];
 		neutral: Palette["primary"];
@@ -28,6 +29,12 @@ declare module "@mui/material/styles" {
 	interface PaletteOptions {
 		accent: PaletteOptions["primary"];
 		neutral: PaletteOptions["primary"];
+	}
+}
+
+declare module "@mui/material/styles/createPalette" {
+	interface TypeText {
+		heading: string;
 	}
 }
 

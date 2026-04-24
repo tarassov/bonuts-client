@@ -21,6 +21,7 @@ const darkTheme = {
 		},
 		text: {
 			primary: "#E5E7EB",
+			heading: "#D3D8E1",
 			secondary: "#9CA3AF",
 		},
 		divider: "#2A2E36",
