@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import { useCircleFormFields } from "components/circle/circle-form/use-circle-form-fields";
-import { BntForm } from "shared/ui/form/bnt-form";
-import { TFormProps, TFormValue } from "shared/ui/form/types/bnt-form";
+
+import { BntForm } from "@/shared/ui/form/bnt-form";
+import { TFormProps, TFormValue } from "@/shared/ui/form/types/bnt-form";
 
 import { TCircle, TDonut } from "@/types/model";
 

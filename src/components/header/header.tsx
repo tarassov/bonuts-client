@@ -4,10 +4,11 @@ import Menu from "@mui/material/Menu";
 import { Theme } from "@mui/material/styles";
 
 import { AccountBalanceSmall } from "components/account-balance/account-balance-small";
-import { BntAppBar } from "shared/ui/menu/app-bar";
-import { ThemeMenu } from "shared/ui/menu/theme-menu";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
+
+import { BntAppBar } from "@/shared/ui/menu/app-bar";
+import { ThemeMenu } from "@/shared/ui/menu/theme-menu";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { BntRoutesMenu } from "../main-menu/routes-menu";
 

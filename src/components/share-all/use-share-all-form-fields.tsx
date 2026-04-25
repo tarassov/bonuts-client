@@ -1,7 +1,8 @@
 import { Currency } from "constants/currency";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c, texts_d, texts_t } from "services/localization/texts";
-import { FieldSize, FieldType, TFormField } from "shared/ui/form/types/bnt-form";
+
+import { FieldSize, FieldType, TFormField } from "@/shared/ui/form/types/bnt-form";
 
 export type TransferFormType = { comment: string; amount: number; type: Currency };
 export const useShareAllFormFields = () => {

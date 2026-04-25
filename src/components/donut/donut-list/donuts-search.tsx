@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import { Sorting } from "constants/dictionary";
-import { SearchString } from "shared/ui/search-string";
+
+import { SearchString } from "@/shared/ui/search-string";
 
 import { DonutSorter } from "logic/utils/sorter/donut-sorter";
 import { TDonut } from "@/types/model";

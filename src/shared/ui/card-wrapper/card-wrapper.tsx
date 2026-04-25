@@ -2,8 +2,8 @@ import type { FC, ReactNode } from "react";
 
 import classNames from "classnames";
 
-import { BntCard } from "shared/ui/card/card";
-import { BntCardBody } from "shared/ui/card/card-body";
+import { BntCard } from "@/shared/ui/card/card";
+import { BntCardBody } from "@/shared/ui/card/card-body";
 
 export const CardWrapper: FC<{
 	children?: ReactNode;

@@ -4,13 +4,14 @@ import classNames from "classnames";
 
 import { TENANT_CARD_CLASSES } from "components/tenant/tenant-card/classes";
 import { DEFAULT_DONUT_IMAGE } from "constants/images";
-import { BntCancelButton } from "shared/ui/buttons/cancel-button";
-import { BntRegularSecondaryButton } from "shared/ui/buttons/regular-secondary-button";
-import { BntCard } from "shared/ui/card/card";
-import { BntCardBody } from "shared/ui/card/card-body";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";
+
+import { BntCancelButton } from "@/shared/ui/buttons/cancel-button";
+import { BntRegularSecondaryButton } from "@/shared/ui/buttons/regular-secondary-button";
+import { BntCard } from "@/shared/ui/card/card";
+import { BntCardBody } from "@/shared/ui/card/card-body";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { TTenant } from "@/types/model/tenant";
 

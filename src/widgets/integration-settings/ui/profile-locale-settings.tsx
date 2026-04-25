@@ -3,10 +3,10 @@ import { LanguageOutlined } from "@mui/icons-material";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 
-import { useLocale } from "shared/ui/locale/hooks/use-locale";
-import { LOCALES } from "shared/ui/locale/locale-context";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography";
+import { useLocale } from "@/shared/ui/locale/hooks/use-locale";
+import { LOCALES } from "@/shared/ui/locale/locale-context";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 

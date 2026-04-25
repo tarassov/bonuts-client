@@ -1,4 +1,4 @@
-import { FieldSize, FieldType, TFieldGroup, TFormField } from "shared/ui/form/types/bnt-form";
+import { FieldSize, FieldType, TFieldGroup, TFormField } from "@/shared/ui/form/types/bnt-form";
 
 import { TDonut } from "@/types/model";
 

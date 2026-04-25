@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import { useLoader } from "@/shared/ui/loader";
 import { SearchString } from "@/shared/ui/search-string";
 
-import { useEmployeeList } from "@/entities/profile/model/use-employee-list";
+import { useEmployeeList } from "@/entities/profile";
 
 import { getEmployeeSearchButtons } from "../model/get-employee-search-buttons";
 

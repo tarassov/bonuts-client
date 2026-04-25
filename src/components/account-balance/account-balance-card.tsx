@@ -2,7 +2,8 @@ import { FC } from "react";
 
 import { AccountBalanceDistrib } from "components/account-balance/account-balance-distrib";
 import { AccountBalanceSelf } from "components/account-balance/account-balance-self";
-import { GradientCard } from "shared/ui/card/gradient-card";
+
+import { GradientCard } from "@/shared/ui/card/gradient-card";
 
 import { useProfile } from "@/entities/profile";
 

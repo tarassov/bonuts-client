@@ -1,9 +1,9 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 
-import { BntBox } from "shared/ui/box/bnt-box";
-import { TDialogProps } from "shared/ui/dialog/dialog-types";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { TDialogProps } from "@/shared/ui/dialog/dialog-types";
 
-import { EventDetailed } from "@/entities/event/ui/event-detailed";
+import { EventDetailed } from "@/entities/event";
 
 import { TPost } from "@/types/model/post";
 

@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 
-import { BntFormItem } from "shared/ui/form/bnt-form-item";
-import { TFormField } from "shared/ui/form/types/bnt-form";
+import { BntFormItem } from "@/shared/ui/form/bnt-form-item";
+import { TFormField } from "@/shared/ui/form/types/bnt-form";
 
 import type { TProfile } from "@/types/model";
 

@@ -4,7 +4,8 @@ import _ from "lodash";
 
 import { usePerformance } from "hooks/use-performance";
 import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "shared/model/auth/auth-selector";
+
+import { authTenantSelector } from "@/shared/model/auth/auth-selector";
 
 import { USE_POLLING_INTERVAL } from "@/app/config";
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";

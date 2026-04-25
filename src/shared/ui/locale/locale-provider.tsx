@@ -3,13 +3,12 @@ import { enUS, type PickersInputComponentLocaleText, ruRU } from "@mui/x-date-pi
 
 import i18n from "i18next";
 
-import { useStorage } from "shared/lib/localStorage";
-import { getBrowserLocale, normalizeLocale } from "shared/ui/locale/LocaleHelpers";
-import { DateLocaleContext, LOCALES, LocaleContext } from "shared/ui/locale/locale-context";
-import { PickerLocaleContext } from "shared/ui/locale/picker-locale-context";
-import { useNotification } from "shared/ui/notification";
-
+import { useStorage } from "@/shared/lib/localStorage";
 import { useCurrentProfile } from "@/shared/model/auth";
+import { getBrowserLocale, normalizeLocale } from "@/shared/ui/locale/LocaleHelpers";
+import { DateLocaleContext, LOCALES, LocaleContext } from "@/shared/ui/locale/locale-context";
+import { PickerLocaleContext } from "@/shared/ui/locale/picker-locale-context";
+import { useNotification } from "@/shared/ui/notification";
 
 import { profilesApi } from "@/entities/profile";
 

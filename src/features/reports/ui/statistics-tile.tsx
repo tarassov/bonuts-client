@@ -8,13 +8,14 @@ import classNames from "classnames";
 import { Currency } from "constants/currency";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntCard } from "shared/ui/card/card";
-import { BntCardBody } from "shared/ui/card/card-body";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
-import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";
+
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntCard } from "@/shared/ui/card/card";
+import { BntCardBody } from "@/shared/ui/card/card-body";
+import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import reportsTexts from "../config/reports-texts";
 

@@ -1,16 +1,15 @@
 import { FC } from "react";
 
-import { CommonStrings } from "constants/dictionary";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_d, texts_e, texts_n } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntCardBody } from "shared/ui/card/card-body";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
-
 import { formatStringDate, getWeekdayOptions, secondsToTime } from "@/shared/lib/date";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntCardBody } from "@/shared/ui/card/card-body";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { SchedulerCardContainer } from "./scheduler-card-container";
+import { CommonStrings } from "@/constants/dictionary";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_d, texts_e, texts_n } from "@/services/localization/texts";
 import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
 
 export const SchedulerCard: FC<{

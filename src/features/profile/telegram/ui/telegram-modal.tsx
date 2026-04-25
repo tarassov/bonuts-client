@@ -5,12 +5,12 @@ import { CircularProgress } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useIcons } from "hooks/use-icons";
 import { texts_g } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntButton } from "shared/ui/buttons/bnt-button";
-import { BntStack } from "shared/ui/stack";
 
 import { useCurrentProfile } from "@/shared/model/auth";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntButton } from "@/shared/ui/buttons/bnt-button";
 import type { TDialogProps } from "@/shared/ui/dialog";
+import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import type { TModalResponse } from "@/entities/modal";

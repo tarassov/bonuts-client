@@ -4,7 +4,8 @@ import { useShareAllFormFields } from "components/share-all/use-share-all-form-f
 import { Currency } from "constants/currency";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_o } from "services/localization/texts/texts_o";
-import { BntForm } from "shared/ui/form/bnt-form";
+
+import { BntForm } from "@/shared/ui/form/bnt-form";
 
 export const ShareAllForm: FC<{
 	onSuccess?: (args: { amount: number; comment: string; type: Currency }) => void;

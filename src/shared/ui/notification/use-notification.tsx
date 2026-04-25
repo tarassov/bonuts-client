@@ -5,7 +5,8 @@ import { useSnackbar } from "notistack";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e } from "services/localization/texts/texts_e";
-import { getResponseErrorMessage } from "shared/lib/notification";
+
+import { getResponseErrorMessage } from "@/shared/lib/notification";
 
 import { TNotify } from "./types/notify";
 import { ESeverity } from "./types/severity";

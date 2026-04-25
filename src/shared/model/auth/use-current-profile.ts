@@ -3,7 +3,8 @@ import { useMemo } from "react";
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 import { useGetProfileQuery } from "services/api/bonuts-api";
 import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "shared/model/auth/auth-selector";
+
+import { authTenantSelector } from "@/shared/model/auth/auth-selector";
 
 export const useCurrentProfile = () => {
 	const authTenant = useAppSelector(authTenantSelector);

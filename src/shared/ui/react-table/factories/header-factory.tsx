@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 
 import _ from "lodash";
 
-import { TTableColumn } from "shared/ui/react-table/types";
+import { TTableColumn } from "@/shared/ui/react-table/types";
 
 import { TBaseModel } from "@/types/model";
 

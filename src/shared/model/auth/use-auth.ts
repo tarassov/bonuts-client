@@ -4,7 +4,8 @@ import { push } from "redux-first-history";
 import { bonutsApi, PostAuthenticateApiArg, usePostAuthenticateMutation, usePostDemoAuthenticateMutation, usePostLogoutMutation } from "services/api/bonuts-api";
 import { authActions } from "services/redux/slice/auth-slice";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
-import { storage } from "shared/lib/localStorage";
+
+import { storage } from "@/shared/lib/localStorage";
 
 import { persistAuthSession } from "./persist-auth-session";
 

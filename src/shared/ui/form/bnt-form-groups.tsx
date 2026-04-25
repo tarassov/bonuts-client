@@ -1,9 +1,9 @@
 import { FC, Fragment } from "react";
 import { Grid } from "@mui/material";
 
-import { BntFormFieldList } from "shared/ui/form/bnt-form-field-list";
-import { GridOffset } from "shared/ui/form/grid-offset";
-import { TFieldGroup, TFormField, TFormProps } from "shared/ui/form/types/bnt-form";
+import { BntFormFieldList } from "@/shared/ui/form/bnt-form-field-list";
+import { GridOffset } from "@/shared/ui/form/grid-offset";
+import { TFieldGroup, TFormField, TFormProps } from "@/shared/ui/form/types/bnt-form";
 
 export const BntFormGroups: FC<
 	Pick<TFormProps<any>, "fields" | "formId" | "hasInitial" | "groupGap"> & {

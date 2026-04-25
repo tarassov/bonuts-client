@@ -4,7 +4,7 @@ import { BntCard } from "@/shared/ui/card/card";
 
 import { useProfile } from "@/entities/profile";
 
-import { ProfileLocaleSettings } from "@/widgets/integration-settings/ui/profile-locale-settings";
+import { ProfileLocaleSettings } from "@/widgets/integration-settings";
 
 import { BntProfileForm } from "./profile-form";
 import { ProfileHeader } from "./profile-header";

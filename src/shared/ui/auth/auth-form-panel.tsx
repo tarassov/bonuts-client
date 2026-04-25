@@ -5,7 +5,8 @@ import { EmailOutlined, LockOutlined, VisibilityOffOutlined, VisibilityOutlined 
 import { Alert, CircularProgress, Divider, IconButton, InputAdornment, Stack, Tooltip, Typography } from "@mui/material";
 
 import { texts_a, texts_d, texts_e, texts_h, texts_l, texts_o, texts_p, texts_r, texts_s } from "services/localization/texts";
-import BonutsWordmark from "shared/ui/icons/bonuts_wordmark.svg";
+
+import BonutsWordmark from "@/shared/ui/icons/bonuts_wordmark.svg";
 
 import { AuthAccentTextButton, AuthDemoButton, AuthFormColumn, AuthOutlinedButton, AuthSubmitButton, AuthTextButton, AuthTextField } from "./auth-panel.styles";
 import type { TLoginFields } from "@/types/form/login";

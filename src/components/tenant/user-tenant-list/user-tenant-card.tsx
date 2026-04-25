@@ -3,7 +3,8 @@ import { FC } from "react";
 import { TenantCard } from "components/tenant/tenant-card/tenant-card";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_b, texts_g } from "services/localization/texts";
-import { useAuth } from "shared/model/auth/use-auth";
+
+import { useAuth } from "@/shared/model/auth/use-auth";
 
 import { TTenant } from "@/types/model/tenant";
 

@@ -5,7 +5,7 @@ import type { SystemStyleObject } from "@mui/system";
 
 import classnames from "classnames";
 
-import { BntBox } from "shared/ui/box/bnt-box";
+import { BntBox } from "@/shared/ui/box/bnt-box";
 
 import { TotalBalanceTable } from "./total-balance-table";
 import { TotalDonutsReceivedReport } from "./total-donuts-received-report";

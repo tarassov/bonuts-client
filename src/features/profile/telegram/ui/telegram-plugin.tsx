@@ -2,8 +2,9 @@ import { useEffect, useRef } from "react";
 
 import { useIcons } from "hooks/use-icons";
 import { GetTelegramChatApiResponse } from "services/api/bonuts-api";
-import { present } from "shared/lib/type-guards";
 import { emptyFunction } from "utils/empty-function";
+
+import { present } from "@/shared/lib/type-guards";
 
 import { useModal } from "@/entities/modal";
 import { useRegisterPlugin } from "@/entities/plugin";

@@ -5,14 +5,14 @@ import { FormControlLabel, FormGroup } from "@mui/material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_d } from "services/localization/texts";
-import { BntCard } from "shared/ui/card/card";
-import { UiCheckbox } from "shared/ui/checkbox";
-import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
-import { BntTextInputElement } from "shared/ui/input/text-input-element";
 import { emptyFunction } from "utils/empty-function";
 
-import { PluginHeader } from "@/widgets/plugin-list/ui/plugin-header";
+import { BntCard } from "@/shared/ui/card/card";
+import { UiCheckbox } from "@/shared/ui/checkbox";
+import { BntFormSubmit } from "@/shared/ui/form/bnt-form-submit";
+import { BntTextInputElement } from "@/shared/ui/input/text-input-element";
 
+import { PluginHeader } from "./plugin-header";
 import { TPlugin } from "@/types/model";
 
 export const PluginForm: FC<{

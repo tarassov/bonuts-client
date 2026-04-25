@@ -1,6 +1,6 @@
-import { BntCard } from "shared/ui/card/card";
-import { TFormField } from "shared/ui/form/types/bnt-form";
-import { BntTypography } from "shared/ui/typography";
+import { BntCard } from "@/shared/ui/card/card";
+import { TFormField } from "@/shared/ui/form/types/bnt-form";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { ProfileFieldList } from "./profile-field-list";
 import s from "./profile-form.module.scss";

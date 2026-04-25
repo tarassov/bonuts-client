@@ -1,4 +1,4 @@
-import { BntRoutes } from "shared/config/routes";
+import { BntRoutes } from "@/shared/config/routes";
 
 export const getRoutes = (routes: Partial<Record<BntRoutes, TRoute<BntRoutes>>>, redirects?: Array<TRedirect>): Array<TRoute<BntRoutes>> => {
 	return Object.values(routes).reduce(

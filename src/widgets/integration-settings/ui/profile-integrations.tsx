@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { Modules } from "constants/modules";
 import { useGetProfileNotificationsQuery } from "services/api/bonuts-api";
 import { texts_l, texts_n } from "services/localization/texts";
-import { present } from "shared/lib/type-guards";
-import { useCurrentProfile } from "shared/model/auth";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
 
+import { present } from "@/shared/lib/type-guards";
+import { useCurrentProfile } from "@/shared/model/auth";
 import { useLoader } from "@/shared/ui/loader";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 import { EmailPlugin } from "@/features/profile/email";
 import { MattermostPlugin } from "@/features/profile/mattermost";

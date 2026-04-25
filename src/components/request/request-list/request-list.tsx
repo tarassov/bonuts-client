@@ -5,14 +5,14 @@ import { useRequestTableConfig } from "components/request/request-list/use-reque
 import { Modules } from "constants/modules";
 import { texts_a, texts_c, texts_i } from "services/localization/texts";
 import { texts_r } from "services/localization/texts/texts_r";
-import { BntBreadcrumbs } from "shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "shared/ui/card-wrapper/card-wrapper";
-import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
-import { BntStack } from "shared/ui/stack";
-import { TBntBreadcrumbItem } from "shared/ui/types/breadcrumbs-types";
 import { emptyFunction } from "utils/empty-function";
 
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
+import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
 import { useLoader } from "@/shared/ui/loader";
+import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
+import { BntStack } from "@/shared/ui/stack";
+import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 
 import { useRequestListLogic } from "logic/hooks/request/use-request-list-logic";
 import { routesPath } from "routes/config/routes-path";

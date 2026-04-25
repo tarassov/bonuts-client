@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 
-import { TFormValue } from "shared/ui/form/types/bnt-form";
-import { BntTextAreaInput } from "shared/ui/input/text-area-input";
+import { TFormValue } from "@/shared/ui/form/types/bnt-form";
+import { BntTextAreaInput } from "@/shared/ui/input/text-area-input";
 
 import { useBntForm } from "../hooks/use-bnt-form";
 

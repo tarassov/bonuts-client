@@ -1,7 +1,8 @@
 import { apiCircleAdaptor } from "services/adaptor/api-circle-adaptor";
 import { useGetCirclesByIdQuery } from "services/api/extended/circles-api";
 import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "shared/model/auth/auth-selector";
+
+import { authTenantSelector } from "@/shared/model/auth/auth-selector";
 
 export const useCircleLoader = (id?: number | null) => {
 	const authTenant = useAppSelector(authTenantSelector);

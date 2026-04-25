@@ -3,7 +3,7 @@ import { PeopleAltOutlined, PersonOutlined } from "@mui/icons-material";
 
 import { BntRoutes } from "@/shared/config/routes";
 import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
-import type { TBntBreadcrumbItem } from "@/shared/ui/types/breadcrumbs-types";
+import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 
 import { routesPath } from "@/routes/config/routes-path";
 import { texts_e } from "@/services/localization/texts";

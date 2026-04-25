@@ -4,20 +4,19 @@ import { IconButton, Tooltip, Typography } from "@mui/material";
 
 import classNames from "classnames";
 
-import { CommentCardHeader } from "components/comment/comment-card/comment-card-header";
-import { Dictionary } from "constants/dictionary";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntCard } from "shared/ui/card/card";
-import { BntCardActions } from "shared/ui/card/card-actions";
-import { BntCardContent } from "shared/ui/card/card-content";
-import { ProfileAvatar } from "shared/ui/profile-avatar";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
-
 import { formatStringDate } from "@/shared/lib/date";
+import { BntCard } from "@/shared/ui/card/card";
+import { BntCardActions } from "@/shared/ui/card/card-actions";
+import { BntCardContent } from "@/shared/ui/card/card-content";
+import { ProfileAvatar } from "@/shared/ui/profile-avatar";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
-import { useEmployeeLoader } from "@/entities/profile/model/use-employee-loader";
+import { useEmployeeLoader } from "@/entities/profile";
 
+import { CommentCardHeader } from "./comment-card-header";
+import { Dictionary } from "@/constants/dictionary";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import type { TComment } from "@/types/model/comment";
 
 export const CommentCard: FC<{ comment: TComment; className?: string }> = ({ comment, className }) => {

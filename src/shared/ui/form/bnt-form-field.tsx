@@ -1,9 +1,9 @@
 import { useWatch } from "react-hook-form";
 
-import { BntDatePickerField } from "shared/ui/form/fields/bnt-date-picker-field";
-import { BntRadioField } from "shared/ui/form/fields/bnt-radio-field";
-import { BntSwitchField } from "shared/ui/form/fields/bnt-switch-field";
-import { BntTextAreaField } from "shared/ui/form/fields/bnt-text-area-field";
+import { BntDatePickerField } from "@/shared/ui/form/fields/bnt-date-picker-field";
+import { BntRadioField } from "@/shared/ui/form/fields/bnt-radio-field";
+import { BntSwitchField } from "@/shared/ui/form/fields/bnt-switch-field";
+import { BntTextAreaField } from "@/shared/ui/form/fields/bnt-text-area-field";
 
 import { BntFormTextField } from "./fields/bnt-form-text-field";
 import { BntImageUpload } from "./fields/bnt-image-upload";

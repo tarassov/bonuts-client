@@ -1,18 +1,17 @@
 import { FC } from "react";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 
-import { DonutButton } from "components/buttons/donut-button";
-import { BntProfileButton } from "components/buttons/profile-button";
-import { CommonStrings } from "constants/dictionary";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_t } from "services/localization/texts/texts_t";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
-import { emptyFunction } from "utils/empty-function";
-
 import { useFormattedDate } from "@/shared/lib/date";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
+import { DonutButton } from "@/components/buttons/donut-button";
+import { BntProfileButton } from "@/components/buttons/profile-button";
+import { CommonStrings } from "@/constants/dictionary";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_t } from "@/services/localization/texts/texts_t";
 import { TDonut, TProfile } from "@/types/model";
+import { emptyFunction } from "@/utils/empty-function";
 
 type RequestContentCellProps = {
 	donut?: Pick<TDonut, "logo" | "name">;

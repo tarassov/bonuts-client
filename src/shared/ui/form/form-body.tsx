@@ -2,12 +2,12 @@ import { FC, useEffect } from "react";
 import { useFormContext, useFormState } from "react-hook-form";
 import { Grid } from "@mui/material";
 
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntFormFieldList } from "shared/ui/form/bnt-form-field-list";
-import { BntFormGroups } from "shared/ui/form/bnt-form-groups";
-import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
-import { BntFormContextProvider } from "shared/ui/form/context/bnt-form-provider";
-import { TFormProps, TFormValue } from "shared/ui/form/types/bnt-form";
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntFormFieldList } from "@/shared/ui/form/bnt-form-field-list";
+import { BntFormGroups } from "@/shared/ui/form/bnt-form-groups";
+import { BntFormSubmit } from "@/shared/ui/form/bnt-form-submit";
+import { BntFormContextProvider } from "@/shared/ui/form/context/bnt-form-provider";
+import { TFormProps, TFormValue } from "@/shared/ui/form/types/bnt-form";
 
 export const BntFormBody: FC<
 	TFormProps<any> & {

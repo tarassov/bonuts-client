@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FormControl, Grid } from "@mui/material";
 
-import { GridOffset } from "shared/ui/form/grid-offset";
+import { GridOffset } from "@/shared/ui/form/grid-offset";
 
 import { BntFormField } from "./bnt-form-field";
 import { TFormField } from "./types/bnt-form";

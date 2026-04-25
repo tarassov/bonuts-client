@@ -4,9 +4,9 @@ import { FormContainer } from "react-hook-form-mui";
 import _ from "lodash";
 
 import { Modules } from "constants/modules";
-import { useDateLocale } from "shared/ui/locale/hooks/use-date-locale";
 
 import { useLoader } from "@/shared/ui/loader";
+import { useDateLocale } from "@/shared/ui/locale/hooks/use-date-locale";
 
 import { useProfileFormFields } from "../model/use-profile-form-fields";
 import type { TUpdateProfileValues } from "../model/use-update-profile";

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { BntRoutes } from "shared/config/routes";
+import { BntRoutes } from "@/shared/config/routes";
 
 export type TRouterContextType = {
 	menuRoutes: Array<TRoute<BntRoutes>>;

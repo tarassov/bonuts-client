@@ -4,7 +4,8 @@ import { CommonStrings } from "constants/dictionary";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_p } from "services/localization/texts/texts_p";
 import { useAppDispatch } from "services/redux/store/store";
-import { BntRoutes } from "shared/config/routes";
+
+import { BntRoutes } from "@/shared/config/routes";
 
 import { useModal } from "@/entities/modal";
 

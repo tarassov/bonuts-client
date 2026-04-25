@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import { useAccountHistoryTableConfig } from "components/account-history/use-account-history-table-config";
 import { Modules } from "constants/modules";
-import { BntReactTable } from "shared/ui/react-table/bnt-react-table";
 
 import { useLoader } from "@/shared/ui/loader";
+import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
 
 import { useOperationHistory } from "logic/hooks/operation/use-operation-history";
 

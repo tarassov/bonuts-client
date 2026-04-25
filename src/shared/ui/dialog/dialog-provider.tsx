@@ -5,10 +5,11 @@ import { isFunction } from "lodash";
 import { filter } from "ramda";
 
 import { CommonStrings } from "constants/dictionary";
-import { useAppNavigate } from "shared/lib/navigation";
-import { isBlank, present } from "shared/lib/type-guards";
-import { BntDialogContainer } from "shared/ui/dialog/dialog-container";
-import { DialogCloseContext, DialogContext, DialogNamesContext, DialogValueContext } from "shared/ui/dialog/dialog-context";
+
+import { useAppNavigate } from "@/shared/lib/navigation";
+import { isBlank, present } from "@/shared/lib/type-guards";
+import { BntDialogContainer } from "@/shared/ui/dialog/dialog-container";
+import { DialogCloseContext, DialogContext, DialogNamesContext, DialogValueContext } from "@/shared/ui/dialog/dialog-context";
 
 import { TDialog, TDialogConfig } from "./dialog-types";
 import _uniqueId from "lodash/uniqueId";

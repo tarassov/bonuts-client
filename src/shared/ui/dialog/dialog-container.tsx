@@ -7,15 +7,16 @@ import _ from "lodash";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts/texts_c";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { BntDialog } from "shared/ui/dialog/dialog";
-import { DialogCloseContext, DialogValueContext } from "shared/ui/dialog/dialog-context";
-import { BntDivider } from "shared/ui/divider/bnt-divider";
-import { BntIconButton } from "shared/ui/icon-button/bnt-icon-button";
-import { BntModalLoader } from "shared/ui/loader/modal-loader";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
+
+import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntRoundButton } from "@/shared/ui/buttons/round-button";
+import { BntDialog } from "@/shared/ui/dialog/dialog";
+import { DialogCloseContext, DialogValueContext } from "@/shared/ui/dialog/dialog-context";
+import { BntDivider } from "@/shared/ui/divider/bnt-divider";
+import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntModalLoader } from "@/shared/ui/loader/modal-loader";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography/typography";
 
 export function BntDialogContainer() {
 	const modals = useContext(DialogValueContext);
