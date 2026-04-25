@@ -3,7 +3,8 @@ import { Stack } from "@mui/material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c, texts_s } from "services/localization/texts";
-import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
+
+import { BntTransparentButton } from "@/shared/ui/buttons";
 
 export const BntFormSubmit: FC<{
 	onCancelClick?: VoidFunction;

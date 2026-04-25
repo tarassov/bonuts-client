@@ -2,9 +2,9 @@ import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 import { donutsApi } from "services/api/extended/donuts-api";
 import { useUpdateDonutMutation } from "services/api/injected-api";
 import { useAppDispatch } from "services/redux/store/store";
-import { isBlank, present } from "shared/lib/type-guards";
 
 import { ApiTags } from "@/shared/api";
+import { isBlank, present } from "@/shared/lib/type-guards";
 
 import { useProfile } from "@/entities/profile";
 

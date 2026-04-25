@@ -4,12 +4,11 @@ import { Modules } from "constants/modules";
 
 import { useLoader } from "@/shared/ui/loader";
 
-import { usePluginActivate, usePluginListLoader } from "@/features/plugin";
-import { usePluginUpdate } from "@/features/plugin/model/use-plugin-update";
+import { usePluginActivate, usePluginListLoader, usePluginUpdate } from "@/features/plugin";
 
-import { PluginCard } from "@/widgets/plugin-list/ui/plugin-card";
-import { PluginForm } from "@/widgets/plugin-list/ui/plugin-form";
-import { PluginStack } from "@/widgets/plugin-list/ui/plugin-stack";
+import { PluginCard } from "./plugin-card";
+import { PluginForm } from "./plugin-form";
+import { PluginStack } from "./plugin-stack";
 
 export const PluginList = () => {
 	const { objects, isLoading } = usePluginListLoader();

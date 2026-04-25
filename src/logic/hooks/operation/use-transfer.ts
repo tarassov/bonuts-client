@@ -1,9 +1,9 @@
 import { CommonStrings } from "constants/dictionary";
 import { usePostAccountOperationsShareAllMutation, usePostAccountOperationsTransferMutation, usePostAdminDepositMutation } from "services/api/bonuts-api";
 import { texts_t } from "services/localization/texts/texts_t";
-import { useNotification } from "shared/ui/notification";
 
 import { useLoader } from "@/shared/ui/loader";
+import { useNotification } from "@/shared/ui/notification";
 
 import { useProfile } from "@/entities/profile";
 

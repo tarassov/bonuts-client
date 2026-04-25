@@ -3,13 +3,12 @@ import { Button, Grid, Typography } from "@mui/material";
 
 import classNames from "classnames";
 
-import { OPERATION_CLASSES } from "components/opearation-text/classes";
-import { EMPTY_FUNCTION } from "constants/functions";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntProfileButton } from "shared/ui/profile-button";
-
 import { formatStringDate } from "@/shared/lib/date";
+import { BntProfileButton } from "@/shared/ui/profile-button";
 
+import { OPERATION_CLASSES } from "./classes";
+import { EMPTY_FUNCTION } from "@/constants/functions";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { DealType } from "@/types/model/deal-type";
 import type { TOperation } from "@/types/model/operation";
 

@@ -1,4 +1,4 @@
-import { authTenantSelector } from "@/shared/model/auth/auth-selector";
+import { authTenantSelector } from "@/shared/model/auth";
 
 import { eventsApi, usePostEventsByIdLikeMutation } from "../api/events-api";
 

@@ -3,7 +3,8 @@ import { Stack } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_s } from "services/localization/texts";
 import { texts_r } from "services/localization/texts/texts_r";
-import { BntTextInput } from "shared/ui/input/text-input";
+
+import { BntTextInput } from "@/shared/ui/input";
 
 import { Column, Table as ReactTable } from "@tanstack/react-table";
 

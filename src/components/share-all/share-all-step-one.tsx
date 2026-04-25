@@ -2,12 +2,11 @@ import type { FC } from "react";
 import { useState } from "react";
 import { Grid } from "@mui/material";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntRegularButton } from "@/shared/ui/buttons/regular-button";
-import { BntRoundButton } from "@/shared/ui/buttons/round-button";
+import { BntBox } from "@/shared/ui/box";
+import { BntRegularButton, BntRoundButton } from "@/shared/ui/buttons";
 import { useLoader } from "@/shared/ui/loader";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useEmployeeList } from "@/entities/profile";
 

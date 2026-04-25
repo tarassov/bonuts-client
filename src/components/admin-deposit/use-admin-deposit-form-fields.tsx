@@ -1,4 +1,4 @@
-import { FieldSize, FieldType, TFormField } from "shared/ui/form/types/bnt-form";
+import { FieldSize, FieldType, TFormField } from "@/shared/ui/form";
 
 export type AdminDepositFormType = { comment: string; amount: number; toSelfAccount: boolean };
 export const useAdminDepositFormFields = () => {

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { useAuthTenant } from "shared/model/auth";
+import { useAuthTenant } from "@/shared/model/auth";
 
 import { profilesApi } from "../api/profiles-api";
 

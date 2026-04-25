@@ -1,9 +1,9 @@
 import { ChangeEvent } from "react";
 
-import { TFormValue } from "shared/ui/form/types/bnt-form";
-import { BntTextAreaInput } from "shared/ui/input/text-area-input";
+import { BntTextAreaInput } from "@/shared/ui/input";
 
 import { useBntForm } from "../hooks/use-bnt-form";
+import { TFormValue } from "../types/bnt-form";
 
 export const BntTextAreaField = (props: {
 	name: string;

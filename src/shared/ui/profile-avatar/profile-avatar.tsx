@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Android } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 
-import { OnlineBadge } from "shared/ui/badge/online-badge";
+import { OnlineBadge } from "@/shared/ui/badge";
 
 type TProfileAvatarProps = {
 	avatarUrl?: string | null;

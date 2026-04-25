@@ -4,9 +4,10 @@ import { AccountBalanceMainInfo } from "components/account-balance/account-balan
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { texts_i, texts_t } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { BntStack } from "shared/ui/stack";
+
+import { BntBox } from "@/shared/ui/box";
+import { BntRoundButton } from "@/shared/ui/buttons";
+import { BntStack } from "@/shared/ui/stack";
 
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { useDonutUi } from "logic/ui/use-donut-ui";

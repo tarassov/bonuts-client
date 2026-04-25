@@ -3,7 +3,8 @@ import { format } from "date-fns";
 import { DeleteDonutsSchedulersByIdApiResponse, PostDonutsSchedulersApiResponse } from "services/api/bonuts-api";
 import { schedulersApi } from "services/api/extended/scheduler-api";
 import { texts_s } from "services/localization/texts";
-import { useNotification } from "shared/ui/notification";
+
+import { useNotification } from "@/shared/ui/notification";
 
 import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
 import { TScheduler } from "@/types/model/scheduler";

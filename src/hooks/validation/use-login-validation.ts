@@ -2,7 +2,8 @@ import * as Yup from "yup";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e, texts_p } from "services/localization/texts";
-import { emailRegex } from "shared/lib/regex/email-regex";
+
+import { emailRegex } from "@/shared/lib/regex";
 
 import type { TLoginFields } from "@/types/form/login";
 

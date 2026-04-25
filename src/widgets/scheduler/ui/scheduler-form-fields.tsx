@@ -3,22 +3,16 @@ import { useFormState, useWatch } from "react-hook-form";
 import { ErrorOutlineOutlined } from "@mui/icons-material";
 import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "services/localization/texts";
-import { TimezoneSelect } from "shared/ui/form/special-fileds/timezone-select";
-import { WeekdayDaySelect } from "shared/ui/form/special-fileds/weekday-day-select";
-import { BntSwitchElement } from "shared/ui/input/bnt-switch-element";
-import { BntSelectElement } from "shared/ui/input/select-element";
-import { BntTextAreaInput } from "shared/ui/input/text-area-input";
-import { BntTextInputElement } from "shared/ui/input/text-input-element";
-import { BntTimePickerElement } from "shared/ui/input/time-picker-element";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
-
 import { getMonthDayOptions } from "@/shared/lib/date";
+import { TimezoneSelect, WeekdayDaySelect } from "@/shared/ui/form";
+import { BntSelectElement, BntSwitchElement, BntTextAreaInput, BntTextInputElement, BntTimePickerElement } from "@/shared/ui/input";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography";
 
-import { SchedulerTypes } from "@/widgets/scheduler/constants/scheduler-types";
+import { SchedulerTypes } from "../constants/scheduler-types";
 
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "@/services/localization/texts";
 import type { TScheduler } from "@/types/model/scheduler";
 
 export function SchedulerFormFields() {

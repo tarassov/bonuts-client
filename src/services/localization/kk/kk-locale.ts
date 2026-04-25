@@ -1,4 +1,4 @@
-import { reportsKk } from "@/features/reports/config/reports-kk";
+import { reportsKk } from "@/features/reports";
 
 import { timezonesKk } from "@/services/localization/kk/timezones-kk";
 import { weekdaysKk } from "@/services/localization/kk/weekdays-kk";

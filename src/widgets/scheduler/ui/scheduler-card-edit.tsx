@@ -7,14 +7,14 @@ import classNames from "classnames";
 import { BntProfileButton } from "components/buttons/profile-button";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntCard } from "shared/ui/card/card";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";
 
-import { SchedulerForm } from "@/widgets/scheduler/ui/scheduler-form";
+import { BntBox } from "@/shared/ui/box";
+import { BntCard } from "@/shared/ui/card";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography";
 
+import { SchedulerForm } from "./scheduler-form";
 import { TNewScheduler, TScheduler } from "@/types/model/scheduler";
 
 export const SchedulerCardEdit: FC<{

@@ -11,7 +11,8 @@ import {
 	usePostRequestsRollbackMutation,
 } from "services/api/bonuts-api";
 import { texts_r } from "services/localization/texts/texts_r";
-import { useNotification } from "shared/ui/notification";
+
+import { useNotification } from "@/shared/ui/notification";
 
 import { useProfile } from "@/entities/profile";
 

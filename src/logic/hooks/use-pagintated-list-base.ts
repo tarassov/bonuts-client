@@ -4,7 +4,8 @@ import _ from "lodash";
 
 import { usePaginator } from "hooks/use-paginator";
 import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "shared/model/auth/auth-selector";
+
+import { authTenantSelector } from "@/shared/model/auth";
 
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
 

@@ -2,8 +2,7 @@ import { useContext, useMemo } from "react";
 
 import _ from "lodash";
 
-import { RouterContext } from "shared/lib/router";
-
+import { RouterContext } from "@/shared/lib/router";
 import { useAuth, useCurrentProfile } from "@/shared/model/auth";
 
 export const useAuthRoutes = () => {

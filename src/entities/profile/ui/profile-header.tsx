@@ -2,8 +2,9 @@ import { ChangeEvent, type CSSProperties, useMemo, useRef, useState } from "reac
 import { useTheme } from "@mui/material/styles";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntCard } from "shared/ui/card/card";
-import { BntTypography } from "shared/ui/typography";
+
+import { BntCard } from "@/shared/ui/card";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { ProfileStatusChips, useUpdateAvatar } from "@/entities/profile";
 

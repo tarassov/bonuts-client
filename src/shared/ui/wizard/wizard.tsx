@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { BntBox } from "shared/ui/box/bnt-box";
-import { TWizardConfig, TWizardProps } from "shared/ui/types/wizard-types";
+import { BntBox } from "@/shared/ui/box";
+import type { TWizardConfig, TWizardProps } from "@/shared/ui/types";
 
 export const Wizard = <TConfig, TInitialProps>(props: { config: TWizardConfig<TConfig, TInitialProps> }) => {
 	const { config } = props;

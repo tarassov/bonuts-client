@@ -1,8 +1,9 @@
 import { useIcons } from "hooks/use-icons";
 import { texts_i } from "services/localization/texts";
-import { BntCard } from "shared/ui/card/card";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography";
+
+import { BntCard } from "@/shared/ui/card";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { ProfileIntegrations } from "./profile-integrations";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";

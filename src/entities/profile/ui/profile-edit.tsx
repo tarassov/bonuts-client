@@ -1,10 +1,10 @@
 import { Grid2 as Grid } from "@mui/material";
 
-import { BntCard } from "@/shared/ui/card/card";
+import { BntCard } from "@/shared/ui/card";
 
 import { useProfile } from "@/entities/profile";
 
-import { ProfileLocaleSettings } from "@/widgets/integration-settings/ui/profile-locale-settings";
+import { ProfileLocaleSettings } from "@/widgets/integration-settings";
 
 import { BntProfileForm } from "./profile-form";
 import { ProfileHeader } from "./profile-header";

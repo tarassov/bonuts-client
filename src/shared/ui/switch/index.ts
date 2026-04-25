@@ -1,1 +1,1 @@
-export { UiSwitch } from "./ui/ui-switch";
+export { UiSwitch } from "./ui-switch";

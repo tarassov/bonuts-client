@@ -1,4 +1,4 @@
-import { BntButton } from "@/shared/ui/buttons/bnt-button";
+import { BntButton } from "@/shared/ui/buttons";
 import { BntStack } from "@/shared/ui/stack";
 
 import styles from "./modal-employee-view.module.css";

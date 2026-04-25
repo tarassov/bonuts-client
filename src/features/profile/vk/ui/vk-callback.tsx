@@ -11,8 +11,8 @@ import { texts_c, texts_v } from "services/localization/texts";
 import { storage } from "@/shared/lib/localStorage";
 import { isBlank } from "@/shared/lib/type-guards";
 import { persistAuthSession } from "@/shared/model/auth";
-import { BntButton } from "@/shared/ui/buttons/bnt-button";
-import headerLogo from "@/shared/ui/icons/bonuts_wordmark.png";
+import { BntButton } from "@/shared/ui/buttons";
+import { BonutsWordmarkPng as headerLogo } from "@/shared/ui/icons";
 
 import { vkApi } from "../api/vk-api";
 import { VK_REDIRECT_URI } from "../constants/vk-constants";

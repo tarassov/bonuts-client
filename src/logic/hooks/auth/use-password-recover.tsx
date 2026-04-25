@@ -3,8 +3,9 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { useGetUsersRecoverQuery, usePostRefreshTokenMutation, usePostUsersPasswordMutation, usePutUsersPasswordMutation } from "services/api/bonuts-api";
 import { texts_c, texts_r } from "services/localization/texts";
-import { storage } from "shared/lib/localStorage";
-import { useNotification } from "shared/ui/notification";
+
+import { storage } from "@/shared/lib/localStorage";
+import { useNotification } from "@/shared/ui/notification";
 
 export const usePasswordRecover = (token?: string) => {
 	const [putPasswordRecover] = usePutUsersPasswordMutation();

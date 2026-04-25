@@ -7,13 +7,11 @@ import classNames from "classnames";
 
 import { UserLogic } from "@/shared/lib";
 import { formatStringDate } from "@/shared/lib/date";
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardActions } from "@/shared/ui/card/card-actions";
-import { BntCardContent } from "@/shared/ui/card/card-content";
+import { BntBox } from "@/shared/ui/box";
+import { BntCard, BntCardActions, BntCardContent } from "@/shared/ui/card";
 import { useNotification } from "@/shared/ui/notification";
 import { ProfileAvatar } from "@/shared/ui/profile-avatar";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useEventLogic } from "../model/use-event-logic";
 

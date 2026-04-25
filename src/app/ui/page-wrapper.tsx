@@ -4,7 +4,7 @@ import { BTNHeader } from "components/header/header";
 import BntSidebar from "components/sidebar/sidebar";
 
 import { useAuth } from "@/shared/model/auth";
-import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntBox } from "@/shared/ui/box";
 import { BntDialogProvider } from "@/shared/ui/dialog";
 import { BntDrawerHeader } from "@/shared/ui/drawer";
 import { BntStack } from "@/shared/ui/stack";

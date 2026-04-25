@@ -1,4 +1,4 @@
-import { LOCALES } from "shared/ui/locale/locale-context";
+import { LOCALES } from "./locale-context";
 
 export const getBrowserLocale = () => {
 	const browserLocale = (navigator.language || LOCALES.en).toLowerCase();
