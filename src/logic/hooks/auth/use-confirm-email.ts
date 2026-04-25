@@ -2,9 +2,10 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { useGetConfirmEmailQuery, usePostConfirmEmailMutation, usePostRefreshTokenMutation } from "services/api/bonuts-api";
 import { texts_c } from "services/localization/texts";
-import { storage } from "shared/lib/localStorage";
-import { present } from "shared/lib/type-guards";
-import { useNotification } from "shared/ui/notification";
+
+import { storage } from "@/shared/lib/localStorage";
+import { present } from "@/shared/lib/type-guards";
+import { useNotification } from "@/shared/ui/notification";
 
 export const useConfirmEmail = (token?: string) => {
 	const { data, isLoading } = useGetConfirmEmailQuery({ token }, { skip: !token });

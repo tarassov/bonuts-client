@@ -1,6 +1,6 @@
 import { timeToSecondsFromMidnight } from "@/shared/lib/date";
 
-import { TSchedulerFormFields } from "@/widgets/scheduler/types/scheduler-form-fields";
+import type { TSchedulerFormFields } from "../types/scheduler-form-fields";
 
 import { TNewScheduler } from "@/types/model/scheduler";
 

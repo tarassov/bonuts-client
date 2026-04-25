@@ -9,15 +9,15 @@ import { Dictionary } from "constants/dictionary";
 import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e } from "services/localization/texts";
-import { present } from "shared/lib/type-guards";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { SearchString } from "shared/ui/search-string";
-import { BntStack } from "shared/ui/stack";
-import { BntTypography } from "shared/ui/typography/typography";
 
+import { present } from "@/shared/lib/type-guards";
+import { BntBox } from "@/shared/ui/box";
 import { useLoader } from "@/shared/ui/loader";
+import { SearchString } from "@/shared/ui/search-string";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography";
 
-import { useEventListLogic } from "@/entities/event/model/use-event-list-logic";
+import { useEventListLogic } from "../model/use-event-list-logic";
 
 import { EventCardStyled } from "./event-card-styled";
 import { EventFilterMenu } from "./event-filter-menu";

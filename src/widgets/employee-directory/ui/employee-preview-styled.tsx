@@ -1,8 +1,7 @@
 import { Grid, Stack, styled } from "@mui/material";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardBody } from "@/shared/ui/card/card-body";
+import { BntBox } from "@/shared/ui/box";
+import { BntCard, BntCardBody } from "@/shared/ui/card";
 import { BntStack } from "@/shared/ui/stack";
 
 export const EmployeePreviewRoot = styled(BntStack)(({ theme }) => {

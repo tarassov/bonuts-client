@@ -3,9 +3,10 @@ import { DonutSmallOutlined } from "@mui/icons-material";
 import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_i, texts_s } from "services/localization/texts";
-import { BntBox } from "shared/ui/box/bnt-box";
-import { BntRoundButton } from "shared/ui/buttons/round-button";
-import { BntStack } from "shared/ui/stack";
+
+import { BntBox } from "@/shared/ui/box";
+import { BntRoundButton } from "@/shared/ui/buttons";
+import { BntStack } from "@/shared/ui/stack";
 
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";

@@ -1,10 +1,10 @@
 import type { FC, JSX } from "react";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntCard } from "@/shared/ui/card/card";
+import { BntBox } from "@/shared/ui/box";
+import { BntCard } from "@/shared/ui/card";
 import { SearchString } from "@/shared/ui/search-string";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { getEmployeeSearchButtons } from "../model/get-employee-search-buttons";
 

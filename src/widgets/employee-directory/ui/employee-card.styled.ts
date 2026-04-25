@@ -1,10 +1,8 @@
 import { alpha, styled } from "@mui/material/styles";
 
-import { BntButton } from "@/shared/ui/buttons/bnt-button";
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardActionArea } from "@/shared/ui/card/card-action-area";
-import { BntCardBody } from "@/shared/ui/card/card-body";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntButton } from "@/shared/ui/buttons";
+import { BntCard, BntCardActionArea, BntCardBody } from "@/shared/ui/card";
+import { BntTypography } from "@/shared/ui/typography";
 
 export const EmployeeCardRoot = styled(BntCard)(({ theme }) => {
 	const isDarkMode = theme.palette.mode === "dark";

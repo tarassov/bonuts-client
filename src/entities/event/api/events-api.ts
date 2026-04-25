@@ -1,5 +1,6 @@
-import type { TDispatchWithPatches } from "./lib/event-cache-updaters";
-import { mergeServerLikeResponse, patchEventCaches } from "./lib/event-cache-updaters";
+import type { TDispatchWithPatches } from "../lib/event-cache-updaters";
+import { mergeServerLikeResponse, patchEventCaches } from "../lib/event-cache-updaters";
+
 import type { GetEventsApiArg, GetEventsApiResponse, PostEventsByIdLikeApiArg, PutEventsByIdApiArg } from "@/services/api/bonuts-api";
 import { bonutsApi } from "@/services/api/bonuts-api";
 import { getPaginator } from "@/services/api/helpers/get-paginator";

@@ -1,8 +1,8 @@
 import { CloseOutlined } from "@mui/icons-material";
 
-import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntIconButton } from "@/shared/ui/icon-button";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import styles from "./modal-employee-view.module.css";
 import type { TModalEmployeeViewHeaderProps } from "./modal-employee-view.types";

@@ -4,8 +4,8 @@ import { Stack } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a } from "services/localization/texts";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntBox } from "@/shared/ui/box";
+import { BntTypography } from "@/shared/ui/typography";
 
 export function ForbiddenPage() {
 	const { t } = useBntTranslate();

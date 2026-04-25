@@ -2,7 +2,8 @@ import { ErrorOutline, ShieldOutlined, StorefrontOutlined } from "@mui/icons-mat
 import { SxProps, Theme } from "@mui/material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntChip } from "shared/ui/chip/chip";
+
+import { BntChip } from "@/shared/ui/chip";
 
 import { texts_a, texts_n, texts_s } from "@/services/localization/texts";
 import { TProfile } from "@/types/model";

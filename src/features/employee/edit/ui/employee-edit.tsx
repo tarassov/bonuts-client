@@ -1,7 +1,7 @@
 import { CloseOutlined } from "@mui/icons-material";
 import { Grid2 as Grid } from "@mui/material";
 
-import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntIconButton } from "@/shared/ui/icon-button";
 import { BntStack } from "@/shared/ui/stack";
 
 import { BntProfileForm, ProfileHeader, useUpdateProfile } from "@/entities/profile";

@@ -4,7 +4,8 @@ import { Box, Button, TextField } from "@mui/material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c, texts_s } from "services/localization/texts";
-import { BntStack } from "shared/ui/stack";
+
+import { BntStack } from "@/shared/ui/stack";
 
 export const CommentForm: FC<{
 	onSubmit: (comment: string) => Promise<void>;

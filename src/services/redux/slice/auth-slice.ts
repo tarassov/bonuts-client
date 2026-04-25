@@ -1,5 +1,5 @@
 import type { TAuthState } from "@/shared/model/auth";
-import { resolveCurrentTenant } from "@/shared/model/auth/resolve-current-tenant";
+import { resolveCurrentTenant } from "@/shared/model/auth";
 
 import { bonutsApi } from "../../api/bonuts-api";
 

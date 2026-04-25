@@ -1,5 +1,6 @@
 import { defaultTags } from "services/redux/utils/rtk-cache-utils";
-import { getFromLocalStorage } from "shared/lib/localStorage";
+
+import { getFromLocalStorage } from "@/shared/lib/localStorage";
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_URL, API_URL_LOCAL, USE_LOCAL_API } from "@/app/config";

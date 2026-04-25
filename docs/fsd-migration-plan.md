@@ -56,6 +56,9 @@ Phase 0 execution artifact:
    - targeted test run
 6. Introduce temporary allowlist for known legacy paths with expiration dates.
 
+Phase 1 execution artifact:
+- `docs/fsd-phase-1-guardrails.md` (snapshot date: 2026-04-25)
+
 ## Phase 2: Shared and Entities Foundation (Week 2-3)
 1. Stabilize `shared/`:
    - move reusable visual primitives to `shared/ui` (prefer `styled()` for reusable wrappers)

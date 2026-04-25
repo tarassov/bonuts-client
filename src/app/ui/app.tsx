@@ -7,8 +7,8 @@ import i18n from "services/localization/i18n";
 import { history } from "services/redux/store/store";
 
 import { RouterContext, type TRouterContextType } from "@/shared/lib/router";
-import { BntLoadingProvider } from "@/shared/ui/loader/loading-provider";
-import { LocaleProvider } from "@/shared/ui/locale/locale-provider";
+import { BntLoadingProvider } from "@/shared/ui/loader";
+import { LocaleProvider } from "@/shared/ui/locale";
 
 import { PluginProvider } from "@/entities/plugin";
 

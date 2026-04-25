@@ -5,9 +5,9 @@ import { Link } from "@mui/material";
 import { useIcons } from "hooks/use-icons";
 import type { GetVkMeApiResponse } from "services/api/bonuts-api";
 import { texts_v } from "services/localization/texts";
-import { present } from "shared/lib/type-guards";
 import { emptyFunction } from "utils/empty-function";
 
+import { present } from "@/shared/lib/type-guards";
 import { useCurrentProfile } from "@/shared/model/auth";
 
 import { useRegisterPlugin } from "@/entities/plugin";

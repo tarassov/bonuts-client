@@ -4,8 +4,7 @@ import { useTranslation } from "react-i18next";
 import { EmojiEventsOutlined, LocalFireDepartmentOutlined, WorkspacePremiumOutlined } from "@mui/icons-material";
 import { Box, Divider, LinearProgress } from "@mui/material";
 
-import { present } from "shared/lib/type-guards";
-
+import { present } from "@/shared/lib/type-guards";
 import type { IDashboardWidgetSizingProps } from "@/shared/ui/dashboard-widget-card";
 import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
 import { BntStack } from "@/shared/ui/stack";

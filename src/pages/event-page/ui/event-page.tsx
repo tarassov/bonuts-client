@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { BntStack } from "@/shared/ui/stack";
 
-import { EventDetailed } from "@/entities/event/ui/event-detailed";
+import { EventDetailed } from "@/entities/event";
 
 export function EventPage() {
 	const { id } = useParams();

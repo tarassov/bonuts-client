@@ -2,23 +2,20 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { FormContainer } from "react-hook-form-mui";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_n } from "services/localization/texts";
-import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
-import { useTimezone } from "shared/ui/form/hooks/use-timezone";
-import { emptyFunction } from "utils/empty-function";
-
 import { secondsToTime } from "@/shared/lib/date";
+import { BntFormSubmit, useTimezone } from "@/shared/ui/form";
 
-import { defaultScheduler } from "@/widgets/scheduler/constants/default-scheduler";
-
+import { defaultScheduler } from "../constants/default-scheduler";
 import { schedulerFormToModel } from "../lib/scheduler-form-to-model";
 import { useSchedulerValidation } from "../model/use-scheduler-validation";
 import type { TSchedulerFormFields } from "../types/scheduler-form-fields";
 
 import { SchedulerFormFields } from "./scheduler-form-fields";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_n } from "@/services/localization/texts";
 import type { TNewScheduler, TScheduler } from "@/types/model/scheduler";
+import { emptyFunction } from "@/utils/empty-function";
 
 export const SchedulerForm: FC<{
 	defaultValue?: TScheduler;

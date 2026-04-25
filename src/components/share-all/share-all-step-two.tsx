@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import { Grid } from "@mui/material";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntRoundButton } from "@/shared/ui/buttons/round-button";
+import { BntBox } from "@/shared/ui/box";
+import { BntRoundButton } from "@/shared/ui/buttons";
 import { BntStack } from "@/shared/ui/stack";
 
 import { EmployeeListCompact } from "@/widgets/employee-directory";

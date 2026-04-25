@@ -1,4 +1,4 @@
-import { BntRoutes } from "shared/config/routes";
+import { BntRoutes } from "@/shared/config/routes";
 
 import { routesPath } from "routes/config/routes-path";
 

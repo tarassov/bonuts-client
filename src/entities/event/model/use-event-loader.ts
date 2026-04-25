@@ -1,8 +1,9 @@
 import { apiAdaptor } from "services/adaptor/api-adaptor";
 import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "shared/model/auth/auth-selector";
 
-import { useGetEventsByIdQuery } from "@/entities/event/api/events-api";
+import { authTenantSelector } from "@/shared/model/auth";
+
+import { useGetEventsByIdQuery } from "../api/events-api";
 
 export const useEventLoader = (id?: number | string | null) => {
 	const authTenant = useAppSelector(authTenantSelector);

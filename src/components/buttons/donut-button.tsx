@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Avatar, Typography } from "@mui/material";
 
-import { BntTransparentButton } from "shared/ui/buttons/transparent-button";
+import { BntTransparentButton } from "@/shared/ui/buttons";
 
 import { TDonut } from "@/types/model";
 

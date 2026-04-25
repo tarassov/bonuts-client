@@ -1,7 +1,8 @@
 import { FC } from "react";
 
 import { DonutCreateForm } from "components/donut/donut-create-form/donut-create-form";
-import { BntBox } from "shared/ui/box/bnt-box";
+
+import { BntBox } from "@/shared/ui/box";
 
 import { TPostDonutArgs } from "@/entities/donut";
 

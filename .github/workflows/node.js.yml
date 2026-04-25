@@ -23,6 +23,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -30,6 +32,15 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: yarn install
+
+    - name: Run lint
+      run: yarn lint
+
+    - name: Run typecheck
+      run: yarn typecheck
+
+    - name: Run FSD boundaries check
+      run: yarn fsd:check:ci
 
     - name: Run the tests
       run: yarn test
@@ -49,6 +60,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:

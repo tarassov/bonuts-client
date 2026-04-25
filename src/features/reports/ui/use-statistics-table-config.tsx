@@ -6,9 +6,10 @@ import { BntProfileButton } from "components/buttons/profile-button";
 import { Currency } from "constants/currency";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useIcons } from "hooks/use-icons";
-import { useTableConfig } from "shared/ui/react-table/hooks/use-table-config";
-import { CellType, HeaderType, TTableConfig } from "shared/ui/react-table/types";
-import { BntStack } from "shared/ui/stack";
+
+import type { TTableConfig } from "@/shared/ui/react-table";
+import { CellType, HeaderType, useTableConfig } from "@/shared/ui/react-table";
+import { BntStack } from "@/shared/ui/stack";
 
 import reportsTexts from "../config/reports-texts";
 

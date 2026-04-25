@@ -20,47 +20,37 @@ import {
 	WidgetsOutlined,
 } from "@mui/icons-material";
 
-import { Roles } from "constants/roles";
-import { useIcons } from "hooks/use-icons";
-
 import { BntRoutes } from "@/shared/config/routes";
 
-import { ConfirmEmailPage } from "@/pages/confirm-email-page/confirm-email-page";
-import { DonutEditPage } from "@/pages/donut/donut-edit-page";
-import { EmployeePreviewPage } from "@/pages/employee/employee-preview-page";
-import { InvitationPage } from "@/pages/invitation/invitation-page";
-import { PluginsPage } from "@/pages/plugins-page/plugins-page";
-import { SchedulersPage } from "@/pages/schedulers-page/schedulers-page";
-import { SharePage } from "@/pages/share-page/share-page";
-import { TenantPage } from "@/pages/tenant-page/tenant-page";
+import { AccountOperationsPage } from "@/pages/account-operations-page";
+import { CirclesPage } from "@/pages/circles-page";
+import { ConfirmEmailPage } from "@/pages/confirm-email-page";
+import { DashboardPage } from "@/pages/dashboard-page";
+import { DonutEditPage, DonutPreviewPage, DonutsPage } from "@/pages/donut";
+import { EmployeePreviewPage, EmployeesPage } from "@/pages/employee";
+import { EventPage } from "@/pages/event-page";
+import { HomePage } from "@/pages/home-page";
+import { InvitationPage } from "@/pages/invitation";
+import { LoginPage } from "@/pages/login-page";
+import { LogoutPage } from "@/pages/logout-page";
+import { PluginsPage } from "@/pages/plugins-page";
+import { ProfilePage } from "@/pages/profile-page";
+import { RecoverPage } from "@/pages/recover-page";
+import { RegistrationPage } from "@/pages/registration-page";
+import { ActiveRequestsPage, ClosedRequestsPage, IncomingRequestsPage, MyRequestsPage, RequestsPage } from "@/pages/requests";
+import { SchedulersPage } from "@/pages/schedulers-page";
+import { SettingsPage } from "@/pages/settings-page";
+import { SharePage } from "@/pages/share-page";
+import { StatisticsPage } from "@/pages/statistics-page";
+import { StorePage } from "@/pages/store-page";
+import { TenantPage } from "@/pages/tenant-page";
+import { TenantsListPage } from "@/pages/tenants-list-page";
 import { VkCallbackPage } from "@/pages/vk-callback";
 
-import { redirectConfig } from "routes/config/redirects-config";
-import { routesPath } from "routes/config/routes-path";
-import {
-	AccountOperationsPage,
-	ActiveRequestsPage,
-	CirclesPage,
-	ClosedRequestsPage,
-	DashboardPage,
-	DonutPreviewPage,
-	DonutsPage,
-	EmployeesPage,
-	EventPage,
-	HomePage,
-	IncomingRequestsPage,
-	LoginPage,
-	LogoutPage,
-	MyRequestsPage,
-	ProfilePage,
-	RecoverPage,
-	RegistrationPage,
-	RequestsPage,
-	SettingsPage,
-	StatisticsPage,
-	StorePage,
-	TenantsListPage,
-} from "@/pages";
+import { Roles } from "@/constants/roles";
+import { useIcons } from "@/hooks/use-icons";
+import { redirectConfig } from "@/routes/config/redirects-config";
+import { routesPath } from "@/routes/config/routes-path";
 
 const groupAdmins = [Roles.moderator, Roles.admin, Roles.admin];
 

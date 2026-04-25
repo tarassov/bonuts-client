@@ -3,10 +3,10 @@ import { useMemo } from "react";
 import spacetime, { Spacetime } from "spacetime";
 import soft from "timezone-soft";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import type { ITimezone, ITimezoneOption } from "shared/ui/types/timezones";
-
 import { getTimezones } from "@/shared/lib/date";
+import type { ITimezone, ITimezoneOption } from "@/shared/ui/types";
+
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
 
 // thanks to https://github.com/ndom91/react-timezone-select/
 export function useTimezone(): {

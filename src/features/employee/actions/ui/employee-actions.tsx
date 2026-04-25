@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { BlockOutlined, CakeOutlined, CheckOutlined, EditOutlined } from "@mui/icons-material";
 
-import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntIconButton } from "@/shared/ui/icon-button";
 import { BntStack } from "@/shared/ui/stack";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
