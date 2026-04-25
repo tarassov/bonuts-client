@@ -4,8 +4,9 @@ import spacetime, { Spacetime } from "spacetime";
 import soft from "timezone-soft";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { getTimezones } from "shared/lib/get-timezones";
-import { ITimezone, ITimezoneOption } from "shared/ui/types/timezones";
+import type { ITimezone, ITimezoneOption } from "shared/ui/types/timezones";
+
+import { getTimezones } from "@/shared/lib/date";
 
 // thanks to https://github.com/ndom91/react-timezone-select/
 export function useTimezone(): {

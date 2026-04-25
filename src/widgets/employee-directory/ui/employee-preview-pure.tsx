@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { useState } from "react";
 import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 
+import { formatStringDate } from "@/shared/lib/date";
 import { BntDivider } from "@/shared/ui/divider/bnt-divider";
 import { ImagePreview } from "@/shared/ui/image/image-preview";
 import { BntStack } from "@/shared/ui/stack";
@@ -30,7 +31,6 @@ import { DEFAULT_AVATAR } from "@/constants/images";
 import { texts_b, texts_c, texts_i } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
 import { emptyFunction } from "@/utils/empty-function";
-import { formatStringDate } from "@/utils/format-string-date";
 
 type TEmployeePreviewViewProps = {
 	className?: string;

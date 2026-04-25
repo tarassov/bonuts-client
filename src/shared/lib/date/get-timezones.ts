@@ -1,3 +1,6 @@
+/**
+ * Returns a static map of IANA timezone ids to human-friendly labels.
+ */
 export const getTimezones = () => {
 	return {
 		"Pacific/Midway": "Midway Island, Samoa",

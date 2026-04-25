@@ -6,6 +6,7 @@ import { Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
 import classNames from "classnames";
 
 import { UserLogic } from "@/shared/lib";
+import { formatStringDate } from "@/shared/lib/date";
 import { BntBox } from "@/shared/ui/box/bnt-box";
 import { BntCard } from "@/shared/ui/card/card";
 import { BntCardActions } from "@/shared/ui/card/card-actions";
@@ -26,7 +27,6 @@ import { texts_n } from "@/services/localization/texts";
 import type { TPost } from "@/types/model/post";
 import { emptyFunction } from "@/utils/empty-function";
 import { focusInput } from "@/utils/focus-input";
-import { formatStringDate } from "@/utils/format-string-date";
 
 export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
 

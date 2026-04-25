@@ -45,3 +45,4 @@ signing-key-info.txt
 /tqueue.binlog
 /webhooks_db.binlog
 /cypress/screenshots
+/.codex

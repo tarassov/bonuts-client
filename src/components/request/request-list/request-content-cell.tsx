@@ -5,11 +5,12 @@ import { DonutButton } from "components/buttons/donut-button";
 import { BntProfileButton } from "components/buttons/profile-button";
 import { CommonStrings } from "constants/dictionary";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { useFormattedDate } from "hooks/use-formatted-date";
 import { texts_t } from "services/localization/texts/texts_t";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 import { emptyFunction } from "utils/empty-function";
+
+import { useFormattedDate } from "@/shared/lib/date";
 
 import { TDonut, TProfile } from "@/types/model";
 

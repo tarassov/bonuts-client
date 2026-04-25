@@ -5,7 +5,6 @@ import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_b, texts_c, texts_e, texts_n, texts_t } from "services/localization/texts";
-import { getMonthDayOptions } from "shared/lib/get-month-day-array";
 import { TimezoneSelect } from "shared/ui/form/special-fileds/timezone-select";
 import { WeekdayDaySelect } from "shared/ui/form/special-fileds/weekday-day-select";
 import { BntSwitchElement } from "shared/ui/input/bnt-switch-element";
@@ -16,9 +15,11 @@ import { BntTimePickerElement } from "shared/ui/input/time-picker-element";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
 
+import { getMonthDayOptions } from "@/shared/lib/date";
+
 import { SchedulerTypes } from "@/widgets/scheduler/constants/scheduler-types";
 
-import { TScheduler } from "@/types/model/scheduler";
+import type { TScheduler } from "@/types/model/scheduler";
 
 export function SchedulerFormFields() {
 	const { t } = useBntTranslate();
