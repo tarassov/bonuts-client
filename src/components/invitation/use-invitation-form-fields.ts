@@ -1,4 +1,4 @@
-import { FieldSize, TFormField } from "@/shared/ui/form/types/bnt-form";
+import { FieldSize, TFormField } from "@/shared/ui/form";
 
 import { TUser } from "@/types/model";
 

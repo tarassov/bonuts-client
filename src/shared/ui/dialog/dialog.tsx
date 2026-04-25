@@ -1,8 +1,7 @@
 import { SyntheticEvent, useCallback } from "react";
 import { DialogProps, useMediaQuery, useTheme } from "@mui/material";
 
-import { DialogStyled } from "@/shared/ui/dialog/DialogStyled";
-
+import { DialogStyled } from "./DialogStyled";
 import { TDialog } from "./dialog-types";
 
 interface IProps extends DialogProps {

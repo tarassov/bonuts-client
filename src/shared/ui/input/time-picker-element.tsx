@@ -3,7 +3,7 @@ import { TimePickerElement, TimePickerElementProps } from "react-hook-form-mui";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { usePickerLocale } from "@/shared/ui/locale/hooks/use-picker-locale";
+import { usePickerLocale } from "@/shared/ui/locale";
 
 export const BntTimePickerElement = forwardRef<
 	HTMLInputElement,

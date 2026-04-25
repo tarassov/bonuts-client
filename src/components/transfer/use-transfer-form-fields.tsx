@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 import { useTransferValidation } from "components/transfer/use-transfer-validation";
 
-import { FieldSize, FieldType, TFormField } from "@/shared/ui/form/types/bnt-form";
+import { FieldSize, FieldType, TFormField } from "@/shared/ui/form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 

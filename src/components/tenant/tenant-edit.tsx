@@ -5,8 +5,8 @@ import { CommonStrings } from "constants/dictionary";
 
 import { BntRoutes } from "@/shared/config/routes";
 import { useBntRoutes } from "@/shared/lib/router";
-import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
+import { CardWrapper } from "@/shared/ui/card-wrapper";
 import { BntStack } from "@/shared/ui/stack";
 import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 

@@ -1,5 +1,5 @@
-import { BntCard } from "@/shared/ui/card/card";
-import { TFormField } from "@/shared/ui/form/types/bnt-form";
+import { BntCard } from "@/shared/ui/card";
+import { TFormField } from "@/shared/ui/form";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { ProfileFieldList } from "./profile-field-list";

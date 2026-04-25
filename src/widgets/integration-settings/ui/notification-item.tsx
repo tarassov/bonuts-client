@@ -9,7 +9,7 @@ import { ProfileNotification } from "services/api/bonuts-api";
 import { texts_c, texts_d, texts_i, texts_n } from "services/localization/texts";
 
 import { present } from "@/shared/lib/type-guards";
-import { BntCard } from "@/shared/ui/card/card";
+import { BntCard } from "@/shared/ui/card";
 import { useLoader } from "@/shared/ui/loader";
 import { BntStack } from "@/shared/ui/stack";
 import { UiSwitch } from "@/shared/ui/switch";

@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { formatStringDate } from "@/shared/lib/date";
-import { BntDivider } from "@/shared/ui/divider/bnt-divider";
-import { ImagePreview } from "@/shared/ui/image/image-preview";
+import { BntDivider } from "@/shared/ui/divider";
+import { ImagePreview } from "@/shared/ui/image";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { CircleChip } from "@/entities/circle";
 import { ProfileStatusChips } from "@/entities/profile";

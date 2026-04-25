@@ -15,10 +15,10 @@ import { texts_n } from "services/localization/texts";
 import { texts_p } from "services/localization/texts/texts_p";
 import { emptyFunction } from "utils/empty-function";
 
-import { BntTransparentButton } from "@/shared/ui/buttons/transparent-button";
-import { ColumnFilter } from "@/shared/ui/react-table/column-filter";
-import { fuzzyFilter } from "@/shared/ui/react-table/filters";
+import { BntTransparentButton } from "@/shared/ui/buttons";
 
+import { ColumnFilter } from "./column-filter";
+import { fuzzyFilter } from "./filters";
 import {
 	ColumnDef,
 	ColumnFiltersState,

@@ -4,9 +4,9 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
 import { emptyFunction } from "utils/empty-function";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntTransparentButton } from "@/shared/ui/buttons/transparent-button";
-import { TDialogProps } from "@/shared/ui/dialog/dialog-types";
+import { BntBox } from "@/shared/ui/box";
+import { BntTransparentButton } from "@/shared/ui/buttons";
+import { TDialogProps } from "@/shared/ui/dialog";
 import { BntStack } from "@/shared/ui/stack";
 
 import { texts_y } from "@/services/localization/texts/texts_y";

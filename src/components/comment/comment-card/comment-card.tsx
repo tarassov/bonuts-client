@@ -5,12 +5,10 @@ import { IconButton, Tooltip, Typography } from "@mui/material";
 import classNames from "classnames";
 
 import { formatStringDate } from "@/shared/lib/date";
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardActions } from "@/shared/ui/card/card-actions";
-import { BntCardContent } from "@/shared/ui/card/card-content";
+import { BntCard, BntCardActions, BntCardContent } from "@/shared/ui/card";
 import { ProfileAvatar } from "@/shared/ui/profile-avatar";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useEmployeeLoader } from "@/entities/profile";
 

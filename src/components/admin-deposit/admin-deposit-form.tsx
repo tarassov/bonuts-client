@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { AdminDepositFormType, useAdminDepositFormFields } from "components/admin-deposit/use-admin-deposit-form-fields";
 
-import { BntForm } from "@/shared/ui/form/bnt-form";
+import { BntForm } from "@/shared/ui/form";
 
 import { useTransfer } from "logic/hooks/operation/use-transfer";
 

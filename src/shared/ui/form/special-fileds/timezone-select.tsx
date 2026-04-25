@@ -3,7 +3,7 @@ import { AutocompleteElement, SelectElementProps } from "react-hook-form-mui";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { useTimezone } from "@/shared/ui/form/hooks/use-timezone";
+import { useTimezone } from "../hooks/use-timezone";
 
 export type TimezoneSelectProps = SelectElementProps<any, any> & {
 	stringLabel?: string;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Grid } from "@mui/material";
 
-import { TSizeProps } from "@/shared/ui/form/types/bnt-form";
+import { TSizeProps } from "./types/bnt-form";
 
 export const GridOffset: FC<{ offset?: TSizeProps; key?: string }> = ({ offset, key }) => {
 	if (!offset) return null;

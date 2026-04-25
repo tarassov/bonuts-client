@@ -7,10 +7,10 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_d } from "services/localization/texts";
 import { emptyFunction } from "utils/empty-function";
 
-import { BntCard } from "@/shared/ui/card/card";
+import { BntCard } from "@/shared/ui/card";
 import { UiCheckbox } from "@/shared/ui/checkbox";
-import { BntFormSubmit } from "@/shared/ui/form/bnt-form-submit";
-import { BntTextInputElement } from "@/shared/ui/input/text-input-element";
+import { BntFormSubmit } from "@/shared/ui/form";
+import { BntTextInputElement } from "@/shared/ui/input";
 
 import { PluginHeader } from "./plugin-header";
 import { TPlugin } from "@/types/model";

@@ -2,11 +2,10 @@ import { useMemo } from "react";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { ActionCell } from "@/shared/ui/react-table/cells/action-cell";
-import { cellFactory } from "@/shared/ui/react-table/factories/cell-factory";
-import { headerFactory } from "@/shared/ui/react-table/factories/header-factory";
-import { TTableConfig } from "@/shared/ui/react-table/types";
-
+import { ActionCell } from "./action-cell";
+import { cellFactory } from "./cell-factory";
+import { headerFactory } from "./header-factory";
+import type { TTableConfig } from "./types";
 import { CellContext, createColumnHelper, DeepKeys } from "@tanstack/react-table";
 import { TBaseModel } from "@/types/model";
 

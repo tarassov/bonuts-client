@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Grid } from "@mui/material";
 
-import { BntDivider } from "@/shared/ui/divider/bnt-divider";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntDivider } from "@/shared/ui/divider";
+import { BntTypography } from "@/shared/ui/typography";
 
 export const TenantList: FC<{ children: React.ReactNode; title: string }> = ({ children, title }) => {
 	return (

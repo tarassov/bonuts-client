@@ -7,10 +7,10 @@ import { texts_a, texts_c, texts_i } from "services/localization/texts";
 import { texts_r } from "services/localization/texts/texts_r";
 import { emptyFunction } from "utils/empty-function";
 
-import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
+import { CardWrapper } from "@/shared/ui/card-wrapper";
 import { useLoader } from "@/shared/ui/loader";
-import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
+import { BntReactTable } from "@/shared/ui/react-table";
 import { BntStack } from "@/shared/ui/stack";
 import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 

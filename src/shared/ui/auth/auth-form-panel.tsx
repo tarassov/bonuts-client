@@ -6,7 +6,7 @@ import { Alert, CircularProgress, Divider, IconButton, InputAdornment, Stack, To
 
 import { texts_a, texts_d, texts_e, texts_h, texts_l, texts_o, texts_p, texts_r, texts_s } from "services/localization/texts";
 
-import BonutsWordmark from "@/shared/ui/icons/bonuts_wordmark.svg";
+import { BonutsWordmarkSvg as BonutsWordmark } from "@/shared/ui/icons";
 
 import { AuthAccentTextButton, AuthDemoButton, AuthFormColumn, AuthOutlinedButton, AuthSubmitButton, AuthTextButton, AuthTextField } from "./auth-panel.styles";
 import type { TLoginFields } from "@/types/form/login";

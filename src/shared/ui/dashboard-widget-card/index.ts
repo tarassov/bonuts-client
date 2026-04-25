@@ -1,2 +1,2 @@
-export type { IDashboardWidgetSizingProps, TDashboardWidgetColumns } from "./model/types";
-export { DashboardWidgetCard } from "./ui/dashboard-widget-card";
+export { DashboardWidgetCard } from "./dashboard-widget-card";
+export type { IDashboardWidgetSizingProps, TDashboardWidgetColumns } from "./types";

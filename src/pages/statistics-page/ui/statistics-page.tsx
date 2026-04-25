@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
+import { CardWrapper } from "@/shared/ui/card-wrapper";
 import { BntStack } from "@/shared/ui/stack";
 
 import { ReportsMain } from "@/features/reports";

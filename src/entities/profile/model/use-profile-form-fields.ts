@@ -6,7 +6,7 @@ import { texts_e } from "services/localization/texts/texts_e";
 
 import { UserLogic } from "@/shared/lib";
 import { useCurrentProfile } from "@/shared/model/auth";
-import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "@/shared/ui/form/types/bnt-form";
+import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "@/shared/ui/form";
 
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
 import { type TCircle, type TProfile } from "@/types/model";

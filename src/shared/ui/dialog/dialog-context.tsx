@@ -4,7 +4,7 @@ import { SystemStyleObject } from "@mui/system";
 
 import { emptyFunction } from "utils/empty-function";
 
-import { TDialogProps } from "@/shared/ui/dialog/dialog-types";
+import { TDialogProps } from "./dialog-types";
 
 type ContextType = {
 	<T extends string>(name: T, data: any, key?: string): Promise<any>;

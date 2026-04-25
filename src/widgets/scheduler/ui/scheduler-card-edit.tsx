@@ -9,10 +9,10 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a } from "services/localization/texts";
 import { emptyFunction } from "utils/empty-function";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntCard } from "@/shared/ui/card/card";
+import { BntBox } from "@/shared/ui/box";
+import { BntCard } from "@/shared/ui/card";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { SchedulerForm } from "./scheduler-form";
 import { TNewScheduler, TScheduler } from "@/types/model/scheduler";

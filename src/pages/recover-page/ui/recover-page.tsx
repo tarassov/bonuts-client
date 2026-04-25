@@ -6,13 +6,12 @@ import { PasswordRecoverSet } from "components/password-recover/password-recover
 import { Modules } from "constants/modules";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntBox } from "@/shared/ui/box";
 import { useLoader } from "@/shared/ui/loader";
 
 import { Messenger } from "@/features/3cx";
 
-import styles from "../recover-page.module.scss";
-
+import styles from "./recover-page.module.scss";
 import { usePasswordRecover } from "logic/hooks/auth/use-password-recover";
 
 export const RecoverPage: FC = () => {

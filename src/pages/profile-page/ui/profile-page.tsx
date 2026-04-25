@@ -4,11 +4,9 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useSearchQuery } from "hooks/use-search-query";
 import { texts_p, texts_s } from "services/localization/texts";
 
-import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
+import { CardWrapper } from "@/shared/ui/card-wrapper";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTab } from "@/shared/ui/tab/bnt-tab";
-import { BntTabPanel } from "@/shared/ui/tab/bnt-tab-panel";
-import { BntTabs } from "@/shared/ui/tab/bnt-tabs";
+import { BntTab, BntTabPanel, BntTabs } from "@/shared/ui/tab";
 
 import { ProfileEdit } from "@/entities/profile";
 

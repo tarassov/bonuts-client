@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 import { formatStringDate, getWeekdayOptions, secondsToTime } from "@/shared/lib/date";
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntCardBody } from "@/shared/ui/card/card-body";
+import { BntBox } from "@/shared/ui/box";
+import { BntCardBody } from "@/shared/ui/card";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { SchedulerCardContainer } from "./scheduler-card-container";
 import { CommonStrings } from "@/constants/dictionary";

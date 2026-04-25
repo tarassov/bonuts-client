@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { IconButton, Stack } from "@mui/material";
 
-import { actionIconFactory } from "@/shared/ui/react-table/factories/action-icon-factory";
-import { TTableAction } from "@/shared/ui/react-table/types";
+import { actionIconFactory } from "./action-icon-factory";
+import type { TTableAction } from "./types";
 
 export const ActionCell: FC<{ rowId?: number; actions: Array<TTableAction> }> = ({ rowId, actions }) => {
 	return (

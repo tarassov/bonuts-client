@@ -7,13 +7,12 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 import { texts_c, texts_e, texts_n } from "services/localization/texts";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import BonutsFullIcon from "@/shared/ui/icons/BonutsFullIcon.svg";
+import { BntBox } from "@/shared/ui/box";
+import { BonutsFullIcon } from "@/shared/ui/icons";
 import { useLoader } from "@/shared/ui/loader";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
-import styles from "../confirm-email-page.module.scss";
-
+import styles from "./confirm-email-page.module.scss";
 import { useConfirmEmail } from "logic/hooks/auth/use-confirm-email";
 
 export const ConfirmEmailPage: FC = () => {

@@ -6,7 +6,7 @@ import _ from "lodash";
 import { Modules } from "constants/modules";
 
 import { useLoader } from "@/shared/ui/loader";
-import { useDateLocale } from "@/shared/ui/locale/hooks/use-date-locale";
+import { useDateLocale } from "@/shared/ui/locale";
 
 import { useProfileFormFields } from "../model/use-profile-form-fields";
 import type { TUpdateProfileValues } from "../model/use-update-profile";

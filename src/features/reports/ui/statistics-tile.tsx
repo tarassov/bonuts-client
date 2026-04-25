@@ -10,12 +10,11 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
 import { emptyFunction } from "utils/empty-function";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardBody } from "@/shared/ui/card/card-body";
-import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
-import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntBox } from "@/shared/ui/box";
+import { BntCard, BntCardBody } from "@/shared/ui/card";
+import { BntIconButton } from "@/shared/ui/icon-button";
+import { BntReactTable } from "@/shared/ui/react-table";
+import { BntTypography } from "@/shared/ui/typography";
 
 import reportsTexts from "../config/reports-texts";
 

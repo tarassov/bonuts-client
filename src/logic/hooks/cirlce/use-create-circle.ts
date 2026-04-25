@@ -2,7 +2,7 @@ import { PostCirclesApiResponse } from "services/api/bonuts-api";
 import { circlesApi } from "services/api/extended/circles-api";
 import { texts_c } from "services/localization/texts";
 
-import { TFormValue } from "@/shared/ui/form/types/bnt-form";
+import { TFormValue } from "@/shared/ui/form";
 import { useNotification } from "@/shared/ui/notification";
 
 import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";

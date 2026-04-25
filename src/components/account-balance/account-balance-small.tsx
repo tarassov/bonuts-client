@@ -5,9 +5,9 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntBox } from "@/shared/ui/box";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";

@@ -8,11 +8,9 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { texts_o } from "services/localization/texts/texts_o";
 
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardActionArea } from "@/shared/ui/card/card-action-area";
-import { BntCardBody } from "@/shared/ui/card/card-body";
+import { BntCard, BntCardActionArea, BntCardBody } from "@/shared/ui/card";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { TDonut } from "@/types/model";
 

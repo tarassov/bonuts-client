@@ -4,9 +4,9 @@ import { FormContainer } from "react-hook-form-mui";
 import _ from "lodash";
 
 import { present } from "@/shared/lib/type-guards";
-import { BntFormBody } from "@/shared/ui/form/form-body";
-import { useDateLocale } from "@/shared/ui/locale/hooks/use-date-locale";
+import { useDateLocale } from "@/shared/ui/locale";
 
+import { BntFormBody } from "./form-body";
 import { TFormFieldSourceItem, TFormProps, TFormValue } from "./types/bnt-form";
 import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 

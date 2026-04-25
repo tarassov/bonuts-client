@@ -4,12 +4,10 @@ import { useStoreTableConfig } from "components/store-manager/use-store-table-co
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { emptyFunction } from "utils/empty-function";
 
-import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
-import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
+import { CardWrapper } from "@/shared/ui/card-wrapper";
+import { BntReactTable } from "@/shared/ui/react-table";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTab } from "@/shared/ui/tab/bnt-tab";
-import { BntTabPanel } from "@/shared/ui/tab/bnt-tab-panel";
-import { BntTabs } from "@/shared/ui/tab/bnt-tabs";
+import { BntTab, BntTabPanel, BntTabs } from "@/shared/ui/tab";
 
 import { TDonut } from "@/types/model";
 

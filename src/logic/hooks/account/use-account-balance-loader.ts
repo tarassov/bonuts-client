@@ -2,7 +2,7 @@ import { apiAccountAdaptor } from "services/adaptor/api-account-adaptor";
 import { useGetAccountsByIdQuery } from "services/api/extended/accounts-api";
 import { useAppSelector } from "services/redux/store/store";
 
-import { authTenantSelector } from "@/shared/model/auth/auth-selector";
+import { authTenantSelector } from "@/shared/model/auth";
 
 export const useAccountBalanceLoader = (id?: number | null) => {
 	const authTenant = useAppSelector(authTenantSelector);

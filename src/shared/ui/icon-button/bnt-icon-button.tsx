@@ -3,7 +3,7 @@ import { Icon, IconButton, IconButtonProps, Tooltip } from "@mui/material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { BntBadge } from "@/shared/ui/badge/bnt-badge";
+import { BntBadge } from "@/shared/ui/badge";
 
 export const BntIconButton: FC<
 	IconButtonProps & {

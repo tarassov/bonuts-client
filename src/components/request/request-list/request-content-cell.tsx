@@ -3,7 +3,7 @@ import { Grid, useMediaQuery, useTheme } from "@mui/material";
 
 import { useFormattedDate } from "@/shared/lib/date";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { DonutButton } from "@/components/buttons/donut-button";
 import { BntProfileButton } from "@/components/buttons/profile-button";

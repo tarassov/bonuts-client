@@ -5,7 +5,7 @@ import { texts_d } from "services/localization/texts/texts_d";
 import { texts_o } from "services/localization/texts/texts_o";
 import { texts_p } from "services/localization/texts/texts_p";
 
-import { FieldSize, FieldType, TFieldGroup, TFormField } from "@/shared/ui/form/types/bnt-form";
+import { FieldSize, FieldType, TFieldGroup, TFormField } from "@/shared/ui/form";
 
 import { useModal } from "@/entities/modal";
 

@@ -10,13 +10,12 @@ import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { BntRoutes } from "@/shared/config/routes";
-import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardBody } from "@/shared/ui/card/card-body";
-import { ImagePreview } from "@/shared/ui/image/image-preview";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
+import { BntCard, BntCardBody } from "@/shared/ui/card";
+import { ImagePreview } from "@/shared/ui/image";
 import { useLoader } from "@/shared/ui/loader";
 import type { TBntBreadcrumbItem } from "@/shared/ui/types";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useDonutLoader } from "@/entities/donut";
 import { useModal } from "@/entities/modal";

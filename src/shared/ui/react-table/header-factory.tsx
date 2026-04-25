@@ -2,8 +2,7 @@ import type { ReactElement } from "react";
 
 import _ from "lodash";
 
-import { TTableColumn } from "@/shared/ui/react-table/types";
-
+import type { TTableColumn } from "./types";
 import { TBaseModel } from "@/types/model";
 
 export const headerFactory = <T extends TBaseModel>(column: TTableColumn<T>, nameTransformer?: (value?: string | null) => string): string | ReactElement => {

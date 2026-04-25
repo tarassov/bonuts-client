@@ -7,8 +7,8 @@ import { useIcons } from "hooks/use-icons";
 import { texts_g } from "services/localization/texts";
 
 import { useCurrentProfile } from "@/shared/model/auth";
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntButton } from "@/shared/ui/buttons/bnt-button";
+import { BntBox } from "@/shared/ui/box";
+import { BntButton } from "@/shared/ui/buttons";
 import type { TDialogProps } from "@/shared/ui/dialog";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";

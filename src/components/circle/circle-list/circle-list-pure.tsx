@@ -5,9 +5,9 @@ import { CommonStrings } from "constants/dictionary";
 
 import { BntRoutes } from "@/shared/config/routes";
 import { useBntRoutes } from "@/shared/lib/router";
-import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
-import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
-import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
+import { CardWrapper } from "@/shared/ui/card-wrapper";
+import { BntReactTable } from "@/shared/ui/react-table";
 import { BntStack } from "@/shared/ui/stack";
 import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 

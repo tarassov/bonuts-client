@@ -3,7 +3,7 @@ import { ShareAllStepTwo } from "components/share-all/share-all-step-two";
 import { Currency } from "constants/currency";
 
 import type { TWizardConfig } from "@/shared/ui/types";
-import { Wizard } from "@/shared/ui/wizard/wizard";
+import { Wizard } from "@/shared/ui/wizard";
 
 import { useTransfer } from "logic/hooks/operation/use-transfer";
 import type { TProfile } from "@/types/model";

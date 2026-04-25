@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { PeopleAltOutlined, PersonOutlined } from "@mui/icons-material";
 
 import { BntRoutes } from "@/shared/config/routes";
-import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
 import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 
 import { routesPath } from "@/routes/config/routes-path";

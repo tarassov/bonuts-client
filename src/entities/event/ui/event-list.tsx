@@ -11,11 +11,11 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e } from "services/localization/texts";
 
 import { present } from "@/shared/lib/type-guards";
-import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntBox } from "@/shared/ui/box";
 import { useLoader } from "@/shared/ui/loader";
 import { SearchString } from "@/shared/ui/search-string";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useEventListLogic } from "../model/use-event-list-logic";
 

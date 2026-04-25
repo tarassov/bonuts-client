@@ -1,4 +1,4 @@
-import { BntChip } from "@/shared/ui/chip/chip";
+import { BntChip } from "@/shared/ui/chip";
 
 import styles from "./circle-chip.module.css";
 

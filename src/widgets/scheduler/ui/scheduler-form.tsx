@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { FormContainer } from "react-hook-form-mui";
 
 import { secondsToTime } from "@/shared/lib/date";
-import { BntFormSubmit } from "@/shared/ui/form/bnt-form-submit";
-import { useTimezone } from "@/shared/ui/form/hooks/use-timezone";
+import { BntFormSubmit, useTimezone } from "@/shared/ui/form";
 
 import { defaultScheduler } from "../constants/default-scheduler";
 import { schedulerFormToModel } from "../lib/scheduler-form-to-model";

@@ -8,9 +8,9 @@ import { useRegisterValidation } from "hooks/validation/use-register-validation"
 import { texts_e, texts_f, texts_l, texts_p, texts_s } from "services/localization/texts";
 
 import { getResponseErrorMessage } from "@/shared/lib/notification";
-import BonutsFullIcon from "@/shared/ui/icons/BonutsFullIcon.svg";
+import { BonutsFullIcon } from "@/shared/ui/icons";
 import { useLoader } from "@/shared/ui/loader";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { Messenger } from "@/features/3cx";
 

@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { Box, styled } from "@mui/material";
 
-import { BntCard } from "@/shared/ui/card/card";
+import { BntCard } from "@/shared/ui/card";
 
-import type { IDashboardWidgetSizingProps } from "../model/types";
+import type { IDashboardWidgetSizingProps } from "./types";
 
 interface IDashboardWidgetCardProps extends IDashboardWidgetSizingProps {
 	children: ReactNode;

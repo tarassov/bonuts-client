@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { AccountHistory } from "components/account-history/account-history";
 
-import { CardWrapper } from "@/shared/ui/card-wrapper/card-wrapper";
+import { CardWrapper } from "@/shared/ui/card-wrapper";
 import { BntStack } from "@/shared/ui/stack";
 
 export const AccountOperationsPage: FC = () => {

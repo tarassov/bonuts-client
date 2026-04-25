@@ -1,4 +1,4 @@
-import { TDialogConfig } from "@/shared/ui/dialog/dialog-types";
+import { TDialogConfig } from "@/shared/ui/dialog";
 
 import { TTelegramModalConfig, TTelegramModalResponse } from "@/entities/telegram";
 

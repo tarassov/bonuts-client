@@ -6,9 +6,8 @@ import { Dictionary } from "constants/dictionary";
 import { Modules } from "constants/modules";
 import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
 
-import { BntBreadcrumbs } from "@/shared/ui/breadcrumb/breadcrumbs";
-import { BntCard } from "@/shared/ui/card/card";
-import { BntCardBody } from "@/shared/ui/card/card-body";
+import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
+import { BntCard, BntCardBody } from "@/shared/ui/card";
 import { useLoader } from "@/shared/ui/loader";
 import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 

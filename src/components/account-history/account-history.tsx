@@ -4,7 +4,7 @@ import { useAccountHistoryTableConfig } from "components/account-history/use-acc
 import { Modules } from "constants/modules";
 
 import { useLoader } from "@/shared/ui/loader";
-import { BntReactTable } from "@/shared/ui/react-table/bnt-react-table";
+import { BntReactTable } from "@/shared/ui/react-table";
 
 import { useOperationHistory } from "logic/hooks/operation/use-operation-history";
 

@@ -4,8 +4,7 @@ import { Theme } from "@mui/material/styles";
 
 import { BntTransparentButton } from "@/shared/ui/buttons";
 import { BntDrawer, BntDrawerHeader } from "@/shared/ui/drawer";
-import BonutsIcon from "@/shared/ui/icons/BonutsIcon.svg";
-import BonutsFullIcon from "@/shared/ui/icons/bonuts_wordmark.svg";
+import { BonutsWordmarkSvg as BonutsFullIcon, BonutsIcon } from "@/shared/ui/icons";
 
 import { BntMainMenu } from "../main-menu/main-menu";
 

@@ -3,10 +3,8 @@ import { useFormContext, useFormState } from "react-hook-form";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntFormSubmit } from "@/shared/ui/form/bnt-form-submit";
-import { BntFormContextProvider } from "@/shared/ui/form/context/bnt-form-provider";
-import { TFormField } from "@/shared/ui/form/types/bnt-form";
+import { BntBox } from "@/shared/ui/box";
+import { BntFormContextProvider, BntFormSubmit, TFormField } from "@/shared/ui/form";
 
 import classes from "./profile-form.module.scss";
 import { ProfileFormSection } from "./profile-form-section";

@@ -4,8 +4,8 @@ import _ from "lodash";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { ImagePreview } from "@/shared/ui/image/image-preview";
+import { BntBox } from "@/shared/ui/box";
+import { ImagePreview } from "@/shared/ui/image";
 
 import { BntFormFileInput } from "../bnt-form-file-input";
 import { useBntForm } from "../hooks/use-bnt-form";

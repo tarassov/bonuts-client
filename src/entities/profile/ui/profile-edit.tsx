@@ -1,6 +1,6 @@
 import { Grid2 as Grid } from "@mui/material";
 
-import { BntCard } from "@/shared/ui/card/card";
+import { BntCard } from "@/shared/ui/card";
 
 import { useProfile } from "@/entities/profile";
 

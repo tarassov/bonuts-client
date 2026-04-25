@@ -4,8 +4,8 @@ import { Avatar, Button } from "@mui/material";
 
 import { Dictionary } from "constants/dictionary";
 
-import { useAuth } from "@/shared/model/auth/use-auth";
-import { BntBox } from "@/shared/ui/box/bnt-box";
+import { useAuth } from "@/shared/model/auth";
+import { BntBox } from "@/shared/ui/box";
 
 export function LogoutPage() {
 	const { signOut } = useAuth();

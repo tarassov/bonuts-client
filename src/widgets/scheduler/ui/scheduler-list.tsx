@@ -4,7 +4,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
 import { emptyFunction } from "utils/empty-function";
 
-import { BntDivider } from "@/shared/ui/divider/bnt-divider";
+import { BntDivider } from "@/shared/ui/divider";
 
 import { SchedulerCard } from "./scheduler-card";
 import { SchedulerCardEdit } from "./scheduler-card-edit";

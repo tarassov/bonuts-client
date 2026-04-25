@@ -1,6 +1,5 @@
-import { StringCell } from "@/shared/ui/react-table/cells/string-cell";
-import { TTableColumn } from "@/shared/ui/react-table/types";
-
+import { StringCell } from "./string-cell";
+import type { TTableColumn } from "./types";
 import { CellContext } from "@tanstack/react-table";
 import { TBaseModel } from "@/types/model";
 

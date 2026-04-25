@@ -3,7 +3,7 @@ import { Stack } from "@mui/material";
 
 import classNames from "classnames";
 
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 

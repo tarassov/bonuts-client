@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e } from "services/localization/texts";
 
-import { emailRegex } from "@/shared/lib/regex/email-regex";
+import { emailRegex } from "@/shared/lib/regex";
 
 import { PasswordRestoreFields } from "@/types/form/password-restore";
 

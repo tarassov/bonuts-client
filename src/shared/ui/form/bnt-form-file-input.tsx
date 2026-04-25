@@ -4,8 +4,8 @@ import { Stack } from "@mui/material";
 
 import { Dictionary } from "constants/dictionary";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
-import { BntIconButton } from "@/shared/ui/icon-button/bnt-icon-button";
+import { BntBox } from "@/shared/ui/box";
+import { BntIconButton } from "@/shared/ui/icon-button";
 
 export const BntFormFileInput: FC<{
 	handleFileInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

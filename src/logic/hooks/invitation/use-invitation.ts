@@ -2,7 +2,7 @@ import { usePostInvitationsMutation } from "services/api/bonuts-api";
 import { usePostInvitationsByIdAcceptMutation, usePostInvitationsByIdDeclineMutation } from "services/api/extended/invitations-api";
 import { texts_n } from "services/localization/texts";
 
-import { useAuth } from "@/shared/model/auth/use-auth";
+import { useAuth } from "@/shared/model/auth";
 import { useLoader } from "@/shared/ui/loader";
 import { useNotification } from "@/shared/ui/notification";
 

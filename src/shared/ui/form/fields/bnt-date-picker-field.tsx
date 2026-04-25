@@ -1,6 +1,6 @@
 import { CommonStrings } from "constants/dictionary";
 
-import { BntDatePicker } from "@/shared/ui/input/date-picker";
+import { BntDatePicker } from "@/shared/ui/input";
 
 import { useBntForm } from "../hooks/use-bnt-form";
 

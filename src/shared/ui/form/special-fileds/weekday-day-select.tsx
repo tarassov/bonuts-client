@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import type { SelectElementProps } from "react-hook-form-mui";
 
 import { getWeekdayOptions } from "@/shared/lib/date";
-import { BntSelectElement } from "@/shared/ui/input/select-element";
+import { BntSelectElement } from "@/shared/ui/input";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 

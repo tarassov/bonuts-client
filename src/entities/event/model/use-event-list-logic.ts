@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 
-import { authTenantSelector } from "@/shared/model/auth/auth-selector";
+import { authTenantSelector } from "@/shared/model/auth";
 
 import { eventsApi } from "../api/events-api";
 

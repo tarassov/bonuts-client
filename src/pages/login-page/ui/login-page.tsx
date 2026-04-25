@@ -14,7 +14,7 @@ import { texts_l, texts_s, texts_v } from "services/localization/texts";
 
 import { getResponseErrorMessage } from "@/shared/lib/notification";
 import { present } from "@/shared/lib/type-guards";
-import { useAuth } from "@/shared/model/auth/use-auth";
+import { useAuth } from "@/shared/model/auth";
 import { AuthFormPanel, AuthHero } from "@/shared/ui/auth";
 import { useLoader } from "@/shared/ui/loader";
 

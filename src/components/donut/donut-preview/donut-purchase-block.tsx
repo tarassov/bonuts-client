@@ -5,10 +5,10 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
 import { texts_o } from "services/localization/texts/texts_o";
 
-import { BntRegularButton } from "@/shared/ui/buttons/regular-button";
-import { BntCard } from "@/shared/ui/card/card";
+import { BntRegularButton } from "@/shared/ui/buttons";
+import { BntCard } from "@/shared/ui/card";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { DonutPrice } from "./donut-price";
 import { DonutRemainGrey } from "./donut-remain-grey";

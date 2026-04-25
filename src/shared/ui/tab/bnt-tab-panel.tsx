@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { BntBox } from "@/shared/ui/box/bnt-box";
+import { BntBox } from "@/shared/ui/box";
 
 export type TabPanelProps = {
 	children?: React.ReactNode;

@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 import { formatStringDate } from "@/shared/lib/date";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { CommonStrings } from "@/constants/dictionary";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";

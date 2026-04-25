@@ -1,6 +1,4 @@
-import defaultImage from "@/shared/ui/icons/bonuts_sm.png";
-import defaultAvatar from "@/shared/ui/icons/default_profile.png";
-import doughnutImage from "@/shared/ui/icons/doughnut.svg";
+import { DefaultProfilePng as defaultAvatar, BonutsSmPng as defaultImage, DoughnutSvg as doughnutImage } from "@/shared/ui/icons";
 
 export const DEFAULT_AVATAR = defaultAvatar;
 export const DEFAULT_DONUT_IMAGE = defaultImage;

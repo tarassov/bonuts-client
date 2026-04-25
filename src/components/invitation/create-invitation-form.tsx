@@ -2,10 +2,9 @@ import { useInvitationFormFields } from "components/invitation/use-invitation-fo
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useUserValidation } from "hooks/validation/use-user-validation";
 
-import { BntForm } from "@/shared/ui/form/bnt-form";
-import { TFormProps } from "@/shared/ui/form/types/bnt-form";
+import { BntForm, TFormProps } from "@/shared/ui/form";
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography/typography";
+import { BntTypography } from "@/shared/ui/typography";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useInvitation } from "logic/hooks/invitation/use-invitation";

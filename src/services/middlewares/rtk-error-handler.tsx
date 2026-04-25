@@ -4,7 +4,7 @@ import { Errors } from "constants/dictionary";
 import { bonutsApi } from "services/api/bonuts-api";
 import { authActions } from "services/redux/slice/auth-slice";
 
-import { storage } from "@/shared/lib/localStorage/storage";
+import { storage } from "@/shared/lib/localStorage";
 import { showError } from "@/shared/ui/notification";
 
 import type { Middleware } from "@reduxjs/toolkit";
