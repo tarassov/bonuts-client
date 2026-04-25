@@ -5,7 +5,8 @@ import { CommonStrings } from "constants/dictionary";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-import { formatStringDate } from "utils/format-string-date";
+
+import { formatStringDate } from "@/shared/lib/date";
 
 interface IProps {
 	title: string;

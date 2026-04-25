@@ -4,10 +4,11 @@ import { FormContainer } from "react-hook-form-mui";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_n } from "services/localization/texts";
-import { secondsToTime } from "shared/lib/seconds-to-time";
 import { BntFormSubmit } from "shared/ui/form/bnt-form-submit";
 import { useTimezone } from "shared/ui/form/hooks/use-timezone";
 import { emptyFunction } from "utils/empty-function";
+
+import { secondsToTime } from "@/shared/lib/date";
 
 import { defaultScheduler } from "@/widgets/scheduler/constants/default-scheduler";
 

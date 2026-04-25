@@ -3,13 +3,12 @@ import { FC } from "react";
 import { CommonStrings } from "constants/dictionary";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_d, texts_e, texts_n } from "services/localization/texts";
-import { getWeekdayOptions } from "shared/lib/get-weekday";
-import { secondsToTime } from "shared/lib/seconds-to-time";
 import { BntBox } from "shared/ui/box/bnt-box";
 import { BntCardBody } from "shared/ui/card/card-body";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-import { formatStringDate } from "utils/format-string-date";
+
+import { formatStringDate, getWeekdayOptions, secondsToTime } from "@/shared/lib/date";
 
 import { SchedulerCardContainer } from "./scheduler-card-container";
 import { TScheduler, TSchedulerType } from "@/types/model/scheduler";

@@ -1,3 +1,6 @@
+/**
+ * Returns weekday options mapped to localization keys.
+ */
 export const getWeekdayOptions = () => [
 	{ id: 1, label: "monday" },
 	{ id: 2, label: "tuesday" },

@@ -1,5 +1,11 @@
+/**
+ * Returns day numbers for a calendar month.
+ */
 export const getMonthDayArray = () => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
+/**
+ * Returns month day options for select controls.
+ */
 export const getMonthDayOptions = () =>
 	getMonthDayArray().map((x) => {
 		return { id: x, label: x };

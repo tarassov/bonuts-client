@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { HelpOutlineOutlined } from "@mui/icons-material";
 import { Box, IconButton, Tooltip } from "@mui/material";
 
+import { useFormattedDate } from "@/shared/lib/date";
 import type { IDashboardWidgetSizingProps } from "@/shared/ui/dashboard-widget-card";
 import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
 import { BntStack } from "@/shared/ui/stack";
@@ -10,7 +11,7 @@ import { BntTypography } from "@/shared/ui/typography";
 
 import { useProfile } from "@/entities/profile";
 
-import { formatLeaderboardWeekDate, getLeaderMedalTone, getRankedLeaderboardProfiles } from "../model/leaderboard-helper";
+import { getLeaderMedalTone, getRankedLeaderboardProfiles } from "../model/leaderboard-helper";
 
 import { LeaderButton } from "./leader-button";
 import { LeaderMedal } from "./leader-medal";
@@ -21,15 +22,16 @@ import { texts_l, texts_n, texts_w } from "@/services/localization/texts";
 
 export function LeaderboardWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	const { t } = useBntTranslate();
-	const { t: i18nT, i18n } = useTranslation();
+	const { t: i18nT } = useTranslation();
 	const { authTenant } = useProfile();
 	const { showEmployeeModal } = useEmployeeUi();
+	const { getFormattedDate } = useFormattedDate();
 	const { data } = useGetWeeklyRecognitionBadgesLatestQuery({ tenant: authTenant || undefined }, { skip: !authTenant });
 
 	const rankedProfiles = useMemo(() => getRankedLeaderboardProfiles(data?.badges || []), [data?.badges]);
 	const topThree = rankedProfiles.slice(0, 5);
-	const weekStart = formatLeaderboardWeekDate(data?.week_start, i18n.language);
-	const weekEnd = formatLeaderboardWeekDate(data?.week_end, i18n.language);
+	const weekStart = getFormattedDate(data?.week_start);
+	const weekEnd = getFormattedDate(data?.week_end);
 	const hasWeekRange = Boolean(weekStart && weekEnd);
 	const weekCaption = hasWeekRange ? i18nT(texts_w.week_from_to_caption, { from: weekStart, to: weekEnd }) : "";
 	const weekTooltip = hasWeekRange ? i18nT(texts_w.week_from_to_tooltip, { from: weekStart, to: weekEnd }) : "";

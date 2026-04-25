@@ -1,4 +1,4 @@
-import { timeToSecondsFromMidnight } from "shared/lib/time-to-seconds-from-midnight";
+import { timeToSecondsFromMidnight } from "@/shared/lib/date";
 
 import { TSchedulerFormFields } from "@/widgets/scheduler/types/scheduler-form-fields";
 

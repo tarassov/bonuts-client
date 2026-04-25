@@ -13,7 +13,8 @@ import { BntCardContent } from "shared/ui/card/card-content";
 import { ProfileAvatar } from "shared/ui/profile-avatar";
 import { BntStack } from "shared/ui/stack";
 import { BntTypography } from "shared/ui/typography/typography";
-import { formatStringDate } from "utils/format-string-date";
+
+import { formatStringDate } from "@/shared/lib/date";
 
 import { useEmployeeLoader } from "@/entities/profile/model/use-employee-loader";
 

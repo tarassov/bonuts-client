@@ -7,10 +7,11 @@ import { OPERATION_CLASSES } from "components/opearation-text/classes";
 import { EMPTY_FUNCTION } from "constants/functions";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { BntProfileButton } from "shared/ui/profile-button";
-import { formatStringDate } from "utils/format-string-date";
+
+import { formatStringDate } from "@/shared/lib/date";
 
 import { DealType } from "@/types/model/deal-type";
-import { TOperation } from "@/types/model/operation";
+import type { TOperation } from "@/types/model/operation";
 
 type BntOperationTextProps = {
 	operation: TOperation;
