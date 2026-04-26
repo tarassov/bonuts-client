@@ -1,8 +1,5 @@
 import type { ReactNode } from "react";
 
-import { BTNHeader } from "components/header/header";
-import BntSidebar from "components/sidebar/sidebar";
-
 import { useAuth } from "@/shared/model/auth";
 import { BntBox } from "@/shared/ui/box";
 import { BntDialogProvider } from "@/shared/ui/dialog";
@@ -12,7 +9,11 @@ import { BntStack } from "@/shared/ui/stack";
 import type { TModalConfig } from "@/entities/modal";
 import { useProfile } from "@/entities/profile";
 
+import { AppHeaderWidget } from "@/widgets/header";
+
 import { modalConfig } from "../config/modal-config";
+
+import BntSidebar from "@/components/sidebar/sidebar";
 
 interface IPageWrapperProps {
 	children: ReactNode;
@@ -31,7 +32,7 @@ export function PageWrapper({ children, addressPath, path, modalName, modalData,
 	return (
 		<BntDialogProvider path={path} addressPath={addressPath} config={modalConfig} defaultModalData={modalData} defaultModal={modalName}>
 			<>
-				{isVisibleNavigation ? <BTNHeader profile={profile} /> : null}
+				{isVisibleNavigation ? <AppHeaderWidget profile={profile} /> : null}
 				{isVisibleNavigation ? <BntSidebar /> : null}
 				<BntBox component="main" sx={{ flexGrow: 1, maxWidth: "100%", height: "100%", overflow: "hidden" }}>
 					<BntStack direction="column" sx={{ height: "100%", p: 0, m: 0, overflow: "hidden" }}>

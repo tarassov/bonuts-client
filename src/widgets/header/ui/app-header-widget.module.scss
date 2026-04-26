@@ -1,0 +1,17 @@
+.root {
+	width: 100%;
+	margin-right: 10px;
+}
+
+.profile {
+	flex: 1;
+	overflow: hidden;
+}
+
+.truncatedText {
+	text-wrap: nowrap;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	min-width: 20px;
+}
