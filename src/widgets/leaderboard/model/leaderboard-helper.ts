@@ -1,3 +1,5 @@
+import { texts_l } from "@/services/localization/texts";
+
 export type TLeaderboardRecognitionBadge = {
 	score: number;
 	title: string;
@@ -20,6 +22,19 @@ export type TRankedLeaderboardProfile = {
 };
 
 export type TLeaderMedalTone = "gold" | "silver" | "bronze";
+
+const WEEKLY_TITLE_KEYS: string[] = [
+	texts_l.nominees_of_the_week,
+	texts_l.donuts_oscars,
+	texts_l.academy_choice,
+	texts_l.hall_of_fame_of_the_week,
+	texts_l.laureates_of_the_week,
+	texts_l.legendary_five_of_the_week,
+	texts_l.loud_names_of_the_week,
+	texts_l.recognition_podium,
+	texts_l.recognition_spotlight,
+	texts_l.applause_of_the_week,
+];
 
 export function getLeaderboardDisplayName(profile?: { first_name?: string | null; last_name?: string | null; full_name?: string; name?: string }) {
 	const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(" ").trim();
@@ -68,4 +83,10 @@ export function getLeaderMedalTone(index: number): TLeaderMedalTone {
 	}
 
 	return "bronze";
+}
+
+export function getRandomWeeklyTitleKey() {
+	const randomIndex = Math.floor(Math.random() * WEEKLY_TITLE_KEYS.length);
+
+	return WEEKLY_TITLE_KEYS[randomIndex];
 }

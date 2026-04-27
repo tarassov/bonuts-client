@@ -11,14 +11,14 @@ import { BntTypography } from "@/shared/ui/typography";
 
 import { useProfile } from "@/entities/profile";
 
-import { getLeaderMedalTone, getRankedLeaderboardProfiles } from "../model/leaderboard-helper";
+import { getLeaderMedalTone, getRandomWeeklyTitleKey, getRankedLeaderboardProfiles } from "../model/leaderboard-helper";
 
 import { LeaderButton } from "./leader-button";
 import { LeaderMedal } from "./leader-medal";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { useGetWeeklyRecognitionBadgesLatestQuery } from "@/services/api/bonuts-api";
-import { texts_l, texts_n, texts_w } from "@/services/localization/texts";
+import { texts_n, texts_w } from "@/services/localization/texts";
 
 export function LeaderboardWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	const { t } = useBntTranslate();
@@ -29,6 +29,7 @@ export function LeaderboardWidget({ columns = 1 }: IDashboardWidgetSizingProps) 
 	const { data } = useGetWeeklyRecognitionBadgesLatestQuery({ tenant: authTenant || undefined }, { skip: !authTenant });
 
 	const rankedProfiles = useMemo(() => getRankedLeaderboardProfiles(data?.badges || []), [data?.badges]);
+	const weeklyTitleKey = useMemo(() => getRandomWeeklyTitleKey(), []);
 	const topThree = rankedProfiles.slice(0, 5);
 	const weekStart = getFormattedDate(data?.week_start);
 	const weekEnd = getFormattedDate(data?.week_end);
@@ -41,7 +42,7 @@ export function LeaderboardWidget({ columns = 1 }: IDashboardWidgetSizingProps) 
 			<BntStack gap={2}>
 				<BntStack direction="row" alignItems="center" justifyContent="space-between">
 					<BntTypography variant="subtitle1" fontWeight={700}>
-						{t(texts_l.leaders_of_the_week, { capitalize: true })}
+						{t(weeklyTitleKey, { capitalize: true })}
 					</BntTypography>
 					{hasWeekRange ? (
 						<Tooltip title={weekTooltip}>

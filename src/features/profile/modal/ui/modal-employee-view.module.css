@@ -114,8 +114,41 @@
 
 .footer {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
+	align-items: flex-end;
+	gap: 12px;
 	padding-top: 8px;
+}
+
+.footerBadges {
+	min-width: 0;
+}
+
+.recognitionBadge {
+	display: inline-flex;
+	align-items: center;
+	min-width: 0;
+	max-width: 100%;
+	gap: 6px;
+	padding: 6px 10px;
+	border-radius: 999px;
+	background-color: #fff4d6;
+	color: #8a5a00;
+}
+
+.recognitionBadgeIcon {
+	flex-shrink: 0;
+	font-size: 18px !important;
+}
+
+.recognitionBadgeTitle {
+	overflow: hidden;
+	color: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.25;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .goToButton {
@@ -133,6 +166,11 @@ html[data-app-theme="dark"] .container {
 	--modal-identity-bg: #171b24;
 }
 
+html[data-app-theme="dark"] .recognitionBadge {
+	background-color: #3a2a12;
+	color: #f4c76f;
+}
+
 @media (max-width: 600px) {
 	.name {
 		font-size: 20px;
@@ -140,6 +178,10 @@ html[data-app-theme="dark"] .container {
 
 	.footer {
 		justify-content: stretch;
+	}
+
+	.footerBadges {
+		justify-content: flex-start;
 	}
 
 	.goToButton {
