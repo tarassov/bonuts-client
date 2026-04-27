@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import type { TCircle } from "@/types/model/circle";
 
 export type TMetaItem = {
@@ -20,6 +22,7 @@ export type TModalEmployeeViewMetaProps = {
 };
 
 export type TModalEmployeeViewFooterProps = {
+	children?: ReactNode;
 	goToLabel: string;
 	onGoToEmployeeClick: VoidFunction;
 };

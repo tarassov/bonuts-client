@@ -1,6 +1,13 @@
 export enum texts_l {
+	academy_choice = "academy choice",
+	applause_of_the_week = "applause of the week",
+	donuts_oscars = "donuts oscars",
+	hall_of_fame_of_the_week = "hall of fame of the week",
 	last_name = "last name",
+	laureates_of_the_week = "laureates of the week",
 	leaders_of_the_week = "Last week results",
+	legendary_five_of_the_week = "legendary five of the week",
+	loud_names_of_the_week = "loud names of the week",
 	likes_given = "weekly likes given",
 	login_page_title = "login page title",
 	login_page_subtitle = "login page subtitle",
@@ -11,4 +18,7 @@ export enum texts_l {
 	login_with_vk = "login with vk",
 	login_with_vk_loading = "login with vk loading",
 	loading = "loading",
+	nominees_of_the_week = "nominees of the week",
+	recognition_podium = "recognition podium",
+	recognition_spotlight = "recognition spotlight",
 }
