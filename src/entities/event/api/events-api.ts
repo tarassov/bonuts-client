@@ -1,11 +1,11 @@
+import { cacheByIdArgProperty, getNextPageParam, getTransformPageableResponse } from "@/shared/lib/rtk";
+
 import type { TDispatchWithPatches } from "../lib/event-cache-updaters";
 import { mergeServerLikeResponse, patchEventCaches } from "../lib/event-cache-updaters";
 
 import type { GetEventsApiArg, GetEventsApiResponse, PostEventsByIdLikeApiArg, PutEventsByIdApiArg } from "@/services/api/bonuts-api";
 import { bonutsApi } from "@/services/api/bonuts-api";
-import { getPaginator } from "@/services/api/helpers/get-paginator";
 import type { RootState } from "@/services/redux/store/store";
-import { cacheByIdArgProperty } from "@/services/redux/utils/rtk-cache-utils";
 import type { TPageable } from "@/types/api/api";
 
 // noinspection TypeScriptValidateJSTypes
@@ -14,10 +14,7 @@ const eventsApiEnhanced = bonutsApi.enhanceEndpoints({
 	endpoints: {
 		getEvents(endpoint) {
 			endpoint.providesTags = ["Event"];
-			endpoint.transformResponse = (response: TPageable<GetEventsApiResponse>, meta) => {
-				response.paginator = getPaginator(meta);
-				return response;
-			};
+			endpoint.transformResponse = getTransformPageableResponse<GetEventsApiResponse>();
 		},
 		putEventsById: {
 			async onQueryStarted(arg, { dispatch, queryFulfilled, getState }) {
@@ -64,22 +61,13 @@ export const eventsApi = eventsApiEnhanced.injectEndpoints({
 		getEventsFeed: build.infiniteQuery<TPageable<GetEventsApiResponse>, Omit<GetEventsApiArg, "page">, number>({
 			infiniteQueryOptions: {
 				initialPageParam: 1,
-				getNextPageParam: (lastPage, _allPages, lastPageParam) => {
-					const perPage = lastPage?.paginator?.perPage || 1;
-					const total = lastPage?.paginator?.total || 0;
-					const hasNextPage = lastPageParam < total / perPage;
-
-					return hasNextPage ? lastPageParam + 1 : undefined;
-				},
+				getNextPageParam,
 			},
 			query: ({ queryArg, pageParam }) => ({
 				url: "/events",
 				params: { ...queryArg, page: pageParam },
 			}),
-			transformResponse: (response: TPageable<GetEventsApiResponse>, meta) => {
-				response.paginator = getPaginator(meta);
-				return response;
-			},
+			transformResponse: getTransformPageableResponse<TPageable<GetEventsApiResponse>>(),
 			providesTags: ["Event"],
 		}),
 	}),

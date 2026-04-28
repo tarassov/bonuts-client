@@ -1,10 +1,10 @@
+import { invalidateId } from "@/shared/lib/rtk";
 import { authTenantSelector } from "@/shared/model/auth";
 
 import { eventsApi, usePostEventsByIdLikeMutation } from "../api/events-api";
 
 import { usePostEventsByIdCommentsMutation, usePutEventsByIdMutation } from "@/services/api/bonuts-api";
 import { useAppDispatch, useAppSelector } from "@/services/redux/store/store";
-import { invalidateId } from "@/services/redux/utils/rtk-cache-utils";
 import { TEvent } from "@/types/model";
 import { TLikeable } from "@/types/model/type-extension";
 

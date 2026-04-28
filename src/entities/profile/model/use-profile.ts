@@ -4,8 +4,9 @@ import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
 import { useGetProfileQuery } from "services/api/bonuts-api";
 import { accountsApi } from "services/api/extended/accounts-api";
 import { useAppDispatch } from "services/redux/store/store";
-import { invalidateId } from "services/redux/utils/rtk-cache-utils";
 
+import { ApiTags } from "@/shared/api";
+import { invalidateId } from "@/shared/lib/rtk";
 import { useCurrentProfile } from "@/shared/model/auth";
 import { useLoader } from "@/shared/ui/loader";
 
@@ -37,11 +38,11 @@ export const useProfile = () => {
 	};
 
 	const invalidateDistribBalance = useCallback(() => {
-		dispatch(accountsApi.util.invalidateTags(invalidateId("Accounts", profile?.distrib_account?.id)));
+		dispatch(accountsApi.util.invalidateTags(invalidateId(ApiTags.Accounts, profile?.distrib_account?.id)));
 	}, [dispatch, profile?.distrib_account?.id]);
 
 	const invalidateSelfBalance = useCallback(() => {
-		dispatch(accountsApi.util.invalidateTags(invalidateId("Accounts", profile?.self_account?.id)));
+		dispatch(accountsApi.util.invalidateTags(invalidateId(ApiTags.Accounts, profile?.self_account?.id)));
 	}, [dispatch, profile?.self_account?.id]);
 
 	return {

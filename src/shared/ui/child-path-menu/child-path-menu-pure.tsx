@@ -1,15 +1,16 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Grid } from "@mui/material";
 
-import { MenuCard } from "components/child-path/";
+import type { BntRoutes } from "@/shared/config/routes";
 
-import { BntRoutes } from "@/shared/config/routes";
+import { MenuCard } from "./menu-card";
 
-export type ChildPathMenuPureProps = {
+export type TChildPathMenuPureProps = {
 	routes: Array<TRoute<BntRoutes>>;
 	className?: string;
 };
-export const ChildPathMenuPure: FC<ChildPathMenuPureProps> = ({ routes, className }) => {
+
+export const ChildPathMenuPure: FC<TChildPathMenuPureProps> = ({ routes, className }) => {
 	return (
 		<Grid className={className} container rowSpacing={{ xs: 3, lg: 3 }} columnSpacing={{ xs: 2, lg: 3, xl: 4 }}>
 			{routes.map((route) => {

@@ -1,4 +1,4 @@
-import { cacheByIdArgProperty } from "services/redux/utils/rtk-cache-utils";
+import { cacheByIdArgProperty } from "@/shared/lib/rtk";
 
 import { bonutsApiOverride } from "../injected-api";
 
