@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ArrowDropDownOutlined, ArrowDropUpOutlined } from "@mui/icons-material";
-import { FormControl, Grid, MenuItem, Select, Stack, TableCell, TableHead, useMediaQuery, useTheme } from "@mui/material";
+import { CircularProgress, FormControl, Grid, MenuItem, Select, Stack, TableCell, TableHead, useMediaQuery, useTheme } from "@mui/material";
 // @mui material components
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -210,6 +210,13 @@ export const BntReactTablePure = <T,>({
 							<TableCell style={{ height: `${paddingBottom}px` }} />
 						</TableRow>
 					)}
+					{isFetching && data.length > 0 ? (
+						<TableRow>
+							<TableCell align="center" colSpan={columns.length}>
+								<CircularProgress color="inherit" size={20} />
+							</TableCell>
+						</TableRow>
+					) : null}
 				</TableBody>
 			</Table>
 			{data.length && !isVirtual ? (

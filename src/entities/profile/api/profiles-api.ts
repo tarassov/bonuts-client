@@ -1,5 +1,6 @@
 import { bonutsApi } from "services/api/bonuts-api";
-import { cacheByIdArgProperty, cacheByIdResultProperty, providesList } from "services/redux/utils/rtk-cache-utils";
+
+import { cacheByIdArgProperty, cacheByIdResultProperty, providesList } from "@/shared/lib/rtk";
 
 export const profilesApi = bonutsApi.enhanceEndpoints({
 	addTagTypes: ["Profiles"],

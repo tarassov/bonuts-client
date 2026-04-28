@@ -1,15 +1,16 @@
-import { FC, useCallback } from "react";
+import type { FC } from "react";
+import { useCallback } from "react";
 
-import { MenuCardStyled } from "components/child-path/menu-card/menu-card-styled";
-
-import { BntRoutes } from "@/shared/config/routes";
+import type { BntRoutes } from "@/shared/config/routes";
 import { useBntRoutes } from "@/shared/lib/router";
 
-export type MenuCardProps = {
+import { MenuCardStyled } from "./menu-card-styled";
+
+export type TMenuCardProps = {
 	route: TRoute<BntRoutes>;
 };
 
-export const MenuCard: FC<MenuCardProps> = ({ route }) => {
+export const MenuCard: FC<TMenuCardProps> = ({ route }) => {
 	const { navigate } = useBntRoutes();
 
 	const onCardClick = useCallback(() => {

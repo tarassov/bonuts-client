@@ -11,7 +11,19 @@ import { StatisticsTile, StatisticsTileProps } from "./statistics-tile";
 export type TotalBalanceTableProps = Pick<StatisticsTileProps, "onFullScreenOpen" | "onFullScreenExit" | "fullscreen" | "onlyHeader">;
 export const TotalBalanceTable: FC<TotalBalanceTableProps> = (props) => {
 	const { onlyHeader } = props;
-	const { objects = [], isLoading } = useProfileReports({ reportType: "show_balance" }, onlyHeader);
+	const { fetchNext, hasNext, isFetching, isLoading, objects = [] } = useProfileReports({ reportType: "show_balance" }, onlyHeader);
 	const { t } = useBntTranslate();
-	return <StatisticsTile totalFieldName={t(texts_b.balance, { capitalize: true })} data={objects} isLoading={isLoading} currency={Currency.coin} {...props} />;
+
+	return (
+		<StatisticsTile
+			totalFieldName={t(texts_b.balance, { capitalize: true })}
+			data={objects}
+			fetchNext={fetchNext}
+			hasNext={hasNext}
+			isFetching={isFetching}
+			isLoading={isLoading}
+			currency={Currency.coin}
+			{...props}
+		/>
+	);
 };

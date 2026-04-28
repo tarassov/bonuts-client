@@ -29,6 +29,9 @@ export type StatisticsTileProps = {
 	data?: Array<TProfile>;
 	onlyHeader?: boolean;
 	isLoading?: boolean;
+	isFetching?: boolean;
+	hasNext?: boolean;
+	fetchNext?: VoidFunction;
 	className?: string;
 	currency?: Currency;
 };
@@ -37,6 +40,9 @@ export const StatisticsTile: FC<StatisticsTileProps> = ({
 	data,
 	isLoading = [],
 	className,
+	fetchNext,
+	hasNext,
+	isFetching,
 	onFullScreenExit = emptyFunction,
 	onFullScreenOpen = emptyFunction,
 	fullscreen,
@@ -81,7 +87,7 @@ export const StatisticsTile: FC<StatisticsTileProps> = ({
 					<CircularProgress color="inherit" />
 				) : (
 					<BntBox className="height-100 scroll">
-						<BntReactTable columns={tableConfig} data={onlyHeader ? [] : data || []} isVirtual estimateSize={40} noHeaders />
+						<BntReactTable columns={tableConfig} data={onlyHeader ? [] : data || []} fetchNext={fetchNext} hasNext={hasNext} isFetching={isFetching} isVirtual estimateSize={40} noHeaders />
 					</BntBox>
 				)}
 			</BntCardBody>
