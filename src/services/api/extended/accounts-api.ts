@@ -1,28 +1,25 @@
 import { bonutsApi } from "services/api/bonuts-api";
-import { getPaginator } from "services/api/helpers/get-paginator";
-import { cacheByIdArgProperty } from "services/redux/utils/rtk-cache-utils";
+
+import { ApiTags } from "@/shared/api";
+import { cacheByIdArgProperty, getTransformPageableResponse } from "@/shared/lib/rtk";
 
 import type { GetAccountOperationsApiResponse } from "@/services/api/bonuts-api";
-import type { TPageable } from "@/types/api/api";
 
 // noinspection TypeScriptValidateJSTypes
 export const accountsApi = bonutsApi.enhanceEndpoints({
-	addTagTypes: ["Accounts", "History"],
+	addTagTypes: [ApiTags.Accounts, ApiTags.History],
 	endpoints: {
 		getAccountsById: {
-			providesTags: cacheByIdArgProperty("Accounts", "Balance"),
+			providesTags: cacheByIdArgProperty(ApiTags.Accounts, ApiTags.Balance),
 		},
-		postAccountOperations: { invalidatesTags: ["Accounts"] },
-		postAccountOperationsTransfer: { invalidatesTags: ["Accounts"] },
-		postAccountOperationsShareAll: { invalidatesTags: ["Accounts"] },
+		postAccountOperations: { invalidatesTags: [ApiTags.Accounts] },
+		postAccountOperationsTransfer: { invalidatesTags: [ApiTags.Accounts] },
+		postAccountOperationsShareAll: { invalidatesTags: [ApiTags.Accounts] },
 		getAccountOperations(endpoint) {
 			endpoint.providesTags = (result, error, arg) => {
-				return [{ type: "Accounts", id: arg.accountId }];
+				return [{ type: ApiTags.Accounts, id: arg.accountId }];
 			};
-			endpoint.transformResponse = (response: TPageable<GetAccountOperationsApiResponse>, meta) => {
-				response.paginator = getPaginator(meta);
-				return response;
-			};
+			endpoint.transformResponse = getTransformPageableResponse<GetAccountOperationsApiResponse>();
 		},
 	},
 });

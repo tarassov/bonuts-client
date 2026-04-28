@@ -337,7 +337,6 @@ export const useRouteConfig = (): TRouteConfig<BntRoutes> => {
 						},
 					},
 				},
-
 				Statistics: {
 					path: routesPath[BntRoutes.Statistics],
 					anonymous: false,

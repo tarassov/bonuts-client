@@ -1,5 +1,5 @@
-import { FetchBaseQueryMeta } from "@reduxjs/toolkit/query";
-import { TPaginator } from "@/types/api/api";
+import type { FetchBaseQueryMeta } from "@reduxjs/toolkit/query";
+import type { TPaginator } from "@/types/api/api";
 
 export const getPaginator = (meta: FetchBaseQueryMeta | undefined): TPaginator => {
 	return {

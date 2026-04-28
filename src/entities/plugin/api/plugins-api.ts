@@ -1,5 +1,6 @@
 import { bonutsApi } from "services/api/bonuts-api";
-import { invalidatesList, providesList } from "services/redux/utils/rtk-cache-utils";
+
+import { invalidatesList, providesList } from "@/shared/lib/rtk";
 
 // noinspection TypeScriptValidateJSTypes
 export const pluginsApi = bonutsApi.enhanceEndpoints({
