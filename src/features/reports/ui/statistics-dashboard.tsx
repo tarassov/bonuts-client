@@ -22,8 +22,6 @@ export const StatisticsDashboard = () => {
 
 	const closeFullscreen = () => setFullscreenTileId(undefined);
 	const openFullscreen = (tileId: StatisticsDashboardTileId) => setFullscreenTileId(tileId);
-	const fullscreenTile = STATISTICS_DASHBOARD_TILES.find(({ id }) => id === fullscreenTileId);
-	const FullscreenReportComponent = fullscreenTile?.ReportComponent;
 
 	return (
 		<div className={styles.root}>
@@ -43,24 +41,18 @@ export const StatisticsDashboard = () => {
 								className={classNames(styles.tile, {
 									[styles.desktopTile]: isDesktop,
 									[styles.mobileTile]: !isDesktop,
+									[styles.fullscreenTile]: isDesktop && isFullscreen,
 									[styles.mobileFullscreenTile]: !isDesktop && isFullscreen,
-									[styles.dimmedTile]: isDesktop && Boolean(fullscreenTileId),
+									[styles.dimmedTile]: isDesktop && Boolean(fullscreenTileId) && !isFullscreen,
 								})}
 							>
-								<ReportComponent {...reportProps} fullscreen={!isDesktop && isFullscreen} />
+								<ReportComponent {...reportProps} />
 							</div>
 						</Grid>
 					);
 				})}
 			</Grid>
-			{fullscreenTile && FullscreenReportComponent && isDesktop ? (
-				<>
-					<BntBox className={styles.backdrop} onClick={closeFullscreen} />
-					<div className={styles.fullscreenTile}>
-						<FullscreenReportComponent onFullScreenOpen={() => openFullscreen(fullscreenTile.id)} onFullScreenExit={closeFullscreen} fullscreen onlyHeader={false} />
-					</div>
-				</>
-			) : null}
+			{fullscreenTileId && isDesktop ? <BntBox className={styles.backdrop} onClick={closeFullscreen} /> : null}
 		</div>
 	);
 };
