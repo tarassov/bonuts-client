@@ -1,16 +1,20 @@
-import React from "react";
+import type { FC } from "react";
 
-import { CreateInvitationForm } from "components/invitation/create-invitation-form";
+import { CreateInvitationForm } from "./create-invitation-form";
+import { InvitationHowItWorks } from "./invitation-how-it-works";
+import styles from "./invitation-page.module.scss";
+import { RecentInvitations } from "./recent-invitations";
 
-import { CardWrapper } from "@/shared/ui/card-wrapper";
-import { BntStack } from "@/shared/ui/stack";
-
-export const InvitationPage: React.FC = () => {
+export const InvitationPage: FC = () => {
 	return (
-		<BntStack direction="column" className="height-100">
-			<CardWrapper className="flex-grow scroll">
+		<main className={styles.page}>
+			<div className={styles.layout}>
 				<CreateInvitationForm />
-			</CardWrapper>
-		</BntStack>
+				<aside className={styles.sideColumn}>
+					<InvitationHowItWorks />
+					<RecentInvitations />
+				</aside>
+			</div>
+		</main>
 	);
 };

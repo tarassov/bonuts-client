@@ -2,6 +2,7 @@ export enum texts_d {
 	day = "day",
 	delivery_days = "delivery days",
 	decline = "decline",
+	declined = "declined",
 	deactivate = "deactivate",
 	description = "description",
 	disable_account = "disable account",
