@@ -1,8 +1,8 @@
 import { CheckCircleOutline, MailOutline, NearMeOutlined } from "@mui/icons-material";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
-import styles from "./invitation-page.module.scss";
+import styles from "./invitation-how-it-works.module.scss";
+import { InvitationPanel } from "./invitation-page.styles";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { texts_h, texts_j, texts_l, texts_s, texts_u } from "@/services/localization/texts";
 
 const steps = [
@@ -28,7 +28,7 @@ export function InvitationHowItWorks() {
 	const { t } = useBntTranslate();
 
 	return (
-		<section className={`${styles.panel} ${styles.sidePanel}`}>
+		<InvitationPanel className={styles.sidePanel}>
 			<h2 className={styles.panelTitle}>{t(texts_h.how_it_works)}</h2>
 			<div className={styles.steps}>
 				{steps.map((step) => (
@@ -41,6 +41,6 @@ export function InvitationHowItWorks() {
 					</div>
 				))}
 			</div>
-		</section>
+		</InvitationPanel>
 	);
 }

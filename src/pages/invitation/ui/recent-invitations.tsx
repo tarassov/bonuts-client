@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { ArrowForward } from "@mui/icons-material";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-
 import { BntRoutes } from "@/shared/config/routes";
 import { formatStringDate } from "@/shared/lib/date";
 
 import { mapInvitationPreview, type TInvitationPreview, type TInvitationStatus } from "../model/invitation-list";
 
-import styles from "./invitation-page.module.scss";
-import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
+import { InvitationPanel } from "./invitation-page.styles";
+import styles from "./recent-invitations.module.scss";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { useCurrentTenant } from "@/logic/hooks/tenant/use-current-tenant";
 import { routesPath } from "@/routes/config/routes-path";
 import { useGetInvitationsQuery } from "@/services/api/extended/invitations-api";
 import { texts_a, texts_c, texts_d, texts_l, texts_n, texts_r, texts_s, texts_v } from "@/services/localization/texts";
@@ -46,7 +46,7 @@ export function RecentInvitations() {
 	const invitations = mapInvitationPreview(data);
 
 	return (
-		<section className={`${styles.panel} ${styles.sidePanel}`}>
+		<InvitationPanel className={styles.sidePanel}>
 			<h2 className={styles.panelTitle}>{t(texts_r.recent_invitations)}</h2>
 			<div className={styles.recentList}>
 				{isLoading && <p className={styles.emptyText}>{t(texts_l.loading)}</p>}
@@ -69,6 +69,6 @@ export function RecentInvitations() {
 				{t(texts_v.view_all_invitations)}
 				<ArrowForward fontSize="small" />
 			</Link>
-		</section>
+		</InvitationPanel>
 	);
 }
