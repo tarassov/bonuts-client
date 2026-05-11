@@ -1,0 +1,106 @@
+.sidePanel {
+	padding: 28px;
+}
+
+.panelTitle {
+	margin: 0 0 26px;
+	font-size: 1.35rem;
+	font-weight: 800;
+}
+
+.recentList {
+	display: grid;
+	gap: 0;
+}
+
+.recentItem {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	gap: 14px;
+	align-items: center;
+	padding: 18px 0;
+	border-bottom: 1px solid var(--invitation-divider);
+}
+
+.avatar {
+	display: grid;
+	place-items: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: linear-gradient(145deg, var(--invitation-primary-light), var(--invitation-primary-main));
+	color: var(--invitation-primary-contrast);
+	font-weight: 800;
+}
+
+.recentName {
+	margin: 0 0 4px;
+	font-weight: 800;
+}
+
+.recentCaption {
+	margin: 0;
+	color: var(--invitation-muted-text);
+	font-size: 0.9rem;
+}
+
+.recentMeta {
+	display: grid;
+	justify-items: end;
+	gap: 8px;
+}
+
+.status {
+	padding: 4px 10px;
+	border-radius: 999px;
+	color: var(--invitation-primary-dark);
+	background: var(--invitation-primary-light);
+	font-size: 0.78rem;
+}
+
+.statusAccepted {
+	color: var(--invitation-accepted-text);
+	background: var(--invitation-success-light);
+}
+
+.statusDeclined,
+.statusClosed {
+	color: var(--invitation-secondary-text);
+	background: var(--invitation-neutral-soft);
+}
+
+.date {
+	color: var(--invitation-muted-text);
+	font-size: 0.82rem;
+}
+
+.allLink {
+	display: inline-flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: center;
+	margin-top: 24px;
+	color: var(--invitation-primary-main);
+	font-weight: 800;
+	text-decoration: none;
+}
+
+.emptyText {
+	margin: 0;
+	color: var(--invitation-secondary-text);
+	line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+	.sidePanel {
+		padding: 22px;
+	}
+
+	.recentItem {
+		grid-template-columns: 1fr;
+	}
+
+	.recentMeta {
+		justify-items: start;
+	}
+}

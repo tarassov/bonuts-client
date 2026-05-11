@@ -1,0 +1,79 @@
+.formPanel {
+	padding: 42px;
+}
+
+.hero {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 24px;
+	align-items: start;
+	margin-bottom: 34px;
+}
+
+.heroIcon,
+.infoIcon {
+	display: grid;
+	place-items: center;
+	width: 70px;
+	height: 70px;
+	border-radius: 18px;
+	background: var(--invitation-icon-bg);
+	color: var(--invitation-primary-main);
+	box-shadow: inset 0 0 0 1px var(--invitation-accent-border);
+}
+
+.title {
+	margin: 0 0 14px;
+	font-size: clamp(2rem, 4vw, 3.1rem);
+	font-weight: 800;
+	line-height: 1.05;
+	letter-spacing: 0;
+}
+
+.description {
+	max-width: 620px;
+	margin: 0;
+	color: var(--invitation-secondary-text);
+	font-size: 1rem;
+	line-height: 1.9;
+}
+
+.form {
+	display: grid;
+	gap: 26px;
+}
+
+.nameGrid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+}
+
+.note {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 18px;
+	align-items: center;
+	margin-top: 34px;
+	padding-top: 28px;
+	border-top: 1px solid var(--invitation-divider);
+	color: var(--invitation-secondary-text);
+	line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+	.formPanel {
+		padding: 22px;
+	}
+
+	.hero,
+	.nameGrid {
+		grid-template-columns: 1fr;
+	}
+
+	.heroIcon {
+		width: 58px;
+		height: 58px;
+		border-radius: 16px;
+	}
+}

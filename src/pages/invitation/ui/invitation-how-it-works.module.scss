@@ -1,0 +1,64 @@
+.sidePanel {
+	padding: 28px;
+}
+
+.panelTitle {
+	margin: 0 0 26px;
+	font-size: 1.35rem;
+	font-weight: 800;
+}
+
+.steps {
+	display: grid;
+	gap: 0;
+}
+
+.step {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: 18px;
+	position: relative;
+	padding-bottom: 26px;
+}
+
+.step:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	top: 54px;
+	bottom: 0;
+	left: 27px;
+	border-left: 1px dashed var(--invitation-step-line);
+}
+
+.stepIcon {
+	z-index: 1;
+	display: grid;
+	place-items: center;
+	width: 54px;
+	height: 54px;
+	border-radius: 50%;
+	background: var(--invitation-primary-light);
+	color: var(--invitation-primary-contrast);
+}
+
+.stepSuccess {
+	background: var(--invitation-success-main);
+	color: var(--invitation-success-contrast);
+}
+
+.stepTitle {
+	margin: 0 0 8px;
+	font-weight: 800;
+}
+
+.stepText {
+	margin: 0;
+	color: var(--invitation-secondary-text);
+	line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+	.sidePanel {
+		padding: 22px;
+	}
+}

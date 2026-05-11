@@ -5,6 +5,9 @@ const invitationsTag = "Invitations";
 export const invitationsApi = bonutsApi.enhanceEndpoints({
 	addTagTypes: [invitationsTag],
 	endpoints: {
+		getInvitations: {
+			providesTags: [invitationsTag],
+		},
 		getInvitationsMy: {
 			providesTags: [invitationsTag],
 		},
@@ -20,4 +23,4 @@ export const invitationsApi = bonutsApi.enhanceEndpoints({
 	},
 });
 
-export const { useGetInvitationsMyQuery, usePostInvitationsByIdAcceptMutation, usePostInvitationsByIdDeclineMutation } = invitationsApi;
+export const { useGetInvitationsQuery, useGetInvitationsMyQuery, usePostInvitationsByIdAcceptMutation, usePostInvitationsByIdDeclineMutation } = invitationsApi;
