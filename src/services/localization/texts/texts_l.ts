@@ -17,6 +17,7 @@ export enum texts_l {
 	login_page_invite = "login page invite",
 	login_with_vk = "login with vk",
 	login_with_vk_loading = "login with vk loading",
+	login_link_step_description = "login link step description",
 	loading = "loading",
 	nominees_of_the_week = "nominees of the week",
 	recognition_podium = "recognition podium",

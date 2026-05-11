@@ -152,6 +152,34 @@ const injectedRtkApi = api.injectEndpoints({
 				body: queryArg.body,
 			}),
 		}),
+		postInvitationsByIdClose: build.mutation<PostInvitationsByIdCloseApiResponse, PostInvitationsByIdCloseApiArg>({
+			query: (queryArg) => ({
+				url: `/invitations/${queryArg.id}/close`,
+				method: "POST",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		getInvitations: build.query<GetInvitationsApiResponse, GetInvitationsApiArg>({
+			query: (queryArg) => ({
+				url: `/invitations`,
+				params: {
+					tenant: queryArg.tenant,
+					search_text: queryArg.searchText,
+					page: queryArg.page,
+					per_page: queryArg.perPage,
+					declined: queryArg.declined,
+					accepted: queryArg.accepted,
+					closed: queryArg.closed,
+				},
+			}),
+		}),
+		postInvitations: build.mutation<PostInvitationsApiResponse, PostInvitationsApiArg>({
+			query: (queryArg) => ({
+				url: `/invitations`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
 		postInvitationsByIdAccept: build.mutation<PostInvitationsByIdAcceptApiResponse, PostInvitationsByIdAcceptApiArg>({
 			query: (queryArg) => ({
 				url: `/invitations/${queryArg.id}/accept`,
@@ -162,13 +190,6 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/invitations/${queryArg.id}/decline`,
 				method: "POST",
-			}),
-		}),
-		postInvitations: build.mutation<PostInvitationsApiResponse, PostInvitationsApiArg>({
-			query: (queryArg) => ({
-				url: `/invitations`,
-				method: "POST",
-				body: queryArg.body,
 			}),
 		}),
 		getInvitationsMy: build.query<GetInvitationsMyApiResponse, GetInvitationsMyApiArg>({
@@ -1507,6 +1528,66 @@ export type PostEventsByIdCommentsApiArg = {
 		tenant: string;
 	};
 };
+export type PostInvitationsByIdCloseApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			caption: string;
+			activated: boolean;
+			closed: boolean;
+			declined: boolean | null;
+			logo?: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			};
+		};
+	};
+};
+export type PostInvitationsByIdCloseApiArg = {
+	id: string;
+	tenant: string;
+};
+export type GetInvitationsApiResponse = /** status 200 success */ {
+	data?: {
+		id: string;
+		type: string;
+		attributes: {
+			name: string;
+			caption: string;
+			activated: boolean;
+			closed: boolean;
+			declined: boolean | null;
+			logo?: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			};
+		};
+	}[];
+};
+export type GetInvitationsApiArg = {
+	tenant: string;
+	searchText?: string;
+	page?: number;
+	perPage?: number;
+	declined?: boolean;
+	accepted?: boolean;
+	closed?: boolean;
+};
+export type PostInvitationsApiResponse = unknown;
+export type PostInvitationsApiArg = {
+	body: {
+		email: string;
+		first_name: string;
+		last_name: string;
+		tenant?: string;
+	};
+};
 export type PostInvitationsByIdAcceptApiResponse = /** status 200 success */ {
 	data?: {
 		id: string;
@@ -1596,15 +1677,6 @@ export type PostInvitationsByIdDeclineApiResponse = /** status 200 success */ {
 };
 export type PostInvitationsByIdDeclineApiArg = {
 	id: string;
-};
-export type PostInvitationsApiResponse = unknown;
-export type PostInvitationsApiArg = {
-	body: {
-		email: string;
-		first_name: string;
-		last_name: string;
-		tenant?: string;
-	};
 };
 export type GetInvitationsMyApiResponse = /** status 200 success */ {
 	data?: {
@@ -4219,9 +4291,11 @@ export const {
 	usePutEventsByIdMutation,
 	usePostEventsByIdLikeMutation,
 	usePostEventsByIdCommentsMutation,
+	usePostInvitationsByIdCloseMutation,
+	useGetInvitationsQuery,
+	usePostInvitationsMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,
-	usePostInvitationsMutation,
 	useGetInvitationsMyQuery,
 	useGetParticipationCurrentWeekQuery,
 	useGetParticipationWeeklyRecognitionCurrentQuery,

@@ -2,6 +2,7 @@ export enum texts_i {
 	in_top_most_active_percent = "in top most active percent",
 	in_date = "in date",
 	invitations = "invitations",
+	invite_teammate = "invite teammate",
 	incoming = "incoming",
 	into_top_most_active_percent = "into top most active percent",
 	i_can_spend = "i can spend",

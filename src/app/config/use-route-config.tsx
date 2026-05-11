@@ -30,7 +30,7 @@ import { DonutEditPage, DonutPreviewPage, DonutsPage } from "@/pages/donut";
 import { EmployeePreviewPage, EmployeesPage } from "@/pages/employee";
 import { EventPage } from "@/pages/event-page";
 import { HomePage } from "@/pages/home-page";
-import { InvitationPage } from "@/pages/invitation";
+import { InvitationPage, InvitationsAllPage } from "@/pages/invitation";
 import { LoginPage } from "@/pages/login-page";
 import { LogoutPage } from "@/pages/logout-page";
 import { PluginsPage } from "@/pages/plugins-page";
@@ -202,6 +202,14 @@ export const useRouteConfig = (): TRouteConfig<BntRoutes> => {
 					hideInMenu: false,
 					component: <InvitationPage />,
 					icon: <LibraryAddOutlined />,
+					roles: groupAdmins,
+				},
+				InvitationsAll: {
+					path: routesPath[BntRoutes.InvitationsAll],
+					anonymous: false,
+					authenticated: true,
+					hideInMenu: true,
+					component: <InvitationsAllPage />,
 					roles: groupAdmins,
 				},
 				Registration: {
