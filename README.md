@@ -42,7 +42,60 @@ Installs all dependencies required for the project.
 
 ### `yarn start` or `yarn dev`
 Runs the app in development mode using Vite.
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+Open [https://localhost:3002](https://localhost:3002) to view it in the browser.
+
+## Running With Docker
+
+Start the app with Docker Compose:
+
+```bash
+docker compose up
+```
+
+For detached mode, run:
+
+```bash
+docker compose up -d
+```
+
+The app will be available at [https://localhost:3002](https://localhost:3002).
+
+To view logs or stop the container:
+
+```bash
+docker compose logs -f client
+docker compose down
+```
+
+The first run installs dependencies into a Docker volume, so it can take a few minutes. Because the Vite dev server uses a local HTTPS certificate, your browser may show a certificate warning.
+
+## Running Storybook
+
+Start the Docker container first:
+
+```bash
+docker compose up -d
+```
+
+If the container was already running before Storybook support was added, recreate it so port `6006` is exposed:
+
+```bash
+docker compose up -d --force-recreate
+```
+
+Then run Storybook inside the container:
+
+```bash
+docker compose exec client yarn storybook
+```
+
+Storybook will be available at [http://localhost:6006](http://localhost:6006).
+
+To build the static Storybook output, run:
+
+```bash
+docker compose exec client yarn build-storybook
+```
 
 ### `yarn build`
 Builds the app for production to the `dist` folder.
