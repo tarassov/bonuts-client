@@ -1,12 +1,13 @@
-import type { Resolver } from "react-hook-form";
+import { type Resolver, useForm } from "react-hook-form";
 import { FormContainer } from "react-hook-form-mui";
 import { EmailOutlined, MarkEmailUnreadOutlined, PersonAddAltOutlined, PersonOutline, SendOutlined } from "@mui/icons-material";
 import { InputAdornment } from "@mui/material";
 
+import { BntRegularButton } from "@/shared/ui/buttons";
 import { BntTextInputElement } from "@/shared/ui/input";
 
 import styles from "./create-invitation-form.module.scss";
-import { InvitationPanel, InvitationSubmitButton } from "./invitation-page.styles";
+import { InvitationPanel } from "./invitation-page.styles";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useUserValidation } from "@/hooks/validation/use-user-validation";
@@ -27,12 +28,16 @@ const defaultValues: TInvitationFormValues = {
 
 export function CreateInvitationForm() {
 	const { t } = useBntTranslate();
-	const { create } = useInvitation();
+	const { createInvitation } = useInvitation();
 	const { formSchema } = useUserValidation();
 	const resolver = yupResolver(formSchema) as Resolver<TInvitationFormValues>;
+	const formContext = useForm<TInvitationFormValues>({
+		defaultValues,
+		resolver,
+	});
 
 	const handleSubmit = (values: TInvitationFormValues) => {
-		create(values);
+		createInvitation(values, () => formContext.reset(defaultValues));
 	};
 
 	return (
@@ -47,7 +52,7 @@ export function CreateInvitationForm() {
 				</div>
 			</div>
 
-			<FormContainer<TInvitationFormValues> defaultValues={defaultValues} onSuccess={handleSubmit} resolver={resolver}>
+			<FormContainer<TInvitationFormValues> formContext={formContext} onSuccess={handleSubmit}>
 				<div className={styles.form}>
 					<BntTextInputElement
 						fullWidth
@@ -99,9 +104,9 @@ export function CreateInvitationForm() {
 							}}
 						/>
 					</div>
-					<InvitationSubmitButton fullWidth type="submit" variant="contained" startIcon={<SendOutlined />}>
+					<BntRegularButton className={styles.submitButton} fullWidth type="submit" variant="contained" startIcon={<SendOutlined />}>
 						{t(texts_s.send_invitation)}
-					</InvitationSubmitButton>
+					</BntRegularButton>
 				</div>
 			</FormContainer>
 

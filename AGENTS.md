@@ -62,6 +62,7 @@ For UI tasks, also mention:
 - The only exception is when the more readable version would cause a meaningful performance regression.
 - Prefer explicit naming over compact cleverness.
 - Prefer small understandable transformations over dense chained logic.
+- Prefer less imperative code for status, label, class, and presenter selection: use typed mapping objects or lookup tables when they make branches clearer and keep localization keys close to the mapped UI state.
 - Prefer named callback methods over inline event handlers when the handler contains non-trivial logic or is reused.
 - Prefer an empty line before `return` when it improves visual separation after preceding logic.
 - Prefer one component per file as a general rule. Small internal helpers are acceptable only when extraction would clearly hurt readability.

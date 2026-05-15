@@ -49,6 +49,12 @@
 	gap: 24px;
 }
 
+.submitButton {
+	min-height: 56px;
+	border-radius: 12px;
+	font-weight: 700;
+}
+
 .note {
 	display: grid;
 	grid-template-columns: auto minmax(0, 1fr);
