@@ -1,6 +1,12 @@
 import type { GetInvitationsApiResponse } from "@/services/api/bonuts-api";
+import { texts_a, texts_c, texts_d, texts_s } from "@/services/localization/texts";
 
-export type TInvitationStatus = "accepted" | "closed" | "declined" | "sent";
+export type TInvitationStatusType = "accepted" | "closed" | "declined" | "sent";
+
+export type TInvitationStatus = {
+	type: TInvitationStatusType;
+	text: string;
+};
 
 export type TInvitationPreview = {
 	id: string;
@@ -8,44 +14,88 @@ export type TInvitationPreview = {
 	caption?: string;
 	email?: string;
 	createdAt?: string;
+	sentByName?: string;
+	sentByEmail?: string;
 	status: TInvitationStatus;
 };
 
-type TInvitationAttributes = NonNullable<NonNullable<GetInvitationsApiResponse["data"]>[number]["attributes"]> & {
-	email?: string;
-	first_name?: string;
-	last_name?: string;
-	created_at?: string;
-	created_at_utc?: string;
+type TInvitation = NonNullable<GetInvitationsApiResponse["data"]>[number];
+
+const defaultInvitationStatus: TInvitationStatus = {
+	type: "sent",
+	text: texts_s.sent,
 };
 
-const getInvitationStatus = (attributes: TInvitationAttributes): TInvitationStatus => {
-	if (attributes.activated) return "accepted";
-	if (attributes.closed) return "closed";
-	if (attributes.declined) return "declined";
-
-	return "sent";
+const invitationStatusMap: Record<
+	Exclude<TInvitationStatusType, "sent">,
+	{
+		isActive: (statuses: TInvitation["statuses"]) => boolean;
+		status: TInvitationStatus;
+	}
+> = {
+	accepted: {
+		isActive: (statuses) => statuses.activated,
+		status: {
+			type: "accepted",
+			text: texts_a.accepted,
+		},
+	},
+	closed: {
+		isActive: (statuses) => statuses.closed,
+		status: {
+			type: "closed",
+			text: texts_c.closed,
+		},
+	},
+	declined: {
+		isActive: (statuses) => Boolean(statuses.declined),
+		status: {
+			type: "declined",
+			text: texts_d.declined,
+		},
+	},
 };
 
-const getInvitationName = (attributes: TInvitationAttributes): string => {
-	const fullName = [attributes.first_name, attributes.last_name].filter(Boolean).join(" ");
+const getInvitationStatus = (invitation: TInvitation): TInvitationStatus => {
+	return Object.values(invitationStatusMap).find(({ isActive }) => isActive(invitation.statuses))?.status ?? defaultInvitationStatus;
+};
 
-	return fullName || attributes.name;
+const getInvitationName = (invitation: TInvitation): string => {
+	const sentTo = invitation.sent_to;
+	const fullName = [sentTo.first_name, sentTo.last_name].filter(Boolean).join(" ");
+
+	return fullName || sentTo.name || sentTo.email || invitation.tenant.caption;
+};
+
+const getSenderName = (invitation: TInvitation): string => {
+	const sentBy = invitation.sent_by;
+	const fullName = [sentBy.first_name, sentBy.last_name].filter(Boolean).join(" ");
+
+	return fullName || sentBy.name || sentBy.email;
+};
+
+export const getInvitationInitials = (invitation: TInvitationPreview): string => {
+	const source = invitation.name || invitation.email || invitation.caption || "";
+	const words = source.split(" ").filter(Boolean);
+
+	return words
+		.slice(0, 2)
+		.map((word) => word[0])
+		.join("")
+		.toUpperCase();
 };
 
 export const mapInvitationPreview = (response?: GetInvitationsApiResponse): Array<TInvitationPreview> => {
 	if (!response?.data) return [];
 
-	return response.data.map((target) => {
-		const attributes = target.attributes as TInvitationAttributes;
-
-		return {
-			id: target.id,
-			name: getInvitationName(attributes),
-			caption: attributes.caption,
-			email: attributes.email,
-			createdAt: attributes.created_at_utc || attributes.created_at,
-			status: getInvitationStatus(attributes),
-		};
-	});
+	return response.data.map((invitation) => ({
+		id: String(invitation.id),
+		name: getInvitationName(invitation),
+		caption: invitation.tenant.caption,
+		email: invitation.sent_to.email,
+		createdAt: invitation.sent_at,
+		sentByName: getSenderName(invitation),
+		sentByEmail: invitation.sent_by.email,
+		status: getInvitationStatus(invitation),
+	}));
 };

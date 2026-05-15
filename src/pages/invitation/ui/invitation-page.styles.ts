@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { alpha, styled, type Theme } from "@mui/material/styles";
 
 const getInvitationThemeVars = (theme: Theme): Record<string, string> => {
@@ -8,6 +7,7 @@ const getInvitationThemeVars = (theme: Theme): Record<string, string> => {
 
 	return {
 		"--invitation-panel-bg": alpha(isDarkMode ? darkSurface : lightSurface, isDarkMode ? 0.78 : 0.88),
+		"--invitation-item-bg": alpha(lightSurface, isDarkMode ? 0.04 : 0.52),
 		"--invitation-panel-border": alpha(theme.palette.text.primary, isDarkMode ? 0.14 : 0.1),
 		"--invitation-primary-text": theme.palette.text.primary,
 		"--invitation-secondary-text": alpha(theme.palette.text.primary, 0.68),
@@ -61,43 +61,3 @@ export const InvitationPanel = styled("section")({
 	boxShadow: "var(--invitation-shadow)",
 	backdropFilter: "blur(10px)",
 });
-
-export const InvitationSubmitButton = styled(Button)(({ theme }) => ({
-	minHeight: 64,
-	borderRadius: 14,
-	fontSize: "1.05rem",
-	fontWeight: 800,
-	textTransform: "none",
-	background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
-	boxShadow: `0 16px 36px ${alpha(theme.palette.primary.dark, 0.22)}`,
-	transition: theme.transitions.create(["background", "box-shadow", "transform"], {
-		duration: theme.transitions.duration.shorter,
-		easing: theme.transitions.easing.easeOut,
-	}),
-	"& .MuiButton-startIcon": {
-		transition: theme.transitions.create("transform", {
-			duration: theme.transitions.duration.shorter,
-			easing: theme.transitions.easing.easeOut,
-		}),
-	},
-	"&:hover": {
-		background: `linear-gradient(135deg, ${theme.palette.primary.light}, ${theme.palette.primary.main})`,
-		boxShadow: `0 18px 40px ${alpha(theme.palette.primary.dark, 0.3)}`,
-		transform: "translateY(-2px)",
-		"& .MuiButton-startIcon": {
-			transform: "translateX(3px)",
-		},
-	},
-	"@media (prefers-reduced-motion: reduce)": {
-		transition: "none",
-		"& .MuiButton-startIcon": {
-			transition: "none",
-		},
-		"&:hover": {
-			transform: "none",
-			"& .MuiButton-startIcon": {
-				transform: "none",
-			},
-		},
-	},
-}));

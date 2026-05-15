@@ -1553,20 +1553,32 @@ export type PostInvitationsByIdCloseApiArg = {
 };
 export type GetInvitationsApiResponse = /** status 200 success */ {
 	data?: {
-		id: string;
-		type: string;
-		attributes: {
+		id: number;
+		tenant: {
+			id: number;
 			name: string;
 			caption: string;
+			logo: object;
+		};
+		sent_by: {
+			id: number;
+			email: string;
+			first_name: string;
+			last_name: string;
+			name: string;
+		};
+		sent_to: {
+			id: number;
+			email: string;
+			first_name: string;
+			last_name: string;
+			name: string;
+		};
+		sent_at: string;
+		statuses: {
 			activated: boolean;
-			closed: boolean;
 			declined: boolean | null;
-			logo?: {
-				url: string;
-				thumb: {
-					url: string;
-				};
-			};
+			closed: boolean;
 		};
 	}[];
 };
@@ -1680,20 +1692,32 @@ export type PostInvitationsByIdDeclineApiArg = {
 };
 export type GetInvitationsMyApiResponse = /** status 200 success */ {
 	data?: {
-		id: string;
-		type: string;
-		attributes: {
+		id: number;
+		tenant: {
+			id: number;
 			name: string;
 			caption: string;
+			logo: object;
+		};
+		sent_by: {
+			id: number;
+			email: string;
+			first_name: string;
+			last_name: string;
+			name: string;
+		};
+		sent_to: {
+			id: number;
+			email: string;
+			first_name: string;
+			last_name: string;
+			name: string;
+		};
+		sent_at: string;
+		statuses: {
 			activated: boolean;
-			closed: boolean;
 			declined: boolean | null;
-			logo?: {
-				url: string;
-				thumb: {
-					url: string;
-				};
-			};
+			closed: boolean;
 		};
 	}[];
 };
