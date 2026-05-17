@@ -1,6 +1,6 @@
 import { DefaultProfilePng } from "@/shared/ui/icons";
 
-import { EventCard } from "./event-card";
+import { EventCardStyled } from "./event-card-styled";
 import type { TPost } from "@/types/model/post";
 
 const publicPost: TPost = {
@@ -44,7 +44,7 @@ const notificationPost: TPost = {
 
 const meta = {
 	title: "Base Elements/Event Card",
-	component: EventCard,
+	component: EventCardStyled,
 	args: {
 		post: publicPost,
 		preventNewModal: true,

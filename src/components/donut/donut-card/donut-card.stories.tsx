@@ -1,6 +1,6 @@
 import { BonutsSmPng } from "@/shared/ui/icons";
 
-import { DonutCardPure } from "./donut-card-pure";
+import { DonutCardStyled } from "./donut-card-styled";
 import type { TDonut } from "@/types/model";
 
 const donut: TDonut = {
@@ -24,7 +24,7 @@ const donut: TDonut = {
 
 const meta = {
 	title: "Base Elements/Donut Card",
-	component: DonutCardPure,
+	component: DonutCardStyled,
 	args: {
 		donut,
 		onDonutClick: () => undefined,
