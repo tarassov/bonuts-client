@@ -54,6 +54,8 @@
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",
+		"storybook": "storybook dev -p 6006 --host 0.0.0.0",
+		"build-storybook": "storybook build",
 		"build": "tsc && vite build",
 		"build-staging": "tsc && vite build --mode staging",
 		"serve": "vite preview",
@@ -92,6 +94,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.14",
 		"@rtk-query/codegen-openapi": "^1.0.0-alpha.1",
+		"@storybook/addon-docs": "^10.4.0",
+		"@storybook/react-vite": "^10.4.0",
 		"@testing-library/dom": "^10.4.1",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^16.3.2",
@@ -109,6 +113,7 @@
 		"husky": "^9.1.7",
 		"jsdom": "^21.1.1",
 		"lint-staged": "^13.2.2",
+		"storybook": "^10.4.0",
 		"ts-node": "^10.9.2",
 		"vite": "^7.3.1",
 		"vite-plugin-pwa": "^0.20.1",
