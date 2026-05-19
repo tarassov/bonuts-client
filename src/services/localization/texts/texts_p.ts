@@ -17,4 +17,5 @@ export enum texts_p {
 	period_start = "period start",
 	period_end = "period end",
 	please_wait = "please wait",
+	process_team_join_requests = "process team join requests",
 }

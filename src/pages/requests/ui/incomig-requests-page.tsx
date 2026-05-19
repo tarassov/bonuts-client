@@ -1,7 +1,7 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { IncomingRequests } from "components/request/request-list/incoming-requests";
+import { RequestsPage } from "./requests-page";
 
 export const IncomingRequestsPage: FC = () => {
-	return <IncomingRequests />;
+	return <RequestsPage initialTab="incoming" />;
 };

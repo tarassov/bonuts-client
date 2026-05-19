@@ -5,6 +5,7 @@ export enum texts_t {
 	theme_dark = "theme dark",
 	theme_light = "theme light",
 	theme_system = "theme system",
+	track_your_requests_in_one_feed = "track your requests in one feed",
 	to = "to",
 	to_profile = "to profile",
 	to_store = "to store",

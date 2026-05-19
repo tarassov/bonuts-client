@@ -12,6 +12,7 @@ export const useRequestListLogic = ({ archive, active, incoming, my }: { archive
 			active,
 			incoming,
 			my,
+			tenant: "",
 		},
 		pollingInterval: 10000,
 		translator: apiAdaptor.toRequests,
