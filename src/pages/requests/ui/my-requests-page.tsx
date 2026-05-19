@@ -1,7 +1,9 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { ProfileRequestList } from "components/request/profile-request/profile-request-list";
+import { RequestsTab, RequestsView } from "../model/request-feed";
+
+import { RequestsPage } from "./requests-page";
 
 export const MyRequestsPage: FC = () => {
-	return <ProfileRequestList />;
+	return <RequestsPage initialTab={RequestsTab.Active} variant={RequestsView.My} />;
 };

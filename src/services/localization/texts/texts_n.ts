@@ -16,6 +16,7 @@ export enum texts_n {
 	new_scheduler = "new scheduler",
 	new_invitation_was_created = "new invitation was created",
 	new_invitation_email_was_sent = "new invitation email was sent",
+	no_requests_found = "no requests found",
 	not_connected = "not connected",
 	notification = "notification",
 	notifications = "notifications",

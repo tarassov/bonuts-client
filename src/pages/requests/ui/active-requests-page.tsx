@@ -1,7 +1,9 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { ActiveRequests } from "components/request/request-list/active-requests";
+import { RequestsTab } from "../model/request-feed";
+
+import { RequestsPage } from "./requests-page";
 
 export const ActiveRequestsPage: FC = () => {
-	return <ActiveRequests />;
+	return <RequestsPage initialTab={RequestsTab.Active} />;
 };

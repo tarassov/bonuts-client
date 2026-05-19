@@ -328,6 +328,7 @@ export const ruLocale = {
 		message: "сообщение",
 		"My Requests": "Мои запросы",
 		"My requests": "Мои запросы",
+		[texts_m.my_requests]: "мои запросы",
 		"My spaces": "Мои команды",
 		"My teams": "Мои команды",
 		"My tenants": "Мои команды",
@@ -357,8 +358,10 @@ export const ruLocale = {
 		[texts_n.new_scheduler]: "новый планировщик",
 		[texts_n.new_invitation_was_created]: "Новое приглашение было создано",
 		[texts_n.new_invitation_email_was_sent]: "Письмо с приглашением было отправлено",
+		[texts_n.no_requests_found]: "Запросов не найдено",
 		// O
 		"on stock": "в наличии",
+		[texts_o.oldest_first]: "сначала старые",
 		"Only you can see it": "Только вы это видите",
 		// P
 		[texts_p.password]: "пароль",
@@ -394,6 +397,7 @@ export const ruLocale = {
 		PTS: "БОН.",
 		place: "место",
 		[texts_p.please_wait]: "Пожалуйста, подождите",
+		[texts_p.process_team_join_requests]: "Обрабатывайте запросы и управляйте их статусами в одном потоке",
 		Previous: "Назад",
 		previous: "назад",
 		Purchase: "Покупка",
@@ -446,6 +450,7 @@ export const ruLocale = {
 		Search: "Поиск",
 		"Search string": "Строка поиска...",
 		search: "поиск",
+		[texts_s.search_by_name_email_or_position]: "Поиск по имени, email или должности",
 		[texts_s.set_password]: "установить пароль",
 		Share: "Поделиться",
 		share: "поделиться",
@@ -485,6 +490,7 @@ export const ruLocale = {
 		// T
 		Tenant: "Команда",
 		"Team settings": "Настройки команды",
+		[texts_t.track_your_requests_in_one_feed]: "Следите за своими запросами и их статусами в одном списке",
 		transferred: "перведено",
 		"transfer points": "перевести монеты",
 		"transfer donuts": "перевести пончики",

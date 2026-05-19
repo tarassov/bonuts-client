@@ -267,6 +267,7 @@ export const kkLocale = {
 		message: "сообщение",
 		"My Requests": "Мои запросы",
 		"My requests": "Мои запросы",
+		[texts_m.my_requests]: "менің сұрауларым",
 		"My spaces": "Мои команды",
 		"My teams": "Мои команды",
 		"My tenants": "Мои команды",
@@ -296,8 +297,10 @@ export const kkLocale = {
 		[texts_n.new_scheduler]: "жаңа жоспарлағыш",
 		[texts_n.new_invitation_was_created]: "Жаңа шақыру жасалды",
 		[texts_n.new_invitation_email_was_sent]: "Шақыру хаты жіберілді",
+		[texts_n.no_requests_found]: "Сұраулар табылмады",
 		// O
 		"on stock": "в наличии",
+		[texts_o.oldest_first]: "сначала старые",
 		"Only you can see it": "Только вы это видите",
 		// P
 		[texts_p.password]: "құпиясөз",
@@ -333,6 +336,7 @@ export const kkLocale = {
 		PTS: "БОН.",
 		place: "место",
 		[texts_p.please_wait]: "Күте тұрыңыз",
+		[texts_p.process_team_join_requests]: "Сұрауларды өңдеп, олардың мәртебесін бір ағыннан басқарыңыз",
 		Previous: "Назад",
 		previous: "назад",
 		Purchase: "Покупка",
@@ -385,6 +389,7 @@ export const kkLocale = {
 		Search: "Поиск",
 		"Search string": "Строка поиска...",
 		search: "поиск",
+		[texts_s.search_by_name_email_or_position]: "Аты, email немесе лауазымы бойынша іздеу",
 		[texts_s.set_password]: "құпиясөз орнату",
 		Share: "Поделиться",
 		share: "поделиться",
@@ -424,6 +429,7 @@ export const kkLocale = {
 		// T
 		Tenant: "Команда",
 		"Team settings": "Настройки команды",
+		[texts_t.track_your_requests_in_one_feed]: "Сұрауларыңызды және олардың мәртебесін бір тізімнен қадағалаңыз",
 		transferred: "перведено",
 		"transfer points": "перевести монеты",
 		"transfer donuts": "перевести пончики",
