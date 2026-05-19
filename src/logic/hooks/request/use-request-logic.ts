@@ -1,21 +1,22 @@
+import { useNotification } from "@/shared/ui/notification";
+
+import { useProfile } from "@/entities/profile";
+
 import {
-	PostRequestsActivateApiResponse,
-	PostRequestsApiResponse,
-	PostRequestsCloseApiResponse,
-	PostRequestsRefundApiResponse,
-	PostRequestsRollbackApiResponse,
+	type PostRequestsActivateApiResponse,
+	type PostRequestsApiResponse,
+	type PostRequestsCloseApiResponse,
+	type PostRequestsRefundApiResponse,
+	type PostRequestsRollbackApiResponse,
+} from "@/services/api/bonuts-api";
+import {
 	usePostRequestsActivateMutation,
 	usePostRequestsCloseMutation,
 	usePostRequestsMutation,
 	usePostRequestsRefundMutation,
 	usePostRequestsRollbackMutation,
-} from "services/api/bonuts-api";
-import { texts_r } from "services/localization/texts/texts_r";
-
-import { useNotification } from "@/shared/ui/notification";
-
-import { useProfile } from "@/entities/profile";
-
+} from "@/services/api/extended/requests-api";
+import { texts_r } from "@/services/localization/texts/texts_r";
 import { TDonut } from "@/types/model";
 
 export const useRequestLogic = () => {

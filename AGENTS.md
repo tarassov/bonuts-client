@@ -95,6 +95,8 @@ For UI tasks, also mention:
 - Do not introduce new bare top-level aliases like `shared/...`, `entities/...`, `features/...`, `widgets/...`, `services/...`, or similar when `@/...` can be used.
 - Type aliases should start with `T`.
 - Interfaces should start with `I`.
+- Prefer enums over type aliases or string unions when the value set is fixed and named states improve readability.
+- Enums should not start with `T`.
 - Prefer boolean variables and props to use `is*`, `has*`, `can*`, or similarly explicit boolean naming.
 - Prefer defining reusable types outside the component body.
 - Prefer moving non-props component-local types out of the component body and, when it improves readability, out of the component file to reduce visual noise in the component.

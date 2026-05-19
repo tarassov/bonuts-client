@@ -1,7 +1,9 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { ArchiveRequests } from "components/request/request-list/archive-requests";
+import { RequestsTab } from "../model/request-feed";
+
+import { RequestsPage } from "./requests-page";
 
 export const ClosedRequestsPage: FC = () => {
-	return <ArchiveRequests />;
+	return <RequestsPage initialTab={RequestsTab.Closed} />;
 };
