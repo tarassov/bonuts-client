@@ -12,9 +12,9 @@ import { BntStack } from "@/shared/ui/stack";
 import { BntSegmentedTabs } from "@/shared/ui/tab";
 import { BntTypography } from "@/shared/ui/typography";
 
-import { myRequestsTabs, requestsTabs, requestsViewConfig, type TRequestSort, type TRequestsTab, type TRequestsView } from "../model/request-feed";
-import { sortRequests } from "../model/request-feed.helpers";
-import { useRequestsFeed } from "../model/use-requests-feed";
+import { useRequestsFeed } from "../api/use-requests-feed";
+import { RequestSort, RequestsTab, RequestsView, requestsViewConfig } from "../model/request-feed";
+import { sortRequests } from "../model/request-feed-helpers";
 
 import { RequestFeedItem } from "./request-feed-item";
 import styles from "./requests-page.module.scss";
@@ -25,17 +25,17 @@ import { useRequestLogic } from "@/logic/hooks/request/use-request-logic";
 import { texts_a, texts_c, texts_d, texts_n, texts_o, texts_r, texts_s } from "@/services/localization/texts";
 
 type RequestsPageProps = {
-	initialTab?: TRequestsTab;
-	variant?: TRequestsView;
+	initialTab?: RequestsTab;
+	variant?: RequestsView;
 };
 
-export const RequestsPage = ({ initialTab = "incoming", variant = "team" }: RequestsPageProps) => {
+export const RequestsPage = ({ initialTab = RequestsTab.Incoming, variant = RequestsView.Team }: RequestsPageProps) => {
 	const { translate } = useBntTranslate();
 	const viewConfig = requestsViewConfig[variant];
-	const [activeTab, setActiveTab] = useState<TRequestsTab>(initialTab);
+	const [activeTab, setActiveTab] = useState<RequestsTab>(initialTab);
 	const [searchValue, setSearchValue] = useState("");
 	const [search, setSearch] = useState("");
-	const [sort, setSort] = useState<TRequestSort>("newest");
+	const [sort, setSort] = useState<RequestSort>(RequestSort.Newest);
 	const debouncedSetSearch = useDebounceCallback(setSearch, 500);
 	const { activateRequest, closeRequest, refundRequest, rollbackRequest } = useRequestLogic();
 	const { fetchNext, hasNext, isFetching, isLoading, refetch, requests, tabCounts } = useRequestsFeed({
@@ -62,14 +62,14 @@ export const RequestsPage = ({ initialTab = "incoming", variant = "team" }: Requ
 
 	const handlePrimaryAction = useCallback(
 		(requestId: number) => {
-			if (variant === "my") return;
+			if (variant === RequestsView.My) return;
 
-			if (activeTab === "incoming") {
+			if (activeTab === RequestsTab.Incoming) {
 				activateRequest(requestId, { onSuccess: () => refetch() });
 				return;
 			}
 
-			if (activeTab === "active") {
+			if (activeTab === RequestsTab.Active) {
 				closeRequest(requestId, { onSuccess: () => refetch() });
 			}
 		},
@@ -78,17 +78,17 @@ export const RequestsPage = ({ initialTab = "incoming", variant = "team" }: Requ
 
 	const handleSecondaryAction = useCallback(
 		(requestId: number) => {
-			if (variant === "my") {
+			if (variant === RequestsView.My) {
 				refundRequest(requestId, { onSuccess: () => refetch() });
 				return;
 			}
 
-			if (activeTab === "incoming") {
+			if (activeTab === RequestsTab.Incoming) {
 				refundRequest(requestId, { onSuccess: () => refetch() });
 				return;
 			}
 
-			if (activeTab === "active") {
+			if (activeTab === RequestsTab.Active) {
 				rollbackRequest(requestId, { onSuccess: () => refetch() });
 			}
 		},
@@ -104,10 +104,9 @@ export const RequestsPage = ({ initialTab = "incoming", variant = "team" }: Requ
 		[fetchNext, isLoading]
 	);
 
-	const primaryActionLabel = activeTab === "incoming" ? translate(texts_a.accept) : translate(texts_c.close);
-	const secondaryActionLabel = variant === "my" ? translate(texts_c.cancel) : activeTab === "incoming" ? translate(texts_d.decline) : translate(texts_r.refund);
-	const primaryActionIcon = activeTab === "incoming" ? <CheckRounded /> : <TaskAltRounded />;
-	const tabs = variant === "my" ? myRequestsTabs : requestsTabs;
+	const primaryActionLabel = activeTab === RequestsTab.Incoming ? translate(texts_a.accept) : translate(texts_c.close);
+	const secondaryActionLabel = variant === RequestsView.My ? translate(texts_c.cancel) : activeTab === RequestsTab.Incoming ? translate(texts_d.decline) : translate(texts_r.refund);
+	const primaryActionIcon = activeTab === RequestsTab.Incoming ? <CheckRounded /> : <TaskAltRounded />;
 
 	return (
 		<BntStack
@@ -127,9 +126,9 @@ export const RequestsPage = ({ initialTab = "incoming", variant = "team" }: Requ
 
 			<BntSegmentedTabs
 				ariaLabel={translate(viewConfig.title)}
-				items={tabs.map((tab) => ({
-					count: tab.value === "closed" ? undefined : tabCounts[tab.value],
-					label: translate(tab.label, { capitalize: tab.value !== "incoming" }),
+				items={viewConfig.tabs.map((tab) => ({
+					count: tab.value === RequestsTab.Closed ? undefined : tabCounts[tab.value],
+					label: translate(tab.label, { capitalize: tab.value !== RequestsTab.Incoming }),
 					value: tab.value,
 				}))}
 				onChange={setActiveTab}
@@ -183,7 +182,7 @@ export const RequestsPage = ({ initialTab = "incoming", variant = "team" }: Requ
 
 					<BntTextInput
 						name="requests-sort"
-						onChange={(event) => setSort(event.target.value as TRequestSort)}
+						onChange={(event) => setSort(event.target.value as RequestSort)}
 						select
 						size="small"
 						sx={{
@@ -204,29 +203,29 @@ export const RequestsPage = ({ initialTab = "incoming", variant = "team" }: Requ
 						}}
 						value={sort}
 					>
-						<MenuItem value="newest">{translate(Sorting.NEWEST)}</MenuItem>
-						<MenuItem value="oldest">{translate(texts_o.oldest_first)}</MenuItem>
+						<MenuItem value={RequestSort.Newest}>{translate(Sorting.NEWEST)}</MenuItem>
+						<MenuItem value={RequestSort.Oldest}>{translate(texts_o.oldest_first)}</MenuItem>
 					</BntTextInput>
 				</div>
 
 				<div className={styles.list}>
 					{sortedRequests.map((request) => (
 						<RequestFeedItem
-							isMyRequestView={variant === "my"}
+							isMyRequestView={variant === RequestsView.My}
 							key={request.id}
 							primaryAction={
-								activeTab === "closed" || variant === "my"
+								activeTab === RequestsTab.Closed || variant === RequestsView.My
 									? undefined
 									: {
 											icon: primaryActionIcon,
 											label: primaryActionLabel,
 											onClick: () => handlePrimaryAction(request.id),
-											tone: activeTab === "incoming" ? "success" : "primary",
+											tone: activeTab === RequestsTab.Incoming ? "success" : "primary",
 										}
 							}
 							request={request}
 							secondaryAction={
-								activeTab === "closed" || (variant === "my" && request.status !== 0)
+								activeTab === RequestsTab.Closed || (variant === RequestsView.My && request.status !== 0)
 									? undefined
 									: {
 											icon: <CloseRounded />,

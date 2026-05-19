@@ -1,4 +1,4 @@
-import type { TRequestSort } from "./request-feed";
+import { RequestSort } from "./request-feed";
 import type { TRequest } from "@/types/model/request";
 
 const getTimeValue = (value?: string | null) => {
@@ -9,12 +9,12 @@ const getTimeValue = (value?: string | null) => {
 	return Number.isNaN(parsed) ? 0 : parsed;
 };
 
-export const sortRequests = (requests: Array<TRequest>, sort: TRequestSort) => {
+export const sortRequests = (requests: Array<TRequest>, sort: RequestSort) => {
 	return [...requests].sort((firstRequest, secondRequest) => {
 		const firstTime = getTimeValue(firstRequest.created_at);
 		const secondTime = getTimeValue(secondRequest.created_at);
 
-		return sort === "oldest" ? firstTime - secondTime : secondTime - firstTime;
+		return sort === RequestSort.Oldest ? firstTime - secondTime : secondTime - firstTime;
 	});
 };
 

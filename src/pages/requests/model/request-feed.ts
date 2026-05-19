@@ -1,20 +1,34 @@
 import type { GetRequestsApiArg } from "@/services/api/bonuts-api";
 import { texts_a, texts_c, texts_i, texts_m, texts_p, texts_r, texts_t } from "@/services/localization/texts";
 
-export type TRequestsTab = "incoming" | "active" | "closed";
-export type TRequestSort = "newest" | "oldest";
-export type TRequestsView = "team" | "my";
+export enum RequestsTab {
+	Incoming = "incoming",
+	Active = "active",
+	Closed = "closed",
+}
+
+export enum RequestSort {
+	Newest = "newest",
+	Oldest = "oldest",
+}
+
+export enum RequestsView {
+	Team = "team",
+	My = "my",
+}
 
 export const requestsPageSize = 20;
 
-export const requestsTabQueryMap: Record<TRequestsTab, Pick<GetRequestsApiArg, "active" | "archive" | "incoming" | "my">> = {
-	incoming: {
+type TRequestTabQuery = Pick<GetRequestsApiArg, "active" | "archive" | "incoming" | "my">;
+
+export const requestsTabQueryMap: Record<RequestsTab, TRequestTabQuery> = {
+	[RequestsTab.Incoming]: {
 		incoming: true,
 	},
-	active: {
+	[RequestsTab.Active]: {
 		active: true,
 	},
-	closed: {
+	[RequestsTab.Closed]: {
 		archive: true,
 	},
 };
@@ -22,48 +36,53 @@ export const requestsTabQueryMap: Record<TRequestsTab, Pick<GetRequestsApiArg, "
 export const requestsTabs = [
 	{
 		label: texts_i.incoming,
-		value: "incoming",
+		value: RequestsTab.Incoming,
 	},
 	{
 		label: texts_a.active_request,
-		value: "active",
+		value: RequestsTab.Active,
 	},
 	{
 		label: texts_c.closed_requests,
-		value: "closed",
+		value: RequestsTab.Closed,
 	},
-] as const satisfies ReadonlyArray<{ label: string; value: TRequestsTab }>;
+] as const satisfies ReadonlyArray<{ label: string; value: RequestsTab }>;
 
 export const myRequestsTabs = [
 	{
 		label: texts_a.active_request,
-		value: "active",
+		value: RequestsTab.Active,
 	},
 	{
 		label: texts_c.closed_requests,
-		value: "closed",
+		value: RequestsTab.Closed,
 	},
-] as const satisfies ReadonlyArray<{ label: string; value: TRequestsTab }>;
+] as const satisfies ReadonlyArray<{ label: string; value: RequestsTab }>;
 
-export const myRequestsTabQueryMap: Record<Exclude<TRequestsTab, "incoming">, Pick<GetRequestsApiArg, "active" | "archive" | "incoming" | "my">> = {
-	active: {
+export const myRequestsTabQueryMap: Record<RequestsTab.Active | RequestsTab.Closed, TRequestTabQuery> = {
+	[RequestsTab.Active]: {
 		active: true,
 		incoming: true,
 		my: true,
 	},
-	closed: {
+	[RequestsTab.Closed]: {
 		archive: true,
 		my: true,
 	},
 };
 
+export const myRequestsFeedTabQueryMap: Record<RequestsTab, TRequestTabQuery> = {
+	[RequestsTab.Incoming]: requestsTabQueryMap[RequestsTab.Incoming],
+	...myRequestsTabQueryMap,
+};
+
 export const requestsViewConfig = {
-	my: {
+	[RequestsView.My]: {
 		subtitle: texts_t.track_your_requests_in_one_feed,
 		tabs: myRequestsTabs,
 		title: texts_m.my_requests,
 	},
-	team: {
+	[RequestsView.Team]: {
 		subtitle: texts_p.process_team_join_requests,
 		tabs: requestsTabs,
 		title: texts_r.requests,

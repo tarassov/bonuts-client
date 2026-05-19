@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 
-import { myRequestsTabQueryMap, requestsPageSize, requestsTabQueryMap, type TRequestsTab, type TRequestsView } from "./request-feed";
+import { myRequestsFeedTabQueryMap, myRequestsTabQueryMap, RequestsTab, RequestsView, requestsPageSize, requestsTabQueryMap } from "../model/request-feed";
+
 import { USE_POLLING_INTERVAL } from "@/app/config";
 import { useCurrentTenant } from "@/logic/hooks/tenant/use-current-tenant";
 import { apiAdaptor } from "@/services/adaptor/api-adaptor";
@@ -8,8 +9,8 @@ import { useGetRequestsFeedInfiniteQuery, useGetRequestsMetricsQuery } from "@/s
 
 type TUseRequestsFeedArgs = {
 	search?: string;
-	tab: TRequestsTab;
-	view: TRequestsView;
+	tab: RequestsTab;
+	view: RequestsView;
 };
 
 const pollingInterval = USE_POLLING_INTERVAL ? 10000 : 0;
@@ -17,17 +18,17 @@ const pollingInterval = USE_POLLING_INTERVAL ? 10000 : 0;
 export const useRequestsFeed = ({ search, tab, view }: TUseRequestsFeedArgs) => {
 	const tenant = useCurrentTenant();
 	const resolvedSearch = search || undefined;
-	const isMyView = view === "my";
-	const resolvedTabQueryMap = isMyView ? { ...myRequestsTabQueryMap, incoming: requestsTabQueryMap.incoming } : requestsTabQueryMap;
+	const isMyView = view === RequestsView.My;
+	const tabQueryMap = isMyView ? myRequestsFeedTabQueryMap : requestsTabQueryMap;
 
 	const queryArg = useMemo(
 		() => ({
 			tenant: tenant || "",
 			perPage: requestsPageSize,
 			search: resolvedSearch,
-			...resolvedTabQueryMap[tab],
+			...tabQueryMap[tab],
 		}),
-		[resolvedSearch, resolvedTabQueryMap, tab, tenant]
+		[resolvedSearch, tab, tabQueryMap, tenant]
 	);
 
 	const closedCountQueryArg = useMemo(
@@ -35,7 +36,7 @@ export const useRequestsFeed = ({ search, tab, view }: TUseRequestsFeedArgs) => 
 			tenant: tenant || "",
 			perPage: 1,
 			search: resolvedSearch,
-			...(isMyView ? myRequestsTabQueryMap.closed : requestsTabQueryMap.closed),
+			...(isMyView ? myRequestsTabQueryMap[RequestsTab.Closed] : requestsTabQueryMap[RequestsTab.Closed]),
 		}),
 		[isMyView, resolvedSearch, tenant]
 	);
