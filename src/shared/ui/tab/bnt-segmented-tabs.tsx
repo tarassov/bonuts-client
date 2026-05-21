@@ -31,6 +31,12 @@ const SegmentedTabsRoot = styled(Tabs)(({ theme }) => ({
 	"& .MuiTabs-flexContainer": {
 		gap: 4,
 	},
+	[theme.breakpoints.down("sm")]: {
+		minHeight: 40,
+		padding: 2,
+		borderRadius: 10,
+		backgroundColor: "transparent",
+	},
 }));
 
 const SegmentedTab = styled(Tab)(({ theme }) => ({
@@ -46,6 +52,16 @@ const SegmentedTab = styled(Tab)(({ theme }) => ({
 		backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "dark" ? 0.18 : 0.08),
 		color: theme.palette.primary.main,
 	},
+	[theme.breakpoints.down("sm")]: {
+		minHeight: 34,
+		borderRadius: 8,
+		paddingInline: 10,
+		fontSize: "0.8125rem",
+		fontWeight: 500,
+		"&.Mui-selected": {
+			backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "dark" ? 0.14 : 0.06),
+		},
+	},
 }));
 
 const CountPill = styled("span")(({ theme }) => ({
@@ -60,6 +76,12 @@ const CountPill = styled("span")(({ theme }) => ({
 	fontSize: theme.typography.caption.fontSize,
 	fontWeight: 700,
 	lineHeight: 1,
+	[theme.breakpoints.down("sm")]: {
+		minWidth: 18,
+		height: 18,
+		paddingInline: 5,
+		fontSize: "0.625rem",
+	},
 }));
 
 export const BntSegmentedTabs = <TValue extends TSegmentedValue>({ ariaLabel, className, items, onChange, value }: TBntSegmentedTabsProps<TValue>) => {

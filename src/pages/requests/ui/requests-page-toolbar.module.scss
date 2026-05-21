@@ -1,0 +1,39 @@
+.toolbar {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 12px;
+	padding: 16px;
+	border-bottom: 1px solid var(--requests-border);
+}
+
+.searchField {
+	min-width: 0;
+}
+
+.sortButton {
+	flex-shrink: 0;
+}
+
+.mobileActions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+}
+
+@media (max-width: 599px) {
+	.toolbar {
+		gap: 8px;
+		padding: 12px;
+	}
+
+	.mobileActions {
+		gap: 6px;
+	}
+}
+
+@media (min-width: 900px) {
+	.toolbar {
+		grid-template-columns: minmax(0, 1fr) 220px;
+	}
+}

@@ -14,19 +14,26 @@ import { getInputProps } from "./helpers/get-input-props";
 export const BntTextInputElement = forwardRef<HTMLDivElement, TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string }>((props, ref) => {
 	const { translate } = useBntTranslate();
 	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, component, ...rest } = props;
+	const { InputProps = {}, slotProps, value, placeholder, label } = rest;
+	const resolvedInputProps = {
+		...InputProps,
+		...(slotProps?.input || {}),
+	};
+	const inputProps = getInputProps({ clearable, onClear, value, props: resolvedInputProps });
 
-	const { InputProps = {}, value, placeholder, label } = rest;
-
-	const inputProps = getInputProps({ clearable, onClear, value, props: InputProps });
 	return (
 		<TextFieldElement
 			{...rest}
 			component={component as any}
 			ref={ref}
+			slotProps={{
+				...slotProps,
+				input: slotProps?.input ? inputProps : slotProps?.input,
+			}}
 			name={name}
 			placeholder={translate(placeholder)}
 			label={translate(stringLabel) || label}
-			InputProps={inputProps}
+			InputProps={slotProps?.input ? InputProps : inputProps}
 			InputLabelProps={{ shrink: true, ...rest.InputLabelProps }}
 			value={value}
 			parseError={(error: FieldError) => translate(error.message)}
