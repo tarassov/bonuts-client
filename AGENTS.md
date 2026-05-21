@@ -159,6 +159,8 @@ Do not extract trivial one-property or very small wrappers into `styled()` just 
 
 If styling only sets a very small number of simple properties, keep it local instead of creating a separate styled primitive.
 
+If a component wrapper carries a reusable visual surface treatment (for example border radius + border + shadow + background/theme-dependent surface styling), prefer a `styled()` component over repeating the same visual rules inline in `sx`.
+
 If a component redefines MUI internal classes or repeatedly applies the same MUI visual overrides, that is a strong signal to extract a dedicated reusable component instead of repeating overrides inline.
 
 If a component is used in 2 or more places, or repeats the same MUI override pattern, strongly consider extracting it into `shared/ui`.

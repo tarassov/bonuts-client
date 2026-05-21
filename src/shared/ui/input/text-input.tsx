@@ -21,17 +21,24 @@ export const BntTextInput: FC<
 > = (props) => {
 	const { translate } = useBntTranslate();
 	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, shouldTranslate = true, ...rest } = props;
+	const { InputProps = {}, slotProps, value, placeholder, label } = rest;
+	const resolvedInputProps = {
+		...InputProps,
+		...(slotProps?.input || {}),
+	};
+	const inputProps = getInputProps({ clearable, onClear, value, props: resolvedInputProps });
 
-	const { InputProps = {}, value, placeholder, label } = rest;
-
-	const inputProps = getInputProps({ clearable, onClear, value, props: InputProps });
 	return (
 		<TextField
 			{...rest}
+			slotProps={{
+				...slotProps,
+				input: slotProps?.input ? inputProps : slotProps?.input,
+			}}
 			name={name}
 			placeholder={shouldTranslate ? translate(placeholder) : placeholder}
 			label={shouldTranslate ? translate(stringLabel) || label : stringLabel || label}
-			InputProps={inputProps}
+			InputProps={slotProps?.input ? InputProps : inputProps}
 			InputLabelProps={{ shrink: true, ...rest.InputLabelProps }}
 			value={value}
 			variant="standard"
