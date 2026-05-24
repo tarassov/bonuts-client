@@ -33,3 +33,24 @@ export const Default = {
 		);
 	},
 };
+
+export const RequestsTabs = {
+	render: () => {
+		const [value, setValue] = useState("incoming");
+
+		return (
+			<Box sx={{ width: "min(720px, 100vw - 32px)" }}>
+				<BntSegmentedTabs
+					ariaLabel="Team requests"
+					items={[
+						{ count: 12, label: "Incoming", value: "incoming" },
+						{ count: 4, label: "Active", value: "active" },
+						{ label: "Closed", value: "closed" },
+					]}
+					onChange={setValue}
+					value={value}
+				/>
+			</Box>
+		);
+	},
+};
