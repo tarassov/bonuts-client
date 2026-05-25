@@ -5,6 +5,7 @@ export * from "./auth-state";
 export * from "./persist-auth-session";
 export { persistAuthSession } from "./persist-auth-session";
 export * from "./resolve-current-tenant";
+export * from "./tenantless-user-state";
 export * from "./use-auth";
 export { useAuth } from "./use-auth";
 export * from "./use-auth-tenant";

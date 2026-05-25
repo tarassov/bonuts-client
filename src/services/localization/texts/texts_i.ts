@@ -1,9 +1,12 @@
 export enum texts_i {
 	in_top_most_active_percent = "in top most active percent",
 	in_date = "in date",
+	invitation_received = "invitation received",
+	invited_by = "invited by",
 	invitations = "invitations",
 	invite_teammate = "invite teammate",
 	incoming = "incoming",
+	join_teams_from_received_invitations = "join teams from received invitations",
 	into_top_most_active_percent = "into top most active percent",
 	i_can_spend = "i can spend",
 	i_can_share = "i can share",
@@ -13,4 +16,5 @@ export enum texts_i {
 	integration_mattermost_description = "integration mattermost description",
 	integration_telegram_description = "integration telegram description",
 	integration_vk_description = "integration vk description",
+	no_invitations_received_yet = "no invitations received yet",
 }

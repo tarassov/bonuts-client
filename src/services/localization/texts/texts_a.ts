@@ -17,6 +17,7 @@ export enum texts_a {
 	activate = "activate",
 	accepted = "accepted",
 	access_denied = "access denied",
+	all_invitations = "all invitations",
 	add_colleague_to_team_invitation_description = "add colleague to team invitation description",
 	admin = "admin",
 	about_myself = "About myself",
