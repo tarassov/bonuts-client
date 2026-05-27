@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { useCallback, useMemo, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
 
 import { BntRoutes } from "@/shared/config/routes";
 import { getTenantlessUserState, TenantlessUserState } from "@/shared/model/auth";
@@ -31,7 +30,6 @@ export const NewUserPage: FC = () => {
 	useLoader(Modules.MyInvitations, isInvitationsLoading);
 	useLoader(Modules.MyTenants, isTenantsLoading);
 
-	const isInitialLoading = (isInvitationsLoading || isTenantsLoading) && !invitations.length && !tenants.length;
 	const nextState = getTenantlessUserState(tenants);
 	const previewInvitations = useMemo(() => getWelcomeInvitationPreview(invitations), [invitations]);
 	const visibleInvitations = isShowingAllInvitations ? invitations : previewInvitations;
@@ -41,16 +39,6 @@ export const NewUserPage: FC = () => {
 	const handleShowAllInvitations = useCallback(() => {
 		setIsShowingAllInvitations(true);
 	}, []);
-
-	if (isInitialLoading) {
-		return (
-			<NewUserPageRoot>
-				<div className={styles.loader}>
-					<CircularProgress size={28} />
-				</div>
-			</NewUserPageRoot>
-		);
-	}
 
 	if (nextState === TenantlessUserState.Tenants) {
 		return <Navigate to={routesPath[BntRoutes.TenantList]} replace />;

@@ -2,7 +2,8 @@ import type { FC } from "react";
 import { memo, useMemo } from "react";
 
 import { formatStringDate } from "@/shared/lib/date";
-import { InvitationPreviewItem } from "@/shared/ui/invitation-preview-item";
+
+import { InvitationPreviewItem } from "@/entities/invitation";
 
 import { getInvitationLogoUrl } from "../model/user-invitations-page-helper";
 
