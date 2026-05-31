@@ -3,4 +3,5 @@ export type TAuthState = {
 	isAuthenticated: boolean;
 	isAuthenticating: boolean;
 	tenant?: string;
+	isTenantAuthenticated?: boolean;
 };

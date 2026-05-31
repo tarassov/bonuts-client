@@ -33,6 +33,7 @@ import { HomePage } from "@/pages/home-page";
 import { InvitationPage, InvitationsAllPage } from "@/pages/invitation";
 import { LoginPage } from "@/pages/login-page";
 import { LogoutPage } from "@/pages/logout-page";
+import { NewUserPage } from "@/pages/new-user-page";
 import { PluginsPage } from "@/pages/plugins-page";
 import { ProfilePage } from "@/pages/profile-page";
 import { RecoverPage } from "@/pages/recover-page";
@@ -211,6 +212,17 @@ export const useRouteConfig = (): TRouteConfig<BntRoutes> => {
 					hideInMenu: true,
 					component: <InvitationsAllPage />,
 					roles: groupAdmins,
+				},
+				NewUser: {
+					path: routesPath[BntRoutes.NewUser],
+					anonymous: false,
+					authenticated: true,
+					navbarName: "Dashboard",
+					hideInMenu: false,
+					component: <NewUserPage />,
+					icon: <DashboardOutlined />,
+					tenantNotRequired: true,
+					index: 0,
 				},
 				Registration: {
 					path: routesPath[BntRoutes.Registration],

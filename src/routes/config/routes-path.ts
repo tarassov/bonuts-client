@@ -33,5 +33,6 @@ export const routesPath: Record<BntRoutes, string> = {
 	ConfirmEmail: "/confirm_email/:token",
 	Invitations: "/invitations",
 	InvitationsAll: "/invitations/all",
+	NewUser: "/welcome",
 	VkCallback: "/oauth/vk",
 };

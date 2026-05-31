@@ -23,6 +23,7 @@ export const useAuthRoutes = () => {
 	const menuRoutes = useMemo(() => {
 		return routes
 			.filter((x) => x.tenantNotRequired || auth.tenant)
+			.filter((x) => (auth.tenant ? x.path !== routesPath[BntRoutes.NewUser] : x.path !== routesPath[BntRoutes.Dashboard]))
 			.filter((x) => !hasOnlyOneTenant || x.path !== routesPath[BntRoutes.TenantList])
 			.filter((x) => !x.roles?.length || _.intersection(x.roles, currentRoles).length);
 	}, [routes, auth.tenant, currentRoles, hasOnlyOneTenant]);

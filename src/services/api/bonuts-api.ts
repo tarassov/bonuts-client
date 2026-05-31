@@ -192,6 +192,12 @@ const injectedRtkApi = api.injectEndpoints({
 				method: "POST",
 			}),
 		}),
+		getInvitationsByIdLink: build.query<GetInvitationsByIdLinkApiResponse, GetInvitationsByIdLinkApiArg>({
+			query: (queryArg) => ({
+				url: `/invitations/${queryArg.id}/link`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		getInvitationsMy: build.query<GetInvitationsMyApiResponse, GetInvitationsMyApiArg>({
 			query: () => ({ url: `/invitations/my` }),
 		}),
@@ -377,6 +383,19 @@ const injectedRtkApi = api.injectEndpoints({
 				},
 			}),
 		}),
+		getRequestsExport: build.query<GetRequestsExportApiResponse, GetRequestsExportApiArg>({
+			query: (queryArg) => ({
+				url: `/requests/export`,
+				params: {
+					tenant: queryArg.tenant,
+					active: queryArg.active,
+					archive: queryArg.archive,
+					incoming: queryArg.incoming,
+					my: queryArg.my,
+					search: queryArg.search,
+				},
+			}),
+		}),
 		getDonutsSchedulers: build.query<GetDonutsSchedulersApiResponse, GetDonutsSchedulersApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts_schedulers`,
@@ -468,6 +487,13 @@ const injectedRtkApi = api.injectEndpoints({
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
 			query: (queryArg) => ({
 				url: `/avatars`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
+		postUsersSetNewEmail: build.mutation<PostUsersSetNewEmailApiResponse, PostUsersSetNewEmailApiArg>({
+			query: (queryArg) => ({
+				url: `/users/set_new_email`,
 				method: "POST",
 				body: queryArg.body,
 			}),
@@ -1599,6 +1625,7 @@ export type GetInvitationsApiResponse = /** status 200 success */ {
 			declined: boolean | null;
 			closed: boolean;
 		};
+		expiration_date: string | null;
 	}[];
 };
 export type GetInvitationsApiArg = {
@@ -1617,6 +1644,7 @@ export type PostInvitationsApiArg = {
 		first_name: string;
 		last_name: string;
 		tenant?: string;
+		expiration?: string;
 	};
 };
 export type PostInvitationsByIdAcceptApiResponse = /** status 200 success */ {
@@ -1709,6 +1737,13 @@ export type PostInvitationsByIdDeclineApiResponse = /** status 200 success */ {
 export type PostInvitationsByIdDeclineApiArg = {
 	id: string;
 };
+export type GetInvitationsByIdLinkApiResponse = /** status 200 success */ {
+	link: string;
+};
+export type GetInvitationsByIdLinkApiArg = {
+	id: string;
+	tenant?: string;
+};
 export type GetInvitationsMyApiResponse = /** status 200 success */ {
 	data?: {
 		id: number;
@@ -1717,6 +1752,7 @@ export type GetInvitationsMyApiResponse = /** status 200 success */ {
 			name: string;
 			caption: string;
 			logo: object;
+			active_users_count: number;
 		};
 		sent_by: {
 			id: number;
@@ -1738,10 +1774,11 @@ export type GetInvitationsMyApiResponse = /** status 200 success */ {
 			declined: boolean | null;
 			closed: boolean;
 		};
+		expiration_date: string | null;
 	}[];
 };
 export type GetInvitationsMyApiArg = void;
-export type GetParticipationCurrentWeekApiResponse = /** status 200 success */ {
+export type GetParticipationCurrentWeekApiResponse = /** status 200 builds current week snapshot when the aggregate row is missing */ {
 	week_start: string;
 	weekly_score: string;
 	weekly_score_scaled: number;
@@ -1764,7 +1801,7 @@ export type GetParticipationCurrentWeekApiResponse = /** status 200 success */ {
 export type GetParticipationCurrentWeekApiArg = {
 	tenant?: string;
 };
-export type GetParticipationWeeklyRecognitionCurrentApiResponse = /** status 200 success */ {
+export type GetParticipationWeeklyRecognitionCurrentApiResponse = /** status 200 builds current week recognition stats when the aggregate row is missing */ {
 	week_start: string;
 	week_end: string;
 	likes_given_count: number;
@@ -3336,6 +3373,15 @@ export type GetRequestsMetricsApiArg = {
 	my?: boolean;
 	search?: string;
 };
+export type GetRequestsExportApiResponse = unknown;
+export type GetRequestsExportApiArg = {
+	tenant: string;
+	active?: boolean;
+	archive?: boolean;
+	incoming?: boolean;
+	my?: boolean;
+	search?: string;
+};
 export type GetDonutsSchedulersApiResponse = /** status 200 success */ {
 	data?: {
 		id: string;
@@ -4146,6 +4192,15 @@ export type PostAvatarsApiArg = {
 		uploaded_image: any;
 	};
 };
+export type PostUsersSetNewEmailApiResponse = /** status 200 success */ {
+	pending_email: string;
+	email_sent: boolean;
+};
+export type PostUsersSetNewEmailApiArg = {
+	body: {
+		email: string;
+	};
+};
 export type PostRegisterApiResponse = unknown;
 export type PostRegisterApiArg = {
 	body: {
@@ -4488,6 +4543,7 @@ export const {
 	usePostInvitationsMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,
+	useGetInvitationsByIdLinkQuery,
 	useGetInvitationsMyQuery,
 	useGetParticipationCurrentWeekQuery,
 	useGetParticipationWeeklyRecognitionCurrentQuery,
@@ -4513,6 +4569,7 @@ export const {
 	usePostRequestsCloseMutation,
 	useGetRequestsLegacyQuery,
 	useGetRequestsMetricsQuery,
+	useGetRequestsExportQuery,
 	useGetDonutsSchedulersQuery,
 	usePostDonutsSchedulersMutation,
 	useGetDonutsSchedulersByIdQuery,
@@ -4529,6 +4586,7 @@ export const {
 	useGetTiesQuery,
 	usePostUserActivityHeartbeatMutation,
 	usePostAvatarsMutation,
+	usePostUsersSetNewEmailMutation,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
 	useGetConfirmEmailQuery,

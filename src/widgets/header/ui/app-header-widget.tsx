@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Avatar, IconButton, Stack, useMediaQuery } from "@mui/material";
 import type { Theme } from "@mui/material/styles";
 
+import { useAuth } from "@/shared/model/auth";
 import { BntAppBar, ThemeMenu } from "@/shared/ui/menu";
 import { BntStack } from "@/shared/ui/stack";
 import { BntToolbar } from "@/shared/ui/toolbar";
@@ -31,6 +32,7 @@ export function AppHeaderWidget({ profile }: TAppHeaderWidgetProps) {
 	const { t } = useBntTranslate();
 	const { anchorEl, isMenuOpen, handleMenuOpen, handleMenuClose } = useHeaderMenuAnchor();
 	const profileLabel = t(texts_p.profile, { capitalize: true });
+	const { auth } = useAuth();
 
 	const handleThemeSelect = (nextThemeName: EThemeName) => {
 		setTheme(nextThemeName);
@@ -49,7 +51,7 @@ export function AppHeaderWidget({ profile }: TAppHeaderWidgetProps) {
 						</BntTypography>
 					</BntStack>
 					<BntStack direction="row" alignItems="center" gap={2}>
-						<AccountBalanceSmall profile={profile || undefined} />
+						{!auth.isTenantAuthenticated && <AccountBalanceSmall profile={profile || undefined} />}
 						<IconButton edge="start" color="inherit" aria-label={profileLabel} onClick={handleMenuOpen}>
 							<Avatar src={profile?.user_avatar?.thumb?.url || undefined} alt={profile?.user_name || profileLabel} />
 						</IconButton>

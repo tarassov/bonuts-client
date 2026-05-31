@@ -18,7 +18,7 @@ import { useUserActivityHeartbit } from "@/entities/user";
 import { ForbiddenPage } from "@/pages/forbidden-page";
 
 import { PageWrapper } from "./page-wrapper";
-import { routesPath } from "routes/config/routes-path";
+import { routesPath } from "@/routes/config/routes-path";
 
 interface ISwitchRoutesProps {
 	routes: Array<TRoute<any>>;
@@ -32,7 +32,7 @@ const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?
 	}
 
 	if (auth.isAuthenticated && !auth.tenant && (!route.tenantNotRequired || route.path === "/")) {
-		return <Navigate to={routesPath[BntRoutes.TenantList]} />;
+		return <Navigate to={routesPath[BntRoutes.NewUser]} />;
 	}
 	if (auth.isAuthenticated && route.authenticatedRedirect) {
 		return <Navigate to={route.authenticatedRedirect} />;
@@ -82,7 +82,7 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 
 	return (
 		<Routes location={background || location}>
-			<Route path="*" element={<Navigate to={auth.isAuthenticated ? (!auth.tenant ? routesPath[BntRoutes.TenantList] : "/") : routesPath[BntRoutes.Login]} />} />
+			<Route path="*" element={<Navigate to={auth.isAuthenticated ? (!auth.tenant ? routesPath[BntRoutes.NewUser] : "/") : routesPath[BntRoutes.Login]} />} />
 			{authenticatedRoutes &&
 				authenticatedRoutes
 					.filter((x) => x.tenantNotRequired || auth.tenant)

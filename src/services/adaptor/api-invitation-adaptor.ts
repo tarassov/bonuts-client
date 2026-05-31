@@ -19,9 +19,16 @@ export const apiInvitationsAdaptor = (response: GetInvitationsMyApiResponse): Ar
 		id: invitation.id,
 		name: invitation.tenant.name,
 		caption: invitation.tenant.caption,
+		activeUsersCount: invitation.tenant.active_users_count,
 		activated: invitation.statuses.activated,
 		closed: invitation.statuses.closed,
 		declined: invitation.statuses.declined,
+		expirationDate: invitation.expiration_date,
 		logo: getInvitationLogo(invitation),
+		recipientEmail: invitation.sent_to.email,
+		recipientName: invitation.sent_to.name || [invitation.sent_to.first_name, invitation.sent_to.last_name].filter(Boolean).join(" "),
+		sentAt: invitation.sent_at,
+		sentByEmail: invitation.sent_by.email,
+		sentByName: invitation.sent_by.name || [invitation.sent_by.first_name, invitation.sent_by.last_name].filter(Boolean).join(" "),
 	}));
 };

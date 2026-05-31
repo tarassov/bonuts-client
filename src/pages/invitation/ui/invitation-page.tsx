@@ -3,12 +3,12 @@ import type { FC } from "react";
 import { CreateInvitationForm } from "./create-invitation-form";
 import { InvitationHowItWorks } from "./invitation-how-it-works";
 import styles from "./invitation-page.module.scss";
-import { InvitationPageRoot } from "./invitation-page.styles";
+import { InvitationPageShell } from "./invitation-page-shell";
 import { RecentInvitations } from "./recent-invitations";
 
 export const InvitationPage: FC = () => {
 	return (
-		<InvitationPageRoot>
+		<InvitationPageShell variant="root">
 			<div className={styles.layout}>
 				<CreateInvitationForm />
 				<aside className={styles.sideColumn}>
@@ -16,6 +16,6 @@ export const InvitationPage: FC = () => {
 					<RecentInvitations />
 				</aside>
 			</div>
-		</InvitationPageRoot>
+		</InvitationPageShell>
 	);
 };

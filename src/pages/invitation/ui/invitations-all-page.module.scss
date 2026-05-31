@@ -1,18 +1,6 @@
 .page {
 	display: grid;
-	gap: 16px;
-	max-width: 980px;
-	margin: 0 auto;
-}
-
-.backLink {
-	display: inline-flex;
-	gap: 8px;
-	align-items: center;
-	justify-self: start;
-	color: var(--invitation-primary-main);
-	font-weight: 700;
-	text-decoration: none;
+	gap: 0;
 }
 
 .panel {

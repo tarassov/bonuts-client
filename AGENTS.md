@@ -74,6 +74,11 @@ For UI tasks, also mention:
 ## Feature-Sliced Design
 
 - Follow Feature-Sliced Design when making changes in this repository.
+- Put domain-specific UI in the domain slice that owns it.
+    - Invitation UI goes to `entities/invitation/ui`, invitation flows go to `features/.../ui` or `pages/.../ui` as appropriate.
+    - Profile UI goes to `entities/profile/ui`, event UI goes to `entities/event/ui`, and so on.
+    - Use `shared/ui` only for truly generic, cross-domain UI primitives that do not encode product-domain meaning.
+    - If a component name, props, copy, or data shape are tied to a specific domain concept, default to `entities/*/ui` instead of `shared/ui`.
 - Prefer public interfaces for cross-slice imports.
     - Good: `@/entities/profile`
     - Good: `@/shared/ui/profile-avatar`
