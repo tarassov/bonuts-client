@@ -192,6 +192,12 @@ const injectedRtkApi = api.injectEndpoints({
 				method: "POST",
 			}),
 		}),
+		getInvitationsByIdLink: build.query<GetInvitationsByIdLinkApiResponse, GetInvitationsByIdLinkApiArg>({
+			query: (queryArg) => ({
+				url: `/invitations/${queryArg.id}/link`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
 		getInvitationsMy: build.query<GetInvitationsMyApiResponse, GetInvitationsMyApiArg>({
 			query: () => ({ url: `/invitations/my` }),
 		}),
@@ -481,6 +487,13 @@ const injectedRtkApi = api.injectEndpoints({
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
 			query: (queryArg) => ({
 				url: `/avatars`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
+		postUsersSetNewEmail: build.mutation<PostUsersSetNewEmailApiResponse, PostUsersSetNewEmailApiArg>({
+			query: (queryArg) => ({
+				url: `/users/set_new_email`,
 				method: "POST",
 				body: queryArg.body,
 			}),
@@ -1591,7 +1604,6 @@ export type GetInvitationsApiResponse = /** status 200 success */ {
 			name: string;
 			caption: string;
 			logo: object;
-			active_users_count: number;
 		};
 		sent_by: {
 			id: number;
@@ -1632,6 +1644,7 @@ export type PostInvitationsApiArg = {
 		first_name: string;
 		last_name: string;
 		tenant?: string;
+		expiration?: string;
 	};
 };
 export type PostInvitationsByIdAcceptApiResponse = /** status 200 success */ {
@@ -1723,6 +1736,13 @@ export type PostInvitationsByIdDeclineApiResponse = /** status 200 success */ {
 };
 export type PostInvitationsByIdDeclineApiArg = {
 	id: string;
+};
+export type GetInvitationsByIdLinkApiResponse = /** status 200 success */ {
+	link: string;
+};
+export type GetInvitationsByIdLinkApiArg = {
+	id: string;
+	tenant?: string;
 };
 export type GetInvitationsMyApiResponse = /** status 200 success */ {
 	data?: {
@@ -4172,6 +4192,15 @@ export type PostAvatarsApiArg = {
 		uploaded_image: any;
 	};
 };
+export type PostUsersSetNewEmailApiResponse = /** status 200 success */ {
+	pending_email: string;
+	email_sent: boolean;
+};
+export type PostUsersSetNewEmailApiArg = {
+	body: {
+		email: string;
+	};
+};
 export type PostRegisterApiResponse = unknown;
 export type PostRegisterApiArg = {
 	body: {
@@ -4514,6 +4543,7 @@ export const {
 	usePostInvitationsMutation,
 	usePostInvitationsByIdAcceptMutation,
 	usePostInvitationsByIdDeclineMutation,
+	useGetInvitationsByIdLinkQuery,
 	useGetInvitationsMyQuery,
 	useGetParticipationCurrentWeekQuery,
 	useGetParticipationWeeklyRecognitionCurrentQuery,
@@ -4556,6 +4586,7 @@ export const {
 	useGetTiesQuery,
 	usePostUserActivityHeartbeatMutation,
 	usePostAvatarsMutation,
+	usePostUsersSetNewEmailMutation,
 	usePostRegisterMutation,
 	usePostConfirmEmailMutation,
 	useGetConfirmEmailQuery,

@@ -2,6 +2,7 @@ export enum texts_i {
 	in_top_most_active_percent = "in top most active percent",
 	in_date = "in date",
 	invitation_received = "invitation received",
+	invitation_link_copied = "invitation link copied",
 	invited_by = "invited by",
 	invitations = "invitations",
 	invite_teammate = "invite teammate",

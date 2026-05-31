@@ -14,6 +14,7 @@ export enum texts_c {
 	confirm = "confirm",
 	confirmed = "confirmed",
 	confirm_email = "confirm email",
+	copy_invitation_link = "copy invitation link",
 	closed_requests = "closed requests",
 	choose_employees = "choose employees",
 	choose_type = "choose type",

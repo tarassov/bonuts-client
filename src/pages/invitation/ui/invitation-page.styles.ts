@@ -24,7 +24,7 @@ const getInvitationThemeVars = (theme: Theme): Record<string, string> => {
 		"--invitation-success-light": theme.palette.success.light,
 		"--invitation-success-contrast": theme.palette.getContrastText(theme.palette.success.main),
 		"--invitation-neutral-soft": alpha(theme.palette.text.secondary, 0.16),
-		"--invitation-accepted-text": isDarkMode ? theme.palette.success.light : theme.palette.success.dark,
+		"--invitation-accepted-text": isDarkMode ? theme.palette.text.primary : theme.palette.success.dark,
 		"--invitation-shadow": isDarkMode ? `0 20px 60px ${alpha(theme.palette.common.black, 0.24)}` : `0 20px 48px ${alpha(theme.palette.grey[700], 0.12)}`,
 	};
 };
