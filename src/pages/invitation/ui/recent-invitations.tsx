@@ -4,6 +4,9 @@ import { ArrowForward } from "@mui/icons-material";
 import { BntRoutes } from "@/shared/config/routes";
 import { formatStringDate } from "@/shared/lib/date";
 import { present } from "@/shared/lib/type-guards";
+import { BntStack } from "@/shared/ui/stack";
+
+import { InvitationCopyLinkButton } from "@/entities/invitation";
 
 import { getInvitationInitials, mapInvitationPreview, type TInvitationStatusType } from "../model/invitation-list";
 
@@ -42,7 +45,10 @@ export function RecentInvitations() {
 							<p className={styles.recentCaption}>{invitation.email || invitation.caption}</p>
 						</div>
 						<div className={styles.recentMeta}>
-							<span className={`${styles.status} ${invitationStatusClass[invitation.status.type]}`}>{t(invitation.status.text)}</span>
+							<BntStack direction="row" gap={1}>
+								<span className={`${styles.status} ${invitationStatusClass[invitation.status.type]}`}>{t(invitation.status.text)}</span>
+								{invitation.status.type === "sent" && <InvitationCopyLinkButton invitationId={invitation.id} />}
+							</BntStack>
 							{invitation.createdAt && <span className={styles.date}>{formatStringDate(invitation.createdAt)}</span>}
 						</div>
 					</div>

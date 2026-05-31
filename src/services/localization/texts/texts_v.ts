@@ -15,5 +15,7 @@ export enum texts_v {
 	vk_notifications_disabled_prefix = "Write a message to the VK group",
 	vk_notifications_disabled_link = "here",
 	vk_notifications_disabled_suffix = "then enable notifications.",
+	view = "view",
 	view_all_invitations = "view all invitations",
+	waiting_for_response = "waiting for response",
 }

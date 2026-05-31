@@ -31,5 +31,6 @@ export enum BntRoutes {
 	Event = "Event",
 	Invitations = "Invitations",
 	InvitationsAll = "InvitationsAll",
+	NewUser = "NewUser",
 	VkCallback = "VkCallback",
 }

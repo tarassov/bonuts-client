@@ -1,19 +1,20 @@
 import { useCallback } from "react";
 import { InView } from "react-intersection-observer";
-import { Link } from "react-router-dom";
-import { ArrowBack, GroupAddOutlined } from "@mui/icons-material";
+import { GroupAddOutlined } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 
-import { BntRoutes } from "@/shared/config/routes";
 import { formatStringDate } from "@/shared/lib/date";
+import { BntStack } from "@/shared/ui/stack";
+
+import { InvitationCopyLinkButton } from "@/entities/invitation";
 
 import { getInvitationInitials, type TInvitationPreview, type TInvitationStatusType } from "../model/invitation-list";
 import { useInvitationsFeed } from "../model/use-invitations-feed";
 
-import { InvitationPageRoot, InvitationPanel } from "./invitation-page.styles";
+import { InvitationPanel } from "./invitation-page.styles";
+import { InvitationPageShell } from "./invitation-page-shell";
 import styles from "./invitations-all-page.module.scss";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { routesPath } from "@/routes/config/routes-path";
 import { texts_a, texts_c, texts_e, texts_i, texts_l, texts_n, texts_s } from "@/services/localization/texts";
 
 const invitationStatusClass: Record<TInvitationStatusType, string> = {
@@ -40,7 +41,10 @@ const InvitationItem = ({ invitation }: { invitation: TInvitationPreview }) => {
 				)}
 			</div>
 			<div className={styles.meta}>
-				<span className={`${styles.status} ${invitationStatusClass[invitation.status.type]}`}>{t(invitation.status.text)}</span>
+				<BntStack direction="row" gap={1}>
+					<span className={`${styles.status} ${invitationStatusClass[invitation.status.type]}`}>{t(invitation.status.text)}</span>
+					{invitation.status.type === "sent" && <InvitationCopyLinkButton invitationId={invitation.id} />}
+				</BntStack>
 				{invitation.createdAt && (
 					<span className={styles.date}>
 						{t(texts_c.created)}
@@ -66,13 +70,8 @@ export function InvitationsAllPage() {
 	const hasInvitations = invitations.length > 0;
 
 	return (
-		<InvitationPageRoot>
+		<InvitationPageShell variant="all">
 			<div className={styles.page}>
-				<Link className={styles.backLink} to={routesPath[BntRoutes.Invitations]}>
-					<ArrowBack fontSize="small" />
-					{t(texts_i.invite_teammate)}
-				</Link>
-
 				<InvitationPanel className={styles.panel}>
 					<header className={styles.header}>
 						<div className={styles.headerIcon}>
@@ -112,6 +111,6 @@ export function InvitationsAllPage() {
 					)}
 				</InvitationPanel>
 			</div>
-		</InvitationPageRoot>
+		</InvitationPageShell>
 	);
 }

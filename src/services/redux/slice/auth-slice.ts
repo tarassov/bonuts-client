@@ -1,3 +1,4 @@
+import { present } from "@/shared/lib/type-guards";
 import type { TAuthState } from "@/shared/model/auth";
 import { resolveCurrentTenant } from "@/shared/model/auth";
 
@@ -10,6 +11,7 @@ const initialState: TAuthState = {
 	tenant: undefined,
 	isAuthenticated: false,
 	isAuthenticating: false,
+	isTenantAuthenticated: false,
 };
 
 const slice = createSlice({
@@ -22,6 +24,7 @@ const slice = createSlice({
 			state.isAuthenticating = false;
 			state.token = action.payload.token;
 			state.tenant = action.payload.tenant;
+			state.isAuthenticated = present(action.payload.tenant);
 		},
 	},
 	extraReducers: (builder) => {
@@ -51,31 +54,37 @@ const slice = createSlice({
 				state.isAuthenticating = true;
 			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchFulfilled, (state, action) => {
+				const tenant = resolveCurrentTenant(action.payload);
 				state.token = action.payload.auth_token;
-				state.tenant = resolveCurrentTenant(action.payload);
+				state.tenant = tenant;
 				state.isAuthenticated = true;
 				state.isAuthenticating = false;
+				state.isTenantAuthenticated = present(tenant);
 			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchRejected, (state) => {
 				state.isAuthenticated = false;
 				state.isAuthenticating = false;
 				state.token = undefined;
 				state.tenant = undefined;
+				state.isTenantAuthenticated = false;
 			})
 			.addMatcher(bonutsApi.endpoints.postVkLogin.matchPending, (state) => {
 				state.isAuthenticating = true;
 			})
 			.addMatcher(bonutsApi.endpoints.postVkLogin.matchFulfilled, (state, action) => {
+				const tenant = resolveCurrentTenant(action.payload);
 				state.token = action.payload.auth_token;
-				state.tenant = resolveCurrentTenant(action.payload);
+				state.tenant = tenant;
 				state.isAuthenticated = true;
 				state.isAuthenticating = false;
+				state.isTenantAuthenticated = present(tenant);
 			})
 			.addMatcher(bonutsApi.endpoints.postVkLogin.matchRejected, (state) => {
 				state.isAuthenticated = false;
 				state.isAuthenticating = false;
 				state.token = undefined;
 				state.tenant = undefined;
+				state.isTenantAuthenticated = false;
 			})
 			.addMatcher(bonutsApi.endpoints.postLogout.matchPending, () => {
 				return initialState;
