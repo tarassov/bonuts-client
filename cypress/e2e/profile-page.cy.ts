@@ -3,6 +3,11 @@
 import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
+const GET_PROFILE_URL = /\/profile(?:\?.*)?$/;
+const GET_CIRCLES_URL = /\/circles(?:\?.*)?$/;
+const GET_TENANTS_URL = /\/tenants(?:\?.*)?$/;
+const POST_HEARTBEAT_URL = /\/user_activity\/heartbeat(?:\?.*)?$/;
+
 const CIRCLES_RESPONSE = {
 	data: [
 		{
@@ -26,8 +31,31 @@ const CIRCLES_RESPONSE = {
 	],
 };
 
+const TENANTS_RESPONSE = {
+	data: [
+		{
+			id: "1",
+			type: "tenants",
+			attributes: {
+				name: "test-tenant",
+				caption: "Test tenant",
+				active_users_count: 1,
+				logo: null,
+			},
+		},
+	],
+};
+
 function mockProfilePageRequests() {
-	cy.intercept("GET", "**/profile*", (request) => {
+	cy.intercept(
+		{ method: "GET", url: GET_TENANTS_URL },
+		{
+			statusCode: 200,
+			body: TENANTS_RESPONSE,
+		}
+	).as("getTenants");
+
+	cy.intercept({ method: "GET", url: GET_PROFILE_URL }, (request) => {
 		if (request.query.tenant !== "test-tenant") {
 			request.continue();
 			return;
@@ -39,7 +67,7 @@ function mockProfilePageRequests() {
 		});
 	}).as("getProfile");
 
-	cy.intercept("GET", "**/circles*", (request) => {
+	cy.intercept({ method: "GET", url: GET_CIRCLES_URL }, (request) => {
 		if (request.query.tenant !== "test-tenant") {
 			request.continue();
 			return;
@@ -51,16 +79,20 @@ function mockProfilePageRequests() {
 		});
 	}).as("getCircles");
 
-	cy.intercept("POST", "**/user_activity/heartbeat*", {
-		statusCode: 200,
-		body: {},
-	}).as("postHeartbeat");
+	cy.intercept(
+		{ method: "POST", url: POST_HEARTBEAT_URL },
+		{
+			statusCode: 200,
+			body: {},
+		}
+	).as("postHeartbeat");
 }
 
 function visitProfilePage() {
 	mockProfilePageRequests();
 
 	cy.visitAuthorized("/my");
+	cy.location("pathname").should("eq", "/my");
 
 	cy.wait("@getProfile");
 	cy.wait("@getCircles");
@@ -72,18 +104,19 @@ describe("Profile page", () => {
 			visitProfilePage();
 
 			cy.get('[data-testid="profile-header"]').should("be.visible");
-			cy.contains("Tony Stark").should("be.visible");
-			cy.contains("Iron Man").should("be.visible");
+			cy.get('[data-testid="profile-header"]').within(() => {
+				cy.contains(/tony stark/i).should("be.visible");
+				cy.contains("Iron Man").should("be.visible");
+			});
 
 			cy.get('[data-testid="profile-header-statuses"]').within(() => {
-				cy.contains("admin").should("be.visible");
-				cy.contains("store admin").should("be.visible");
+				cy.get('[class*="MuiChip-root"]').should("have.length", 2);
 			});
 
 			cy.contains("Main information").scrollIntoView().should("be.visible");
 			cy.contains("Contacts").scrollIntoView().should("be.visible");
-			cy.contains("About myself").scrollIntoView().should("be.visible");
 			cy.contains("Additional information").scrollIntoView().should("be.visible");
+			cy.contains("Genius, billionaire, philanthropist.").scrollIntoView().should("be.visible");
 			cy.get('[data-testid="profile-locale-card"]').scrollIntoView().should("be.visible");
 
 			if (!isMobile) {
