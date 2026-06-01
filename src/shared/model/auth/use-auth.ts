@@ -1,11 +1,13 @@
 import { useCallback, useState } from "react";
 import { push } from "redux-first-history";
 
+import { AUTH_TOKEN } from "constants/auth-token";
 import { bonutsApi, PostAuthenticateApiArg, usePostAuthenticateMutation, usePostDemoAuthenticateMutation, usePostLogoutMutation } from "services/api/bonuts-api";
 import { authActions } from "services/redux/slice/auth-slice";
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 
 import { storage } from "@/shared/lib/localStorage";
+import { present } from "@/shared/lib/type-guards";
 
 import { persistAuthSession } from "./persist-auth-session";
 
@@ -26,12 +28,12 @@ export function useAuth() {
 
 	const getAuth = useCallback((): TAuth => {
 		return {
-			token: getValue("auth_token") || "",
+			token: getValue(AUTH_TOKEN) || "",
 			tenant: getValue("tenant") || "",
 		};
 	}, []);
 
-	const validateAuth = useCallback(async (authToValidate: TAuth): Promise<boolean> => !!authToValidate.token, []);
+	const validateAuth = useCallback(async (authToValidate: TAuth): Promise<boolean> => present(authToValidate.token), []);
 
 	const signIn = async (credentials: PostAuthenticateApiArg) => {
 		try {
@@ -69,10 +71,11 @@ export function useAuth() {
 		setIsAuthLoading(true);
 		try {
 			const savedAuth = getAuth(); // get token from the storage
-			if (savedAuth.token) {
+			if (present(savedAuth.token)) {
 				const checkResult = await validateAuth(savedAuth); // check if token is valid
 				if (checkResult) {
 					dispatch(authenticate(savedAuth)); // push token to the store-manager
+
 					return true;
 				}
 				setValue<string>("auth_token", "");
@@ -86,9 +89,9 @@ export function useAuth() {
 	}, [dispatch, getAuth, validateAuth]);
 
 	const setTenant = useCallback(
-		(name: string) => {
+		async (name: string) => {
 			setValue<string | null>("tenant", name);
-			checkAuth();
+			return checkAuth();
 		},
 		[checkAuth]
 	);

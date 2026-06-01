@@ -3,7 +3,8 @@ import { LanguageOutlined } from "@mui/icons-material";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 
-import { LOCALES, useLocale } from "@/shared/ui/locale";
+import { LOCALES } from "@/shared/config/locale";
+import { useLocale } from "@/shared/ui/locale";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 

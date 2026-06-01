@@ -8,7 +8,8 @@ import { InvitationPreviewItem } from "@/entities/invitation";
 import { getInvitationLogoUrl } from "../model/user-invitations-page-helper";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { texts_i, texts_v } from "@/services/localization/texts";
+import { useInvitation } from "@/logic/hooks/invitation/use-invitation";
+import { texts_a, texts_i } from "@/services/localization/texts";
 import type { TInvitation } from "@/types/model/inivtation";
 
 interface IWelcomeInvitationItemProps {
@@ -16,8 +17,9 @@ interface IWelcomeInvitationItemProps {
 	onView: VoidFunction;
 }
 
-const WelcomeInvitationItemComponent: FC<IWelcomeInvitationItemProps> = ({ invitation, onView }) => {
+const WelcomeInvitationItemComponent: FC<IWelcomeInvitationItemProps> = ({ invitation }) => {
 	const { t } = useBntTranslate();
+	const { accept } = useInvitation(invitation);
 	const logoUrl = getInvitationLogoUrl(invitation);
 	const metaLines = useMemo(() => {
 		const items = [invitation.name];
@@ -31,12 +33,12 @@ const WelcomeInvitationItemComponent: FC<IWelcomeInvitationItemProps> = ({ invit
 
 	return (
 		<InvitationPreviewItem
-			actionLabel={t(texts_v.view, { capitalize: true })}
+			actionLabel={t(texts_a.accept, { capitalize: true })}
 			dateLabel={formatStringDate(invitation.sentAt, false, false)}
 			logoAlt={invitation.caption}
 			logoContent={logoUrl ? <img src={logoUrl} alt={invitation.caption} /> : invitation.caption.slice(0, 2).toUpperCase()}
 			metaLines={metaLines}
-			onAction={onView}
+			onAction={accept}
 			title={invitation.caption}
 		/>
 	);

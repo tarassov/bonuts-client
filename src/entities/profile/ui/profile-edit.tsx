@@ -18,7 +18,7 @@ export function ProfileEdit() {
 			</Grid>
 			<Grid container spacing={3} size={{ xs: 12 }} sx={{ flexDirection: { xs: "column-reverse", lg: "row" } }}>
 				<Grid size={{ xs: 12, lg: 8 }}>
-					<BntProfileForm profile={profile} isLoading={isLoading} error={error} updateProfile={updateProfile} />
+					<BntProfileForm profile={profile} isLoading={isLoading} error={error} updateProfile={updateProfile} isEmailEditable={false} />
 				</Grid>
 				<Grid size={{ xs: 12, lg: 4 }}>
 					<BntCard data-testid="profile-locale-card" sx={{ p: 3 }}>

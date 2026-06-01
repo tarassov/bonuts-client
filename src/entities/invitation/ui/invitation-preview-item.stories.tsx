@@ -4,12 +4,14 @@ const meta = {
 	title: "Entities/Invitation/Invitation Preview Item",
 	component: InvitationPreviewItem,
 	args: {
-		actionLabel: "View",
+		actionLabel: "Accept",
 		dateLabel: "26 May 2026",
 		logoAlt: "Bonuts team",
 		logoContent: "BN",
 		metaLines: ["Bonuts Team", "Invited by Alex Petrov"],
 		onAction: () => undefined,
+		onSecondaryAction: () => undefined,
+		secondaryActionLabel: "View",
 		title: "Bonuts",
 	},
 	parameters: {

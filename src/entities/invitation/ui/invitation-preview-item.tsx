@@ -3,7 +3,7 @@ import { memo } from "react";
 import { Box, styled } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
-import { BntButton } from "@/shared/ui/buttons";
+import { BntButton, BntTransparentButton } from "@/shared/ui/buttons";
 
 interface IInvitationPreviewItemProps {
 	actionLabel: string;
@@ -12,6 +12,8 @@ interface IInvitationPreviewItemProps {
 	logoContent: ReactNode;
 	metaLines?: Array<string>;
 	onAction: VoidFunction;
+	onSecondaryAction?: VoidFunction;
+	secondaryActionLabel?: string;
 	title: string;
 }
 
@@ -88,7 +90,37 @@ const ActionButton = styled(BntButton)(({ theme }) => ({
 	whiteSpace: "nowrap",
 }));
 
-const InvitationPreviewItemComponent: FC<IInvitationPreviewItemProps> = ({ actionLabel, dateLabel, logoAlt, logoContent, metaLines = [], onAction, title }) => {
+const SecondaryActionButton = styled(BntTransparentButton)(({ theme }) => ({
+	minHeight: 48,
+	paddingInline: theme.spacing(1),
+	borderRadius: theme.spacing(1.5),
+	fontWeight: 700,
+	whiteSpace: "nowrap",
+}));
+
+const ActionsGroup = styled(Box)(({ theme }) => ({
+	display: "flex",
+	alignItems: "center",
+	gap: theme.spacing(1),
+	justifySelf: "end",
+	[theme.breakpoints.down("md")]: {
+		gridColumn: 2,
+		justifySelf: "start",
+		flexWrap: "wrap",
+	},
+}));
+
+const InvitationPreviewItemComponent: FC<IInvitationPreviewItemProps> = ({
+	actionLabel,
+	dateLabel,
+	logoAlt,
+	logoContent,
+	metaLines = [],
+	onAction,
+	onSecondaryAction,
+	secondaryActionLabel,
+	title,
+}) => {
 	return (
 		<ItemRoot>
 			<ItemLogo aria-label={logoAlt}>{logoContent}</ItemLogo>
@@ -99,9 +131,12 @@ const InvitationPreviewItemComponent: FC<IInvitationPreviewItemProps> = ({ actio
 				))}
 			</ItemBody>
 			<ItemDate>{dateLabel}</ItemDate>
-			<ActionButton noTransform onClick={onAction} variant="outlined">
-				{actionLabel}
-			</ActionButton>
+			<ActionsGroup>
+				{secondaryActionLabel && onSecondaryAction && <SecondaryActionButton onClick={onSecondaryAction}>{secondaryActionLabel}</SecondaryActionButton>}
+				<ActionButton noTransform onClick={onAction} variant="outlined">
+					{actionLabel}
+				</ActionButton>
+			</ActionsGroup>
 		</ItemRoot>
 	);
 };

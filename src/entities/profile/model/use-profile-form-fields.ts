@@ -11,7 +11,11 @@ import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "@/shared
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
 import { type TCircle, type TProfile } from "@/types/model";
 
-export const useProfileFormFields = () => {
+interface IProps {
+	isEmailEditable?: boolean;
+}
+
+export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) => {
 	const { profile } = useCurrentProfile();
 	const { roleField } = useRoleField<TProfile>({ disabled: !UserLogic.isAdmin(profile) });
 	const { objects: circles, isLoading } = useCircleLoaderList();
@@ -25,6 +29,7 @@ export const useProfileFormFields = () => {
 				label: "Email",
 				xs: 12,
 				required: true,
+				disabled: !isEmailEditable,
 			},
 			{
 				disabled: false,
@@ -113,7 +118,7 @@ export const useProfileFormFields = () => {
 				xs: 12,
 			},
 		];
-	}, [circles, isLoading, profile, roleField]);
+	}, [circles, isLoading, profile, roleField, isEmailEditable]);
 
 	return { fields };
 };

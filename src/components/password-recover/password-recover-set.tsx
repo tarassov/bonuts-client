@@ -22,8 +22,9 @@ export const PasswordRecoverSet: FC<{ onSubmit: (password: string) => void }> = 
 	const { translate } = useBntTranslate();
 
 	const doSubmit = async (data: PasswordSetFields) => {
-		const { ...args } = data;
-		onSubmit(args.password);
+		const { password } = data;
+
+		onSubmit(password);
 	};
 
 	return (

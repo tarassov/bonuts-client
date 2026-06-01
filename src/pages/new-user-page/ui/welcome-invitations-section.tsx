@@ -2,6 +2,8 @@ import type { FC } from "react";
 import { memo } from "react";
 import { ArrowForwardOutlined } from "@mui/icons-material";
 
+import { BntTransparentButton } from "@/shared/ui/buttons";
+
 import styles from "./new-user-page.module.scss";
 import { WelcomeInvitationItem } from "./welcome-invitation-item";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
@@ -39,9 +41,9 @@ const WelcomeInvitationsSectionComponent: FC<IWelcomeInvitationsSectionProps> = 
 			</div>
 
 			{totalInvitationsCount > 2 && !isShowingAllInvitations && (
-				<button className={styles.linkButton} onClick={onShowAllInvitations} type="button">
+				<BntTransparentButton className={styles.linkButton} onClick={onShowAllInvitations}>
 					{t(texts_v.view_all_invitations, { capitalize: true })} <ArrowForwardOutlined fontSize="small" />
-				</button>
+				</BntTransparentButton>
 			)}
 		</section>
 	);

@@ -1,24 +1,29 @@
 import { useCallback, useMemo } from "react";
+import { push } from "redux-first-history";
 
 import { usePostInvitationsMutation } from "services/api/bonuts-api";
 import { usePostInvitationsByIdAcceptMutation, usePostInvitationsByIdDeclineMutation } from "services/api/extended/invitations-api";
 import { texts_n } from "services/localization/texts";
 
+import { BntRoutes } from "@/shared/config/routes";
 import { useAuth } from "@/shared/model/auth";
 import { useLoader } from "@/shared/ui/loader";
 import { useNotification } from "@/shared/ui/notification";
 
+import { routesPath } from "@/routes/config/routes-path";
+import { useAppDispatch } from "@/services/redux/store/store";
 import type { TUser } from "@/types/model";
 import type { TInvitation } from "@/types/model/inivtation";
 
 const OPERATION_NAME = "invitationLogic";
 export const useInvitation = (invitation?: TInvitation) => {
+	const dispatch = useAppDispatch();
 	const [postAccept] = usePostInvitationsByIdAcceptMutation();
 	const [postDecline] = usePostInvitationsByIdDeclineMutation();
 	const [postNewInvitation] = usePostInvitationsMutation();
 	const { showNotification, showResponseError } = useNotification();
 	const { openLoader, closeLoader } = useLoader(OPERATION_NAME);
-	const { checkAuth, auth } = useAuth();
+	const { checkAuth, auth, setTenant } = useAuth();
 	const { tenant } = auth;
 
 	const accept = useCallback(() => {
@@ -27,13 +32,16 @@ export const useInvitation = (invitation?: TInvitation) => {
 			openLoader();
 			postAccept({ id: id.toString() })
 				.unwrap()
-				.then(() => checkAuth())
+				.then(async () => {
+					await setTenant(invitation.name);
+					dispatch(push(routesPath[BntRoutes.Dashboard]));
+				})
 				.catch(showResponseError)
 				.finally(() => {
 					closeLoader();
 				});
 		}
-	}, [checkAuth, closeLoader, invitation, openLoader, postAccept, showResponseError]);
+	}, [closeLoader, dispatch, invitation, openLoader, postAccept, setTenant, showResponseError]);
 
 	const decline = useCallback(() => {
 		if (invitation) {
