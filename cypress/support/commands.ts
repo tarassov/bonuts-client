@@ -41,6 +41,7 @@ Cypress.Commands.add("mockAuthorization", (options: TAuthorizationOptions = {}) 
 	};
 
 	cy.window().then((win) => {
+		win.localStorage.clear();
 		win.localStorage.setItem("settings", JSON.stringify(settings));
 	});
 });
@@ -52,6 +53,7 @@ Cypress.Commands.add("visitAuthorized", (url: string, options: TAuthorizationOpt
 	return cy.visit(url, {
 		...visitOptions,
 		onBeforeLoad(win) {
+			win.localStorage.clear();
 			win.localStorage.setItem("settings", JSON.stringify(settings));
 			visitOptions.onBeforeLoad?.(win);
 		},

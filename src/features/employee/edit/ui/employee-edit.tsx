@@ -32,7 +32,7 @@ export function EmployeeEdit({ profile, onClose = emptyFunction }: TEmployeeEdit
 					<ProfileHeader profile={profile} />
 				</Grid>
 				<Grid size={{ xs: 12, sm: 6, lg: 6 }}>
-					<BntProfileForm profile={profile} updateProfile={updateProfile} />
+					<BntProfileForm profile={profile} updateProfile={updateProfile} isEmailEditable />
 				</Grid>
 			</Grid>
 		</>

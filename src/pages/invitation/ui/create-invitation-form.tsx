@@ -12,7 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useUserValidation } from "@/hooks/validation/use-user-validation";
 import { useInvitation } from "@/logic/hooks/invitation/use-invitation";
-import { texts_a, texts_e, texts_f, texts_i, texts_l, texts_n, texts_s, texts_u } from "@/services/localization/texts";
+import { texts_a, texts_e, texts_f, texts_i, texts_l, texts_s, texts_u } from "@/services/localization/texts";
 
 type TInvitationFormValues = {
 	email: string;
@@ -74,7 +74,7 @@ export function CreateInvitationForm() {
 						<BntTextInputElement
 							fullWidth
 							name="first_name"
-							placeholder={t(texts_n.name, { capitalize: true })}
+							placeholder={t(texts_f.first_name, { capitalize: true })}
 							required
 							stringLabel={texts_f.first_name}
 							slotProps={{

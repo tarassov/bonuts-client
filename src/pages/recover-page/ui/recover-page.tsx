@@ -6,6 +6,7 @@ import { PasswordRecoverSet } from "components/password-recover/password-recover
 import { Modules } from "constants/modules";
 import { useProjectNavigate } from "hooks/use-project-navigate";
 
+import { isBlank } from "@/shared/lib/type-guards";
 import { BntBox } from "@/shared/ui/box";
 import { useLoader } from "@/shared/ui/loader";
 
@@ -21,14 +22,14 @@ export const RecoverPage: FC = () => {
 
 	useEffect(() => {
 		if (isError) navigateToLogin();
-	}, [isError]);
+	}, [isError, navigateToLogin]);
 
 	useLoader(Modules.Default, isLoading);
 
 	return (
 		<>
 			<BntBox className={styles.box} sx={{ mt: 8 }}>
-				{!token ? <PasswordRecoverRequest onSubmit={sendRecoverEmail} /> : <PasswordRecoverSet onSubmit={changePassword} />}
+				{isBlank(token) ? <PasswordRecoverRequest onSubmit={sendRecoverEmail} /> : <PasswordRecoverSet onSubmit={changePassword} />}
 			</BntBox>
 			<Messenger />
 		</>

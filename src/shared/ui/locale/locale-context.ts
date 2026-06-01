@@ -2,13 +2,9 @@ import { createContext } from "react";
 
 import type { Locale } from "date-fns";
 
-import enLocale from "date-fns/locale/en-GB";
+import { getDefaultLocale, LOCALES } from "@/shared/config/locale";
 
-export enum LOCALES {
-	en = "en",
-	kk = "kk",
-	ru = "ru",
-}
+import enLocale from "date-fns/locale/en-GB";
 
 export type TLocaleContextValue = {
 	locale: LOCALES;
@@ -16,7 +12,7 @@ export type TLocaleContextValue = {
 };
 
 export const LocaleContext = createContext<TLocaleContextValue>({
-	locale: LOCALES.en,
+	locale: getDefaultLocale(),
 	setLocale: async () => undefined,
 });
 

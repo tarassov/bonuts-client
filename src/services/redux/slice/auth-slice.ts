@@ -24,7 +24,7 @@ const slice = createSlice({
 			state.isAuthenticating = false;
 			state.token = action.payload.token;
 			state.tenant = action.payload.tenant;
-			state.isAuthenticated = present(action.payload.tenant);
+			state.isTenantAuthenticated = present(action.payload.tenant);
 		},
 	},
 	extraReducers: (builder) => {
@@ -33,22 +33,27 @@ const slice = createSlice({
 				state.isAuthenticating = true;
 			})
 			.addMatcher(bonutsApi.endpoints.postDemoAuthenticate.matchFulfilled, (state, action) => {
+				const tenant = resolveCurrentTenant(action.payload);
 				state.token = action.payload.auth_token;
-				state.tenant = resolveCurrentTenant(action.payload);
+				state.tenant = tenant;
 				state.isAuthenticated = true;
 				state.isAuthenticating = false;
+				state.isTenantAuthenticated = present(tenant);
 			})
 			.addMatcher(bonutsApi.endpoints.postRefreshToken.matchFulfilled, (state, action) => {
+				const tenant = resolveCurrentTenant(action.payload);
 				state.token = action.payload.auth_token;
-				state.tenant = resolveCurrentTenant(action.payload);
+				state.tenant = tenant;
 				state.isAuthenticated = true;
 				state.isAuthenticating = false;
+				state.isTenantAuthenticated = present(tenant);
 			})
 			.addMatcher(bonutsApi.endpoints.postDemoAuthenticate.matchRejected, (state) => {
 				state.isAuthenticated = false;
 				state.isAuthenticating = false;
 				state.token = undefined;
 				state.tenant = undefined;
+				state.isTenantAuthenticated = false;
 			})
 			.addMatcher(bonutsApi.endpoints.postAuthenticate.matchPending, (state) => {
 				state.isAuthenticating = true;

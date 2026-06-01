@@ -21,12 +21,13 @@ interface IProfileFormProps {
 	profile?: TProfile;
 	isLoading?: boolean;
 	error?: FetchBaseQueryError | SerializedError;
+	isEmailEditable?: boolean;
 
 	updateProfile: (profile: TProfile, values: TUpdateProfileValues) => Promise<{ data?: unknown; error?: unknown } | undefined>;
 }
 
-export function BntProfileForm({ profile, isLoading = false, error, updateProfile }: IProfileFormProps) {
-	const { fields } = useProfileFormFields();
+export function BntProfileForm({ profile, isLoading = false, isEmailEditable, error, updateProfile }: IProfileFormProps) {
+	const { fields } = useProfileFormFields({ isEmailEditable });
 	const locale = useDateLocale();
 	const [values, setValues] = useState<Record<string, any>>({});
 	const [formError, setFormError] = useState<string>();

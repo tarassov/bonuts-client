@@ -51,7 +51,7 @@ export function AppHeaderWidget({ profile }: TAppHeaderWidgetProps) {
 						</BntTypography>
 					</BntStack>
 					<BntStack direction="row" alignItems="center" gap={2}>
-						{!auth.isTenantAuthenticated && <AccountBalanceSmall profile={profile || undefined} />}
+						{auth.isTenantAuthenticated ? <AccountBalanceSmall profile={profile || undefined} /> : null}
 						<IconButton edge="start" color="inherit" aria-label={profileLabel} onClick={handleMenuOpen}>
 							<Avatar src={profile?.user_avatar?.thumb?.url || undefined} alt={profile?.user_name || profileLabel} />
 						</IconButton>
