@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ArrowForward } from "@mui/icons-material";
 
+import cn from "classnames";
+
 import { BntRoutes } from "@/shared/config/routes";
 import { formatStringDate } from "@/shared/lib/date";
 import { present } from "@/shared/lib/type-guards";
@@ -46,7 +48,7 @@ export function RecentInvitations() {
 						</div>
 						<div className={styles.recentMeta}>
 							<BntStack direction="row" gap={1}>
-								<span className={`${styles.status} ${invitationStatusClass[invitation.status.type]}`}>{t(invitation.status.text)}</span>
+								<span className={cn(styles.status, invitationStatusClass[invitation.status.type])}>{t(invitation.status.text)}</span>
 								{invitation.status.type === "sent" && <InvitationCopyLinkButton invitationId={invitation.id} />}
 							</BntStack>
 							{invitation.createdAt && <span className={styles.date}>{formatStringDate(invitation.createdAt)}</span>}

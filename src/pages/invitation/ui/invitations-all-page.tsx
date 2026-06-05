@@ -3,6 +3,8 @@ import { InView } from "react-intersection-observer";
 import { GroupAddOutlined } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 
+import cn from "classnames";
+
 import { formatStringDate } from "@/shared/lib/date";
 import { BntStack } from "@/shared/ui/stack";
 
@@ -42,7 +44,7 @@ const InvitationItem = ({ invitation }: { invitation: TInvitationPreview }) => {
 			</div>
 			<div className={styles.meta}>
 				<BntStack direction="row" gap={1}>
-					<span className={`${styles.status} ${invitationStatusClass[invitation.status.type]}`}>{t(invitation.status.text)}</span>
+					<span className={cn(styles.status, invitationStatusClass[invitation.status.type])}>{t(invitation.status.text)}</span>
 					{invitation.status.type === "sent" && <InvitationCopyLinkButton invitationId={invitation.id} />}
 				</BntStack>
 				{invitation.createdAt && (

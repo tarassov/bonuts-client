@@ -51,11 +51,12 @@
 }
 
 .status {
-	padding: 4px 10px;
+	padding: 0 10px;
 	border-radius: 999px;
 	color: var(--invitation-primary-dark);
 	background: var(--invitation-primary-light);
 	font-size: 0.78rem;
+	line-height: 2rem;
 }
 
 .statusAccepted {
