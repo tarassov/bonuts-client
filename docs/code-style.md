@@ -82,6 +82,8 @@ Prefer `styled()` for reusable visual components in `shared/ui`.
 
 Use CSS Modules in `shared/ui` only when a reusable component has substantial internal layout structure and `styled()` would make the code less readable.
 
+Combine class names using lib classNames import it as cn `import cn from "classnames";`
+
 Do not extract trivial one-property or very small wrappers into `styled()` just because the component is reused.
 
 If styling only sets a very small number of simple properties, keep it local instead of creating a separate styled primitive.
