@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: center;
 	min-height: 180px;
-	padding: 24px;
+	padding: 32px;
 }
 
 .container {
@@ -15,15 +15,19 @@
 
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
-	padding: 24px;
+	gap: 24px;
+	padding: 32px;
 }
 
 .header {
-	padding: 12px;
+	padding: 16px;
 	border-radius: 12px;
 	background-color: var(--modal-identity-bg);
 	border-bottom: 1px solid var(--modal-border-color);
+}
+
+.headerColumn {
+	min-width: 0;
 }
 
 .headerRow {
@@ -76,8 +80,8 @@
 .metaCard {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
-	padding: 16px;
+	gap: 14px;
+	padding: 20px;
 	border-radius: 12px;
 	background-color: var(--modal-meta-bg);
 }
@@ -112,16 +116,13 @@
 	font-size: 22px;
 }
 
-.footer {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-	gap: 12px;
+.footerActions {
 	padding-top: 8px;
-}
-
-.footerBadges {
-	min-width: 0;
+	margin-left: auto;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .recognitionBadge {
@@ -152,10 +153,24 @@
 }
 
 .goToButton {
-	padding: 8px 16px !important;
+	padding: 10px 18px !important;
 	border-radius: 12px !important;
 	font-size: 14px !important;
 	font-weight: 500 !important;
+	border-color: var(--modal-border-color) !important;
+	color: var(--modal-text-primary) !important;
+}
+
+.goToButton:hover {
+	border-color: var(--modal-text-secondary) !important;
+	background-color: var(--modal-meta-bg) !important;
+}
+
+.transferButton {
+	padding: 10px 18px !important;
+	border-radius: 12px !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
 }
 
 html[data-app-theme="dark"] .container {
@@ -172,16 +187,26 @@ html[data-app-theme="dark"] .recognitionBadge {
 }
 
 @media (max-width: 600px) {
+	.loadingContainer {
+		padding: 24px;
+	}
+
+	.container {
+		gap: 20px;
+		padding: 24px;
+	}
+
 	.name {
 		font-size: 20px;
 	}
 
-	.footer {
-		justify-content: stretch;
+	.footerActions {
+		width: 100%;
+		margin-left: 0;
 	}
 
-	.footerBadges {
-		justify-content: flex-start;
+	.transferButton {
+		width: 100%;
 	}
 
 	.goToButton {

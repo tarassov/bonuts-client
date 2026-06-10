@@ -1,76 +1,11 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress test */
 
-import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
-
-const EVENTS_RESPONSE = {
-	data: [
-		{
-			id: "101",
-			type: "events",
-			attributes: {
-				id: 101,
-				profile_id: 1,
-				user_id: 101,
-				user_name: "System",
-				position: "",
-				public: false,
-				content: "This is a private notification",
-				date_string: "2026-04-13T08:00:00Z",
-				date_string_utc: "2026-04-13T08:00:00Z",
-				comments_count: 0,
-				likes: [],
-				liked: false,
-				editable: false,
-				user_avatar: {
-					url: null,
-					thumb: { url: null },
-					preview: { url: null },
-				},
-			},
-		},
-	],
-};
+import { mockDashboardPageRequests } from "../support/dashboard-page";
 
 const NOTIFICATION_CARD_SELECTOR = '[data-testid="event-card-notification"], .card-root:has([data-testid="LockIcon"])';
 
-function mockDashboardRequests() {
-	cy.intercept("GET", "**/events*", {
-		statusCode: 200,
-		headers: {
-			"Per-Page": "1",
-			Total: "1",
-		},
-		body: EVENTS_RESPONSE,
-	}).as("getEvents");
-
-	cy.intercept("GET", "**/profile*", {
-		statusCode: 200,
-		body: PROFILE_RESPONSE,
-	});
-
-	cy.intercept("GET", "**/weekly_recognition_badges/latest*", {
-		statusCode: 200,
-		body: { badges: [] },
-	});
-
-	cy.intercept("GET", "**/participation/current_week*", {
-		statusCode: 200,
-		body: {},
-	});
-
-	cy.intercept("GET", "**/participation/weekly_recognition_current*", {
-		statusCode: 200,
-		body: {},
-	});
-
-	cy.intercept("POST", "**/user_activity/heartbeat*", {
-		statusCode: 200,
-		body: {},
-	});
-}
-
 function visitDashboard(theme: "light" | "dark") {
-	mockDashboardRequests();
+	mockDashboardPageRequests();
 
 	cy.visitAuthorized("/", {
 		visitOptions: {

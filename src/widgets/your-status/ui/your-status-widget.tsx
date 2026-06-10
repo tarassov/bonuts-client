@@ -72,14 +72,16 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	if (!data) {
 		return (
 			<DashboardWidgetCard columns={columns}>
-				<YourStatusEmptyPlaceholder />
+				<div data-testid="dashboard-widget-your-status">
+					<YourStatusEmptyPlaceholder />
+				</div>
 			</DashboardWidgetCard>
 		);
 	}
 
 	return (
 		<DashboardWidgetCard columns={columns}>
-			<BntStack gap={1.5}>
+			<BntStack gap={1.5} data-testid="dashboard-widget-your-status">
 				<BntTypography variant="subtitle1" fontWeight={700}>
 					{t(texts_y.your_status, { capitalize: true })}
 				</BntTypography>

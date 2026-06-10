@@ -4,14 +4,16 @@ import { BntStack } from "@/shared/ui/stack";
 import styles from "./modal-employee-view.module.css";
 import type { TModalEmployeeViewFooterProps } from "./modal-employee-view.types";
 
-export function ModalEmployeeViewFooter({ children, goToLabel, onGoToEmployeeClick }: TModalEmployeeViewFooterProps) {
+export function ModalEmployeeViewFooter({ goToLabel, transferLabel, onGoToEmployeeClick, onTransferClick }: TModalEmployeeViewFooterProps) {
 	return (
 		<footer>
-			<BntStack className={styles.footer} direction={{ xs: "column", sm: "row" }} justifyContent={{ xs: "stretch", sm: "space-between" }} alignItems={{ xs: "stretch", sm: "flex-end" }}>
-				<BntStack className={styles.footerBadges} direction="row" alignItems="center" flexWrap="wrap" spacing={1}>
-					{children}
-				</BntStack>
-				<BntButton className={styles.goToButton} noTransform variant="contained" onClick={onGoToEmployeeClick}>
+			<BntStack className={styles.footerActions} direction={{ xs: "column", sm: "row" }} spacing={1.5}>
+				{transferLabel && onTransferClick ? (
+					<BntButton className={styles.transferButton} noTransform variant="contained" onClick={onTransferClick}>
+						{transferLabel}
+					</BntButton>
+				) : null}
+				<BntButton className={styles.goToButton} noTransform variant="outlined" onClick={onGoToEmployeeClick}>
 					{goToLabel}
 				</BntButton>
 			</BntStack>

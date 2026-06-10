@@ -117,6 +117,7 @@ export const enLocale = {
 		[texts_l.login_with_vk]: "Sign in with VK",
 		[texts_l.login_with_vk_loading]: "Connecting VK...",
 		[texts_o.or]: "or",
+		[texts_o.open_profile]: "Open profile",
 		[texts_v.vk_auth_cancelled]: "VK sign-in was cancelled",
 		[texts_t.tooltip_scheduler_time]: "the actual action will be fired within 1 hour after the specified time.",
 		[texts_t.theme]: "Theme",

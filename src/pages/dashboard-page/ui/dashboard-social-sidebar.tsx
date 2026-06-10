@@ -65,7 +65,7 @@ export function DashboardSocialSidebar({ widgets = DEFAULT_WIDGET_CONFIG }: IDas
 	};
 
 	return (
-		<SidebarGrid>
+		<SidebarGrid data-testid="dashboard-social-sidebar">
 			{widgets
 				.filter((widget) => (widget.isEnabled ? widget.isEnabled(widgetContext) : true))
 				.map((widget) => {

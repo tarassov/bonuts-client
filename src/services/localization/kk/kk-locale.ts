@@ -510,6 +510,7 @@ export const kkLocale = {
 		[texts_l.login_with_vk]: "VK арқылы кіру",
 		[texts_l.login_with_vk_loading]: "VK қосылуда…",
 		[texts_o.or]: "немесе",
+		[texts_o.open_profile]: "Профильді ашу",
 		[texts_v.vk_auth_cancelled]: "VK арқылы кіру тоқтатылды",
 		[texts_v.vk_success_title]: "Дайын!",
 		[texts_v.vk_success_description]: "VK сәтті қосылды. Қазір сізді Bonuts-қа бағыттаймыз.",

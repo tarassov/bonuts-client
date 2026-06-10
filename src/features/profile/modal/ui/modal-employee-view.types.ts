@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-
 import type { TCircle } from "@/types/model/circle";
 
 export type TMetaItem = {
@@ -11,18 +9,20 @@ export type TModalEmployeeViewHeaderProps = {
 	avatarUrl?: string | null;
 	name?: string;
 	position?: string | null;
+	recognitionBadgeTitle?: string;
 	profileFallback: string;
 	onClose: VoidFunction;
 };
 
 export type TModalEmployeeViewMetaProps = {
-	metaItems: TMetaItem[];
 	circles: TCircle[];
 	hiddenCircleNames: string;
+	metaItems: TMetaItem[];
 };
 
 export type TModalEmployeeViewFooterProps = {
-	children?: ReactNode;
 	goToLabel: string;
+	transferLabel?: string;
 	onGoToEmployeeClick: VoidFunction;
+	onTransferClick?: VoidFunction;
 };

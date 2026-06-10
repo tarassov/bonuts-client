@@ -1,86 +1,31 @@
-import * as React from "react";
-import { useContext, useState } from "react";
-import { CloseOutlined } from "@mui/icons-material";
+import { useCallback, useContext, useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 import _ from "lodash";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_c } from "services/localization/texts/texts_c";
-
-import { BntBox } from "@/shared/ui/box";
-import { BntRoundButton } from "@/shared/ui/buttons";
-import { BntDivider } from "@/shared/ui/divider";
-import { BntIconButton } from "@/shared/ui/icon-button";
-import { BntModalLoader } from "@/shared/ui/loader";
-import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography";
-
-import { BntDialog } from "./dialog";
 import { DialogCloseContext, DialogValueContext } from "./dialog-context";
+import { DialogItem } from "./dialog-item";
 
 export function BntDialogContainer() {
 	const modals = useContext(DialogValueContext);
-	const { t } = useBntTranslate();
 	const handleClose = useContext(DialogCloseContext);
 	const [loadingModal, setLoadingModal] = useState<Record<string, boolean>>({});
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-	const moduleSetLoading = (key: string, value: boolean) => {
+	const moduleSetLoading = useCallback((key: string, value: boolean) => {
 		setLoadingModal((prev) => {
 			return { ...prev, [key]: value };
 		});
-	};
+	}, []);
+
 	return (
 		<>
 			{[...modals].map((modal) => {
 				const title = modal.title ? (_.isFunction(modal.title) ? modal.title(modal) : modal.title) : "";
 				const isLoading = loadingModal[modal.modalKey];
-				return (
-					<BntDialog
-						key={modal.modalKey}
-						handleClose={() => handleClose(modal.modalKey, modal.name)}
-						modal={modal}
-						open={Boolean(modal.modalKey)}
-						preventCloseOnBackDropClick={modal.preventCloseOnBackDropClick}
-						isLoading={isLoading}
-						isTop={modal.isTop}
-						slotProps={{
-							paper: {
-								sx: {
-									borderRadius: 4,
-									overflow: "hidden",
-									...(modal.dialogPaperSx || {}),
-								},
-							},
-						}}
-					>
-						<BntModalLoader loading={isLoading} />
-						<BntBox className="bnt-dialog-box" sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}>
-							{modal.hasTopMenu && !fullScreen ? (
-								<>
-									<BntStack className="p-3" direction="row" justifyContent="space-between" alignItems="center" sx={{ color: "success.dark" }}>
-										<BntTypography variant="h5">{title}</BntTypography>
-										<BntIconButton onClick={() => handleClose(modal.modalKey, modal.name)}>
-											<CloseOutlined />
-										</BntIconButton>
-									</BntStack>
-									<BntDivider />
-								</>
-							) : null}
-							{modal.renderItem(modal, {
-								close: (result) => handleClose(modal.modalKey, modal.name, result),
-								setModalLoading: (value) => moduleSetLoading(modal.modalKey, value),
-							})}
-							{fullScreen && (
-								<BntStack justifyContent="center">
-									<BntRoundButton onClick={() => handleClose(modal.modalKey, modal.name)}>{t(texts_c.close)}</BntRoundButton>
-								</BntStack>
-							)}
-						</BntBox>
-					</BntDialog>
-				);
+
+				return <DialogItem key={modal.modalKey} fullScreen={fullScreen} handleClose={handleClose} isLoading={isLoading} modal={modal} moduleSetLoading={moduleSetLoading} title={title} />;
 			})}
 		</>
 	);
