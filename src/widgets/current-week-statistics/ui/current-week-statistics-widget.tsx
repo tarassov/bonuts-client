@@ -37,7 +37,7 @@ export function CurrentWeekStatisticsWidget({ columns = 1 }: IDashboardWidgetSiz
 
 	return (
 		<DashboardWidgetCard columns={columns}>
-			<BntStack gap={1.5}>
+			<BntStack gap={1.5} data-testid="dashboard-widget-current-week-statistics">
 				<BntTypography variant="subtitle1" fontWeight={700}>
 					{t(texts_c.current_week_statistics, { capitalize: true })}
 				</BntTypography>

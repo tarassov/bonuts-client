@@ -39,7 +39,7 @@ export function LeaderboardWidget({ columns = 1 }: IDashboardWidgetSizingProps) 
 
 	return (
 		<DashboardWidgetCard columns={columns}>
-			<BntStack gap={2}>
+			<BntStack gap={2} data-testid="dashboard-widget-leaderboard">
 				<BntStack direction="row" alignItems="center" justifyContent="space-between">
 					<BntTypography variant="subtitle1" fontWeight={700}>
 						{t(weeklyTitleKey, { capitalize: true })}

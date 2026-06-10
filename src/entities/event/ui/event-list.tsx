@@ -51,7 +51,7 @@ export function EventList() {
 	);
 
 	return (
-		<BntStack direction="column" className={classnames("height-100")}>
+		<BntStack direction="column" className={classnames("height-100")} data-testid="dashboard-event-list">
 			<BntStack
 				direction={{ xs: "column", sm: "row" }}
 				gap={1.5}

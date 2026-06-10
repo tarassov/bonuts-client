@@ -20,7 +20,7 @@ export function BalanceOverviewWidget({ columns = 1 }: IDashboardWidgetSizingPro
 
 	return (
 		<DashboardWidgetCard columns={columns}>
-			<BntStack gap={1.5}>
+			<BntStack gap={1.5} data-testid="dashboard-widget-balance-overview">
 				<BntTypography variant="subtitle1" fontWeight={700}>
 					{t(texts_b.balance, { capitalize: true })}
 				</BntTypography>

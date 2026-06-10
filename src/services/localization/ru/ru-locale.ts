@@ -186,6 +186,7 @@ export const ruLocale = {
 		[texts_l.login_with_vk]: "Войти через VK",
 		[texts_l.login_with_vk_loading]: "Подключаем VK…",
 		[texts_o.or]: "или",
+		[texts_o.open_profile]: "Открыть профиль",
 		[texts_v.vk_auth_cancelled]: "Вход через VK отменён",
 		[texts_v.vk_success_title]: "Готово!",
 		[texts_v.vk_success_description]: "VK успешно подключён. Сейчас перенаправим вас в Bonuts.",

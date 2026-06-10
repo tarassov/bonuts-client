@@ -9,7 +9,7 @@ import { CircleChip } from "@/entities/circle";
 import styles from "./modal-employee-view.module.css";
 import type { TModalEmployeeViewMetaProps } from "./modal-employee-view.types";
 
-export function ModalEmployeeViewMeta({ metaItems, circles, hiddenCircleNames }: TModalEmployeeViewMetaProps) {
+export function ModalEmployeeViewMeta({ circles, hiddenCircleNames, metaItems }: TModalEmployeeViewMetaProps) {
 	if (!metaItems.length && !circles.length) {
 		return null;
 	}
@@ -24,8 +24,7 @@ export function ModalEmployeeViewMeta({ metaItems, circles, hiddenCircleNames }:
 					</BntStack>
 				);
 			})}
-
-			{circles.length > 0 && (
+			{circles.length > 0 ? (
 				<BntStack className={styles.circlesRow} direction="row" alignItems="center">
 					{circles.map((circle) => {
 						return <CircleChip key={`${circle.id}-${circle.name}`} label={circle.name || ""} />;
@@ -36,7 +35,7 @@ export function ModalEmployeeViewMeta({ metaItems, circles, hiddenCircleNames }:
 						</Tooltip>
 					)}
 				</BntStack>
-			)}
+			) : null}
 		</section>
 	);
 }
