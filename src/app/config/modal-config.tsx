@@ -4,10 +4,11 @@ import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-c
 import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
 import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal-detailed-event";
 import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-circle";
+import { ModalGiveDonut } from "components/modals/modal-give-donut/modal-give-donut";
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { ModalTransfer } from "components/modals/modal-transfer/modal-transfer";
 import { CommonStrings } from "constants/dictionary";
-import { texts_c } from "services/localization/texts";
+import { texts_c, texts_g } from "services/localization/texts";
 
 import type { TDialogConfig } from "@/shared/ui/dialog";
 
@@ -71,6 +72,12 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 			hasTopMenu: true,
 			title: (data) => data.title || "Transfer",
 			preventCloseOnBackDropClick: true,
+		},
+		GiveDonut: {
+			renderItem: (_, props) => <ModalGiveDonut {...props} />,
+			hasTopMenu: true,
+			title: (data) => data.title || texts_g.give_donuts,
+			preventCloseOnBackDropClick: false,
 		},
 		DetailedEvent: {
 			renderItem: (modal, props) => <ModalDetailedEvent post={modal.data.post} {...props} />,

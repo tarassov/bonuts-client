@@ -12,6 +12,7 @@ export enum texts_r {
 	request_been_set_closed = "request has been set as close",
 	request_been_set_active = "request has been set as active",
 	request_has_been_refunded = "request has been refunded",
+	recognition_sent = "your recognition has been sent. recognition like this makes teams stronger.",
 	restore_password = "restore password",
 	recover_email_has_been_sent = "recover email has been sent",
 }

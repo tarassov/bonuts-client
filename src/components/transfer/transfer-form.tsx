@@ -10,16 +10,22 @@ import { BntForm } from "@/shared/ui/form";
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { useTransfer } from "logic/hooks/operation/use-transfer";
 
-export const TransferForm: FC<{ id: number; onSuccess?: VoidFunction }> = ({ id, onSuccess }) => {
+type TTransferFormProps = {
+	id: number;
+	onSuccess?: VoidFunction;
+	onError?: (message?: string) => void;
+};
+
+export const TransferForm: FC<TTransferFormProps> = ({ id, onSuccess, onError }) => {
 	const { profile } = useCurrentProfile();
 
 	const { account } = useAccountBalanceLoader(profile?.distrib_account?.id);
 	const { transferMyDonuts } = useTransfer();
 	const { t } = useBntTranslate();
 	const { fields, resolver } = useTransferFormFields({ maxAmount: account?.balance });
-	const onSubmit = (args: TransferFormType, onError?: (message?: string) => void) => {
+	const onSubmit = (args: TransferFormType, handleFormError?: (message?: string) => void) => {
 		const { amount, comment } = args;
-		transferMyDonuts({ amount, comment, ids: [id] }, { onSuccess, onError });
+		transferMyDonuts({ amount, comment, ids: [id] }, { onSuccess, onError: handleFormError || onError });
 	};
 
 	const initialValues = useMemo(() => {
