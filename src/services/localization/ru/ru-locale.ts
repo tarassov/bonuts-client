@@ -151,6 +151,7 @@ export const ruLocale = {
 		[texts_c.create_team_mock_description]: "Если у вас ещё нет команды, вы можете отправить заявку на создание и стать её администратором.",
 		[texts_d.declined]: "Отклонено",
 		[texts_d.danger_zone]: "Опасная зона",
+		[texts_d.delete_photo]: "Удалить фото",
 		[texts_d.delete_profile]: "Удалить профиль",
 		[texts_d.delete_profile_mock_description]: "Удаление профиля приведёт к потере доступа ко всем данным, включая приглашения и историю активности.",
 		[texts_e.expired]: "Устаревшие",

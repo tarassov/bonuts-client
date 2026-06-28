@@ -82,6 +82,7 @@ export const enLocale = {
 		[texts_c.create_team_mock_description]: "If you do not have a team yet, you can send a request to create one and become its administrator.",
 		[texts_d.declined]: "Declined",
 		[texts_d.danger_zone]: "Danger zone",
+		[texts_d.delete_photo]: "Delete photo",
 		[texts_d.delete_profile]: "Delete profile",
 		[texts_d.delete_profile_mock_description]: "Deleting your profile will revoke access to all data, including invitations and activity history.",
 		[texts_e.expired]: "Expired",

@@ -86,7 +86,7 @@ export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSe
 					close: handleModalClose,
 					setModalLoading: handleModalLoading,
 				})}
-				{fullScreen && (
+				{fullScreen && modal.allowFullscreen && (
 					<BntStack justifyContent="center">
 						<BntRoundButton onClick={handleDialogClose}>{t(texts_c.close)}</BntRoundButton>
 					</BntStack>

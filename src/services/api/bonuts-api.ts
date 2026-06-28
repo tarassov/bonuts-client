@@ -267,6 +267,46 @@ const injectedRtkApi = api.injectEndpoints({
 				body: queryArg.body,
 			}),
 		}),
+		getProfilesByProfileIdProfilePictures: build.query<GetProfilesByProfileIdProfilePicturesApiResponse, GetProfilesByProfileIdProfilePicturesApiArg>({
+			query: (queryArg) => ({
+				url: `/profiles/${queryArg.profileId}/profile_pictures`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		postProfilesByProfileIdProfilePictures: build.mutation<PostProfilesByProfileIdProfilePicturesApiResponse, PostProfilesByProfileIdProfilePicturesApiArg>({
+			query: (queryArg) => ({
+				url: `/profiles/${queryArg.profileId}/profile_pictures`,
+				method: "POST",
+				body: queryArg.body,
+			}),
+		}),
+		getProfilePicturesById: build.query<GetProfilePicturesByIdApiResponse, GetProfilePicturesByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/profile_pictures/${queryArg.id}`,
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		deleteProfilePicturesById: build.mutation<DeleteProfilePicturesByIdApiResponse, DeleteProfilePicturesByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/profile_pictures/${queryArg.id}`,
+				method: "DELETE",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		postProfilePicturesByIdLike: build.mutation<PostProfilePicturesByIdLikeApiResponse, PostProfilePicturesByIdLikeApiArg>({
+			query: (queryArg) => ({
+				url: `/profile_pictures/${queryArg.id}/like`,
+				method: "POST",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		postProfilePicturesByProfilePictureIdComments: build.mutation<PostProfilePicturesByProfilePictureIdCommentsApiResponse, PostProfilePicturesByProfilePictureIdCommentsApiArg>({
+			query: (queryArg) => ({
+				url: `/profile_pictures/${queryArg.profilePictureId}/comments`,
+				method: "POST",
+				params: { tenant: queryArg.tenant, text: queryArg.text },
+			}),
+		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
 			query: (queryArg) => ({
 				url: `/profile`,
@@ -1737,7 +1777,7 @@ export type PostInvitationsByIdDeclineApiResponse = /** status 200 success */ {
 export type PostInvitationsByIdDeclineApiArg = {
 	id: string;
 };
-export type GetInvitationsByIdLinkApiResponse = /** status 200 success */ {
+export type GetInvitationsByIdLinkApiResponse = /** status 200 success when recover token is missing */ {
 	link: string;
 };
 export type GetInvitationsByIdLinkApiArg = {
@@ -1864,6 +1904,308 @@ export type PostProfileNotificationsByIdDeactivateApiArg = {
 	body: {
 		tenant: string;
 	};
+};
+export type GetProfilesByProfileIdProfilePicturesApiResponse = /** status 200 success */ {
+	data: {
+		id: number;
+		caption: (string | null) | null;
+		profile_id: number;
+		user_id: number;
+		image: {
+			url: string | null;
+			thumb: {
+				url: string | null;
+			};
+			preview: {
+				url: string | null;
+			};
+		};
+		likes_count: number;
+		comments_count: number;
+		liked: boolean;
+		comments: {
+			id: number;
+			content: string;
+			likes: any;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			user_name: string;
+			position?: (string | null) | null;
+			profile: {
+				id: number;
+				name: string;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+			};
+			date_string: string;
+			date_string_utc: string;
+		}[];
+		created_at: string;
+		updated_at: string;
+	}[];
+};
+export type GetProfilesByProfileIdProfilePicturesApiArg = {
+	profileId: number;
+	tenant?: string;
+};
+export type PostProfilesByProfileIdProfilePicturesApiResponse = /** status 200 success */ {
+	data: {
+		id: number;
+		caption: (string | null) | null;
+		profile_id: number;
+		user_id: number;
+		image: {
+			url: string | null;
+			thumb: {
+				url: string | null;
+			};
+			preview: {
+				url: string | null;
+			};
+		};
+		likes_count: number;
+		comments_count: number;
+		liked: boolean;
+		comments: {
+			id: number;
+			content: string;
+			likes: any;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			user_name: string;
+			position?: (string | null) | null;
+			profile: {
+				id: number;
+				name: string;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+			};
+			date_string: string;
+			date_string_utc: string;
+		}[];
+		created_at: string;
+		updated_at: string;
+	};
+};
+export type PostProfilesByProfileIdProfilePicturesApiArg = {
+	profileId: number;
+	body: {
+		tenant: string;
+		caption?: string;
+		uploaded_image: any;
+	};
+};
+export type GetProfilePicturesByIdApiResponse = /** status 200 success */ {
+	data: {
+		id: number;
+		caption: (string | null) | null;
+		profile_id: number;
+		user_id: number;
+		image: {
+			url: string | null;
+			thumb: {
+				url: string | null;
+			};
+			preview: {
+				url: string | null;
+			};
+		};
+		likes_count: number;
+		comments_count: number;
+		liked: boolean;
+		comments: {
+			id: number;
+			content: string;
+			likes: any;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			user_name: string;
+			position?: (string | null) | null;
+			profile: {
+				id: number;
+				name: string;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+			};
+			date_string: string;
+			date_string_utc: string;
+		}[];
+		created_at: string;
+		updated_at: string;
+	};
+};
+export type GetProfilePicturesByIdApiArg = {
+	id: number;
+	tenant?: string;
+};
+export type DeleteProfilePicturesByIdApiResponse = /** status 200 owner deletes own picture */ {
+	success: boolean;
+};
+export type DeleteProfilePicturesByIdApiArg = {
+	id: number;
+	tenant?: string;
+};
+export type PostProfilePicturesByIdLikeApiResponse = /** status 200 success */ {
+	data: {
+		id: number;
+		caption: (string | null) | null;
+		profile_id: number;
+		user_id: number;
+		image: {
+			url: string | null;
+			thumb: {
+				url: string | null;
+			};
+			preview: {
+				url: string | null;
+			};
+		};
+		likes_count: number;
+		comments_count: number;
+		liked: boolean;
+		comments: {
+			id: number;
+			content: string;
+			likes: any;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			user_name: string;
+			position?: (string | null) | null;
+			profile: {
+				id: number;
+				name: string;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+			};
+			date_string: string;
+			date_string_utc: string;
+		}[];
+		created_at: string;
+		updated_at: string;
+	};
+};
+export type PostProfilePicturesByIdLikeApiArg = {
+	id: number;
+	tenant?: string;
+};
+export type PostProfilePicturesByProfilePictureIdCommentsApiResponse = /** status 200 success */ {
+	data: {
+		id: number;
+		caption: (string | null) | null;
+		profile_id: number;
+		user_id: number;
+		image: {
+			url: string | null;
+			thumb: {
+				url: string | null;
+			};
+			preview: {
+				url: string | null;
+			};
+		};
+		likes_count: number;
+		comments_count: number;
+		liked: boolean;
+		comments: {
+			id: number;
+			content: string;
+			likes: any;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
+				};
+			};
+			user_name: string;
+			position?: (string | null) | null;
+			profile: {
+				id: number;
+				name: string;
+				user_avatar: {
+					url: string | null;
+					thumb: {
+						url: string | null;
+					};
+					preview: {
+						url: string | null;
+					};
+				};
+			};
+			date_string: string;
+			date_string_utc: string;
+		}[];
+		created_at: string;
+		updated_at: string;
+	};
+};
+export type PostProfilePicturesByProfilePictureIdCommentsApiArg = {
+	profilePictureId: number;
+	tenant?: string;
+	text?: string;
 };
 export type GetProfileApiResponse = /** status 200 success */ {
 	data?: {
@@ -2050,7 +2392,7 @@ export type GetProfilesByIdApiArg = {
 	id: string;
 	tenant?: string;
 };
-export type PutProfilesByIdApiResponse = /** status 200 admin updates another tenant user */ {
+export type PutProfilesByIdApiResponse = /** status 200 admin updates another tenant user without email param */ {
 	data?: {
 		id?: string;
 		type?: string;
@@ -4555,6 +4897,12 @@ export const {
 	useGetProfileNotificationsQuery,
 	usePostProfileNotificationsByIdActivateMutation,
 	usePostProfileNotificationsByIdDeactivateMutation,
+	useGetProfilesByProfileIdProfilePicturesQuery,
+	usePostProfilesByProfileIdProfilePicturesMutation,
+	useGetProfilePicturesByIdQuery,
+	useDeleteProfilePicturesByIdMutation,
+	usePostProfilePicturesByIdLikeMutation,
+	usePostProfilePicturesByProfilePictureIdCommentsMutation,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,
 	usePutProfilesByIdMutation,

@@ -8,9 +8,11 @@ import { ProfileLocaleSettings } from "@/widgets/integration-settings";
 
 import { BntProfileForm } from "./profile-form";
 import { ProfileHeader } from "./profile-header";
+import { ProfilePhotos } from "./profile-photos";
 
 export function ProfileEdit() {
 	const { profile, isLoading, error, updateProfile } = useProfile();
+
 	return (
 		<Grid container spacing={3} className="p-2">
 			<Grid size={{ xs: 12 }}>
@@ -25,6 +27,9 @@ export function ProfileEdit() {
 						<ProfileLocaleSettings />
 					</BntCard>
 				</Grid>
+			</Grid>
+			<Grid size={{ xs: 12 }}>
+				<ProfilePhotos profile={profile} canUpload />
 			</Grid>
 		</Grid>
 	);

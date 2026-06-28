@@ -80,22 +80,14 @@
 		"cypress:run:login": "npx cypress run --spec cypress/e2e/login.cy.ts"
 	},
 	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+		"production": [">0.2%", "not dead", "not op_mini all"],
+		"development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.14",
 		"@rtk-query/codegen-openapi": "^1.0.0-alpha.1",
-		"@storybook/addon-docs": "^10.4.0",
-		"@storybook/react-vite": "^10.4.0",
+		"@storybook/addon-docs": "^10.4.6",
+		"@storybook/react-vite": "^10.4.6",
 		"@testing-library/dom": "^10.4.1",
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^16.3.2",
@@ -106,16 +98,16 @@
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
 		"@vitejs/plugin-basic-ssl": "^1.1.0",
-		"@vitejs/plugin-react": "^5.1.4",
+		"@vitejs/plugin-react": "^6.0.3",
 		"@vitest/coverage-c8": "^0.31.0",
 		"cypress": "15.17.0",
 		"gh-pages": "^5.0.0",
 		"husky": "^9.1.7",
 		"jsdom": "^21.1.1",
 		"lint-staged": "^13.2.2",
-		"storybook": "^10.4.0",
+		"storybook": "^10.4.6",
 		"ts-node": "^10.9.2",
-		"vite": "^7.3.1",
+		"vite": "^8.1.0",
 		"vite-plugin-pwa": "^0.20.1",
 		"vite-plugin-rewrite-all": "^1.0.2",
 		"vite-plugin-svgr": "^2.4.0",

@@ -2,6 +2,7 @@ import { ChangeEvent, type CSSProperties, useMemo, useRef, useState } from "reac
 import { useTheme } from "@mui/material/styles";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_c } from "services/localization/texts";
 
 import { BntCard } from "@/shared/ui/card";
 import { BntTypography } from "@/shared/ui/typography";
@@ -77,7 +78,7 @@ export function ProfileHeader({ profile }: { profile?: TProfile }) {
 				<div>
 					<button type="button" className={classes.avatarButton} onClick={handleAvatarClick}>
 						{avatarUrl ? <img src={avatarUrl} alt={displayName} className={classes.avatarImage} /> : <div className={classes.avatarFallback}>{initials}</div>}
-						<div className={classes.avatarOverlay}>{translate("Change avatar")}</div>
+						<div className={classes.avatarOverlay}>{translate(texts_c.change_avatar)}</div>
 					</button>
 					<input ref={inputRef} type="file" accept="image/*" hidden onChange={handleAvatarChange} />
 				</div>

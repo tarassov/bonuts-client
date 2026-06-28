@@ -5,8 +5,10 @@ import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
 const GET_PROFILE_URL = /\/profile(?:\?.*)?$/;
 const GET_CIRCLES_URL = /\/circles(?:\?.*)?$/;
+const GET_PROFILE_PICTURES_URL = /\/profiles\/\d+\/profile_pictures(?:\?.*)?$/;
 const GET_TENANTS_URL = /\/tenants(?:\?.*)?$/;
 const POST_HEARTBEAT_URL = /\/user_activity\/heartbeat(?:\?.*)?$/;
+const DELETE_PROFILE_PICTURE_URL = /\/profile_pictures\/\d+(?:\?.*)?$/;
 
 const CIRCLES_RESPONSE = {
 	data: [
@@ -46,7 +48,48 @@ const TENANTS_RESPONSE = {
 	],
 };
 
+const PROFILE_PICTURES_RESPONSE = {
+	data: [
+		{
+			id: 11,
+			caption: null,
+			profile_id: 1,
+			user_id: 101,
+			image: {
+				url: "https://example.com/photos/tony-1.jpg",
+				thumb: { url: "https://example.com/photos/tony-1-thumb.jpg" },
+				preview: { url: "https://example.com/photos/tony-1-preview.jpg" },
+			},
+			likes_count: 0,
+			comments_count: 0,
+			liked: false,
+			comments: [],
+			created_at: "2026-01-01T00:00:00.000Z",
+			updated_at: "2026-01-01T00:00:00.000Z",
+		},
+		{
+			id: 12,
+			caption: null,
+			profile_id: 1,
+			user_id: 202,
+			image: {
+				url: "https://example.com/photos/pepper-1.jpg",
+				thumb: { url: "https://example.com/photos/pepper-1-thumb.jpg" },
+				preview: { url: "https://example.com/photos/pepper-1-preview.jpg" },
+			},
+			likes_count: 0,
+			comments_count: 0,
+			liked: false,
+			comments: [],
+			created_at: "2026-01-02T00:00:00.000Z",
+			updated_at: "2026-01-02T00:00:00.000Z",
+		},
+	],
+};
+
 function mockProfilePageRequests() {
+	let profilePictures = structuredClone(PROFILE_PICTURES_RESPONSE);
+
 	cy.intercept(
 		{ method: "GET", url: GET_TENANTS_URL },
 		{
@@ -79,6 +122,31 @@ function mockProfilePageRequests() {
 		});
 	}).as("getCircles");
 
+	cy.intercept({ method: "GET", url: GET_PROFILE_PICTURES_URL }, (request) => {
+		if (request.query.tenant !== "test-tenant") {
+			request.continue();
+			return;
+		}
+
+		request.reply({
+			statusCode: 200,
+			body: profilePictures,
+		});
+	}).as("getProfilePictures");
+
+	cy.intercept({ method: "DELETE", url: DELETE_PROFILE_PICTURE_URL }, (request) => {
+		const photoId = Number(String(request.url).match(/\/profile_pictures\/(\d+)/)?.[1]);
+
+		profilePictures = {
+			data: profilePictures.data.filter((photo) => photo.id !== photoId),
+		};
+
+		request.reply({
+			statusCode: 200,
+			body: { success: true },
+		});
+	}).as("deleteProfilePicture");
+
 	cy.intercept(
 		{ method: "POST", url: POST_HEARTBEAT_URL },
 		{
@@ -96,6 +164,7 @@ function visitProfilePage() {
 
 	cy.wait("@getProfile");
 	cy.wait("@getCircles");
+	cy.wait("@getProfilePictures");
 }
 
 describe("Profile page", () => {
@@ -126,6 +195,25 @@ describe("Profile page", () => {
 						expect($el.outerWidth() || 0).to.be.greaterThan(200);
 					});
 			}
+		});
+
+		it("opens the album modal and allows deleting only own photos", () => {
+			visitProfilePage();
+
+			cy.get('[data-testid="photo-album-tile-0"]').scrollIntoView().should("be.visible").click();
+
+			cy.get('[data-testid="photo-album-viewer"]').should("be.visible");
+			cy.get('[data-testid="profile-photo-delete"]').should("be.visible").click();
+			cy.wait("@deleteProfilePicture");
+
+			cy.get('[data-testid="photo-album-viewer"]').within(() => {
+				cy.contains("1 / 1").should("be.visible");
+			});
+			cy.get('[data-testid="profile-photo-delete"]').should("not.exist");
+			cy.get('[data-testid="photo-album-close"]').click();
+
+			cy.get('[data-testid="photo-album-tile-0"]').scrollIntoView().should("be.visible");
+			cy.get('[data-testid^="photo-album-tile-"]').should("have.length", 1);
 		});
 	});
 
