@@ -41,6 +41,9 @@ export function ProfilePhotosAlbumModal({ close, photos, initialIndex = 0, title
 	const { deletePhoto } = useUpdateProfilePhotos();
 	const [modalPhotos, setModalPhotos] = useState<Array<TPicture>>(photos);
 	const [isDeleting, setIsDeleting] = useState(false);
+	const handleClose = useCallback(() => {
+		close();
+	}, [close]);
 
 	const albumPhotos = useMemo(() => {
 		return modalPhotos.map(getAlbumPhoto).filter((photo): photo is TPhotoAlbumItem => Boolean(photo));
@@ -61,13 +64,7 @@ export function ProfilePhotosAlbumModal({ close, photos, initialIndex = 0, title
 			const response = await deletePhoto(photo.id, {
 				onSuccess: () => {
 					setModalPhotos((prev) => {
-						const nextPhotos = prev.filter((item) => item.id !== photo.id);
-
-						if (nextPhotos.length === 0) {
-							close();
-						}
-
-						return nextPhotos;
+						return prev.filter((item) => item.id !== photo.id);
 					});
 				},
 			});
@@ -76,7 +73,7 @@ export function ProfilePhotosAlbumModal({ close, photos, initialIndex = 0, title
 
 			return response;
 		},
-		[close, deletePhoto, isDeleting]
+		[deletePhoto, isDeleting]
 	);
 
 	return (
@@ -88,7 +85,7 @@ export function ProfilePhotosAlbumModal({ close, photos, initialIndex = 0, title
 			nextLabel={translate(texts_n.next)}
 			photoLabel={translate(texts_p.photos)}
 			previousLabel={translate(texts_p.previous)}
-			onClose={() => close()}
+			onClose={handleClose}
 			renderToolbarActions={({ currentPhoto }) =>
 				currentPhoto.id && currentPhoto.userId === profile?.user_id ? (
 					<BntButton

@@ -28,6 +28,8 @@ type TDialogItemProps = {
 
 export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSetLoading, title }: TDialogItemProps) {
 	const { t } = useBntTranslate();
+	const isFullscreenDialog = fullScreen && modal.allowFullscreen && !isLoading;
+	const hasTopMenu = modal.hasTopMenu && !fullScreen;
 
 	const handleModalClose = useCallback(
 		(result?: unknown) => {
@@ -71,7 +73,7 @@ export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSe
 		>
 			<BntModalLoader loading={isLoading} />
 			<BntBox className="bnt-dialog-box" sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}>
-				{modal.hasTopMenu && !fullScreen ? (
+				{hasTopMenu ? (
 					<>
 						<BntStack className="p-3" direction="row" justifyContent="space-between" alignItems="center" sx={{ color: "success.dark" }}>
 							<BntTypography variant="h5">{title}</BntTypography>
@@ -86,7 +88,7 @@ export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSe
 					close: handleModalClose,
 					setModalLoading: handleModalLoading,
 				})}
-				{fullScreen && modal.allowFullscreen && (
+				{isFullscreenDialog && (
 					<BntStack justifyContent="center">
 						<BntRoundButton onClick={handleDialogClose}>{t(texts_c.close)}</BntRoundButton>
 					</BntStack>
