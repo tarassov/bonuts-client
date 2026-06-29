@@ -29,7 +29,7 @@ type TDialogItemProps = {
 export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSetLoading, title }: TDialogItemProps) {
 	const { t } = useBntTranslate();
 	const isFullscreenDialog = fullScreen && modal.allowFullscreen && !isLoading;
-	const hasTopMenu = modal.hasTopMenu && !fullScreen;
+	const hasTopMenu = modal.hasTopMenu && !isFullscreenDialog;
 
 	const handleModalClose = useCallback(
 		(result?: unknown) => {
