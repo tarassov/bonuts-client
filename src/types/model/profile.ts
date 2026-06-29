@@ -36,4 +36,5 @@ export type TProfile = TBaseModel & {
 	created_at?: string;
 	tg_code?: string;
 	last_seen_at?: string | null;
+	photos?: Array<TPicture>;
 };

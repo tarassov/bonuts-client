@@ -1,3 +1,4 @@
+import path from "node:path";
 import dns from "dns";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
@@ -16,11 +17,16 @@ export default defineConfig({
 	server: {
 		port: 3002,
 		strictPort: true,
-		// allowedHosts: ["localhost", "127.0.0.1", "interzooecial-jean-subventrally.ngrok-free.dev"],
+	},
+
+	resolve: {
+		alias: {
+			graphology: path.resolve(__dirname, "node_modules/graphology/dist/graphology.cjs.js"),
+		},
 	},
 
 	plugins: [
-		basicSsl(),
+		...(process.env.NODE_ENV !== "production" ? [basicSsl()] : []),
 		tsconfigPaths(),
 		react(),
 		svgr({
@@ -50,7 +56,7 @@ export default defineConfig({
 				],
 			},
 			devOptions: {
-				enabled: true,
+				enabled: false,
 			},
 		}),
 	],

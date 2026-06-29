@@ -5,5 +5,6 @@ export type { TEvent } from "./event";
 export type { TLike } from "./like";
 export type { TPlugin } from "./plugin";
 export type { TProfile } from "./profile";
+export { getProfilePhotos } from "./profile-photo";
 export type { TRequest } from "./request";
 export type { TUser } from "./user";

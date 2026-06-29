@@ -1,5 +1,6 @@
 import { type ContextType, useCallback, useMemo } from "react";
 import { CloseOutlined } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts/texts_c";
@@ -26,8 +27,28 @@ type TDialogItemProps = {
 	title: string;
 };
 
+const DialogHeader = styled(BntStack)(({ theme }) => ({
+	padding: theme.spacing(2.5, 3),
+	color: theme.palette.text.primary,
+}));
+
+const DialogHeaderTitle = styled(BntTypography)(({ theme }) => ({
+	flex: 1,
+	minWidth: 0,
+	fontWeight: 600,
+	lineHeight: 1.3,
+	color: theme.palette.text.primary,
+}));
+
+const DialogHeaderCloseButton = styled(BntIconButton)(({ theme }) => ({
+	marginRight: theme.spacing(-0.5),
+	color: theme.palette.text.secondary,
+}));
+
 export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSetLoading, title }: TDialogItemProps) {
 	const { t } = useBntTranslate();
+	const isFullscreenDialog = fullScreen && modal.allowFullscreen && !isLoading;
+	const hasTopMenu = modal.hasTopMenu && !isFullscreenDialog;
 
 	const handleModalClose = useCallback(
 		(result?: unknown) => {
@@ -71,14 +92,14 @@ export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSe
 		>
 			<BntModalLoader loading={isLoading} />
 			<BntBox className="bnt-dialog-box" sx={isLoading ? { display: "none" } : { overflowX: "hidden" }}>
-				{modal.hasTopMenu && !fullScreen ? (
+				{hasTopMenu ? (
 					<>
-						<BntStack className="p-3" direction="row" justifyContent="space-between" alignItems="center" sx={{ color: "success.dark" }}>
-							<BntTypography variant="h5">{title}</BntTypography>
-							<BntIconButton onClick={handleDialogClose}>
+						<DialogHeader direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+							<DialogHeaderTitle variant="h6">{title}</DialogHeaderTitle>
+							<DialogHeaderCloseButton aria-label={t(texts_c.close)} onClick={handleDialogClose}>
 								<CloseOutlined />
-							</BntIconButton>
-						</BntStack>
+							</DialogHeaderCloseButton>
+						</DialogHeader>
 						<BntDivider />
 					</>
 				) : null}
@@ -86,7 +107,7 @@ export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSe
 					close: handleModalClose,
 					setModalLoading: handleModalLoading,
 				})}
-				{fullScreen && (
+				{isFullscreenDialog && (
 					<BntStack justifyContent="center">
 						<BntRoundButton onClick={handleDialogClose}>{t(texts_c.close)}</BntRoundButton>
 					</BntStack>

@@ -25,6 +25,7 @@ export const DialogValueContext = createContext<
 		hasTopMenu: boolean;
 		title: string;
 		preventCloseOnBackDropClick?: boolean;
+		allowFullscreen?: boolean;
 		isTop?: boolean;
 		dialogPaperSx?: SystemStyleObject<Theme>;
 

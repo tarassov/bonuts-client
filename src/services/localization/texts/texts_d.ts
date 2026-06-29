@@ -9,6 +9,7 @@ export enum texts_d {
 	disabled = "disabled",
 	danger_zone = "danger zone",
 	delete_profile = "delete profile",
+	delete_photo = "delete photo",
 	delete_profile_mock_description = "delete profile mock description",
 	disconnect = "disconnect",
 	donuts_received = "weekly donuts received",
