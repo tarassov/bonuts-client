@@ -1,5 +1,6 @@
-import { createContext, FC, ReactNode } from "react";
-import { ThemeProvider as MuiThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import type { FC, ReactNode } from "react";
+import { createContext } from "react";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 
 import { useCustomTheme } from "hooks/use-custom-theme";
 import { emptyFunction } from "utils/empty-function";
@@ -27,10 +28,8 @@ export const BntThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 	const [theme, changeThemeMethods] = useCustomTheme(themes);
 
 	return (
-		<StyledEngineProvider injectFirst>
-			<CustomThemeContext.Provider value={changeThemeMethods}>
-				<MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
-			</CustomThemeContext.Provider>
-		</StyledEngineProvider>
+		<CustomThemeContext.Provider value={changeThemeMethods}>
+			<MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+		</CustomThemeContext.Provider>
 	);
 };
