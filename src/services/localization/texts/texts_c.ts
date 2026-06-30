@@ -31,4 +31,5 @@ export enum texts_c {
 	create_your_team = "create your team",
 	create_team_mock_description = "create team mock description",
 	create_your_team_to_start_sharing_recognition = "create your team to start sharing recognition in Bonuts",
+	change_avatar = "change avatar",
 }

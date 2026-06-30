@@ -1,3 +1,4 @@
+import path from "node:path";
 import dns from "dns";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
@@ -11,16 +12,22 @@ dns.setDefaultResultOrder("verbatim");
 
 const PWA_CACHE_VERSION = "2026-04-29-1";
 const IMAGE_RUNTIME_CACHE_NAME = `bonuts-images-${PWA_CACHE_VERSION}`;
+const WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES = 3 * 1024 * 1024;
 
 export default defineConfig({
 	server: {
 		port: 3002,
 		strictPort: true,
-		// allowedHosts: ["localhost", "127.0.0.1", "interzooecial-jean-subventrally.ngrok-free.dev"],
+	},
+
+	resolve: {
+		alias: {
+			graphology: path.resolve(__dirname, "node_modules/graphology/dist/graphology.cjs.js"),
+		},
 	},
 
 	plugins: [
-		basicSsl(),
+		...(process.env.NODE_ENV !== "production" ? [basicSsl()] : []),
 		tsconfigPaths(),
 		react(),
 		svgr({
@@ -35,6 +42,7 @@ export default defineConfig({
 				cacheId: `bonuts-${PWA_CACHE_VERSION}`,
 				cleanupOutdatedCaches: true,
 				globPatterns: ["**/*.{js,css,ico,png,svg}"],
+				maximumFileSizeToCacheInBytes: WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES,
 				runtimeCaching: [
 					{
 						urlPattern: ({ request }) => request.destination === "image",
@@ -50,7 +58,7 @@ export default defineConfig({
 				],
 			},
 			devOptions: {
-				enabled: true,
+				enabled: false,
 			},
 		}),
 	],
@@ -60,7 +68,9 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
+					if (id.includes("node_modules/react") || id.includes("node_modules/react-dom")) return "react";
 					if (id.includes("node_modules/lodash")) return "lodash";
+					if (id.includes("node_modules/@emotion") || id.includes("node_modules/@mui")) return "mui";
 					if (id.includes("node_modules/@tanstack")) return "tanstack";
 					if (id.includes("node_modules/i18next")) return "i18next";
 					if (id.includes("node_modules/reagraph")) return "reagraph";
