@@ -10,7 +10,7 @@ import react from "@vitejs/plugin-react";
 
 dns.setDefaultResultOrder("verbatim");
 
-const PWA_CACHE_VERSION = "2026-04-29-1";
+const PWA_CACHE_VERSION = "2026-07-03-1";
 const IMAGE_RUNTIME_CACHE_NAME = `bonuts-images-${PWA_CACHE_VERSION}`;
 const WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES = 3 * 1024 * 1024;
 
@@ -41,7 +41,7 @@ export default defineConfig({
 			workbox: {
 				cacheId: `bonuts-${PWA_CACHE_VERSION}`,
 				cleanupOutdatedCaches: true,
-				globPatterns: ["**/*.{js,css,ico,png,svg}"],
+				globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
 				maximumFileSizeToCacheInBytes: WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES,
 				runtimeCaching: [
 					{
