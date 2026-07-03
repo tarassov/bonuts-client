@@ -10,7 +10,14 @@ import react from "@vitejs/plugin-react";
 
 dns.setDefaultResultOrder("verbatim");
 
-const PWA_CACHE_VERSION = "2026-07-03-1";
+const getBuildVersion = () => {
+	const timestamp = new Date().toISOString().replace(/\D/g, "").slice(0, 14);
+	const appEnvironment = process.env.VITE_APP_ENV ?? process.env.NODE_ENV ?? "development";
+
+	return process.env.VITE_BUILD_VERSION ?? `${appEnvironment}-${timestamp}`;
+};
+
+const PWA_CACHE_VERSION = getBuildVersion();
 const IMAGE_RUNTIME_CACHE_NAME = `bonuts-images-${PWA_CACHE_VERSION}`;
 const WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES = 3 * 1024 * 1024;
 
