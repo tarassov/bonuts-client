@@ -38,7 +38,6 @@ export default defineConfig({
 		tsconfigPaths(),
 		react(),
 		svgr({
-			exportAsDefault: true,
 			svgrOptions: { icon: true },
 		}),
 		VitePWA({
@@ -75,13 +74,15 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
-					if (id.includes("node_modules/react") || id.includes("node_modules/react-dom")) return "react";
-					if (id.includes("node_modules/lodash")) return "lodash";
-					if (id.includes("node_modules/@emotion") || id.includes("node_modules/@mui")) return "mui";
-					if (id.includes("node_modules/@tanstack")) return "tanstack";
-					if (id.includes("node_modules/i18next")) return "i18next";
-					if (id.includes("node_modules/reagraph")) return "reagraph";
-					if (id.includes("node_modules")) return "vendor";
+					if (id.includes("/node_modules/lodash/")) return "lodash";
+					if (id.includes("/node_modules/ramda/")) return "ramda";
+					if (id.includes("/node_modules/notistack/")) return "notistack";
+					if (id.includes("/node_modules/@tanstack/")) return "tanstack";
+					if (id.includes("/node_modules/i18next/")) return "i18next";
+					if (id.includes("/node_modules/reagraph/")) return "reagraph";
+					if (id.includes("/node_modules/@vkid/")) return "vkid";
+					if (id.includes("/node_modules/spacetime/")) return "spacetime";
+					if (id.includes("/node_modules/")) return "vendor";
 				},
 			},
 		},

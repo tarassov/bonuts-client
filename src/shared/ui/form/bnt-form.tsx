@@ -4,12 +4,10 @@ import { FormContainer } from "react-hook-form-mui";
 import _ from "lodash";
 
 import { present } from "@/shared/lib/type-guards";
-import { useDateLocale } from "@/shared/ui/locale";
+import { DateFnsProvider, useDateLocale } from "@/shared/ui/locale";
 
 import { BntFormBody } from "./form-body";
 import { TFormFieldSourceItem, TFormProps, TFormValue } from "./types/bnt-form";
-import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
-
 export function BntForm<T extends Record<string, any>>({
 	fields,
 	groups,
