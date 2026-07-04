@@ -6,7 +6,7 @@ import _ from "lodash";
 import { Modules } from "constants/modules";
 
 import { useLoader } from "@/shared/ui/loader";
-import { useDateLocale } from "@/shared/ui/locale";
+import { DateFnsProvider, useDateLocale } from "@/shared/ui/locale";
 
 import { useProfileFormFields } from "../model/use-profile-form-fields";
 import type { TUpdateProfileValues } from "../model/use-update-profile";
@@ -14,7 +14,6 @@ import type { TUpdateProfileValues } from "../model/use-update-profile";
 import { ProfileFormLayout } from "./profile-form-layout";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 import type { TProfile } from "@/types/model";
 
 interface IProfileFormProps {
