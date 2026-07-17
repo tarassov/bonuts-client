@@ -133,6 +133,7 @@ export const kkLocale = {
 		[texts_l.recognition_spotlight]: "Марапат сахнасы",
 		[texts_n.notification]: "Хабарлама",
 		[texts_n.no_data_yet]: "Әзірге дерек жоқ",
+		[texts_n.no_colleagues_found]: "Әріптестер табылмады",
 		[texts_n.no_photos_yet]: "Әзірге фото жоқ",
 		[texts_n.no_rank_yet]: "Әзірге орын жоқ",
 		[texts_n.no_weekly_leaders_yet]: "Бұл аптада әлі көшбасшылар жоқ",
@@ -140,6 +141,9 @@ export const kkLocale = {
 		[texts_n.next_status]: "Келесі мәртебе",
 		[texts_w.week_from_to_caption]: "{{from}}-дан {{to}}-ға дейінгі апта",
 		[texts_w.week_from_to_tooltip]: "Ақпарат {{from}}-дан {{to}}-ға дейінгі апта үшін көрсетілген",
+		[texts_r.recognition_sent]: "Алғысыңыз жіберілді. Осындай ризашылық команданы күшейтеді.",
+		[texts_s.search_colleagues]: "Әріптесті іздеу",
+		[texts_s.sending_to]: "Жібереміз",
 		[texts_i.in_top_most_active_percent]: "{{percent}}% ең белсенділер қатарында",
 		[texts_i.into_top_most_active_percent]: "{{percent}}% ең белсенділер қатарына кіруге аз қалды",
 		[texts_p.poka_you_were_not_very_active]: "Әзірге белсенділігіңіз жоғары емес",
@@ -230,7 +234,7 @@ export const kkLocale = {
 		"Go to shop": "В магазин",
 		"Go to": "Перейти",
 		[texts_g.go_to]: "өту",
-		[texts_g.give_donuts]: "пончик сыйлау",
+		[texts_g.give_donuts]: "Пончик сыйлау",
 		Goods: "Товары",
 
 		// H
@@ -428,7 +432,6 @@ export const kkLocale = {
 		Surname: "Фамилия",
 		"Submit values": "Отправить",
 		Submit: "Подтвердить",
-
 		// T
 		Tenant: "Команда",
 		"Team settings": "Настройки команды",

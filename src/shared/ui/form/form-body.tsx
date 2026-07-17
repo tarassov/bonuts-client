@@ -16,7 +16,7 @@ export const BntFormBody: FC<
 		onDiscard: VoidFunction;
 		error?: string;
 	}
-> = ({ fields, groups, groupGap, hasInitial, initialValues, formId, submitCaption, children, values, onDiscard, error, keepValuesOnSubmit = true }) => {
+> = ({ fields, groups, groupGap, hasInitial, initialValues, formId, submitCaption, submitButtonVariant, children, values, onDiscard, error, keepValuesOnSubmit = true }) => {
 	const { reset } = useFormContext();
 	const formState = useFormState();
 	const { isDirty, isSubmitSuccessful } = formState;
@@ -50,7 +50,7 @@ export const BntFormBody: FC<
 					</>
 				</BntFormContextProvider>
 			</Grid>
-			<BntFormSubmit visible={!!(isDirty || error)} onCancelClick={onCancelClick} submitCaption={submitCaption} />
+			<BntFormSubmit visible={!!(isDirty || error)} onCancelClick={onCancelClick} submitCaption={submitCaption} submitButtonVariant={submitButtonVariant} />
 		</BntBox>
 	);
 };
