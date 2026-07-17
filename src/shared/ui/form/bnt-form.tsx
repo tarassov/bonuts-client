@@ -16,6 +16,7 @@ export function BntForm<T extends Record<string, any>>({
 	initialValues,
 	formId,
 	submitCaption,
+	submitButtonVariant,
 	onSubmit,
 	children,
 	keepValuesOnSubmit,
@@ -90,6 +91,7 @@ export function BntForm<T extends Record<string, any>>({
 						keepValuesOnSubmit={keepValuesOnSubmit}
 						initialValues={initials}
 						submitCaption={submitCaption}
+						submitButtonVariant={submitButtonVariant}
 						onDiscard={onDiscard}
 						error={error}
 					>

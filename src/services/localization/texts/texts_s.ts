@@ -1,6 +1,7 @@
 export enum texts_s {
 	save = "save",
 	search = "search",
+	search_colleagues = "search colleagues",
 	selected = "selected",
 	settings = "settings",
 	status = "status",
@@ -21,6 +22,7 @@ export enum texts_s {
 	send = "send",
 	send_invitation = "send invitation",
 	send_invitation_step_title = "send invitation step title",
+	sending_to = "sending to",
 	search_by_name_email_or_position = "search by name, email or position",
 	sign_up = "sign_up",
 	soon_will_be_back = "soon_will_be_back",

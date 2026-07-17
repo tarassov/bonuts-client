@@ -3,6 +3,7 @@ export enum texts_n {
 	name = "name",
 	no_data_yet = "no data yet",
 	no_name = "no name",
+	no_colleagues_found = "no colleagues found",
 	no_invitations_yet = "no invitations yet",
 	no_active_invitations_yet = "no active invitations yet",
 	no_rank_yet = "no rank yet",

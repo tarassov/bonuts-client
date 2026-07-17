@@ -96,6 +96,11 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 
 export type RegisterFunc = (name: string, options?: { required: boolean }) => UseFormRegisterReturn<any>;
 
+export enum SubmitButtonVariant {
+	default = "default",
+	brandGradient = "brandGradient",
+}
+
 export type TFormProps<T extends Record<string, any>> = {
 	hasInitial?: boolean;
 	initialValues?: T;
@@ -104,6 +109,7 @@ export type TFormProps<T extends Record<string, any>> = {
 	groups?: Array<TFieldGroup>;
 	groupGap?: number;
 	submitCaption?: string;
+	submitButtonVariant?: SubmitButtonVariant;
 	onLoad?: () => void;
 	onSubmit?: (values: T, onError?: (message?: string) => void) => Promise<{ data?: any; error?: any } | undefined> | undefined | void;
 	onValidate?: (values: Array<Record<string, any>>) => boolean;

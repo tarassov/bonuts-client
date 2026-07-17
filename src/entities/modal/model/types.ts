@@ -14,6 +14,7 @@ export type TModalConfig = TTelegramModalConfig & {
 	ConfirmationModal: { text: string; onSubmit: VoidFunction; title?: string };
 	AdminDepositModal: { title?: string; id: number };
 	TransferModal: { title?: string; id: number };
+	GiveDonut: { title?: string };
 	DetailedEvent: { post: TPost };
 };
 
