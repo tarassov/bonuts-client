@@ -9,7 +9,7 @@ import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { CircleChip } from "@/entities/circle";
-import { ProfileStatusChips } from "@/entities/profile";
+import { ProfilePhotos, ProfileStatusChips } from "@/entities/profile";
 
 import { EmployeeActions } from "@/features/employee/actions";
 import { EmployeeEdit } from "@/features/employee/edit";
@@ -120,6 +120,9 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 								<EmployeePreviewBio>
 									<BntTypography isPreformatted>{employee?.bio}</BntTypography>
 								</EmployeePreviewBio>
+							</Grid>
+							<Grid item xs={12} order={{ xs: 4, md: 4 }}>
+								<ProfilePhotos profile={employee} />
 							</Grid>
 						</Grid>
 					)}

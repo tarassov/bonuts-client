@@ -1,6 +1,8 @@
 import { GetProfileApiResponse, GetProfilesApiResponse } from "../api/bonuts-api";
 
-import { TProfile } from "@/types/model";
+import type { TProfile } from "@/types/model";
+import { getProfilePhotos } from "@/types/model";
+import type { TProfilePhotoSource } from "@/types/model/profile-photo";
 
 export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 	if (!data) return undefined;
@@ -27,6 +29,7 @@ export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 		distrib_account: data.attributes?.distrib_account,
 		created_at: data.attributes?.created_at,
 		tg_code: data.attributes?.tg_code || undefined,
+		photos: getProfilePhotos(data.attributes as TProfilePhotoSource | undefined),
 	};
 
 	return res;
@@ -51,6 +54,7 @@ export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TPro
 			contact: attributes?.contact || undefined,
 			locale: attributes?.locale || undefined,
 			tg_code: attributes?.tg_code || undefined,
+			photos: getProfilePhotos(attributes as TProfilePhotoSource),
 			id: Number(id),
 		};
 	});

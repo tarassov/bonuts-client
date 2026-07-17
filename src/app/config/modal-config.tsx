@@ -13,6 +13,7 @@ import { texts_c, texts_g } from "services/localization/texts";
 import type { TDialogConfig } from "@/shared/ui/dialog";
 
 import type { TModalConfig } from "@/entities/modal";
+import { ProfilePhotosAlbumModal } from "@/entities/profile";
 
 import { ModalEmployeeView } from "@/features/profile/modal";
 import { telegramModalConfig } from "@/features/profile/telegram";
@@ -31,6 +32,18 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 			renderItem: (modal) => <ModalImage url={modal.data.url} />,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			hasTopMenu: true,
+		},
+		ProfilePhotosAlbumModal: {
+			renderItem: (modal, props) => <ProfilePhotosAlbumModal photos={modal.data.photos} initialIndex={modal.data.initialIndex} title={modal.data.title} {...props} />,
+			hasTopMenu: false,
+			allowFullscreen: true,
+			dialogPaperSx: {
+				borderRadius: { xs: 0, sm: "24px" },
+				width: { xs: "100%", sm: "min(960px, calc(100% - 48px))" },
+				maxWidth: "960px",
+				m: { xs: 0, sm: 3 },
+				backgroundImage: "none",
+			},
 		},
 		CreateDonut: {
 			renderItem: (_, props) => <ModalCreateDonut {...props} />,

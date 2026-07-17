@@ -32,6 +32,7 @@ type TModal = {
 	title: string;
 	path?: string | null;
 	dialogPaperSx?: TDialog<any>["dialogPaperSx"];
+	allowFullscreen?: boolean;
 };
 
 type ModalState = Record<string, TModal>;
@@ -87,6 +88,7 @@ export function BntDialogProvider<T extends Record<string, any>>({ children, con
 						hasTopMenu: config.items[name]?.hasTopMenu || false,
 						isTop: config.items[name]?.isTop || false,
 						dialogPaperSx: config.items[name]?.dialogPaperSx,
+						allowFullscreen: config.items[name]?.allowFullscreen || false,
 						preventCloseOnBackDropClick: config.items[name]?.preventCloseOnBackDropClick || false,
 					},
 				};

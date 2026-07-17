@@ -1,3 +1,4 @@
+import path from "node:path";
 import dns from "dns";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
@@ -9,22 +10,34 @@ import react from "@vitejs/plugin-react";
 
 dns.setDefaultResultOrder("verbatim");
 
-const PWA_CACHE_VERSION = "2026-04-29-1";
+const getBuildVersion = () => {
+	const timestamp = new Date().toISOString().replace(/\D/g, "").slice(0, 14);
+	const appEnvironment = process.env.VITE_APP_ENV ?? process.env.NODE_ENV ?? "development";
+
+	return process.env.VITE_BUILD_VERSION ?? `${appEnvironment}-${timestamp}`;
+};
+
+const PWA_CACHE_VERSION = getBuildVersion();
 const IMAGE_RUNTIME_CACHE_NAME = `bonuts-images-${PWA_CACHE_VERSION}`;
+const WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES = 3 * 1024 * 1024;
 
 export default defineConfig({
 	server: {
 		port: 3002,
 		strictPort: true,
-		// allowedHosts: ["localhost", "127.0.0.1", "interzooecial-jean-subventrally.ngrok-free.dev"],
+	},
+
+	resolve: {
+		alias: {
+			graphology: path.resolve(__dirname, "node_modules/graphology/dist/graphology.cjs.js"),
+		},
 	},
 
 	plugins: [
-		basicSsl(),
+		...(process.env.NODE_ENV !== "production" ? [basicSsl()] : []),
 		tsconfigPaths(),
 		react(),
 		svgr({
-			exportAsDefault: true,
 			svgrOptions: { icon: true },
 		}),
 		VitePWA({
@@ -34,7 +47,8 @@ export default defineConfig({
 			workbox: {
 				cacheId: `bonuts-${PWA_CACHE_VERSION}`,
 				cleanupOutdatedCaches: true,
-				globPatterns: ["**/*.{js,css,ico,png,svg}"],
+				globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
+				maximumFileSizeToCacheInBytes: WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES,
 				runtimeCaching: [
 					{
 						urlPattern: ({ request }) => request.destination === "image",
@@ -50,7 +64,7 @@ export default defineConfig({
 				],
 			},
 			devOptions: {
-				enabled: true,
+				enabled: false,
 			},
 		}),
 	],
@@ -60,11 +74,15 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
-					if (id.includes("node_modules/lodash")) return "lodash";
-					if (id.includes("node_modules/@tanstack")) return "tanstack";
-					if (id.includes("node_modules/i18next")) return "i18next";
-					if (id.includes("node_modules/reagraph")) return "reagraph";
-					if (id.includes("node_modules")) return "vendor";
+					if (id.includes("/node_modules/lodash/")) return "lodash";
+					if (id.includes("/node_modules/ramda/")) return "ramda";
+					if (id.includes("/node_modules/notistack/")) return "notistack";
+					if (id.includes("/node_modules/@tanstack/")) return "tanstack";
+					if (id.includes("/node_modules/i18next/")) return "i18next";
+					if (id.includes("/node_modules/reagraph/")) return "reagraph";
+					if (id.includes("/node_modules/@vkid/")) return "vkid";
+					if (id.includes("/node_modules/spacetime/")) return "spacetime";
+					if (id.includes("/node_modules/")) return "vendor";
 				},
 			},
 		},

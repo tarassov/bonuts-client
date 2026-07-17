@@ -1,0 +1,153 @@
+.root {
+	display: grid;
+	gap: 20px;
+	padding: 20px;
+	background:
+		radial-gradient(circle at top, color-mix(in srgb, var(--mui-palette-secondary-light) 18%, transparent) 0%, transparent 48%),
+		var(--mui-palette-background-paper);
+}
+
+.toolbar {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.toolbarActions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.meta {
+	display: grid;
+	gap: 6px;
+	min-width: 0;
+}
+
+.title {
+	word-break: break-word;
+}
+
+.stage {
+	position: relative;
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 12px;
+}
+
+.imageFrame {
+	position: relative;
+	display: grid;
+	place-items: center;
+	min-height: 280px;
+	padding: 12px;
+	border-radius: 24px;
+	background: color-mix(in srgb, var(--mui-palette-background-default) 78%, var(--mui-palette-secondary-light) 22%);
+	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mui-palette-divider) 78%, transparent);
+}
+
+.image {
+	display: block;
+	width: 100%;
+	max-height: min(68vh, 760px);
+	object-fit: contain;
+	border-radius: 18px;
+}
+
+.navButton {
+	align-self: center;
+	background: color-mix(in srgb, var(--mui-palette-background-paper) 86%, var(--mui-palette-secondary-light) 14%) !important;
+	box-shadow: 0 10px 24px color-mix(in srgb, var(--mui-palette-common-black) 16%, transparent);
+}
+
+.thumbnailRail {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: minmax(72px, 88px);
+	gap: 10px;
+	overflow-x: auto;
+	padding-bottom: 4px;
+}
+
+.thumbnailButton {
+	padding: 0;
+	border: 0;
+	border-radius: 16px;
+	overflow: hidden;
+	background: transparent;
+	opacity: 0.68;
+	cursor: pointer;
+	box-shadow: inset 0 0 0 1px transparent;
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.thumbnailButton:hover {
+	opacity: 0.92;
+	transform: translateY(-1px);
+}
+
+.thumbnailButton:focus-visible {
+	outline: 2px solid var(--mui-palette-secondary-main);
+	outline-offset: 3px;
+}
+
+.thumbnailButtonActive {
+	opacity: 1;
+	box-shadow: inset 0 0 0 2px var(--mui-palette-secondary-main);
+}
+
+.thumbnailImage {
+	display: block;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+}
+
+@media (max-width: 599px) {
+	.root {
+		gap: 16px;
+		padding: 16px;
+	}
+
+	.toolbarActions {
+		width: 100%;
+	}
+
+	.stage {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.imageFrame {
+		order: 1;
+		min-height: 240px;
+		padding: 8px;
+		border-radius: 20px;
+	}
+
+	.navButton {
+		position: absolute;
+		top: 50%;
+		z-index: 1;
+		transform: translateY(-50%);
+	}
+
+	.stage > .navButton:first-child {
+		left: 12px;
+	}
+
+	.stage > .navButton:last-child {
+		right: 12px;
+	}
+
+	.thumbnailRail {
+		grid-auto-columns: minmax(64px, 72px);
+	}
+}

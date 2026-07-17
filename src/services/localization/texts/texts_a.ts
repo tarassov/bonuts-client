@@ -21,4 +21,5 @@ export enum texts_a {
 	add_colleague_to_team_invitation_description = "add colleague to team invitation description",
 	admin = "admin",
 	about_myself = "About myself",
+	add_photo = "add photo",
 }

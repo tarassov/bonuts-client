@@ -1,10 +1,12 @@
 import { type TTelegramModalConfig, type TTelegramModalResponse } from "@/entities/telegram/@x/Modal";
 
+import type { TPicture } from "@/types/model/picture";
 import { TPost } from "@/types/model/post";
 
 export type TModalConfig = TTelegramModalConfig & {
 	SimpleTextModal: string;
 	ImageModal: { url: string; title?: string };
+	ProfilePhotosAlbumModal: { photos: Array<TPicture>; initialIndex?: number; title?: string };
 	CreateDonut: { title?: string };
 	ViewEmployee: { id: number; title?: string };
 	CreateCircle: { title?: string };

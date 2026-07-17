@@ -10,13 +10,13 @@ import { useNotification } from "@/shared/ui/notification";
 
 import { profilesApi } from "@/entities/profile";
 
+import { DateFnsProvider } from "./date-fns-provider";
 import { getBrowserLocale, normalizeLocale } from "./LocaleHelpers";
 import { DateLocaleContext, LocaleContext } from "./locale-context";
 import { PickerLocaleContext } from "./picker-locale-context";
 import enLocale from "date-fns/locale/en-GB";
 import kkLocale from "date-fns/locale/kk";
 import ruLocale from "date-fns/locale/ru";
-import { DateFnsProvider } from "react-hook-form-mui/dist/date-fns";
 
 const LOCALE_STORAGE_KEY = "locale";
 

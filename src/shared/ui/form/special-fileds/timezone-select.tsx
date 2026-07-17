@@ -1,17 +1,25 @@
 import { forwardRef } from "react";
-import { AutocompleteElement, SelectElementProps } from "react-hook-form-mui";
+import type { AutocompleteElementProps } from "react-hook-form-mui";
+import { AutocompleteElement } from "react-hook-form-mui";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
+import type { ITimezoneOption } from "@/shared/ui/types";
+
 import { useTimezone } from "../hooks/use-timezone";
 
-export type TimezoneSelectProps = SelectElementProps<any, any> & {
+type TTimezoneAutocompleteProps = AutocompleteElementProps<ITimezoneOption, false, false, false>;
+
+export type TimezoneSelectProps = Omit<TTimezoneAutocompleteProps, "label" | "options"> & {
 	stringLabel?: string;
 	name: string;
 	className?: string;
+	placeholder?: string;
+	fullWidth?: boolean;
+	value?: ITimezoneOption | string;
 };
-export const TimezoneSelect = forwardRef<HTMLInputElement, TimezoneSelectProps>((props, ref) => {
-	const { stringLabel, placeholder, className, ...rest } = props;
+export const TimezoneSelect = forwardRef<HTMLDivElement, TimezoneSelectProps>((props, ref) => {
+	const { stringLabel, placeholder, className, fullWidth, ...rest } = props;
 	const { options, parseTimezone } = useTimezone();
 	const { translate } = useBntTranslate();
 
@@ -19,7 +27,8 @@ export const TimezoneSelect = forwardRef<HTMLInputElement, TimezoneSelectProps>(
 		<AutocompleteElement
 			autocompleteProps={{
 				isOptionEqualToValue: (option, value) => option.value === value.value,
-				value: props?.value ? parseTimezone(props?.value as any) : undefined,
+				fullWidth,
+				value: props.value ? parseTimezone(props.value) || null : undefined,
 				className,
 			}}
 			{...rest}
