@@ -234,7 +234,7 @@ export const kkLocale = {
 		"Go to shop": "В магазин",
 		"Go to": "Перейти",
 		[texts_g.go_to]: "өту",
-		[texts_g.give_donuts]: "пончик сыйлау",
+		[texts_g.give_donuts]: "Пончик сыйлау",
 		Goods: "Товары",
 
 		// H
@@ -432,7 +432,6 @@ export const kkLocale = {
 		Surname: "Фамилия",
 		"Submit values": "Отправить",
 		Submit: "Подтвердить",
-
 		// T
 		Tenant: "Команда",
 		"Team settings": "Настройки команды",

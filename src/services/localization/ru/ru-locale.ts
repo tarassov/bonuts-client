@@ -306,7 +306,7 @@ export const ruLocale = {
 		"Go to shop": "В магазин",
 		"Go to": "Перейти",
 		[texts_g.go_to]: "перейти",
-		[texts_g.give_donuts]: "подарить пончики",
+		[texts_g.give_donuts]: "Подарить пончики",
 		Goods: "Товары",
 
 		// H
@@ -516,7 +516,6 @@ export const ruLocale = {
 		Surname: "Фамилия",
 		"Submit values": "Отправить",
 		Submit: "Подтвердить",
-
 		// T
 		Tenant: "Команда",
 		"Team settings": "Настройки команды",

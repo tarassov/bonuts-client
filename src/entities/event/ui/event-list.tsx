@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { InView } from "react-intersection-observer";
-import { CakeOutlined, LightbulbCircleOutlined } from "@mui/icons-material";
-import { alpha, Button, CircularProgress, Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
+import { LightbulbCircleOutlined, RedeemOutlined } from "@mui/icons-material";
+import { Box, Button, CircularProgress, Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
 
 import classnames from "classnames";
 
@@ -79,15 +79,71 @@ export function EventList() {
 				<Button
 					variant="contained"
 					onClick={handleGiveDonutClick}
-					startIcon={<CakeOutlined />}
+					startIcon={
+						<Box
+							sx={{
+								width: 34,
+								height: 34,
+								borderRadius: "50%",
+								backgroundColor: "rgba(255,255,255,.22)",
+								display: "inline-flex",
+								alignItems: "center",
+								justifyContent: "center",
+								flexShrink: 0,
+							}}
+						>
+							<RedeemOutlined sx={{ fontSize: 21 }} />
+						</Box>
+					}
 					sx={{
 						flexShrink: 0,
 						alignSelf: { xs: "stretch", sm: "center" },
+						minWidth: 0,
+						height: { xs: 50, sm: 50 },
+						padding: "0 24px 0 15px",
+						borderRadius: "14px",
+						border: "none",
+						display: "inline-flex",
+						alignItems: "center",
+						gap: "11px",
+						fontFamily: "Roboto",
+						fontSize: 16,
 						fontWeight: 700,
-						background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.warning.light} 100%)`,
-						boxShadow: isDarkTheme ? "0 10px 22px rgba(0,0,0,0.28)" : `0 10px 22px ${alpha(theme.palette.primary.main, 0.28)}`,
+						textTransform: "none",
+						color: "#fff",
+						background: "linear-gradient(90deg, #ff8a3d 0%, #e6ad57 100%)",
+						boxShadow: "0 12px 24px rgba(255,138,61,.28)",
+						transition: "transform 200ms ease, box-shadow 200ms ease, filter 200ms ease",
+						"& .MuiButton-startIcon": {
+							margin: 0,
+						},
 						"&:hover": {
-							boxShadow: isDarkTheme ? "0 12px 26px rgba(0,0,0,0.34)" : `0 12px 26px ${alpha(theme.palette.primary.main, 0.34)}`,
+							background: "linear-gradient(90deg, #ff8a3d 0%, #e6ad57 100%)",
+							transform: "translateY(-2px)",
+							boxShadow: "0 16px 34px rgba(255,138,61,.44)",
+							filter: "brightness(1.05)",
+						},
+						"&:active": {
+							transform: "translateY(0)",
+							boxShadow: "0 10px 20px rgba(255,138,61,.24)",
+							filter: "brightness(1)",
+						},
+						"&.Mui-disabled": {
+							background: isDarkTheme ? theme.palette.grey[700] : theme.palette.grey[400],
+							boxShadow: "none",
+							color: "#fff",
+							cursor: "default",
+						},
+						"@media (prefers-reduced-motion: reduce)": {
+							transition: "box-shadow 200ms ease",
+							"&:hover": {
+								transform: "none",
+								filter: "none",
+							},
+							"&:active": {
+								transform: "none",
+								filter: "none",
+							},
 						},
 					}}
 				>
