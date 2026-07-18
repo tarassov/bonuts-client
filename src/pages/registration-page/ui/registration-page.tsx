@@ -7,7 +7,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useRegisterValidation } from "hooks/validation/use-register-validation";
 import { texts_e, texts_f, texts_l, texts_p, texts_s } from "services/localization/texts";
 
-import { getResponseErrorMessage } from "@/shared/lib/notification";
+import { useResponseErrorMessage } from "@/shared/lib/notification";
 import { BonutsFullIcon } from "@/shared/ui/icons";
 import { useLoader } from "@/shared/ui/loader";
 import { BntTypography } from "@/shared/ui/typography";
@@ -35,9 +35,10 @@ export const RegistrationPage: FC = () => {
 		resolver: yupResolver(formSchema),
 	});
 	const { isPostingRegister, register, registerError } = useSignUp();
-	const registerErrorText = getResponseErrorMessage(registerError);
 
 	const { translate } = useBntTranslate();
+	const { getLocalizedResponseErrorMessage } = useResponseErrorMessage();
+	const registerErrorText = getLocalizedResponseErrorMessage(registerError);
 
 	const onSubmit = async (data: RegisterFields) => {
 		const { passwordRepeat, ...args } = data;

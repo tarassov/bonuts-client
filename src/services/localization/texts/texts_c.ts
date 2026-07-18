@@ -23,6 +23,7 @@ export enum texts_c {
 	choose_timezone = "choose timezone",
 	change_email = "change email",
 	confirmation_email_was_sent_to = "confirmation email was sent to",
+	connection_error = "connection error",
 	connect_to_telegram = "connect to telegram",
 	connect = "connect",
 	connected = "connected",

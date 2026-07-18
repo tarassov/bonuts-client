@@ -79,6 +79,7 @@ export const enLocale = {
 		[texts_a.all_invitations]: "All invitations",
 		[texts_a.add_colleague_to_team_invitation_description]: "Add a colleague to your team by email. They can join Bonuts and start sharing recognition with everyone.",
 		[texts_c.change_email]: "Change email",
+		[texts_c.connection_error]: "Connection error. Check your internet connection and try again.",
 		[texts_c.copy_invitation_link]: "Copy invitation link",
 		[texts_c.create_team_mock_description]: "If you do not have a team yet, you can send a request to create one and become its administrator.",
 		[texts_d.declined]: "Declined",

@@ -2,6 +2,10 @@ import { present } from "@/shared/lib/type-guards";
 
 import type { SerializedError } from "@reduxjs/toolkit";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { texts_c } from "@/services/localization/texts";
+
+const FETCH_ERROR_STATUS = "FETCH_ERROR";
+const FAILED_TO_FETCH_MESSAGE = "Failed to fetch";
 
 const isFetchBaseQueryError = (error: unknown): error is FetchBaseQueryError => {
 	return typeof error === "object" && error !== null && ("status" in error || "data" in error);
@@ -13,6 +17,10 @@ const hasFetchBaseQueryErrorMessage = (error: FetchBaseQueryError): error is Fet
 
 const isSerializedError = (error: unknown): error is SerializedError => {
 	return typeof error === "object" && error !== null && "message" in error;
+};
+
+const isConnectionFetchError = (error: FetchBaseQueryError) => {
+	return error.status === FETCH_ERROR_STATUS || (hasFetchBaseQueryErrorMessage(error) && error.error.includes(FAILED_TO_FETCH_MESSAGE));
 };
 
 const getStringValue = (value: unknown) => {
@@ -63,6 +71,10 @@ const getObjectErrorMessage = (value: unknown) => {
 
 export const getResponseErrorMessage = (error: unknown) => {
 	if (isFetchBaseQueryError(error)) {
+		if (isConnectionFetchError(error)) {
+			return texts_c.connection_error;
+		}
+
 		const dataMessage = getObjectErrorMessage(error.data);
 
 		if (dataMessage) {

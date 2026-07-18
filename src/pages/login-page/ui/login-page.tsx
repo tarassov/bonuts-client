@@ -12,7 +12,7 @@ import { useProjectNavigate } from "hooks/use-project-navigate";
 import { useLoginValidation } from "hooks/validation/use-login-validation";
 import { texts_l, texts_s, texts_v } from "services/localization/texts";
 
-import { getResponseErrorMessage } from "@/shared/lib/notification";
+import { useResponseErrorMessage } from "@/shared/lib/notification";
 import { present } from "@/shared/lib/type-guards";
 import { useAuth } from "@/shared/model/auth";
 import { AuthFormPanel, AuthHero } from "@/shared/ui/auth";
@@ -40,6 +40,7 @@ const getStringErrorMessage = (message: unknown): string | undefined => {
 export const LoginPage: FC = () => {
 	const { signIn, demoSignIn, isLogging, authError, checkAuth } = useAuth();
 	const { translate } = useBntTranslate();
+	const { getLocalizedResponseErrorMessage } = useResponseErrorMessage();
 	const { formSchema } = useLoginValidation();
 	const { sendConfirmEmail } = useSignUp();
 	const { navigateToRestorePassword, navigateToSignUp } = useProjectNavigate();
@@ -75,7 +76,7 @@ export const LoginPage: FC = () => {
 	const passwordValue = watch("password") || "";
 	const isFormDisabled = !emailValue.trim() || !passwordValue || isLogging;
 	const passwordValidationError = getStringErrorMessage(errors.password?.message);
-	const responseErrorMessage = getResponseErrorMessage(authError) ?? undefined;
+	const responseErrorMessage = getLocalizedResponseErrorMessage(authError) ?? undefined;
 	const passwordErrorText = passwordValidationError ?? (!errors.password ? responseErrorMessage : undefined);
 
 	const onSubmit: SubmitHandler<TLoginFields> = async (values) => {
