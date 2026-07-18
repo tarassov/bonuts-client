@@ -91,6 +91,7 @@ export const kkLocale = {
 		[texts_c.comment]: "пікір",
 		[texts_c.comments_written]: "Пікірлер жазылды",
 		[texts_c.confirmation_email_was_sent_to]: "Растау хаты электрондық поштаңызға жіберілді",
+		[texts_c.connection_error]: "Қосылу қатесі. Интернет байланысын тексеріп, қайтадан көріңіз.",
 		"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
 		"Confirm your email first": "Для продолжения подтвердите адрес электронной почты ",
 		"Connect to space": "Присоединиться к пространству",

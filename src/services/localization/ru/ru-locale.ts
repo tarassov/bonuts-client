@@ -91,6 +91,7 @@ export const ruLocale = {
 		[texts_c.comment]: "комментарий",
 		[texts_c.comments_written]: "Комментариев написано",
 		[texts_c.confirmation_email_was_sent_to]: "Письмо для подтверждения было отправлено на ваш электронный адрес",
+		[texts_c.connection_error]: "Ошибка подключения. Проверьте интернет и попробуйте ещё раз.",
 		"Confirmation email was sent to": "Подтвердите адрес электронной почты ",
 		"Confirm your email first": "Для продолжения подтвердите адрес электронной почты ",
 		"Connect to space": "Присоединиться к пространству",
