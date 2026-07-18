@@ -23,7 +23,7 @@ const donut: TDonut = {
 };
 
 const meta = {
-	title: "Base Elements/Donut Card",
+	title: "Entities/Donut/Donut Card",
 	component: DonutCardStyled,
 	args: {
 		donut,

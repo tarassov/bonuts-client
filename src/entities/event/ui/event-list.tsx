@@ -48,7 +48,7 @@ export function EventList() {
 
 	const handleGiveDonutClick = () => {
 		GiveDonut.show({
-			title: translate(texts_g.give_donuts, { capitalize: true }),
+			title: translate(texts_g.give_donut_delivery_title, { capitalize: true }),
 		});
 	};
 

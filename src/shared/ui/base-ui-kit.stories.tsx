@@ -6,7 +6,7 @@ import { BntCard, BntCardActions, BntCardContent, GradientCard } from "@/shared/
 import { BntTypography } from "@/shared/ui/typography";
 
 const meta = {
-	title: "Base UI Kit/Overview",
+	title: "Shared/UI Kit/Overview",
 	parameters: {
 		layout: "padded",
 	},

@@ -142,7 +142,7 @@ export const kkLocale = {
 		[texts_n.next_status]: "Келесі мәртебе",
 		[texts_w.week_from_to_caption]: "{{from}}-дан {{to}}-ға дейінгі апта",
 		[texts_w.week_from_to_tooltip]: "Ақпарат {{from}}-дан {{to}}-ға дейінгі апта үшін көрсетілген",
-		[texts_r.recognition_sent]: "Алғысыңыз жіберілді. Осындай ризашылық команданы күшейтеді.",
+		[texts_r.recognition_sent]: "Жылы сөздеріңіз әріптесіңізге жетті. Біреудің күні сәл жарқырай түсті.",
 		[texts_s.search_colleagues]: "Әріптесті іздеу",
 		[texts_s.sending_to]: "Жібереміз",
 		[texts_i.in_top_most_active_percent]: "{{percent}}% ең белсенділер қатарында",
@@ -172,6 +172,7 @@ export const kkLocale = {
 		[texts_d.donuts]: "пончиктер",
 		[texts_d.donuts_received]: "Пончик алынды",
 		[texts_d.donuts_sent]: "Пончик жіберілді",
+		[texts_d.donuts_are_on_the_way]: "Пончиктер жолда",
 		[texts_d.decline]: "қабылдамау",
 		[texts_d.deactivate]: "белсенділігін өшіру",
 		"delivery days": "через сколько дней будет",
@@ -236,6 +237,7 @@ export const kkLocale = {
 		"Go to": "Перейти",
 		[texts_g.go_to]: "өту",
 		[texts_g.give_donuts]: "Пончик сыйлау",
+		[texts_g.give_donut_delivery_title]: "Пончик жеткізу",
 		Goods: "Товары",
 
 		// H

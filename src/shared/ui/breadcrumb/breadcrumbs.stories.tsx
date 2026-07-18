@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import { BntBreadcrumbs } from "./breadcrumbs";
 
 const meta = {
-	title: "Shared UI/Navigation/Breadcrumbs",
+	title: "Shared/UI/Navigation/Breadcrumbs",
 	component: BntBreadcrumbs,
 	parameters: {
 		layout: "padded",

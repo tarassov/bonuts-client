@@ -14,6 +14,7 @@ export enum texts_d {
 	disconnect = "disconnect",
 	donuts_received = "weekly donuts received",
 	donuts_sent = "weekly donuts sent",
+	donuts_are_on_the_way = "donuts are on the way",
 	domain = "domain",
 	demo = "demo",
 	donuts = "donuts",

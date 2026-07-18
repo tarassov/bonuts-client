@@ -19,6 +19,19 @@ const config: StorybookConfig = {
 					svgrOptions: { icon: true },
 				}),
 			],
+			optimizeDeps: {
+				include: [
+					"@mui/icons-material",
+					"@mui/material",
+					"react",
+					"react-dom",
+					"react-redux",
+					"@reduxjs/toolkit",
+					"notistack",
+					"react-i18next",
+					"i18next",
+				],
+			},
 		}),
 };
 

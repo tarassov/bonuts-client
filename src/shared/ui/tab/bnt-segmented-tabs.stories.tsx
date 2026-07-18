@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { BntSegmentedTabs } from "./bnt-segmented-tabs";
 
 const meta = {
-	title: "Shared UI/Tabs/Segmented Tabs",
+	title: "Shared/UI/Tabs/Segmented Tabs",
 	component: BntSegmentedTabs,
 	parameters: {
 		layout: "centered",
