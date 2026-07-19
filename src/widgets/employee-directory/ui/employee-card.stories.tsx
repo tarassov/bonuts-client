@@ -19,7 +19,7 @@ const employee: TProfile = {
 };
 
 const meta = {
-	title: "Base Elements/Employee Card",
+	title: "Widgets/Employee Directory/Employee Card",
 	component: EmployeeCard,
 	args: {
 		employee,

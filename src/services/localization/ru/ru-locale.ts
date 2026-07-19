@@ -111,7 +111,7 @@ export const ruLocale = {
 		"Click to select files": "Нажмите, чтобы выбрать фото",
 		"Closed requests": "Завершенные запросы",
 		Close: "Закрыть",
-		close: "закрыть",
+		[texts_c.close]: "закрыть",
 		closed: "закрытые",
 		"closed requests": "закрытые запросы",
 		Circles: "Круги",
@@ -214,7 +214,7 @@ export const ruLocale = {
 		[texts_n.next_status]: "Следующий статус",
 		[texts_w.week_from_to_caption]: "Неделя с {{from}} по {{to}}",
 		[texts_w.week_from_to_tooltip]: "Информация отображается за неделю с {{from}} по {{to}}",
-		[texts_r.recognition_sent]: "Ваше признание уже отправлено. Такие слова делают команду сильнее.",
+		[texts_r.recognition_sent]: "Спасибо за ваше участие. Кому-то сейчас стало немного теплее",
 		[texts_s.search_colleagues]: "Найти коллегу",
 		[texts_s.sending_to]: "Отправляем",
 		[texts_i.in_top_most_active_percent]: "В {{percent}}% самых активных",
@@ -244,6 +244,7 @@ export const ruLocale = {
 		[texts_d.donuts]: "пончики",
 		[texts_d.donuts_received]: "Пончиков получено",
 		[texts_d.donuts_sent]: "Пончиков переведено",
+		[texts_d.donuts_are_on_the_way]: "Пончики уже в пути",
 		[texts_d.decline]: "отклонить",
 		[texts_d.deactivate]: "деактивировать",
 		"delivery days": "через сколько дней будет",
@@ -308,6 +309,7 @@ export const ruLocale = {
 		"Go to": "Перейти",
 		[texts_g.go_to]: "перейти",
 		[texts_g.give_donuts]: "Подарить пончики",
+		[texts_g.give_donut_delivery_title]: "Доставка поничков",
 		Goods: "Товары",
 
 		// H

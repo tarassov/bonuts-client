@@ -43,7 +43,7 @@ const notificationPost: TPost = {
 };
 
 const meta = {
-	title: "Base Elements/Event Card",
+	title: "Entities/Event/Event Card",
 	component: EventCardStyled,
 	args: {
 		post: publicPost,

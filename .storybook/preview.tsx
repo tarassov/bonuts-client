@@ -54,6 +54,11 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 		},
+		options: {
+			storySort: {
+				order: ["Shared", "Entities", "Features", "Widgets", "Pages", "App"],
+			},
+		},
 		layout: "centered",
 	},
 };

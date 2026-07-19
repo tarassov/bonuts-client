@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { SearchString } from "./search-string";
 
 const meta = {
-	title: "Shared UI/Search/Search String",
+	title: "Shared/UI/Search/Search String",
 	component: SearchString,
 	parameters: {
 		layout: "centered",

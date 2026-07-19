@@ -1,7 +1,7 @@
 import { InvitationPreviewItem } from "./invitation-preview-item";
 
 const meta = {
-	title: "Entities/Invitation/Invitation Preview Item",
+	title: "Entities/Invitation/Preview Item",
 	component: InvitationPreviewItem,
 	args: {
 		actionLabel: "Accept",

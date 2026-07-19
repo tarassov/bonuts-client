@@ -6,7 +6,7 @@ import { BntButton, BntRegularButton } from "@/shared/ui/buttons";
 import { DashboardSection, DashboardSectionMedia, DashboardSectionVariant } from "./dashboard-section";
 
 const meta = {
-	title: "Shared UI/Dashboard Section",
+	title: "Shared/UI/Dashboard Section",
 	component: DashboardSection,
 	parameters: {
 		layout: "padded",

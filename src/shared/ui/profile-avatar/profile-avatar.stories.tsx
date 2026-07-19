@@ -5,7 +5,7 @@ import { DefaultProfilePng } from "@/shared/ui/icons";
 import { ProfileAvatar } from "./profile-avatar";
 
 const meta = {
-	title: "Base Elements/Profile Avatar",
+	title: "Shared/UI/Profile Avatar",
 	component: ProfileAvatar,
 	args: {
 		name: "Anna Petrova",

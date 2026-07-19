@@ -42,7 +42,7 @@ function PhotoAlbumViewerStory() {
 }
 
 const meta = {
-	title: "Shared UI/Photo Album",
+	title: "Shared/UI/Photo Album",
 	parameters: {
 		layout: "padded",
 	},
