@@ -1,7 +1,7 @@
 import { CakeOutlined, Favorite, Visibility } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 
-import { BntButton, BntRegularButton, BntRegularSecondaryButton, BntRoundButton, BntTransparentButton } from "@/shared/ui/buttons";
+import { BntActionButton, BntActionButtonVariant, BntButton, BntRegularButton, BntRegularSecondaryButton, BntRoundButton, BntTransparentButton } from "@/shared/ui/buttons";
 import { BntCard, BntCardActions, BntCardContent, GradientCard } from "@/shared/ui/card";
 import { BntTypography } from "@/shared/ui/typography";
 
@@ -20,6 +20,7 @@ export const Buttons = {
 			<BntButton variant="contained" startIcon={<CakeOutlined />}>
 				Give donuts
 			</BntButton>
+			<BntActionButton icon={<CakeOutlined />} onClick={() => undefined} text="Give donuts" variant={BntActionButtonVariant.brandGradient} />
 			<BntRegularButton startIcon={<Favorite />}>Recognize</BntRegularButton>
 			<BntRegularSecondaryButton startIcon={<Visibility />}>View activity</BntRegularSecondaryButton>
 			<BntRoundButton variant="outlined">Status</BntRoundButton>

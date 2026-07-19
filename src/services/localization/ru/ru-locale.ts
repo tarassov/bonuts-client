@@ -111,7 +111,7 @@ export const ruLocale = {
 		"Click to select files": "Нажмите, чтобы выбрать фото",
 		"Closed requests": "Завершенные запросы",
 		Close: "Закрыть",
-		close: "закрыть",
+		[texts_c.close]: "закрыть",
 		closed: "закрытые",
 		"closed requests": "закрытые запросы",
 		Circles: "Круги",

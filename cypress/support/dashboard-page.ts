@@ -2,7 +2,20 @@
 
 import { PROFILE_RESPONSE } from "./fixtures/profile-response";
 
-export const DASHBOARD_PROFILE_RESPONSE = PROFILE_RESPONSE;
+export const DASHBOARD_PROFILE_RESPONSE = {
+	...PROFILE_RESPONSE,
+	data: {
+		...PROFILE_RESPONSE.data,
+		attributes: {
+			...PROFILE_RESPONSE.data.attributes,
+			distrib_account: {
+				id: 10,
+				tenant_id: 1,
+				profile_id: 1,
+			},
+		},
+	},
+};
 
 export const DASHBOARD_EVENTS_RESPONSE = {
 	data: [
@@ -91,67 +104,178 @@ export const DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE = {
 	received_donuts_count: 5,
 };
 
+export const DASHBOARD_COLLEAGUES_RESPONSE = {
+	data: [
+		{
+			id: "2",
+			type: "profiles",
+			attributes: {
+				id: 2,
+				user_id: 202,
+				active: true,
+				admin: false,
+				roles: [],
+				circles: [],
+				name: "Pepper Potts",
+				position: "CEO",
+				email: "pepper.potts@example.com",
+				contact: null,
+				bio: null,
+				birthdate: null,
+				in_date: null,
+				locale: "en",
+				last_seen_at: "2026-04-13T08:00:00Z",
+				user_avatar: {
+					url: null,
+					thumb: { url: null },
+					preview: { url: null },
+				},
+			},
+		},
+	],
+};
+
+export const DASHBOARD_DISTRIB_ACCOUNT_RESPONSE = {
+	data: {
+		id: "10",
+		type: "accounts",
+		attributes: {
+			id: 10,
+			balance: 12,
+			type: "distrib",
+		},
+	},
+};
+
+export const DASHBOARD_TENANTS_RESPONSE = {
+	data: [
+		{
+			id: "1",
+			type: "tenants",
+			attributes: {
+				id: 1,
+				name: "test-tenant",
+				caption: "Test Tenant",
+				active: true,
+				created_at: "2026-04-13T08:00:00Z",
+				updated_at: "2026-04-13T08:00:00Z",
+				domain: "test-tenant",
+				demo: false,
+				logo: {
+					url: "",
+					thumb: {
+						url: "",
+					},
+				},
+				welcome_points: 0,
+				welcome_donuts: 0,
+				email_notification: true,
+				birthday_donuts: 0,
+				birthday_points: 0,
+				join_to_project_donuts: 0,
+				join_to_company_donuts: 0,
+				join_to_project_points: 0,
+				join_to_company_points: 0,
+				use_departments: false,
+			},
+		},
+	],
+};
+
 export function mockDashboardPageRequests() {
 	cy.intercept("GET", "**/profile*", {
 		statusCode: 200,
 		body: DASHBOARD_PROFILE_RESPONSE,
 	}).as("getProfile");
 
-	cy.intercept(
-		"GET",
-		"**/events*",
-		{
-			statusCode: 200,
-			headers: {
-				"Per-Page": "1",
-				Total: "1",
-			},
-			body: DASHBOARD_EVENTS_RESPONSE,
-		}
-	).as("getEvents");
+	cy.intercept("GET", "**/events*", {
+		statusCode: 200,
+		headers: {
+			"Per-Page": "1",
+			Total: "1",
+		},
+		body: DASHBOARD_EVENTS_RESPONSE,
+	}).as("getEvents");
 
-	cy.intercept(
-		"GET",
-		"**/weekly_recognition_badges/latest*",
-		{
-			statusCode: 200,
-			body: DASHBOARD_WEEKLY_BADGES_RESPONSE,
-		}
-	).as("getWeeklyBadges");
+	cy.intercept("GET", "**/weekly_recognition_badges/latest*", {
+		statusCode: 200,
+		body: DASHBOARD_WEEKLY_BADGES_RESPONSE,
+	}).as("getWeeklyBadges");
 
-	cy.intercept(
-		"GET",
-		"**/participation/current_week*",
-		{
-			statusCode: 200,
-			body: DASHBOARD_CURRENT_WEEK_RESPONSE,
-		}
-	).as("getParticipationCurrentWeek");
+	cy.intercept("GET", "**/participation/current_week*", {
+		statusCode: 200,
+		body: DASHBOARD_CURRENT_WEEK_RESPONSE,
+	}).as("getParticipationCurrentWeek");
 
-	cy.intercept(
-		"GET",
-		"**/participation/weekly_recognition_current*",
-		{
-			statusCode: 200,
-			body: DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE,
-		}
-	).as("getParticipationWeeklyRecognitionCurrent");
+	cy.intercept("GET", "**/participation/weekly_recognition_current*", {
+		statusCode: 200,
+		body: DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE,
+	}).as("getParticipationWeeklyRecognitionCurrent");
 
-	cy.intercept(
-		"POST",
-		"**/user_activity/heartbeat*",
-		{
-			statusCode: 200,
-			body: {},
-		}
-	).as("postHeartbeat");
+	cy.intercept("GET", "**/accounts/10*", {
+		statusCode: 200,
+		body: DASHBOARD_DISTRIB_ACCOUNT_RESPONSE,
+	}).as("getDistribAccount");
+
+	cy.intercept("GET", "**/tenants", {
+		statusCode: 200,
+		body: DASHBOARD_TENANTS_RESPONSE,
+	}).as("getTenants");
+
+	cy.intercept("POST", "**/user_activity/heartbeat*", {
+		statusCode: 200,
+		body: {},
+	}).as("postHeartbeat");
 }
 
-export function visitDashboardPage() {
+export function mockGiveDonutsModalRequests() {
+	cy.intercept("GET", "**/profiles*", {
+		statusCode: 200,
+		body: DASHBOARD_COLLEAGUES_RESPONSE,
+	}).as("getProfiles");
+
+	cy.intercept("GET", "**/accounts/10*", {
+		statusCode: 200,
+		body: DASHBOARD_DISTRIB_ACCOUNT_RESPONSE,
+	}).as("getDistribAccount");
+
+	cy.intercept("POST", "**/account_operations/transfer*", {
+		statusCode: 200,
+		body: {
+			error: false,
+			message: "Transferred",
+		},
+	}).as("postTransferDonuts");
+}
+
+export function signInToDashboard() {
+	cy.intercept("POST", "**/authenticate", {
+		statusCode: 200,
+		body: {
+			auth_token: "test-auth-token",
+			currentTenant: "test-tenant",
+			tenants: [{ name: "test-tenant" }],
+		},
+	}).as("loginRequest");
+
+	cy.visit("/login");
+	cy.get("#email").type("test@example.com");
+	cy.get("#password").type("password123");
+	mockDashboardPageRequests();
+	cy.get('button[type="submit"]').click();
+
+	cy.wait("@loginRequest");
+	cy.url().should("eq", `${Cypress.config("baseUrl")}/`);
+}
+
+export function visitDashboard(theme: "light" | "dark") {
 	mockDashboardPageRequests();
 
-	cy.visitAuthorized("/");
-	cy.location("pathname").should("eq", "/");
-	cy.get('[data-testid="dashboard-page"]', { timeout: 10000 }).should("be.visible");
-	cy.contains("This is a private notification", { timeout: 10000 }).should("be.visible");
+	cy.visitAuthorized("/", {
+		visitOptions: {
+			onBeforeLoad(win) {
+				win.localStorage.setItem("theme", theme);
+			},
+		},
+	});
 }
