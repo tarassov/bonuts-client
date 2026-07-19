@@ -91,7 +91,7 @@ export function ModalEmployeeView({ id, close = emptyFunction, setModalLoading =
 	return (
 		<BntStack className={styles.container}>
 			<ModalEmployeeViewHeader
-				avatarUrl={employee?.user_avatar?.url}
+				avatarUrl={employee?.user_avatar?.preview?.url}
 				name={employee?.name}
 				position={employee?.position}
 				recognitionBadgeTitle={topRecognitionBadge?.title}
