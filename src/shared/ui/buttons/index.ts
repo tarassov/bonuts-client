@@ -1,3 +1,4 @@
+export * from "./action-button";
 export * from "./bnt-button";
 export * from "./cancel-button";
 export * from "./regular-button";

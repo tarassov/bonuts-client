@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { InView } from "react-intersection-observer";
-import { LightbulbCircleOutlined, RedeemOutlined } from "@mui/icons-material";
-import { Box, Button, CircularProgress, Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
+import { LightbulbCircleOutlined } from "@mui/icons-material";
+import { Button, CircularProgress, Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
 
 import classnames from "classnames";
 
@@ -13,7 +13,6 @@ import { texts_e, texts_g } from "services/localization/texts";
 import { present } from "@/shared/lib/type-guards";
 import { BntBox } from "@/shared/ui/box";
 import { useLoader } from "@/shared/ui/loader";
-import { SearchString } from "@/shared/ui/search-string";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
@@ -22,13 +21,12 @@ import { useModal } from "@/entities/modal";
 import { useEventListLogic } from "../model/use-event-list-logic";
 
 import { EventCardStyled } from "./event-card-styled";
-import { EventFilterMenu } from "./event-filter-menu";
 import classes from "./event-list.module.scss";
+import { EventListHeader } from "./event-list-header";
 
 export function EventList() {
 	const { translate } = useBntTranslate();
 	const theme = useTheme();
-	const isDarkTheme = theme.palette.mode === "dark";
 	const matchesDownMd = useMediaQuery(theme.breakpoints.down("md"));
 	const { GiveDonut } = useModal();
 	const [searchText, setSearchText] = useState<string>();
@@ -48,7 +46,7 @@ export function EventList() {
 
 	const handleGiveDonutClick = () => {
 		GiveDonut.show({
-			title: translate(texts_g.give_donuts, { capitalize: true }),
+			title: translate(texts_g.give_donut_delivery_title, { capitalize: true }),
 		});
 	};
 
@@ -61,103 +59,7 @@ export function EventList() {
 
 	return (
 		<BntStack direction="column" className={classnames("height-100")} data-testid="dashboard-event-list">
-			<BntStack
-				direction={{ xs: "column", sm: "row" }}
-				gap={1.5}
-				alignItems={{ xs: "stretch", sm: "center" }}
-				sx={{
-					p: 1,
-					maxWidth: 760,
-					width: "100%",
-					alignSelf: "center",
-					borderRadius: 2,
-					backgroundColor: isDarkTheme ? theme.palette.background.paper : theme.palette.common.white,
-					border: `1px solid ${isDarkTheme ? theme.palette.divider : theme.palette.neutral.light}`,
-					boxShadow: isDarkTheme ? "0 8px 24px rgba(0,0,0,0.28)" : "0 8px 24px rgba(30,31,37,0.05)",
-				}}
-			>
-				<Button
-					variant="contained"
-					onClick={handleGiveDonutClick}
-					startIcon={
-						<Box
-							sx={{
-								width: 34,
-								height: 34,
-								borderRadius: "50%",
-								backgroundColor: "rgba(255,255,255,.22)",
-								display: "inline-flex",
-								alignItems: "center",
-								justifyContent: "center",
-								flexShrink: 0,
-							}}
-						>
-							<RedeemOutlined sx={{ fontSize: 21 }} />
-						</Box>
-					}
-					sx={{
-						flexShrink: 0,
-						alignSelf: { xs: "stretch", sm: "center" },
-						minWidth: 0,
-						height: { xs: 50, sm: 50 },
-						padding: "0 24px 0 15px",
-						borderRadius: "14px",
-						border: "none",
-						display: "inline-flex",
-						alignItems: "center",
-						gap: "11px",
-						fontFamily: "Roboto",
-						fontSize: 16,
-						fontWeight: 700,
-						textTransform: "none",
-						color: "#fff",
-						background: "linear-gradient(90deg, #ff8a3d 0%, #e6ad57 100%)",
-						boxShadow: "0 12px 24px rgba(255,138,61,.28)",
-						transition: "transform 200ms ease, box-shadow 200ms ease, filter 200ms ease",
-						"& .MuiButton-startIcon": {
-							margin: 0,
-						},
-						"&:hover": {
-							background: "linear-gradient(90deg, #ff8a3d 0%, #e6ad57 100%)",
-							transform: "translateY(-2px)",
-							boxShadow: "0 16px 34px rgba(255,138,61,.44)",
-							filter: "brightness(1.05)",
-						},
-						"&:active": {
-							transform: "translateY(0)",
-							boxShadow: "0 10px 20px rgba(255,138,61,.24)",
-							filter: "brightness(1)",
-						},
-						"&.Mui-disabled": {
-							background: isDarkTheme ? theme.palette.grey[700] : theme.palette.grey[400],
-							boxShadow: "none",
-							color: "#fff",
-							cursor: "default",
-						},
-						"@media (prefers-reduced-motion: reduce)": {
-							transition: "box-shadow 200ms ease",
-							"&:hover": {
-								transform: "none",
-								filter: "none",
-							},
-							"&:active": {
-								transform: "none",
-								filter: "none",
-							},
-						},
-					}}
-				>
-					{translate(texts_g.give_donuts, { capitalize: true })}
-				</Button>
-				{pages.length > 0 ? (
-					<>
-						<BntBox sx={{ flex: 1, minWidth: 0 }}>
-							<SearchString setSearch={setSearchText} debounceDelay={500} className="flex-grow" variant="surface" />
-						</BntBox>
-						<EventFilterMenu showMine={showMine} onShowMineToggle={handleShowMineToggle} />
-					</>
-				) : null}
-			</BntStack>
+			<EventListHeader hasEvents={pages.length > 0} showMine={showMine} onGiveDonutClick={handleGiveDonutClick} onSearchTextChange={setSearchText} onShowMineToggle={handleShowMineToggle} />
 
 			<BntBox className={classnames("flex-grow pb-2 mt-2", classes.scrollArea, { scroll: !isEmpty })} sx={{ overflowY: matchesDownMd && isEmpty ? "hidden" : undefined }}>
 				{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}

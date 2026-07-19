@@ -54,8 +54,8 @@
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",
-		"storybook": "storybook dev -p 6006 --host 0.0.0.0",
-		"build-storybook": "storybook build",
+		"storybook": "cross-env NODE_OPTIONS=--max-old-space-size=4096 storybook dev -p 6006 --host 0.0.0.0",
+		"build-storybook": "cross-env NODE_OPTIONS=--max-old-space-size=4096 storybook build",
 		"build": "tsc && vite build",
 		"build-staging": "tsc && vite build --mode staging",
 		"serve": "vite preview",
