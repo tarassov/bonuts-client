@@ -1,9 +1,11 @@
 import { ChangeEvent, type CSSProperties, useMemo, useRef, useState } from "react";
+import { PhotoLibraryOutlined } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_c } from "services/localization/texts";
+import { texts_c, texts_m } from "services/localization/texts";
 
+import { BntTransparentButton } from "@/shared/ui/buttons";
 import { BntCard } from "@/shared/ui/card";
 import { BntTypography } from "@/shared/ui/typography";
 
@@ -35,7 +37,12 @@ function getAvatarInitials(profile?: TProfile) {
 		.slice(0, 2);
 }
 
-export function ProfileHeader({ profile }: { profile?: TProfile }) {
+interface IProfileHeaderProps {
+	onPhotosClick?: VoidFunction;
+	profile?: TProfile;
+}
+
+export function ProfileHeader({ onPhotosClick, profile }: IProfileHeaderProps) {
 	const { translate } = useBntTranslate();
 	const theme = useTheme();
 	const { postAvatar } = useUpdateAvatar();
@@ -75,12 +82,17 @@ export function ProfileHeader({ profile }: { profile?: TProfile }) {
 	return (
 		<BntCard data-testid="profile-header" className={classes.card} style={cardThemeStyle}>
 			<div className={classes.layout}>
-				<div>
+				<div className={classes.avatarColumn}>
 					<button type="button" className={classes.avatarButton} onClick={handleAvatarClick}>
 						{avatarUrl ? <img src={avatarUrl} alt={displayName} className={classes.avatarImage} /> : <div className={classes.avatarFallback}>{initials}</div>}
 						<div className={classes.avatarOverlay}>{translate(texts_c.change_avatar)}</div>
 					</button>
 					<input ref={inputRef} type="file" accept="image/*" hidden onChange={handleAvatarChange} />
+					{onPhotosClick ? (
+						<BntTransparentButton startIcon={<PhotoLibraryOutlined />} onClick={onPhotosClick}>
+							{translate(texts_m.my_photos)}
+						</BntTransparentButton>
+					) : null}
 				</div>
 				<div className={classes.meta}>
 					<BntTypography variant="h4" className={classes.title}>

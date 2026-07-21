@@ -15,6 +15,11 @@
 	align-items: center;
 }
 
+.avatarColumn {
+	display: grid;
+	gap: 12px;
+}
+
 .avatarButton {
 	position: relative;
 	width: 180px;

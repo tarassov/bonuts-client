@@ -12,6 +12,7 @@ import {
 	LogoutOutlined,
 	PeopleAltOutlined,
 	PersonOutlined,
+	PhotoLibraryOutlined,
 	SettingsOutlined,
 	ShareOutlined,
 	ShoppingBagOutlined,
@@ -19,6 +20,8 @@ import {
 	StoreMallDirectoryOutlined,
 	WidgetsOutlined,
 } from "@mui/icons-material";
+
+import { texts_p } from "services/localization/texts";
 
 import { BntRoutes } from "@/shared/config/routes";
 
@@ -36,6 +39,7 @@ import { LogoutPage } from "@/pages/logout-page";
 import { NewUserPage } from "@/pages/new-user-page";
 import { PluginsPage } from "@/pages/plugins-page";
 import { ProfilePage } from "@/pages/profile-page";
+import { ProfilePhotosPage } from "@/pages/profile-photos-page";
 import { RecoverPage } from "@/pages/recover-page";
 import { RegistrationPage } from "@/pages/registration-page";
 import { ActiveRequestsPage, ClosedRequestsPage, IncomingRequestsPage, MyRequestsPage, RequestsPage } from "@/pages/requests";
@@ -180,6 +184,17 @@ export const useRouteConfig = (): TRouteConfig<BntRoutes> => {
 					redirect: routesPath[BntRoutes.Login],
 					icon: <PersonOutlined />,
 					index: 1,
+				},
+				Photos: {
+					path: routesPath[BntRoutes.Photos],
+					anonymous: false,
+					authenticated: true,
+					navbarName: texts_p.photos,
+					hideInMenu: false,
+					component: <ProfilePhotosPage />,
+					redirect: routesPath[BntRoutes.Login],
+					icon: <PhotoLibraryOutlined />,
+					index: 2,
 				},
 				RequestRecover: {
 					path: routesPath[BntRoutes.RequestRecover],

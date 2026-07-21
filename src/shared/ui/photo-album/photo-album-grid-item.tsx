@@ -11,18 +11,9 @@ interface IPhotoAlbumGridItemProps {
 	photoLabel?: string;
 }
 
-function getPhotoTileClassName(isFeatured: boolean, isLoading = false) {
-	return classNames(styles.photoTile, {
-		[styles.featuredTile]: isFeatured,
-		[styles.loadingTile]: isLoading,
-	});
-}
-
 export function PhotoAlbumGridItem({ index, isLoading = false, onPhotoClick, photo, photoLabel }: IPhotoAlbumGridItemProps) {
-	const isFeatured = index === 0;
-
 	if (isLoading) {
-		return <div className={getPhotoTileClassName(isFeatured, true)} />;
+		return <div className={classNames(styles.photoTile, styles.loadingTile)} />;
 	}
 
 	if (!photo || !photoLabel || !onPhotoClick) {
@@ -30,7 +21,7 @@ export function PhotoAlbumGridItem({ index, isLoading = false, onPhotoClick, pho
 	}
 
 	return (
-		<button data-testid={`photo-album-tile-${index}`} type="button" className={getPhotoTileClassName(isFeatured)} onClick={() => onPhotoClick(index)}>
+		<button data-testid={`photo-album-tile-${index}`} type="button" className={styles.photoTile} onClick={() => onPhotoClick(index)}>
 			<img className={styles.photoImage} src={photo.previewUrl} alt={`${photoLabel} ${index + 1}`} />
 			<span className={styles.photoOverlay} />
 		</button>

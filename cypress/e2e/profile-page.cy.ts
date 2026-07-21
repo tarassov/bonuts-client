@@ -164,6 +164,11 @@ function visitProfilePage() {
 
 	cy.wait("@getProfile");
 	cy.wait("@getCircles");
+}
+
+function openMyPhotosPage() {
+	cy.contains("button", "My photos").should("be.visible").click();
+	cy.location("pathname").should("eq", "/my/photos");
 	cy.wait("@getProfilePictures");
 }
 
@@ -176,7 +181,9 @@ describe("Profile page", () => {
 			cy.get('[data-testid="profile-header"]').within(() => {
 				cy.contains(/tony stark/i).should("be.visible");
 				cy.contains("Iron Man").should("be.visible");
+				cy.contains("button", "My photos").should("be.visible");
 			});
+			cy.get('[data-testid="photo-album-grid"]').should("not.exist");
 
 			cy.get('[data-testid="profile-header-statuses"]').within(() => {
 				cy.get('[class*="MuiChip-root"]').should("have.length", 2);
@@ -199,6 +206,7 @@ describe("Profile page", () => {
 
 		it("opens the album modal and allows deleting only own photos", () => {
 			visitProfilePage();
+			openMyPhotosPage();
 
 			cy.get('[data-testid="photo-album-tile-0"]').scrollIntoView().should("be.visible").click();
 

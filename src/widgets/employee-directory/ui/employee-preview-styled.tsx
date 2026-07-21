@@ -1,4 +1,4 @@
-import { Grid, Stack, styled } from "@mui/material";
+import { Grid2 as Grid, Stack, styled } from "@mui/material";
 
 import { BntBox } from "@/shared/ui/box";
 import { BntCard, BntCardBody } from "@/shared/ui/card";
@@ -67,13 +67,15 @@ export const EmployeePreviewIdentity = styled("div")(({ theme }) => {
 	};
 });
 
-export const EmployeePreviewBio = styled(BntBox)(({ theme }) => {
+export const EmployeePreviewBio = styled(BntBox, {
+	shouldForwardProp: (prop) => prop !== "isPlaceholder",
+})<{ isPlaceholder: boolean }>(({ isPlaceholder, theme }) => {
 	const isDarkMode = theme.palette.mode === "dark";
 
 	return {
 		padding: theme.spacing(2),
 		borderRadius: theme.shape.borderRadius * 1.5,
-		backgroundColor: isDarkMode ? theme.palette.background.paper : theme.palette.secondary.veryLight,
+		backgroundColor: isPlaceholder || isDarkMode ? theme.palette.background.paper : theme.palette.secondary.veryLight,
 		border: `1px solid ${theme.palette.divider}`,
 		color: theme.palette.text.primary,
 	};

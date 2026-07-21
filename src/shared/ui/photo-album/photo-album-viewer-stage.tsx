@@ -1,5 +1,7 @@
 import { ArrowBackIosNewOutlined, ArrowForwardIosOutlined } from "@mui/icons-material";
 
+import classNames from "classnames";
+
 import { BntIconButton } from "@/shared/ui/icon-button";
 
 import type { TPhotoAlbumItem } from "./photo-album-grid.types";
@@ -18,7 +20,7 @@ interface IPhotoAlbumViewerStageProps {
 
 export function PhotoAlbumViewerStage({ activeIndex, canNavigate, currentPhoto, nextLabel, onNext, onPrevious, photoLabel, previousLabel }: IPhotoAlbumViewerStageProps) {
 	return (
-		<div className={styles.stage}>
+		<div className={classNames(styles.stage, { [styles.singlePhotoStage]: !canNavigate })}>
 			{canNavigate ? (
 				<BntIconButton aria-label={previousLabel} data-testid="photo-album-previous" className={styles.navButton} onClick={onPrevious}>
 					<ArrowBackIosNewOutlined fontSize="small" />
