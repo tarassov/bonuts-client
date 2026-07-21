@@ -20,20 +20,22 @@
 }
 
 .albumGrid {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	grid-auto-rows: minmax(140px, auto);
-	gap: 12px;
+	columns: 2 140px;
+	column-gap: 12px;
 }
 
 .photoTile {
 	position: relative;
-	display: block;
+	display: inline-block;
+	width: fit-content;
+	max-width: 100%;
+	margin: 0 0 12px;
 	padding: 0;
 	border: 0;
 	background: color-mix(in srgb, var(--mui-palette-background-paper) 72%, var(--mui-palette-secondary-light) 28%);
 	border-radius: 22px;
 	overflow: hidden;
+	break-inside: avoid;
 	cursor: zoom-in;
 	box-shadow: 0 14px 30px color-mix(in srgb, var(--mui-palette-common-black) 12%, transparent);
 	transition:
@@ -51,21 +53,12 @@
 	outline-offset: 3px;
 }
 
-.featuredTile {
-	grid-column: 1 / -1;
-}
-
 .photoImage {
 	display: block;
-	width: 100%;
-	height: 100%;
-	aspect-ratio: 1 / 1;
-	object-fit: cover;
+	width: auto;
+	height: auto;
+	max-width: 100%;
 	background: var(--mui-palette-grey-100);
-}
-
-.featuredTile .photoImage {
-	aspect-ratio: 4 / 3;
 }
 
 .photoOverlay {
@@ -77,6 +70,7 @@
 }
 
 .loadingTile {
+	width: 100%;
 	min-height: 140px;
 	background: linear-gradient(
 		110deg,
@@ -97,16 +91,7 @@
 
 @media (min-width: 900px) {
 	.albumGrid {
-		grid-template-columns: minmax(0, 1.45fr) repeat(2, minmax(0, 1fr));
-		grid-auto-rows: minmax(160px, auto);
-	}
-
-	.featuredTile {
-		grid-column: 1;
-		grid-row: span 2;
-	}
-
-	.featuredTile .photoImage {
-		aspect-ratio: auto;
+		columns: 4 180px;
+		column-gap: 16px;
 	}
 }

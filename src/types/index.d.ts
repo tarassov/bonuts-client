@@ -44,6 +44,7 @@ type BntRoutesMenuProps = {
 };
 
 type BntRouteMenuButtonProps = {
+	isActive: boolean;
 	route: TRoute;
 	showFullName: boolean;
 	showTooltip?: boolean;

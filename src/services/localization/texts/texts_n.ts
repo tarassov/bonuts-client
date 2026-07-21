@@ -24,4 +24,5 @@ export enum texts_n {
 	notifications = "notifications",
 	no_integrations_available = "no integrations available",
 	no_photos_yet = "no photos yet",
+	nothing_to_tell_here_yet = "nothing to tell here yet",
 }

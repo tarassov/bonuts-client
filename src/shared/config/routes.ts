@@ -9,6 +9,7 @@ export enum BntRoutes {
 	DonutPreview = "DonutPreview",
 	DonutEdit = "DonutEdit",
 	Profile = "Profile",
+	Photos = "Photos",
 	Requests = "Requests",
 	IncomingRequests = "IncomingRequests",
 	ActiveRequests = "ActiveRequests",

@@ -1,6 +1,8 @@
 import type { FC } from "react";
 import { useState } from "react";
-import { Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Grid2 as Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
+
+import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { formatStringDate } from "@/shared/lib/date";
 import { BntDivider } from "@/shared/ui/divider";
@@ -28,7 +30,7 @@ import {
 	EmployeePreviewRoot,
 } from "./employee-preview-styled";
 import { DEFAULT_AVATAR } from "@/constants/images";
-import { texts_b, texts_c, texts_i } from "@/services/localization/texts";
+import { texts_b, texts_c, texts_i, texts_n } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
 import { emptyFunction } from "@/utils/empty-function";
 
@@ -59,9 +61,12 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 	allowDisable,
 	allowEdit,
 }) => {
+	const { translate } = useBntTranslate();
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 	const [isEditMode, setIsEditMode] = useState(false);
+	const isBioEmpty = !employee?.bio?.trim();
+	const bio = isBioEmpty ? translate(texts_n.nothing_to_tell_here_yet) : employee?.bio;
 
 	return (
 		<EmployeePreviewRoot direction="column" className={className}>
@@ -88,7 +93,7 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 						<EmployeeEdit profile={employee} onClose={() => setIsEditMode(false)} />
 					) : (
 						<Grid container justifyItems="flex-start" spacing={4}>
-							<EmployeePreviewAvatarColumn item xs={12} sm={8} md={4} lg={4} xl={3}>
+							<EmployeePreviewAvatarColumn size={{ xs: 12, sm: 8, md: 4, lg: 4, xl: 3 }}>
 								<EmployeePreviewAvatarWrap>
 									<ImagePreview defaultImage={DEFAULT_AVATAR} image={employee?.user_avatar?.url} onClick={onImageClick} />
 								</EmployeePreviewAvatarWrap>
@@ -98,7 +103,7 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 									})}
 								</EmployeePreviewCircles>
 							</EmployeePreviewAvatarColumn>
-							<Grid item xs={12} sm={12} md={5} lg={6} order={{ xs: 3, md: 2 }}>
+							<Grid size={{ xs: 12, sm: 12, md: 5, lg: 6 }} order={{ xs: 3, md: 2 }}>
 								<EmployeePreviewIdentity>
 									<Stack direction={{ sm: "row", xs: "column" }} alignItems={{ sm: "center", xs: "flex-start" }} spacing={2}>
 										<BntTypography variant="h4" display="block">
@@ -117,11 +122,11 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 									<EmployeeLabel name={texts_i.in_date} value={formatStringDate(employee?.in_date)} />
 								</EmployeePreviewIdentity>
 								<BntDivider sx={{ my: matchesDownSm ? 1.5 : 2 }} />
-								<EmployeePreviewBio>
-									<BntTypography isPreformatted>{employee?.bio}</BntTypography>
+								<EmployeePreviewBio isPlaceholder={isBioEmpty}>
+									<BntTypography isPreformatted>{bio}</BntTypography>
 								</EmployeePreviewBio>
 							</Grid>
-							<Grid item xs={12} order={{ xs: 4, md: 4 }}>
+							<Grid size={{ xs: 12 }} order={{ xs: 4, md: 4 }}>
 								<ProfilePhotos profile={employee} />
 							</Grid>
 						</Grid>
