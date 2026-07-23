@@ -56,7 +56,6 @@ export const useEventLogic = () => {
 			if ("error" in res) {
 				throw new Error();
 			}
-			dispatch(eventsApi.util.invalidateTags(invalidateId("Event", event.id)));
 		}
 	};
 

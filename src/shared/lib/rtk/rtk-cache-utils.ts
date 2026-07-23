@@ -1,4 +1,4 @@
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import type { FetchBaseQueryError, InfiniteData } from "@reduxjs/toolkit/query";
 
 /**
  * Default tags used by the cacher lib
@@ -34,6 +34,11 @@ type InnerProvidesList<T> = <Results extends { id: unknown }[], Error extends Fe
 	error: Error | undefined
 ) => CacheList<T, Results[number]["id"]>;
 
+type InnerProvidesInfiniteList<T> = <Results extends { id: unknown }[], PageParam, Error extends FetchBaseQueryError>(
+	results: InfiniteData<{ data?: Results }, PageParam> | undefined,
+	error: Error | undefined
+) => CacheList<T, Results[number]["id"]>;
+
 /**
  * HOF to create an entity cache to provide a LIST,
  * depending on the results being in a common format.
@@ -63,6 +68,23 @@ export const providesList =
 			return [{ type, id: "LIST" }, ...results.data.map(({ id }) => ({ type, id }) as const)];
 		}
 		// Received an error, include an error cache item to the cache list
+		return concatErrorCache([{ type, id: "LIST" }], error);
+	};
+
+/**
+ * HOF to create an entity cache to provide a LIST for an infinite query.
+ *
+ * Provides the LIST cache item and individual items from all loaded pages.
+ */
+export const providesInfiniteList =
+	<T extends string>(type: T): InnerProvidesInfiniteList<T> =>
+	(results, error) => {
+		if (results) {
+			const items = results.pages.flatMap((page) => page.data ?? []);
+
+			return [{ type, id: "LIST" }, ...items.map(({ id }) => ({ type, id }) as const)];
+		}
+
 		return concatErrorCache([{ type, id: "LIST" }], error);
 	};
 
@@ -192,6 +214,7 @@ export const invalidatesUnknownErrors =
 export const cacher = {
 	defaultTags,
 	providesList,
+	providesInfiniteList,
 	invalidatesList,
 	providesNestedList,
 	cacheByIdArg,

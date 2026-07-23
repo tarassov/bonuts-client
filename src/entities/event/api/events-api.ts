@@ -1,4 +1,4 @@
-import { cacheByIdArgProperty, getNextPageParam, getTransformPageableResponse } from "@/shared/lib/rtk";
+import { cacheByIdArgProperty, getNextPageParam, getTransformPageableResponse, providesInfiniteList } from "@/shared/lib/rtk";
 
 import type { TDispatchWithPatches } from "../lib/event-cache-updaters";
 import { mergeServerLikeResponse, patchEventCaches } from "../lib/event-cache-updaters";
@@ -52,6 +52,9 @@ const eventsApiEnhanced = bonutsApi.enhanceEndpoints({
 				}
 			},
 		},
+		postEventsByIdComments: {
+			invalidatesTags: cacheByIdArgProperty("Event"),
+		},
 		getEventsById: { providesTags: cacheByIdArgProperty("Event") },
 	},
 });
@@ -68,7 +71,7 @@ export const eventsApi = eventsApiEnhanced.injectEndpoints({
 				params: { ...queryArg, page: pageParam },
 			}),
 			transformResponse: getTransformPageableResponse<TPageable<GetEventsApiResponse>>(),
-			providesTags: ["Event"],
+			providesTags: providesInfiniteList("Event"),
 		}),
 	}),
 	overrideExisting: false,
