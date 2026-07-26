@@ -17,13 +17,16 @@ import _uniqueId from "lodash/uniqueId";
 interface IBntDialogProviderProps<TItems extends Record<keyof TItems, TDialogItem<any, any>>> {
 	config: TDialogConfig<TItems>;
 	children: ReactNode;
+	// A modal declared by the history entry is opened only once the application can serve it, auth included.
+	isRestoreEnabled?: boolean;
 }
 
 type ModalState = Record<string, TModalRecord>;
+type TClaimedEntry = { index: number; modalKey: string };
 type ResolverMap = Map<string, (value: any) => void>;
 type TCloseOptions = { popHistory?: boolean; result?: unknown };
 
-export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogItem<any, any>>>({ children, config }: IBntDialogProviderProps<TItems>) {
+export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogItem<any, any>>>({ children, config, isRestoreEnabled = true }: IBntDialogProviderProps<TItems>) {
 	const { go, location, navigate, replace } = useAppNavigate();
 	const resolversRef = useRef<ResolverMap>(new Map());
 
@@ -37,8 +40,8 @@ export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogIte
 	const locationRef = useRef(location);
 	locationRef.current = location;
 
-	// Keys of the modals that own a browser history entry, in the order they pushed it.
-	const historyStackRef = useRef<Array<string>>([]);
+	// Modals that own a browser history entry, with the depth of that entry in the chain of opened modals.
+	const historyStackRef = useRef<Array<TClaimedEntry>>([]);
 	const previousPathnameRef = useRef(location.pathname);
 
 	// Modals that are still open for the application: the closing ones only wait for their transition to finish.
@@ -51,19 +54,22 @@ export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogIte
 		if (resolve) resolve(result);
 	}, []);
 
-	// Drops the closed modals from the history stack and tells how many own entries may be popped.
-	// Only a contiguous run on top of the stack is poppable, otherwise the traverse would take foreign entries with it.
+	// Drops the closed modals from the history stack and tells how far back the browser has to travel.
+	// Only a contiguous run on top of the stack is released, otherwise the traverse would take foreign entries with it.
 	const releaseHistoryEntries = useCallback((closingKeys: Set<string>) => {
 		const stack = [...historyStackRef.current];
-		let popCount = 0;
+		const topIndex = stack.length > 0 ? stack[stack.length - 1].index : 0;
+		let hasReleasedTop = false;
 
-		while (stack.length > 0 && closingKeys.has(stack[stack.length - 1])) {
+		while (stack.length > 0 && closingKeys.has(stack[stack.length - 1].modalKey)) {
 			stack.pop();
-			popCount += 1;
+			hasReleasedTop = true;
 		}
-		historyStackRef.current = stack.filter((key) => !closingKeys.has(key));
+		const remainingIndex = stack.length > 0 ? stack[stack.length - 1].index : 0;
+		historyStackRef.current = stack.filter((entry) => !closingKeys.has(entry.modalKey));
 
-		return popCount;
+		// The distance is measured in depth: a modal restored after a reload owns every entry down to the one below it.
+		return hasReleasedTop ? topIndex - remainingIndex : 0;
 	}, []);
 
 	const closeModals = useCallback(
@@ -71,15 +77,15 @@ export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogIte
 			if (isBlank(keys)) return;
 
 			const closingKeys = new Set(keys);
-			const popCount = releaseHistoryEntries(closingKeys);
+			const popDistance = releaseHistoryEntries(closingKeys);
 
 			// The record survives until the dialog has animated itself out, see removeModal.
 			setModal((prev) => (isBlank(prev) ? null : map((modal) => (closingKeys.has(modal.modalKey) ? { ...modal, isClosing: true } : modal), prev)));
 			keys.forEach((key) => resolveModal(key, options?.result));
 
 			// A modal closed by the Back button has already lost its entry, so there is nothing to pop.
-			if (options?.popHistory !== false && popCount > 0) {
-				go(-popCount);
+			if (options?.popHistory !== false && popDistance > 0) {
+				go(-popDistance);
 			}
 		},
 		[go, releaseHistoryEntries, resolveModal]
@@ -98,12 +104,24 @@ export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogIte
 		if (isBlank(openedModals)) return;
 
 		const historyStack = historyStackRef.current;
-		const marker = location.state?.modalKey;
-		// Entries pushed above the current one are gone: the modals owning them have to close.
-		const uncoveredKeys = historyStack.slice(present(marker) ? historyStack.indexOf(marker) + 1 : 0);
+		const currentIndex = location.state?.modalIndex ?? 0;
+		const declaredKey = location.state?.modalKey;
 		const hasLeftPage = previousPathname !== location.pathname;
 
-		const keysToClose = openedModals.filter((modal) => uncoveredKeys.includes(modal.modalKey) || (hasLeftPage && !historyStack.includes(modal.modalKey))).map((modal) => modal.modalKey);
+		// A modal survives while the current entry is at least as deep as the one it owns. A shallower entry means
+		// the user went back past it; a deeper unknown one is a Forward or a restoration and covers it just as well.
+		const keysToClose = openedModals
+			.filter((modal) => {
+				const claimed = historyStack.find((entry) => entry.modalKey === modal.modalKey);
+
+				if (!claimed) return hasLeftPage;
+
+				return claimed.index > currentIndex && declaredKey !== modal.modalKey;
+			})
+			.map((modal) => modal.modalKey);
+
+		// An entry that declares an opened modal becomes the entry it owns, so a further Back still closes it.
+		historyStackRef.current = historyStack.map((entry) => (entry.modalKey === declaredKey ? { ...entry, index: Math.min(entry.index, currentIndex) } : entry));
 
 		closeModals(keysToClose, { popHistory: false });
 	}, [closeModals, getOpenModals, location.pathname, location.state]);
@@ -118,27 +136,31 @@ export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogIte
 		};
 	}, []);
 
-	// Every modal that closes on Back owns a history entry marked with its key.
+	// Every modal that closes on Back owns a history entry, identified by its depth in the chain of opened modals.
 	const claimHistoryEntry = useCallback(
 		({ data, modalKey, name, parsedPath }: { data: unknown; modalKey: string; name: string; parsedPath: string | null }) => {
 			// One entry per modal: reopening under the same key (a remount in strict mode) must not claim another.
-			if (historyStackRef.current.includes(modalKey)) return;
+			if (historyStackRef.current.some((entry) => entry.modalKey === modalKey)) return;
 
 			const currentLocation = locationRef.current;
 			const currentEntry = { hash: currentLocation.hash, pathname: currentLocation.pathname, search: currentLocation.search };
+			const currentIndex = currentLocation.state?.modalIndex ?? 0;
+			const hasOwnAddress = present(parsedPath) && parsedPath !== currentLocation.pathname;
+			// The address already belongs to the modal — a deep link or a page reload — so it keeps that entry's depth.
+			const takesOverEntry = present(parsedPath) && !hasOwnAddress;
+			const index = takesOverEntry ? currentIndex || 1 : currentIndex + 1;
 
-			if (present(parsedPath) && parsedPath !== currentLocation.pathname) {
+			if (hasOwnAddress) {
 				// The modal has an address of its own, so it gets an entry showing it.
-				navigate(parsedPath, { background: currentLocation, data, modal: true, modalKey, name });
-			} else if (present(parsedPath)) {
-				// The address already belongs to the modal — a deep link or a page reload —
-				// so it takes over the existing entry instead of duplicating it.
-				replace(currentEntry, { ...currentLocation.state, modalKey });
+				navigate(parsedPath, { background: currentLocation, data, modal: true, modalIndex: index, modalKey, name });
+			} else if (takesOverEntry) {
+				replace(currentEntry, { ...currentLocation.state, modalIndex: index, modalKey });
 			} else {
-				// The same URL with a marker, so Back consumes only this entry and the address stays put.
-				navigate(currentEntry, { ...currentLocation.state, modalKey });
+				// The same URL one level deeper, so Back consumes only this entry and the address stays put.
+				// What the entry declares is left untouched: it describes the modal below, not this one.
+				navigate(currentEntry, { ...currentLocation.state, modalIndex: index });
 			}
-			historyStackRef.current = [...historyStackRef.current, modalKey];
+			historyStackRef.current = [...historyStackRef.current, { index, modalKey }];
 		},
 		[navigate, replace]
 	);
@@ -218,6 +240,8 @@ export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogIte
 
 	// Opens the modal the current history entry declares: a deep link, a page reload or a Forward lands here.
 	useEffect(() => {
+		if (!isRestoreEnabled) return;
+
 		const { data, modalKey, name } = location.state ?? {};
 
 		if (isBlank(name) || isBlank(modalKey)) return;
@@ -226,7 +250,7 @@ export function BntDialogProvider<TItems extends Record<keyof TItems, TDialogIte
 		if (getOpenModals().some((modal) => modal.modalKey === modalKey)) return;
 
 		showDialog(name as Extract<keyof TItems, string>, data, modalKey);
-	}, [config.items, getOpenModals, location.state, showDialog]);
+	}, [config.items, getOpenModals, isRestoreEnabled, location.state, showDialog]);
 
 	const modalsArray = useMemo(() => (modals ? Object.values(modals) : []), [modals]);
 

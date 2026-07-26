@@ -12,8 +12,10 @@ export interface ILocationProps extends Location {
 		modal?: boolean;
 		name?: string;
 		data?: any;
-		// Key of the modal that pushed this history entry.
+		// Key of the modal this entry declares, so it can be reopened on a reload or a Forward.
 		modalKey?: string;
+		// Depth of this entry in the chain of opened modals, which orders them without browser history internals.
+		modalIndex?: number;
 	};
 }
 

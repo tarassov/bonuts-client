@@ -166,20 +166,27 @@ function HandlerIdentityProbe() {
 }
 
 type TRenderOptions = {
+	isRestoreEnabled?: boolean;
 	onResult?: (result: unknown) => void;
 	strictMode?: boolean;
 };
 
-function renderProvider({ onResult = vi.fn(), strictMode = false }: TRenderOptions = {}) {
-	const tree = (
-		<BntDialogProvider config={config}>
-			<OpenedModalsProbe />
-			<HandlerIdentityProbe />
-			<ModalActions onResult={onResult} />
-		</BntDialogProvider>
-	);
+function renderProvider({ isRestoreEnabled = true, onResult = vi.fn(), strictMode = false }: TRenderOptions = {}) {
+	const buildTree = (canRestore: boolean) => {
+		const tree = (
+			<BntDialogProvider config={config} isRestoreEnabled={canRestore}>
+				<OpenedModalsProbe />
+				<HandlerIdentityProbe />
+				<ModalActions onResult={onResult} />
+			</BntDialogProvider>
+		);
 
-	render(strictMode ? <StrictMode>{tree}</StrictMode> : tree);
+		return strictMode ? <StrictMode>{tree}</StrictMode> : tree;
+	};
+
+	const { rerender } = render(buildTree(isRestoreEnabled));
+
+	return { enableRestore: () => rerender(buildTree(true)) };
 }
 
 const openedModals = () => screen.getByTestId("opened").textContent;
@@ -282,6 +289,30 @@ describe("BntDialogProvider", () => {
 		expect(onResult).toHaveBeenCalledTimes(2);
 	});
 
+	it("keeps the modal underneath open when Forward returns to a closed nested entry", async () => {
+		renderProvider();
+
+		clickButton("open detailed");
+		clickButton("open alpha");
+
+		await waitFor(() => expect(openedModals()).toBe("Detailed,Alpha"));
+
+		clickButton("hide alpha");
+
+		await waitFor(() => expect(openedModals()).toBe("Detailed"));
+
+		clickButton("finish transitions");
+
+		await waitFor(() => expect(renderedModals()).toBe("Detailed"));
+
+		act(() => historyMock.go(1));
+
+		// The entry belongs to a modal that no longer exists, it must not take the one below with it.
+		await waitFor(() => expect(historyMock.index).toBe(2));
+		expect(openedModals()).toBe("Detailed");
+		expect(renderedModals()).toBe("Detailed");
+	});
+
 	it("reopens a modal with its own address when Forward returns to its entry", async () => {
 		renderProvider();
 
@@ -301,9 +332,42 @@ describe("BntDialogProvider", () => {
 	});
 
 	// A page reload restores the modal from the history state it was opened with.
+	const declaration = { background: { pathname: "/feed" }, data: { id: 7 }, modal: true, modalKey: "modal-/feed-1", name: "Detailed" };
+
 	const restoreReloadedModal = () => {
-		historyMock.restore([{ pathname: "/feed" }, { pathname: "/event/7", state: { background: { pathname: "/feed" }, data: { id: 7 }, modal: true, modalKey: "modal-/feed-1", name: "Detailed" } }]);
+		historyMock.restore([{ pathname: "/feed" }, { pathname: "/event/7", state: { ...declaration, modalIndex: 1 } }]);
 	};
+
+	// The same reload, but with a nested modal on top: its entry inherited the declaration of the one below.
+	const restoreReloadedNestedModal = () => {
+		historyMock.restore([{ pathname: "/feed" }, { pathname: "/event/7", state: { ...declaration, modalIndex: 1 } }, { pathname: "/event/7", state: { ...declaration, modalIndex: 2 } }]);
+	};
+
+	it("waits for the application to be ready before opening the modal an entry declares", async () => {
+		restoreReloadedModal();
+		const { enableRestore } = renderProvider({ isRestoreEnabled: false });
+
+		await waitFor(() => expect(openedModals()).toBe(""));
+
+		enableRestore();
+
+		await waitFor(() => expect(openedModals()).toBe("Detailed"));
+	});
+
+	it("leaves the whole restored chain when a modal reopened from a nested reload is closed", async () => {
+		restoreReloadedNestedModal();
+		renderProvider();
+
+		await waitFor(() => expect(openedModals()).toBe("Detailed"));
+		expect(historyMock.index).toBe(2);
+
+		clickButton("close all");
+
+		await waitFor(() => expect(historyMock.index).toBe(0));
+		expect(historyMock.location.pathname).toBe("/feed");
+		// The entry below declared the same modal, closing must not bring it back.
+		await waitFor(() => expect(openedModals()).toBe(""));
+	});
 
 	it("takes over the restored entry after a reload instead of duplicating it", async () => {
 		restoreReloadedModal();
