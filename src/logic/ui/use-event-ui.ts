@@ -1,4 +1,4 @@
-import { useModal } from "@/entities/modal";
+import { useModal } from "@/shared/lib/modal";
 
 import { TPost } from "@/types/model/post";
 

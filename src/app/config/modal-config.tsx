@@ -1,16 +1,14 @@
 import { ConfirmationModal } from "components/modals/confirmation-modal";
 import { ModalAdminDeposit } from "components/modals/modal-admin-deposit/modal-admin-deposit";
-import { ModalCreateCircle } from "components/modals/modal-create-circle/modal-create-circle";
-import { ModalCreateDonut } from "components/modals/modal-create-donut/modal-create-donut";
+import { ModalCreateCircle, type TCreateCircleResult } from "components/modals/modal-create-circle/modal-create-circle";
+import { ModalCreateDonut, type TCreateDonutResult } from "components/modals/modal-create-donut/modal-create-donut";
 import { ModalDetailedEvent } from "components/modals/modal-detailed-event/modal-detailed-event";
-import { ModalEditCircle } from "components/modals/modal-edit-circle/modal-edit-circle";
+import { ModalEditCircle, type TEditCircleResult } from "components/modals/modal-edit-circle/modal-edit-circle";
 import { ModalImage } from "components/modals/modal-image/modal-image";
 import { CommonStrings } from "constants/dictionary";
-import { texts_c, texts_g } from "services/localization/texts";
 
-import type { TDialogConfig } from "@/shared/ui/dialog";
+import { defineModal } from "@/shared/ui/dialog";
 
-import type { TModalConfig } from "@/entities/modal";
 import { ProfilePhotosAlbumModal, photosAlbumDialogPaperSx } from "@/entities/profile";
 
 import { ModalEmployeeView } from "@/features/profile/modal";
@@ -19,40 +17,46 @@ import { telegramModalConfig } from "@/features/profile/telegram";
 import { giveDonutDialogPaperSx, ModalGiveDonut } from "@/widgets/give-donut";
 import { ModalTransfer, transferDonutDialogPaperSx } from "@/widgets/transfer-donut";
 
-export const modalConfig: TDialogConfig<TModalConfig> = {
+import type { TPicture } from "@/types/model/picture";
+import { TPost } from "@/types/model/post";
+
+// Every caller passes an already localized title, the fallback only keeps the header empty.
+const titleFromData = (data: { title?: string }) => data.title || CommonStrings.EMPTY_STRING;
+
+export const modalConfig = {
 	items: {
-		SimpleTextModal: {
+		SimpleTextModal: defineModal<string>({
 			renderItem: (modal) => <div>{modal.data}</div>,
-		},
-		ConfirmationModal: {
+		}),
+		ConfirmationModal: defineModal<{ text: string; onSubmit: VoidFunction; title?: string }>({
 			renderItem: (modal, props) => <ConfirmationModal onSubmit={modal.data.onSubmit} text={modal.data.text} {...props} />,
-			title: (data) => data.title || texts_c.confirmation,
+			title: titleFromData,
 			hasTopMenu: true,
 			closeOnBack: true,
-		},
-		ImageModal: {
+		}),
+		ImageModal: defineModal<{ url: string; title?: string }>({
 			renderItem: (modal) => <ModalImage url={modal.data.url} />,
-			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+			title: titleFromData,
 			hasTopMenu: true,
 			closeOnBack: true,
-		},
-		ProfilePhotosAlbumModal: {
+		}),
+		ProfilePhotosAlbumModal: defineModal<{ photos: Array<TPicture>; initialIndex?: number; title?: string }>({
 			renderItem: (modal, props) => <ProfilePhotosAlbumModal photos={modal.data.photos} initialIndex={modal.data.initialIndex} title={modal.data.title} {...props} />,
 			hasTopMenu: false,
 			allowFullscreen: true,
 			dialogPaperSx: photosAlbumDialogPaperSx,
 			closeOnBack: true,
-		},
-		CreateDonut: {
+		}),
+		CreateDonut: defineModal<{ title?: string }, TCreateDonutResult>({
 			renderItem: (_, props) => <ModalCreateDonut {...props} />,
 			hasTopMenu: true,
-			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+			title: titleFromData,
 			preventCloseOnBackDropClick: true,
 			closeOnBack: true,
-		},
-		ViewEmployee: {
-			renderItem: (modal, props) => <ModalEmployeeView id={modal.data?.id} {...props} />,
-			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+		}),
+		ViewEmployee: defineModal<{ id: number; title?: string }>({
+			renderItem: (modal, props) => <ModalEmployeeView id={modal.data.id} {...props} />,
+			title: titleFromData,
 			hasTopMenu: false,
 			dialogPaperSx: {
 				borderRadius: "20px",
@@ -61,51 +65,58 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 				maxWidth: "520px",
 			},
 			closeOnBack: true,
-		},
-		CreateCircle: {
+		}),
+		CreateCircle: defineModal<{ title?: string }, TCreateCircleResult>({
 			renderItem: (_, props) => <ModalCreateCircle {...props} />,
 			hasTopMenu: true,
-			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+			title: titleFromData,
 			preventCloseOnBackDropClick: true,
 			closeOnBack: true,
-		},
-		EditCircle: {
+		}),
+		EditCircle: defineModal<{ title?: string; circleId: number }, TEditCircleResult>({
 			renderItem: (modal, props) => <ModalEditCircle {...props} circleId={modal.data.circleId} />,
 			hasTopMenu: true,
-			title: (data) => data.title || CommonStrings.EMPTY_STRING,
+			title: titleFromData,
 			preventCloseOnBackDropClick: true,
 			closeOnBack: true,
-		},
-		AdminDepositModal: {
+		}),
+		AdminDepositModal: defineModal<{ title?: string; id: number }>({
 			renderItem: (modal, props) => <ModalAdminDeposit id={modal.data.id} {...props} />,
 			hasTopMenu: true,
-			title: (data) => data.title || "admin deposit",
+			title: titleFromData,
 			preventCloseOnBackDropClick: true,
 			closeOnBack: true,
-		},
-		TransferModal: {
+		}),
+		TransferModal: defineModal<{ title?: string; id: number }>({
 			renderItem: (modal, props) => <ModalTransfer id={modal.data.id} {...props} />,
 			hasTopMenu: true,
-			title: (data) => data.title || "Transfer",
+			title: titleFromData,
 			preventCloseOnBackDropClick: true,
 			dialogPaperSx: transferDonutDialogPaperSx,
 			closeOnBack: true,
-		},
-		GiveDonut: {
+		}),
+		GiveDonut: defineModal<{ title?: string }>({
 			renderItem: (_, props) => <ModalGiveDonut {...props} />,
 			hasTopMenu: true,
-			title: (data) => data.title || texts_g.give_donut_delivery_title,
+			title: titleFromData,
 			preventCloseOnBackDropClick: false,
 			dialogPaperSx: giveDonutDialogPaperSx,
 			closeOnBack: true,
-		},
-		DetailedEvent: {
+		}),
+		DetailedEvent: defineModal<{ post: TPost }>({
 			renderItem: (modal, props) => <ModalDetailedEvent post={modal.data.post} {...props} />,
 			hasTopMenu: true,
 			title: (data) => data.post.title,
 			getPath: (data) => `event/${data.post.id}`,
 			isTop: true,
-		},
+		}),
 		...telegramModalConfig.items,
 	},
 };
+
+export type TModalItems = typeof modalConfig.items;
+
+// Makes every modal declared above known to useModal() across the whole application.
+declare module "@/shared/ui/dialog/modal-registry" {
+	interface BntModalRegistry extends TModalItems {}
+}

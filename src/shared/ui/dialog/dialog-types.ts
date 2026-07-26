@@ -4,45 +4,48 @@ import { SystemStyleObject } from "@mui/system";
 
 import { VoidResponseFunction } from "@/types/function-types";
 
-export enum DialogResponse {
-	None,
-	Yes,
-	YesNo,
-	YesNoCancel,
-	Ok,
-	OkCancel,
-}
+export type TDialogPaperSx = SystemStyleObject<Theme>;
 
-export type TDialogProps<TResult = any> = {
+export type TDialogProps<TResult = void> = {
 	close: (result?: TResult) => void;
 	setModalLoading?: VoidResponseFunction<boolean>;
 };
 
-export type TDialog<T = any, TResult = any> = {
-	renderItem: (data: TDialog<T, TResult>, props: TDialogProps<TResult>) => ReactNode | Array<ReactNode>;
-	isOpen?: boolean;
-	data: T;
+// An opened modal: what the provider keeps in its state and what renderItem receives.
+export type TModalRecord<TData = unknown> = {
+	name: string;
+	data: TData;
 	modalKey: string;
-	reposeType?: DialogResponse;
-	onSuccess?: (values: Record<string, any>) => void;
-	onCancel?: () => void;
+	title: string;
+	hasTopMenu: boolean;
+	renderItem: (modal: TModalRecord<any>, props: TDialogProps<any>) => ReactNode | Array<ReactNode>;
+	allowFullscreen?: boolean;
+	dialogPaperSx?: TDialogPaperSx;
+	isTop?: boolean;
+	preventCloseOnBackDropClick?: boolean;
+	// Set while the dialog plays its exit transition: closed for the app, still rendered for the animation.
+	isClosing?: boolean;
+};
+
+// A modal declaration. Its payload and result types are written here once and inferred everywhere else.
+export type TDialogItem<TData = void, TResult = void> = {
+	renderItem: (modal: TModalRecord<TData>, props: TDialogProps<TResult>) => ReactNode | Array<ReactNode>;
+	title?: string | ((data: TData) => string);
+	getPath?: (data: TData) => string;
 	hasTopMenu?: boolean;
-	title?: string | ((data: T) => string);
 	closeOnBack?: boolean;
 	preventCloseOnBackDropClick?: boolean;
 	allowFullscreen?: boolean;
-	getPath?: (data: T) => string;
 	isTop?: boolean;
-	dialogPaperSx?: SystemStyleObject<Theme>;
+	dialogPaperSx?: TDialogPaperSx;
 };
 
-export type TDialogItems<T, R extends Record<keyof T, any> = any> = {
-	[name in keyof T]: Pick<
-		TDialog<T[name], R[name]>,
-		"renderItem" | "reposeType" | "hasTopMenu" | "closeOnBack" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop" | "dialogPaperSx" | "allowFullscreen"
-	>;
+export type TDialogItems = Record<string, TDialogItem<any, any>>;
+
+export type TDialogConfig<TItems extends Record<keyof TItems, TDialogItem<any, any>> = TDialogItems> = {
+	items: TItems;
 };
 
-export type TDialogConfig<T, R extends Record<keyof T, any> = any> = {
-	items: TDialogItems<T, R>;
-};
+export type TModalPayloadOf<TItem> = TItem extends TDialogItem<infer TData, any> ? TData : never;
+
+export type TModalResultOf<TItem> = TItem extends TDialogItem<any, infer TResult> ? TResult : never;

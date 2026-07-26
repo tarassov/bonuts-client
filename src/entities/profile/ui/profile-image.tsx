@@ -1,8 +1,7 @@
 import { CommonStrings } from "constants/dictionary";
 
+import { useModal } from "@/shared/lib/modal";
 import { BntForm, FieldSize, FieldType, type TFormField, type TFormProps, type TFormValue } from "@/shared/ui/form";
-
-import { useModal } from "@/entities/modal";
 
 import { useUpdateAvatar } from "../model/use-update-avatar";
 

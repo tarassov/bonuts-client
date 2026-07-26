@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 
+import { useModal } from "@/shared/lib/modal";
 import { useLoader } from "@/shared/ui/loader";
 
-import { useModal } from "@/entities/modal";
 import { useEmployee, useEmployeeLoader, useProfile } from "@/entities/profile";
 
 import { EmployeePreviewView } from "./employee-preview-pure";

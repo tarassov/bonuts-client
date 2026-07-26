@@ -27,7 +27,7 @@ type TModalEmployeeViewProps = {
 
 const MAX_TAGS = 3;
 
-export function ModalEmployeeView({ id, close = emptyFunction, setModalLoading = emptyFunction }: TModalEmployeeViewProps & TDialogProps) {
+export function ModalEmployeeView({ id, close, setModalLoading = emptyFunction }: TModalEmployeeViewProps & TDialogProps) {
 	const { isLoading, employee } = useEmployeeLoader(id);
 	const { authTenant } = useProfile();
 	const { profile } = useCurrentProfile();

@@ -5,8 +5,7 @@ import { texts_n } from "services/localization/texts";
 import { useAppDispatch } from "services/redux/store/store";
 
 import { BntRoutes } from "@/shared/config/routes";
-
-import { useModal } from "@/entities/modal";
+import { useModal } from "@/shared/lib/modal";
 
 import { routesPath } from "routes/config/routes-path";
 import { TBaseModel } from "@/types/model";

@@ -1,12 +1,14 @@
 import { ModalCreateCirclePure } from "components/modals/modal-create-circle/modal-create-circle-pure";
-import { emptyFunction } from "utils/empty-function";
+import { PostCirclesApiResponse } from "services/api/bonuts-api";
 
 import { TDialogProps } from "@/shared/ui/dialog";
 import { TFormValue } from "@/shared/ui/form";
 
 import { useCreateCircle } from "logic/hooks/cirlce/use-create-circle";
 
-export function ModalCreateCircle({ close = emptyFunction }: TDialogProps) {
+export type TCreateCircleResult = PostCirclesApiResponse;
+
+export function ModalCreateCircle({ close }: TDialogProps<TCreateCircleResult>) {
 	const { createCircle } = useCreateCircle();
 
 	const onSubmit = (values: Record<string, TFormValue>) => {
