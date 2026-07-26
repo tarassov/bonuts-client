@@ -2,9 +2,9 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { PostProfilesByIdSetActivityApiResponse } from "services/api/bonuts-api";
 import { texts_a, texts_c, texts_d } from "services/localization/texts";
 
+import { useModal } from "@/shared/lib/modal";
 import { useNotification } from "@/shared/ui/notification";
 
-import { useModal } from "@/entities/modal";
 import { useProfile } from "@/entities/profile";
 
 import { profilesApi } from "../api/profiles-api";

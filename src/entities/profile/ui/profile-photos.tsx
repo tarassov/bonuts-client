@@ -5,13 +5,12 @@ import { AddPhotoAlternateOutlined } from "@mui/icons-material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_n, texts_p } from "services/localization/texts";
 
+import { useModal } from "@/shared/lib/modal";
 import { BntButton } from "@/shared/ui/buttons";
 import { BntCard } from "@/shared/ui/card";
 import { BntChip } from "@/shared/ui/chip";
 import { PhotoAlbumGrid, type TPhotoAlbumItem } from "@/shared/ui/photo-album";
 import { BntTypography } from "@/shared/ui/typography";
-
-import { useModal } from "@/entities/modal";
 
 import { useProfilePhotos } from "../model/use-profile-photos";
 import { useUpdateProfilePhotos } from "../model/use-update-profile-photos";

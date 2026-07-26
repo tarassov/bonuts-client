@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { useModal } from "@/entities/modal";
+import { useModal } from "@/shared/lib/modal";
 
 import { ImageContainer } from "./image-container";
 

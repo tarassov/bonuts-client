@@ -1,29 +1,34 @@
 import { useContext, useMemo } from "react";
 
-import { DialogContext, DialogControlsContext } from "@/shared/ui/dialog";
+import { DialogContext, DialogControlsContext, type TDialogItem, type TModalPayloadOf, type TModalResultOf } from "@/shared/ui/dialog";
 
-export const useModalGeneric = <TConfig extends Record<string, any>, TResultConfig extends Partial<Record<keyof TConfig, any>>>(modalNames: string[]) => {
+type TModalHandlers<TItems> = {
+	[TName in Extract<keyof TItems, string>]: {
+		name: TName;
+		// A modal without a payload is opened with no arguments, one with a payload requires it.
+		show: (...args: TModalPayloadOf<TItems[TName]> extends void ? [] : [data: TModalPayloadOf<TItems[TName]>]) => Promise<TModalResultOf<TItems[TName]>>;
+		hide: (result?: TModalResultOf<TItems[TName]>) => void;
+	};
+};
+
+export const useModalGeneric = <TItems extends Record<keyof TItems, TDialogItem<any, any>>>(modalNames: Array<string>) => {
 	const showModal = useContext(DialogContext);
 	const { closeAll, closeByName } = useContext(DialogControlsContext);
 
-	const modalList = useMemo(
-		() =>
-			modalNames.reduce(
-				(acc, curr) => {
-					const key = curr as keyof TConfig;
-					acc[key] = {
-						name: key,
-						show: async (data: TConfig[typeof key] = {} as any) => {
-							return showModal(key as string, data);
-						},
-						hide: (result?: TResultConfig[typeof key]) => closeByName(key as string, result),
-					};
-					return acc;
-				},
-				{} as { [k in keyof TConfig]: { name: k; show: (data?: TConfig[k]) => Promise<TResultConfig[k]>; hide: (result?: TResultConfig[k]) => void } }
-			),
-		[closeByName, showModal, modalNames]
-	);
+	const modalList = useMemo(() => {
+		// The handlers are built from the names the provider knows at runtime, their types come from the config.
+		const handlers = modalNames.reduce<Record<string, unknown>>((acc, name) => {
+			acc[name] = {
+				name,
+				show: (data?: unknown) => showModal(name, data),
+				hide: (result?: unknown) => closeByName(name, result),
+			};
+
+			return acc;
+		}, {});
+
+		return handlers as TModalHandlers<TItems>;
+	}, [closeByName, showModal, modalNames]);
 
 	return { showModal, closeAll, ...modalList };
 };

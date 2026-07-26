@@ -5,11 +5,10 @@ import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_s } from "services/localization/texts";
 
+import { useModal } from "@/shared/lib/modal";
 import { CardWrapper } from "@/shared/ui/card-wrapper";
 import { useLoader } from "@/shared/ui/loader";
 import { BntStack } from "@/shared/ui/stack";
-
-import { useModal } from "@/entities/modal";
 
 import { NewSchedulerBlock } from "./new-scheduler-block";
 import { SchedulerList } from "./scheduler-list";

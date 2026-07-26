@@ -5,10 +5,13 @@ import { Modules } from "constants/modules";
 
 import { RouterContext } from "@/shared/lib/router";
 import { BntBox } from "@/shared/ui/box";
+import { BntDialogProvider } from "@/shared/ui/dialog";
 import { useLoader } from "@/shared/ui/loader";
 
+import { modalConfig } from "../config/modal-config";
+
+import SwitchRoutes from "./switch-routes";
 import { getRoutes } from "routes/get-routes";
-import SwitchRoutes from "@/app/ui/switch-routes";
 
 import "@/app/ui/app.scss";
 
@@ -23,9 +26,12 @@ export function BntLayout() {
 	const routerRoutes = useMemo(() => getRoutes(routes, redirects), [routes, redirects]);
 
 	return (
-		<BntBox sx={{ display: "flex", height: "100vh" }}>
-			<CssBaseline />
-			<SwitchRoutes routes={routerRoutes} />
-		</BntBox>
+		// One dialog provider for the whole application: modals outlive route changes and are driven by history.
+		<BntDialogProvider config={modalConfig}>
+			<BntBox sx={{ display: "flex", height: "100vh" }}>
+				<CssBaseline />
+				<SwitchRoutes routes={routerRoutes} />
+			</BntBox>
+		</BntDialogProvider>
 	);
 }

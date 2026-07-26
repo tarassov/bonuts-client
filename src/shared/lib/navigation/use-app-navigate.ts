@@ -1,5 +1,5 @@
-import { useCallback, useEffect } from "react";
-import { goBack, push } from "redux-first-history";
+import { useCallback } from "react";
+import { goBack, go as historyGo, push, replace } from "redux-first-history";
 
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 
@@ -12,16 +12,14 @@ export interface ILocationProps extends Location {
 		modal?: boolean;
 		name?: string;
 		data?: any;
+		// Key of the modal that pushed this history entry.
+		modalKey?: string;
 	};
 }
 
 export function useAppNavigate() {
 	const dispatch = useAppDispatch();
 	const location = useAppSelector((state) => state.router.location as unknown as ILocationProps);
-
-	useEffect(() => {
-		console.log("navigate location", location);
-	}, [location]);
 
 	const navigate = useCallback(
 		(...params: TNavigateParams) => {
@@ -30,9 +28,24 @@ export function useAppNavigate() {
 		[dispatch]
 	);
 
+	const replaceEntry = useCallback(
+		(...params: TNavigateParams) => {
+			return dispatch(replace(...params));
+		},
+		[dispatch]
+	);
+
 	const back = useCallback(() => {
 		return dispatch(goBack());
 	}, [dispatch]);
 
-	return { location, navigate, goBack: back };
+	// Several entries have to be dropped in one traverse: consecutive back calls are not reliable in browsers.
+	const go = useCallback(
+		(delta: number) => {
+			return dispatch(historyGo(delta));
+		},
+		[dispatch]
+	);
+
+	return { go, location, navigate, replace: replaceEntry, goBack: back };
 }

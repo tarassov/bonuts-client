@@ -13,11 +13,11 @@ import type { TDialogProps } from "@/shared/ui/dialog";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
-import type { TModalResponse } from "@/entities/modal";
+import type { TTelegramModalResponse } from "@/entities/telegram";
 
 import { useTelegramCode } from "../model/use-telegram-code";
 
-export function TelegramModal({ close }: TDialogProps<TModalResponse["ConnectTelegramModal"]>) {
+export function TelegramModal({ close }: TDialogProps<TTelegramModalResponse["ConnectTelegramModal"]>) {
 	const { t } = useBntTranslate();
 	const { generateTgCode, isLoading: isGeneratingCode } = useTelegramCode();
 	const { profile } = useCurrentProfile();

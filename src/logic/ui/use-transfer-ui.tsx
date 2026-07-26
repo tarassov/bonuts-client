@@ -2,7 +2,7 @@ import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a } from "services/localization/texts";
 import { texts_t } from "services/localization/texts/texts_t";
 
-import { useModal } from "@/entities/modal";
+import { useModal } from "@/shared/lib/modal";
 
 export const useTransferUi = () => {
 	const { AdminDepositModal, TransferModal } = useModal();

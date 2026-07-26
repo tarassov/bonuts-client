@@ -4,9 +4,9 @@ import { useIcons } from "hooks/use-icons";
 import { GetTelegramChatApiResponse } from "services/api/bonuts-api";
 import { emptyFunction } from "utils/empty-function";
 
+import { useModal } from "@/shared/lib/modal";
 import { present } from "@/shared/lib/type-guards";
 
-import { useModal } from "@/entities/modal";
 import { useRegisterPlugin } from "@/entities/plugin";
 
 import { useTelegramChat } from "../model/use-telegram-chat";

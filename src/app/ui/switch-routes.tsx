@@ -12,7 +12,6 @@ import { BntRoutes } from "@/shared/config/routes";
 import { type TAuthState, useAuth, useCurrentProfile } from "@/shared/model/auth";
 import { BntLoader } from "@/shared/ui/loader";
 
-import type { TModalConfig } from "@/entities/modal";
 import { useUserActivityHeartbit } from "@/entities/user";
 
 import { ForbiddenPage } from "@/pages/forbidden-page";
@@ -26,7 +25,7 @@ interface ISwitchRoutesProps {
 	redirects?: Array<TRedirect>;
 }
 
-const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?: keyof TModalConfig, modalData?: any): ReactElement => {
+const getRoute = (route: TRoute<any>, auth: TAuthState): ReactElement => {
 	if (route.public) {
 		return route.component;
 	}
@@ -40,18 +39,14 @@ const getRoute = (route: TRoute<any>, auth: TAuthState, path: string, modalName?
 	if (auth.isAuthenticated && !route.authenticated && route.anonymous) {
 		return <Navigate to="/" />;
 	}
-	return auth.isAuthenticated || route.anonymous ? (
-		<PageWrapper isRoot={route.isRoot} children={route.component} path={route.path} addressPath={path} modalData={modalData} modalName={modalName} />
-	) : (
-		<Navigate to={route.redirect || routesPath[BntRoutes.Login]} />
-	);
+	return auth.isAuthenticated || route.anonymous ? <PageWrapper isRoot={route.isRoot} children={route.component} /> : <Navigate to={route.redirect || routesPath[BntRoutes.Login]} />;
 };
 
 function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 	const location = useLocationTyped();
 	const { checkAuth, isAuthLoading, auth } = useAuth();
 	const { currentRoles } = useCurrentProfile();
-	const { background, name, data } = location.state || {};
+	const { background } = location.state || {};
 	const { t } = useBntTranslate();
 
 	useUserActivityHeartbit({
@@ -87,13 +82,13 @@ function SwitchRoutes({ routes }: ISwitchRoutesProps) {
 				authenticatedRoutes
 					.filter((x) => x.tenantNotRequired || auth.tenant)
 					.map((route) => {
-						const element = auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? <ForbiddenPage /> : getRoute(route, auth, location.pathname, name as keyof TModalConfig, data);
+						const element = auth.isAuthenticated && !isAuthLoading && !hasAccess(route) ? <ForbiddenPage /> : getRoute(route, auth);
 						return <Route path={route.path} element={element} key={route.path} />;
 					})}
 
 			{anonymousRoutes &&
 				anonymousRoutes.map((route) => {
-					return <Route path={route.path} element={getRoute(route, auth, location.pathname)} key={route.path} />;
+					return <Route path={route.path} element={getRoute(route, auth)} key={route.path} />;
 				})}
 		</Routes>
 	);

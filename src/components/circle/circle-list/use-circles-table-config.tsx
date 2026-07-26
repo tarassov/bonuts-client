@@ -3,10 +3,9 @@ import { useMemo } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_c, texts_e, texts_n } from "services/localization/texts";
 
+import { useModal } from "@/shared/lib/modal";
 import type { TTableConfig } from "@/shared/ui/react-table";
 import { ActionType, CellType, HeaderType, useTableConfig } from "@/shared/ui/react-table";
-
-import { useModal } from "@/entities/modal";
 
 import { useCircle } from "logic/hooks/cirlce/use-circle";
 import { useCircleUi } from "logic/ui/use-circle-ui";

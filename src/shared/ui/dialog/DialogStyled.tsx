@@ -11,7 +11,7 @@ export const DialogStyled = styled(Dialog, {
 			background: "transparent",
 			[cl("MuiPaper-root")]: {
 				overflow: "hidden",
-				background: theme.palette.background,
+				background: theme.palette.background.paper,
 				borderRadius: "50%",
 				opacity: 0.5,
 			},
