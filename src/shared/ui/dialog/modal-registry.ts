@@ -11,7 +11,6 @@ import type { TModalPayloadOf, TModalResultOf } from "./dialog-types";
  *
  * It is what makes `useModal()` typed in every layer without shared importing app modules.
  */
-// biome-ignore lint/suspicious/noEmptyInterface: the app fills it in through module augmentation
 export interface BntModalRegistry {}
 
 export type TModalName = Extract<keyof BntModalRegistry, string>;
