@@ -12,9 +12,8 @@ import { GiveDonutStep, type TSelectedEmployee } from "../model/modal-give-donut
 import { ModalGiveDonutSearchStep } from "./modal-give-donut-search-step";
 import { ModalGiveDonutSuccessStep } from "./modal-give-donut-success-step";
 import { ModalGiveDonutTransferStep } from "./modal-give-donut-transfer-step";
-import { emptyFunction } from "@/utils/empty-function";
 
-export function ModalGiveDonut({ close = emptyFunction }: TDialogProps) {
+export function ModalGiveDonut({ close }: TDialogProps) {
 	const [step, setStep] = useState<GiveDonutStep>(GiveDonutStep.Search);
 	const [query, setQuery] = useState("");
 	const [searchQuery, setSearchQuery] = useState("");

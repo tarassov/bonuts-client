@@ -10,13 +10,12 @@ import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_e, texts_g } from "services/localization/texts";
 
+import { useModal } from "@/shared/lib/modal";
 import { present } from "@/shared/lib/type-guards";
 import { BntBox } from "@/shared/ui/box";
 import { useLoader } from "@/shared/ui/loader";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
-
-import { useModal } from "@/entities/modal";
 
 import { useEventListLogic } from "../model/use-event-list-logic";
 

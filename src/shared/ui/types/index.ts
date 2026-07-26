@@ -1,4 +1,4 @@
-export { type TDialog, type TDialogConfig } from "../dialog/dialog-types";
+export { type TDialogConfig, type TDialogItem } from "../dialog/dialog-types";
 
 export type { TBntBreadcrumb, TBntBreadcrumbItem } from "./breadcrumbs-types";
 export * from "./breadcrumbs-types";

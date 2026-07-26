@@ -10,6 +10,7 @@ import { Modules } from "constants/modules";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { BntRoutes } from "@/shared/config/routes";
+import { useModal } from "@/shared/lib/modal";
 import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
 import { BntCard, BntCardBody } from "@/shared/ui/card";
 import { ImagePreview } from "@/shared/ui/image";
@@ -18,7 +19,6 @@ import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useDonutLoader } from "@/entities/donut";
-import { useModal } from "@/entities/modal";
 
 import { DonutPurchaseBlock } from "./donut-purchase-block";
 import { routesPath } from "routes/config/routes-path";

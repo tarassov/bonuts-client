@@ -1,36 +1,36 @@
-import { createContext, ReactNode } from "react";
-import { Theme } from "@mui/material";
-import { SystemStyleObject } from "@mui/system";
+import { createContext } from "react";
 
 import { emptyFunction } from "utils/empty-function";
 
-import { TDialogProps } from "./dialog-types";
+import type { TModalRecord } from "./dialog-types";
+import type { TModalName, TModalPayload, TModalResult } from "./modal-registry";
 
-type ContextType = {
-	<T extends string>(name: T, data: any, key?: string): Promise<any>;
+export type TShowDialog = {
+	<TName extends TModalName>(name: TName, data: TModalPayload<TName>, key?: string): Promise<TModalResult<TName>>;
+	// A config that is not registered in BntModalRegistry (tests, isolated providers) still has to be openable.
+	(name: string, data: unknown, key?: string): Promise<unknown>;
 };
 
 // biome-ignore lint/suspicious/noEmptyBlockStatements: context default
-export const DialogContext = createContext<ContextType>(async () => {});
+export const DialogContext = createContext<TShowDialog>(async () => undefined);
 
-export const DialogNamesContext = createContext<string[]>([]);
+export const DialogNamesContext = createContext<Array<string>>([]);
 
-export const DialogCloseContext = createContext<{ (key: string, name: string, result?: any): void }>(emptyFunction);
+export const DialogCloseContext = createContext<{ (key: string, result?: any): void }>(emptyFunction);
 
-export const DialogValueContext = createContext<
-	Array<{
-		name: string;
-		data: any;
-		modalKey: string;
-		hasTopMenu: boolean;
-		title: string;
-		closeOnBack?: boolean;
-		path?: string | null;
-		preventCloseOnBackDropClick?: boolean;
-		allowFullscreen?: boolean;
-		isTop?: boolean;
-		dialogPaperSx?: SystemStyleObject<Theme>;
+// Modal keys are generated inside the provider, so closing by name or closing everything
+// can only be resolved there, against the currently opened modals.
+export type TDialogControls = {
+	closeAll: (result?: any) => void;
+	closeByName: (name: string, result?: any) => void;
+	// Drops a closed modal once its exit transition has finished.
+	removeModal: (key: string) => void;
+};
 
-		renderItem: (d: any, props: TDialogProps<any>) => ReactNode | Array<ReactNode>;
-	}>
->([]);
+export const DialogControlsContext = createContext<TDialogControls>({
+	closeAll: emptyFunction,
+	closeByName: emptyFunction,
+	removeModal: emptyFunction,
+});
+
+export const DialogValueContext = createContext<Array<TModalRecord>>([]);

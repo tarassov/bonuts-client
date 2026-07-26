@@ -1,14 +1,15 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 
-import _ from "lodash";
+import { omit } from "ramda";
 
-import { DialogCloseContext, DialogValueContext } from "./dialog-context";
+import { DialogCloseContext, DialogControlsContext, DialogValueContext } from "./dialog-context";
 import { DialogItem } from "./dialog-item";
 
 export function BntDialogContainer() {
 	const modals = useContext(DialogValueContext);
 	const handleClose = useContext(DialogCloseContext);
+	const { removeModal } = useContext(DialogControlsContext);
 	const [loadingModal, setLoadingModal] = useState<Record<string, boolean>>({});
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -19,14 +20,28 @@ export function BntDialogContainer() {
 		});
 	}, []);
 
+	// A modal that is gone must not leave its loading flag behind, the key can be reused.
+	useEffect(() => {
+		setLoadingModal((prev) => {
+			const staleKeys = Object.keys(prev).filter((key) => !modals.some((modal) => modal.modalKey === key));
+
+			return staleKeys.length > 0 ? omit(staleKeys, prev) : prev;
+		});
+	}, [modals]);
+
 	return (
 		<>
-			{[...modals].map((modal) => {
-				const title = modal.title ? (_.isFunction(modal.title) ? modal.title(modal) : modal.title) : "";
-				const isLoading = loadingModal[modal.modalKey];
-
-				return <DialogItem key={modal.modalKey} fullScreen={fullScreen} handleClose={handleClose} isLoading={isLoading} modal={modal} moduleSetLoading={moduleSetLoading} title={title} />;
-			})}
+			{modals.map((modal) => (
+				<DialogItem
+					key={modal.modalKey}
+					fullScreen={fullScreen}
+					handleClose={handleClose}
+					isLoading={loadingModal[modal.modalKey]}
+					modal={modal}
+					moduleSetLoading={moduleSetLoading}
+					removeModal={removeModal}
+				/>
+			))}
 		</>
 	);
 }
