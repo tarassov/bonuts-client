@@ -28,6 +28,7 @@ export type TDialog<T = any, TResult = any> = {
 	onCancel?: () => void;
 	hasTopMenu?: boolean;
 	title?: string | ((data: T) => string);
+	closeOnBack?: boolean;
 	preventCloseOnBackDropClick?: boolean;
 	allowFullscreen?: boolean;
 	getPath?: (data: T) => string;
@@ -36,7 +37,10 @@ export type TDialog<T = any, TResult = any> = {
 };
 
 export type TDialogItems<T, R extends Record<keyof T, any> = any> = {
-	[name in keyof T]: Pick<TDialog<T[name], R[name]>, "renderItem" | "reposeType" | "hasTopMenu" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop" | "dialogPaperSx" | "allowFullscreen">;
+	[name in keyof T]: Pick<
+		TDialog<T[name], R[name]>,
+		"renderItem" | "reposeType" | "hasTopMenu" | "closeOnBack" | "preventCloseOnBackDropClick" | "title" | "getPath" | "isTop" | "dialogPaperSx" | "allowFullscreen"
+	>;
 };
 
 export type TDialogConfig<T, R extends Record<keyof T, any> = any> = {

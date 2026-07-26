@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts/texts_c";
 
+import { useHistoryBack } from "@/shared/lib/modal";
 import { BntBox } from "@/shared/ui/box";
 import { BntRoundButton } from "@/shared/ui/buttons";
 import { BntDivider } from "@/shared/ui/divider";
@@ -60,6 +61,12 @@ export function DialogItem({ fullScreen, handleClose, isLoading, modal, moduleSe
 	const handleDialogClose = useCallback(() => {
 		handleClose(modal.modalKey, modal.name);
 	}, [handleClose, modal.modalKey, modal.name]);
+
+	useHistoryBack({
+		callback: handleDialogClose,
+		enabled: Boolean(modal.closeOnBack && !modal.path),
+		key: modal.modalKey,
+	});
 
 	const handleModalLoading = useCallback(
 		(value: boolean) => {

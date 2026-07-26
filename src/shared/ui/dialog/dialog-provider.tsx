@@ -31,6 +31,7 @@ type TModal = {
 	hasTopMenu: boolean;
 	title: string;
 	path?: string | null;
+	closeOnBack?: boolean;
 	dialogPaperSx?: TDialog<any>["dialogPaperSx"];
 	allowFullscreen?: boolean;
 };
@@ -83,6 +84,7 @@ export function BntDialogProvider<T extends Record<string, any>>({ children, con
 						data,
 						modalKey,
 						path: parsedPath,
+						closeOnBack: config.items[name]?.closeOnBack || false,
 						title: modalTitle || CommonStrings.EMPTY_STRING,
 						renderItem: config.items[name]?.renderItem || ((d: any) => <div>{d}</div>),
 						hasTopMenu: config.items[name]?.hasTopMenu || false,

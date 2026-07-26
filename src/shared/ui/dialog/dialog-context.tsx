@@ -24,6 +24,8 @@ export const DialogValueContext = createContext<
 		modalKey: string;
 		hasTopMenu: boolean;
 		title: string;
+		closeOnBack?: boolean;
+		path?: string | null;
 		preventCloseOnBackDropClick?: boolean;
 		allowFullscreen?: boolean;
 		isTop?: boolean;

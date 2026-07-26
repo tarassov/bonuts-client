@@ -28,23 +28,27 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 			renderItem: (modal, props) => <ConfirmationModal onSubmit={modal.data.onSubmit} text={modal.data.text} {...props} />,
 			title: (data) => data.title || texts_c.confirmation,
 			hasTopMenu: true,
+			closeOnBack: true,
 		},
 		ImageModal: {
 			renderItem: (modal) => <ModalImage url={modal.data.url} />,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			hasTopMenu: true,
+			closeOnBack: true,
 		},
 		ProfilePhotosAlbumModal: {
 			renderItem: (modal, props) => <ProfilePhotosAlbumModal photos={modal.data.photos} initialIndex={modal.data.initialIndex} title={modal.data.title} {...props} />,
 			hasTopMenu: false,
 			allowFullscreen: true,
 			dialogPaperSx: photosAlbumDialogPaperSx,
+			closeOnBack: true,
 		},
 		CreateDonut: {
 			renderItem: (_, props) => <ModalCreateDonut {...props} />,
 			hasTopMenu: true,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			preventCloseOnBackDropClick: true,
+			closeOnBack: true,
 		},
 		ViewEmployee: {
 			renderItem: (modal, props) => <ModalEmployeeView id={modal.data?.id} {...props} />,
@@ -56,24 +60,28 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 				minWidth: { sm: "480px" },
 				maxWidth: "520px",
 			},
+			closeOnBack: true,
 		},
 		CreateCircle: {
 			renderItem: (_, props) => <ModalCreateCircle {...props} />,
 			hasTopMenu: true,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			preventCloseOnBackDropClick: true,
+			closeOnBack: true,
 		},
 		EditCircle: {
 			renderItem: (modal, props) => <ModalEditCircle {...props} circleId={modal.data.circleId} />,
 			hasTopMenu: true,
 			title: (data) => data.title || CommonStrings.EMPTY_STRING,
 			preventCloseOnBackDropClick: true,
+			closeOnBack: true,
 		},
 		AdminDepositModal: {
 			renderItem: (modal, props) => <ModalAdminDeposit id={modal.data.id} {...props} />,
 			hasTopMenu: true,
 			title: (data) => data.title || "admin deposit",
 			preventCloseOnBackDropClick: true,
+			closeOnBack: true,
 		},
 		TransferModal: {
 			renderItem: (modal, props) => <ModalTransfer id={modal.data.id} {...props} />,
@@ -81,6 +89,7 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 			title: (data) => data.title || "Transfer",
 			preventCloseOnBackDropClick: true,
 			dialogPaperSx: transferDonutDialogPaperSx,
+			closeOnBack: true,
 		},
 		GiveDonut: {
 			renderItem: (_, props) => <ModalGiveDonut {...props} />,
@@ -88,6 +97,7 @@ export const modalConfig: TDialogConfig<TModalConfig> = {
 			title: (data) => data.title || texts_g.give_donut_delivery_title,
 			preventCloseOnBackDropClick: false,
 			dialogPaperSx: giveDonutDialogPaperSx,
+			closeOnBack: true,
 		},
 		DetailedEvent: {
 			renderItem: (modal, props) => <ModalDetailedEvent post={modal.data.post} {...props} />,

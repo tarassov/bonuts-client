@@ -1,58 +1,32 @@
-# `useHistoryBack` usage guide
+# `useHistoryBack`
 
-`useHistoryBack` helps modal/sheet flows work naturally with browser **Back**.
+`useHistoryBack` lets a UI flow consume one browser **Back** action without changing the visible URL.
 
-When mounted, the hook adds a marker history entry (`<originPath>?<key>`). If user presses Back and lands on that marker via `POP`, the hook navigates back to the original pathname and can run an optional callback.
+When enabled, the hook pushes a history marker that preserves the current pathname, query, hash, and location state. A subsequent `POP` from that marker invokes `callback`. When the component unmounts for another reason, the hook removes its marker.
 
 ## API
 
 ```ts
 useHistoryBack({
-  key: string;
-  callback?: VoidFunction;
-  prevent?: boolean;
+  callback: VoidFunction,
+  enabled: boolean,
+  key: string,
 });
 ```
 
-- `key` — required marker key that identifies a specific flow.
-- `callback` — optional function to run when Back-close interception happens.
-- `prevent` — when `true`, enables callback execution on interception.
-
-## Example 1: Close a dialog with browser Back
+The dialog infrastructure uses the hook automatically. Prefer enabling it through dialog configuration instead of calling it from a feature:
 
 ```tsx
-import { useState } from "react";
-import { useHistoryBack } from "@/hooks/use-history-back";
-
-export const EmployeeEditDialog = () => {
-  const [open, setOpen] = useState(true);
-
-  useHistoryBack({
-    key: "employee-edit",
-    prevent: true,
-    callback: () => setOpen(false),
-  });
-
-  if (!open) return null;
-
-  return <div>{/* dialog content */}</div>;
+const modalConfig = {
+  items: {
+    CreateDonut: {
+      renderItem: (_, props) => <ModalCreateDonut {...props} />,
+      closeOnBack: true,
+    },
+  },
 };
 ```
 
-## Example 2: Marker-only mode (no callback)
+`closeOnBack` applies only to dialogs without `getPath`. Route-backed dialogs already close when browser history returns to their background route.
 
-```tsx
-import { useHistoryBack } from "@/hooks/use-history-back";
-
-export const PluginCreatePage = () => {
-  useHistoryBack({ key: "plugin-create" });
-
-  return <div>{/* form */}</div>;
-};
-```
-
-## Recommendations
-
-- Use stable unique keys per flow (`"employee-edit"`, `"scheduler-create"`, etc.).
-- Mount the hook only while modal/back-interception behavior is needed.
-- Keep callback side effects focused (e.g. close dialog, reset local flags).
+The hook lives in `shared/lib/modal`, while its integration with configured dialogs lives in `shared/ui/dialog`.
