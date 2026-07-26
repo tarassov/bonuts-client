@@ -10,7 +10,7 @@ import { useAppNavigate } from "@/shared/lib/navigation";
 import { isBlank, present } from "@/shared/lib/type-guards";
 
 import { BntDialogContainer } from "./dialog-container";
-import { DialogCloseContext, DialogContext, DialogNamesContext, DialogValueContext } from "./dialog-context";
+import { DialogCloseContext, DialogContext, DialogControlsContext, DialogNamesContext, DialogValueContext } from "./dialog-context";
 import { TDialog, TDialogConfig } from "./dialog-types";
 import _uniqueId from "lodash/uniqueId";
 
@@ -44,6 +44,10 @@ export function BntDialogProvider<T extends Record<string, any>>({ children, con
 	const resolversRef = useRef<ResolverMap>(new Map());
 
 	const [modals, setModal] = useState<ModalState | null>(null);
+
+	// Lets closeByName/closeAll read the opened modals without depending on them.
+	const modalsRef = useRef<ModalState | null>(null);
+	modalsRef.current = modals;
 
 	// close all modals after path has changed
 	useEffect(() => {
@@ -126,6 +130,31 @@ export function BntDialogProvider<T extends Record<string, any>>({ children, con
 		[config, goBack]
 	);
 
+	// The same modal name can be opened several times, so every instance of it has to be closed.
+	const closeByName = useCallback(
+		(name: string, result?: any) => {
+			const openedModals = modalsRef.current;
+			if (isBlank(openedModals)) return;
+
+			Object.values(openedModals)
+				.filter((modal) => modal.name === name)
+				.forEach((modal) => handleClose(modal.modalKey, modal.name, result));
+		},
+		[handleClose]
+	);
+
+	const closeAll = useCallback(
+		(result?: any) => {
+			const openedModals = modalsRef.current;
+			if (isBlank(openedModals)) return;
+
+			Object.values(openedModals).forEach((modal) => handleClose(modal.modalKey, modal.name, result));
+		},
+		[handleClose]
+	);
+
+	const dialogControls = useMemo(() => ({ closeAll, closeByName }), [closeAll, closeByName]);
+
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <runs only once>
 	useEffect(() => {
 		if (!defaultModal) return;
@@ -141,10 +170,12 @@ export function BntDialogProvider<T extends Record<string, any>>({ children, con
 		<DialogContext.Provider value={showDialog}>
 			<DialogNamesContext.Provider value={modalNames}>
 				<DialogCloseContext.Provider value={handleClose}>
-					<DialogValueContext.Provider value={modalsArray}>
-						{children}
-						<BntDialogContainer />
-					</DialogValueContext.Provider>
+					<DialogControlsContext.Provider value={dialogControls}>
+						<DialogValueContext.Provider value={modalsArray}>
+							{children}
+							<BntDialogContainer />
+						</DialogValueContext.Provider>
+					</DialogControlsContext.Provider>
 				</DialogCloseContext.Provider>
 			</DialogNamesContext.Provider>
 		</DialogContext.Provider>

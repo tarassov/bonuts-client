@@ -17,6 +17,18 @@ export const DialogNamesContext = createContext<string[]>([]);
 
 export const DialogCloseContext = createContext<{ (key: string, name: string, result?: any): void }>(emptyFunction);
 
+// Modal keys are generated inside the provider, so closing by name or closing everything
+// can only be resolved there, against the currently opened modals.
+export type TDialogControls = {
+	closeAll: (result?: any) => void;
+	closeByName: (name: string, result?: any) => void;
+};
+
+export const DialogControlsContext = createContext<TDialogControls>({
+	closeAll: emptyFunction,
+	closeByName: emptyFunction,
+});
+
 export const DialogValueContext = createContext<
 	Array<{
 		name: string;
