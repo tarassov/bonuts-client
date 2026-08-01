@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { generatePath } from "react-router-dom";
 
 import { CommonStrings } from "constants/dictionary";
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -20,7 +21,9 @@ export const useEmployeeUi = (employee?: TProfile) => {
 	const { t } = useBntTranslate();
 	const { showNotification } = useNotification();
 	const showEmployee = (id?: number) => {
-		if (id || employee) navigate(`/e/${id || employee?.id}`);
+		const profileId = id || employee?.id;
+
+		if (profileId) navigate(generatePath(routesPath[BntRoutes.EmployeePreview], { id: profileId.toString() }));
 	};
 	const showEmployeeModal = (id?: number, title?: string) => {
 		if (id)

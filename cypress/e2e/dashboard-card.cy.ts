@@ -55,15 +55,16 @@ describe("Dashboard notification card", () => {
 	});
 
 	it("opens the unified account operations history from the balance widget", () => {
-		visitDashboard("light");
-		cy.intercept("GET", "**/account_operations/history*", {
+		cy.intercept("GET", /\/account_operations\/history(?:\?.*)?$/, {
 			statusCode: 200,
 			body: ACCOUNT_OPERATIONS_HISTORY_RESPONSE,
 		}).as("getAccountOperationsHistory");
-		cy.intercept("GET", "**/account_operations/summary*", {
+		cy.intercept("GET", /\/account_operations\/summary(?:\?.*)?$/, {
 			statusCode: 200,
 			body: ACCOUNT_OPERATIONS_SUMMARY_RESPONSE,
 		}).as("getAccountOperationsSummary");
+		visitDashboard("light");
+		cy.wait("@getProfile");
 
 		cy.get('[data-testid="dashboard-widget-balance-overview"]', { timeout: 12000 }).click();
 

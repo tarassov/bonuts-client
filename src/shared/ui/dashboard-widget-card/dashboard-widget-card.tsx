@@ -43,7 +43,7 @@ export function DashboardWidgetCard({ ariaLabel, children, columns = 1, onClick 
 		<WidgetContainer columns={columns}>
 			<SidebarCard>
 				{onClick ? (
-					<WidgetActionArea aria-label={ariaLabel} onClick={onClick}>
+					<WidgetActionArea aria-label={ariaLabel} onClick={() => onClick()}>
 						{content}
 					</WidgetActionArea>
 				) : (
