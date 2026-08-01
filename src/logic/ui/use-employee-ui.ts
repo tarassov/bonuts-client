@@ -1,22 +1,29 @@
-import { push } from "redux-first-history";
+import { useCallback } from "react";
+import { generatePath } from "react-router-dom";
 
 import { CommonStrings } from "constants/dictionary";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_p } from "services/localization/texts/texts_p";
-import { useAppDispatch } from "services/redux/store/store";
 
 import { BntRoutes } from "@/shared/config/routes";
 import { useModal } from "@/shared/lib/modal";
+import { useAppNavigate } from "@/shared/lib/navigation";
+import { ESeverity, useNotification } from "@/shared/ui/notification";
+
+import { AccountType } from "@/entities/account";
 
 import { routesPath } from "routes/config/routes-path";
-import { TProfile } from "@/types/model";
+import type { TProfile } from "@/types/model";
 
 export const useEmployeeUi = (employee?: TProfile) => {
-	const dispatch = useAppDispatch();
 	const { ViewEmployee } = useModal();
+	const { navigate, navigateWithSearchParams } = useAppNavigate();
 	const { t } = useBntTranslate();
+	const { showNotification } = useNotification();
 	const showEmployee = (id?: number) => {
-		if (id || employee) dispatch(push(`/e/${id || employee?.id}`));
+		const profileId = id || employee?.id;
+
+		if (profileId) navigate(generatePath(routesPath[BntRoutes.EmployeePreview], { id: profileId.toString() }));
 	};
 	const showEmployeeModal = (id?: number, title?: string) => {
 		if (id)
@@ -27,30 +34,25 @@ export const useEmployeeUi = (employee?: TProfile) => {
 	};
 
 	const toEmployeeList = () => {
-		dispatch(push(routesPath[BntRoutes.Employees]));
+		navigate(routesPath[BntRoutes.Employees]);
 	};
 
-	const toDistribBalanceHistory = () => {
-		const account_id = employee?.distrib_account?.id;
-		if (account_id) {
-			dispatch(push(routesPath[BntRoutes.AccountOperations].replace(":id", account_id.toString())));
-		} else {
-			console.warn("Account id was not found in employee", employee);
-		}
-	};
-	const toSelfBalanceHistory = () => {
-		const account_id = employee?.self_account?.id;
-		if (account_id) {
-			dispatch(push(routesPath[BntRoutes.AccountOperations].replace(":id", account_id.toString())));
-		} else {
-			console.warn("Account id was not found in employee", employee);
-		}
-	};
+	const toAccountOperations = useCallback(
+		(accountType?: AccountType) => {
+			if (employee?.id) {
+				const path = routesPath[BntRoutes.AccountOperations].replace(":id", employee.id.toString());
+				navigateWithSearchParams(path, { accountType });
+			} else {
+				showNotification(texts_p.profile_not_found, ESeverity.Warning);
+			}
+		},
+		[employee?.id, navigateWithSearchParams, showNotification]
+	);
+
 	return {
 		showEmployee,
 		showEmployeeModal,
 		toEmployeeList,
-		toDistribBalanceHistory,
-		toSelfBalanceHistory,
+		toAccountOperations,
 	};
 };

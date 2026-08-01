@@ -2,7 +2,7 @@ import { BntRoutes } from "@/shared/config/routes";
 
 export const routesPath: Record<BntRoutes, string> = {
 	Home: "/home",
-	AccountOperations: "/account/:id",
+	AccountOperations: "/account_operations/:id",
 	ActiveRequests: "active_requests",
 	ClosedRequests: "closed_request",
 	Dashboard: "/",

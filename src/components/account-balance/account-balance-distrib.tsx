@@ -8,6 +8,8 @@ import { BntBox } from "@/shared/ui/box";
 import { BntRoundButton } from "@/shared/ui/buttons";
 import { BntStack } from "@/shared/ui/stack";
 
+import { AccountType } from "@/entities/account";
+
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import type { TProfile } from "@/types/model";
@@ -16,7 +18,7 @@ export function AccountBalanceDistrib({ profile }: { profile: TProfile }) {
 	const { t } = useBntTranslate();
 	const accountId = profile?.distrib_account?.id;
 	const { account, isLoading } = useAccountBalanceLoader(accountId);
-	const { toEmployeeList, toDistribBalanceHistory } = useEmployeeUi(profile);
+	const { toAccountOperations, toEmployeeList } = useEmployeeUi(profile);
 
 	return (
 		<BntStack gap={1}>
@@ -35,7 +37,7 @@ export function AccountBalanceDistrib({ profile }: { profile: TProfile }) {
 				}
 				name="donut"
 				lastOperation={account?.last_operation}
-				onClick={toDistribBalanceHistory}
+				onClick={() => toAccountOperations(AccountType.distrib)}
 			/>
 			<BntBox>
 				<BntRoundButton variant="contained" onClick={toEmployeeList}>

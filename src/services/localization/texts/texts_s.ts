@@ -1,4 +1,7 @@
 export enum texts_s {
+	search_operations = "search operations",
+	spent_coins = "spent coins",
+	summary = "summary",
 	save = "save",
 	search = "search",
 	search_colleagues = "search colleagues",
@@ -7,7 +10,9 @@ export enum texts_s {
 	status = "status",
 	social_newcomer = "social newcomer",
 	show_only_mine = "show only mine",
+	show_details = "show details",
 	show_password = "show password",
+	hide_details = "hide details",
 	service_bot = "service bot",
 	select_all = "select all",
 	share = "share",

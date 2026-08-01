@@ -1,4 +1,9 @@
 export enum texts_a {
+	account_operations_subtitle = "account operations subtitle",
+	account_type = "account type",
+	all = "all",
+	all_time = "all time",
+	all_types = "all types",
 	author = "author",
 	auth_fill_required_fields = "auth fill required fields",
 	auth_action_in_progress = "auth action in progress",
