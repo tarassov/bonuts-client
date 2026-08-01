@@ -23,7 +23,7 @@ export function AccountOperationsPage() {
 	const accountType = getEnumValue(searchParams.get("accountType"), Object.values(AccountTypeFilter), AccountTypeFilter.all);
 	const operationType = getEnumValue(searchParams.get("operationType"), Object.values(OperationTypeFilter), OperationTypeFilter.all);
 	const period = getEnumValue(searchParams.get("period"), Object.values(OperationPeriod), OperationPeriod.allTime);
-	const { isError, isFetching, isLoading, operations, summary } = useAccountOperations({ accountType, operationType, period, profileId, search, tenant: authTenant });
+	const { fetchNext, hasNext, isError, isFetching, isLoading, operations, summary } = useAccountOperations({ accountType, operationType, period, profileId, search, tenant: authTenant });
 
 	const setFilter = (name: string, value: string) => {
 		const nextParams = new URLSearchParams(searchParams);
@@ -36,6 +36,7 @@ export function AccountOperationsPage() {
 	return (
 		<AccountOperationsView
 			accountType={accountType}
+			hasNext={hasNext}
 			isError={isError}
 			isFetching={isFetching}
 			isFiltersExpanded={isFiltersExpanded}
@@ -44,6 +45,7 @@ export function AccountOperationsPage() {
 			onBack={goBack}
 			onFiltersToggle={() => setIsFiltersExpanded((isExpanded) => !isExpanded)}
 			onOperationTypeChange={(value) => setFilter("operationType", value)}
+			onLoadMore={fetchNext}
 			onPeriodChange={(value) => setFilter("period", value)}
 			onSearchChange={setSearch}
 			operationType={operationType}

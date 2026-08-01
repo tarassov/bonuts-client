@@ -22,7 +22,7 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 
 	const authTenant = useAppSelector(authTenantSelector);
 
-	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates, isFetching } = usePaginator(endpoint, { ...args, tenant: authTenant }, pollingInterval, skip);
+	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates, isFetching, isError } = usePaginator(endpoint, { ...args, tenant: authTenant }, pollingInterval, skip);
 
 	useEffect(() => {
 		if (!pages) {
@@ -46,6 +46,7 @@ export const usePagintatedListBase = <Endpoint extends TEndpoint<Endpoint>, TMod
 		hasNext,
 		pages: objects,
 		isLoading,
+		isError,
 		fetchNext,
 		hasNew,
 		applyUpdates,

@@ -15,9 +15,11 @@ import { AccountOperationsSummary } from "./account-operations-summary";
 import { AccountOperationsToolbar } from "./account-operations-toolbar";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { texts_a, texts_b, texts_h, texts_l, texts_o, texts_t } from "@/services/localization/texts";
+import { emptyFunction } from "@/utils/empty-function";
 
 interface IAccountOperationsViewProps {
 	accountType: AccountTypeFilter;
+	hasNext?: boolean;
 	isError?: boolean;
 	isFetching?: boolean;
 	isFiltersExpanded: boolean;
@@ -26,6 +28,7 @@ interface IAccountOperationsViewProps {
 	onBack: VoidFunction;
 	onFiltersToggle: VoidFunction;
 	onOperationTypeChange: (value: OperationTypeFilter) => void;
+	onLoadMore?: VoidFunction;
 	onPeriodChange: (value: OperationPeriod) => void;
 	onSearchChange: (value: string) => void;
 	operationType: OperationTypeFilter;
@@ -38,6 +41,7 @@ interface IAccountOperationsViewProps {
 export function AccountOperationsView(props: IAccountOperationsViewProps) {
 	const {
 		accountType,
+		hasNext = false,
 		isError = false,
 		isFetching = false,
 		isFiltersExpanded,
@@ -45,6 +49,7 @@ export function AccountOperationsView(props: IAccountOperationsViewProps) {
 		onAccountTypeChange,
 		onBack,
 		onFiltersToggle,
+		onLoadMore = emptyFunction,
 		onOperationTypeChange,
 		onPeriodChange,
 		onSearchChange,
@@ -101,7 +106,7 @@ export function AccountOperationsView(props: IAccountOperationsViewProps) {
 					search={search}
 					summary={summary}
 				/>
-				<AccountOperationsList isError={isError} isFetching={isFetching} isLoading={isLoading} locale={i18n.language} operations={operations} />
+				<AccountOperationsList hasNext={hasNext} isError={isError} isFetching={isFetching} isLoading={isLoading} locale={i18n.language} onLoadMore={onLoadMore} operations={operations} />
 			</div>
 		</div>
 	);

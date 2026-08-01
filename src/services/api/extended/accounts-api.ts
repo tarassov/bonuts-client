@@ -1,9 +1,9 @@
 import { bonutsApi } from "services/api/bonuts-api";
 
 import { ApiTags } from "@/shared/api";
-import { cacheByIdArgProperty, getTransformPageableResponse, invalidatesList } from "@/shared/lib/rtk";
+import { cacheByArgProperty, cacheByIdArgProperty, getTransformPageableResponse, invalidatesList, providesListTag } from "@/shared/lib/rtk";
 
-import type { GetAccountOperationsApiResponse } from "@/services/api/bonuts-api";
+import type { GetAccountOperationsApiResponse, GetAccountOperationsHistoryApiResponse } from "@/services/api/bonuts-api";
 
 // noinspection TypeScriptValidateJSTypes
 export const accountsApi = bonutsApi.enhanceEndpoints({
@@ -12,14 +12,16 @@ export const accountsApi = bonutsApi.enhanceEndpoints({
 		getAccountsById: {
 			providesTags: cacheByIdArgProperty(ApiTags.Accounts, ApiTags.Balance),
 		},
-		postAccountOperations: { invalidatesTags: [ApiTags.Accounts] },
-		postAccountOperationsTransfer: { invalidatesTags: invalidatesList("Event") },
-		postAccountOperationsShareAll: { invalidatesTags: [ApiTags.Accounts] },
+		postAccountOperations: { invalidatesTags: invalidatesList([ApiTags.Accounts, ApiTags.History]) },
+		postAccountOperationsTransfer: { invalidatesTags: invalidatesList(["Event", ApiTags.History]) },
+		postAccountOperationsShareAll: { invalidatesTags: invalidatesList([ApiTags.Accounts, ApiTags.History]) },
 		getAccountOperations(endpoint) {
-			endpoint.providesTags = (result, error, arg) => {
-				return [{ type: ApiTags.Accounts, id: arg.accountId }];
-			};
+			endpoint.providesTags = cacheByArgProperty(ApiTags.Accounts, "accountId");
 			endpoint.transformResponse = getTransformPageableResponse<GetAccountOperationsApiResponse>();
+		},
+		getAccountOperationsHistory(endpoint) {
+			endpoint.providesTags = providesListTag(ApiTags.History);
+			endpoint.transformResponse = getTransformPageableResponse<GetAccountOperationsHistoryApiResponse>();
 		},
 	},
 });

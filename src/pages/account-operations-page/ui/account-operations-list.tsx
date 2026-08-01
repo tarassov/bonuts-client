@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+import { InView } from "react-intersection-observer";
 import { Alert, CircularProgress } from "@mui/material";
 
 import { BntTypography } from "@/shared/ui/typography";
@@ -11,16 +13,24 @@ import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { texts_n, texts_o } from "@/services/localization/texts";
 
 interface IAccountOperationsListProps {
+	hasNext: boolean;
 	isError: boolean;
 	isFetching: boolean;
 	isLoading: boolean;
 	locale: string;
+	onLoadMore: VoidFunction;
 	operations: IAccountOperation[];
 }
 
-export function AccountOperationsList({ isError, isFetching, isLoading, locale, operations }: IAccountOperationsListProps) {
+export function AccountOperationsList({ hasNext, isError, isFetching, isLoading, locale, onLoadMore, operations }: IAccountOperationsListProps) {
 	const { t } = useBntTranslate();
 	const groups = groupAccountOperations(operations, locale);
+	const handleLoadMore = useCallback(
+		(inView: boolean) => {
+			if (inView && !isFetching) onLoadMore();
+		},
+		[isFetching, onLoadMore]
+	);
 
 	if (isLoading) {
 		return (
@@ -46,6 +56,11 @@ export function AccountOperationsList({ isError, isFetching, isLoading, locale, 
 			{groups.map((group) => (
 				<AccountOperationGroup group={group} key={group.key} />
 			))}
+			{hasNext ? (
+				<InView as="div" className={styles.loadMore} data-testid="account-operations-load-more" onChange={handleLoadMore}>
+					<CircularProgress size={20} />
+				</InView>
+			) : null}
 		</div>
 	);
 }

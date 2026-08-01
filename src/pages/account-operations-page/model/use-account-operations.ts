@@ -2,7 +2,9 @@ import { useMemo } from "react";
 
 import { getOperationPeriodDates, presentAccountOperations, presentAccountOperationsSummary } from "./account-operations-presenter";
 import type { AccountTypeFilter, OperationPeriod, OperationTypeFilter } from "./account-operations-types";
-import { useGetAccountOperationsHistoryQuery, useGetAccountOperationsSummaryQuery } from "@/services/api/bonuts-api";
+import { usePagintatedListBase } from "@/logic/hooks/use-pagintated-list-base";
+import { useGetAccountOperationsSummaryQuery } from "@/services/api/bonuts-api";
+import { accountsApi } from "@/services/api/extended/accounts-api";
 
 interface IUseAccountOperationsProps {
 	accountType: AccountTypeFilter;
@@ -16,8 +18,8 @@ interface IUseAccountOperationsProps {
 export const useAccountOperations = ({ accountType, operationType, period, profileId, search, tenant }: IUseAccountOperationsProps) => {
 	const dates = useMemo(() => getOperationPeriodDates(period), [period]);
 	const isSkipped = !profileId || !tenant;
-	const historyQuery = useGetAccountOperationsHistoryQuery(
-		{
+	const historyArgs = useMemo(
+		() => ({
 			accountType,
 			operationType,
 			page: 1,
@@ -25,9 +27,23 @@ export const useAccountOperations = ({ accountType, operationType, period, profi
 			search: search || undefined,
 			tenant: tenant || "",
 			...dates,
-		},
-		{ skip: isSkipped }
+		}),
+		[accountType, dates, operationType, profileId, search, tenant]
 	);
+	const {
+		fetchNext,
+		flatData: operations,
+		hasNext,
+		isError: isHistoryError,
+		isFetching: isHistoryFetching,
+		isLoading: isHistoryLoading,
+	} = usePagintatedListBase({
+		args: historyArgs,
+		endpoint: accountsApi.endpoints.getAccountOperationsHistory,
+		pollingInterval: 10000,
+		skip: isSkipped,
+		translator: (response) => presentAccountOperations(response.data),
+	});
 	const summaryQuery = useGetAccountOperationsSummaryQuery(
 		{
 			accountType: "all",
@@ -35,15 +51,16 @@ export const useAccountOperations = ({ accountType, operationType, period, profi
 			tenant: tenant || "",
 			...dates,
 		},
-		{ skip: isSkipped }
+		{ refetchOnMountOrArgChange: true, skip: isSkipped }
 	);
-	const operations = useMemo(() => presentAccountOperations(historyQuery.data?.data), [historyQuery.data]);
 	const summary = useMemo(() => presentAccountOperationsSummary(summaryQuery.data?.data, operations), [operations, summaryQuery.data]);
 
 	return {
-		isError: historyQuery.isError || summaryQuery.isError,
-		isLoading: historyQuery.isLoading || summaryQuery.isLoading,
-		isFetching: historyQuery.isFetching || summaryQuery.isFetching,
+		fetchNext,
+		hasNext,
+		isError: isHistoryError || summaryQuery.isError,
+		isLoading: isHistoryLoading || summaryQuery.isLoading,
+		isFetching: isHistoryFetching || summaryQuery.isFetching,
 		operations,
 		summary,
 	};

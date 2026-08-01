@@ -19,7 +19,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: End
 	const [hasNew, setHasNew] = useState(false);
 	const [hasNext, setHasNext] = useState(false);
 
-	const { data, isLoading, isSuccess } = endpoint.useQuery(
+	const { data, isError, isLoading, isSuccess } = endpoint.useQuery(
 		{
 			...args,
 			page: 1,
@@ -122,6 +122,7 @@ export function usePaginator<Endpoint extends TEndpoint<Endpoint>>(endpoint: End
 		paginatedPages,
 		isLoading: isLoading && currentPage === 1,
 		isFetching: isLoading,
+		isError,
 		fetchNext,
 		currentPage,
 		hasNew,
