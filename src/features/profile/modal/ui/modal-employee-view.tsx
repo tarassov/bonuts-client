@@ -68,7 +68,6 @@ export function ModalEmployeeView({ id, close, setModalLoading = emptyFunction }
 		}
 
 		showEmployee(employee.id);
-		close();
 	};
 
 	const handleTransferClick = () => {
