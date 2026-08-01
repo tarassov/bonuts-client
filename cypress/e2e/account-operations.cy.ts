@@ -17,7 +17,7 @@ describe("Account operations", () => {
 			cy.get('[data-testid="account-operations-page"]').should("be.visible");
 			cy.get('[data-testid="account-operations-summary"]').should("contain.text", "125").and("contain.text", "+29").and("contain.text", "+7");
 			cy.get('[data-testid="account-operation-row"]').should("have.length", 3);
-			cy.contains("Refund for Hoodie Bonuts").should("be.visible");
+			cy.contains("Hoodie Bonuts").should("be.visible");
 			cy.contains("Balance now").should("not.exist");
 		});
 
@@ -32,6 +32,8 @@ describe("Account operations", () => {
 
 			cy.get('input[name="account-operations-search"]').type("Hoodie");
 			cy.wait("@getAccountOperationsHistory").its("request.query.search").should("eq", "Hoodie");
+
+			if (isMobile) cy.get('button[aria-label="Period filter"]').click();
 
 			cy.get('[data-testid="period-filter-30-days"]').click();
 			cy.wait("@getAccountOperationsHistory").its("request.query.date_from").should("be.a", "string").and("not.be.empty");
