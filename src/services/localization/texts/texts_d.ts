@@ -1,4 +1,5 @@
 export enum texts_d {
+	donuts_received_description = "donuts received description",
 	day = "day",
 	delivery_days = "delivery days",
 	decline = "decline",
@@ -18,4 +19,5 @@ export enum texts_d {
 	domain = "domain",
 	demo = "demo",
 	donuts = "donuts",
+	donut = "donut",
 }

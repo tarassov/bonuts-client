@@ -183,12 +183,12 @@ export const DASHBOARD_TENANTS_RESPONSE = {
 };
 
 export function mockDashboardPageRequests() {
-	cy.intercept("GET", "**/profile*", {
+	cy.intercept("GET", /\/profile(?:\?.*)?$/, {
 		statusCode: 200,
 		body: DASHBOARD_PROFILE_RESPONSE,
 	}).as("getProfile");
 
-	cy.intercept("GET", "**/events*", {
+	cy.intercept("GET", /\/events(?:\?.*)?$/, {
 		statusCode: 200,
 		headers: {
 			"Per-Page": "1",
@@ -197,32 +197,32 @@ export function mockDashboardPageRequests() {
 		body: DASHBOARD_EVENTS_RESPONSE,
 	}).as("getEvents");
 
-	cy.intercept("GET", "**/weekly_recognition_badges/latest*", {
+	cy.intercept("GET", /\/weekly_recognition_badges\/latest(?:\?.*)?$/, {
 		statusCode: 200,
 		body: DASHBOARD_WEEKLY_BADGES_RESPONSE,
 	}).as("getWeeklyBadges");
 
-	cy.intercept("GET", "**/participation/current_week*", {
+	cy.intercept("GET", /\/participation\/current_week(?:\?.*)?$/, {
 		statusCode: 200,
 		body: DASHBOARD_CURRENT_WEEK_RESPONSE,
 	}).as("getParticipationCurrentWeek");
 
-	cy.intercept("GET", "**/participation/weekly_recognition_current*", {
+	cy.intercept("GET", /\/participation\/weekly_recognition_current(?:\?.*)?$/, {
 		statusCode: 200,
 		body: DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE,
 	}).as("getParticipationWeeklyRecognitionCurrent");
 
-	cy.intercept("GET", "**/accounts/10*", {
+	cy.intercept("GET", /\/accounts\/10(?:\?.*)?$/, {
 		statusCode: 200,
 		body: DASHBOARD_DISTRIB_ACCOUNT_RESPONSE,
 	}).as("getDistribAccount");
 
-	cy.intercept("GET", "**/tenants", {
+	cy.intercept("GET", /\/tenants(?:\?.*)?$/, {
 		statusCode: 200,
 		body: DASHBOARD_TENANTS_RESPONSE,
 	}).as("getTenants");
 
-	cy.intercept("POST", "**/user_activity/heartbeat*", {
+	cy.intercept("POST", /\/user_activity\/heartbeat(?:\?.*)?$/, {
 		statusCode: 200,
 		body: {},
 	}).as("postHeartbeat");

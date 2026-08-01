@@ -1,5 +1,7 @@
 export enum texts_p {
+	purchases = "purchases",
 	profile = "profile",
+	profile_not_found = "profile not found",
 	profiles = "profiles",
 	poka_you_were_not_very_active = "poka you were not very active",
 	points_to_next_status = "points to next status",
@@ -16,6 +18,7 @@ export enum texts_p {
 	passwords_do_not_math = "password do not match",
 	period_start = "period start",
 	period_end = "period end",
+	period_filter = "period filter",
 	please_wait = "please wait",
 	process_team_join_requests = "process team join requests",
 	photos = "photos",

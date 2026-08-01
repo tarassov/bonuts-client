@@ -1,4 +1,6 @@
 export enum texts_l {
+	last_30_days = "last 30 days",
+	last_3_months = "last 3 months",
 	academy_choice = "academy choice",
 	applause_of_the_week = "applause of the week",
 	donuts_oscars = "donuts oscars",

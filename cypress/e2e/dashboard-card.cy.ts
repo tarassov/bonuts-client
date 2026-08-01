@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress test */
 
+import { ACCOUNT_OPERATIONS_HISTORY_RESPONSE, ACCOUNT_OPERATIONS_SUMMARY_RESPONSE } from "../support/account-operations-page";
 import { mockDashboardPageRequests } from "../support/dashboard-page";
 
 const NOTIFICATION_CARD_SELECTOR = '[data-testid="event-card-notification"], .card-root:has([data-testid="LockIcon"])';
@@ -51,5 +52,24 @@ describe("Dashboard notification card", () => {
 
 		cy.location("pathname").should("eq", "/");
 		assertNotificationCardPresentation("notificationCardDark");
+	});
+
+	it("opens the unified account operations history from the balance widget", () => {
+		cy.intercept("GET", /\/account_operations\/history(?:\?.*)?$/, {
+			statusCode: 200,
+			body: ACCOUNT_OPERATIONS_HISTORY_RESPONSE,
+		}).as("getAccountOperationsHistory");
+		cy.intercept("GET", /\/account_operations\/summary(?:\?.*)?$/, {
+			statusCode: 200,
+			body: ACCOUNT_OPERATIONS_SUMMARY_RESPONSE,
+		}).as("getAccountOperationsSummary");
+		visitDashboard("light");
+		cy.wait("@getProfile");
+
+		cy.get('[data-testid="dashboard-widget-balance-overview"]', { timeout: 12000 }).click();
+
+		cy.location("pathname").should("eq", "/account_operations/1");
+		cy.location("search").should("eq", "");
+		cy.wait(["@getAccountOperationsHistory", "@getAccountOperationsSummary"]);
 	});
 });

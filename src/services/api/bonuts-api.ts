@@ -2,6 +2,34 @@ import { emptySplitApi as api } from "./empty-api";
 
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		getAccountOperationsHistory: build.query<GetAccountOperationsHistoryApiResponse, GetAccountOperationsHistoryApiArg>({
+			query: (queryArg) => ({
+				url: `/account_operations/history`,
+				params: {
+					tenant: queryArg.tenant,
+					profile_id: queryArg.profileId,
+					account_type: queryArg.accountType,
+					operation_type: queryArg.operationType,
+					search: queryArg.search,
+					date_from: queryArg.dateFrom,
+					date_to: queryArg.dateTo,
+					page: queryArg.page,
+					per_page: queryArg.perPage,
+				},
+			}),
+		}),
+		getAccountOperationsSummary: build.query<GetAccountOperationsSummaryApiResponse, GetAccountOperationsSummaryApiArg>({
+			query: (queryArg) => ({
+				url: `/account_operations/summary`,
+				params: {
+					tenant: queryArg.tenant,
+					profile_id: queryArg.profileId,
+					account_type: queryArg.accountType,
+					date_from: queryArg.dateFrom,
+					date_to: queryArg.dateTo,
+				},
+			}),
+		}),
 		postAccountOperations: build.mutation<PostAccountOperationsApiResponse, PostAccountOperationsApiArg>({
 			query: (queryArg) => ({
 				url: `/account_operations`,
@@ -36,7 +64,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getAccountsById: build.query<GetAccountsByIdApiResponse, GetAccountsByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/accounts/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postAdminDeposit: build.mutation<PostAdminDepositApiResponse, PostAdminDepositApiArg>({
@@ -49,7 +79,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getCircles: build.query<GetCirclesApiResponse, GetCirclesApiArg>({
 			query: (queryArg) => ({
 				url: `/circles`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postCircles: build.mutation<PostCirclesApiResponse, PostCirclesApiArg>({
@@ -62,7 +94,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getCirclesById: build.query<GetCirclesByIdApiResponse, GetCirclesByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/circles/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		patchCirclesById: build.mutation<PatchCirclesByIdApiResponse, PatchCirclesByIdApiArg>({
@@ -76,7 +110,9 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/circles/${queryArg.id}`,
 				method: "DELETE",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postClientRequests: build.mutation<PostClientRequestsApiResponse, PostClientRequestsApiArg>({
@@ -89,7 +125,10 @@ const injectedRtkApi = api.injectEndpoints({
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts`,
-				params: { tenant: queryArg.tenant, all: queryArg.all },
+				params: {
+					tenant: queryArg.tenant,
+					all: queryArg.all,
+				},
 			}),
 		}),
 		postDonuts: build.mutation<PostDonutsApiResponse, PostDonutsApiArg>({
@@ -102,7 +141,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getDonutsById: build.query<GetDonutsByIdApiResponse, GetDonutsByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		putDonutsById: build.mutation<PutDonutsByIdApiResponse, PutDonutsByIdApiArg>({
@@ -128,7 +169,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getEventsById: build.query<GetEventsByIdApiResponse, GetEventsByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/events/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		putEventsById: build.mutation<PutEventsByIdApiResponse, PutEventsByIdApiArg>({
@@ -156,7 +199,9 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/invitations/${queryArg.id}/close`,
 				method: "POST",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		getInvitations: build.query<GetInvitationsApiResponse, GetInvitationsApiArg>({
@@ -195,7 +240,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getInvitationsByIdLink: build.query<GetInvitationsByIdLinkApiResponse, GetInvitationsByIdLinkApiArg>({
 			query: (queryArg) => ({
 				url: `/invitations/${queryArg.id}/link`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		getInvitationsMy: build.query<GetInvitationsMyApiResponse, GetInvitationsMyApiArg>({
@@ -204,40 +251,52 @@ const injectedRtkApi = api.injectEndpoints({
 		getParticipationCurrentWeek: build.query<GetParticipationCurrentWeekApiResponse, GetParticipationCurrentWeekApiArg>({
 			query: (queryArg) => ({
 				url: `/participation/current_week`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		getParticipationWeeklyRecognitionCurrent: build.query<GetParticipationWeeklyRecognitionCurrentApiResponse, GetParticipationWeeklyRecognitionCurrentApiArg>({
 			query: (queryArg) => ({
 				url: `/participation/weekly_recognition_current`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postParticipationFeedRead: build.mutation<PostParticipationFeedReadApiResponse, PostParticipationFeedReadApiArg>({
 			query: (queryArg) => ({
 				url: `/participation/feed_read`,
 				method: "POST",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		getPlugins: build.query<GetPluginsApiResponse, GetPluginsApiArg>({
 			query: (queryArg) => ({
 				url: `/plugins`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postPluginsByIdActivate: build.mutation<PostPluginsByIdActivateApiResponse, PostPluginsByIdActivateApiArg>({
 			query: (queryArg) => ({
 				url: `/plugins/${queryArg.id}/activate`,
 				method: "POST",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postPluginsByIdDeactivate: build.mutation<PostPluginsByIdDeactivateApiResponse, PostPluginsByIdDeactivateApiArg>({
 			query: (queryArg) => ({
 				url: `/plugins/${queryArg.id}/deactivate`,
 				method: "POST",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		patchPluginsById: build.mutation<PatchPluginsByIdApiResponse, PatchPluginsByIdApiArg>({
@@ -250,7 +309,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getProfileNotifications: build.query<GetProfileNotificationsApiResponse, GetProfileNotificationsApiArg>({
 			query: (queryArg) => ({
 				url: `/profile_notifications`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postProfileNotificationsByIdActivate: build.mutation<PostProfileNotificationsByIdActivateApiResponse, PostProfileNotificationsByIdActivateApiArg>({
@@ -270,7 +331,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getProfilesByProfileIdProfilePictures: build.query<GetProfilesByProfileIdProfilePicturesApiResponse, GetProfilesByProfileIdProfilePicturesApiArg>({
 			query: (queryArg) => ({
 				url: `/profiles/${queryArg.profileId}/profile_pictures`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postProfilesByProfileIdProfilePictures: build.mutation<PostProfilesByProfileIdProfilePicturesApiResponse, PostProfilesByProfileIdProfilePicturesApiArg>({
@@ -283,40 +346,61 @@ const injectedRtkApi = api.injectEndpoints({
 		getProfilePicturesById: build.query<GetProfilePicturesByIdApiResponse, GetProfilePicturesByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/profile_pictures/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		deleteProfilePicturesById: build.mutation<DeleteProfilePicturesByIdApiResponse, DeleteProfilePicturesByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/profile_pictures/${queryArg.id}`,
 				method: "DELETE",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postProfilePicturesByIdLike: build.mutation<PostProfilePicturesByIdLikeApiResponse, PostProfilePicturesByIdLikeApiArg>({
 			query: (queryArg) => ({
 				url: `/profile_pictures/${queryArg.id}/like`,
 				method: "POST",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getProfilePicturesByIdImageAndVersion: build.query<GetProfilePicturesByIdImageAndVersionApiResponse, GetProfilePicturesByIdImageAndVersionApiArg>({
+			query: (queryArg) => ({
+				url: `/profile_pictures/${queryArg.id}/image/${queryArg.version}`,
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postProfilePicturesByProfilePictureIdComments: build.mutation<PostProfilePicturesByProfilePictureIdCommentsApiResponse, PostProfilePicturesByProfilePictureIdCommentsApiArg>({
 			query: (queryArg) => ({
 				url: `/profile_pictures/${queryArg.profilePictureId}/comments`,
 				method: "POST",
-				params: { tenant: queryArg.tenant, text: queryArg.text },
+				params: {
+					tenant: queryArg.tenant,
+					text: queryArg.text,
+				},
 			}),
 		}),
 		getProfile: build.query<GetProfileApiResponse, GetProfileApiArg>({
 			query: (queryArg) => ({
 				url: `/profile`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		getProfilesById: build.query<GetProfilesByIdApiResponse, GetProfilesByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/profiles/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		putProfilesById: build.mutation<PutProfilesByIdApiResponse, PutProfilesByIdApiArg>({
@@ -410,7 +494,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getRequestsLegacy: build.query<GetRequestsLegacyApiResponse, GetRequestsLegacyApiArg>({
 			query: (queryArg) => ({
 				url: `/requests/legacy`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		getRequestsMetrics: build.query<GetRequestsMetricsApiResponse, GetRequestsMetricsApiArg>({
@@ -439,7 +525,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getDonutsSchedulers: build.query<GetDonutsSchedulersApiResponse, GetDonutsSchedulersApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts_schedulers`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postDonutsSchedulers: build.mutation<PostDonutsSchedulersApiResponse, PostDonutsSchedulersApiArg>({
@@ -452,7 +540,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getDonutsSchedulersById: build.query<GetDonutsSchedulersByIdApiResponse, GetDonutsSchedulersByIdApiArg>({
 			query: (queryArg) => ({
 				url: `/donuts_schedulers/${queryArg.id}`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		patchDonutsSchedulersById: build.mutation<PatchDonutsSchedulersByIdApiResponse, PatchDonutsSchedulersByIdApiArg>({
@@ -466,7 +556,9 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/donuts_schedulers/${queryArg.id}`,
 				method: "DELETE",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		getStatus: build.query<GetStatusApiResponse, GetStatusApiArg>({
@@ -491,7 +583,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getTenantCurrent: build.query<GetTenantCurrentApiResponse, GetTenantCurrentApiArg>({
 			query: (queryArg) => ({
 				url: `/tenant/current`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		putTenantCurrent: build.mutation<PutTenantCurrentApiResponse, PutTenantCurrentApiArg>({
@@ -521,7 +615,9 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/user_activity/heartbeat`,
 				method: "POST",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
@@ -555,7 +651,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getConfirmEmail: build.query<GetConfirmEmailApiResponse, GetConfirmEmailApiArg>({
 			query: (queryArg) => ({
 				url: `/confirm_email`,
-				params: { token: queryArg.token },
+				params: {
+					token: queryArg.token,
+				},
 			}),
 		}),
 		postDemoAuthenticate: build.mutation<PostDemoAuthenticateApiResponse, PostDemoAuthenticateApiArg>({
@@ -584,7 +682,9 @@ const injectedRtkApi = api.injectEndpoints({
 		getUsersRecover: build.query<GetUsersRecoverApiResponse, GetUsersRecoverApiArg>({
 			query: (queryArg) => ({
 				url: `/users/recover`,
-				params: { recover_token: queryArg.recoverToken },
+				params: {
+					recover_token: queryArg.recoverToken,
+				},
 			}),
 		}),
 		putUsersPassword: build.mutation<PutUsersPasswordApiResponse, PutUsersPasswordApiArg>({
@@ -612,7 +712,9 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/users/generate_tg`,
 				method: "POST",
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 		postVkConnect: build.mutation<PostVkConnectApiResponse, PostVkConnectApiArg>({
@@ -626,7 +728,10 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/vk/disconnect`,
 				method: "DELETE",
-				params: { tenant: queryArg.tenant, user_id: queryArg.userId },
+				params: {
+					tenant: queryArg.tenant,
+					user_id: queryArg.userId,
+				},
 			}),
 		}),
 		postVkLogin: build.mutation<PostVkLoginApiResponse, PostVkLoginApiArg>({
@@ -642,13 +747,79 @@ const injectedRtkApi = api.injectEndpoints({
 		getWeeklyRecognitionBadgesLatest: build.query<GetWeeklyRecognitionBadgesLatestApiResponse, GetWeeklyRecognitionBadgesLatestApiArg>({
 			query: (queryArg) => ({
 				url: `/weekly_recognition_badges/latest`,
-				params: { tenant: queryArg.tenant },
+				params: {
+					tenant: queryArg.tenant,
+				},
 			}),
 		}),
 	}),
 	overrideExisting: false,
 });
 export { injectedRtkApi as bonutsApi };
+export type GetAccountOperationsHistoryApiResponse = /** status 200 success */ {
+	data: {
+		id: number;
+		account_type: "self" | "distrib";
+		operation_type: "purchase" | "refund" | "transfer" | "other";
+		deal_type?: string | null;
+		direction: -1 | 1;
+		amount: number;
+		comment?: string | null;
+		created_at: string;
+		from_profile?: {
+			id: number;
+			name?: string | null;
+		} | null;
+		to_profile?: {
+			id: number;
+			name?: string | null;
+		} | null;
+		/** present for purchase and refund operations only */
+		purchase?: {
+			request_id: number;
+			status: 0 | 1 | 2;
+			status_name: "incoming" | "active" | "closed";
+			product_id: number;
+			product_name?: string | null;
+		} | null;
+	}[];
+};
+export type GetAccountOperationsHistoryApiArg = {
+	tenant: string;
+	profileId: number;
+	accountType?: "all" | "self" | "distrib";
+	operationType?: "all" | "purchase" | "refund" | "transfer";
+	search?: string;
+	dateFrom?: string;
+	dateTo?: string;
+	page?: number;
+	perPage?: number;
+};
+export type GetAccountOperationsSummaryApiResponse = /** status 200 success */ {
+	data: {
+		profile_id: number;
+		period: {
+			date_from: string | null;
+			date_to: string | null;
+		};
+		/** total amount spent on purchases */
+		spent: number;
+		purchases_count: number;
+		/** total amount returned by refunds */
+		refunded: number;
+		refunds_count: number;
+		/** total amount received via transfers */
+		received_from_colleagues: number;
+		received_from_colleagues_count: number;
+	};
+};
+export type GetAccountOperationsSummaryApiArg = {
+	tenant: string;
+	profileId: number;
+	accountType?: "all" | "self" | "distrib";
+	dateFrom?: string;
+	dateTo?: string;
+};
 export type PostAccountOperationsApiResponse = /** status 201 success */ {
 	error?: boolean;
 	message?: string;
@@ -2146,6 +2317,16 @@ export type PostProfilePicturesByIdLikeApiResponse = /** status 200 success */ {
 };
 export type PostProfilePicturesByIdLikeApiArg = {
 	id: number;
+	tenant?: string;
+};
+export type GetProfilePicturesByIdImageAndVersionApiResponse = unknown;
+export type GetProfilePicturesByIdImageAndVersionApiArg = {
+	id: number;
+	/** :
+	 * `thumb`
+	 * `preview`
+	 */
+	version: string;
 	tenant?: string;
 };
 export type PostProfilePicturesByProfilePictureIdCommentsApiResponse = /** status 200 success */ {
@@ -4859,6 +5040,8 @@ export type ProfileNotification = {
 	disabled: boolean;
 };
 export const {
+	useGetAccountOperationsHistoryQuery,
+	useGetAccountOperationsSummaryQuery,
 	usePostAccountOperationsMutation,
 	useGetAccountOperationsQuery,
 	usePostAccountOperationsTransferMutation,
@@ -4902,6 +5085,7 @@ export const {
 	useGetProfilePicturesByIdQuery,
 	useDeleteProfilePicturesByIdMutation,
 	usePostProfilePicturesByIdLikeMutation,
+	useGetProfilePicturesByIdImageAndVersionQuery,
 	usePostProfilePicturesByProfilePictureIdCommentsMutation,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,

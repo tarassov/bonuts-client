@@ -1,4 +1,4 @@
-import type { SyntheticEvent } from "react";
+import type { ReactNode, SyntheticEvent } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
@@ -7,7 +7,9 @@ type TSegmentedValue = string | number;
 export type TBntSegmentedTabItem<TValue extends TSegmentedValue = TSegmentedValue> = {
 	count?: number;
 	disabled?: boolean;
+	icon?: ReactNode;
 	label: string;
+	testId?: string;
 	value: TValue;
 };
 
@@ -93,10 +95,12 @@ export const BntSegmentedTabs = <TValue extends TSegmentedValue>({ ariaLabel, cl
 		<SegmentedTabsRoot allowScrollButtonsMobile aria-label={ariaLabel} className={className} onChange={handleChange} scrollButtons={false} value={value} variant="scrollable">
 			{items.map((item) => (
 				<SegmentedTab
+					data-testid={item.testId}
 					disabled={item.disabled}
 					key={item.value}
 					label={
 						<Box sx={{ display: "inline-flex", alignItems: "center", gap: 1, whiteSpace: "nowrap" }}>
+							{item.icon ? <Box sx={{ display: "inline-flex", "& svg": { fontSize: "1.1rem" } }}>{item.icon}</Box> : null}
 							<span>{item.label}</span>
 							{typeof item.count === "number" ? <CountPill>{item.count}</CountPill> : null}
 						</Box>

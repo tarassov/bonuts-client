@@ -107,6 +107,19 @@ export const invalidatesList =
 		return tags as CacheItem<T, "LIST">[];
 	};
 
+/**
+ * Provides a list-level cache tag when an endpoint response does not expose typed item IDs.
+ * Use it with `invalidatesList` to refresh every cached page of that list after a mutation.
+ *
+ * @example
+ * getAccountOperationsHistory: { providesTags: providesListTag(ApiTags.History) }
+ * postAccountOperations: { invalidatesTags: invalidatesList(ApiTags.History) }
+ */
+export const providesListTag =
+	<T extends string>(type: T) =>
+	<Result = undefined, Error extends FetchBaseQueryError = FetchBaseQueryError>(result: Result | undefined, error: Error | undefined): CacheList<T, never> =>
+		concatErrorCache([{ type, id: "LIST" }], error);
+
 type InnerProvidesNestedList<T> = <Results extends { data: { id: unknown }[] }, Error extends FetchBaseQueryError>(
 	results: Results | undefined,
 	error: Error | undefined
@@ -171,6 +184,17 @@ export const cacheByIdArgProperty =
 				]
 			: ([{ type, id: arg.id }] as const);
 
+/**
+ * Provides a cache tag from a named query argument when the ID field is not `id`.
+ *
+ * @example
+ * getAccountOperations: { providesTags: cacheByArgProperty(ApiTags.Accounts, "accountId") }
+ */
+export const cacheByArgProperty =
+	<T extends string, TProperty extends string>(type: T, property: TProperty) =>
+	<Arg extends Partial<Record<TProperty, unknown>>, Result = undefined, Error = undefined>(result: Result, error: Error, arg: Arg): readonly [CacheItem<T, Arg[TProperty]>] | [] =>
+		arg[property] === undefined ? [] : ([{ type, id: arg[property] }] as const);
+
 export const cacheByIdResultProperty =
 	<T extends string>(type: T, tag: string | string[] = []) =>
 	<Result extends { data?: { id?: string } }>(result: Result | undefined): CacheItem<T, string>[] | [] => {
@@ -214,11 +238,13 @@ export const invalidatesUnknownErrors =
 export const cacher = {
 	defaultTags,
 	providesList,
+	providesListTag,
 	providesInfiniteList,
 	invalidatesList,
 	providesNestedList,
 	cacheByIdArg,
 	cacheByIdArgProperty,
+	cacheByArgProperty,
 	invalidatesUnauthorized,
 	invalidatesUnknownErrors,
 	invalidateId,
