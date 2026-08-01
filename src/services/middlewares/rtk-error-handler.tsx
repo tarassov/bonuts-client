@@ -11,17 +11,32 @@ import { showError } from "@/shared/ui/notification";
 import type { Middleware } from "@reduxjs/toolkit";
 import { isRejectedWithValue } from "@reduxjs/toolkit";
 
+/** Endpoints where a failure means "no data yet", not an error — the user should not see a notification. */
+const SILENT_ERROR_ENDPOINTS: ReadonlySet<string> = new Set(["getWeeklyRecognitionBadgesLatest"]);
+
+const getEndpointName = (action: unknown) => {
+	const meta = (action as { meta?: { arg?: { endpointName?: unknown } } })?.meta;
+
+	return typeof meta?.arg?.endpointName === "string" ? meta.arg.endpointName : null;
+};
+
+const isSilentError = (action: unknown) => {
+	const endpointName = getEndpointName(action);
+
+	return !!endpointName && SILENT_ERROR_ENDPOINTS.has(endpointName);
+};
+
 export const rtkErrorHandler: Middleware = (api) => (next) => (action) => {
 	const { dispatch } = api;
 	const { setValue } = storage;
 	if (isRejectedWithValue(action)) {
-		console.warn("We got a rejected action!");
-
 		if (!action.payload || typeof action.payload !== "object") return next(action);
 
-		const errorMessage = getResponseErrorMessage(action.payload);
+		if (!isSilentError(action)) {
+			const errorMessage = getResponseErrorMessage(action.payload);
 
-		showError(errorMessage ? i18next.t(errorMessage) : Errors.DATA_FETCHING_ERROR);
+			showError(errorMessage ? i18next.t(errorMessage) : Errors.DATA_FETCHING_ERROR);
+		}
 
 		if ("status" in action.payload && action.payload.status === 401) {
 			setValue<string | null>("auth_token", null);

@@ -3,7 +3,7 @@ import { FC } from "react";
 import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
-import { texts_i, texts_t } from "services/localization/texts";
+import { texts_c, texts_i, texts_t } from "services/localization/texts";
 
 import { BntBox } from "@/shared/ui/box";
 import { BntRoundButton } from "@/shared/ui/buttons";
@@ -34,12 +34,12 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 						"..."
 					) : (
 						<>
-							{t("point", { count: account?.balance })}
+							{t(texts_c.coin, { count: account?.balance })}
 							(<BonutsCurrency />)
 						</>
 					)
 				}
-				name="point"
+				name={texts_c.coin}
 				lastOperation={account?.last_operation}
 				onClick={() => toAccountOperations(AccountType.self)}
 			/>

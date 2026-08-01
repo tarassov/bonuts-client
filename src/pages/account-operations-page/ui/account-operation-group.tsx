@@ -12,8 +12,8 @@ import { texts_c, texts_d, texts_o } from "@/services/localization/texts";
 export function AccountOperationGroup({ group }: { group: IAccountOperationGroup }) {
 	const { t } = useBntTranslate();
 	const totalParts = [
-		group.coinTotal ? `${formatSignedNumber(group.coinTotal)} ${t(texts_c.coins, { count: Math.abs(group.coinTotal) })}` : "",
-		group.donutTotal ? `${formatSignedNumber(group.donutTotal)} ${t(texts_d.donuts, { count: Math.abs(group.donutTotal) })}` : "",
+		group.coinTotal ? `${formatSignedNumber(group.coinTotal)} ${t(texts_c.coin, { count: Math.abs(group.coinTotal) })}` : "",
+		group.donutTotal ? `${formatSignedNumber(group.donutTotal)} ${t(texts_d.donut, { count: Math.abs(group.donutTotal) })}` : "",
 	].filter(Boolean);
 
 	return (
@@ -24,7 +24,7 @@ export function AccountOperationGroup({ group }: { group: IAccountOperationGroup
 				</BntTypography>
 				<div className={styles.groupMeta}>
 					<BntTypography color="text.secondary" variant="caption">
-						{group.items.length} {t(texts_o.operations, { count: group.items.length })}
+						{group.items.length} {t(texts_o.operation, { count: group.items.length })}
 					</BntTypography>
 					{totalParts.length ? <BntTypography variant="caption">{totalParts.join(" · ")}</BntTypography> : null}
 				</div>

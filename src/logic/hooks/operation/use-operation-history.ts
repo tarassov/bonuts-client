@@ -1,19 +1,36 @@
-import { apiAdaptor } from "services/adaptor/api-adaptor";
-import { accountsApi } from "services/api/extended/accounts-api";
+import { useCallback, useMemo } from "react";
 
-import { usePagintatedListBase } from "logic/hooks/use-pagintated-list-base";
+import { apiAdaptor } from "services/adaptor/api-adaptor";
+import { useGetAccountOperationsFeedInfiniteQuery } from "services/api/extended/accounts-api";
+
+import { USE_POLLING_INTERVAL } from "@/app/config";
+import { useCurrentTenant } from "@/logic/hooks/tenant/use-current-tenant";
+
+const pollingInterval = USE_POLLING_INTERVAL ? 10000 : 0;
 
 export const useOperationHistory = (args: { id?: number }) => {
 	const { id } = args;
-
-	return usePagintatedListBase({
-		endpoint: accountsApi.endpoints.getAccountOperations,
-		args: {
-			accountId: id!.toString(),
-			page: 1,
-		},
+	const tenant = useCurrentTenant();
+	const queryArg = useMemo(() => ({ accountId: id ? String(id) : "", tenant: tenant || "" }), [id, tenant]);
+	const { data, fetchNextPage, hasNextPage, isError, isFetching, isLoading } = useGetAccountOperationsFeedInfiniteQuery(queryArg, {
+		pollingInterval,
+		refetchOnMountOrArgChange: true,
 		skip: !id,
-		pollingInterval: 10000,
-		translator: apiAdaptor.toOperations,
 	});
+	const operations = useMemo(() => (data?.pages ?? []).flatMap((page) => apiAdaptor.toOperations(page)), [data?.pages]);
+
+	const fetchNext = useCallback(() => {
+		if (!hasNextPage || isFetching) return;
+
+		fetchNextPage().catch(() => undefined);
+	}, [fetchNextPage, hasNextPage, isFetching]);
+
+	return {
+		fetchNext,
+		hasNext: Boolean(hasNextPage),
+		isError,
+		isFetching,
+		isLoading,
+		operations,
+	};
 };

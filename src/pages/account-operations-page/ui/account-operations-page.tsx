@@ -1,36 +1,50 @@
 import { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { useAppNavigate } from "@/shared/lib/navigation";
+import { useAppNavigate, useAppSearchParams } from "@/shared/lib/navigation";
 
 import { useProfile } from "@/entities/profile";
 
-import { AccountTypeFilter, OperationPeriod, OperationTypeFilter } from "../model/account-operations-types";
+import { AccountOperationsSearchParam, AccountTypeFilter, OperationPeriod, OperationTypeFilter } from "../model/account-operations-types";
 import { useAccountOperations } from "../model/use-account-operations";
 
 import { AccountOperationsView } from "./account-operations-view";
 
-const getEnumValue = <T extends string>(value: string | null, values: T[], fallback: T): T => (value && values.includes(value as T) ? (value as T) : fallback);
+const filterDefaults: Record<AccountOperationsSearchParam, string> = {
+	[AccountOperationsSearchParam.accountType]: AccountTypeFilter.all,
+	[AccountOperationsSearchParam.operationType]: OperationTypeFilter.all,
+	[AccountOperationsSearchParam.period]: OperationPeriod.allTime,
+};
+
+/** Shorter queries match almost everything, so they are requested as an empty search. */
+const minSearchLength = 3;
 
 export function AccountOperationsPage() {
 	const { id } = useParams();
-	const [searchParams, setSearchParams] = useSearchParams();
+	const { getEnumParam, setParam } = useAppSearchParams();
 	const { goBack } = useAppNavigate();
 	const { authTenant, profile } = useProfile();
 	const profileId = Number(id) || profile?.id;
 	const [search, setSearch] = useState("");
-	const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
-	const accountType = getEnumValue(searchParams.get("accountType"), Object.values(AccountTypeFilter), AccountTypeFilter.all);
-	const operationType = getEnumValue(searchParams.get("operationType"), Object.values(OperationTypeFilter), OperationTypeFilter.all);
-	const period = getEnumValue(searchParams.get("period"), Object.values(OperationPeriod), OperationPeriod.allTime);
-	const { fetchNext, hasNext, isError, isFetching, isLoading, operations, summary } = useAccountOperations({ accountType, operationType, period, profileId, search, tenant: authTenant });
+	const [isPeriodFiltersExpanded, setIsPeriodFiltersExpanded] = useState(false);
+	const [isOperationFiltersExpanded, setIsOperationFiltersExpanded] = useState(false);
+	const accountType = getEnumParam({ fallback: AccountTypeFilter.all, name: AccountOperationsSearchParam.accountType, values: Object.values(AccountTypeFilter) });
+	const operationType = getEnumParam({ fallback: OperationTypeFilter.all, name: AccountOperationsSearchParam.operationType, values: Object.values(OperationTypeFilter) });
+	const period = getEnumParam({ fallback: OperationPeriod.allTime, name: AccountOperationsSearchParam.period, values: Object.values(OperationPeriod) });
+	const trimmedSearch = search.trim();
+	const searchQuery = trimmedSearch.length >= minSearchLength ? trimmedSearch : "";
+	const { fetchNext, hasNext, isError, isFetching, isLoading, operations, summary } = useAccountOperations({
+		accountType,
+		operationType,
+		period,
+		profileId,
+		search: searchQuery,
+		tenant: authTenant,
+	});
 
-	const setFilter = (name: string, value: string) => {
-		const nextParams = new URLSearchParams(searchParams);
-
-		if (value === "all" || value === OperationPeriod.allTime) nextParams.delete(name);
-		else nextParams.set(name, value);
-		setSearchParams(nextParams, { replace: true });
+	// Default filter values are not kept in the url, so a clean page shares a clean link.
+	const setFilter = (name: AccountOperationsSearchParam, value: string) => {
+		setParam({ name, value: value === filterDefaults[name] ? null : value });
 	};
 
 	return (
@@ -39,14 +53,16 @@ export function AccountOperationsPage() {
 			hasNext={hasNext}
 			isError={isError}
 			isFetching={isFetching}
-			isFiltersExpanded={isFiltersExpanded}
+			isOperationFiltersExpanded={isOperationFiltersExpanded}
+			isPeriodFiltersExpanded={isPeriodFiltersExpanded}
 			isLoading={isLoading}
-			onAccountTypeChange={(value) => setFilter("accountType", value)}
+			onAccountTypeChange={(value) => setFilter(AccountOperationsSearchParam.accountType, value)}
 			onBack={goBack}
-			onFiltersToggle={() => setIsFiltersExpanded((isExpanded) => !isExpanded)}
-			onOperationTypeChange={(value) => setFilter("operationType", value)}
+			onOperationFiltersToggle={() => setIsOperationFiltersExpanded((isExpanded) => !isExpanded)}
+			onPeriodFiltersToggle={() => setIsPeriodFiltersExpanded((isExpanded) => !isExpanded)}
+			onOperationTypeChange={(value) => setFilter(AccountOperationsSearchParam.operationType, value)}
 			onLoadMore={fetchNext}
-			onPeriodChange={(value) => setFilter("period", value)}
+			onPeriodChange={(value) => setFilter(AccountOperationsSearchParam.period, value)}
 			onSearchChange={setSearch}
 			operationType={operationType}
 			operations={operations}

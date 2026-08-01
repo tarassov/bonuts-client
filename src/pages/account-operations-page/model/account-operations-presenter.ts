@@ -1,84 +1,68 @@
-import { getFirstFiniteNumber, getFirstNonEmptyString, unwrapJsonApiAttributes } from "@/shared/lib/data";
-
 import {
 	AccountTypeFilter,
 	type IAccountOperation,
-	type IAccountOperationApiItem,
 	type IAccountOperationGroup,
 	type IAccountOperationsSummary,
-	type IAccountOperationsSummaryApi,
 	OperationPeriod,
 	OperationTypeFilter,
+	PurchaseRequestStatus,
+	type TAccountOperationApiItem,
+	type TAccountOperationPurchase,
+	type TAccountOperationsSummaryApi,
 } from "./account-operations-types";
 
-const getNumber = (record: Record<string, unknown>, keys: string[]): number => getFirstFiniteNumber(record, keys) ?? 0;
-
-const resolveAccountType = (record: IAccountOperationApiItem): AccountTypeFilter.coin | AccountTypeFilter.donut => {
-	const accountType = getFirstNonEmptyString(record, ["account_type", "currency", "account"]);
-
-	return accountType === AccountTypeFilter.donut || accountType === "donut" ? AccountTypeFilter.donut : AccountTypeFilter.coin;
+const accountTypeByApiValue: Record<TAccountOperationApiItem["account_type"], AccountTypeFilter.coin | AccountTypeFilter.donut> = {
+	self: AccountTypeFilter.coin,
+	distrib: AccountTypeFilter.donut,
 };
 
-const resolveOperationType = (record: IAccountOperationApiItem): OperationTypeFilter => {
-	const operationType = getFirstNonEmptyString(record, ["operation_type", "kind", "type"]);
-
-	if (operationType === OperationTypeFilter.purchase) return OperationTypeFilter.purchase;
-	if (operationType === OperationTypeFilter.refund || operationType === "rollback") return OperationTypeFilter.refund;
-	if (operationType === OperationTypeFilter.recognition || operationType === "recognition") return OperationTypeFilter.recognition;
-
-	return OperationTypeFilter.all;
+// `other` operations have no dedicated filter, so they are presented with the neutral icon of the `all` tab.
+const operationTypeByApiValue: Record<TAccountOperationApiItem["operation_type"], OperationTypeFilter> = {
+	purchase: OperationTypeFilter.purchase,
+	refund: OperationTypeFilter.refund,
+	transfer: OperationTypeFilter.recognition,
+	other: OperationTypeFilter.all,
 };
 
-const resolveSignedAmount = (record: IAccountOperationApiItem, operationType: OperationTypeFilter): number => {
-	const amount = getNumber(record, ["amount", "value"]);
-	const direction = getNumber(record, ["direction"]);
-
-	if (amount < 0) return amount;
-	if (direction < 0 || operationType === OperationTypeFilter.purchase) return -amount;
-
-	return amount;
+const purchaseStatusByApiValue: Record<TAccountOperationPurchase["status"], PurchaseRequestStatus> = {
+	0: PurchaseRequestStatus.new,
+	1: PurchaseRequestStatus.processing,
+	2: PurchaseRequestStatus.received,
 };
 
-export const presentAccountOperations = (data: unknown): IAccountOperation[] => {
-	if (!Array.isArray(data)) return [];
+const presentProduct = (purchase: TAccountOperationApiItem["purchase"]): IAccountOperation["product"] => {
+	if (!purchase?.product_name) return undefined;
 
-	return data.map((source, index) => {
-		const item = unwrapJsonApiAttributes(source as IAccountOperationApiItem);
-		const operationType = resolveOperationType(item);
-		const profile = item.profile && typeof item.profile === "object" ? item.profile : undefined;
-		const title = getFirstNonEmptyString(item, ["title", "name", "comment"]) || profile?.name || "—";
+	return { id: purchase.product_id, name: purchase.product_name };
+};
+
+export const presentAccountOperations = (data: TAccountOperationApiItem[] = []): IAccountOperation[] =>
+	data.map((item) => {
+		const product = presentProduct(item.purchase);
 
 		return {
-			accountType: resolveAccountType(item),
-			amount: resolveSignedAmount(item, operationType),
-			createdAt: getFirstNonEmptyString(item, ["created_at_utc", "created_at", "date"]) || new Date(0).toISOString(),
-			description: getFirstNonEmptyString(item, ["description", "subtitle", "details"]),
-			id: String(item.id ?? index),
-			operationType,
-			status: getFirstNonEmptyString(item, ["status"]),
-			title,
+			accountType: accountTypeByApiValue[item.account_type],
+			amount: item.amount * item.direction,
+			createdAt: item.created_at,
+			description: item.comment || undefined,
+			profile: (item.direction === 1 ? item.from_profile : item.to_profile) || undefined,
+			id: item.id,
+			operationType: operationTypeByApiValue[item.operation_type],
+			product,
+			purchaseStatus: item.purchase ? purchaseStatusByApiValue[item.purchase.status] : undefined,
+			title: product?.name || item.comment || item.from_profile?.name || "—",
+			direction: item.direction,
 		};
 	});
-};
 
-export const presentAccountOperationsSummary = (data: unknown, operations: IAccountOperation[]): IAccountOperationsSummary => {
-	const summary = data && typeof data === "object" ? (data as IAccountOperationsSummaryApi) : {};
-	const calculatedSpent = operations.filter((item) => item.accountType === AccountTypeFilter.coin && item.amount < 0).reduce((total, item) => total + Math.abs(item.amount), 0);
-	const calculatedReturned = operations
-		.filter((item) => item.operationType === OperationTypeFilter.refund && item.accountType === AccountTypeFilter.coin)
-		.reduce((total, item) => total + Math.abs(item.amount), 0);
-	const calculatedReceived = operations.filter((item) => item.accountType === AccountTypeFilter.donut && item.amount > 0).reduce((total, item) => total + item.amount, 0);
-
-	return {
-		coinOperationsCount: getFirstFiniteNumber(summary, ["coin_operations_count", "coins_operations_count", "self_operations_count"]),
-		donutOperationsCount: getFirstFiniteNumber(summary, ["donut_operations_count", "donuts_operations_count", "distrib_operations_count"]),
-		operationsCount: getFirstFiniteNumber(summary, ["operations_count", "total_count", "count"]) ?? operations.length,
-		purchasesCount: getNumber(summary, ["purchases_count", "purchase_count"]),
-		receivedDonuts: getFirstFiniteNumber(summary, ["received_donuts", "donuts_received", "received_distrib"]) ?? calculatedReceived,
-		returnedCoins: getFirstFiniteNumber(summary, ["returned_coins", "refunded_coins", "coins_returned"]) ?? calculatedReturned,
-		spentCoins: getFirstFiniteNumber(summary, ["spent_coins", "coins_spent", "spent_self"]) ?? calculatedSpent,
-	};
-};
+export const presentAccountOperationsSummary = (data?: TAccountOperationsSummaryApi): IAccountOperationsSummary => ({
+	// The endpoint counts every kind of operation separately, so the total is their sum.
+	operationsCount: (data?.purchases_count ?? 0) + (data?.refunds_count ?? 0) + (data?.received_from_colleagues_count ?? 0),
+	purchasesCount: data?.purchases_count ?? 0,
+	receivedDonuts: data?.received_from_colleagues ?? 0,
+	returnedCoins: data?.refunded ?? 0,
+	spentCoins: data?.spent ?? 0,
+});
 
 export const getOperationPeriodDates = (period: OperationPeriod, now = new Date()): { dateFrom?: string; dateTo?: string } => {
 	if (period === OperationPeriod.allTime) return {};

@@ -18,6 +18,7 @@ export enum texts_p {
 	passwords_do_not_math = "password do not match",
 	period_start = "period start",
 	period_end = "period end",
+	period_filter = "period filter",
 	please_wait = "please wait",
 	process_team_join_requests = "process team join requests",
 	photos = "photos",

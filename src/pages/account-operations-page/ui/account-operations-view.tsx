@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { ArrowBackRounded, FilterListRounded } from "@mui/icons-material";
+import { ArrowBackRounded, CalendarMonthRounded } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
 import { BntSectionHeader } from "@/shared/ui/section";
@@ -14,7 +14,7 @@ import styles from "./account-operations-page.module.scss";
 import { AccountOperationsSummary } from "./account-operations-summary";
 import { AccountOperationsToolbar } from "./account-operations-toolbar";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { texts_a, texts_b, texts_h, texts_l, texts_o, texts_t } from "@/services/localization/texts";
+import { texts_a, texts_b, texts_h, texts_l, texts_o, texts_p, texts_t } from "@/services/localization/texts";
 import { emptyFunction } from "@/utils/empty-function";
 
 interface IAccountOperationsViewProps {
@@ -22,11 +22,13 @@ interface IAccountOperationsViewProps {
 	hasNext?: boolean;
 	isError?: boolean;
 	isFetching?: boolean;
-	isFiltersExpanded: boolean;
+	isOperationFiltersExpanded: boolean;
+	isPeriodFiltersExpanded: boolean;
 	isLoading?: boolean;
 	onAccountTypeChange: (value: AccountTypeFilter) => void;
 	onBack: VoidFunction;
-	onFiltersToggle: VoidFunction;
+	onOperationFiltersToggle: VoidFunction;
+	onPeriodFiltersToggle: VoidFunction;
 	onOperationTypeChange: (value: OperationTypeFilter) => void;
 	onLoadMore?: VoidFunction;
 	onPeriodChange: (value: OperationPeriod) => void;
@@ -44,11 +46,13 @@ export function AccountOperationsView(props: IAccountOperationsViewProps) {
 		hasNext = false,
 		isError = false,
 		isFetching = false,
-		isFiltersExpanded,
+		isOperationFiltersExpanded,
+		isPeriodFiltersExpanded,
 		isLoading = false,
 		onAccountTypeChange,
 		onBack,
-		onFiltersToggle,
+		onOperationFiltersToggle,
+		onPeriodFiltersToggle,
 		onLoadMore = emptyFunction,
 		onOperationTypeChange,
 		onPeriodChange,
@@ -83,10 +87,10 @@ export function AccountOperationsView(props: IAccountOperationsViewProps) {
 						{t(texts_a.account_operations_subtitle, { count: summary.operationsCount })}
 					</BntTypography>
 				</div>
-				<IconButton className={styles.mobileFilterButton} aria-expanded={isFiltersExpanded} aria-label={t(texts_o.operation_filters)} onClick={onFiltersToggle}>
-					<FilterListRounded />
+				<IconButton className={styles.mobilePeriodFilterButton} aria-expanded={isPeriodFiltersExpanded} aria-label={t(texts_p.period_filter)} onClick={onPeriodFiltersToggle}>
+					<CalendarMonthRounded />
 				</IconButton>
-				<div className={styles.periodFilters} data-expanded={isFiltersExpanded}>
+				<div className={styles.periodFilters} data-expanded={isPeriodFiltersExpanded}>
 					{periods.map((item) => (
 						<AccountOperationFilterButton data-testid={`period-filter-${item.value}`} isSelected={item.value === period} key={item.value} onClick={() => onPeriodChange(item.value)}>
 							{item.label}
@@ -98,13 +102,13 @@ export function AccountOperationsView(props: IAccountOperationsViewProps) {
 			<div className={styles.historySurface}>
 				<AccountOperationsToolbar
 					accountType={accountType}
-					isExpanded={isFiltersExpanded}
+					isOperationFiltersExpanded={isOperationFiltersExpanded}
 					onAccountTypeChange={onAccountTypeChange}
 					onOperationTypeChange={onOperationTypeChange}
+					onOperationFiltersToggle={onOperationFiltersToggle}
 					onSearchChange={onSearchChange}
 					operationType={operationType}
 					search={search}
-					summary={summary}
 				/>
 				<AccountOperationsList hasNext={hasNext} isError={isError} isFetching={isFetching} isLoading={isLoading} locale={i18n.language} onLoadMore={onLoadMore} operations={operations} />
 			</div>

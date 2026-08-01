@@ -159,6 +159,8 @@ Use `styled()` for:
 
 Prefer `styled()` for reusable visual components in `shared/ui`.
 
+When a component's `styled()` declarations contain no behavior or rendering logic, place them in a sibling `element.styles.tsx` file (for example, `bnt-carousel.styles.tsx`). Keep the component file focused on state, callbacks, and markup.
+
 Use CSS Modules in `shared/ui` only when a reusable component has substantial internal layout structure and `styled()` would make the code less readable.
 
 Do not extract trivial one-property or very small wrappers into `styled()` just because the component is reused.

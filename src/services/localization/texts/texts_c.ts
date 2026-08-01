@@ -2,6 +2,7 @@ export enum texts_c {
 	close = "close",
 	closed = "closed",
 	coins = "coins",
+	coin = "coin",
 	comments_written = "weekly comments written",
 	cancel = "cancel",
 	current_week_statistics = "weekly current week statistics",

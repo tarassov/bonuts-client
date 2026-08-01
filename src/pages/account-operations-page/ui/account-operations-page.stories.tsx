@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
 
-import { AccountTypeFilter, type IAccountOperation, OperationPeriod, OperationTypeFilter } from "../model/account-operations-types";
+import { AccountTypeFilter, type IAccountOperation, OperationPeriod, OperationTypeFilter, PurchaseRequestStatus } from "../model/account-operations-types";
 
 import { AccountOperationsView } from "./account-operations-view";
 
@@ -11,8 +11,10 @@ const operations: IAccountOperation[] = [
 		amount: 2,
 		createdAt: "2026-07-23T20:45:00Z",
 		description: "The order was cancelled by the store",
-		id: "refund-1",
+		id: 1,
 		operationType: OperationTypeFilter.refund,
+		product: { id: 21, name: "Hoodie Bonuts" },
+		purchaseStatus: PurchaseRequestStatus.new,
 		title: "Refund for Hoodie Bonuts",
 	},
 	{
@@ -20,8 +22,10 @@ const operations: IAccountOperation[] = [
 		amount: -10,
 		createdAt: "2026-07-19T17:21:00Z",
 		description: "Store · code issued",
-		id: "purchase-1",
+		id: 2,
 		operationType: OperationTypeFilter.purchase,
+		product: { id: 1, name: "Ozon certificate" },
+		purchaseStatus: PurchaseRequestStatus.processing,
 		title: "Ozon certificate",
 	},
 	{
@@ -29,7 +33,8 @@ const operations: IAccountOperation[] = [
 		amount: 1,
 		createdAt: "2026-06-24T21:55:00Z",
 		description: "From Pepper Potts",
-		id: "recognition-1",
+		id: 3,
+		profile: { id: 5, name: "Pepper Potts" },
 		operationType: OperationTypeFilter.recognition,
 		title: "Donut for helping with the release",
 	},
@@ -51,16 +56,19 @@ export const Default = {
 		const [operationType, setOperationType] = useState(OperationTypeFilter.all);
 		const [period, setPeriod] = useState(OperationPeriod.allTime);
 		const [search, setSearch] = useState("");
-		const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
+		const [isOperationFiltersExpanded, setIsOperationFiltersExpanded] = useState(false);
+		const [isPeriodFiltersExpanded, setIsPeriodFiltersExpanded] = useState(false);
 
 		return (
 			<Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
 				<AccountOperationsView
 					accountType={accountType}
-					isFiltersExpanded={isFiltersExpanded}
+					isOperationFiltersExpanded={isOperationFiltersExpanded}
+					isPeriodFiltersExpanded={isPeriodFiltersExpanded}
 					onAccountTypeChange={setAccountType}
 					onBack={() => undefined}
-					onFiltersToggle={() => setIsFiltersExpanded((isExpanded) => !isExpanded)}
+					onOperationFiltersToggle={() => setIsOperationFiltersExpanded((isExpanded) => !isExpanded)}
+					onPeriodFiltersToggle={() => setIsPeriodFiltersExpanded((isExpanded) => !isExpanded)}
 					onOperationTypeChange={setOperationType}
 					onPeriodChange={setPeriod}
 					onSearchChange={setSearch}
@@ -68,7 +76,7 @@ export const Default = {
 					operations={operations}
 					period={period}
 					search={search}
-					summary={{ coinOperationsCount: 12, donutOperationsCount: 6, operationsCount: 18, purchasesCount: 6, receivedDonuts: 7, returnedCoins: 29, spentCoins: 125 }}
+					summary={{ operationsCount: 18, purchasesCount: 6, receivedDonuts: 7, returnedCoins: 29, spentCoins: 125 }}
 				/>
 			</Box>
 		);
@@ -78,10 +86,12 @@ export const Default = {
 export const Empty = {
 	args: {
 		accountType: AccountTypeFilter.all,
-		isFiltersExpanded: false,
+		isOperationFiltersExpanded: false,
+		isPeriodFiltersExpanded: false,
 		onAccountTypeChange: () => undefined,
 		onBack: () => undefined,
-		onFiltersToggle: () => undefined,
+		onOperationFiltersToggle: () => undefined,
+		onPeriodFiltersToggle: () => undefined,
 		onOperationTypeChange: () => undefined,
 		onPeriodChange: () => undefined,
 		onSearchChange: () => undefined,
@@ -89,6 +99,6 @@ export const Empty = {
 		operations: [],
 		period: OperationPeriod.allTime,
 		search: "",
-		summary: { coinOperationsCount: 0, donutOperationsCount: 0, operationsCount: 0, purchasesCount: 0, receivedDonuts: 0, returnedCoins: 0, spentCoins: 0 },
+		summary: { operationsCount: 0, purchasesCount: 0, receivedDonuts: 0, returnedCoins: 0, spentCoins: 0 },
 	},
 };

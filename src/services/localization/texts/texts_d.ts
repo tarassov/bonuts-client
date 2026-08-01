@@ -19,4 +19,5 @@ export enum texts_d {
 	domain = "domain",
 	demo = "demo",
 	donuts = "donuts",
+	donut = "donut",
 }

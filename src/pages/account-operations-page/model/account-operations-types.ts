@@ -1,5 +1,17 @@
 import { AccountType } from "@/entities/account";
 
+import type { GetAccountOperationsHistoryApiResponse, GetAccountOperationsSummaryApiResponse } from "@/services/api/bonuts-api";
+
+/** Operation as returned by `/account_operations/history`. */
+export type TAccountOperationApiItem = GetAccountOperationsHistoryApiResponse["data"][number];
+
+/** Summary as returned by `/account_operations/summary`. */
+export type TAccountOperationsSummaryApi = GetAccountOperationsSummaryApiResponse["data"];
+
+export type TAccountOperationProfile = NonNullable<TAccountOperationApiItem["from_profile"]>;
+
+export type TAccountOperationPurchase = NonNullable<TAccountOperationApiItem["purchase"]>;
+
 export enum AccountTypeFilter {
 	all = "all",
 	coin = AccountType.self,
@@ -13,6 +25,19 @@ export enum OperationTypeFilter {
 	recognition = "transfer",
 }
 
+export enum PurchaseRequestStatus {
+	new = 0,
+	processing = 1,
+	received = 2,
+}
+
+/** Names of the filters kept in the search string of the account operations page. */
+export enum AccountOperationsSearchParam {
+	accountType = "accountType",
+	operationType = "operationType",
+	period = "period",
+}
+
 export enum OperationPeriod {
 	thirtyDays = "30-days",
 	threeMonths = "3-months",
@@ -20,48 +45,25 @@ export enum OperationPeriod {
 	allTime = "all-time",
 }
 
-export interface IAccountOperationApiItem {
-	account_type?: string;
-	amount?: number | string;
-	created_at?: string;
-	created_at_utc?: string;
-	description?: string;
-	direction?: number | string;
-	id?: number | string;
-	operation_type?: string;
-	profile?: {
-		name?: string;
-	};
-	status?: string;
-	subtitle?: string;
-	title?: string;
-	[key: string]: unknown;
-}
-
-export interface IAccountOperationsSummaryApi {
-	operations_count?: number;
-	purchases_count?: number;
-	received_donuts?: number;
-	refunded_coins?: number;
-	returned_coins?: number;
-	spent_coins?: number;
-	[key: string]: unknown;
-}
-
 export interface IAccountOperation {
 	accountType: AccountTypeFilter.coin | AccountTypeFilter.donut;
+	/** Signed by the direction of the operation: negative for spendings, positive for income. */
 	amount: number;
 	createdAt: string;
 	description?: string;
-	id: string;
+	profile?: TAccountOperationProfile;
+	id: number;
 	operationType: OperationTypeFilter;
-	status?: string;
+	purchaseStatus?: PurchaseRequestStatus;
+	product?: {
+		id: number;
+		name: string;
+	};
 	title: string;
+	direction?: 1 | -1;
 }
 
 export interface IAccountOperationsSummary {
-	coinOperationsCount?: number;
-	donutOperationsCount?: number;
 	operationsCount: number;
 	purchasesCount: number;
 	receivedDonuts: number;
