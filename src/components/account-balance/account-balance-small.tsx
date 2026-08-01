@@ -9,6 +9,8 @@ import { BntBox } from "@/shared/ui/box";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
+import { AccountType } from "@/entities/account";
+
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
@@ -19,12 +21,12 @@ export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => 
 	const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 	const { account: selfAccount, isLoading: isLoadingSelf } = useAccountBalanceLoader(profile?.self_account?.id);
 	const { BonutsCurrency } = useBonutsIcon({ height: "16px", width: "16px" });
-	const { toSelfBalanceHistory, toDistribBalanceHistory } = useEmployeeUi(profile);
+	const { toAccountOperations } = useEmployeeUi(profile);
 	const { t } = useBntTranslate();
 
 	return (
 		<BntStack direction="column" minWidth={smallScreen ? 20 : 100} maxWidth={smallScreen ? 50 : 200}>
-			<BntBox color="grey.400" sx={{ lineHeight: "16px", borderBottom: "1px solid" }} className="pr-1 pointer" onClick={toSelfBalanceHistory}>
+			<BntBox color="grey.400" sx={{ lineHeight: "16px", borderBottom: "1px solid" }} className="pr-1 pointer" onClick={() => toAccountOperations(AccountType.self)}>
 				<BntStack sx={{ lineHeight: "16px" }} direction="row" gap={1} alignItems="center" justifyContent="flex-end">
 					<BntTypography variant="caption" color="grey.700" sx={{ lineHeight: "22px", textWrap: "nowrap" }}>
 						{!isLoadingSelf && profile ? <>{!smallScreen ? `${selfAccount?.balance} ${t("point", { count: selfAccount?.balance })}` : selfAccount?.balance}</> : null}
@@ -32,7 +34,7 @@ export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => 
 					<BonutsCurrency />
 				</BntStack>
 			</BntBox>
-			<BntStack className="pr-1 pointer" sx={{ lineHeight: "16px" }} direction="row" gap={1} alignItems="center" justifyContent="flex-end" onClick={toDistribBalanceHistory}>
+			<BntStack className="pr-1 pointer" sx={{ lineHeight: "16px" }} direction="row" gap={1} alignItems="center" justifyContent="flex-end" onClick={() => toAccountOperations(AccountType.distrib)}>
 				<BntTypography variant="caption" color="grey.700" sx={{ lineHeight: "22px", textWrap: "nowrap" }}>
 					{!isLoadingDistrib && profile ? <>{!smallScreen ? `${distribAccount?.balance} ${t("donut", { count: distribAccount?.balance })}` : distribAccount?.balance}</> : null}
 				</BntTypography>

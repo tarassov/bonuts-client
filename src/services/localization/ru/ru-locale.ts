@@ -29,6 +29,30 @@ import {
 
 export const ruLocale = {
 	translations: {
+		[texts_a.account_operations_subtitle]: "Всё, что вы получили и потратили — {{count}} операций в выборке",
+		[texts_a.account_type]: "Тип счёта",
+		[texts_a.all]: "Всё",
+		[texts_a.all_time]: "Всё время",
+		[texts_a.all_types]: "Все типы",
+		[texts_d.donuts_received_description]: "От коллег за помощь и поддержку",
+		[texts_l.last_30_days]: "30 дней",
+		[texts_l.last_3_months]: "3 месяца",
+		[texts_n.no_operations]: "По выбранным фильтрам операций нет",
+		[texts_o.operation_filters]: "Фильтры операций",
+		[texts_o.operation_types]: "Типы операций",
+		[texts_o.operations]: "операций",
+		[texts_o.operations_history]: "История операций",
+		[texts_o.operations_loading_error]: "Не удалось загрузить историю операций. Попробуйте позже.",
+		[texts_p.purchases]: "Покупки",
+		[texts_p.profile_not_found]: "Профиль недоступен, поэтому историю операций нельзя открыть.",
+		[texts_r.recognition]: "Признание",
+		[texts_r.refunds]: "Возвраты",
+		[texts_r.refunds_description]: "Отменённые и недоступные товары",
+		[texts_r.returned]: "Возвращено",
+		[texts_s.search_operations]: "Товар, коллега, сумма…",
+		[texts_s.spent_coins]: "Потрачено монет",
+		[texts_s.summary]: "Сводка по операциям",
+		[texts_t.this_year]: "Год",
 		// CONSTS
 		CONST_GREETINGS: "Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
 		// A

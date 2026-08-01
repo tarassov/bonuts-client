@@ -1,4 +1,7 @@
 export enum texts_s {
+	search_operations = "search operations",
+	spent_coins = "spent coins",
+	summary = "summary",
 	save = "save",
 	search = "search",
 	search_colleagues = "search colleagues",

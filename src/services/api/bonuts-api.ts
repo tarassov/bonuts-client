@@ -2,6 +2,34 @@ import { emptySplitApi as api } from "./empty-api";
 
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
+		getAccountOperationsHistory: build.query<GetAccountOperationsHistoryApiResponse, GetAccountOperationsHistoryApiArg>({
+			query: (queryArg) => ({
+				url: `/account_operations/history`,
+				params: {
+					tenant: queryArg.tenant,
+					profile_id: queryArg.profileId,
+					account_type: queryArg.accountType,
+					operation_type: queryArg.operationType,
+					search: queryArg.search,
+					date_from: queryArg.dateFrom,
+					date_to: queryArg.dateTo,
+					page: queryArg.page,
+					per_page: queryArg.perPage,
+				},
+			}),
+		}),
+		getAccountOperationsSummary: build.query<GetAccountOperationsSummaryApiResponse, GetAccountOperationsSummaryApiArg>({
+			query: (queryArg) => ({
+				url: `/account_operations/summary`,
+				params: {
+					tenant: queryArg.tenant,
+					profile_id: queryArg.profileId,
+					account_type: queryArg.accountType,
+					date_from: queryArg.dateFrom,
+					date_to: queryArg.dateTo,
+				},
+			}),
+		}),
 		postAccountOperations: build.mutation<PostAccountOperationsApiResponse, PostAccountOperationsApiArg>({
 			query: (queryArg) => ({
 				url: `/account_operations`,
@@ -297,6 +325,12 @@ const injectedRtkApi = api.injectEndpoints({
 			query: (queryArg) => ({
 				url: `/profile_pictures/${queryArg.id}/like`,
 				method: "POST",
+				params: { tenant: queryArg.tenant },
+			}),
+		}),
+		getProfilePicturesByIdImageAndVersion: build.query<GetProfilePicturesByIdImageAndVersionApiResponse, GetProfilePicturesByIdImageAndVersionApiArg>({
+			query: (queryArg) => ({
+				url: `/profile_pictures/${queryArg.id}/image/${queryArg.version}`,
 				params: { tenant: queryArg.tenant },
 			}),
 		}),
@@ -649,6 +683,30 @@ const injectedRtkApi = api.injectEndpoints({
 	overrideExisting: false,
 });
 export { injectedRtkApi as bonutsApi };
+export type GetAccountOperationsHistoryApiResponse = /** status 200 success */ {
+	data: object[];
+};
+export type GetAccountOperationsHistoryApiArg = {
+	tenant: string;
+	profileId: number;
+	accountType?: "all" | "self" | "distrib";
+	operationType?: "all" | "purchase" | "refund" | "transfer";
+	search?: string;
+	dateFrom?: string;
+	dateTo?: string;
+	page?: number;
+	perPage?: number;
+};
+export type GetAccountOperationsSummaryApiResponse = /** status 200 success */ {
+	data: object;
+};
+export type GetAccountOperationsSummaryApiArg = {
+	tenant: string;
+	profileId: number;
+	accountType?: "all" | "self" | "distrib";
+	dateFrom?: string;
+	dateTo?: string;
+};
 export type PostAccountOperationsApiResponse = /** status 201 success */ {
 	error?: boolean;
 	message?: string;
@@ -2146,6 +2204,16 @@ export type PostProfilePicturesByIdLikeApiResponse = /** status 200 success */ {
 };
 export type PostProfilePicturesByIdLikeApiArg = {
 	id: number;
+	tenant?: string;
+};
+export type GetProfilePicturesByIdImageAndVersionApiResponse = unknown;
+export type GetProfilePicturesByIdImageAndVersionApiArg = {
+	id: number;
+	/** :
+	 * `thumb`
+	 * `preview`
+	 */
+	version: string;
 	tenant?: string;
 };
 export type PostProfilePicturesByProfilePictureIdCommentsApiResponse = /** status 200 success */ {
@@ -4859,6 +4927,8 @@ export type ProfileNotification = {
 	disabled: boolean;
 };
 export const {
+	useGetAccountOperationsHistoryQuery,
+	useGetAccountOperationsSummaryQuery,
 	usePostAccountOperationsMutation,
 	useGetAccountOperationsQuery,
 	usePostAccountOperationsTransferMutation,
@@ -4902,6 +4972,7 @@ export const {
 	useGetProfilePicturesByIdQuery,
 	useDeleteProfilePicturesByIdMutation,
 	usePostProfilePicturesByIdLikeMutation,
+	useGetProfilePicturesByIdImageAndVersionQuery,
 	usePostProfilePicturesByProfilePictureIdCommentsMutation,
 	useGetProfileQuery,
 	useGetProfilesByIdQuery,

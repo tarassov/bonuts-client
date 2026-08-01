@@ -1,5 +1,7 @@
 export enum texts_p {
+	purchases = "purchases",
 	profile = "profile",
+	profile_not_found = "profile not found",
 	profiles = "profiles",
 	poka_you_were_not_very_active = "poka you were not very active",
 	points_to_next_status = "points to next status",

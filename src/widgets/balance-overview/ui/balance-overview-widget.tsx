@@ -10,16 +10,18 @@ import { useProfile } from "@/entities/profile";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useAccountBalanceLoader } from "@/logic/hooks/account/use-account-balance-loader";
-import { texts_b, texts_i } from "@/services/localization/texts";
+import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
+import { texts_b, texts_i, texts_o } from "@/services/localization/texts";
 
 export function BalanceOverviewWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	const { t } = useBntTranslate();
 	const { profile } = useProfile();
+	const { toAccountOperations } = useEmployeeUi(profile);
 	const { account: selfAccount, isLoading: isSelfBalanceLoading } = useAccountBalanceLoader(profile?.self_account?.id);
 	const { account: distribAccount, isLoading: isDistribBalanceLoading } = useAccountBalanceLoader(profile?.distrib_account?.id);
 
 	return (
-		<DashboardWidgetCard columns={columns}>
+		<DashboardWidgetCard ariaLabel={t(texts_o.operations_history, { capitalize: true })} columns={columns} onClick={toAccountOperations}>
 			<BntStack gap={1.5} data-testid="dashboard-widget-balance-overview">
 				<BntTypography variant="subtitle1" fontWeight={700}>
 					{t(texts_b.balance, { capitalize: true })}

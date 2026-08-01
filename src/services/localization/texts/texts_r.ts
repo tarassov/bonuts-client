@@ -1,4 +1,8 @@
 export enum texts_r {
+	recognition = "recognition",
+	refunds = "refunds",
+	refunds_description = "refunds description",
+	returned = "returned",
 	recent_invitations = "recent invitations",
 	recognized_voice = "recognized voice",
 	request_added = "request added",

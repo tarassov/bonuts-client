@@ -1,4 +1,5 @@
 export enum texts_n {
+	no_operations = "no operations",
 	not_active = "not active",
 	name = "name",
 	no_data_yet = "no data yet",

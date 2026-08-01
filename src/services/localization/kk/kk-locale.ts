@@ -29,6 +29,30 @@ import {
 
 export const kkLocale = {
 	translations: {
+		[texts_a.account_operations_subtitle]: "Алғаныңыз бен жұмсағаныңыз — таңдауда {{count}} операция",
+		[texts_a.account_type]: "Шот түрі",
+		[texts_a.all]: "Барлығы",
+		[texts_a.all_time]: "Барлық уақыт",
+		[texts_a.all_types]: "Барлық түрлер",
+		[texts_d.donuts_received_description]: "Әріптестерден көмек пен қолдау үшін",
+		[texts_l.last_30_days]: "30 күн",
+		[texts_l.last_3_months]: "3 ай",
+		[texts_n.no_operations]: "Таңдалған сүзгілер бойынша операциялар жоқ",
+		[texts_o.operation_filters]: "Операция сүзгілері",
+		[texts_o.operation_types]: "Операция түрлері",
+		[texts_o.operations]: "операция",
+		[texts_o.operations_history]: "Операциялар тарихы",
+		[texts_o.operations_loading_error]: "Операциялар тарихын жүктеу мүмкін болмады. Кейінірек қайталап көріңіз.",
+		[texts_p.purchases]: "Сатып алулар",
+		[texts_p.profile_not_found]: "Профиль қолжетімсіз, сондықтан операциялар тарихын ашу мүмкін емес.",
+		[texts_r.recognition]: "Мойындау",
+		[texts_r.refunds]: "Қайтарымдар",
+		[texts_r.refunds_description]: "Бас тартылған және қолжетімсіз тауарлар",
+		[texts_r.returned]: "Қайтарылды",
+		[texts_s.search_operations]: "Тауар, әріптес, сома…",
+		[texts_s.spent_coins]: "Жұмсалған монеталар",
+		[texts_s.summary]: "Операциялар қорытындысы",
+		[texts_t.this_year]: "Жыл",
 		// CONSTS
 		CONST_GREETINGS: "Простой и быстрый способ поблагодарить ваших коллег за отличную работу.",
 		// A

@@ -3,6 +3,9 @@ import { goBack, go as historyGo, push, replace } from "redux-first-history";
 
 import { useAppDispatch, useAppSelector } from "services/redux/store/store";
 
+import type { TSearchParamValue } from "./build-path-with-search-params";
+import { buildPathWithSearchParams } from "./build-path-with-search-params";
+
 type TNavigateParams = Parameters<typeof push>;
 
 export interface ILocationProps extends Location {
@@ -37,6 +40,13 @@ export function useAppNavigate() {
 		[dispatch]
 	);
 
+	const navigateWithSearchParams = useCallback(
+		(path: string, params: Record<string, TSearchParamValue>) => {
+			return navigate(buildPathWithSearchParams(path, params));
+		},
+		[navigate]
+	);
+
 	const back = useCallback(() => {
 		return dispatch(goBack());
 	}, [dispatch]);
@@ -49,5 +59,5 @@ export function useAppNavigate() {
 		[dispatch]
 	);
 
-	return { go, location, navigate, replace: replaceEntry, goBack: back };
+	return { go, location, navigate, navigateWithSearchParams, replace: replaceEntry, goBack: back };
 }

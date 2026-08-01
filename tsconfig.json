@@ -41,6 +41,11 @@
 			"icons/*": ["src/icons/*"]
 		}
 	},
+	"ts-node": {
+		"compilerOptions": {
+			"moduleResolution": "node"
+		}
+	},
 	"include": ["src", "node_modules/cypress/types/cypress-global-vars.d.ts"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,12 +1,14 @@
 import type { ReactNode } from "react";
 import { Box, styled } from "@mui/material";
 
-import { BntCard } from "@/shared/ui/card";
+import { BntCard, BntCardActionArea } from "@/shared/ui/card";
 
 import type { IDashboardWidgetSizingProps } from "./types";
 
 interface IDashboardWidgetCardProps extends IDashboardWidgetSizingProps {
+	ariaLabel?: string;
 	children: ReactNode;
+	onClick?: () => void;
 }
 
 const WidgetContainer = styled(Box, {
@@ -18,15 +20,36 @@ const WidgetContainer = styled(Box, {
 }));
 
 const SidebarCard = styled(BntCard)(({ theme }) => ({
-	padding: theme.spacing(2),
 	borderRadius: theme.spacing(2),
+	height: "100%",
+	overflow: "hidden",
+}));
+
+const WidgetContent = styled(Box)(({ theme }) => ({
+	padding: theme.spacing(2),
 	height: "100%",
 }));
 
-export function DashboardWidgetCard({ children, columns = 1 }: IDashboardWidgetCardProps) {
+const WidgetActionArea = styled(BntCardActionArea)({
+	alignItems: "stretch",
+	height: "100%",
+	textAlign: "left",
+});
+
+export function DashboardWidgetCard({ ariaLabel, children, columns = 1, onClick }: IDashboardWidgetCardProps) {
+	const content = <WidgetContent>{children}</WidgetContent>;
+
 	return (
 		<WidgetContainer columns={columns}>
-			<SidebarCard>{children}</SidebarCard>
+			<SidebarCard>
+				{onClick ? (
+					<WidgetActionArea aria-label={ariaLabel} onClick={onClick}>
+						{content}
+					</WidgetActionArea>
+				) : (
+					content
+				)}
+			</SidebarCard>
 		</WidgetContainer>
 	);
 }
