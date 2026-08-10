@@ -13,6 +13,7 @@ const donut: TDonut = {
 	likeable: false,
 	likes: [],
 	liked: false,
+	use_remains: true,
 	on_stock: 8,
 	logo: {
 		url: BonutsSmPng,

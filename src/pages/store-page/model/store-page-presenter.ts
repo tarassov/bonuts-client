@@ -3,8 +3,8 @@ import type { TDonut } from "@/types/model";
 
 export const getStoreStatistics = (donuts: Array<TDonut>): IStoreStatistics => ({
 	activeCount: donuts.filter((donut) => donut.active).length,
-	soldOutCount: donuts.filter((donut) => donut.has_remains && !donut.on_stock).length,
-	unlimitedCount: donuts.filter((donut) => !donut.has_remains).length,
+	soldOutCount: donuts.filter((donut) => donut.use_remains && !donut.on_stock).length,
+	unlimitedCount: donuts.filter((donut) => !donut.use_remains).length,
 });
 
 export const getVisibleDonuts = (donuts: Array<TDonut>, query: string, sort: StoreSort, tab: StoreTab) => {

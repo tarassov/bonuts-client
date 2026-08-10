@@ -13,7 +13,7 @@ import { texts_s } from "@/services/localization/texts";
 
 export const StorePage: FC = () => {
 	const { routes } = useBntRoutes();
-	const { donuts, handleToggleActive, showCreateDonutModal } = useStorePage();
+	const { donuts, handleToggleUseRemains, showCreateDonutModal } = useStorePage();
 	const settingsRoute = routes[BntRoutes.Settings];
 	const storeRoute = settingsRoute?.children?.Store;
 	const breadcrumbs: Array<TBntBreadcrumbItem> = [
@@ -33,7 +33,7 @@ export const StorePage: FC = () => {
 		<BntStack direction="column" sx={{ height: "100%", overflow: "hidden" }}>
 			<BntBreadcrumbs items={breadcrumbs} />
 			<div className="flex-grow scroll">
-				<StorePageView donuts={donuts} onCreateClick={showCreateDonutModal} onToggleActive={handleToggleActive} />
+				<StorePageView donuts={donuts} onCreateClick={showCreateDonutModal} onToggleUseRemains={handleToggleUseRemains} />
 			</div>
 		</BntStack>
 	);

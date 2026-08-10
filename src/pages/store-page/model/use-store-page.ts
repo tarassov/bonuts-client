@@ -13,9 +13,9 @@ export function useStorePage() {
 
 	useModuleLoader({ module: Modules.StoreManager, isLoading: isLoading || isUpdating });
 
-	const handleToggleActive = (donut: TDonut) => {
-		putDonut(donut.id, { ...donut, active: !donut.active });
+	const handleToggleUseRemains = (donut: TDonut) => {
+		putDonut(donut.id, { ...donut, use_remains: !donut.use_remains });
 	};
 
-	return { donuts, handleToggleActive, showCreateDonutModal };
+	return { donuts, handleToggleUseRemains, showCreateDonutModal };
 }
