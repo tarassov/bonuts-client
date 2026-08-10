@@ -43,7 +43,7 @@ export const DonutPurchaseBlock: FC<{
 					{t(Dictionary.Delivery_days)}: {donut.supply_days}{" "}
 				</BntTypography>
 			) : null}
-			{donut.use_remains && (
+			{donut.available && (
 				<div className="m-5">
 					<BntRegularButton onClick={onCreateRequest} className="width-100">
 						{t(Dictionary.Buy)}
