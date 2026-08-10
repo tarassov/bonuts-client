@@ -21,5 +21,6 @@ export enum texts_p {
 	period_filter = "period filter",
 	please_wait = "please wait",
 	process_team_join_requests = "process team join requests",
+	picture = "picture",
 	photos = "photos",
 }

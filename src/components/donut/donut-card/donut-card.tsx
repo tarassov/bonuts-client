@@ -2,7 +2,8 @@ import { FC } from "react";
 
 import { DonutCardStyled } from "components/donut/donut-card/donut-card-styled";
 
-import { useDonutUi } from "logic/ui/use-donut-ui";
+import { useDonutUi } from "@/entities/donut";
+
 import { TDonut } from "@/types/model";
 
 export const DonutCard: FC<{ donut: TDonut }> = ({ donut }) => {

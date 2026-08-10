@@ -5,12 +5,13 @@ import { alpha, useTheme } from "@mui/material/styles";
 import { BntTransparentButton } from "@/shared/ui/buttons";
 import { BntTypography } from "@/shared/ui/typography";
 
+import { useDonutUi } from "@/entities/donut";
+
 import { getRequestDonutName } from "../model/request-feed-helpers";
 
 import { DonutButton } from "@/components/buttons/donut-button";
 import { DEFAULT_DONUT_IMAGE } from "@/constants/images";
 import { useBonutsIcon } from "@/hooks/use-bonuts-icon";
-import { useDonutUi } from "@/logic/ui/use-donut-ui";
 import type { TRequest } from "@/types/model/request";
 
 type RequestFeedDonutCellProps = {

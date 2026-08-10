@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { useFormContext, useFormState } from "react-hook-form";
-import { Grid } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 
 import { BntBox } from "@/shared/ui/box";
 
@@ -16,7 +16,24 @@ export const BntFormBody: FC<
 		onDiscard: VoidFunction;
 		error?: string;
 	}
-> = ({ fields, groups, groupGap, hasInitial, initialValues, formId, submitCaption, submitButtonVariant, children, values, onDiscard, error, keepValuesOnSubmit = true }) => {
+> = ({
+	fields,
+	groups,
+	groupGap,
+	hasInitial,
+	initialValues,
+	formId,
+	submitCaption,
+	submitButtonVariant,
+	children,
+	values,
+	onDiscard,
+	error,
+	isSubmitAlwaysVisible,
+	isSubmitSticky,
+	keepDirtyOnInitialValuesChange,
+	keepValuesOnSubmit = true,
+}) => {
 	const { reset } = useFormContext();
 	const formState = useFormState();
 	const { isDirty, isSubmitSuccessful } = formState;
@@ -28,8 +45,8 @@ export const BntFormBody: FC<
 	}, [initialValues, isSubmitSuccessful, keepValuesOnSubmit, reset]);
 
 	useEffect(() => {
-		reset(initialValues, { keepValues: keepValuesOnSubmit });
-	}, [initialValues, keepValuesOnSubmit, reset]);
+		reset(initialValues, { keepDirty: keepDirtyOnInitialValuesChange, keepValues: keepValuesOnSubmit });
+	}, [initialValues, keepDirtyOnInitialValuesChange, keepValuesOnSubmit, reset]);
 
 	const onCancelClick = () => {
 		onDiscard();
@@ -38,7 +55,7 @@ export const BntFormBody: FC<
 
 	return (
 		<BntBox className="position-relative">
-			<Grid container spacing={2} className="mb-3">
+			<Grid container columnSpacing={2} rowSpacing={2} className="mb-3">
 				<BntFormContextProvider values={values} initialValues={initialValues}>
 					<>
 						{children}
@@ -50,7 +67,13 @@ export const BntFormBody: FC<
 					</>
 				</BntFormContextProvider>
 			</Grid>
-			<BntFormSubmit visible={!!(isDirty || error)} onCancelClick={onCancelClick} submitCaption={submitCaption} submitButtonVariant={submitButtonVariant} />
+			<BntFormSubmit
+				isSticky={isSubmitSticky}
+				visible={!!(isSubmitAlwaysVisible || isDirty || error)}
+				onCancelClick={onCancelClick}
+				submitCaption={submitCaption}
+				submitButtonVariant={submitButtonVariant}
+			/>
 		</BntBox>
 	);
 };

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FormControl, Grid } from "@mui/material";
+import { FormControl, Grid2 as Grid } from "@mui/material";
 
 import { BntFormField } from "./bnt-form-field";
 import { GridOffset } from "./grid-offset";
@@ -16,7 +16,7 @@ export const BntFormItem: FC<{
 	return (
 		<>
 			<GridOffset offset={field.offset?.offsetBeforeElement} />
-			<Grid item xs={field_xs} sm={field_sm} md={field_md} lg={field_lg}>
+			<Grid size={{ xs: field_xs, sm: field_sm, md: field_md, lg: field_lg }}>
 				<FormControl required={field.required} style={{ width: "100%" }}>
 					<BntFormField id={id} field={field} />
 				</FormControl>

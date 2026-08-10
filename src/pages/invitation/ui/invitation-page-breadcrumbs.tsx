@@ -5,7 +5,7 @@ import { useBntRoutes } from "@/shared/lib/router";
 import { BntBreadcrumbs } from "@/shared/ui/breadcrumb";
 import type { TBntBreadcrumbItem } from "@/shared/ui/types";
 
-import { texts_a } from "@/services/localization/texts";
+import { texts_a, texts_i } from "@/services/localization/texts";
 
 type TInvitationPageBreadcrumbsVariant = "root" | "all";
 
@@ -22,9 +22,8 @@ export function InvitationPageBreadcrumbs({ variant }: IInvitationPageBreadcrumb
 			{
 				key: "invitations",
 				link: variant === "all" ? invitationRoute?.path : undefined,
-				label: invitationRoute?.navbarName || "Invitations",
+				label: invitationRoute?.navbarName || texts_i.invitations,
 				icon: invitationRoute?.icon,
-				noTranslation: !invitationRoute?.navbarName,
 			},
 		];
 

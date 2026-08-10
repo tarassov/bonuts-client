@@ -10,9 +10,9 @@ import { BntRoundButton } from "@/shared/ui/buttons";
 import { BntStack } from "@/shared/ui/stack";
 
 import { AccountType } from "@/entities/account";
+import { useDonutUi } from "@/entities/donut";
 
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
-import { useDonutUi } from "logic/ui/use-donut-ui";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 

@@ -1,4 +1,5 @@
 export enum texts_m {
+	main_reward_information = "main reward information",
 	more = "more",
 	my_invitations = "my invitations",
 	my_photos = "my photos",
