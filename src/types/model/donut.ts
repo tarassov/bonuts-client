@@ -8,6 +8,7 @@ export type TDonut = TBaseModel &
 		name: string;
 		price: number;
 		active: boolean;
+		available: boolean;
 		logo?: TPicture;
 		description?: string;
 		use_remains: boolean;
