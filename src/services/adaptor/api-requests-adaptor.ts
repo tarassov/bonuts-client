@@ -35,6 +35,8 @@ const mapFlatRequest = (target: TRequestApiItem): TRequest => {
 					...target.donut,
 					id: Number(target.donut.id),
 					logo: mapPicture(target.donut.logo),
+					expiration_date: target.donut.expiration_date ?? null,
+					use_remains: target.donut.use_remains,
 				}
 			: undefined,
 		profile: target.profile

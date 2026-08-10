@@ -1075,40 +1075,51 @@ export type PostClientRequestsApiArg = {
 };
 export type GetDonutsApiResponse = /** status 200 success */ {
 	data: {
-		id: string;
-		type: string;
-		attributes: {
-			name: string;
-			price: number;
-			id: number;
-			active: boolean;
-			logo: {
+		name: string;
+		price: number;
+		id: number;
+		active: boolean;
+		logo?: {
+			url?: string | null;
+			thumb?: {
 				url?: string | null;
-				thumb?: {
-					url?: string | null;
+			};
+		};
+		description?: string;
+		liked?: boolean;
+		likes?: {
+			id: number;
+			profile_id: number;
+			created_at?: string;
+			likeable_type?: string;
+			likeable_id?: number;
+		}[];
+		available: boolean;
+		on_stock?: number;
+		supply_days?: number;
+		use_remains: boolean;
+		expiration_date?: string | null;
+		created_at?: string;
+		comments?: {
+			id: number;
+			content: string;
+			liked?: boolean;
+			likes: number;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
 				};
 			};
-			description: string;
-			liked: boolean;
-			likes: {
+			profile?: {
 				id: number;
-				profile_id: number;
-				created_at?: string;
-				likeable_type?: string;
-				likeable_id?: number;
-			}[];
-			has_remains: boolean;
-			on_stock: number;
-			supply_days: number;
-			expiration_date: string;
-			created_at: string;
-			comments: {
-				id: number;
-				content: string;
-				liked?: boolean;
-				likes: number;
-				public: boolean;
-				user_avatar: {
+				name: string;
+				user_name?: string;
+				user_avatar?: {
 					url: string | null;
 					thumb: {
 						url: string | null;
@@ -1117,25 +1128,11 @@ export type GetDonutsApiResponse = /** status 200 success */ {
 						url: string | null;
 					};
 				};
-				profile?: {
-					id: number;
-					name: string;
-					user_name?: string;
-					user_avatar?: {
-						url: string | null;
-						thumb: {
-							url: string | null;
-						};
-						preview: {
-							url: string | null;
-						};
-					};
-				};
-				user_name: string;
-				date_string: string;
-				date_string_utc?: string;
-			}[];
-		};
+			};
+			user_name: string;
+			date_string: string;
+			date_string_utc?: string;
+		}[];
 	}[];
 };
 export type GetDonutsApiArg = {
@@ -1143,41 +1140,52 @@ export type GetDonutsApiArg = {
 	all?: string;
 };
 export type PostDonutsApiResponse = /** status 200 success */ {
-	data: {
-		id: string;
-		type: string;
-		attributes: {
-			name: string;
-			price: number;
-			id: number;
-			active: boolean;
-			logo: {
+	data?: {
+		name: string;
+		price: number;
+		id: number;
+		active: boolean;
+		logo?: {
+			url?: string | null;
+			thumb?: {
 				url?: string | null;
-				thumb?: {
-					url?: string | null;
+			};
+		};
+		description?: string;
+		liked?: boolean;
+		likes?: {
+			id: number;
+			profile_id: number;
+			created_at?: string;
+			likeable_type?: string;
+			likeable_id?: number;
+		}[];
+		available: boolean;
+		on_stock?: number;
+		supply_days?: number;
+		use_remains: boolean;
+		expiration_date?: string | null;
+		created_at?: string;
+		comments?: {
+			id: number;
+			content: string;
+			liked?: boolean;
+			likes: number;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
 				};
 			};
-			description: string;
-			liked: boolean;
-			likes: {
+			profile?: {
 				id: number;
-				profile_id: number;
-				created_at?: string;
-				likeable_type?: string;
-				likeable_id?: number;
-			}[];
-			has_remains: boolean;
-			on_stock: number;
-			supply_days: number;
-			expiration_date: string;
-			created_at: string;
-			comments: {
-				id: number;
-				content: string;
-				liked?: boolean;
-				likes: number;
-				public: boolean;
-				user_avatar: {
+				name: string;
+				user_name?: string;
+				user_avatar?: {
 					url: string | null;
 					thumb: {
 						url: string | null;
@@ -1186,26 +1194,12 @@ export type PostDonutsApiResponse = /** status 200 success */ {
 						url: string | null;
 					};
 				};
-				profile?: {
-					id: number;
-					name: string;
-					user_name?: string;
-					user_avatar?: {
-						url: string | null;
-						thumb: {
-							url: string | null;
-						};
-						preview: {
-							url: string | null;
-						};
-					};
-				};
-				user_name: string;
-				date_string: string;
-				date_string_utc?: string;
-			}[];
-		};
-	}[];
+			};
+			user_name: string;
+			date_string: string;
+			date_string_utc?: string;
+		}[];
+	};
 };
 export type PostDonutsApiArg = {
 	body: {
@@ -1217,40 +1211,51 @@ export type PostDonutsApiArg = {
 };
 export type GetDonutsByIdApiResponse = /** status 200 sends donut */ {
 	data?: {
-		id: string;
-		type: string;
-		attributes: {
-			name: string;
-			price: number;
-			id: number;
-			active: boolean;
-			logo: {
+		name: string;
+		price: number;
+		id: number;
+		active: boolean;
+		logo?: {
+			url?: string | null;
+			thumb?: {
 				url?: string | null;
-				thumb?: {
-					url?: string | null;
+			};
+		};
+		description?: string;
+		liked?: boolean;
+		likes?: {
+			id: number;
+			profile_id: number;
+			created_at?: string;
+			likeable_type?: string;
+			likeable_id?: number;
+		}[];
+		available: boolean;
+		on_stock?: number;
+		supply_days?: number;
+		use_remains: boolean;
+		expiration_date?: string | null;
+		created_at?: string;
+		comments?: {
+			id: number;
+			content: string;
+			liked?: boolean;
+			likes: number;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
 				};
 			};
-			description: string;
-			liked: boolean;
-			likes: {
+			profile?: {
 				id: number;
-				profile_id: number;
-				created_at?: string;
-				likeable_type?: string;
-				likeable_id?: number;
-			}[];
-			has_remains: boolean;
-			on_stock: number;
-			supply_days: number;
-			expiration_date: string;
-			created_at: string;
-			comments: {
-				id: number;
-				content: string;
-				liked?: boolean;
-				likes: number;
-				public: boolean;
-				user_avatar: {
+				name: string;
+				user_name?: string;
+				user_avatar?: {
 					url: string | null;
 					thumb: {
 						url: string | null;
@@ -1259,25 +1264,11 @@ export type GetDonutsByIdApiResponse = /** status 200 sends donut */ {
 						url: string | null;
 					};
 				};
-				profile?: {
-					id: number;
-					name: string;
-					user_name?: string;
-					user_avatar?: {
-						url: string | null;
-						thumb: {
-							url: string | null;
-						};
-						preview: {
-							url: string | null;
-						};
-					};
-				};
-				user_name: string;
-				date_string: string;
-				date_string_utc?: string;
-			}[];
-		};
+			};
+			user_name: string;
+			date_string: string;
+			date_string_utc?: string;
+		}[];
 	};
 };
 export type GetDonutsByIdApiArg = {
@@ -1285,41 +1276,52 @@ export type GetDonutsByIdApiArg = {
 	tenant?: string;
 };
 export type PutDonutsByIdApiResponse = /** status 200 success */ {
-	data: {
-		id: string;
-		type: string;
-		attributes: {
-			name: string;
-			price: number;
-			id: number;
-			active: boolean;
-			logo: {
+	data?: {
+		name: string;
+		price: number;
+		id: number;
+		active: boolean;
+		logo?: {
+			url?: string | null;
+			thumb?: {
 				url?: string | null;
-				thumb?: {
-					url?: string | null;
+			};
+		};
+		description?: string;
+		liked?: boolean;
+		likes?: {
+			id: number;
+			profile_id: number;
+			created_at?: string;
+			likeable_type?: string;
+			likeable_id?: number;
+		}[];
+		available: boolean;
+		on_stock?: number;
+		supply_days?: number;
+		use_remains: boolean;
+		expiration_date?: string | null;
+		created_at?: string;
+		comments?: {
+			id: number;
+			content: string;
+			liked?: boolean;
+			likes: number;
+			public: boolean;
+			user_avatar: {
+				url: string | null;
+				thumb: {
+					url: string | null;
+				};
+				preview: {
+					url: string | null;
 				};
 			};
-			description: string;
-			liked: boolean;
-			likes: {
+			profile?: {
 				id: number;
-				profile_id: number;
-				created_at?: string;
-				likeable_type?: string;
-				likeable_id?: number;
-			}[];
-			has_remains: boolean;
-			on_stock: number;
-			supply_days: number;
-			expiration_date: string;
-			created_at: string;
-			comments: {
-				id: number;
-				content: string;
-				liked?: boolean;
-				likes: number;
-				public: boolean;
-				user_avatar: {
+				name: string;
+				user_name?: string;
+				user_avatar?: {
 					url: string | null;
 					thumb: {
 						url: string | null;
@@ -1328,37 +1330,25 @@ export type PutDonutsByIdApiResponse = /** status 200 success */ {
 						url: string | null;
 					};
 				};
-				profile?: {
-					id: number;
-					name: string;
-					user_name?: string;
-					user_avatar?: {
-						url: string | null;
-						thumb: {
-							url: string | null;
-						};
-						preview: {
-							url: string | null;
-						};
-					};
-				};
-				user_name: string;
-				date_string: string;
-				date_string_utc?: string;
-			}[];
-		};
-	}[];
+			};
+			user_name: string;
+			date_string: string;
+			date_string_utc?: string;
+		}[];
+	};
 };
 export type PutDonutsByIdApiArg = {
 	id: string;
 	body: {
-		price: number;
+		price?: number;
 		on_stock?: number;
 		supply_days?: number;
 		active?: boolean;
 		description?: string;
-		expiration_date?: string;
-		name: string;
+		/** Optional expiration date. Submit an empty value to clear it. */
+		expiration_date?: string | null;
+		use_remains?: boolean;
+		name?: string;
 		tenant: string;
 		logo?: any;
 	};
@@ -2925,10 +2915,11 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 				likeable_type?: string;
 				likeable_id?: number;
 			}[];
-			has_remains: boolean;
+			available: boolean;
 			on_stock: number;
 			supply_days: number;
-			expiration_date: string;
+			use_remains: boolean;
+			expiration_date: string | null;
 			created_at: string;
 			comments: {
 				id: number;
@@ -3070,10 +3061,11 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 					likeable_type?: string;
 					likeable_id?: number;
 				}[];
-				has_remains: boolean;
+				available: boolean;
 				on_stock: number;
 				supply_days: number;
-				expiration_date: string;
+				use_remains: boolean;
+				expiration_date: string | null;
 				created_at: string;
 				comments: {
 					id: number;
@@ -3212,10 +3204,11 @@ export type PostRequestsActivateApiResponse = /** status 200 success */ {
 					likeable_type?: string;
 					likeable_id?: number;
 				}[];
-				has_remains: boolean;
+				available: boolean;
 				on_stock: number;
 				supply_days: number;
-				expiration_date: string;
+				use_remains: boolean;
+				expiration_date: string | null;
 				created_at: string;
 				comments: {
 					id: number;
@@ -3354,10 +3347,11 @@ export type PostRequestsRefundApiResponse = /** status 200 success */ {
 					likeable_type?: string;
 					likeable_id?: number;
 				}[];
-				has_remains: boolean;
+				available: boolean;
 				on_stock: number;
 				supply_days: number;
-				expiration_date: string;
+				use_remains: boolean;
+				expiration_date: string | null;
 				created_at: string;
 				comments: {
 					id: number;
@@ -3496,10 +3490,11 @@ export type PostRequestsRollbackApiResponse = /** status 200 success */ {
 					likeable_type?: string;
 					likeable_id?: number;
 				}[];
-				has_remains: boolean;
+				available: boolean;
 				on_stock: number;
 				supply_days: number;
-				expiration_date: string;
+				use_remains: boolean;
+				expiration_date: string | null;
 				created_at: string;
 				comments: {
 					id: number;
@@ -3638,10 +3633,11 @@ export type PostRequestsCloseApiResponse = /** status 200 success */ {
 					likeable_type?: string;
 					likeable_id?: number;
 				}[];
-				has_remains: boolean;
+				available: boolean;
 				on_stock: number;
 				supply_days: number;
-				expiration_date: string;
+				use_remains: boolean;
+				expiration_date: string | null;
 				created_at: string;
 				comments: {
 					id: number;
@@ -3780,10 +3776,11 @@ export type GetRequestsLegacyApiResponse = /** status 200 success */ {
 					likeable_type?: string;
 					likeable_id?: number;
 				}[];
-				has_remains: boolean;
+				available: boolean;
 				on_stock: number;
 				supply_days: number;
-				expiration_date: string;
+				use_remains: boolean;
+				expiration_date: string | null;
 				created_at: string;
 				comments: {
 					id: number;

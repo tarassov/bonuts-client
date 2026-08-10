@@ -20,10 +20,10 @@ import type { TDonut } from "@/types/model";
 export interface IStorePageViewProps {
 	donuts?: Array<TDonut>;
 	onCreateClick?: VoidFunction;
-	onToggleActive?: (donut: TDonut) => void;
+	onToggleUseRemains?: (donut: TDonut) => void;
 }
 
-export function StorePageView({ donuts, onCreateClick, onToggleActive }: IStorePageViewProps) {
+export function StorePageView({ donuts, onCreateClick, onToggleUseRemains }: IStorePageViewProps) {
 	const { t } = useBntTranslate();
 	const { editDonut } = useDonutUi();
 	const [query, setQuery] = useState("");
@@ -49,7 +49,7 @@ export function StorePageView({ donuts, onCreateClick, onToggleActive }: IStoreP
 			</div>
 			<div className={styles.rewardGrid}>
 				{visibleDonuts.map((donut) => (
-					<StoreRewardCard donut={donut} key={donut.id} onEdit={editDonut} onToggleActive={onToggleActive} />
+					<StoreRewardCard donut={donut} key={donut.id} onEdit={editDonut} onToggleUseRemains={onToggleUseRemains} />
 				))}
 			</div>
 		</main>
