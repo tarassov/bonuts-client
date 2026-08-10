@@ -39,11 +39,15 @@ export type TGroupStyle = {
 };
 
 export type TFieldGroup = {
+	content?: ReactNode;
+	description?: string;
+	headerContent?: ReactNode;
 	id: number;
 	gap?: number;
 	groups?: Array<TFieldGroup>;
 	offset?: TOffsetProps;
 	sx?: (theme: Theme) => SystemStyleObject<Theme>;
+	title?: string;
 } & TSizeProps &
 	TPaddingProps;
 
@@ -92,6 +96,7 @@ export type TFormField<T = Record<string, any>> = TSizeProps & {
 	optionToValue?: (value: TFormFieldSourceItem) => any;
 	group?: number;
 	onClick?: (value: TFormValue) => void;
+	onImageChange?: (file: File) => void;
 };
 
 export type RegisterFunc = (name: string, options?: { required: boolean }) => UseFormRegisterReturn<any>;
@@ -116,5 +121,8 @@ export type TFormProps<T extends Record<string, any>> = {
 	children?: ReactNode;
 	locale?: Locale;
 	keepValuesOnSubmit?: boolean;
+	keepDirtyOnInitialValuesChange?: boolean;
+	isSubmitAlwaysVisible?: boolean;
+	isSubmitSticky?: boolean;
 	resolver?: Resolver<any, any>;
 };

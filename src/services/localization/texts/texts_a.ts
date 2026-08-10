@@ -27,4 +27,6 @@ export enum texts_a {
 	admin = "admin",
 	about_myself = "About myself",
 	add_photo = "add photo",
+	add_reward = "add reward",
+	availability = "availability",
 }

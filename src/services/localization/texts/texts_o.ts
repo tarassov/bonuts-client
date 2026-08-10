@@ -10,4 +10,5 @@ export enum texts_o {
 	oldest_first = "oldest first",
 	ok = "ok",
 	or = "or",
+	out_of_stock = "out of stock",
 }

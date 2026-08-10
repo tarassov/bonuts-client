@@ -1,0 +1,30 @@
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+
+  p {
+    max-width: 640px;
+    margin-top: 8px;
+  }
+}
+
+.pageTitle {
+  margin: 0 !important;
+  font-size: 1.75rem !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+}
+
+@media (max-width: 599px) {
+  .pageHeader {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .pageHeader button {
+    width: 100%;
+  }
+}

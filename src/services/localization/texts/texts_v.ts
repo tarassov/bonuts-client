@@ -18,4 +18,6 @@ export enum texts_v {
 	view = "view",
 	view_all_invitations = "view all invitations",
 	waiting_for_response = "waiting for response",
+	visible_in_store = "visible in store",
+	valid_until = "valid until",
 }

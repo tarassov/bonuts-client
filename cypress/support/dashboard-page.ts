@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress helper */
 
+import { mockHeartbeatRequest } from "./api";
 import { PROFILE_RESPONSE } from "./fixtures/profile-response";
 
 export const DASHBOARD_PROFILE_RESPONSE = {
@@ -222,10 +223,7 @@ export function mockDashboardPageRequests() {
 		body: DASHBOARD_TENANTS_RESPONSE,
 	}).as("getTenants");
 
-	cy.intercept("POST", /\/user_activity\/heartbeat(?:\?.*)?$/, {
-		statusCode: 200,
-		body: {},
-	}).as("postHeartbeat");
+	mockHeartbeatRequest();
 }
 
 export function mockGiveDonutsModalRequests() {

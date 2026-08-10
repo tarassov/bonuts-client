@@ -16,4 +16,6 @@ export enum texts_e {
 	email_address_must_be_valid = "email address must be valid",
 	every_week = "every week",
 	every_month = "every month",
+	edit_reward = "edit reward",
+	edit_reward_description = "edit reward description",
 }

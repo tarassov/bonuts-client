@@ -18,4 +18,5 @@ export enum texts_i {
 	integration_telegram_description = "integration telegram description",
 	integration_vk_description = "integration vk description",
 	no_invitations_received_yet = "no invitations received yet",
+	in_storefront = "in storefront",
 }

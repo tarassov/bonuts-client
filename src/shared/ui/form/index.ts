@@ -8,6 +8,7 @@ export * from "./bnt-form-item";
 export * from "./bnt-form-submit";
 export * from "./bnt-image";
 export * from "./context/bnt-form-provider";
+export * from "./fields/bnt-switch-field";
 export * from "./form-body";
 export * from "./grid-offset";
 export * from "./hooks/use-timezone";
