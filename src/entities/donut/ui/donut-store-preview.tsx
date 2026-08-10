@@ -22,7 +22,7 @@ export function DonutStorePreview({ donut }: { donut: TDonut }) {
 				<BntTypography className={styles.price}>
 					{donut.price} {t(texts_c.coin, { count: donut.price })}
 				</BntTypography>
-				{donut.has_remains ? <span className={styles.stock}>{donut.on_stock}</span> : null}
+				{donut.use_remains ? <span className={styles.stock}>{donut.on_stock}</span> : null}
 			</div>
 			<span className={styles.srOnly}>{t(texts_r.reward_image)}</span>
 		</article>

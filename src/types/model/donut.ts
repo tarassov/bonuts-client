@@ -10,9 +10,9 @@ export type TDonut = TBaseModel &
 		active: boolean;
 		logo?: TPicture;
 		description?: string;
-		has_remains?: boolean;
+		use_remains: boolean;
 		on_stock?: number;
 		supply_days?: number;
-		expiration_date?: string;
+		expiration_date?: string | null;
 		created_at?: string;
 	};

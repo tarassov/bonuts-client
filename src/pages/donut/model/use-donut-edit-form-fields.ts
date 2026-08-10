@@ -47,7 +47,7 @@ export const useDonutEditFormFields = (onImageChange?: (file: File) => void) => 
 			type: FieldType.switch,
 			image: false,
 			size: FieldSize.xs,
-			name: "has_remains",
+			name: "use_remains",
 			label: texts_l.limit_stock,
 			disabledLabel: texts_s.stock_is_unlimited,
 			required: false,
