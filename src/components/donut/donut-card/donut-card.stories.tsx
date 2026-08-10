@@ -8,6 +8,7 @@ const donut: TDonut = {
 	name: "Coffee with the team",
 	price: 25,
 	active: true,
+	available: true,
 	commentable: false,
 	comments: [],
 	likeable: false,
