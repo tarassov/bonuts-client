@@ -38,12 +38,8 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 
 		reader.readAsDataURL(file);
 
-		if (field.onImageChange) {
-			field.onImageChange(file);
-			return;
-		}
-
 		onChange(name.toString(), file);
+		field.onImageChange?.(file);
 	};
 
 	const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

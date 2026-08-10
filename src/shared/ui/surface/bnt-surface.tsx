@@ -1,8 +1,7 @@
-import type { PropsWithChildren } from "react";
+import type { CardProps } from "@mui/material";
 import { Card, styled } from "@mui/material";
 
-interface IBntSurfaceProps extends PropsWithChildren {
-	className?: string;
+interface IBntSurfaceProps extends CardProps {
 	isInteractive?: boolean;
 }
 
@@ -29,9 +28,9 @@ const Surface = styled(Card, {
 	}),
 }));
 
-export function BntSurface({ children, className, isInteractive = false }: IBntSurfaceProps) {
+export function BntSurface({ children, isInteractive = false, ...props }: IBntSurfaceProps) {
 	return (
-		<Surface className={className} isInteractive={isInteractive} variant="outlined">
+		<Surface {...props} isInteractive={isInteractive} variant="outlined">
 			{children}
 		</Surface>
 	);
