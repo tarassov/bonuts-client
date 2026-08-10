@@ -8,4 +8,5 @@ export enum texts_b {
 	back = "back",
 	by_name = "by name",
 	balance = "balance",
+	build_storefront_description = "build storefront description",
 }

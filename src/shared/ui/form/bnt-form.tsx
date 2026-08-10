@@ -19,7 +19,10 @@ export function BntForm<T extends Record<string, any>>({
 	submitButtonVariant,
 	onSubmit,
 	children,
+	keepDirtyOnInitialValuesChange,
 	keepValuesOnSubmit,
+	isSubmitAlwaysVisible,
+	isSubmitSticky,
 	resolver,
 }: TFormProps<T>) {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
@@ -89,6 +92,9 @@ export function BntForm<T extends Record<string, any>>({
 						formId={formId}
 						hasInitial={hasInitial}
 						keepValuesOnSubmit={keepValuesOnSubmit}
+						keepDirtyOnInitialValuesChange={keepDirtyOnInitialValuesChange}
+						isSubmitAlwaysVisible={isSubmitAlwaysVisible}
+						isSubmitSticky={isSubmitSticky}
 						initialValues={initials}
 						submitCaption={submitCaption}
 						submitButtonVariant={submitButtonVariant}

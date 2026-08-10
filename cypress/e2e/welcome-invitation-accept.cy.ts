@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress test */
 
+import { mockHeartbeatRequest } from "../support/api";
 import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
@@ -52,7 +53,6 @@ const GET_EVENTS_URL = /\/events(?:\?.*)?$/;
 const GET_WEEKLY_RECOGNITION_BADGES_URL = /\/weekly_recognition_badges\/latest(?:\?.*)?$/;
 const GET_PARTICIPATION_CURRENT_WEEK_URL = /\/participation\/current_week(?:\?.*)?$/;
 const GET_PARTICIPATION_WEEKLY_RECOGNITION_CURRENT_URL = /\/participation\/weekly_recognition_current(?:\?.*)?$/;
-const POST_HEARTBEAT_URL = /\/user_activity\/heartbeat(?:\?.*)?$/;
 
 function mockWelcomeInvitationAcceptFlow() {
 	cy.intercept(
@@ -122,13 +122,7 @@ function mockWelcomeInvitationAcceptFlow() {
 		}
 	).as("getWeeklyRecognitionCurrent");
 
-	cy.intercept(
-		{ method: "POST", url: POST_HEARTBEAT_URL },
-		{
-			statusCode: 200,
-			body: {},
-		}
-	).as("postHeartbeat");
+	mockHeartbeatRequest();
 }
 
 function visitWelcomePage() {

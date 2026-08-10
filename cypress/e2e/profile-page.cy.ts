@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress test */
 
+import { mockHeartbeatRequest } from "../support/api";
 import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
@@ -7,7 +8,6 @@ const GET_PROFILE_URL = /\/profile(?:\?.*)?$/;
 const GET_CIRCLES_URL = /\/circles(?:\?.*)?$/;
 const GET_PROFILE_PICTURES_URL = /\/profiles\/\d+\/profile_pictures(?:\?.*)?$/;
 const GET_TENANTS_URL = /\/tenants(?:\?.*)?$/;
-const POST_HEARTBEAT_URL = /\/user_activity\/heartbeat(?:\?.*)?$/;
 const DELETE_PROFILE_PICTURE_URL = /\/profile_pictures\/\d+(?:\?.*)?$/;
 
 const CIRCLES_RESPONSE = {
@@ -147,13 +147,7 @@ function mockProfilePageRequests() {
 		});
 	}).as("deleteProfilePicture");
 
-	cy.intercept(
-		{ method: "POST", url: POST_HEARTBEAT_URL },
-		{
-			statusCode: 200,
-			body: {},
-		}
-	).as("postHeartbeat");
+	mockHeartbeatRequest();
 }
 
 function visitProfilePage() {

@@ -20,4 +20,6 @@ export enum texts_d {
 	demo = "demo",
 	donuts = "donuts",
 	donut = "donut",
+	disabled_reward = "disabled reward",
+	drag_reward_image = "drag reward image",
 }

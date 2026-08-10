@@ -1,0 +1,35 @@
+.page {
+  max-width: 1120px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 12px 24px 32px;
+  color: var(--mui-palette-text-primary);
+}
+
+.header {
+  margin: 20px 0;
+}
+.title {
+  margin: 0 0 8px !important;
+  font-size: 1.75rem !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+}
+.formLayout {
+  margin: 0 -8px;
+}
+
+@media (max-width: 599px) {
+  .page {
+    padding: 8px 12px 24px;
+  }
+  .header {
+    margin: 16px 0;
+  }
+  .title {
+    font-size: 1.4rem !important;
+  }
+  .formLayout {
+    margin: 0;
+  }
+}

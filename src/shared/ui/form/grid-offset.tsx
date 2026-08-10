@@ -1,9 +1,10 @@
 import { FC } from "react";
-import { Grid } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 
 import { TSizeProps } from "./types/bnt-form";
 
-export const GridOffset: FC<{ offset?: TSizeProps; key?: string }> = ({ offset, key }) => {
+export const GridOffset: FC<{ offset?: TSizeProps }> = ({ offset }) => {
 	if (!offset) return null;
-	return <Grid item style={{ padding: 0 }} key={key} {...offset} zeroMinWidth />;
+
+	return <Grid size={offset} sx={{ p: 0 }} />;
 };

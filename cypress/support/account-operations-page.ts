@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress helper */
 
+import { mockHeartbeatRequest } from "./api";
 import { DASHBOARD_DISTRIB_ACCOUNT_RESPONSE, DASHBOARD_PROFILE_RESPONSE, DASHBOARD_TENANTS_RESPONSE } from "./dashboard-page";
 
 export const ACCOUNT_OPERATIONS_HISTORY_RESPONSE = {
@@ -66,10 +67,7 @@ export function mockAccountOperationsPageRequests() {
 		body: DASHBOARD_TENANTS_RESPONSE,
 	}).as("getTenants");
 
-	cy.intercept("POST", "**/user_activity/heartbeat*", {
-		statusCode: 200,
-		body: {},
-	}).as("postHeartbeat");
+	mockHeartbeatRequest();
 
 	cy.intercept("GET", "**/account_operations/history*", {
 		statusCode: 200,

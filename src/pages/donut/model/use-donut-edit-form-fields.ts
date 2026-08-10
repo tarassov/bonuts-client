@@ -1,16 +1,16 @@
 import { CommonStrings } from "constants/dictionary";
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_a, texts_e } from "services/localization/texts";
+import { texts_e, texts_l, texts_n, texts_s } from "services/localization/texts";
 import { texts_d } from "services/localization/texts/texts_d";
 import { texts_o } from "services/localization/texts/texts_o";
 import { texts_p } from "services/localization/texts/texts_p";
 
 import { useModal } from "@/shared/lib/modal";
-import { FieldSize, FieldType, TFieldGroup, TFormField } from "@/shared/ui/form";
+import { FieldSize, FieldType, TFormField } from "@/shared/ui/form";
 
-import { TDonut } from "@/types/model";
+import type { TDonut } from "@/types/model";
 
-export const useDonutEditFormFields = () => {
+export const useDonutEditFormFields = (onImageChange?: (file: File) => void) => {
 	const { ImageModal } = useModal();
 	const { t } = useBntTranslate();
 
@@ -20,71 +20,39 @@ export const useDonutEditFormFields = () => {
 			title: t(texts_p.preview, { capitalize: true }),
 		});
 	};
-	const groups: Array<TFieldGroup> = [
-		{
-			id: 1,
-			md: 5,
-			lg: 3,
-			xs: 12,
-			padding: { pt: 0 },
-		},
-		{
-			id: 2,
-			md: 7,
-			lg: 9,
-			xs: 12,
-			padding: { pt: 0 },
-			groups: [
-				{
-					id: 3,
-					xs: 12,
-					lg: 8,
-					offset: {
-						offsetAfterElement: { lg: 4 },
-					},
-					padding: { p: 1 },
-					sx: () => {
-						return {
-							borderBottom: 1,
-							boxShadow: 2,
-							mb: 4,
-						};
-					},
-				},
-			],
-		},
-	];
 	const fields: Array<TFormField<TDonut>> = [
 		{
 			image: true,
 			size: FieldSize.xs,
 			name: "logo",
-			label: "Logo",
+			label: texts_l.logo,
 			type: FieldType.imageUpload,
 			xs: 12,
 			md: 12,
-			group: 1,
+			group: 11,
 			onClick: (value) => onClick(value?.toString()),
+			onImageChange,
 		},
 		{
 			image: false,
 			size: FieldSize.xs,
 			name: "name",
-			label: "name",
+			label: texts_n.name,
 			xs: 12,
 			required: true,
-			group: 3,
+			group: 21,
 		},
 		{
 			disabled: false,
 			type: FieldType.switch,
 			image: false,
 			size: FieldSize.xs,
-			name: "active",
-			label: texts_a.active,
+			name: "has_remains",
+			label: texts_l.limit_stock,
+			disabledLabel: texts_s.stock_is_unlimited,
 			required: false,
 			xs: 12,
-			group: 3,
+			group: 22,
 		},
 		{
 			disabled: false,
@@ -92,12 +60,12 @@ export const useDonutEditFormFields = () => {
 			image: false,
 			size: FieldSize.xs,
 			name: "price",
-			label: "price",
+			label: texts_p.price,
 			required: true,
 			xs: 12,
 			sm: 6,
-			lg: 4,
-			group: 2,
+			lg: 6,
+			group: 21,
 		},
 		{
 			disabled: false,
@@ -109,11 +77,8 @@ export const useDonutEditFormFields = () => {
 			required: false,
 			xs: 12,
 			sm: 6,
-			lg: 4,
-			offset: {
-				offsetAfterElement: { lg: 4 },
-			},
-			group: 2,
+			lg: 6,
+			group: 21,
 		},
 		{
 			disabled: false,
@@ -125,8 +90,9 @@ export const useDonutEditFormFields = () => {
 			required: false,
 			xs: 12,
 			md: 6,
-			lg: 2,
-			group: 2,
+			lg: 6,
+			group: 22,
+			minValue: 0,
 		},
 		{
 			disabled: false,
@@ -138,9 +104,9 @@ export const useDonutEditFormFields = () => {
 			required: false,
 			xs: 12,
 			md: 6,
-			lg: 2,
-			offset: { offsetAfterElement: { lg: 4 } },
-			group: 2,
+			lg: 6,
+			group: 22,
+			minValue: 0,
 		},
 		{
 			disabled: false,
@@ -151,10 +117,10 @@ export const useDonutEditFormFields = () => {
 			label: texts_d.description,
 			required: false,
 			xs: 12,
-			lg: 8,
-			group: 2,
+			lg: 12,
+			group: 21,
 		},
 	];
 
-	return { fields, groups };
+	return { fields };
 };

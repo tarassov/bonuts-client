@@ -1,0 +1,21 @@
+import { Modules } from "constants/modules";
+
+import { useModuleLoader } from "@/shared/ui/loader";
+
+import { useDonut, useDonutLoaderList, useDonutUi } from "@/entities/donut";
+
+import type { TDonut } from "@/types/model";
+
+export function useStorePage() {
+	const { objects: donuts, isLoading } = useDonutLoaderList(true);
+	const { putDonut, isUpdating } = useDonut();
+	const { showCreateDonutModal } = useDonutUi();
+
+	useModuleLoader({ module: Modules.StoreManager, isLoading: isLoading || isUpdating });
+
+	const handleToggleActive = (donut: TDonut) => {
+		putDonut(donut.id, { ...donut, active: !donut.active });
+	};
+
+	return { donuts, handleToggleActive, showCreateDonutModal };
+}

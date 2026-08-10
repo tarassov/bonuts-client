@@ -3,13 +3,15 @@ import React, { useEffect, useState } from "react";
 import _ from "lodash";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_d } from "services/localization/texts";
 
-import { BntBox } from "@/shared/ui/box";
 import { ImagePreview } from "@/shared/ui/image";
 
 import { BntFormFileInput } from "../bnt-form-file-input";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { TFormField, TFormImageValue, TFormValue } from "../types/bnt-form";
+
+import { ImageUploadDropzone, ImageUploadPreview } from "./bnt-image-upload.styles";
 
 export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValue }) => {
 	const { field, value } = props;
@@ -18,6 +20,8 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 	const { translate } = useBntTranslate();
 	const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
 	useEffect(() => {
+		if (value instanceof File) return;
+
 		if (value) {
 			const url = (value as TFormImageValue)?.url;
 			setImagePreviewUrl(url || "");
@@ -33,7 +37,9 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 		};
 
 		reader.readAsDataURL(file);
+
 		onChange(name.toString(), file);
+		field.onImageChange?.(file);
 	};
 
 	const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +65,7 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 	return (
 		<div>
 			{imagePreviewUrl ? (
-				<>
+				<ImageUploadPreview>
 					<ImagePreview
 						defaultImage={imagePreviewUrl}
 						onClick={() => {
@@ -67,23 +73,12 @@ export const BntImageUpload = (props: { field: TFormField<any>; value: TFormValu
 						}}
 					/>
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
-				</>
+				</ImageUploadPreview>
 			) : (
-				<BntBox
-					sx={{
-						border: "dashed 2px #aaa",
-						borderRadius: 5,
-						cursor: "pointer",
-						padding: "1em",
-						textAlign: "center",
-					}}
-					onDragOver={handleDragOver}
-					onDrop={handleDrop}
-					component="div"
-				>
-					<p>{translate("Drag and drop an image here or click to select a file")}</p>
+				<ImageUploadDropzone onDragOver={handleDragOver} onDrop={handleDrop}>
+					<p>{translate(texts_d.drag_reward_image)}</p>
 					<BntFormFileInput handleFileInputChange={handleFileInputChange} />
-				</BntBox>
+				</ImageUploadDropzone>
 			)}
 		</div>
 	);
