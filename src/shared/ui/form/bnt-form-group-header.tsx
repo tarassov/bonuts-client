@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { isBlank } from "@/shared/lib/type-guards";
+import { BntBox } from "@/shared/ui/box";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
@@ -16,8 +17,8 @@ export const BntFormGroupHeader = ({ description, headerContent, title }: TBntFo
 	}
 
 	return (
-		<BntStack alignItems="center" direction="row" justifyContent="space-between" sx={{ mb: 2 }}>
-			<div>
+		<BntStack alignItems="flex-start" direction="row" justifyContent="space-between" spacing={2} sx={{ mb: 2 }}>
+			<BntBox sx={{ flex: 1, minWidth: 0 }}>
 				<BntTypography as="h2" sx={{ fontSize: "0.95rem", fontWeight: 700 }}>
 					{title}
 				</BntTypography>
@@ -26,7 +27,7 @@ export const BntFormGroupHeader = ({ description, headerContent, title }: TBntFo
 						{description}
 					</BntTypography>
 				) : null}
-			</div>
+			</BntBox>
 			{headerContent}
 		</BntStack>
 	);

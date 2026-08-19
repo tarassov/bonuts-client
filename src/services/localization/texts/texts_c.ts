@@ -35,4 +35,13 @@ export enum texts_c {
 	create_your_team_to_start_sharing_recognition = "create your team to start sharing recognition in Bonuts",
 	change_avatar = "change avatar",
 	click_reward_to_edit = "click reward to edit",
+	circle_actions = "circle actions",
+	circles_count = "circles count",
+	circles_description = "circles description",
+	circles_empty_description = "circles empty description",
+	circles_empty_title = "circles empty title",
+	circles_search_empty_description = "circles search empty description",
+	circles_search_empty_title = "circles search empty title",
+	circles_title = "circles title",
+	create_circle = "create circle",
 }

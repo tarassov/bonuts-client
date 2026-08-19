@@ -1,0 +1,37 @@
+.form {
+	padding-bottom: 8px;
+}
+
+.sectionCard {
+	border: 1px solid var(--mui-palette-divider);
+	border-radius: 24px;
+	background: var(--mui-palette-background-paper);
+	box-shadow: none;
+}
+
+.birthdayCard {
+	border-color: var(--mui-palette-accent-light);
+	background: linear-gradient(180deg, rgba(124, 92, 252, 0.08) 0%, rgba(124, 92, 252, 0.03) 100%);
+}
+
+.sectionIcon {
+	display: inline-flex;
+	width: 40px;
+	height: 40px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 12px;
+	background: var(--mui-palette-primary-light);
+	color: var(--mui-palette-primary-dark);
+}
+
+.birthdayCard .sectionIcon {
+	background: var(--mui-palette-accent-light);
+	color: var(--mui-palette-accent-main);
+}
+
+@media (max-width: 599px) {
+	.sectionCard {
+		border-radius: 20px;
+	}
+}
