@@ -77,8 +77,8 @@
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d dist -t",
 		"cypress:open": "npx cypress open",
-		"cypress:run": "start-server-and-test 'yarn dev:e2e' http://localhost:4173 'yarn cypress:run:raw'",
-		"cypress:run:login": "start-server-and-test 'yarn dev:e2e' http://localhost:4173 'npx cypress run --spec cypress/e2e/login.cy.ts'",
+		"cypress:run": "cross-env CYPRESS_BASE_URL=http://localhost:4173 start-server-and-test 'yarn dev:e2e' http://localhost:4173 'yarn cypress:run:raw'",
+		"cypress:run:login": "cross-env CYPRESS_BASE_URL=http://localhost:4173 start-server-and-test 'yarn dev:e2e' http://localhost:4173 'npx cypress run --spec cypress/e2e/login.cy.ts'",
 		"cypress:run:raw": "npx cypress run"
 	},
 	"browserslist": {
