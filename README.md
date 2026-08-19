@@ -119,7 +119,7 @@ Generates API code from OpenAPI specification.
 Opens Cypress Test Runner for interactive end-to-end testing.
 
 ### `yarn cypress:run`
-Runs all Cypress end-to-end tests in headless mode.
+Runs all Cypress end-to-end tests in headless mode. Starts and stops the dedicated HTTP test server automatically.
 
 ### `yarn cypress:run:login`
 Runs only the login page Cypress test.
@@ -141,16 +141,20 @@ Deploys the application to GitHub Pages.
 
 ## Running Cypress tests
 
-1. Start the app in a separate terminal:
-   ```bash
-   yarn dev
-   ```
-2. Run Cypress:
-   ```bash
-   yarn cypress:run
-   ```
+For headless tests, run:
 
-For interactive mode, use:
+```bash
+yarn cypress:run
+```
+
+For interactive mode, start the normal development server in a separate terminal:
+
+```bash
+yarn dev
+```
+
+Then open Cypress:
+
 ```bash
 yarn cypress:open
 ```

@@ -40,6 +40,7 @@ export enum texts_s {
 	store_statistics = "store statistics",
 	stock_is_unlimited = "stock is unlimited",
 	search_by_name = "search by name",
+	search_circles = "search circles",
 	sort_rewards = "sort rewards",
 	shown_items = "shown items",
 	stock_configuration_description = "stock configuration description",

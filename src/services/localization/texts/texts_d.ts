@@ -1,4 +1,5 @@
 export enum texts_d {
+	delete_circle = "delete circle",
 	donuts_received_description = "donuts received description",
 	day = "day",
 	delivery_days = "delivery days",

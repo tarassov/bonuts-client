@@ -46,9 +46,7 @@ jobs:
       run: yarn test
 
     - name: Run Cypress tests
-      uses: cypress-io/github-action@v7
-      with:
-        start: yarn start
+      run: yarn cypress:run
 
   build:
     runs-on: ubuntu-latest

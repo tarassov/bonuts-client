@@ -1,4 +1,5 @@
 export enum texts_e {
+	edit_circle = "edit circle",
 	edit = "edit",
 	error = "error",
 	employees = "employees",
