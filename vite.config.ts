@@ -21,9 +21,9 @@ const PWA_CACHE_VERSION = getBuildVersion();
 const IMAGE_RUNTIME_CACHE_NAME = `bonuts-images-${PWA_CACHE_VERSION}`;
 const WORKBOX_MAX_PRECACHE_FILE_SIZE_BYTES = 3 * 1024 * 1024;
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
 	server: {
-		port: 3002,
+		port: mode === "e2e" ? 4173 : 3002,
 		strictPort: true,
 	},
 
@@ -34,7 +34,7 @@ export default defineConfig({
 	},
 
 	plugins: [
-		...(process.env.NODE_ENV !== "production" ? [basicSsl()] : []),
+		...(process.env.NODE_ENV !== "production" && mode !== "e2e" ? [basicSsl()] : []),
 		tsconfigPaths(),
 		react(),
 		svgr({
@@ -87,4 +87,4 @@ export default defineConfig({
 			},
 		},
 	},
-});
+}));

@@ -1,16 +1,13 @@
-import { CommonStrings } from "constants/dictionary";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_b, texts_e } from "services/localization/texts";
-import { texts_d } from "services/localization/texts/texts_d";
-import { texts_p } from "services/localization/texts/texts_p";
-import { texts_w } from "services/localization/texts/texts_w";
-
 import { useModal } from "@/shared/lib/modal";
-import { FieldSize, FieldType, TFieldGroup, TFormField } from "@/shared/ui/form";
+import type { TFormField } from "@/shared/ui/form";
+import { FieldSize, FieldType } from "@/shared/ui/form";
 
-import { TTenant } from "@/types/model/tenant";
+import { CommonStrings } from "@/constants/dictionary";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_b, texts_d, texts_e, texts_l, texts_p, texts_t, texts_w } from "@/services/localization/texts";
+import type { TTenant } from "@/types/model/tenant";
 
-export const useTenantFormFields = () => {
+export function useTenantSettingsFormFields() {
 	const { ImageModal } = useModal();
 	const { t } = useBntTranslate();
 
@@ -20,32 +17,16 @@ export const useTenantFormFields = () => {
 			title: t(texts_p.preview, { capitalize: true }),
 		});
 	};
-	const groups: Array<TFieldGroup> = [
-		{
-			id: 1,
-			md: 5,
-			lg: 3,
-			xs: 12,
-			padding: { pt: 4 },
-		},
-		{
-			id: 2,
-			md: 5,
-			lg: 5,
-			xs: 12,
-			padding: { pt: 4 },
-		},
-	];
 	const fields: Array<TFormField<TTenant>> = [
 		{
 			image: true,
 			size: FieldSize.xs,
 			name: "logo",
-			label: "Logo",
+			label: texts_l.logo,
 			type: FieldType.imageUpload,
 			xs: 12,
 			md: 12,
-			group: 1,
+			group: 11,
 			onClick: (value) => onClick(value?.toString()),
 		},
 		{
@@ -53,30 +34,29 @@ export const useTenantFormFields = () => {
 			readOnly: true,
 			size: FieldSize.xs,
 			name: "name",
-			label: "name",
+			label: texts_t.team_identifier,
 			xs: 12,
 			required: true,
-			group: 2,
+			group: 12,
 		},
 		{
 			image: false,
 			size: FieldSize.xs,
 			name: "caption",
-			label: "caption",
+			label: texts_t.team_name,
 			xs: 12,
 			required: true,
-			group: 2,
+			group: 12,
 		},
 		{
 			disabled: false,
-			type: FieldType.text,
 			image: false,
 			size: FieldSize.xs,
 			name: "domain",
 			label: texts_d.domain,
 			required: false,
 			xs: 12,
-			group: 2,
+			group: 12,
 		},
 		{
 			disabled: false,
@@ -88,7 +68,7 @@ export const useTenantFormFields = () => {
 			required: true,
 			xs: 12,
 			sm: 6,
-			lg: 4,
+			lg: 6,
 			group: 2,
 		},
 		{
@@ -101,12 +81,7 @@ export const useTenantFormFields = () => {
 			required: true,
 			xs: 12,
 			sm: 6,
-			lg: 4,
-			offset: {
-				offsetAfterElement: {
-					lg: 4,
-				},
-			},
+			lg: 6,
 			group: 2,
 		},
 		{
@@ -119,8 +94,8 @@ export const useTenantFormFields = () => {
 			required: false,
 			xs: 12,
 			sm: 6,
-			lg: 4,
-			group: 2,
+			lg: 6,
+			group: 3,
 		},
 		{
 			disabled: false,
@@ -132,8 +107,8 @@ export const useTenantFormFields = () => {
 			required: false,
 			xs: 12,
 			sm: 6,
-			lg: 4,
-			group: 2,
+			lg: 6,
+			group: 3,
 		},
 		{
 			disabled: false,
@@ -144,20 +119,22 @@ export const useTenantFormFields = () => {
 			label: texts_e.email_notification,
 			required: false,
 			xs: 12,
-			group: 2,
+			group: 3,
 		},
 		{
 			disabled: false,
-			type: FieldType.text,
+			type: FieldType.textarea,
 			image: false,
 			size: FieldSize.xs,
 			name: "birthday_message",
 			label: texts_b.birthday_message,
 			required: false,
 			xs: 12,
-			group: 2,
+			minRows: 3,
+			maxRows: 5,
+			group: 3,
 		},
 	];
 
-	return { fields, groups };
-};
+	return { fields };
+}

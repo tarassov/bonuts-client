@@ -54,6 +54,7 @@
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",
+		"dev:e2e": "vite --mode e2e --port 4173",
 		"storybook": "cross-env NODE_OPTIONS=--max-old-space-size=4096 storybook dev -p 6006 --host 0.0.0.0",
 		"build-storybook": "cross-env NODE_OPTIONS=--max-old-space-size=4096 storybook build",
 		"build": "tsc && vite build",
@@ -76,8 +77,9 @@
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d dist -t",
 		"cypress:open": "npx cypress open",
-		"cypress:run": "npx cypress run",
-		"cypress:run:login": "npx cypress run --spec cypress/e2e/login.cy.ts"
+		"cypress:run": "start-server-and-test 'yarn dev:e2e' http://localhost:4173 'yarn cypress:run:raw'",
+		"cypress:run:login": "start-server-and-test 'yarn dev:e2e' http://localhost:4173 'npx cypress run --spec cypress/e2e/login.cy.ts'",
+		"cypress:run:raw": "npx cypress run"
 	},
 	"browserslist": {
 		"production": [
@@ -113,6 +115,7 @@
 		"husky": "^9.1.7",
 		"jsdom": "^21.1.1",
 		"lint-staged": "^13.2.2",
+		"start-server-and-test": "^3.0.12",
 		"storybook": "^10.4.6",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.4.2",

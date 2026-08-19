@@ -39,6 +39,7 @@ export type TGroupStyle = {
 };
 
 export type TFieldGroup = {
+	className?: string;
 	content?: ReactNode;
 	description?: string;
 	headerContent?: ReactNode;
