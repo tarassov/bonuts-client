@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { ImageOutlined } from "@mui/icons-material";
 
 import { BntCardActionArea } from "@/shared/ui/card";
@@ -11,6 +12,7 @@ import type { TDonut } from "@/types/model";
 
 interface IDonutCardProps {
 	donut: TDonut;
+	footer?: ReactNode;
 	onClick: VoidFunction;
 }
 
@@ -21,7 +23,7 @@ const getAvailabilityKey = (donut: TDonut) => {
 	return texts_l.left_in_stock;
 };
 
-export function DonutCard({ donut, onClick }: IDonutCardProps) {
+export function DonutCard({ donut, footer, onClick }: IDonutCardProps) {
 	const { t } = useBntTranslate();
 	const imageUrl = donut.logo?.url || donut.logo?.thumb?.url;
 	const availability = getAvailabilityKey(donut);
@@ -57,6 +59,7 @@ export function DonutCard({ donut, onClick }: IDonutCardProps) {
 					) : null}
 				</div>
 			</BntCardActionArea>
+			{footer ? <div className={styles.cardFooter}>{footer}</div> : null}
 		</BntSurface>
 	);
 }

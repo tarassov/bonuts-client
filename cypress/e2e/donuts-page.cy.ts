@@ -6,8 +6,29 @@ import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
 const GET_DONUTS_URL = /\/api\/v1\/donuts(?:\?.*)?$/;
 const GET_DONUT_URL = /\/api\/v1\/donuts\/2(?:\?.*)?$/;
+const GET_SELF_ACCOUNT_URL = /\/api\/v1\/accounts\/10(?:\?.*)?$/;
 const GET_PROFILE_URL = /\/profile(?:\?.*)?$/;
 const GET_TENANTS_URL = /\/tenants(?:\?.*)?$/;
+const POST_REQUEST_URL = /\/api\/v1\/requests$/;
+
+const DONUTS_PROFILE_RESPONSE = {
+	...PROFILE_RESPONSE,
+	data: {
+		...PROFILE_RESPONSE.data,
+		attributes: {
+			...PROFILE_RESPONSE.data.attributes,
+			self_account: { id: 10, profile_id: 1 },
+		},
+	},
+};
+
+const SELF_ACCOUNT_RESPONSE = {
+	data: {
+		attributes: { balance: 100, id: 10, type: "self" },
+		id: "10",
+		type: "accounts",
+	},
+};
 
 const TENANTS_RESPONSE = {
 	data: [
@@ -77,8 +98,9 @@ const DONUTS_RESPONSE = {
 };
 
 function mockDonutsPageRequests() {
-	cy.intercept("GET", GET_PROFILE_URL, { body: PROFILE_RESPONSE, statusCode: 200 }).as("getProfile");
+	cy.intercept("GET", GET_PROFILE_URL, { body: DONUTS_PROFILE_RESPONSE, statusCode: 200 }).as("getProfile");
 	cy.intercept("GET", GET_TENANTS_URL, { body: TENANTS_RESPONSE, statusCode: 200 }).as("getTenants");
+	cy.intercept("GET", GET_SELF_ACCOUNT_URL, { body: SELF_ACCOUNT_RESPONSE, statusCode: 200 }).as("getSelfAccount");
 	cy.intercept("GET", GET_DONUTS_URL, (request) => {
 		const page = Number(request.query.page || 1);
 
@@ -93,6 +115,7 @@ function mockDonutsPageRequests() {
 		});
 	}).as("getDonuts");
 	cy.intercept("GET", GET_DONUT_URL, { body: { data: DONUTS_RESPONSE.data[1] }, statusCode: 200 }).as("getDonut");
+	cy.intercept("POST", POST_REQUEST_URL, { body: { data: [] }, statusCode: 201 }).as("postRequest");
 	mockHeartbeatRequest();
 }
 
@@ -103,6 +126,7 @@ describe("Donuts page", () => {
 			cy.visitAuthorized("/donuts");
 			cy.wait("@getProfile");
 			cy.wait("@getDonuts");
+			cy.wait("@getSelfAccount");
 		});
 
 		it("shows and filters the reward catalog", () => {
@@ -121,6 +145,15 @@ describe("Donuts page", () => {
 			cy.contains('[data-testid="donut-card"]', "Coffee voucher").click();
 			cy.location("pathname").should("eq", "/d/2");
 			cy.wait("@getDonut");
+		});
+
+		it("purchases an affordable reward directly from its card", () => {
+			cy.contains('[data-testid="donut-card"]', "Coffee voucher").find('[data-testid="donut-purchase-button"]').should("be.visible");
+			cy.contains('[data-testid="donut-card"]', "Hoodie Bonuts").find('[data-testid="donut-purchase-button"]').should("not.exist");
+			cy.contains('[data-testid="donut-card"]', "Coffee voucher").find('[data-testid="donut-purchase-button"]').click();
+
+			cy.wait("@postRequest").its("request.body").should("deep.include", { donut_id: 2, tenant: "test-tenant" });
+			cy.location("pathname").should("eq", "/donuts");
 		});
 	});
 });
