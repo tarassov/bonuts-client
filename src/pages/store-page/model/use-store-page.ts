@@ -7,7 +7,7 @@ import { useDonut, useDonutsFeed, useDonutUi } from "@/entities/donut";
 import type { TDonut } from "@/types/model";
 
 export function useStorePage() {
-	const { donuts, fetchNext, hasNext, isFetching, isLoading } = useDonutsFeed(true);
+	const { donuts, isLoading } = useDonutsFeed({ isAllDonutsIncluded: true, isAutoFetchAll: true });
 	const { putDonut, isUpdating } = useDonut();
 	const { showCreateDonutModal } = useDonutUi();
 
@@ -17,5 +17,5 @@ export function useStorePage() {
 		putDonut(donut.id, { ...donut, use_remains: !donut.use_remains });
 	};
 
-	return { donuts, fetchNext, handleToggleUseRemains, hasNext, isFetching, showCreateDonutModal };
+	return { donuts: isLoading ? undefined : donuts, handleToggleUseRemains, showCreateDonutModal };
 }

@@ -15,7 +15,7 @@ import type { TDonut } from "@/types/model";
 export function DonutsPage() {
 	const [query, setQuery] = useState("");
 	const [sorter, setSorter] = useState<(firstDonut: TDonut, secondDonut: TDonut) => number>(() => DEFAULT_DONUT_SORTER);
-	const { donuts, fetchNext, hasNext, isFetching, isLoading } = useDonutsFeed();
+	const { donuts, fetchNext, hasNext, isFetching, isLoading, loadedPageCount } = useDonutsFeed();
 	const { showDonut } = useDonutUi();
 	const visibleDonuts = useMemo(() => getVisibleDonuts(donuts, query, sorter), [donuts, query, sorter]);
 
@@ -29,7 +29,7 @@ export function DonutsPage() {
 					<DonutCard donut={donut} key={donut.id} onClick={() => showDonut(donut.id)} />
 				))}
 			</div>
-			{hasNext ? <InfiniteScrollTrigger isFetching={isFetching} onLoadMore={fetchNext} /> : null}
+			{hasNext ? <InfiniteScrollTrigger isFetching={isFetching} loadedPageCount={loadedPageCount} onLoadMore={fetchNext} /> : null}
 		</main>
 	);
 }

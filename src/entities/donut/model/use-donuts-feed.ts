@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 import { authTenantSelector } from "@/shared/model/auth";
 
@@ -10,7 +10,12 @@ import { useAppSelector } from "@/services/redux/store/store";
 
 const pollingInterval = USE_POLLING_INTERVAL ? 1000 : 0;
 
-export const useDonutsFeed = (isAllDonutsIncluded = false) => {
+interface IUseDonutsFeedOptions {
+	isAllDonutsIncluded?: boolean;
+	isAutoFetchAll?: boolean;
+}
+
+export const useDonutsFeed = ({ isAllDonutsIncluded = false, isAutoFetchAll = false }: IUseDonutsFeedOptions = {}) => {
 	const authTenant = useAppSelector(authTenantSelector);
 	const queryArg = useMemo(
 		() => ({
@@ -26,19 +31,29 @@ export const useDonutsFeed = (isAllDonutsIncluded = false) => {
 	});
 	const pages = useMemo(() => data?.pages.map(apiDonutsToDonuts) ?? [], [data?.pages]);
 	const donuts = useMemo(() => pages.flat(), [pages]);
+	const fetchStateRef = useRef({ fetchNextPage, hasNextPage, isFetching });
+	fetchStateRef.current = { fetchNextPage, hasNextPage, isFetching };
 
 	const fetchNext = useCallback(() => {
-		if (!hasNextPage || isFetching) return;
+		const { fetchNextPage: fetchPage, hasNextPage: hasNext, isFetching: isPageFetching } = fetchStateRef.current;
+		if (!hasNext || isPageFetching) return;
 
-		fetchNextPage().catch(() => undefined);
-	}, [fetchNextPage, hasNextPage, isFetching]);
+		fetchPage().catch(() => undefined);
+	}, []);
+
+	useEffect(() => {
+		if (isAutoFetchAll && pages.length) fetchNext();
+	}, [fetchNext, isAutoFetchAll, pages.length]);
+
+	const isFeedLoading = isLoading || (isAutoFetchAll && Boolean(hasNextPage));
 
 	return {
 		donuts,
 		fetchNext,
 		hasNext: Boolean(hasNextPage),
 		isFetching,
-		isLoading,
+		isLoading: isFeedLoading,
+		loadedPageCount: pages.length,
 		refetch,
 	};
 };

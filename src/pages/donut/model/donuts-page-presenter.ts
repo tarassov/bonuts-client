@@ -19,5 +19,5 @@ export const DEFAULT_DONUT_SORTER = sortByName;
 export const getVisibleDonuts = (donuts: Array<TDonut>, query: string, sorter: (firstDonut: TDonut, secondDonut: TDonut) => number) => {
 	const normalizedQuery = query.trim().toLocaleLowerCase();
 
-	return donuts.filter((donut) => donut.name.toLocaleLowerCase().includes(normalizedQuery)).toSorted(sorter);
+	return donuts.filter((donut) => donut.name.toLocaleLowerCase().includes(normalizedQuery)).sort(sorter);
 };

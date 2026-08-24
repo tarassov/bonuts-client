@@ -3,7 +3,6 @@ import { useMemo, useState } from "react";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c, texts_s } from "services/localization/texts";
 
-import { InfiniteScrollTrigger } from "@/shared/ui/infinite-scroll-trigger";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useDonutUi } from "@/entities/donut";
@@ -20,14 +19,11 @@ import type { TDonut } from "@/types/model";
 
 export interface IStorePageViewProps {
 	donuts?: Array<TDonut>;
-	hasNext?: boolean;
-	isFetching?: boolean;
 	onCreateClick?: VoidFunction;
-	onLoadMore?: VoidFunction;
 	onToggleUseRemains?: (donut: TDonut) => void;
 }
 
-export function StorePageView({ donuts, hasNext = false, isFetching = false, onCreateClick, onLoadMore, onToggleUseRemains }: IStorePageViewProps) {
+export function StorePageView({ donuts, onCreateClick, onToggleUseRemains }: IStorePageViewProps) {
 	const { t } = useBntTranslate();
 	const { editDonut } = useDonutUi();
 	const [query, setQuery] = useState("");
@@ -56,7 +52,6 @@ export function StorePageView({ donuts, hasNext = false, isFetching = false, onC
 					<StoreRewardCard donut={donut} key={donut.id} onEdit={editDonut} onToggleUseRemains={onToggleUseRemains} />
 				))}
 			</div>
-			{hasNext && onLoadMore ? <InfiniteScrollTrigger isFetching={isFetching} onLoadMore={onLoadMore} /> : null}
 		</main>
 	);
 }
