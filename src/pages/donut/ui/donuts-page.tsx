@@ -31,7 +31,7 @@ export function DonutsPage() {
 				{visibleDonuts.map((donut) => (
 					<DonutCard
 						donut={donut}
-						footer={canPurchase(donut) ? <DonutPurchaseButton donut={donut} isPurchasing={isPurchasing} onPurchase={purchaseDonut} /> : undefined}
+						footer={canPurchase(donut) ? <DonutPurchaseButton donut={donut} isPurchasing={isPurchasing} isSubtle onPurchase={purchaseDonut} /> : undefined}
 						key={donut.id}
 						onClick={() => showDonut(donut.id)}
 					/>
