@@ -1,9 +1,11 @@
-import { PostDonutsApiResponse } from "services/api/bonuts-api";
-import { donutsApi } from "services/api/extended/donuts-api";
-import { useCreateDonutMutation } from "services/api/injected-api";
-import { useAppDispatch } from "services/redux/store/store";
-
+import { ApiTags } from "@/shared/api";
 import { useCurrentProfile } from "@/shared/model/auth";
+
+import { donutsApi } from "../api/donuts-api";
+
+import type { PostDonutsApiResponse } from "@/services/api/bonuts-api";
+import { useCreateDonutMutation } from "@/services/api/injected-api";
+import { useAppDispatch } from "@/services/redux/store/store";
 
 export type TPostDonutArgs = { logo?: File; price: number; name: string };
 
@@ -25,7 +27,7 @@ export const useCreateDonut = () => {
 				.unwrap()
 				.then((res) => {
 					if (res.data) {
-						dispatch(donutsApi.util.invalidateTags(["Donuts"]));
+						dispatch(donutsApi.util.invalidateTags([ApiTags.Donuts]));
 						options?.onSuccess?.(res);
 					}
 				});

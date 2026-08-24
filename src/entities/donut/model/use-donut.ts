@@ -1,13 +1,13 @@
-import { PutDonutsByIdApiResponse } from "services/api/bonuts-api";
-import { donutsApi } from "services/api/extended/donuts-api";
-import { useUpdateDonutMutation } from "services/api/injected-api";
-import { useAppDispatch } from "services/redux/store/store";
-
 import { ApiTags } from "@/shared/api";
 import { isBlank, present } from "@/shared/lib/type-guards";
 
 import { useProfile } from "@/entities/profile";
 
+import { donutsApi } from "../api/donuts-api";
+
+import type { PutDonutsByIdApiResponse } from "@/services/api/bonuts-api";
+import { useUpdateDonutMutation } from "@/services/api/injected-api";
+import { useAppDispatch } from "@/services/redux/store/store";
 import type { TDonut } from "@/types/model";
 
 type TDonutUpdate = Omit<TDonut, "logo"> & { logo?: TDonut["logo"] | File };

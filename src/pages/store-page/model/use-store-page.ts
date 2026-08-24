@@ -2,12 +2,12 @@ import { Modules } from "constants/modules";
 
 import { useModuleLoader } from "@/shared/ui/loader";
 
-import { useDonut, useDonutLoaderList, useDonutUi } from "@/entities/donut";
+import { useDonut, useDonutsFeed, useDonutUi } from "@/entities/donut";
 
 import type { TDonut } from "@/types/model";
 
 export function useStorePage() {
-	const { objects: donuts, isLoading } = useDonutLoaderList(true);
+	const { donuts, fetchNext, hasNext, isFetching, isLoading } = useDonutsFeed(true);
 	const { putDonut, isUpdating } = useDonut();
 	const { showCreateDonutModal } = useDonutUi();
 
@@ -17,5 +17,5 @@ export function useStorePage() {
 		putDonut(donut.id, { ...donut, use_remains: !donut.use_remains });
 	};
 
-	return { donuts, handleToggleUseRemains, showCreateDonutModal };
+	return { donuts, fetchNext, handleToggleUseRemains, hasNext, isFetching, showCreateDonutModal };
 }
