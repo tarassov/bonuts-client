@@ -2,7 +2,8 @@ import { Sorting } from "@/constants/dictionary";
 import type { TDonut } from "@/types/model";
 import type { TSorterButton } from "@/types/ui/sorter-button";
 
-const sortByName = (firstDonut: TDonut, secondDonut: TDonut) => firstDonut.name.localeCompare(secondDonut.name);
+const getNormalizedName = (donut: TDonut) => (typeof donut.name === "string" ? donut.name.trim().toLocaleLowerCase() : "");
+const sortByName = (firstDonut: TDonut, secondDonut: TDonut) => getNormalizedName(firstDonut).localeCompare(getNormalizedName(secondDonut));
 const sortByPriceAscending = (firstDonut: TDonut, secondDonut: TDonut) => firstDonut.price - secondDonut.price;
 const sortByPriceDescending = (firstDonut: TDonut, secondDonut: TDonut) => secondDonut.price - firstDonut.price;
 const sortByNewest = (firstDonut: TDonut, secondDonut: TDonut) => new Date(secondDonut.created_at || 0).getTime() - new Date(firstDonut.created_at || 0).getTime();
@@ -19,5 +20,11 @@ export const DEFAULT_DONUT_SORTER = sortByName;
 export const getVisibleDonuts = (donuts: Array<TDonut>, query: string, sorter: (firstDonut: TDonut, secondDonut: TDonut) => number) => {
 	const normalizedQuery = query.trim().toLocaleLowerCase();
 
-	return donuts.filter((donut) => donut.name.toLocaleLowerCase().includes(normalizedQuery)).sort(sorter);
+	return donuts
+		.filter((donut) => {
+			const normalizedName = getNormalizedName(donut);
+
+			return Boolean(normalizedName) && normalizedName.includes(normalizedQuery);
+		})
+		.sort(sorter);
 };

@@ -62,6 +62,17 @@ const DONUTS_RESPONSE = {
 			price: 40,
 			use_remains: true,
 		},
+		{
+			active: true,
+			available: true,
+			description: "Malformed API reward without a name.",
+			expiration_date: null,
+			id: 4,
+			logo: null,
+			on_stock: 1,
+			price: 10,
+			use_remains: true,
+		},
 	],
 };
 
@@ -76,7 +87,7 @@ function mockDonutsPageRequests() {
 			headers: {
 				"Access-Control-Expose-Headers": "Per-Page, Total",
 				"Per-Page": "2",
-				Total: "3",
+				Total: "4",
 			},
 			statusCode: 200,
 		});
