@@ -5,7 +5,7 @@ import { useLoader } from "@/shared/ui/loader";
 
 import { DonutCard, useDonutsFeed, useDonutUi } from "@/entities/donut";
 
-import { DonutPurchaseButton, useDonutPurchase } from "@/features/donut-purchase";
+import { DonutPurchaseButton, DonutPurchaseConfirmation, useDonutPurchase } from "@/features/donut-purchase";
 
 import { DEFAULT_DONUT_SORTER, getVisibleDonuts } from "../model/donuts-page-presenter";
 
@@ -19,7 +19,7 @@ export function DonutsPage() {
 	const [sorter, setSorter] = useState<(firstDonut: TDonut, secondDonut: TDonut) => number>(() => DEFAULT_DONUT_SORTER);
 	const { donuts, fetchNext, hasNext, isFetching, isLoading, loadedPageCount } = useDonutsFeed();
 	const { showDonut } = useDonutUi();
-	const { canPurchase, isPurchasing, purchaseDonut } = useDonutPurchase();
+	const { canPurchase, confirmedDonutId, isPurchasing, purchaseDonut } = useDonutPurchase();
 	const visibleDonuts = useMemo(() => getVisibleDonuts(donuts, query, sorter), [donuts, query, sorter]);
 
 	useLoader(Modules.Donuts, isLoading);
@@ -34,6 +34,7 @@ export function DonutsPage() {
 						footer={canPurchase(donut) ? <DonutPurchaseButton donut={donut} isPurchasing={isPurchasing} isSubtle onPurchase={purchaseDonut} /> : undefined}
 						key={donut.id}
 						onClick={() => showDonut(donut.id)}
+						overlay={confirmedDonutId === donut.id ? <DonutPurchaseConfirmation /> : undefined}
 					/>
 				))}
 			</div>

@@ -153,6 +153,7 @@ describe("Donuts page", () => {
 			cy.contains('[data-testid="donut-card"]', "Coffee voucher").find('[data-testid="donut-purchase-button"]').click();
 
 			cy.wait("@postRequest").its("request.body").should("deep.include", { donut_id: 2, tenant: "test-tenant" });
+			cy.contains('[data-testid="donut-card"]', "Coffee voucher").find('[data-testid="donut-purchase-confirmation"]').should("be.visible");
 			cy.location("pathname").should("eq", "/donuts");
 		});
 	});

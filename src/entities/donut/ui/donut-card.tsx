@@ -14,6 +14,7 @@ interface IDonutCardProps {
 	donut: TDonut;
 	footer?: ReactNode;
 	onClick: VoidFunction;
+	overlay?: ReactNode;
 }
 
 const getAvailabilityKey = (donut: TDonut) => {
@@ -23,7 +24,7 @@ const getAvailabilityKey = (donut: TDonut) => {
 	return texts_l.left_in_stock;
 };
 
-export function DonutCard({ donut, footer, onClick }: IDonutCardProps) {
+export function DonutCard({ donut, footer, onClick, overlay }: IDonutCardProps) {
 	const { t } = useBntTranslate();
 	const imageUrl = donut.logo?.url || donut.logo?.thumb?.url;
 	const availability = getAvailabilityKey(donut);
@@ -60,6 +61,7 @@ export function DonutCard({ donut, footer, onClick }: IDonutCardProps) {
 				</div>
 			</BntCardActionArea>
 			{footer ? <div className={styles.cardFooter}>{footer}</div> : null}
+			{overlay}
 		</BntSurface>
 	);
 }
