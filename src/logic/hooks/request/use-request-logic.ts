@@ -2,46 +2,17 @@ import { useNotification } from "@/shared/ui/notification";
 
 import { useProfile } from "@/entities/profile";
 
-import {
-	type PostRequestsActivateApiResponse,
-	type PostRequestsApiResponse,
-	type PostRequestsCloseApiResponse,
-	type PostRequestsRefundApiResponse,
-	type PostRequestsRollbackApiResponse,
-} from "@/services/api/bonuts-api";
-import {
-	usePostRequestsActivateMutation,
-	usePostRequestsCloseMutation,
-	usePostRequestsMutation,
-	usePostRequestsRefundMutation,
-	usePostRequestsRollbackMutation,
-} from "@/services/api/extended/requests-api";
+import { type PostRequestsActivateApiResponse, type PostRequestsCloseApiResponse, type PostRequestsRefundApiResponse, type PostRequestsRollbackApiResponse } from "@/services/api/bonuts-api";
+import { usePostRequestsActivateMutation, usePostRequestsCloseMutation, usePostRequestsRefundMutation, usePostRequestsRollbackMutation } from "@/services/api/extended/requests-api";
 import { texts_r } from "@/services/localization/texts/texts_r";
-import { TDonut } from "@/types/model";
 
 export const useRequestLogic = () => {
 	const { authTenant, invalidateSelfBalance, profile } = useProfile();
-	const [postRequest] = usePostRequestsMutation();
 	const [postActivateRequest] = usePostRequestsActivateMutation();
 	const [postRefundRequest] = usePostRequestsRefundMutation();
 	const [postCloseRequest] = usePostRequestsCloseMutation();
 	const [postRollbackRequest] = usePostRequestsRollbackMutation();
 	const { showNotification } = useNotification();
-
-	const createRequest = async (args: { donut: TDonut }, options?: { onSuccess?: (result: PostRequestsApiResponse) => void }) => {
-		const { donut } = args;
-		if (authTenant) {
-			postRequest({
-				body: { donut_id: donut?.id, tenant: authTenant },
-			})
-				.unwrap()
-				.then((result) => {
-					options?.onSuccess?.(result);
-					invalidateSelfBalance();
-					showNotification(texts_r.request_added);
-				});
-		}
-	};
 
 	const activateRequest = (id: number, options?: { onSuccess?: (result: PostRequestsActivateApiResponse) => void }) => {
 		postActivateRequest({ body: { id, tenant: authTenant } })
@@ -77,5 +48,5 @@ export const useRequestLogic = () => {
 				showNotification(texts_r.request_been_set_incoming);
 			});
 	};
-	return { createRequest, activateRequest, refundRequest, closeRequest, rollbackRequest };
+	return { activateRequest, refundRequest, closeRequest, rollbackRequest };
 };
