@@ -67,8 +67,21 @@
   }
 }
 
+@keyframes confirmation-hold {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .confirmation,
+  .confirmation {
+    animation: confirmation-hold 1300ms step-end both;
+  }
+
   .icon {
     animation: none;
   }

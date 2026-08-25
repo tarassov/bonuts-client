@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { InfiniteScrollTrigger } from "@/shared/ui/infinite-scroll-trigger";
 import { useLoader } from "@/shared/ui/loader";
@@ -16,11 +16,24 @@ import type { TDonut } from "@/types/model";
 
 export function DonutsPage() {
 	const [query, setQuery] = useState("");
+	const [confirmedDonutId, setConfirmedDonutId] = useState<number>();
 	const [sorter, setSorter] = useState<(firstDonut: TDonut, secondDonut: TDonut) => number>(() => DEFAULT_DONUT_SORTER);
 	const { donuts, fetchNext, hasNext, isFetching, isLoading, loadedPageCount } = useDonutsFeed();
 	const { showDonut } = useDonutUi();
-	const { canPurchase, confirmedDonutId, isPurchasing, purchaseDonut } = useDonutPurchase();
+	const { canPurchase, isPurchasing, purchaseDonut } = useDonutPurchase();
 	const visibleDonuts = useMemo(() => getVisibleDonuts(donuts, query, sorter), [donuts, query, sorter]);
+
+	const handlePurchase = useCallback(
+		async (donut: TDonut) => {
+			const isPurchased = await purchaseDonut(donut);
+			if (isPurchased) setConfirmedDonutId(donut.id);
+		},
+		[purchaseDonut]
+	);
+
+	const handlePurchaseConfirmationComplete = useCallback(() => {
+		setConfirmedDonutId(undefined);
+	}, []);
 
 	useLoader(Modules.Donuts, isLoading);
 
@@ -31,10 +44,10 @@ export function DonutsPage() {
 				{visibleDonuts.map((donut) => (
 					<DonutCard
 						donut={donut}
-						footer={canPurchase(donut) ? <DonutPurchaseButton donut={donut} isPurchasing={isPurchasing} isSubtle onPurchase={purchaseDonut} /> : undefined}
+						footer={canPurchase(donut) ? <DonutPurchaseButton donut={donut} isPurchasing={isPurchasing} isSubtle onPurchase={handlePurchase} /> : undefined}
 						key={donut.id}
 						onClick={() => showDonut(donut.id)}
-						overlay={confirmedDonutId === donut.id ? <DonutPurchaseConfirmation /> : undefined}
+						overlay={confirmedDonutId === donut.id ? <DonutPurchaseConfirmation onComplete={handlePurchaseConfirmationComplete} /> : undefined}
 					/>
 				))}
 			</div>
