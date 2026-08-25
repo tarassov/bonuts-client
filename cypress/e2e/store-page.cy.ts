@@ -4,7 +4,7 @@ import { mockHeartbeatRequest } from "../support/api";
 import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
-const GET_DONUTS_URL = /\/donuts(?:\?.*)?$/;
+const GET_DONUTS_URL = /\/api\/v1\/donuts(?:\?.*)?$/;
 const GET_PROFILE_URL = /\/profile(?:\?.*)?$/;
 const GET_TENANTS_URL = /\/tenants(?:\?.*)?$/;
 
@@ -64,7 +64,19 @@ const DONUTS_RESPONSE = {
 function mockStorePageRequests() {
 	cy.intercept("GET", GET_PROFILE_URL, { body: PROFILE_RESPONSE, statusCode: 200 }).as("getProfile");
 	cy.intercept("GET", GET_TENANTS_URL, { body: TENANTS_RESPONSE, statusCode: 200 }).as("getTenants");
-	cy.intercept("GET", GET_DONUTS_URL, { body: DONUTS_RESPONSE, statusCode: 200 }).as("getDonuts");
+	cy.intercept("GET", GET_DONUTS_URL, (request) => {
+		const page = Number(request.query.page || 1);
+
+		request.reply({
+			body: { data: page === 1 ? DONUTS_RESPONSE.data.slice(0, 2) : DONUTS_RESPONSE.data.slice(2) },
+			headers: {
+				"Access-Control-Expose-Headers": "Per-Page, Total",
+				"Per-Page": "2",
+				Total: "3",
+			},
+			statusCode: 200,
+		});
+	}).as("getDonuts");
 	mockHeartbeatRequest();
 }
 
@@ -75,11 +87,13 @@ describe("Store page", () => {
 			cy.visitAuthorized("/store-manager");
 			cy.wait("@getProfile");
 			cy.wait("@getDonuts");
+			cy.wait("@getDonuts");
 		});
 
 		it("shows the reward catalog and filters it by name and status", () => {
 			cy.contains("h1", "Store showcase").should("be.visible");
-			cy.contains("Total rewards").should("be.visible");
+			cy.contains('[aria-label="Store statistics"]', "Total rewards").parent().should("contain.text", "3");
+			cy.get("@getDonuts.all").should("have.length", 2);
 			cy.get('[data-testid="store-reward-card"]').should("have.length", 3);
 
 			cy.get('input[name="store-reward-search"]').type("coffee");

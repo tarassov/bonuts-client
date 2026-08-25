@@ -1,0 +1,35 @@
+.page {
+  max-width: 1440px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--mui-palette-text-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .page {
+    padding: 16px 12px 32px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

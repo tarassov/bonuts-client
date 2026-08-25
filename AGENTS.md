@@ -25,7 +25,80 @@ When making frontend decisions, prefer solutions that make the experience feel:
 - clearer
 - more socially meaningful
 
----
+# Bonuts — Product Context
+
+## What is Bonuts
+
+**Bonuts** is a SaaS platform for peer-to-peer employee recognition and engagement, primarily designed for small and medium-sized companies.
+
+The core mechanic is simple:
+
+1. Employees periodically receive a limited number of virtual **donuts**.
+2. They give donuts to colleagues together with a message of appreciation.
+3. These interactions appear in a shared social feed and become visible recognition of people's contributions.
+4. Received donuts can be converted into points and may be used for rewards configured by the company.
+
+However, **Bonuts is not primarily a rewards store or a virtual currency system**.
+
+The main product value is **social recognition**: helping employees notice, acknowledge, and appreciate each other's contributions.
+
+The product should encourage a company culture where recognition happens naturally between employees rather than being driven manually by HR.
+
+## Product Philosophy
+
+Bonuts is built around the idea:
+
+> Culture is in how we see each other.
+> We see more than we're used to saying.
+> Bonuts helps us say it.
+
+Therefore, when making product, UX, design, or technical decisions, prioritize:
+
+**recognition → people → social interaction → engagement → status**
+
+over:
+
+**balances → transactions → rewards → administration**
+
+The shared recognition feed, employee profiles, reactions, achievements, badges, rankings, and other social mechanics should make recognition visible and reinforce positive behavior inside the company.
+
+Gamification should **support recognition**, not turn Bonuts into a competition for points.
+
+## Target Product
+
+Bonuts is intended to become a **self-service, multi-tenant SaaS product** for SMB companies, primarily teams of approximately **30–300 employees**.
+
+The system should scale without requiring constant manual activity from HR or the Bonuts team.
+
+Physical rewards and their logistics are managed by customer companies. Bonuts provides the software infrastructure and should not depend on physical reward fulfillment as its core value proposition.
+
+## Product Experience
+
+Bonuts should feel like:
+
+**modern SaaS + light gamification + warm human interaction**
+
+It should **not** feel like:
+
+* accounting software;
+* an HR administration system;
+* a CRM;
+* a transaction ledger;
+* a corporate rewards catalog.
+
+When implementing new features, prefer solutions that make Bonuts feel more:
+
+* human;
+* social;
+* lightweight;
+* positive;
+* engaging.
+
+## Core Product Principle
+
+When there is a conflict between emphasizing **people and recognition** versus emphasizing **points, balances, rewards, or administrative mechanics**, prefer **people and recognition**.
+
+Bonuts is ultimately a tool for building a **culture of noticing people and expressing appreciation**.
 
 ## Task Framing
 
