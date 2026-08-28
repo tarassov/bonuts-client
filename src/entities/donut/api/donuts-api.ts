@@ -8,9 +8,12 @@ import type { TPageable } from "@/types/api/api";
 const donutsApiEnhanced = bonutsApiOverride.enhanceEndpoints({
 	addTagTypes: [ApiTags.Donuts],
 	endpoints: {
+		createDonut: { invalidatesTags: [ApiTags.Donuts] },
 		getDonuts: { providesTags: [ApiTags.Donuts] },
 		postDonuts: { invalidatesTags: [ApiTags.Donuts] },
 		getDonutsById: { providesTags: cacheByIdArgProperty(ApiTags.Donuts) },
+		putDonutsById: { invalidatesTags: [ApiTags.Donuts] },
+		updateDonut: { invalidatesTags: [ApiTags.Donuts] },
 	},
 });
 

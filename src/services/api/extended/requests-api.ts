@@ -1,3 +1,4 @@
+import { ApiTags } from "@/shared/api";
 import { getNextPageParam, getTransformPageableResponse } from "@/shared/lib/rtk";
 
 import type { GetRequestsApiArg, GetRequestsApiResponse } from "@/services/api/bonuts-api";
@@ -7,7 +8,7 @@ import type { TPageable } from "@/types/api/api";
 const requestsTag = "Request";
 
 const requestsApiEnhanced = bonutsApi.enhanceEndpoints({
-	addTagTypes: [requestsTag],
+	addTagTypes: [requestsTag, ApiTags.Donuts],
 	endpoints: {
 		getRequests: {
 			providesTags: [requestsTag],
@@ -16,7 +17,7 @@ const requestsApiEnhanced = bonutsApi.enhanceEndpoints({
 			providesTags: [requestsTag],
 		},
 		postRequests: {
-			invalidatesTags: [requestsTag],
+			invalidatesTags: [requestsTag, ApiTags.Donuts],
 		},
 		postRequestsActivate: {
 			invalidatesTags: [requestsTag],
