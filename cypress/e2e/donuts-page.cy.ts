@@ -98,14 +98,17 @@ const DONUTS_RESPONSE = {
 };
 
 function mockDonutsPageRequests() {
+	let hasCoffeeVoucherBeenPurchased = false;
+
 	cy.intercept("GET", GET_PROFILE_URL, { body: DONUTS_PROFILE_RESPONSE, statusCode: 200 }).as("getProfile");
 	cy.intercept("GET", GET_TENANTS_URL, { body: TENANTS_RESPONSE, statusCode: 200 }).as("getTenants");
 	cy.intercept("GET", GET_SELF_ACCOUNT_URL, { body: SELF_ACCOUNT_RESPONSE, statusCode: 200 }).as("getSelfAccount");
 	cy.intercept("GET", GET_DONUTS_URL, (request) => {
 		const page = Number(request.query.page || 1);
+		const donuts = hasCoffeeVoucherBeenPurchased ? DONUTS_RESPONSE.data.map((donut) => (donut.id === 2 ? { ...donut, on_stock: 3 } : donut)) : DONUTS_RESPONSE.data;
 
 		request.reply({
-			body: { data: page === 1 ? DONUTS_RESPONSE.data.slice(0, 2) : DONUTS_RESPONSE.data.slice(2) },
+			body: { data: page === 1 ? donuts.slice(0, 2) : donuts.slice(2) },
 			headers: {
 				"Access-Control-Expose-Headers": "Per-Page, Total",
 				"Per-Page": "2",
@@ -115,7 +118,10 @@ function mockDonutsPageRequests() {
 		});
 	}).as("getDonuts");
 	cy.intercept("GET", GET_DONUT_URL, { body: { data: DONUTS_RESPONSE.data[1] }, statusCode: 200 }).as("getDonut");
-	cy.intercept("POST", POST_REQUEST_URL, { body: { data: [] }, statusCode: 201 }).as("postRequest");
+	cy.intercept("POST", POST_REQUEST_URL, (request) => {
+		hasCoffeeVoucherBeenPurchased = true;
+		request.reply({ body: { data: [] }, statusCode: 201 });
+	}).as("postRequest");
 	mockHeartbeatRequest();
 }
 
@@ -153,6 +159,8 @@ describe("Donuts page", () => {
 			cy.contains('[data-testid="donut-card"]', "Coffee voucher").find('[data-testid="donut-purchase-button"]').click();
 
 			cy.wait("@postRequest").its("request.body").should("deep.include", { donut_id: 2, tenant: "test-tenant" });
+			cy.wait("@getDonuts");
+			cy.contains('[data-testid="donut-card"]', "Coffee voucher").should("contain.text", "3");
 			cy.contains('[data-testid="donut-card"]', "Coffee voucher").find('[data-testid="donut-purchase-confirmation"]').should("be.visible");
 			cy.location("pathname").should("eq", "/donuts");
 		});

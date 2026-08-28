@@ -1,20 +1,15 @@
-import { ApiTags } from "@/shared/api";
 import { isBlank, present } from "@/shared/lib/type-guards";
 
 import { useProfile } from "@/entities/profile";
 
-import { donutsApi } from "../api/donuts-api";
-
 import type { PutDonutsByIdApiResponse } from "@/services/api/bonuts-api";
 import { useUpdateDonutMutation } from "@/services/api/injected-api";
-import { useAppDispatch } from "@/services/redux/store/store";
 import type { TDonut } from "@/types/model";
 
 type TDonutUpdate = Omit<TDonut, "logo"> & { logo?: TDonut["logo"] | File };
 
 export const useDonut = () => {
 	const [updateDonut, { isLoading: isUpdating }] = useUpdateDonutMutation();
-	const dispatch = useAppDispatch();
 	const { profile } = useProfile();
 	const putDonut = async (donutId: number, args: TDonutUpdate, options?: { onSuccess?: (result: PutDonutsByIdApiResponse) => void }) => {
 		if (profile?.tenant) {
@@ -25,8 +20,6 @@ export const useDonut = () => {
 				id: donutId.toString(),
 				body: { ...props, ...(logoNew && { logo: logoNew }), tenant: profile?.tenant },
 			});
-
-			dispatch(donutsApi.util.invalidateTags([ApiTags.Donuts]));
 
 			if (present(res.data)) {
 				options?.onSuccess?.(res.data);
