@@ -67,8 +67,25 @@ export const BrandIconCircle = styled("span")({
 });
 
 export const FormActions = styled(Stack, {
-	shouldForwardProp: (prop) => prop !== "isSticky",
-})<{ isSticky?: boolean }>(({ isSticky, theme }) => ({
+	shouldForwardProp: (prop) => prop !== "isContained" && prop !== "isSticky",
+})<{ isContained?: boolean; isSticky?: boolean }>(({ isContained, isSticky, theme }) => ({
+	...(isContained && {
+		marginTop: theme.spacing(1),
+		"& .MuiButton-root": {
+			minWidth: 120,
+			minHeight: 44,
+			borderRadius: theme.shape.borderRadius * 1.5,
+			fontWeight: 600,
+		},
+		[theme.breakpoints.down("sm")]: {
+			width: "100%",
+			gap: theme.spacing(1),
+			"& .MuiButton-root": {
+				flex: 1,
+				minWidth: 0,
+			},
+		},
+	}),
 	...(isSticky && {
 		position: "fixed",
 		bottom: 0,

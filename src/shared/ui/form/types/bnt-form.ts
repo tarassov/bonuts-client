@@ -104,6 +104,7 @@ export type RegisterFunc = (name: string, options?: { required: boolean }) => Us
 
 export enum SubmitButtonVariant {
 	default = "default",
+	contained = "contained",
 	brandGradient = "brandGradient",
 }
 

@@ -20,58 +20,6 @@
 	gap: 12px;
 }
 
-.avatarButton {
-	position: relative;
-	width: 180px;
-	height: 180px;
-	border: none;
-	border-radius: 36px;
-	overflow: hidden;
-	cursor: pointer;
-	padding: 0;
-	background: linear-gradient(135deg, var(--mui-palette-primary-light), var(--mui-palette-accent-light));
-}
-
-.avatarImage {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-}
-
-.avatarFallback {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 3.5rem;
-	font-weight: 700;
-	letter-spacing: 0.08em;
-	color: var(--mui-palette-accent-main);
-	text-transform: uppercase;
-}
-
-.avatarOverlay {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-	padding: 18px;
-	background: linear-gradient(180deg, transparent 15%, rgba(30, 31, 37, 0.72) 100%);
-	color: #fff;
-	font-size: 0.95rem;
-	font-weight: 600;
-	opacity: 0;
-	transition: opacity 160ms ease;
-}
-
-.avatarButton:hover .avatarOverlay,
-.avatarButton:focus-visible .avatarOverlay {
-	opacity: 1;
-}
-
 .meta {
 	display: flex;
 	flex-direction: column;
@@ -96,10 +44,5 @@
 @media (max-width: 899px) {
 	.layout {
 		grid-template-columns: 1fr;
-	}
-
-	.avatarButton {
-		width: 148px;
-		height: 148px;
 	}
 }

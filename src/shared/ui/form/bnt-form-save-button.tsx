@@ -42,6 +42,14 @@ export const BntFormSaveButton = ({ isSticky, submitCaption, submitButtonVariant
 		);
 	}
 
+	if (submitButtonVariant === SubmitButtonVariant.contained) {
+		return (
+			<BntButton color="primary" data-testid="form-submit-button" noTransform type="submit" variant="contained">
+				{saveCaption}
+			</BntButton>
+		);
+	}
+
 	return (
 		<BntTransparentButton data-testid="form-submit-button" type="submit">
 			{saveCaption}
