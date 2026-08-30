@@ -3,7 +3,7 @@ import { TPicture } from "@/types/model/picture";
 
 export type TTenant = TBaseModel & {
 	name: string;
-	caption?: string;
+	caption?: string | null;
 	active: boolean;
 	created_at: string;
 	updated_at: string;
