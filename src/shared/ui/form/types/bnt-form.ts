@@ -125,6 +125,7 @@ export type TFormProps<T extends Record<string, any>> = {
 	keepValuesOnSubmit?: boolean;
 	keepDirtyOnInitialValuesChange?: boolean;
 	isSubmitAlwaysVisible?: boolean;
+	isSubmitDisabled?: boolean;
 	isSubmitSticky?: boolean;
 	resolver?: Resolver<any, any>;
 };

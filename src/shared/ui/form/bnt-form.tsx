@@ -22,6 +22,7 @@ export function BntForm<T extends Record<string, any>>({
 	keepDirtyOnInitialValuesChange,
 	keepValuesOnSubmit,
 	isSubmitAlwaysVisible,
+	isSubmitDisabled,
 	isSubmitSticky,
 	resolver,
 }: TFormProps<T>) {
@@ -94,6 +95,7 @@ export function BntForm<T extends Record<string, any>>({
 						keepValuesOnSubmit={keepValuesOnSubmit}
 						keepDirtyOnInitialValuesChange={keepDirtyOnInitialValuesChange}
 						isSubmitAlwaysVisible={isSubmitAlwaysVisible}
+						isSubmitDisabled={isSubmitDisabled}
 						isSubmitSticky={isSubmitSticky}
 						initialValues={initials}
 						submitCaption={submitCaption}

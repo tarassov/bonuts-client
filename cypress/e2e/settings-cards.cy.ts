@@ -91,5 +91,25 @@ describe("Meaningful settings cards", () => {
 			cy.contains("h2", "Birthday").scrollIntoView().should("be.visible");
 			cy.get('[data-testid="form-submit-button"]').scrollIntoView().should("be.visible");
 		});
+
+		it("prevents saving settings while the team logo is uploading", () => {
+			cy.intercept("PUT", GET_TENANT_URL, { body: TENANT_RESPONSE, delay: 1_000, statusCode: 200 }).as("updateTenantLogo");
+			cy.visitAuthorized("/tenant");
+			cy.wait("@getProfile");
+			cy.wait("@getTenant");
+
+			cy.get('input[type="file"]').selectFile(
+				{
+					contents: Cypress.Buffer.from("team logo"),
+					fileName: "team-logo.png",
+					mimeType: "image/png",
+				},
+				{ force: true }
+			);
+
+			cy.get('[data-testid="form-submit-button"]').should("be.disabled");
+			cy.wait("@updateTenantLogo");
+			cy.get('[data-testid="form-submit-button"]').should("be.enabled");
+		});
 	});
 });

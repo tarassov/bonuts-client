@@ -40,6 +40,7 @@ export function TenantSettingsForm() {
 				hasInitial
 				initialValues={tenant}
 				isSubmitAlwaysVisible
+				isSubmitDisabled={isUpdating}
 				onSubmit={handleSubmit}
 				submitCaption={t(texts_s.save, { capitalize: true })}
 				submitButtonVariant={SubmitButtonVariant.contained}
