@@ -34,6 +34,31 @@
 	font-weight: 800;
 }
 
+.sectionTitleRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 10px;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.sectionTitleRow .sectionTitle {
+	margin: 0;
+}
+
+.comingSoonBadge {
+	display: inline-flex;
+	align-items: center;
+	min-height: 26px;
+	padding: 3px 9px;
+	border: 1px solid var(--welcome-divider);
+	border-radius: 999px;
+	color: var(--welcome-secondary-text);
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
 .label {
 	margin: 0 0 4px;
 	color: var(--welcome-secondary-text);

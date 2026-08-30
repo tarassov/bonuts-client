@@ -1,19 +1,14 @@
-import { usePostTenantsByTenantNameJoinMutation } from "services/api/bonuts-api";
+import { useCallback } from "react";
 
-import { useAuth } from "@/shared/model/auth";
+import { useJoinTenant } from "@/features/tenant-join";
 
-import { TTenant } from "@/types/model/tenant";
+import type { TTenant } from "@/types/model/tenant";
 
 export const useTenant = (tenant?: TTenant) => {
-	const [postJoin] = usePostTenantsByTenantNameJoinMutation();
-	const { setTenant } = useAuth();
-	const joinTenant = () => {
-		if (tenant) {
-			postJoin({ tenantName: tenant.name }).then(() => {
-				setTenant(tenant.name);
-			});
-		}
-	};
+	const { joinTenant: join } = useJoinTenant();
+	const joinTenant = useCallback(() => {
+		if (tenant) join(tenant);
+	}, [join, tenant]);
 
 	return { joinTenant };
 };

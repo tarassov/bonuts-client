@@ -7,8 +7,9 @@ import { RouterContext } from "@/shared/lib/router";
 import { isBlank } from "@/shared/lib/type-guards";
 import { useAuth, useCurrentProfile } from "@/shared/model/auth";
 
+import { tenantsApi } from "@/entities/tenant";
+
 import { routesPath } from "@/routes/config/routes-path";
-import { tenantsApi } from "@/services/api/extended/tenants-api";
 
 export const useAuthRoutes = () => {
 	const { menuRoutes: routes } = useContext(RouterContext);

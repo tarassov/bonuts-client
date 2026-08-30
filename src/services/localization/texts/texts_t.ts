@@ -10,6 +10,7 @@ export enum texts_t {
 	team_settings_description = "team settings description",
 	team_settings_title = "team settings title",
 	teams_you_can_join = "teams you can join",
+	teams_matching_your_work_email = "teams matching your work email",
 	theme = "theme",
 	theme_dark = "theme dark",
 	theme_light = "theme light",
