@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { AutoAwesomeOutlined, CelebrationOutlined, GroupsOutlined } from "@mui/icons-material";
 
 import type { TFieldGroup } from "@/shared/ui/form";
@@ -10,7 +11,7 @@ const sectionPadding = () => ({ p: { xs: 2, md: 3 } });
 const nestedGroupPadding = () => ({ p: 0 });
 const nestedFieldsPadding = () => ({ p: 0, pl: { xs: 0, md: 3 } });
 
-export function useTenantSettingsFormGroups() {
+export function useTenantSettingsFormGroups(logoEditor: ReactNode) {
 	const { t } = useBntTranslate();
 	const groups: Array<TFieldGroup> = [
 		{
@@ -18,7 +19,7 @@ export function useTenantSettingsFormGroups() {
 			description: t(texts_t.team_identity_description),
 			gap: 0,
 			groups: [
-				{ id: 11, xs: 12, md: 4, sx: nestedGroupPadding },
+				{ content: logoEditor, id: 11, xs: 12, md: 4, sx: nestedGroupPadding },
 				{ id: 12, xs: 12, md: 8, sx: nestedFieldsPadding },
 			],
 			headerContent: (

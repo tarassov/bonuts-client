@@ -1,4 +1,4 @@
-import { ChangeEvent, type CSSProperties, useMemo, useRef, useState } from "react";
+import { type CSSProperties, useMemo } from "react";
 import { PhotoLibraryOutlined } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
@@ -7,6 +7,7 @@ import { texts_c, texts_m } from "services/localization/texts";
 
 import { BntTransparentButton } from "@/shared/ui/buttons";
 import { BntCard } from "@/shared/ui/card";
+import { EditableImage } from "@/shared/ui/editable-image";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { ProfileStatusChips, useUpdateAvatar } from "@/entities/profile";
@@ -46,12 +47,9 @@ export function ProfileHeader({ onPhotosClick, profile }: IProfileHeaderProps) {
 	const { translate } = useBntTranslate();
 	const theme = useTheme();
 	const { postAvatar } = useUpdateAvatar();
-	const inputRef = useRef<HTMLInputElement | null>(null);
-	const [previewUrl, setPreviewUrl] = useState<string>("");
 
 	const displayName = useMemo(() => getDisplayName(profile), [profile]);
 	const initials = useMemo(() => getAvatarInitials(profile), [profile]);
-	const avatarUrl = previewUrl || profile?.user_avatar?.url || "";
 	const isDarkMode = theme.palette.mode === "dark";
 
 	const cardThemeStyle: CSSProperties = {
@@ -60,34 +58,17 @@ export function ProfileHeader({ onPhotosClick, profile }: IProfileHeaderProps) {
 		"--profile-header-accent-glow": isDarkMode ? theme.palette.accent.veryLight : theme.palette.accent.light,
 	} as CSSProperties;
 
-	const handleAvatarClick = () => {
-		inputRef.current?.click();
-	};
+	const handleAvatarChange = (file: File) => {
+		if (!profile?.id) return;
 
-	const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
-		const file = event.target.files?.[0];
-
-		if (!file || !profile?.id) return;
-
-		const reader = new FileReader();
-
-		reader.onloadend = () => {
-			setPreviewUrl(String(reader.result || ""));
-		};
-
-		reader.readAsDataURL(file);
-		postAvatar({ file, id: profile.id });
+		return postAvatar({ file, id: profile.id });
 	};
 
 	return (
 		<BntCard data-testid="profile-header" className={classes.card} style={cardThemeStyle}>
 			<div className={classes.layout}>
 				<div className={classes.avatarColumn}>
-					<button type="button" className={classes.avatarButton} onClick={handleAvatarClick}>
-						{avatarUrl ? <img src={avatarUrl} alt={displayName} className={classes.avatarImage} /> : <div className={classes.avatarFallback}>{initials}</div>}
-						<div className={classes.avatarOverlay}>{translate(texts_c.change_avatar)}</div>
-					</button>
-					<input ref={inputRef} type="file" accept="image/*" hidden onChange={handleAvatarChange} />
+					<EditableImage alt={displayName} fallback={initials} imageUrl={profile?.user_avatar?.url} label={translate(texts_c.change_avatar)} onChange={handleAvatarChange} />
 					{onPhotosClick ? (
 						<BntTransparentButton startIcon={<PhotoLibraryOutlined />} onClick={onPhotosClick}>
 							{translate(texts_m.my_photos)}
