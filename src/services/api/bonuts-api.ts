@@ -4528,75 +4528,67 @@ export type PutTenantCurrentApiArg = {
 };
 export type GetTenantsAccessibleApiResponse = /** status 200 success */ {
 	data?: {
-		id: string;
-		type: string;
-		attributes: {
-			id: number;
-			name: string;
-			caption?: string | null;
-			active: boolean;
-			created_at: string;
-			updated_at: string;
-			domain: string;
-			birthday_message?: string;
-			demo: boolean;
-			attached?: boolean | null;
-			deactivated?: boolean | null;
-			logo: {
+		id: number;
+		name: string;
+		caption?: string | null;
+		active: boolean;
+		created_at: string;
+		updated_at: string;
+		domain: string;
+		birthday_message?: string;
+		demo: boolean;
+		attached?: boolean | null;
+		deactivated?: boolean | null;
+		logo: {
+			url: string;
+			thumb: {
 				url: string;
-				thumb: {
-					url: string;
-				};
 			};
-			welcome_points: number;
-			welcome_donuts: number;
-			email_notification: boolean;
-			birthday_donuts: number;
-			birthday_points: number;
-			join_to_project_donuts: number;
-			join_to_company_donuts: number;
-			join_to_project_points: number;
-			join_to_company_points: number;
-			use_departments: boolean;
-			test?: boolean;
 		};
+		welcome_points: number;
+		welcome_donuts: number;
+		email_notification: boolean;
+		birthday_donuts: number;
+		birthday_points: number;
+		join_to_project_donuts: number;
+		join_to_company_donuts: number;
+		join_to_project_points: number;
+		join_to_company_points: number;
+		use_departments: boolean;
+		test?: boolean;
 	}[];
 };
 export type GetTenantsAccessibleApiArg = void;
 export type GetTenantsApiResponse = /** status 200 success */ {
 	data?: {
-		id: string;
-		type: string;
-		attributes: {
-			id: number;
-			name: string;
-			caption?: string | null;
-			active: boolean;
-			created_at: string;
-			updated_at: string;
-			domain: string;
-			birthday_message?: string;
-			demo: boolean;
-			attached?: boolean | null;
-			deactivated?: boolean | null;
-			logo: {
+		id: number;
+		name: string;
+		caption?: string | null;
+		active: boolean;
+		created_at: string;
+		updated_at: string;
+		domain: string;
+		birthday_message?: string;
+		demo: boolean;
+		attached?: boolean | null;
+		deactivated?: boolean | null;
+		logo: {
+			url: string;
+			thumb: {
 				url: string;
-				thumb: {
-					url: string;
-				};
 			};
-			welcome_points: number;
-			welcome_donuts: number;
-			email_notification: boolean;
-			birthday_donuts: number;
-			birthday_points: number;
-			join_to_project_donuts: number;
-			join_to_company_donuts: number;
-			join_to_project_points: number;
-			join_to_company_points: number;
-			use_departments: boolean;
-			test?: boolean;
 		};
+		welcome_points: number;
+		welcome_donuts: number;
+		email_notification: boolean;
+		birthday_donuts: number;
+		birthday_points: number;
+		join_to_project_donuts: number;
+		join_to_company_donuts: number;
+		join_to_project_points: number;
+		join_to_company_points: number;
+		use_departments: boolean;
+		test?: boolean;
 	}[];
 };
 export type GetTenantsApiArg = void;

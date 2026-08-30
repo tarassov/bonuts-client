@@ -1,6 +1,6 @@
-import { GetTenantCurrentApiResponse, GetTenantsApiResponse } from "services/api/bonuts-api";
+import type { GetTenantCurrentApiResponse } from "services/api/bonuts-api";
 
-import { TTenant } from "@/types/model/tenant";
+import type { TTenant } from "@/types/model/tenant";
 
 const dataToTenant = (data: Required<GetTenantCurrentApiResponse>["data"]) => {
 	const { attributes, id } = data;
@@ -19,11 +19,4 @@ export const apiTenantAdaptor = (response?: GetTenantCurrentApiResponse): TTenan
 	if (!data) return undefined;
 
 	return dataToTenant(data);
-};
-
-export const apiTenantsAdaptor = (response?: GetTenantsApiResponse): Array<TTenant> => {
-	if (!response) return [];
-	const { data } = response;
-
-	return data?.filter((x) => x).map((x) => dataToTenant(x)) || [];
 };

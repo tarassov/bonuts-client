@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { memo } from "react";
 import { ArrowForwardOutlined } from "@mui/icons-material";
 
+import { present } from "@/shared/lib/type-guards";
 import { BntTransparentButton } from "@/shared/ui/buttons";
 
 import styles from "./new-user-page.module.scss";
@@ -14,11 +15,15 @@ interface IWelcomeInvitationsSectionProps {
 	invitations: Array<TInvitation>;
 	totalInvitationsCount: number;
 	isShowingAllInvitations: boolean;
+	isEmptyStateVisible?: boolean;
 	onShowAllInvitations: VoidFunction;
 }
 
-const WelcomeInvitationsSectionComponent: FC<IWelcomeInvitationsSectionProps> = ({ invitations, totalInvitationsCount, isShowingAllInvitations, onShowAllInvitations }) => {
+const WelcomeInvitationsSectionComponent: FC<IWelcomeInvitationsSectionProps> = ({ invitations, totalInvitationsCount, isShowingAllInvitations, isEmptyStateVisible = true, onShowAllInvitations }) => {
 	const { t } = useBntTranslate();
+	const isEmpty = !present(invitations);
+
+	if (isEmpty && !isEmptyStateVisible) return null;
 
 	return (
 		<section className={styles.invitationsCard}>
@@ -37,7 +42,7 @@ const WelcomeInvitationsSectionComponent: FC<IWelcomeInvitationsSectionProps> = 
 				{invitations.map((invitation) => (
 					<WelcomeInvitationItem invitation={invitation} key={invitation.id} onView={onShowAllInvitations} />
 				))}
-				{!invitations.length && <div className={styles.emptyState}>{t(texts_i.no_invitations_received_yet, { capitalize: true })}</div>}
+				{isEmpty && <div className={styles.emptyState}>{t(texts_i.no_invitations_received_yet, { capitalize: true })}</div>}
 			</div>
 
 			{totalInvitationsCount > 2 && !isShowingAllInvitations && (

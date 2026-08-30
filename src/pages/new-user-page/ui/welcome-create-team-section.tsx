@@ -15,7 +15,7 @@ const WelcomeCreateTeamSectionComponent: FC = () => {
 	return (
 		<DashboardSection
 			action={
-				<BntRegularButton className={styles.actionButton} noTransform onClick={() => undefined} variant="contained">
+				<BntRegularButton className={styles.actionButton} disabled noTransform variant="contained">
 					{t(texts_c.create_your_team, { capitalize: true })}
 				</BntRegularButton>
 			}
@@ -27,8 +27,11 @@ const WelcomeCreateTeamSectionComponent: FC = () => {
 			variant={DashboardSectionVariant.Warm}
 		>
 			<div className={styles.main}>
-				<h2 className={styles.sectionTitle}>{t(texts_c.create_your_team, { capitalize: true })}</h2>
-				<p className={styles.descriptionSmall}>{t(texts_c.create_team_mock_description)}</p>
+				<div className={styles.sectionTitleRow}>
+					<h2 className={styles.sectionTitle}>{t(texts_c.create_your_team, { capitalize: true })}</h2>
+					<span className={styles.comingSoonBadge}>{t(texts_c.coming_soon, { capitalize: true })}</span>
+				</div>
+				<p className={styles.descriptionSmall}>{t(texts_c.create_team_coming_soon_description)}</p>
 			</div>
 		</DashboardSection>
 	);

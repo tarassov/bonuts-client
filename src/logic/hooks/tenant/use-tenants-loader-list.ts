@@ -1,11 +1,10 @@
-import { apiTenantsAdaptor } from "services/adaptor/api-tenant-adaptor";
-import { tenantsApi } from "services/api/extended/tenants-api";
+import { useMemo } from "react";
 
-import { useListBase } from "logic/hooks/use-list-base";
+import { tenantsApi } from "@/entities/tenant";
 
 export const useTenantsLoaderList = () => {
-	return useListBase({
-		endpoint: tenantsApi.endpoints.getTenants,
-		translator: apiTenantsAdaptor,
-	});
+	const { data, isLoading, isSuccess, refetch } = tenantsApi.useGetTenantsQuery();
+	const objects = useMemo(() => data?.data ?? [], [data?.data]);
+
+	return { objects, isLoading, isSuccess, refetch };
 };
