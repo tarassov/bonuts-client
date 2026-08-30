@@ -36,6 +36,7 @@ export enum texts_c {
 	create_team_coming_soon_description = "create team coming soon description",
 	create_your_team_to_start_sharing_recognition = "create your team to start sharing recognition in Bonuts",
 	change_avatar = "change avatar",
+	change_logo = "change logo",
 	click_reward_to_edit = "click reward to edit",
 	circle_actions = "circle actions",
 	circles_count = "circles count",

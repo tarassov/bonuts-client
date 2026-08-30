@@ -1,34 +1,11 @@
-import { useModal } from "@/shared/lib/modal";
 import type { TFormField } from "@/shared/ui/form";
 import { FieldSize, FieldType } from "@/shared/ui/form";
 
-import { CommonStrings } from "@/constants/dictionary";
-import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { texts_b, texts_d, texts_e, texts_l, texts_p, texts_t, texts_w } from "@/services/localization/texts";
+import { texts_b, texts_d, texts_e, texts_t, texts_w } from "@/services/localization/texts";
 import type { TTenant } from "@/types/model/tenant";
 
 export function useTenantSettingsFormFields() {
-	const { ImageModal } = useModal();
-	const { t } = useBntTranslate();
-
-	const onClick = (url?: string) => {
-		ImageModal.show({
-			url: url || CommonStrings.EMPTY_STRING,
-			title: t(texts_p.preview, { capitalize: true }),
-		});
-	};
 	const fields: Array<TFormField<TTenant>> = [
-		{
-			image: true,
-			size: FieldSize.xs,
-			name: "logo",
-			label: texts_l.logo,
-			type: FieldType.imageUpload,
-			xs: 12,
-			md: 12,
-			group: 11,
-			onClick: (value) => onClick(value?.toString()),
-		},
 		{
 			image: false,
 			readOnly: true,

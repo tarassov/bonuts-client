@@ -43,6 +43,8 @@ export const ruLocale = {
 		[texts_c.circles_title]: "Круги команды",
 		[texts_c.create_circle]: "Создать круг",
 		[texts_c.click_reward_to_edit]: "Откройте награду, чтобы изменить её параметры",
+		[texts_c.change_avatar]: "Сменить аватар",
+		[texts_c.change_logo]: "Сменить логотип",
 		[texts_d.delete_circle]: "Удалить круг",
 		[texts_d.disabled_reward]: "Выключена",
 		[texts_d.delivery_days]: "Срок доставки, дней",

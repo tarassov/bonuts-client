@@ -34,6 +34,8 @@ export const kkLocale = {
 		[texts_a.availability]: "Қолжетімділік",
 		[texts_b.build_storefront_description]: "Сыйлықтар витринасын құрыңыз, қолжетімділікті басқарыңыз және каталогты жаңартып отырыңыз.",
 		[texts_c.click_reward_to_edit]: "Параметрлерін өзгерту үшін сыйлықты ашыңыз",
+		[texts_c.change_avatar]: "Аватарды өзгерту",
+		[texts_c.change_logo]: "Логотипті өзгерту",
 		[texts_d.disabled_reward]: "Өшірулі",
 		[texts_d.delivery_days]: "Жеткізу мерзімі, күн",
 		[texts_d.description]: "Сипаттама",

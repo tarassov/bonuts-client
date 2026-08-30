@@ -40,6 +40,8 @@ export const enLocale = {
 		[texts_c.circles_title]: "Team circles",
 		[texts_c.create_circle]: "Create circle",
 		[texts_c.click_reward_to_edit]: "Open a reward to edit its details",
+		[texts_c.change_avatar]: "Change avatar",
+		[texts_c.change_logo]: "Change logo",
 		"Closed requests": "Closed requests",
 		Circles: "Circles",
 		Dashboard: "Dashboard",

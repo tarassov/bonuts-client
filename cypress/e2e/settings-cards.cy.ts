@@ -91,5 +91,48 @@ describe("Meaningful settings cards", () => {
 			cy.contains("h2", "Birthday").scrollIntoView().should("be.visible");
 			cy.get('[data-testid="form-submit-button"]').scrollIntoView().should("be.visible");
 		});
+
+		it("prevents saving settings while the team logo is uploading", () => {
+			cy.intercept("PUT", GET_TENANT_URL, { body: TENANT_RESPONSE, delay: 1_000, statusCode: 200 }).as("updateTenantLogo");
+			cy.visitAuthorized("/tenant");
+			cy.wait("@getProfile");
+			cy.wait("@getTenant");
+
+			cy.get('input[type="file"]').selectFile(
+				{
+					contents: Cypress.Buffer.from("team logo"),
+					fileName: "team-logo.png",
+					mimeType: "image/png",
+				},
+				{ force: true }
+			);
+
+			cy.get('[data-testid="form-submit-button"]').should("be.disabled");
+			cy.wait("@updateTenantLogo");
+			cy.get('[data-testid="form-submit-button"]').should("be.enabled");
+		});
+
+		it("restores the persisted team logo when an upload fails", () => {
+			cy.intercept("PUT", GET_TENANT_URL, { body: { error: "Invalid image" }, delay: 500, statusCode: 422 }).as("rejectTenantLogo");
+			cy.visitAuthorized("/tenant");
+			cy.wait("@getProfile");
+			cy.wait("@getTenant");
+
+			cy.get('input[type="file"]').selectFile(
+				{
+					contents: Cypress.Buffer.from("invalid team logo"),
+					fileName: "invalid-team-logo.png",
+					mimeType: "image/png",
+				},
+				{ force: true }
+			);
+
+			cy.get('button[aria-label="Change logo"] img')
+				.should("have.attr", "src")
+				.and("match", /^blob:/);
+			cy.wait("@rejectTenantLogo");
+			cy.get('button[aria-label="Change logo"] img').should("not.exist");
+			cy.get('button[aria-label="Change logo"]').should("contain.text", "A");
+		});
 	});
 });

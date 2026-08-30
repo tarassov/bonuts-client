@@ -1,4 +1,6 @@
-import { BntForm } from "@/shared/ui/form";
+import { BntForm, SubmitButtonVariant } from "@/shared/ui/form";
+
+import { TenantLogoEditor } from "@/entities/tenant";
 
 import styles from "./tenant-settings-form.module.scss";
 import { useTenantSettingsFormFields } from "./use-tenant-settings-form-fields";
@@ -11,10 +13,18 @@ import type { TTenant } from "@/types/model/tenant";
 
 export function TenantSettingsForm() {
 	const { tenant } = useTenantLoader();
-	const { updateTenant } = useUpdateCurrentTenant();
+	const { isUpdating, updateTenant } = useUpdateCurrentTenant();
 	const { fields } = useTenantSettingsFormFields();
-	const { groups } = useTenantSettingsFormGroups();
 	const { t } = useBntTranslate();
+
+	const handleLogoChange = (file: File) => {
+		if (!tenant) return;
+
+		return updateTenant({ ...tenant, logo: file });
+	};
+
+	const logoEditor = tenant ? <TenantLogoEditor tenant={tenant} isLoading={isUpdating} onChange={handleLogoChange} /> : null;
+	const { groups } = useTenantSettingsFormGroups(logoEditor);
 
 	const handleSubmit = (values: TTenant) => {
 		return updateTenant(values);
@@ -30,8 +40,10 @@ export function TenantSettingsForm() {
 				hasInitial
 				initialValues={tenant}
 				isSubmitAlwaysVisible
+				isSubmitDisabled={isUpdating}
 				onSubmit={handleSubmit}
 				submitCaption={t(texts_s.save, { capitalize: true })}
+				submitButtonVariant={SubmitButtonVariant.contained}
 			/>
 		</div>
 	);
