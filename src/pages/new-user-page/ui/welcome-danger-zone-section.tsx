@@ -7,7 +7,7 @@ import { DashboardSection, DashboardSectionMedia, DashboardSectionVariant } from
 
 import styles from "./new-user-page.module.scss";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { texts_d } from "@/services/localization/texts";
+import { texts_c, texts_d } from "@/services/localization/texts";
 
 const WelcomeDangerZoneSectionComponent: FC = () => {
 	const { t } = useBntTranslate();
@@ -15,8 +15,8 @@ const WelcomeDangerZoneSectionComponent: FC = () => {
 	return (
 		<DashboardSection
 			action={
-				<BntButton className={styles.dangerButton} color="error" noTransform onClick={() => undefined} variant="outlined">
-					{t(texts_d.delete_profile, { capitalize: true })}
+				<BntButton className={styles.dangerButton} color="error" disabled noTransform variant="outlined">
+					{t(texts_d.delete_account, { capitalize: true })}
 				</BntButton>
 			}
 			media={
@@ -27,8 +27,11 @@ const WelcomeDangerZoneSectionComponent: FC = () => {
 			variant={DashboardSectionVariant.Danger}
 		>
 			<div className={styles.main}>
-				<h2 className={styles.sectionTitle}>{t(texts_d.danger_zone, { capitalize: true })}</h2>
-				<p className={styles.descriptionSmall}>{t(texts_d.delete_profile_mock_description)}</p>
+				<div className={styles.sectionTitleRow}>
+					<h2 className={styles.sectionTitle}>{t(texts_d.danger_zone, { capitalize: true })}</h2>
+					<span className={styles.comingSoonBadge}>{t(texts_c.coming_soon, { capitalize: true })}</span>
+				</div>
+				<p className={styles.descriptionSmall}>{t(texts_d.delete_account_coming_soon_description)}</p>
 			</div>
 		</DashboardSection>
 	);

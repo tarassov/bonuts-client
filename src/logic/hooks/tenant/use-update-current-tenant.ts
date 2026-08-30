@@ -1,12 +1,13 @@
-import { PutTenantCurrentApiResponse } from "services/api/bonuts-api";
-import { tenantsApi } from "services/api/extended/tenants-api";
+import type { PutTenantCurrentApiResponse } from "services/api/bonuts-api";
 import { texts_s } from "services/localization/texts";
 import { useAppSelector } from "services/redux/store/store";
 
 import { authTenantSelector } from "@/shared/model/auth";
 import { useNotification } from "@/shared/ui/notification";
 
-import { TTenant } from "@/types/model/tenant";
+import { tenantsApi } from "@/entities/tenant";
+
+import type { TTenant } from "@/types/model/tenant";
 
 export const useUpdateCurrentTenant = () => {
 	const authTenant = useAppSelector(authTenantSelector);
