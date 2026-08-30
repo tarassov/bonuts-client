@@ -1,5 +1,7 @@
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
 
+import { hasOperationError } from "@/shared/lib/type-guards";
+
 import { EditableImageButton, EditableImageFallback, EditableImageOverlay, EditableImagePreview } from "./editable-image.styles";
 
 interface IEditableImageProps {
@@ -30,9 +32,20 @@ export function EditableImage({ alt, fallback, imageUrl, isLoading = false, labe
 
 		if (!file) return;
 
-		setPreviewUrl(URL.createObjectURL(file));
+		const nextPreviewUrl = URL.createObjectURL(file);
+
+		setPreviewUrl(nextPreviewUrl);
 		event.target.value = "";
-		await onChange(file);
+
+		try {
+			const result = await onChange(file);
+
+			if (hasOperationError(result)) {
+				setPreviewUrl("");
+			}
+		} catch {
+			setPreviewUrl("");
+		}
 	};
 
 	const currentImageUrl = previewUrl || imageUrl;
