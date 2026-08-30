@@ -1,5 +1,6 @@
 import { apiTenantsAdaptor } from "services/adaptor/api-tenant-adaptor";
-import { tenantsApi } from "services/api/extended/tenants-api";
+
+import { tenantsApi } from "@/entities/tenant";
 
 import { useListBase } from "logic/hooks/use-list-base";
 
