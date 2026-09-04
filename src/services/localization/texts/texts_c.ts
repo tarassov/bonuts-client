@@ -47,4 +47,6 @@ export enum texts_c {
 	circles_search_empty_title = "circles search empty title",
 	circles_title = "circles title",
 	create_circle = "create circle",
+	colleagues = "colleagues",
+	colleagues_description = "colleagues description",
 }

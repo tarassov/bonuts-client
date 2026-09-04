@@ -29,6 +29,19 @@ import {
 
 export const kkLocale = {
 	translations: {
+		[texts_b.birthday_on]: "Туған күні: {{date}}",
+		[texts_b.birthday_soon]: "Жақында туған күні",
+		[texts_c.colleagues]: "Әріптестер",
+		[texts_c.colleagues_description]: "Көмектескен әріптесіңізді тауып, пончикпен алғыс білдіріңіз.",
+		[texts_e.enter_colleague_name]: "Әріптестің атын енгізіңіз",
+		[texts_i.in_team_months]: "Командада {{count}} ай",
+		[texts_i.in_team_years]: "Командада {{count}} жыл",
+		[texts_n.new_team_member]: "Командаға жаңадан қосылды",
+		[texts_n.newest_colleagues]: "Жаңа қызметкерлер",
+		[texts_n.no_colleagues_description]: "Басқа атты қолданып көріңіз немесе әріптесті командаға шақырыңыз.",
+		[texts_n.now_online]: "Қазір желіде: {{count}}",
+		[texts_p.people_in_team]: "Командада: {{count}}",
+		[texts_s.sort_by]: "Сұрыптау",
 		[texts_a.add_reward]: "Сыйлық қосу",
 		[texts_a.active]: "Белсенді",
 		[texts_a.availability]: "Қолжетімділік",

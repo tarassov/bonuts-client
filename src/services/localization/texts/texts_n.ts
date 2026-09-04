@@ -26,4 +26,8 @@ export enum texts_n {
 	no_integrations_available = "no integrations available",
 	no_photos_yet = "no photos yet",
 	nothing_to_tell_here_yet = "nothing to tell here yet",
+	new_team_member = "new team member",
+	newest_colleagues = "newest colleagues",
+	no_colleagues_description = "no colleagues description",
+	now_online = "now online",
 }

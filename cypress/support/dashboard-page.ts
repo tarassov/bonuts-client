@@ -108,32 +108,35 @@ export const DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE = {
 export const DASHBOARD_COLLEAGUES_RESPONSE = {
 	data: [
 		{
-			id: "2",
-			type: "profiles",
-			attributes: {
-				id: 2,
-				user_id: 202,
-				active: true,
-				admin: false,
-				roles: [],
-				circles: [],
-				name: "Pepper Potts",
-				position: "CEO",
-				email: "pepper.potts@example.com",
-				contact: null,
-				bio: null,
-				birthdate: null,
-				in_date: null,
-				locale: "en",
-				last_seen_at: "2026-04-13T08:00:00Z",
-				user_avatar: {
-					url: null,
-					thumb: { url: null },
-					preview: { url: null },
-				},
+			id: 2,
+			user_id: 202,
+			active: true,
+			admin: false,
+			roles: [],
+			circles: [],
+			first_name: "Pepper",
+			last_name: "Potts",
+			name: "Pepper Potts",
+			position: "CEO",
+			email: "pepper.potts@example.com",
+			contact: null,
+			bio: null,
+			birthdate: null,
+			in_date: null,
+			locale: "en",
+			last_seen_at: "2026-04-13T08:00:00Z",
+			is_online: true,
+			user_avatar: {
+				url: null,
+				thumb: { url: null },
+				preview: { url: null },
 			},
 		},
 	],
+	meta: {
+		online_count: 1,
+		team_count: 1,
+	},
 };
 
 export const DASHBOARD_DISTRIB_ACCOUNT_RESPONSE = {
@@ -229,6 +232,10 @@ export function mockDashboardPageRequests() {
 export function mockGiveDonutsModalRequests() {
 	cy.intercept("GET", "**/profiles*", {
 		statusCode: 200,
+		headers: {
+			"Per-Page": "24",
+			Total: "1",
+		},
 		body: DASHBOARD_COLLEAGUES_RESPONSE,
 	}).as("getProfiles");
 

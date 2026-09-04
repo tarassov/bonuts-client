@@ -28,6 +28,7 @@ const publicPost: TPost = {
 			},
 		},
 		last_seen_at: new Date().toISOString(),
+		is_online: true,
 	},
 };
 

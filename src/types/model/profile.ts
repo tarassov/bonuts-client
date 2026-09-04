@@ -19,8 +19,8 @@ export type TProfile = TBaseModel & {
 	circles?: Array<TCircle>;
 	birthdate?: string | null;
 	in_date?: string | null;
-	bio?: string;
-	contact?: string;
+	bio?: string | null;
+	contact?: string | null;
 	locale?: string;
 	score_total?: number;
 	self_account?: {
@@ -34,7 +34,8 @@ export type TProfile = TBaseModel & {
 		profile_id?: number;
 	};
 	created_at?: string;
-	tg_code?: string;
+	tg_code?: string | null;
 	last_seen_at?: string | null;
+	is_online?: boolean;
 	photos?: Array<TPicture>;
 };
