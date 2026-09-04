@@ -5,6 +5,7 @@ const config: ConfigFile = {
 	apiFile: "./src/services/api/empty-api.ts",
 	apiImport: "emptySplitApi",
 	outputFile: "./src/services/api/bonuts-api.ts",
+	prettierConfigFile: "./.prettierrc.codegen.json",
 	exportName: "bonutsApi",
 	hooks: true,
 };

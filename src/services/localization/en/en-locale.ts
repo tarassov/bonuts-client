@@ -25,6 +25,19 @@ import {
 
 export const enLocale = {
 	translations: {
+		[texts_b.birthday_on]: "Birthday on {{date}}",
+		[texts_b.birthday_soon]: "Birthday soon",
+		[texts_c.colleagues]: "Colleagues",
+		[texts_c.colleagues_description]: "Find someone who helped and thank them with donuts.",
+		[texts_e.enter_colleague_name]: "Enter a colleague's name",
+		[texts_i.in_team_months]: "On the team for {{count}} mo.",
+		[texts_i.in_team_years]: "On the team for {{count}} yr.",
+		[texts_n.new_team_member]: "New to the team",
+		[texts_n.newest_colleagues]: "Newest teammates",
+		[texts_n.no_colleagues_description]: "Try another name or invite a colleague to the team.",
+		[texts_n.now_online]: "Online now: {{count}}",
+		[texts_p.people_in_team]: "Team members: {{count}}",
+		[texts_s.sort_by]: "Sort by",
 		"Active requests": "Active requests",
 		[texts_a.add_reward]: "Add reward",
 		[texts_a.active]: "Active",

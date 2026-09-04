@@ -19,4 +19,6 @@ export enum texts_i {
 	integration_vk_description = "integration vk description",
 	no_invitations_received_yet = "no invitations received yet",
 	in_storefront = "in storefront",
+	in_team_months = "in team months",
+	in_team_years = "in team years",
 }

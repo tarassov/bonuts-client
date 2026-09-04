@@ -1,5 +1,6 @@
 export { profilesApi } from "./api/profiles-api";
 export { photosAlbumDialogPaperSx } from "./config/photos-album-dialog-paper-sx";
+export { EmployeeListSort } from "./model/employee-list-sort";
 export { useEmployee } from "./model/use-employee";
 export { useEmployeeList } from "./model/use-employee-list";
 export { useEmployeeLoader } from "./model/use-employee-loader";

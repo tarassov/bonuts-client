@@ -1,4 +1,5 @@
 export enum texts_p {
+	people_in_team = "people in team",
 	purchases = "purchases",
 	profile = "profile",
 	profile_not_found = "profile not found",

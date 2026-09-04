@@ -117,7 +117,7 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 										{employee?.position}
 									</BntTypography>
 									<EmployeeLabel name="email" value={employee?.email} />
-									<EmployeeLabel name={texts_c.contact} value={employee?.contact} />
+									<EmployeeLabel name={texts_c.contact} value={employee?.contact || undefined} />
 									<EmployeeLabel name={texts_b.birthday} value={formatStringDate(employee?.birthdate, true)} />
 									<EmployeeLabel name={texts_i.in_date} value={formatStringDate(employee?.in_date)} />
 								</EmployeePreviewIdentity>
