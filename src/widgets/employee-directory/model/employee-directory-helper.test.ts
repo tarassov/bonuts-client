@@ -21,6 +21,18 @@ describe("employee directory helper", () => {
 		expect(isNewTeammate(employees[0], now)).toBe(false);
 	});
 
+	it("reads date-only values as local calendar dates in timezones west of UTC", () => {
+		const originalTimezone = process.env.TZ;
+		process.env.TZ = "America/New_York";
+
+		try {
+			expect(getUpcomingBirthday({ id: 1, birthdate: "1990-09-12" }, new Date(2026, 8, 4))).toEqual(new Date(2026, 8, 12));
+			expect(getMonthsInTeam({ id: 2, in_date: "2026-08-04" }, new Date(2026, 8, 4))).toBe(1);
+		} finally {
+			process.env.TZ = originalTimezone;
+		}
+	});
+
 	it("returns only birthdays inside the upcoming window", () => {
 		expect(getUpcomingBirthday({ id: 1, birthdate: "1990-09-12" }, now)).toEqual(new Date(2026, 8, 12));
 		expect(getUpcomingBirthday({ id: 2, birthdate: "1990-10-12" }, now)).toBeNull();

@@ -1,6 +1,18 @@
 import type { TProfile } from "@/types/model";
 
 const NEW_TEAMMATE_MONTHS = 3;
+const DATE_ONLY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Date-only API values (`2026-08-05`) parse at UTC midnight, which lands on the previous day west of UTC, so read them as local calendar dates. */
+function parseCalendarDate(value: string) {
+	if (!DATE_ONLY_PATTERN.test(value)) {
+		return new Date(value);
+	}
+
+	const [year, month, day] = value.split("-").map(Number);
+
+	return new Date(year, month - 1, day);
+}
 
 function getEmployeeName(employee: TProfile) {
 	return employee.name || [employee.first_name, employee.last_name].filter(Boolean).join(" ") || employee.email || "";
@@ -23,7 +35,7 @@ export function getMonthsInTeam(employee: TProfile, now = new Date()) {
 		return null;
 	}
 
-	const startDate = new Date(startDateValue);
+	const startDate = parseCalendarDate(startDateValue);
 
 	if (Number.isNaN(startDate.getTime())) {
 		return null;
@@ -46,7 +58,7 @@ export function getUpcomingBirthday(employee: TProfile, now = new Date(), daysAh
 		return null;
 	}
 
-	const birthdate = new Date(employee.birthdate);
+	const birthdate = parseCalendarDate(employee.birthdate);
 
 	if (Number.isNaN(birthdate.getTime())) {
 		return null;

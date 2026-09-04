@@ -1,4 +1,4 @@
-import { GetProfileApiResponse, GetReportsProfilesApiResponse } from "../api/bonuts-api";
+import type { GetProfileApiResponse, GetReportsProfilesApiResponse } from "../api/bonuts-api";
 
 import type { TProfile } from "@/types/model";
 import { getProfilePhotos } from "@/types/model";
