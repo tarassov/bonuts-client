@@ -1,112 +1,88 @@
+import { Avatar, Badge } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
 import { BntButton } from "@/shared/ui/buttons";
 import { BntCard, BntCardActionArea, BntCardBody } from "@/shared/ui/card";
 import { BntTypography } from "@/shared/ui/typography";
 
-export const EmployeeCardRoot = styled(BntCard)(({ theme }) => {
-	const isDarkMode = theme.palette.mode === "dark";
-
-	return {
-		backgroundColor: isDarkMode ? theme.palette.background.paper : theme.palette.secondary.veryLight,
-		maxWidth: 300,
-		color: theme.palette.text.heading,
-		margin: "auto",
-		border: `1px solid ${theme.palette.divider}`,
-		transition: "transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease",
-		"&:hover": {
-			outline: "2px solid",
-			outlineColor: isDarkMode ? theme.palette.primary.main : theme.palette.primary.light,
-			borderColor: isDarkMode ? alpha(theme.palette.primary.light, 0.7) : theme.palette.primary.light,
-			backgroundColor: isDarkMode ? alpha(theme.palette.primary.main, 0.08) : theme.palette.secondary.veryLight,
-			boxShadow: isDarkMode ? "0 14px 30px rgba(0, 0, 0, 0.45)" : "0 14px 28px rgba(0, 0, 0, 0.12)",
-			transform: "translateY(-3px)",
-		},
-	};
-});
-
-export const EmployeeCardActionArea = styled(BntCardActionArea)({
-	width: "100%",
-});
-
-export const EmployeeCardBody = styled(BntCardBody)({
-	display: "flex",
-	justifyContent: "center",
-	minHeight: 200,
-	padding: "16px 24px 20px",
-});
-
-export const EmployeeCardAvatar = styled("img")(({ theme }) => {
-	const isDarkMode = theme.palette.mode === "dark";
-
-	return {
-		width: "auto",
-		height: "auto",
-		maxHeight: "160px",
-		maxWidth: "100%",
-		verticalAlign: "middle",
-		margin: "0 auto",
-		border: 0,
-		boxShadow: isDarkMode ? "0px 0px 28px rgba(255, 176, 102, 0.28)" : "0px 0px 48px rgba(255, 255, 255, 0.8)",
-		transition: "transform 500ms cubic-bezier(0.34, 1.61, 0.7, 1)",
-		[theme.breakpoints.down("sm")]: {
-			maxHeight: "90px",
-		},
-		[`${EmployeeCardRoot}:hover &`]: {
-			transform: "translate3d(0, -3px, 2px)",
-		},
-	};
-});
-
-export const EmployeeCardCaption = styled("div")({
+export const EmployeeCardRoot = styled(BntCard)(({ theme }) => ({
 	display: "flex",
 	flexDirection: "column",
-	gap: "10px",
-	alignItems: "center",
-	width: "100%",
-});
-
-export const EmployeeName = styled(BntTypography)(({ theme }) => ({
-	fontWeight: 600,
-	color: theme.palette.text.primary,
-	textAlign: "center",
+	height: "100%",
+	border: `1px solid ${theme.palette.divider}`,
+	borderRadius: 16,
+	backgroundColor: theme.palette.background.paper,
+	boxShadow: theme.palette.mode === "dark" ? "0 8px 24px rgba(0, 0, 0, 0.22)" : "0 8px 24px rgba(30, 31, 37, 0.06)",
+	transition: "transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease",
+	"&:hover": {
+		borderColor: alpha(theme.palette.primary.main, 0.34),
+		boxShadow: theme.palette.mode === "dark" ? "0 14px 32px rgba(0, 0, 0, 0.32)" : "0 14px 34px rgba(30, 31, 37, 0.11)",
+		transform: "translateY(-2px)",
+	},
 }));
 
-export const EmployeeCardFooter = styled("div")({
+export const EmployeeCardActionArea = styled(BntCardActionArea)({ display: "flex", flex: "1 1 auto", flexDirection: "column", padding: "26px 20px 0" });
+export const EmployeeCardBody = styled(BntCardBody)({ display: "flex", flex: "1 1 auto", flexDirection: "column", alignItems: "center", width: "100%" });
+
+export const EmployeeCardBadge = styled("span", {
+	shouldForwardProp: (prop) => prop !== "$tone" && prop !== "isVisible",
+})<{ $tone: "primary" | "success"; isVisible: boolean }>(({ $tone, isVisible, theme }) => ({
+	display: "inline-flex",
+	alignItems: "center",
+	height: 24,
+	marginBottom: 10,
+	padding: "4px 10px",
+	borderRadius: 999,
+	backgroundColor: $tone === "success" ? alpha(theme.palette.success.main, 0.15) : alpha(theme.palette.primary.main, 0.16),
+	color: $tone === "success" ? theme.palette.success.main : theme.palette.primary.main,
+	fontSize: 11,
+	fontWeight: 700,
+	opacity: isVisible ? 1 : 0,
+	visibility: isVisible ? "visible" : "hidden",
+}));
+
+export const EmployeePresenceBadge = styled(Badge)(({ theme }) => ({
+	marginBottom: 20,
+	"& .MuiBadge-badge": {
+		width: 16,
+		minWidth: 16,
+		height: 16,
+		border: `3px solid ${theme.palette.background.paper}`,
+		borderRadius: "50%",
+		backgroundColor: theme.palette.success.main,
+	},
+}));
+
+export const EmployeeCardAvatar = styled(Avatar)(({ theme }) => ({
+	width: 140,
+	height: 140,
+	backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "dark" ? 0.18 : 0.2),
+	color: theme.palette.primary.dark,
+	fontSize: 38,
+	fontWeight: 700,
+}));
+
+export const EmployeeCardCaption = styled("div")({ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: "100%", textAlign: "center" });
+export const EmployeeName = styled(BntTypography)(({ theme }) => ({ color: theme.palette.text.heading, fontWeight: 700, lineHeight: 1.3 }));
+export const EmployeeCardMeta = styled("div")(({ theme }) => ({
 	display: "flex",
+	alignItems: "center",
 	justifyContent: "center",
+	gap: 6,
+	minHeight: 20,
+	color: theme.palette.text.secondary,
+	fontSize: 12.5,
+	"& .MuiSvgIcon-root": { fontSize: 17 },
+}));
+export const EmployeeCardFooter = styled("div")({ width: "100%", padding: "18px 20px 20px" });
+export const EmployeeTransferButton = styled(BntButton)(({ theme }) => ({
 	width: "100%",
-	paddingTop: 2,
-});
-
-export const EmployeeTransferButton = styled(BntButton)(({ theme }) => {
-	const isDarkMode = theme.palette.mode === "dark";
-
-	return {
-		minHeight: 36,
-		padding: "6px 14px",
-		borderRadius: 10,
-		textTransform: "none",
-		fontWeight: 500,
-		border: `1px solid ${isDarkMode ? alpha(theme.palette.primary.light, 0.75) : alpha(theme.palette.primary.main, 0.55)}`,
-		backgroundColor: alpha(theme.palette.primary.main, 0.18),
-		color: isDarkMode ? theme.palette.primary.light : theme.palette.primary.dark,
-		transition: "background-color 180ms ease, border-color 180ms ease, color 180ms ease",
-		"&:hover": {
-			backgroundColor: isDarkMode ? alpha(theme.palette.primary.main, 0.28) : alpha(theme.palette.primary.light, 0.2),
-			borderColor: isDarkMode ? theme.palette.primary.main : theme.palette.primary.main,
-			color: isDarkMode ? theme.palette.primary.light : theme.palette.primary.dark,
-		},
-		[`${EmployeeCardRoot}:hover &`]: {
-			backgroundColor: isDarkMode ? alpha(theme.palette.primary.main, 0.26) : alpha(theme.palette.primary.light, 0.2),
-			borderColor: isDarkMode ? theme.palette.primary.main : theme.palette.primary.main,
-			color: isDarkMode ? theme.palette.primary.light : theme.palette.primary.dark,
-		},
-		"& .MuiButton-startIcon": {
-			marginRight: 4,
-		},
-		"& .MuiSvgIcon-root": {
-			fontSize: 18,
-		},
-	};
-});
+	minHeight: 40,
+	borderRadius: 12,
+	backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === "dark" ? 0.2 : 0.18),
+	color: theme.palette.primary.dark,
+	fontWeight: 700,
+	textTransform: "none",
+	"&:hover": { backgroundColor: alpha(theme.palette.primary.main, 0.28) },
+	"& .MuiSvgIcon-root": { fontSize: 18 },
+}));

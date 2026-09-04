@@ -5,7 +5,6 @@ import { Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
 
 import classNames from "classnames";
 
-import { UserLogic } from "@/shared/lib";
 import { formatStringDate } from "@/shared/lib/date";
 import { BntBox } from "@/shared/ui/box";
 import { BntCard, BntCardActions, BntCardContent } from "@/shared/ui/card";
@@ -31,7 +30,6 @@ export type EventCardProps = { post: TPost; className?: string; preventNewModal?
 export function EventCard({ post, className, preventNewModal }: EventCardProps) {
 	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, liked, editable, date_string_utc } = post;
 	const { user_name, user_avatar, position } = profile;
-	const isUserOnline = UserLogic.isOnline(profile.last_seen_at);
 	const { t } = useTranslation();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
@@ -103,7 +101,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 							}
 						: undefined
 				}
-				avatar={isPublic ? <ProfileAvatar avatarUrl={user_avatar?.thumb?.url} name={user_name} hasOnlineBadge isOnline={isUserOnline} /> : undefined}
+				avatar={isPublic ? <ProfileAvatar avatarUrl={user_avatar?.thumb?.url} name={user_name} hasOnlineBadge isOnline={Boolean(profile.is_online)} /> : undefined}
 				action={
 					notification ? (
 						<Tooltip title={t(Dictionary.ONLY_YOU_CAN_SEE_IT)}>

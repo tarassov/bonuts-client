@@ -29,6 +29,19 @@ import {
 
 export const ruLocale = {
 	translations: {
+		[texts_b.birthday_on]: "День рождения {{date}}",
+		[texts_b.birthday_soon]: "Скоро ДР",
+		[texts_c.colleagues]: "Коллеги",
+		[texts_c.colleagues_description]: "Найдите того, кто помог, — и поблагодарите пончиками.",
+		[texts_e.enter_colleague_name]: "Введите имя коллеги",
+		[texts_i.in_team_months]: "В команде {{count}} мес.",
+		[texts_i.in_team_years]: "В команде {{count}} г.",
+		[texts_n.new_team_member]: "Новичок в команде",
+		[texts_n.newest_colleagues]: "Новые сотрудники",
+		[texts_n.no_colleagues_description]: "Попробуйте другое имя — или пригласите коллегу в команду.",
+		[texts_n.now_online]: "Сейчас онлайн: {{count}}",
+		[texts_p.people_in_team]: "В команде: {{count}}",
+		[texts_s.sort_by]: "Сортировка",
 		[texts_a.add_reward]: "Добавить награду",
 		[texts_a.active]: "Активна",
 		[texts_a.availability]: "Наличие",

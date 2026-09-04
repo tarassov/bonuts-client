@@ -10,6 +10,7 @@ const mockResponse: GetProfileApiResponse = {
 		id: "1",
 		type: "profile",
 		attributes: {
+			is_online: false,
 			active: false,
 			admin: false,
 			department: null,

@@ -1,4 +1,4 @@
-import { GetProfileApiResponse, GetProfilesApiResponse } from "../api/bonuts-api";
+import type { GetProfileApiResponse, GetReportsProfilesApiResponse } from "../api/bonuts-api";
 
 import type { TProfile } from "@/types/model";
 import { getProfilePhotos } from "@/types/model";
@@ -38,7 +38,7 @@ export const apiProfileAdaptor = (response?: GetProfileApiResponse): TProfile | 
 	if (!response?.data || !response?.data?.id) return undefined;
 	return dataToProfile(response.data);
 };
-export const apiProfilesAdaptor = (response: GetProfilesApiResponse): Array<TProfile> => {
+export const apiProfilesAdaptor = (response: GetReportsProfilesApiResponse): Array<TProfile> => {
 	const { data } = response;
 
 	if (!data) return [];

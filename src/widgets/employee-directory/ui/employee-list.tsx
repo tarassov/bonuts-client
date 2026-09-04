@@ -1,41 +1,63 @@
-import type { FC } from "react";
-import { Grid } from "@mui/material";
+import { useState } from "react";
+
+import { useDebounceCallback } from "usehooks-ts";
 
 import { useLoader } from "@/shared/ui/loader";
-import { SearchString } from "@/shared/ui/search-string";
 
-import { useEmployeeList } from "@/entities/profile";
+import { EmployeeListSort, useEmployeeList } from "@/entities/profile";
 
-import { getEmployeeSearchButtons } from "../model/get-employee-search-buttons";
-
-import { EmployeeCard } from "./employee-card";
+import { EmployeeListView } from "./employee-list-view";
 import { Modules } from "@/constants/modules";
-import { useSearch } from "@/logic/hooks/use-search";
-import type { TProfile } from "@/types/model";
-import type { TSorterButton } from "@/types/ui/sorter-button";
-import { emptyFunction } from "@/utils/empty-function";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_c, texts_n, texts_p } from "@/services/localization/texts";
 
-export const EmployeeList: FC = () => {
-	const { objects = [], isLoading } = useEmployeeList();
-	const { filteredList, setSorter, setSearch } = useSearch<TProfile>(objects, {
-		searchField: "name",
+export function EmployeeList() {
+	const { t } = useBntTranslate();
+	const [query, setQuery] = useState("");
+	const [searchText, setSearchText] = useState("");
+	const [sort, setSort] = useState(EmployeeListSort.Alphabet);
+	const {
+		fetchNext,
+		hasNext,
+		isFetching,
+		isLoading,
+		loadedPageCount,
+		objects: employees,
+		onlineCount,
+		teamCount,
+	} = useEmployeeList({
+		isAutoFetchAll: false,
+		searchText: searchText || undefined,
+		sort,
 	});
-	const buttons: Array<TSorterButton<TProfile>> = getEmployeeSearchButtons();
+	const debouncedSetSearchText = useDebounceCallback(setSearchText, 400);
+	const handleQueryChange = (nextQuery: string) => {
+		setQuery(nextQuery);
+		debouncedSetSearchText(nextQuery.trim());
+	};
 
 	useLoader(Modules.Employees, isLoading);
 
 	return (
-		<Grid container rowSpacing={{ xs: 2 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-			<Grid item xs={12}>
-				<SearchString setSearch={setSearch} setFilter={emptyFunction} setSorter={setSorter} buttons={buttons} />
-			</Grid>
-			{filteredList.map((profile) => {
-				return (
-					<Grid key={profile.id} item xs={12} sm={12} md={6} lg={3}>
-						<EmployeeCard employee={profile} />
-					</Grid>
-				);
-			})}
-		</Grid>
+		<EmployeeListView
+			employees={employees}
+			hasNext={hasNext}
+			isFetching={isFetching}
+			loadedPageCount={loadedPageCount}
+			onlineCount={onlineCount}
+			query={query}
+			sort={sort}
+			texts={{
+				description: t(texts_c.colleagues_description),
+				emptyDescription: t(texts_n.no_colleagues_description),
+				emptyTitle: t(texts_n.no_colleagues_found),
+				onlineCount: t(texts_n.now_online, { count: onlineCount }),
+				teamCount: t(texts_p.people_in_team, { count: teamCount }),
+				title: t(texts_c.colleagues),
+			}}
+			onLoadMore={fetchNext}
+			onQueryChange={handleQueryChange}
+			onSortChange={setSort}
+		/>
 	);
-};
+}

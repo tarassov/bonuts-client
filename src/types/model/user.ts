@@ -7,4 +7,5 @@ export type TUser = {
 	email?: string;
 	name?: string;
 	last_seen_at?: string | null;
+	is_online?: boolean;
 };

@@ -31,11 +31,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postAccountOperations: build.mutation<PostAccountOperationsApiResponse, PostAccountOperationsApiArg>({
-			query: (queryArg) => ({
-				url: `/account_operations`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/account_operations`, method: "POST", body: queryArg.body }),
 		}),
 		getAccountOperations: build.query<GetAccountOperationsApiResponse, GetAccountOperationsApiArg>({
 			query: (queryArg) => ({
@@ -48,18 +44,10 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postAccountOperationsTransfer: build.mutation<PostAccountOperationsTransferApiResponse, PostAccountOperationsTransferApiArg>({
-			query: (queryArg) => ({
-				url: `/account_operations/transfer`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/account_operations/transfer`, method: "POST", body: queryArg.body }),
 		}),
 		postAccountOperationsShareAll: build.mutation<PostAccountOperationsShareAllApiResponse, PostAccountOperationsShareAllApiArg>({
-			query: (queryArg) => ({
-				url: `/account_operations/share_all`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/account_operations/share_all`, method: "POST", body: queryArg.body }),
 		}),
 		getAccountsById: build.query<GetAccountsByIdApiResponse, GetAccountsByIdApiArg>({
 			query: (queryArg) => ({
@@ -70,11 +58,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postAdminDeposit: build.mutation<PostAdminDepositApiResponse, PostAdminDepositApiArg>({
-			query: (queryArg) => ({
-				url: `/admin_deposit`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/admin_deposit`, method: "POST", body: queryArg.body }),
 		}),
 		getCircles: build.query<GetCirclesApiResponse, GetCirclesApiArg>({
 			query: (queryArg) => ({
@@ -85,11 +69,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postCircles: build.mutation<PostCirclesApiResponse, PostCirclesApiArg>({
-			query: (queryArg) => ({
-				url: `/circles`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/circles`, method: "POST", body: queryArg.body }),
 		}),
 		getCirclesById: build.query<GetCirclesByIdApiResponse, GetCirclesByIdApiArg>({
 			query: (queryArg) => ({
@@ -100,11 +80,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		patchCirclesById: build.mutation<PatchCirclesByIdApiResponse, PatchCirclesByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/circles/${queryArg.id}`,
-				method: "PATCH",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/circles/${queryArg.id}`, method: "PATCH", body: queryArg.body }),
 		}),
 		deleteCirclesById: build.mutation<DeleteCirclesByIdApiResponse, DeleteCirclesByIdApiArg>({
 			query: (queryArg) => ({
@@ -116,11 +92,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postClientRequests: build.mutation<PostClientRequestsApiResponse, PostClientRequestsApiArg>({
-			query: (queryArg) => ({
-				url: `/client_requests`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/client_requests`, method: "POST", body: queryArg.body }),
 		}),
 		getDonuts: build.query<GetDonutsApiResponse, GetDonutsApiArg>({
 			query: (queryArg) => ({
@@ -132,11 +104,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postDonuts: build.mutation<PostDonutsApiResponse, PostDonutsApiArg>({
-			query: (queryArg) => ({
-				url: `/donuts`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/donuts`, method: "POST", body: queryArg.body }),
 		}),
 		getDonutsById: build.query<GetDonutsByIdApiResponse, GetDonutsByIdApiArg>({
 			query: (queryArg) => ({
@@ -147,11 +115,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		putDonutsById: build.mutation<PutDonutsByIdApiResponse, PutDonutsByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/donuts/${queryArg.id}`,
-				method: "PUT",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/donuts/${queryArg.id}`, method: "PUT", body: queryArg.body }),
 		}),
 		getEvents: build.query<GetEventsApiResponse, GetEventsApiArg>({
 			query: (queryArg) => ({
@@ -175,25 +139,13 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		putEventsById: build.mutation<PutEventsByIdApiResponse, PutEventsByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/events/${queryArg.id}`,
-				method: "PUT",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/events/${queryArg.id}`, method: "PUT", body: queryArg.body }),
 		}),
 		postEventsByIdLike: build.mutation<PostEventsByIdLikeApiResponse, PostEventsByIdLikeApiArg>({
-			query: (queryArg) => ({
-				url: `/events/${queryArg.id}/like`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/events/${queryArg.id}/like`, method: "POST", body: queryArg.body }),
 		}),
 		postEventsByIdComments: build.mutation<PostEventsByIdCommentsApiResponse, PostEventsByIdCommentsApiArg>({
-			query: (queryArg) => ({
-				url: `/events/${queryArg.id}/comments`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/events/${queryArg.id}/comments`, method: "POST", body: queryArg.body }),
 		}),
 		postInvitationsByIdClose: build.mutation<PostInvitationsByIdCloseApiResponse, PostInvitationsByIdCloseApiArg>({
 			query: (queryArg) => ({
@@ -219,23 +171,13 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postInvitations: build.mutation<PostInvitationsApiResponse, PostInvitationsApiArg>({
-			query: (queryArg) => ({
-				url: `/invitations`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/invitations`, method: "POST", body: queryArg.body }),
 		}),
 		postInvitationsByIdAccept: build.mutation<PostInvitationsByIdAcceptApiResponse, PostInvitationsByIdAcceptApiArg>({
-			query: (queryArg) => ({
-				url: `/invitations/${queryArg.id}/accept`,
-				method: "POST",
-			}),
+			query: (queryArg) => ({ url: `/invitations/${queryArg.id}/accept`, method: "POST" }),
 		}),
 		postInvitationsByIdDecline: build.mutation<PostInvitationsByIdDeclineApiResponse, PostInvitationsByIdDeclineApiArg>({
-			query: (queryArg) => ({
-				url: `/invitations/${queryArg.id}/decline`,
-				method: "POST",
-			}),
+			query: (queryArg) => ({ url: `/invitations/${queryArg.id}/decline`, method: "POST" }),
 		}),
 		getInvitationsByIdLink: build.query<GetInvitationsByIdLinkApiResponse, GetInvitationsByIdLinkApiArg>({
 			query: (queryArg) => ({
@@ -300,11 +242,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		patchPluginsById: build.mutation<PatchPluginsByIdApiResponse, PatchPluginsByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/plugins/${queryArg.id}`,
-				method: "PATCH",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/plugins/${queryArg.id}`, method: "PATCH", body: queryArg.body }),
 		}),
 		getProfileNotifications: build.query<GetProfileNotificationsApiResponse, GetProfileNotificationsApiArg>({
 			query: (queryArg) => ({
@@ -315,18 +253,10 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postProfileNotificationsByIdActivate: build.mutation<PostProfileNotificationsByIdActivateApiResponse, PostProfileNotificationsByIdActivateApiArg>({
-			query: (queryArg) => ({
-				url: `/profile_notifications/${queryArg.id}/activate`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/profile_notifications/${queryArg.id}/activate`, method: "POST", body: queryArg.body }),
 		}),
 		postProfileNotificationsByIdDeactivate: build.mutation<PostProfileNotificationsByIdDeactivateApiResponse, PostProfileNotificationsByIdDeactivateApiArg>({
-			query: (queryArg) => ({
-				url: `/profile_notifications/${queryArg.id}/deactivate`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/profile_notifications/${queryArg.id}/deactivate`, method: "POST", body: queryArg.body }),
 		}),
 		getProfilesByProfileIdProfilePictures: build.query<GetProfilesByProfileIdProfilePicturesApiResponse, GetProfilesByProfileIdProfilePicturesApiArg>({
 			query: (queryArg) => ({
@@ -337,11 +267,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postProfilesByProfileIdProfilePictures: build.mutation<PostProfilesByProfileIdProfilePicturesApiResponse, PostProfilesByProfileIdProfilePicturesApiArg>({
-			query: (queryArg) => ({
-				url: `/profiles/${queryArg.profileId}/profile_pictures`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/profiles/${queryArg.profileId}/profile_pictures`, method: "POST", body: queryArg.body }),
 		}),
 		getProfilePicturesById: build.query<GetProfilePicturesByIdApiResponse, GetProfilePicturesByIdApiArg>({
 			query: (queryArg) => ({
@@ -404,18 +330,10 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		putProfilesById: build.mutation<PutProfilesByIdApiResponse, PutProfilesByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/profiles/${queryArg.id}`,
-				method: "PUT",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/profiles/${queryArg.id}`, method: "PUT", body: queryArg.body }),
 		}),
 		postProfilesByIdSetActivity: build.mutation<PostProfilesByIdSetActivityApiResponse, PostProfilesByIdSetActivityApiArg>({
-			query: (queryArg) => ({
-				url: `/profiles/${queryArg.id}/set_activity`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/profiles/${queryArg.id}/set_activity`, method: "POST", body: queryArg.body }),
 		}),
 		getProfiles: build.query<GetProfilesApiResponse, GetProfilesApiArg>({
 			query: (queryArg) => ({
@@ -426,6 +344,9 @@ const injectedRtkApi = api.injectEndpoints({
 					show_score: queryArg.showScore,
 					show_sent: queryArg.showSent,
 					search_text: queryArg.searchText,
+					sort: queryArg.sort,
+					page: queryArg.page,
+					per_page: queryArg.perPage,
 				},
 			}),
 		}),
@@ -457,39 +378,19 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postRequests: build.mutation<PostRequestsApiResponse, PostRequestsApiArg>({
-			query: (queryArg) => ({
-				url: `/requests`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/requests`, method: "POST", body: queryArg.body }),
 		}),
 		postRequestsActivate: build.mutation<PostRequestsActivateApiResponse, PostRequestsActivateApiArg>({
-			query: (queryArg) => ({
-				url: `/requests/activate`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/requests/activate`, method: "POST", body: queryArg.body }),
 		}),
 		postRequestsRefund: build.mutation<PostRequestsRefundApiResponse, PostRequestsRefundApiArg>({
-			query: (queryArg) => ({
-				url: `/requests/refund`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/requests/refund`, method: "POST", body: queryArg.body }),
 		}),
 		postRequestsRollback: build.mutation<PostRequestsRollbackApiResponse, PostRequestsRollbackApiArg>({
-			query: (queryArg) => ({
-				url: `/requests/rollback`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/requests/rollback`, method: "POST", body: queryArg.body }),
 		}),
 		postRequestsClose: build.mutation<PostRequestsCloseApiResponse, PostRequestsCloseApiArg>({
-			query: (queryArg) => ({
-				url: `/requests/close`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/requests/close`, method: "POST", body: queryArg.body }),
 		}),
 		getRequestsLegacy: build.query<GetRequestsLegacyApiResponse, GetRequestsLegacyApiArg>({
 			query: (queryArg) => ({
@@ -531,11 +432,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postDonutsSchedulers: build.mutation<PostDonutsSchedulersApiResponse, PostDonutsSchedulersApiArg>({
-			query: (queryArg) => ({
-				url: `/donuts_schedulers`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/donuts_schedulers`, method: "POST", body: queryArg.body }),
 		}),
 		getDonutsSchedulersById: build.query<GetDonutsSchedulersByIdApiResponse, GetDonutsSchedulersByIdApiArg>({
 			query: (queryArg) => ({
@@ -546,11 +443,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		patchDonutsSchedulersById: build.mutation<PatchDonutsSchedulersByIdApiResponse, PatchDonutsSchedulersByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/donuts_schedulers/${queryArg.id}`,
-				method: "PATCH",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/donuts_schedulers/${queryArg.id}`, method: "PATCH", body: queryArg.body }),
 		}),
 		deleteDonutsSchedulersById: build.mutation<DeleteDonutsSchedulersByIdApiResponse, DeleteDonutsSchedulersByIdApiArg>({
 			query: (queryArg) => ({
@@ -568,17 +461,10 @@ const injectedRtkApi = api.injectEndpoints({
 			query: () => ({ url: `/telegram_chat` }),
 		}),
 		patchTenantPluginsById: build.mutation<PatchTenantPluginsByIdApiResponse, PatchTenantPluginsByIdApiArg>({
-			query: (queryArg) => ({
-				url: `/tenant_plugins/${queryArg.id}`,
-				method: "PATCH",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/tenant_plugins/${queryArg.id}`, method: "PATCH", body: queryArg.body }),
 		}),
 		postTenantsByTenantNameJoin: build.mutation<PostTenantsByTenantNameJoinApiResponse, PostTenantsByTenantNameJoinApiArg>({
-			query: (queryArg) => ({
-				url: `/tenants/${queryArg.tenantName}/join`,
-				method: "POST",
-			}),
+			query: (queryArg) => ({ url: `/tenants/${queryArg.tenantName}/join`, method: "POST" }),
 		}),
 		getTenantCurrent: build.query<GetTenantCurrentApiResponse, GetTenantCurrentApiArg>({
 			query: (queryArg) => ({
@@ -589,11 +475,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		putTenantCurrent: build.mutation<PutTenantCurrentApiResponse, PutTenantCurrentApiArg>({
-			query: (queryArg) => ({
-				url: `/tenant/current`,
-				method: "PUT",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/tenant/current`, method: "PUT", body: queryArg.body }),
 		}),
 		getTenantsAccessible: build.query<GetTenantsAccessibleApiResponse, GetTenantsAccessibleApiArg>({
 			query: () => ({ url: `/tenants/accessible` }),
@@ -621,32 +503,16 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postAvatars: build.mutation<PostAvatarsApiResponse, PostAvatarsApiArg>({
-			query: (queryArg) => ({
-				url: `/avatars`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/avatars`, method: "POST", body: queryArg.body }),
 		}),
 		postUsersSetNewEmail: build.mutation<PostUsersSetNewEmailApiResponse, PostUsersSetNewEmailApiArg>({
-			query: (queryArg) => ({
-				url: `/users/set_new_email`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/users/set_new_email`, method: "POST", body: queryArg.body }),
 		}),
 		postRegister: build.mutation<PostRegisterApiResponse, PostRegisterApiArg>({
-			query: (queryArg) => ({
-				url: `/register`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/register`, method: "POST", body: queryArg.body }),
 		}),
 		postConfirmEmail: build.mutation<PostConfirmEmailApiResponse, PostConfirmEmailApiArg>({
-			query: (queryArg) => ({
-				url: `/confirm_email`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/confirm_email`, method: "POST", body: queryArg.body }),
 		}),
 		getConfirmEmail: build.query<GetConfirmEmailApiResponse, GetConfirmEmailApiArg>({
 			query: (queryArg) => ({
@@ -660,21 +526,13 @@ const injectedRtkApi = api.injectEndpoints({
 			query: () => ({ url: `/demo_authenticate`, method: "POST" }),
 		}),
 		postAuthenticate: build.mutation<PostAuthenticateApiResponse, PostAuthenticateApiArg>({
-			query: (queryArg) => ({
-				url: `/authenticate`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/authenticate`, method: "POST", body: queryArg.body }),
 		}),
 		postLogout: build.mutation<PostLogoutApiResponse, PostLogoutApiArg>({
 			query: () => ({ url: `/logout`, method: "POST" }),
 		}),
 		postSendConfirmEmail: build.mutation<PostSendConfirmEmailApiResponse, PostSendConfirmEmailApiArg>({
-			query: (queryArg) => ({
-				url: `/send_confirm_email`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/send_confirm_email`, method: "POST", body: queryArg.body }),
 		}),
 		postRefreshToken: build.mutation<PostRefreshTokenApiResponse, PostRefreshTokenApiArg>({
 			query: () => ({ url: `/refresh_token`, method: "POST" }),
@@ -688,25 +546,13 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		putUsersPassword: build.mutation<PutUsersPasswordApiResponse, PutUsersPasswordApiArg>({
-			query: (queryArg) => ({
-				url: `/users/password`,
-				method: "PUT",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/users/password`, method: "PUT", body: queryArg.body }),
 		}),
 		postUsersPassword: build.mutation<PostUsersPasswordApiResponse, PostUsersPasswordApiArg>({
-			query: (queryArg) => ({
-				url: `/users/password`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/users/password`, method: "POST", body: queryArg.body }),
 		}),
 		putUserLocale: build.mutation<PutUserLocaleApiResponse, PutUserLocaleApiArg>({
-			query: (queryArg) => ({
-				url: `/user/locale`,
-				method: "PUT",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/user/locale`, method: "PUT", body: queryArg.body }),
 		}),
 		postUsersGenerateTg: build.mutation<PostUsersGenerateTgApiResponse, PostUsersGenerateTgApiArg>({
 			query: (queryArg) => ({
@@ -718,11 +564,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postVkConnect: build.mutation<PostVkConnectApiResponse, PostVkConnectApiArg>({
-			query: (queryArg) => ({
-				url: `/vk/connect`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/vk/connect`, method: "POST", body: queryArg.body }),
 		}),
 		deleteVkDisconnect: build.mutation<DeleteVkDisconnectApiResponse, DeleteVkDisconnectApiArg>({
 			query: (queryArg) => ({
@@ -735,11 +577,7 @@ const injectedRtkApi = api.injectEndpoints({
 			}),
 		}),
 		postVkLogin: build.mutation<PostVkLoginApiResponse, PostVkLoginApiArg>({
-			query: (queryArg) => ({
-				url: `/vk/login`,
-				method: "POST",
-				body: queryArg.body,
-			}),
+			query: (queryArg) => ({ url: `/vk/login`, method: "POST", body: queryArg.body }),
 		}),
 		getVkMe: build.query<GetVkMeApiResponse, GetVkMeApiArg>({
 			query: () => ({ url: `/vk/me` }),
@@ -1368,6 +1206,7 @@ export type GetEventsApiResponse = /** status 200 excludes notifications when ex
 			user_id: number;
 			user_name: string;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			comments: {
 				id: number;
 				content: string;
@@ -1472,6 +1311,7 @@ export type GetEventsByIdApiResponse = /** status 200 user can view own private 
 			user_id: number;
 			user_name: string;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			comments: {
 				id: number;
 				content: string;
@@ -1581,6 +1421,7 @@ export type PostEventsByIdLikeApiResponse = /** status 200 event unliked */ {
 				user_id: number;
 				user_name: string;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				comments: {
 					id: number;
 					content: string;
@@ -1685,6 +1526,7 @@ export type PostEventsByIdCommentsApiResponse = /** status 200 new comment creat
 				user_id: number;
 				user_name: string;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				comments: {
 					id: number;
 					content: string;
@@ -1900,6 +1742,7 @@ export type PostInvitationsByIdAcceptApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -1912,6 +1755,10 @@ export type PostInvitationsByIdAcceptApiResponse = /** status 200 success */ {
 			};
 		};
 	}[];
+	meta?: {
+		online_count: number;
+		team_count: number;
+	};
 };
 export type PostInvitationsByIdAcceptApiArg = {
 	id: string;
@@ -2430,6 +2277,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -2464,6 +2312,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 			email_confirmed: boolean;
 			name: string;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 		};
 	}[];
 };
@@ -2522,6 +2371,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -2556,6 +2406,7 @@ export type GetProfilesByIdApiResponse = /** status 200 success */ {
 			email_confirmed: boolean;
 			name: string;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 		};
 	}[];
 };
@@ -2615,6 +2466,7 @@ export type PutProfilesByIdApiResponse = /** status 200 admin updates another te
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -2649,6 +2501,7 @@ export type PutProfilesByIdApiResponse = /** status 200 admin updates another te
 			email_confirmed: boolean;
 			name: string;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 		};
 	}[];
 };
@@ -2718,6 +2571,7 @@ export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -2730,6 +2584,10 @@ export type PostProfilesByIdSetActivityApiResponse = /** status 200 success */ {
 			};
 		};
 	}[];
+	meta?: {
+		online_count: number;
+		team_count: number;
+	};
 };
 export type PostProfilesByIdSetActivityApiArg = {
 	id: number;
@@ -2739,69 +2597,70 @@ export type PostProfilesByIdSetActivityApiArg = {
 	};
 };
 export type GetProfilesApiResponse = /** status 200 success */ {
-	data?: {
-		id: string;
-		type: string;
-		attributes: {
+	data: {
+		id: number;
+		default?: boolean;
+		user_id: number;
+		active: boolean;
+		admin: boolean;
+		attached?: boolean;
+		roles: string[];
+		circles: {
+			name: string;
 			id: number;
-			default?: boolean;
-			user_id: number;
 			active: boolean;
-			admin: boolean;
-			attached?: boolean;
-			roles: string[];
-			circles: {
-				name: string;
-				id: number;
-				active: boolean;
-			}[];
-			department?: (object | null) | null;
-			position?: (string | null) | null;
-			store_admin?: boolean;
-			bot?: boolean;
-			first_name?: string;
-			last_name?: string;
-			name?: string;
-			email: string;
-			locale: string;
-			tenant?: string;
-			sex?: string;
-			tg_code?: (string | null) | null;
-			phone?: (string | null) | null;
-			contact: (string | null) | null;
-			bio: (string | null) | null;
-			birthdate: (string | null) | null;
-			in_date: (string | null) | null;
-			created_at?: string;
-			user_avatar?: {
+		}[];
+		department?: (object | null) | null;
+		position?: (string | null) | null;
+		store_admin?: boolean;
+		bot?: boolean;
+		first_name?: string;
+		last_name?: string;
+		name?: string;
+		email: string;
+		locale: string;
+		tenant?: string;
+		sex?: string;
+		tg_code?: (string | null) | null;
+		phone?: (string | null) | null;
+		contact: (string | null) | null;
+		bio: (string | null) | null;
+		birthdate: (string | null) | null;
+		in_date: (string | null) | null;
+		created_at?: string;
+		user_avatar?: {
+			url: string | null;
+			thumb: {
 				url: string | null;
-				thumb: {
-					url: string | null;
-				};
-				preview: {
-					url: string | null;
-				};
 			};
-			logo?: {
-				url?: string | null;
-				thumb?: {
-					url?: string | null;
-				};
-			};
-			score_total?: number;
-			last_seen_at: (string | null) | null;
-			self_account?: {
-				id?: number;
-				tenant_id?: number;
-				profile_id?: number;
-			};
-			distrib_account?: {
-				id?: number;
-				tenant_id?: number;
-				profile_id?: number;
+			preview: {
+				url: string | null;
 			};
 		};
+		logo?: {
+			url?: string | null;
+			thumb?: {
+				url?: string | null;
+			};
+		};
+		score_total?: number;
+		last_seen_at: (string | null) | null;
+		is_online: boolean;
+		self_account?: {
+			id?: number;
+			tenant_id?: number;
+			profile_id?: number;
+		};
+		distrib_account?: {
+			id?: number;
+			tenant_id?: number;
+			profile_id?: number;
+		};
 	}[];
+	meta: {
+		online_count: number;
+		team_count: number;
+	};
 };
 export type GetProfilesApiArg = {
 	tenant?: string;
@@ -2809,6 +2668,9 @@ export type GetProfilesApiArg = {
 	showScore?: boolean;
 	showSent?: boolean;
 	searchText?: string;
+	sort?: "alphabet" | "newest";
+	page?: number;
+	perPage?: number;
 };
 export type GetReportsProfilesApiResponse = /** status 200 success */ {
 	data?: {
@@ -2862,6 +2724,7 @@ export type GetReportsProfilesApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -2874,6 +2737,10 @@ export type GetReportsProfilesApiResponse = /** status 200 success */ {
 			};
 		};
 	}[];
+	meta?: {
+		online_count: number;
+		team_count: number;
+	};
 };
 export type GetReportsProfilesApiArg = {
 	tenant?: string;
@@ -3003,6 +2870,7 @@ export type GetRequestsApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -3149,6 +3017,7 @@ export type PostRequestsApiResponse = /** status 201 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3292,6 +3161,7 @@ export type PostRequestsActivateApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3435,6 +3305,7 @@ export type PostRequestsRefundApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3578,6 +3449,7 @@ export type PostRequestsRollbackApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3721,6 +3593,7 @@ export type PostRequestsCloseApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3864,6 +3737,7 @@ export type GetRequestsLegacyApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -3966,6 +3840,7 @@ export type GetDonutsSchedulersApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -4047,6 +3922,7 @@ export type PostDonutsSchedulersApiResponse = /** status 201 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -4140,6 +4016,7 @@ export type GetDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -4222,6 +4099,7 @@ export type PatchDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -4307,6 +4185,7 @@ export type DeleteDonutsSchedulersByIdApiResponse = /** status 200 success */ {
 				};
 				score_total?: number;
 				last_seen_at: (string | null) | null;
+				is_online: boolean;
 				self_account?: {
 					id?: number;
 					tenant_id?: number;
@@ -4409,6 +4288,7 @@ export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -4421,6 +4301,10 @@ export type PostTenantsByTenantNameJoinApiResponse = /** status 200 success */ {
 			};
 		};
 	}[];
+	meta?: {
+		online_count: number;
+		team_count: number;
+	};
 };
 export type PostTenantsByTenantNameJoinApiArg = {
 	tenantName: string;
@@ -4660,6 +4544,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			};
 			score_total?: number;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 			self_account?: {
 				id?: number;
 				tenant_id?: number;
@@ -4694,6 +4579,7 @@ export type PostAvatarsApiResponse = /** status 200 success */ {
 			email_confirmed: boolean;
 			name: string;
 			last_seen_at: (string | null) | null;
+			is_online: boolean;
 		};
 	}[];
 };
@@ -4746,6 +4632,7 @@ export type GetConfirmEmailApiResponse = /** status 200 receives user */ {
 			email_confirmed?: boolean;
 			name?: string;
 			last_seen_at?: (string | null) | null;
+			is_online?: boolean;
 		};
 	};
 };
@@ -4874,6 +4761,7 @@ export type GetUsersRecoverApiResponse = /** status 200 success */ {
 			email_confirmed?: boolean;
 			name?: string;
 			last_seen_at?: (string | null) | null;
+			is_online?: boolean;
 		};
 	};
 };
@@ -4913,6 +4801,7 @@ export type PutUserLocaleApiResponse = /** status 200 success */ {
 			email_confirmed?: boolean;
 			name?: string;
 			last_seen_at?: (string | null) | null;
+			is_online?: boolean;
 		};
 	};
 };

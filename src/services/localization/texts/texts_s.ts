@@ -42,6 +42,7 @@ export enum texts_s {
 	search_by_name = "search by name",
 	search_circles = "search circles",
 	sort_rewards = "sort rewards",
+	sort_by = "sort by",
 	shown_items = "shown items",
 	stock_configuration_description = "stock configuration description",
 }

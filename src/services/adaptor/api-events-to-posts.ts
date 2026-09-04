@@ -19,6 +19,7 @@ const resolveUser = (attributes: TEventWithOptionalUser["attributes"]): TUser | 
 			...attributes.user,
 			user_name: attributes.user.user_name || attributes.user.name || attributes.user_name,
 			last_seen_at: attributes.user.last_seen_at ?? attributes.last_seen_at ?? null,
+			is_online: attributes.user.is_online ?? attributes.is_online,
 		};
 	}
 
@@ -27,6 +28,7 @@ const resolveUser = (attributes: TEventWithOptionalUser["attributes"]): TUser | 
 			id: attributes.user_id,
 			user_name: attributes.user_name,
 			last_seen_at: attributes.last_seen_at,
+			is_online: attributes.is_online,
 		};
 	}
 
@@ -51,6 +53,7 @@ const translateData = (target: TEventWithOptionalUser): TPost => {
 			admin: false,
 			user_avatar: attributes.user_avatar,
 			last_seen_at: user?.last_seen_at || attributes.last_seen_at || undefined,
+			is_online: user?.is_online ?? attributes.is_online,
 		},
 		title: attributes.user_name,
 		extra_content: attributes.extra_content || "",

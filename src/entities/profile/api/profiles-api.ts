@@ -1,8 +1,11 @@
 import { bonutsApi } from "services/api/bonuts-api";
 
-import { cacheByIdArgProperty, cacheByIdResultProperty, providesList } from "@/shared/lib/rtk";
+import { cacheByIdArgProperty, cacheByIdResultProperty, getNextPageParam, getTransformPageableResponse, providesInfiniteList, providesList } from "@/shared/lib/rtk";
 
-export const profilesApi = bonutsApi.enhanceEndpoints({
+import type { GetProfilesApiArg, GetProfilesApiResponse } from "@/services/api/bonuts-api";
+import type { TPageable } from "@/types/api/api";
+
+const profilesApiEnhanced = bonutsApi.enhanceEndpoints({
 	addTagTypes: ["Profiles"],
 	endpoints: {
 		getProfiles: { providesTags: providesList("Profiles") },
@@ -18,3 +21,29 @@ export const profilesApi = bonutsApi.enhanceEndpoints({
 		postProfileNotificationsByIdDeactivate: { invalidatesTags: [{ type: "Profiles", id: "CURRENT" }] },
 	},
 });
+
+export const profilesApi = profilesApiEnhanced.injectEndpoints({
+	endpoints: (build) => ({
+		getProfilesFeed: build.infiniteQuery<TPageable<GetProfilesApiResponse>, Omit<GetProfilesApiArg, "page">, number>({
+			infiniteQueryOptions: {
+				initialPageParam: 1,
+				getNextPageParam,
+			},
+			query: ({ queryArg, pageParam }) => ({
+				url: "/profiles",
+				params: {
+					tenant: queryArg.tenant,
+					search_text: queryArg.searchText,
+					sort: queryArg.sort,
+					page: pageParam,
+					per_page: queryArg.perPage,
+				},
+			}),
+			transformResponse: getTransformPageableResponse<TPageable<GetProfilesApiResponse>>(),
+			providesTags: providesInfiniteList("Profiles"),
+		}),
+	}),
+	overrideExisting: false,
+});
+
+export const { useGetProfilesFeedInfiniteQuery } = profilesApi;
