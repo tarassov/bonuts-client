@@ -4,6 +4,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 24px 16px;
+	position: relative;
 }
 
 .shell {
@@ -22,6 +23,33 @@
 	display: flex;
 }
 
+.languageSelector {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	min-width: 92px;
+	z-index: 1;
+}
+
+.languageIcon {
+	margin-right: 6px;
+	color: var(--mui-palette-text-secondary);
+}
+
+.languageSelector :global(.MuiOutlinedInput-root) {
+	border-radius: 999px;
+	background: var(--mui-palette-background-paper);
+	box-shadow: 0 4px 14px rgba(17, 19, 24, 0.06);
+}
+
+.languageSelector :global(.MuiSelect-select) {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
 @media (min-width: 600px) {
 	.page {
 		padding: 40px 20px;
@@ -29,5 +57,8 @@
 	.card {
 		flex-direction: row;
 	}
+	.languageSelector {
+		top: 24px;
+		right: 32px;
+	}
 }
-

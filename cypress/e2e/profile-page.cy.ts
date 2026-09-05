@@ -187,6 +187,12 @@ describe("Profile page", () => {
 			cy.contains("Contacts").scrollIntoView().should("be.visible");
 			cy.contains("Additional information").scrollIntoView().should("be.visible");
 			cy.contains("Genius, billionaire, philanthropist.").scrollIntoView().should("be.visible");
+			cy.get('[id="user-profile|roles"]')
+				.closest(".MuiAutocomplete-root")
+				.within(() => {
+					cy.contains("Admin").should("be.visible");
+					cy.contains("Store admin").should("be.visible");
+				});
 			cy.get('[data-testid="profile-locale-card"]').scrollIntoView().should("be.visible");
 
 			if (!isMobile) {

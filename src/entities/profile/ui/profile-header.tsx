@@ -3,7 +3,7 @@ import { PhotoLibraryOutlined } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_c, texts_m } from "services/localization/texts";
+import { texts_c, texts_m, texts_p } from "services/localization/texts";
 
 import { BntTransparentButton } from "@/shared/ui/buttons";
 import { BntCard } from "@/shared/ui/card";
@@ -15,9 +15,9 @@ import { ProfileStatusChips, useUpdateAvatar } from "@/entities/profile";
 import classes from "./profile-header.module.scss";
 import type { TProfile } from "@/types/model";
 
-function getDisplayName(profile?: TProfile) {
+function getDisplayName(profile: TProfile | undefined, fallback: string) {
 	const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(" ").trim();
-	return fullName || profile?.user_name || profile?.name || "Profile";
+	return fullName || profile?.user_name || profile?.name || fallback;
 }
 
 function getAvatarInitials(profile?: TProfile) {
@@ -48,7 +48,7 @@ export function ProfileHeader({ onPhotosClick, profile }: IProfileHeaderProps) {
 	const theme = useTheme();
 	const { postAvatar } = useUpdateAvatar();
 
-	const displayName = useMemo(() => getDisplayName(profile), [profile]);
+	const displayName = useMemo(() => getDisplayName(profile, translate(texts_p.profile)), [profile, translate]);
 	const initials = useMemo(() => getAvatarInitials(profile), [profile]);
 	const isDarkMode = theme.palette.mode === "dark";
 

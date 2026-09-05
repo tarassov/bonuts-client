@@ -19,12 +19,13 @@ import { AuthFormPanel, AuthHero } from "@/shared/ui/auth";
 import { useLoader } from "@/shared/ui/loader";
 
 import { Messenger } from "@/features/3cx";
+import { useSignUp } from "@/features/auth/sign-up";
 import { openVkLoginWindow } from "@/features/profile/vk";
 
 import styles from "../login-page.module.scss";
 
+import { LoginLanguageSelector } from "./login-language-selector";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import type { TLoginFields } from "@/types/form/login";
 
 type TApiErrorData = {
@@ -127,6 +128,7 @@ export const LoginPage: FC = () => {
 			})}
 		>
 			<Messenger />
+			<LoginLanguageSelector />
 			<Box className={styles.shell}>
 				<Box
 					className={styles.card}

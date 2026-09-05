@@ -26,7 +26,7 @@ export function ProfilePage() {
 	return (
 		<>
 			<BntStack direction="column" className="height-100">
-				<BntTabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="fullWidth" aria-label="profile tabs">
+				<BntTabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="fullWidth" aria-label={translate(texts_p.profile_tabs)}>
 					<BntTab label={translate(texts_p.profile)} tabValue={0} />
 					<BntTab label={translate(texts_s.settings)} tabValue={1} />
 				</BntTabs>

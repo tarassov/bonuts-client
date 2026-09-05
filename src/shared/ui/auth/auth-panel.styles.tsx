@@ -1,4 +1,4 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Paper, Stack, TextField, Typography } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
 export const AuthHeroRoot = styled(Stack)(({ theme }) => ({
@@ -83,6 +83,20 @@ export const AuthFormColumn = styled(Stack)(({ theme }) => ({
 		flex: "0 0 420px",
 		padding: "44px 40px 36px",
 		justifyContent: "center",
+	},
+}));
+
+export const AuthPageCard = styled(Paper)(({ theme }) => ({
+	width: "min(100%, 440px)",
+	padding: "32px 24px 28px",
+	border: `1px solid ${theme.palette.mode === "dark" ? theme.palette.divider : alpha(theme.palette.text.secondary, 0.12)}`,
+	borderRadius: 24,
+	boxShadow:
+		theme.palette.mode === "dark"
+			? `0 1px 2px ${alpha(theme.palette.common.black, 0.38)}, 0 12px 28px ${alpha(theme.palette.common.black, 0.28)}`
+			: `0 1px 3px ${alpha(theme.palette.common.black, 0.08)}, 0 12px 32px ${alpha(theme.palette.common.black, 0.06)}`,
+	[theme.breakpoints.up("sm")]: {
+		padding: "40px 40px 36px",
 	},
 }));
 

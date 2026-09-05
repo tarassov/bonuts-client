@@ -17,7 +17,7 @@ export const useRegisterValidation = () => {
 			.required(translate(texts_p.password_confirm_is_required, { capitalize: true }))
 			// .min(4, "Password length should be at least 4 characters")
 			// .max(12, "Password cannot exceed more than 12 characters")
-			.oneOf([Yup.ref("password")], translate(texts_p.passwords_do_not_math, { capitalize: true })),
+			.oneOf([Yup.ref("password")], translate(texts_p.passwords_do_not_match, { capitalize: true })),
 		first_name: Yup.string().required(translate(texts_f.first_name)),
 		last_name: Yup.string().required(translate(texts_l.last_name)),
 		email: Yup.string()

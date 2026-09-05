@@ -27,7 +27,7 @@ export enum texts_t {
 	time_is_required = "time is required",
 	tooltip_scheduler_time = "tooltip_scheduler_time",
 	total_donuts_received = "total received",
-	total_donuts_sent = "total received",
+	total_donuts_sent = "total sent",
 	total_rewards = "total rewards",
 	telegram_code = "telegram code",
 }

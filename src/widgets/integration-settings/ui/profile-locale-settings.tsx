@@ -9,6 +9,7 @@ import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_l } from "@/services/localization/texts";
 
 export function ProfileLocaleSettings() {
 	const { translate } = useBntTranslate();
@@ -32,10 +33,10 @@ export function ProfileLocaleSettings() {
 		<BntStack direction="column" spacing={2}>
 			<BntStack direction="row" sx={{ gap: 2, alignItems: "center", mb: 2 }}>
 				<LanguageOutlined color="primary" sx={{ fontSize: 32 }} />
-				<BntTypography variant="h6">{translate("locale", { capitalize: true })}</BntTypography>
+				<BntTypography variant="h6">{translate(texts_l.language)}</BntTypography>
 			</BntStack>
 			<FormControl variant="standard" sx={{ maxWidth: 280 }}>
-				<InputLabel id="profile-locale-select-label">{translate("locale")}</InputLabel>
+				<InputLabel id="profile-locale-select-label">{translate(texts_l.language)}</InputLabel>
 				<Select labelId="profile-locale-select-label" id="profile-locale-select" value={locale} onChange={handleLocaleChange}>
 					{localeOptions.map((option) => (
 						<MenuItem key={option.value} value={option.value}>

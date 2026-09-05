@@ -1,4 +1,4 @@
-.page {
+.box {
 	min-height: 100%;
 	display: flex;
 	align-items: center;
@@ -7,7 +7,7 @@
 }
 
 @media (min-width: 600px) {
-	.page {
+	.box {
 		padding: 40px 20px;
 	}
 }

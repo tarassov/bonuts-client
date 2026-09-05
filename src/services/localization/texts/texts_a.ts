@@ -26,7 +26,11 @@ export enum texts_a {
 	add_colleague_to_team_invitation_description = "add colleague to team invitation description",
 	admin = "admin",
 	about_myself = "About myself",
+	additional_information = "Additional information",
+	and_other_important_information = "and other important information",
+	anything_you_want_to_share = "anything you want to share",
 	add_photo = "add photo",
+	add_to_favorites = "add to favorites",
 	add_reward = "add reward",
 	availability = "availability",
 }

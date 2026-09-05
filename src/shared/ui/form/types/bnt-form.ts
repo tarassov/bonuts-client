@@ -75,7 +75,7 @@ export type TFormFieldSourceItem = { key: string | number; label?: string };
 export type TFormFieldSource = Array<TFormFieldSourceItem>;
 export type TFormField<T = Record<string, any>> = TSizeProps & {
 	name: keyof T;
-	label: string;
+	label?: string;
 	// for switch type
 	disabledLabel?: string;
 	size: FieldSize;
