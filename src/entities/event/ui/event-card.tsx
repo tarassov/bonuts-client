@@ -20,7 +20,7 @@ import { EventOperationText } from "./event-operation-text";
 import { Dictionary } from "@/constants/dictionary";
 import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { useEventUi } from "@/logic/ui/use-event-ui";
-import { texts_n } from "@/services/localization/texts";
+import { texts_a, texts_c, texts_e, texts_n, texts_s } from "@/services/localization/texts";
 import type { TPost } from "@/types/model/post";
 import { emptyFunction } from "@/utils/empty-function";
 import { focusInput } from "@/utils/focus-input";
@@ -144,7 +144,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 							inputRef={inputRef}
 						/>
 						<Button type="submit" color="primary">
-							{t("Submit")}
+							{t(texts_s.submit)}
 						</Button>
 					</Box>
 				)}
@@ -155,7 +155,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 					{likeable && (
 						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
 							<IconButton
-								aria-label="Add to favorites"
+								aria-label={t(texts_a.add_to_favorites) || texts_a.add_to_favorites}
 								onClick={handleLike}
 								className={classNames(EVENT_CARD_CLASSES.cardActionButton, {
 									[EVENT_CARD_CLASSES.liked]: liked,
@@ -168,7 +168,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 					)}
 					{commentable && (
 						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
-							<IconButton aria-label="Comment" onClick={handleComment} className={EVENT_CARD_CLASSES.cardActionButton}>
+							<IconButton aria-label={t(texts_c.comment) || texts_c.comment} onClick={handleComment} className={EVENT_CARD_CLASSES.cardActionButton}>
 								<Comment />
 							</IconButton>
 							<BntBox className={EVENT_CARD_CLASSES.iconCaption}>{commentsCount > 0 && commentsCount}</BntBox>
@@ -176,7 +176,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 					)}
 					{editable && (
 						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
-							<IconButton onClick={handleEdit} aria-label="edit" className={EVENT_CARD_CLASSES.cardActionButton}>
+							<IconButton onClick={handleEdit} aria-label={t(texts_e.edit) || texts_e.edit} className={EVENT_CARD_CLASSES.cardActionButton}>
 								<Edit />
 							</IconButton>
 						</BntBox>

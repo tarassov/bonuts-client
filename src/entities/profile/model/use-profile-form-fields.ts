@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 
 import { useRoleField } from "hooks/form-field/use-role-field";
-import { texts_a } from "services/localization/texts/texts_a";
-import { texts_e } from "services/localization/texts/texts_e";
 
 import { UserLogic } from "@/shared/lib";
 import { useCurrentProfile } from "@/shared/model/auth";
-import { FieldSize, FieldType, TFormField, TFormFieldSourceItem } from "@/shared/ui/form";
+import type { TFormField, TFormFieldSourceItem } from "@/shared/ui/form";
+import { FieldSize, FieldType } from "@/shared/ui/form";
 
 import { useCircleLoaderList } from "logic/hooks/cirlce/use-circle-loader-list";
+import { texts_c, texts_d, texts_e, texts_f, texts_l, texts_p, texts_s } from "@/services/localization/texts";
 import { type TCircle, type TProfile } from "@/types/model";
 
 interface IProps {
@@ -26,7 +26,7 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.xs,
 				name: "email",
-				label: "Email",
+				label: texts_e.email,
 				xs: 12,
 				required: true,
 				disabled: !isEmailEditable,
@@ -36,7 +36,7 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.xs,
 				name: "first_name",
-				label: "Name",
+				label: texts_f.first_name,
 				xs: 12,
 				md: 6,
 			},
@@ -45,7 +45,7 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.md,
 				name: "last_name",
-				label: "Surname",
+				label: texts_l.last_name,
 				xs: 12,
 				md: 6,
 			},
@@ -53,7 +53,7 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.xs,
 				name: "contact",
-				label: "Contact",
+				label: texts_c.contact,
 				xs: 12,
 				required: true,
 			},
@@ -62,7 +62,7 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.md,
 				name: "position",
-				label: "Position",
+				label: texts_p.position,
 				xs: 12,
 			},
 			roleField,
@@ -70,7 +70,7 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.xs,
 				name: "birthdate",
-				label: "Date of birth",
+				label: texts_d.date_of_birth,
 				type: FieldType.date,
 				md: 6,
 				sm: 12,
@@ -90,8 +90,8 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.md,
 				name: "circles",
-				label: "Circles",
-				placeholder: "Circles",
+				label: texts_c.circles,
+				placeholder: texts_c.circles,
 				source: circles.map((circle: TCircle): TFormFieldSourceItem => {
 					return { key: circle.id, label: circle.name };
 				}),
@@ -109,8 +109,7 @@ export const useProfileFormFields = ({ isEmailEditable = true }: IProps = {}) =>
 				image: false,
 				size: FieldSize.md,
 				name: "bio",
-				label: texts_a.about_myself,
-				placeholder: texts_a.about_myself,
+				placeholder: texts_s.some_interesting_facts,
 				type: FieldType.textarea,
 				maxRows: 7,
 				minRows: 5,

@@ -6,7 +6,19 @@ describe("Login page", () => {
 		cy.url().should("include", "/login");
 		cy.get("#email").should("be.visible");
 		cy.get("#password").should("be.visible");
+		cy.get('[data-testid="login-language-selector"]').should("be.visible");
 		cy.get('button[type="submit"]').should("be.visible");
+	});
+
+	it("changes the page language without a profile update request", () => {
+		cy.intercept("PUT", "**/profile/**").as("updateProfile");
+
+		cy.visit("/login");
+		cy.get('[data-testid="login-language-selector"]').click();
+		cy.contains('[role="option"]', "English").click();
+
+		cy.contains("Sign in").should("be.visible");
+		cy.get("@updateProfile.all").should("have.length", 0);
 	});
 
 	it("redirects to dashboard after successful login", () => {

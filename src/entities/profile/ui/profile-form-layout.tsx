@@ -4,10 +4,12 @@ import { useFormContext, useFormState } from "react-hook-form";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
 import { BntBox } from "@/shared/ui/box";
-import { BntFormContextProvider, BntFormSubmit, TFormField } from "@/shared/ui/form";
+import type { TFormField } from "@/shared/ui/form";
+import { BntFormContextProvider, BntFormSubmit } from "@/shared/ui/form";
 
 import classes from "./profile-form.module.scss";
 import { ProfileFormSection } from "./profile-form-section";
+import { texts_a, texts_c, texts_e, texts_m, texts_n } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
 
 export function ProfileFormLayout({
@@ -64,10 +66,10 @@ export function ProfileFormLayout({
 		<BntBox className={classes.root}>
 			<BntFormContextProvider values={values} initialValues={initialValues}>
 				<div className={classes.content}>
-					<ProfileFormSection title={translate("Main information")} hint={translate("Name, surname and position")} fields={mainInfoFields} formId={formId} />
-					<ProfileFormSection title={translate("Contacts")} hint={translate("Email and direct contact")} fields={contactFields} formId={formId} />
-					<ProfileFormSection title={translate("About myself")} hint={translate("The most human part of the profile")} fields={bioFields} formId={formId} emphasized />
-					<ProfileFormSection title={translate("Additional information")} hint={translate("Dates, circles and access")} fields={additionalFields} formId={formId} />
+					<ProfileFormSection title={translate(texts_m.main_information)} hint={translate(texts_n.name_surname_and_position)} fields={mainInfoFields} formId={formId} />
+					<ProfileFormSection title={translate(texts_c.contacts)} hint={translate(texts_e.email_and_direct_contact)} fields={contactFields} formId={formId} />
+					<ProfileFormSection title={translate(texts_a.about_myself)} hint={translate(texts_a.anything_you_want_to_share)} fields={bioFields} formId={formId} emphasized />
+					<ProfileFormSection title={translate(texts_a.additional_information)} hint={translate(texts_a.and_other_important_information)} fields={additionalFields} formId={formId} />
 				</div>
 			</BntFormContextProvider>
 			{showSubmit ? (

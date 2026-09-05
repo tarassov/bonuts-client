@@ -2,6 +2,7 @@ export enum texts_n {
 	no_operations = "no operations",
 	not_active = "not active",
 	name = "name",
+	name_surname_and_position = "Name, surname and position",
 	no_data_yet = "no data yet",
 	no_name = "no name",
 	no_colleagues_found = "no colleagues found",

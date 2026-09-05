@@ -1,7 +1,7 @@
 import type { TFormField } from "@/shared/ui/form";
 import { FieldSize, FieldType } from "@/shared/ui/form";
 
-import { texts_b, texts_d, texts_e, texts_t, texts_w } from "@/services/localization/texts";
+import { texts_b, texts_d, texts_t, texts_w } from "@/services/localization/texts";
 import type { TTenant } from "@/types/model/tenant";
 
 export function useTenantSettingsFormFields() {
@@ -85,17 +85,6 @@ export function useTenantSettingsFormFields() {
 			xs: 12,
 			sm: 6,
 			lg: 6,
-			group: 3,
-		},
-		{
-			disabled: false,
-			type: FieldType.switch,
-			image: false,
-			size: FieldSize.xs,
-			name: "email_notification",
-			label: texts_e.email_notification,
-			required: false,
-			xs: 12,
 			group: 3,
 		},
 		{
