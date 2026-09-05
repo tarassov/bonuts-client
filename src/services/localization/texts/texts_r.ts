@@ -23,6 +23,7 @@ export enum texts_r {
 	recognition_sent = "your recognition has been sent. recognition like this makes teams stronger.",
 	restore_password = "restore password",
 	recover_email_has_been_sent = "recover email has been sent",
+	recover_password_description = "recover password description",
 	reward_image = "reward image",
 	rewards_filter = "rewards filter",
 }
