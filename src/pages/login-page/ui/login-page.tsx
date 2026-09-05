@@ -23,6 +23,7 @@ import { openVkLoginWindow } from "@/features/profile/vk";
 
 import styles from "../login-page.module.scss";
 
+import { LoginLanguageSelector } from "./login-language-selector";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUp } from "logic/hooks/auth/use-sign-up";
 import type { TLoginFields } from "@/types/form/login";
@@ -127,6 +128,7 @@ export const LoginPage: FC = () => {
 			})}
 		>
 			<Messenger />
+			<LoginLanguageSelector />
 			<Box className={styles.shell}>
 				<Box
 					className={styles.card}

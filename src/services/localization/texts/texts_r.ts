@@ -12,6 +12,7 @@ export enum texts_r {
 	rows_per_page = "rows per page",
 	records = "records",
 	requests = "requests",
+	roles = "Roles",
 	remove_all = "remove all",
 	refunded = "refunded",
 	refund = "refund",

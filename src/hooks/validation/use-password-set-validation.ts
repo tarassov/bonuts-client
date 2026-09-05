@@ -17,7 +17,7 @@ export const usePasswordSetValidation = () => {
 			.required(translate(texts_p.password_confirm_is_required, { capitalize: true }))
 			.min(4, "Password length should be at least 4 characters")
 			.max(20, "Password cannot exceed more than 12 characters")
-			.oneOf([Yup.ref("password")], translate(texts_p.passwords_do_not_math, { capitalize: true })),
+			.oneOf([Yup.ref("password")], translate(texts_p.passwords_do_not_match, { capitalize: true })),
 	});
 
 	return { formSchema };

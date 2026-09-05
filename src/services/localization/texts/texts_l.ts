@@ -6,6 +6,7 @@ export enum texts_l {
 	donuts_oscars = "donuts oscars",
 	hall_of_fame_of_the_week = "hall of fame of the week",
 	last_name = "last name",
+	language = "language",
 	laureates_of_the_week = "laureates of the week",
 	leaders_of_the_week = "Last week results",
 	legendary_five_of_the_week = "legendary five of the week",
