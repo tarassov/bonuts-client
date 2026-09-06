@@ -5,16 +5,7 @@ Bonuts.ru is a React-based web application built with TypeScript, Vite, and Mate
 
 ## Code Style
 
-Frontend code-style rules are documented separately in [docs/code-style.md](docs/code-style.md).
-
-Use that page as the source of truth for:
-
-- readability and naming
-- Feature-Sliced Design boundaries
-- TypeScript rules
-- localization rules
-- styling rules for CSS Modules, `styled()`, and `sx`
-- design-system consistency
+Code-style rules live as Claude Code skills in `.claude/skills/` (FSD, styling, TypeScript, localization, Storybook, testing, dev runbook). See [docs/code-style.md](docs/code-style.md) for the index, and [AGENTS.md](AGENTS.md) for product context and task framing.
 
 ## Environment Configuration
 
@@ -119,25 +110,28 @@ Generates API code from OpenAPI specification.
 Opens Cypress Test Runner for interactive end-to-end testing.
 
 ### `yarn cypress:run`
-Runs all Cypress end-to-end tests in headless mode. Starts and stops the dedicated HTTP test server automatically.
+Runs all Cypress end-to-end tests in headless mode. Starts and stops the dedicated e2e dev server (`yarn dev:e2e`, port 4173) automatically.
 
 ### `yarn cypress:run:login`
 Runs only the login page Cypress test.
 
 ### `yarn lint`
-Checks for linting errors.
+Runs the full gate: `yarn typecheck` (tsc --noEmit), Biome checks, and the FSD boundary checker.
 
 ### `yarn lint:fix`
-Fixes linting errors automatically when possible.
+Same as `yarn lint`, with Biome applying fixes.
 
-### `yarn prettier`
-Checks code formatting.
+### `yarn typecheck`
+Type-checks without emitting.
 
-### `yarn prettier:fix`
-Fixes code formatting issues.
+### `yarn biome` / `yarn biome:fix`
+Runs Biome alone (linting and formatting). This project uses Biome, not ESLint/Prettier.
+
+### `yarn fsd:check` and friends
+Validates Feature-Sliced Design import boundaries. See `scripts/fsd-boundaries/README.md`.
 
 ### `yarn deploy`
-Deploys the application to GitHub Pages.
+Builds and deploys the application to GitHub Pages (`gh-pages -d dist -t`). The target is the `homepage` set in `package.json`.
 
 ## Running Cypress tests
 
@@ -150,7 +144,7 @@ yarn cypress:run
 For interactive mode, start the normal development server in a separate terminal:
 
 ```bash
-yarn dev
+yarn dev:e2e
 ```
 
 Then open Cypress:

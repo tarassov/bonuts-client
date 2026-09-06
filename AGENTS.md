@@ -25,6 +25,26 @@ When making frontend decisions, prefer solutions that make the experience feel:
 - clearer
 - more socially meaningful
 
+---
+
+## Detailed Rules Live in Skills
+
+Technical conventions are not repeated here. Load the matching skill before doing that kind of work:
+
+| Skill | Load it when |
+|---|---|
+| `bonuts-fsd` | creating/moving/renaming files, choosing a layer or slice, import-path questions, FSD violations |
+| `bonuts-styling` | any component styling, CSS Modules vs `styled()` vs `sx`, design tokens, style review |
+| `bonuts-typescript` | declaring types, RTK Query endpoints and cache tags, generated API |
+| `bonuts-i18n` | any user-facing string |
+| `bonuts-dev-runbook` | running, checking, building, deploying, API codegen, env vars, git/PR flow |
+| `bonuts-storybook` | adding or editing `*.stories.tsx` |
+| `bonuts-testing` | Vitest unit tests, Cypress specs |
+
+If a rule in `README.md`, `.junie/guidelines.md`, or `docs/` contradicts a skill, the skill wins — those files are older and partly stale.
+
+---
+
 # Bonuts — Product Context
 
 ## What is Bonuts
@@ -100,6 +120,44 @@ When there is a conflict between emphasizing **people and recognition** versus e
 
 Bonuts is ultimately a tool for building a **culture of noticing people and expressing appreciation**.
 
+## Bonuts UI Priorities
+
+When deciding what deserves emphasis, prefer:
+- recognition moments
+- user identity/profile
+- social visibility
+- badges, status, leaderboard signals
+- team activity and appreciation flows
+
+Do not over-emphasize:
+- store mechanics
+- balance bookkeeping
+- administrative controls
+- technical integration details
+
+If a UI change makes Bonuts feel more transactional and less recognition-centric, call that out.
+
+## Admin and Settings UX
+
+- Reduce cognitive load in admin/settings flows.
+- Group settings by user outcome, not by backend implementation details.
+- Prefer simple defaults.
+- Avoid exposing too many controls at once.
+- Admin pages should still feel like product UI, not internal tooling.
+
+## Mobile-First UX
+
+- Treat mobile-first as a default, not as a later adaptation.
+- Before finalizing UI, check:
+    - what is the primary small-screen layout?
+    - what stacks first?
+    - what collapses first?
+    - do key actions remain obvious?
+    - does the hierarchy still work on narrow screens?
+- Do not create desktop-only assumptions in new work.
+
+---
+
 ## Task Framing
 
 Before making non-trivial changes, briefly classify the task:
@@ -144,196 +202,6 @@ For UI tasks, also mention:
 
 ---
 
-## Feature-Sliced Design
-
-- Follow Feature-Sliced Design when making changes in this repository.
-- Put domain-specific UI in the domain slice that owns it.
-    - Invitation UI goes to `entities/invitation/ui`, invitation flows go to `features/.../ui` or `pages/.../ui` as appropriate.
-    - Profile UI goes to `entities/profile/ui`, event UI goes to `entities/event/ui`, and so on.
-    - Use `shared/ui` only for truly generic, cross-domain UI primitives that do not encode product-domain meaning.
-    - If a component name, props, copy, or data shape are tied to a specific domain concept, default to `entities/*/ui` instead of `shared/ui`.
-- Prefer public interfaces for cross-slice imports.
-    - Good: `@/entities/profile`
-    - Good: `@/shared/ui/profile-avatar`
-    - For imports within the same slice segment (for example `ui` -> `model` or `ui` -> `ui` in one widget), use relative paths.
-    - Avoid using `@/...` absolute imports for same-segment local imports.
-    - Avoid: bare outer aliases like `shared/...`, `entities/...`, `features/...`
-    - Avoid: imports from internal files of another slice
-- When touching existing code, try to move it closer to FSD-compliant structure instead of adding new violations.
-- If you notice an FSD violation that is relevant to the task, call it out explicitly in your response.
-- Do not perform broad FSD refactors unless they are necessary for the task.
-
----
-
-## TypeScript Rules
-
-- Import types using `import type` whenever possible.
-- If you touch code where types are imported incorrectly, fix those imports as part of the change.
-- For outer imports from `src`, prefer the `@/…` alias form.
-- Do not introduce new bare top-level aliases like `shared/...`, `entities/...`, `features/...`, `widgets/...`, `services/...`, or similar when `@/...` can be used.
-- Type aliases should start with `T`.
-- Interfaces should start with `I`.
-- Prefer enums over type aliases or string unions when the value set is fixed and named states improve readability.
-- Enums should not start with `T`.
-- Prefer boolean variables and props to use `is*`, `has*`, `can*`, or similarly explicit boolean naming.
-- Prefer defining reusable types outside the component body.
-- Prefer moving non-props component-local types out of the component body and, when it improves readability, out of the component file to reduce visual noise in the component.
-- Component props are the exception: keep component props types/interfaces in the same file as the component.
-- In Feature-Sliced Design, prefer defining non-trivial types in the `model` segment when they are shared beyond one component.
-- Prefer precise types over `any`.
-- Avoid introducing weak typing unless there is a real integration constraint.
-- When narrowing types improves readability, prefer explicit guards.
-
-## Generated API Rules
-
-- Do not manually modify `src/services/api/bonuts-api.ts`.
-- `bonuts-api.ts` is autogenerated; regenerate it via the project generation flow instead of editing it by hand.
-- For RTK Query tag configuration, prefer helpers from `@/shared/lib/rtk` (for example `providesList`, `providesListTag`, `invalidatesList`, and `cacheByIdArgProperty`) over manually constructed tag arrays or callbacks. Add a focused helper there when an endpoint response shape is not covered.
-- Configure cache invalidation in the RTK Query endpoint that changes the data, not in a UI hook or component. UI code may invalidate tags directly only when no responsible mutation endpoint exists.
-
-## Localization Rules
-
-- Do not leave new user-facing strings hardcoded in components.
-- Localize button labels, helper text, validation messages, empty states, and error/fallback copy.
-- If you touch a component with hardcoded user-facing strings, fix those strings as part of the change when practical.
-- Keep localization keys in the `texts_*` enum that matches the first meaningful letter of the phrase or concept.
-- Do not add unrelated keys to `texts_v` or any other letter bucket just because it is already imported nearby.
-
----
-
-## Styling Rules
-
-This project uses three styling layers intentionally.
-
-### CSS Modules
-Use CSS Modules for:
-- page and section layout
-- structural wrappers and grid composition
-- complex responsive layout composition
-
-In complex layouts, prefer CSS Modules by default.
-
-For layout structure:
-- prefer `Stack` or grid for simple local composition inside a component
-- prefer CSS Modules for page-level layout and more complex responsive composition
-
-Exceptions:
-- `sx` is acceptable for theme-specific styles
-- `sx` is acceptable for dynamically calculated styles
-- `sx` is acceptable for small base layout adjustments like local margin or padding, but it must stay light and readable
-
-### MUI styled()
-Use `styled()` for:
-- reusable UI components
-- shared visual primitives
-- components with repeated visual rules
-- design-system-aligned wrappers
-- reusable components created in `shared/ui`
-- components that redefine or wrap MUI classes in a consistent way
-
-Prefer `styled()` for reusable visual components in `shared/ui`.
-
-When a component's `styled()` declarations contain no behavior or rendering logic, place them in a sibling `element.styles.tsx` file (for example, `bnt-carousel.styles.tsx`). Keep the component file focused on state, callbacks, and markup.
-
-Use CSS Modules in `shared/ui` only when a reusable component has substantial internal layout structure and `styled()` would make the code less readable.
-
-Do not extract trivial one-property or very small wrappers into `styled()` just because the component is reused.
-
-If styling only sets a very small number of simple properties, keep it local instead of creating a separate styled primitive.
-
-If a component wrapper carries a reusable visual surface treatment (for example border radius + border + shadow + background/theme-dependent surface styling), prefer a `styled()` component over repeating the same visual rules inline in `sx`.
-
-If a component redefines MUI internal classes or repeatedly applies the same MUI visual overrides, that is a strong signal to extract a dedicated reusable component instead of repeating overrides inline.
-
-If a component is used in 2 or more places, or repeats the same MUI override pattern, strongly consider extracting it into `shared/ui`.
-
-### MUI sx
-Use `sx` only for:
-- small local adjustments
-- spacing tweaks
-- one-off overrides close to usage
-- theme-specific visual adjustments that should stay near the component
-- dynamic values that are awkward to express in static CSS
-- small local style blocks with no more than 5 properties, and preferably no more than 4
-
-Do NOT:
-- build large reusable components mainly with `sx`
-- scatter layout logic across many inline `sx` props
-- mix CSS Modules, `styled()`, and large inline `sx` without a clear reason
-- use heavy `sx` objects for reusable shared UI when a `styled()` component would be clearer
-- use deprecated MUI styling props when `slotProps` or the current API solves the same problem
-
-Preferred rule:
-- layout in CSS Modules
-- reusable component styling in `styled()`
-- tiny local tweaks in `sx`
-- `Stack` or grid for simple component-level layout structure
-- if styling only defines one simple property, do not extract it into a separate `styled()` component
-
-### Golden Middle Convention
-
-- Use an intent-based choice, not a forced single styling method.
-- Choose by responsibility:
-  - layout/structural composition and complex responsive composition: CSS Modules
-  - reusable visual primitives and repeated MUI override patterns: `styled()`
-  - tiny local or dynamic tweaks near usage: `sx`
-- Do not force styling rewrites only for consistency; migrate styling approach when touching code or when duplication clearly appears.
-- If the styling choice is non-obvious for the file, briefly note the reason in the PR/task response.
-
----
-
-## Design System and Tokens
-
-- Prefer existing design tokens and theme values over hardcoded values.
-- Reuse established spacing, radius, typography, and semantic colors whenever possible.
-- Do not invent new visual styles if an existing pattern already solves the problem.
-- Keep visual hierarchy calm and clean.
-- Avoid visually noisy solutions, heavy shadows, or aggressive accents unless the task explicitly requires them.
-
----
-
-## Mobile-First UX
-
-- Treat mobile-first as a default, not as a later adaptation.
-- Before finalizing UI, check:
-    - what is the primary small-screen layout?
-    - what stacks first?
-    - what collapses first?
-    - do key actions remain obvious?
-    - does the hierarchy still work on narrow screens?
-- Do not create desktop-only assumptions in new work.
-
----
-
-## Bonuts UI Priorities
-
-When deciding what deserves emphasis, prefer:
-- recognition moments
-- user identity/profile
-- social visibility
-- badges, status, leaderboard signals
-- team activity and appreciation flows
-
-Do not over-emphasize:
-- store mechanics
-- balance bookkeeping
-- administrative controls
-- technical integration details
-
-If a UI change makes Bonuts feel more transactional and less recognition-centric, call that out.
-
----
-
-## Admin and Settings UX
-
-- Reduce cognitive load in admin/settings flows.
-- Group settings by user outcome, not by backend implementation details.
-- Prefer simple defaults.
-- Avoid exposing too many controls at once.
-- Admin pages should still feel like product UI, not internal tooling.
-
----
-
 ## Existing System Consistency
 
 Before adding a new component, pattern, or screen behavior, check:
@@ -343,34 +211,6 @@ Before adding a new component, pattern, or screen behavior, check:
 - is there already a route or layout solving this problem?
 
 Prefer alignment with existing patterns over inventing a new local pattern.
-
----
-
-## Storybook
-
-Stories live next to the component they document (`*.stories.tsx` in the same folder), and the sidebar is grouped by FSD layer.
-
-### Story title convention
-
-- Every story sets an explicit `title` following the pattern `Layer/Slice/Component`.
-- The first segment is the FSD layer, capitalized: `Shared`, `Entities`, `Features`, `Widgets`, `Pages`, `App`.
-- The first segment must match the layer where the component actually lives — do not invent parallel groups like `Base Elements` or `Base UI Kit`.
-- `shared/ui` stories use `Shared/UI/...` (design-system primitives). The kit overview is `Shared/UI Kit/Overview`.
-- Optional middle segments group by slice or category, e.g. `Shared/UI/Navigation/Breadcrumbs`, `Entities/Event/Event Card`.
-- Legacy components still under `src/components` (not yet migrated to FSD) take the title of the layer they belong to by meaning, not their physical folder. Example: `src/components/donut/donut-card` → `Entities/Donut/Donut Card`. When the file is later moved into the FSD slice, the title already matches.
-
-### Ordering and config
-
-- Layer order in the sidebar is set once via `options.storySort.order` in `.storybook/preview.tsx`, following FSD dependency direction: `Shared → Entities → Features → Widgets → Pages → App`. New layers appear in this order automatically.
-- `.storybook/main.ts` keeps `@mui/icons-material` and other heavy deps in `optimizeDeps.include` so the dev server prebundles them once into cache — do not remove these entries.
-- When adding a new story, follow the title convention above; the sidebar grouping follows from the `Layer/...` prefix, not from where a maintainer feels like putting it.
-
-## Cypress
-
-- For responsive UI changes, prefer a reusable viewport-based Cypress pattern instead of testing only one screen size.
-- Reuse shared helpers to run the same assertions on desktop and mobile when the behavior should match on both.
-- Keep viewport-specific assertions in separate tests or branches only when the behavior is intentionally different.
-- For UI changes, test the user-visible behavior, not only implementation details.
 
 ---
 
