@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fffaf6" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Bonuts — скоро вернёмся</title>
+    <link rel="icon" href="./bonuts-icon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="glow glow--orange" aria-hidden="true"></div>
+      <div class="glow glow--violet" aria-hidden="true"></div>
+
+      <header class="brand" aria-label="Bonuts">
+        <img src="./bonuts-icon.png" alt="" class="brand__icon" />
+        <span>Bonuts</span>
+      </header>
+
+      <section class="content">
+        <div class="visual" aria-hidden="true">
+          <div class="orbit orbit--outer"></div>
+          <div class="orbit orbit--inner"></div>
+          <span class="spark spark--one"></span>
+          <span class="spark spark--two"></span>
+          <span class="spark spark--three"></span>
+          <img src="./bonuts-icon.png" alt="" class="visual__donut" />
+        </div>
+
+        <div class="message">
+          <div class="status"><span class="status__dot"></span> Ведутся работы</div>
+          <h1>Готовим кое-что<br />по-настоящему тёплое</h1>
+          <p class="lead">Сейчас Bonuts ненадолго недоступен. Мы уже работаем над этим и скоро вернёмся.</p>
+
+          <div class="divider"></div>
+
+          <blockquote>
+            <p>Культура — в том, как мы видим друг друга.</p>
+            <p>Мы видим больше, чем привыкли говорить.</p>
+            <strong>Bonuts помогает это сказать.</strong>
+          </blockquote>
+        </div>
+      </section>
+
+      <footer>
+        <span>© <span id="year"></span> Bonuts</span>
+        <span class="footer__note"><i></i> Скоро снова будем на связи</span>
+      </footer>
+    </main>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </body>
+</html>
