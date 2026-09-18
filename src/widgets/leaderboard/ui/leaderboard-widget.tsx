@@ -36,22 +36,18 @@ export function LeaderboardWidget({ columns = 1 }: IDashboardWidgetSizingProps) 
 	const hasWeekRange = Boolean(weekStart && weekEnd);
 	const weekCaption = hasWeekRange ? i18nT(texts_w.week_from_to_caption, { from: weekStart, to: weekEnd }) : "";
 	const weekTooltip = hasWeekRange ? i18nT(texts_w.week_from_to_tooltip, { from: weekStart, to: weekEnd }) : "";
+	const title = t(weeklyTitleKey, { capitalize: true });
+	const headerAction = hasWeekRange ? (
+		<Tooltip title={weekTooltip}>
+			<IconButton size="small" aria-label={weekCaption} sx={{ p: 0.25 }}>
+				<HelpOutlineOutlined fontSize="inherit" />
+			</IconButton>
+		</Tooltip>
+	) : null;
 
 	return (
-		<DashboardWidgetCard columns={columns}>
+		<DashboardWidgetCard columns={columns} headerAction={headerAction} title={title}>
 			<BntStack gap={2} data-testid="dashboard-widget-leaderboard">
-				<BntStack direction="row" alignItems="center" justifyContent="space-between">
-					<BntTypography variant="subtitle1" fontWeight={700}>
-						{t(weeklyTitleKey, { capitalize: true })}
-					</BntTypography>
-					{hasWeekRange ? (
-						<Tooltip title={weekTooltip}>
-							<IconButton size="small" aria-label={weekCaption} sx={{ p: 0.25 }}>
-								<HelpOutlineOutlined fontSize="inherit" />
-							</IconButton>
-						</Tooltip>
-					) : null}
-				</BntStack>
 				{topThree.length ? (
 					<BntStack gap={1.25}>
 						{topThree.map((leader, index) => (

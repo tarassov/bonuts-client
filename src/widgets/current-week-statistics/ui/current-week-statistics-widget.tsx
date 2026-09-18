@@ -34,13 +34,11 @@ export function CurrentWeekStatisticsWidget({ columns = 1 }: IDashboardWidgetSiz
 			refetchOnMountOrArgChange: true,
 		}
 	);
+	const title = t(texts_c.current_week_statistics, { capitalize: true });
 
 	return (
-		<DashboardWidgetCard columns={columns}>
+		<DashboardWidgetCard columns={columns} title={title}>
 			<BntStack gap={1.5} data-testid="dashboard-widget-current-week-statistics">
-				<BntTypography variant="subtitle1" fontWeight={700}>
-					{t(texts_c.current_week_statistics, { capitalize: true })}
-				</BntTypography>
 				{isLoading ? (
 					<BntTypography variant="body2" color="text.secondary">
 						...

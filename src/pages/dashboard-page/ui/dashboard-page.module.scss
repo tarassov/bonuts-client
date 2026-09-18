@@ -1,0 +1,44 @@
+.page,
+.layout,
+.feed,
+.sidebarColumn {
+	height: 100%;
+	min-height: 0;
+}
+
+.page,
+.layout,
+.sidebarColumn {
+	overflow: hidden;
+}
+
+.sidebar {
+	width: 100%;
+	height: 100%;
+	padding-left: 16px;
+}
+
+@media (max-width: 899px) {
+	.page,
+	.layout,
+	.feed,
+	.sidebarColumn,
+	.sidebar {
+		height: auto;
+	}
+
+	.page,
+	.layout,
+	.sidebarColumn {
+		overflow: visible;
+	}
+
+	.layout {
+		flex-direction: column-reverse;
+		gap: 16px;
+	}
+
+	.sidebar {
+		padding-left: 0;
+	}
+}

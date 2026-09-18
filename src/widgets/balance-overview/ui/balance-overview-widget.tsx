@@ -19,13 +19,11 @@ export function BalanceOverviewWidget({ columns = 1 }: IDashboardWidgetSizingPro
 	const { toAccountOperations } = useEmployeeUi(profile);
 	const { account: selfAccount, isLoading: isSelfBalanceLoading } = useAccountBalanceLoader(profile?.self_account?.id);
 	const { account: distribAccount, isLoading: isDistribBalanceLoading } = useAccountBalanceLoader(profile?.distrib_account?.id);
+	const title = t(texts_b.balance, { capitalize: true });
 
 	return (
-		<DashboardWidgetCard ariaLabel={t(texts_o.operations_history, { capitalize: true })} columns={columns} onClick={toAccountOperations}>
+		<DashboardWidgetCard ariaLabel={t(texts_o.operations_history, { capitalize: true })} columns={columns} onClick={toAccountOperations} title={title}>
 			<BntStack gap={1.5} data-testid="dashboard-widget-balance-overview">
-				<BntTypography variant="subtitle1" fontWeight={700}>
-					{t(texts_b.balance, { capitalize: true })}
-				</BntTypography>
 				<BntStack direction="row" alignItems="center" gap={1}>
 					<DonutSmallOutlined color="primary" />
 					<Box>
