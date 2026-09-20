@@ -12,24 +12,25 @@ export const useUpdateProfilePhotos = () => {
 	const [addProfilePhotoApi] = photosApi.useAddProfilePhotoMutation();
 	const [deleteProfilePhotoApi] = photosApi.useDeleteProfilePhotoMutation();
 
-	const addPhoto = async (args: { id: number; file: File }, options?: { onSuccess?: () => void }) => {
+	const addPhoto = async (args: { id: number; file: File }) => {
 		const { id, file } = args;
 
 		if (!authTenant) {
 			return undefined;
 		}
 
-		const response = await addProfilePhotoApi({
-			profileId: id,
-			body: { tenant: authTenant, uploaded_image: file },
-		});
+		const optimisticPreviewUrl = URL.createObjectURL(file);
 
-		if ("data" in response) {
-			options?.onSuccess?.();
+		try {
+			await addProfilePhotoApi({
+				profileId: id,
+				body: { tenant: authTenant, uploaded_image: file },
+				optimisticPreviewUrl,
+			}).unwrap();
 			showNotification(texts_u.updated);
+		} catch {
+			// The mutation lifecycle removes the optimistic photo after a failed upload.
 		}
-
-		return response;
 	};
 
 	const deletePhoto = async (photoId?: number, options?: { onSuccess?: () => void }) => {
