@@ -47,3 +47,6 @@ signing-key-info.txt
 /webhooks_db.binlog
 /cypress/screenshots
 /.codex
+
+# Claude Code local settings
+/.claude/settings.local.json

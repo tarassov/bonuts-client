@@ -47,6 +47,7 @@ const DASHBOARD_EVENTS_RESPONSE = {
 
 const GET_MY_INVITATIONS_URL = /\/invitations\/my(?:\?.*)?$/;
 const GET_TENANTS_URL = /\/tenants(?:\?.*)?$/;
+const GET_ACCESSIBLE_TENANTS_URL = /\/tenants\/accessible(?:\?.*)?$/;
 const ACCEPT_INVITATION_URL = /\/invitations\/17\/accept(?:\?.*)?$/;
 const GET_PROFILE_URL = /\/profile(?:\?.*)?$/;
 const GET_EVENTS_URL = /\/events(?:\?.*)?$/;
@@ -69,6 +70,11 @@ function mockWelcomeInvitationAcceptFlow() {
 			body: TENANTS_RESPONSE,
 		});
 	}).as("getTenants");
+
+	cy.intercept("GET", GET_ACCESSIBLE_TENANTS_URL, {
+		statusCode: 200,
+		body: TENANTS_RESPONSE,
+	}).as("getAccessibleTenants");
 
 	cy.intercept(
 		{ method: "POST", url: ACCEPT_INVITATION_URL },
@@ -135,6 +141,7 @@ function visitWelcomePage() {
 	});
 
 	cy.wait("@getTenants");
+	cy.wait("@getAccessibleTenants");
 	cy.wait("@getMyInvitations");
 }
 

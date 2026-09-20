@@ -68,10 +68,11 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	const nextStatusPercent = getNextBucketTargetPercent(data?.next_bucket);
 	const isLowCurrentStatus = currentStatusPercent !== null && currentStatusPercent < 25;
 	const currentStatusLabel = formatStatusBucketLabel(data?.current_bucket);
+	const title = t(texts_y.your_status, { capitalize: true });
 
 	if (!data) {
 		return (
-			<DashboardWidgetCard columns={columns}>
+			<DashboardWidgetCard columns={columns} title={title}>
 				<div data-testid="dashboard-widget-your-status">
 					<YourStatusEmptyPlaceholder />
 				</div>
@@ -80,11 +81,8 @@ export function YourStatusWidget({ columns = 1 }: IDashboardWidgetSizingProps) {
 	}
 
 	return (
-		<DashboardWidgetCard columns={columns}>
+		<DashboardWidgetCard columns={columns} title={title}>
 			<BntStack gap={1.5} data-testid="dashboard-widget-your-status">
-				<BntTypography variant="subtitle1" fontWeight={700}>
-					{t(texts_y.your_status, { capitalize: true })}
-				</BntTypography>
 				<BntStack direction="row" alignItems="center" gap={1.5}>
 					<Box
 						sx={(theme) => ({

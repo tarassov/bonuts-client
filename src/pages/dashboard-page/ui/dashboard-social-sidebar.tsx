@@ -28,6 +28,10 @@ const SidebarGrid = styled(Box)(({ theme }) => ({
 	display: "grid",
 	gridTemplateColumns: "1fr",
 	gap: theme.spacing(2),
+	[theme.breakpoints.up("md")]: {
+		alignSelf: "flex-start",
+		alignContent: "start",
+	},
 	[theme.breakpoints.up("lg")]: {
 		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
 		alignItems: "stretch",
