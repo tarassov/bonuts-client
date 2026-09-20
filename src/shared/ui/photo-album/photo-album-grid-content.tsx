@@ -13,7 +13,7 @@ export function PhotoAlbumGridContent({ onPhotoClick, photoLabel, photos }: IPho
 	return (
 		<div className={styles.albumGrid} data-testid="photo-album-grid">
 			{photos.map((photo, index) => (
-				<PhotoAlbumGridItem key={`${photo.originalUrl}-${index}`} index={index} photo={photo} photoLabel={photoLabel} onPhotoClick={onPhotoClick} />
+				<PhotoAlbumGridItem key={photo.id ?? photo.originalUrl} index={index} photo={photo} photoLabel={photoLabel} onPhotoClick={onPhotoClick} />
 			))}
 		</div>
 	);

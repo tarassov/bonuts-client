@@ -29,6 +29,23 @@ function adaptProfilePictures(response: GetProfilesByProfileIdProfilePicturesApi
 	return response.data.map(adaptProfilePicture);
 }
 
+async function preloadProfilePhoto(photo: TPicture) {
+	const url = photo.preview?.url || photo.url || photo.thumb?.url;
+
+	if (!url) {
+		return;
+	}
+
+	const image = new Image();
+	image.src = url;
+
+	try {
+		await image.decode();
+	} catch {
+		// The browser will retry loading the image when it is rendered.
+	}
+}
+
 export const photosApi = bonutsApiOverride
 	.enhanceEndpoints({
 		addTagTypes: [ApiTags.ProfilePhotos],
@@ -63,6 +80,7 @@ export const photosApi = bonutsApiOverride
 
 					try {
 						const { data: photo } = await queryFulfilled;
+						await preloadProfilePhoto(photo);
 
 						dispatch(
 							photosApi.util.updateQueryData("getProfilePhotos", queryArgs, (draft) => {
