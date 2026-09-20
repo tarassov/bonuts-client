@@ -1,5 +1,6 @@
 import { ApiTags } from "@/shared/api";
 
+import { createOptimisticProfilePhoto, prependProfilePhoto, removeProfilePhoto, replaceProfilePhoto } from "./profile-photo-cache";
 import type {
 	DeleteProfilePicturesByIdApiArg,
 	DeleteProfilePicturesByIdApiResponse,
@@ -12,12 +13,20 @@ import { ApiMethod } from "@/services/api/helpers/api-method";
 import { bonutsApiOverride } from "@/services/api/injected-api";
 import type { TPicture } from "@/types/model/picture";
 
+type TAddProfilePhotoApiArg = PostProfilesByProfileIdProfilePicturesApiArg & {
+	optimisticPreviewUrl: string;
+};
+
+function adaptProfilePicture(photo: PostProfilesByProfileIdProfilePicturesApiResponse["data"]): TPicture {
+	return {
+		id: photo.id,
+		user_id: photo.user_id,
+		...photo.image,
+	};
+}
+
 function adaptProfilePictures(response: GetProfilesByProfileIdProfilePicturesApiResponse): Array<TPicture> {
-	return response.data.map((item) => ({
-		id: item.id,
-		user_id: item.user_id,
-		...item.image,
-	}));
+	return response.data.map(adaptProfilePicture);
 }
 
 export const photosApi = bonutsApiOverride
@@ -34,11 +43,42 @@ export const photosApi = bonutsApiOverride
 				transformResponse: (response: GetProfilesByProfileIdProfilePicturesApiResponse) => adaptProfilePictures(response),
 				providesTags: (result, error, arg) => [{ type: ApiTags.ProfilePhotos, id: arg.profileId }],
 			}),
-			addProfilePhoto: build.mutation<PostProfilesByProfileIdProfilePicturesApiResponse, PostProfilesByProfileIdProfilePicturesApiArg>({
+			addProfilePhoto: build.mutation<TPicture, TAddProfilePhotoApiArg>({
 				query(data) {
-					return ApiMethod(`/profiles/${data.profileId}/profile_pictures`, "POST", data);
+					return ApiMethod(`/profiles/${data.profileId}/profile_pictures`, "POST", {
+						profileId: data.profileId,
+						body: data.body,
+					});
 				},
-				invalidatesTags: (result, error, arg) => [{ type: ApiTags.ProfilePhotos, id: arg.profileId }],
+				transformResponse: (response: PostProfilesByProfileIdProfilePicturesApiResponse) => adaptProfilePicture(response.data),
+				async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+					const queryArgs = { profileId: arg.profileId, tenant: arg.body.tenant };
+					const optimisticPhoto = createOptimisticProfilePhoto(arg.optimisticPreviewUrl);
+
+					dispatch(
+						photosApi.util.updateQueryData("getProfilePhotos", queryArgs, (draft) => {
+							prependProfilePhoto(draft, optimisticPhoto);
+						})
+					);
+
+					try {
+						const { data: photo } = await queryFulfilled;
+
+						dispatch(
+							photosApi.util.updateQueryData("getProfilePhotos", queryArgs, (draft) => {
+								replaceProfilePhoto(draft, optimisticPhoto.id, photo);
+							})
+						);
+					} catch {
+						dispatch(
+							photosApi.util.updateQueryData("getProfilePhotos", queryArgs, (draft) => {
+								removeProfilePhoto(draft, optimisticPhoto.id);
+							})
+						);
+					} finally {
+						URL.revokeObjectURL(arg.optimisticPreviewUrl);
+					}
+				},
 			}),
 			deleteProfilePhoto: build.mutation<DeleteProfilePicturesByIdApiResponse, DeleteProfilePicturesByIdApiArg>({
 				query: ({ id, tenant }) => ({

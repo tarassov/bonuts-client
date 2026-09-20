@@ -1,5 +1,5 @@
 import type { ChangeEvent } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { AddPhotoAlternateOutlined } from "@mui/icons-material";
 
 import { useBntTranslate } from "hooks/use-bnt-translate";
@@ -24,6 +24,8 @@ interface IProfilePhotosProps {
 	canUpload?: boolean;
 }
 
+const PROFILE_PHOTO_FILE_ACCEPT = ".jpg,.jpeg,.gif,.png,.bmp,.webp";
+
 function hasRenderablePhoto(photo: TPicture) {
 	return Boolean(photo.preview?.url || photo.url || photo.thumb?.url);
 }
@@ -34,18 +36,10 @@ export function ProfilePhotos({ profile, canUpload = false }: IProfilePhotosProp
 	const { photos: persistedPhotos, isLoading } = useProfilePhotos(profile?.id);
 	const { addPhoto } = useUpdateProfilePhotos();
 	const inputRef = useRef<HTMLInputElement | null>(null);
-	const [optimisticPhotoUrls, setOptimisticPhotoUrls] = useState<Array<string>>([]);
-	const persistedPhotoCountRef = useRef(persistedPhotos.length);
-
-	const photos = useMemo(() => {
-		const optimisticPhotos: Array<TPicture> = optimisticPhotoUrls.map((url) => ({ url }));
-
-		return [...persistedPhotos, ...optimisticPhotos];
-	}, [optimisticPhotoUrls, persistedPhotos]);
 
 	const displayPhotos = useMemo<Array<TPicture>>(() => {
-		return photos.filter(hasRenderablePhoto);
-	}, [photos]);
+		return persistedPhotos.filter(hasRenderablePhoto);
+	}, [persistedPhotos]);
 
 	const galleryPhotos = useMemo<Array<TPhotoAlbumItem>>(() => {
 		return displayPhotos
@@ -67,21 +61,6 @@ export function ProfilePhotos({ profile, canUpload = false }: IProfilePhotosProp
 			.filter((photo): photo is TPhotoAlbumItem => Boolean(photo));
 	}, [displayPhotos]);
 
-	useEffect(() => {
-		return () => {
-			optimisticPhotoUrls.forEach((url) => URL.revokeObjectURL(url));
-		};
-	}, [optimisticPhotoUrls]);
-
-	useEffect(() => {
-		if (persistedPhotos.length > persistedPhotoCountRef.current && optimisticPhotoUrls.length > 0) {
-			optimisticPhotoUrls.forEach((url) => URL.revokeObjectURL(url));
-			setOptimisticPhotoUrls([]);
-		}
-
-		persistedPhotoCountRef.current = persistedPhotos.length;
-	}, [optimisticPhotoUrls, persistedPhotos]);
-
 	const handleUploadClick = () => {
 		inputRef.current?.click();
 	};
@@ -93,22 +72,8 @@ export function ProfilePhotos({ profile, canUpload = false }: IProfilePhotosProp
 			return;
 		}
 
-		const previewUrl = URL.createObjectURL(file);
-		setOptimisticPhotoUrls((prev) => [...prev, previewUrl]);
-
-		const response = await addPhoto(
-			{ id: profile.id, file },
-			{
-				onSuccess: () => {
-					event.target.value = "";
-				},
-			}
-		);
-
-		if ("error" in (response || {})) {
-			URL.revokeObjectURL(previewUrl);
-			setOptimisticPhotoUrls((prev) => prev.filter((item) => item !== previewUrl));
-		}
+		await addPhoto({ id: profile.id, file });
+		event.target.value = "";
 	};
 
 	const openPhoto = (index: number) => {
@@ -133,7 +98,7 @@ export function ProfilePhotos({ profile, canUpload = false }: IProfilePhotosProp
 						<BntButton className={styles.uploadButton} noTransform variant="outlined" startIcon={<AddPhotoAlternateOutlined />} onClick={handleUploadClick}>
 							{translate(texts_a.add_photo)}
 						</BntButton>
-						<input ref={inputRef} className={styles.input} type="file" accept="image/*" onChange={handleFileChange} />
+						<input ref={inputRef} className={styles.input} type="file" accept={PROFILE_PHOTO_FILE_ACCEPT} onChange={handleFileChange} />
 					</>
 				) : null}
 			</div>
