@@ -1,3 +1,4 @@
+export { DonutListSort } from "./model/donut-list-sort";
 export type { TPostDonutArgs } from "./model/use-create-donut";
 export { useCreateDonut } from "./model/use-create-donut";
 export { useDonut } from "./model/use-donut";

@@ -19,7 +19,7 @@ const donutsApiEnhanced = bonutsApiOverride.enhanceEndpoints({
 
 export const donutsApi = donutsApiEnhanced.injectEndpoints({
 	endpoints: (build) => ({
-		getDonutsFeed: build.infiniteQuery<TPageable<GetDonutsApiResponse>, GetDonutsApiArg, number>({
+		getDonutsFeed: build.infiniteQuery<TPageable<GetDonutsApiResponse>, Omit<GetDonutsApiArg, "page">, number>({
 			infiniteQueryOptions: {
 				initialPageParam: 1,
 				getNextPageParam,
@@ -29,7 +29,10 @@ export const donutsApi = donutsApiEnhanced.injectEndpoints({
 				params: {
 					tenant: queryArg.tenant,
 					all: queryArg.all,
+					search_text: queryArg.searchText,
+					sort: queryArg.sort,
 					page: pageParam,
+					per_page: queryArg.perPage,
 				},
 			}),
 			transformResponse: getTransformPageableResponse<TPageable<GetDonutsApiResponse>>(),

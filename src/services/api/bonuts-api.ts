@@ -100,6 +100,10 @@ const injectedRtkApi = api.injectEndpoints({
 				params: {
 					tenant: queryArg.tenant,
 					all: queryArg.all,
+					search_text: queryArg.searchText,
+					sort: queryArg.sort,
+					page: queryArg.page,
+					per_page: queryArg.perPage,
 				},
 			}),
 		}),
@@ -976,6 +980,10 @@ export type GetDonutsApiResponse = /** status 200 success */ {
 export type GetDonutsApiArg = {
 	tenant?: string;
 	all?: string;
+	searchText?: string;
+	sort?: "alphabet" | "price_asc" | "price_desc" | "newest";
+	page?: number;
+	perPage?: number;
 };
 export type PostDonutsApiResponse = /** status 200 success */ {
 	data?: {

@@ -4,25 +4,33 @@ import { authTenantSelector } from "@/shared/model/auth";
 
 import { donutsApi } from "../api/donuts-api";
 
+import { DonutListSort } from "./donut-list-sort";
 import { USE_POLLING_INTERVAL } from "@/app/config";
 import { apiDonutsToDonuts } from "@/services/adaptor/api-donuts-to-donuts";
 import { useAppSelector } from "@/services/redux/store/store";
 
 const pollingInterval = USE_POLLING_INTERVAL ? 1000 : 0;
+const DONUTS_PER_PAGE = 24;
 
 interface IUseDonutsFeedOptions {
 	isAllDonutsIncluded?: boolean;
 	isAutoFetchAll?: boolean;
+	searchText?: string;
+	sort?: DonutListSort;
 }
 
-export const useDonutsFeed = ({ isAllDonutsIncluded = false, isAutoFetchAll = false }: IUseDonutsFeedOptions = {}) => {
+export const useDonutsFeed = ({ isAllDonutsIncluded = false, isAutoFetchAll = false, searchText, sort = DonutListSort.Alphabet }: IUseDonutsFeedOptions = {}) => {
 	const authTenant = useAppSelector(authTenantSelector);
+	const normalizedSearchText = searchText?.trim() || undefined;
 	const queryArg = useMemo(
 		() => ({
 			tenant: authTenant || undefined,
 			all: isAllDonutsIncluded ? "true" : "false",
+			perPage: DONUTS_PER_PAGE,
+			searchText: normalizedSearchText,
+			sort,
 		}),
-		[authTenant, isAllDonutsIncluded]
+		[authTenant, isAllDonutsIncluded, normalizedSearchText, sort]
 	);
 	const { data, isFetching, isLoading, fetchNextPage, hasNextPage, refetch } = donutsApi.useGetDonutsFeedInfiniteQuery(queryArg, {
 		pollingInterval,

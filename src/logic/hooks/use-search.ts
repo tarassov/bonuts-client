@@ -2,21 +2,22 @@ import { useMemo, useState } from "react";
 
 import _ from "lodash";
 
-import { TBaseModel } from "@/types/model";
+import type { TBaseModel } from "@/types/model";
+import type { TSorter } from "@/types/ui/sorter-button";
 
 export const useSearch = <T extends TBaseModel>(
 	objects: Array<T>,
 	args: {
 		searchField: keyof T;
-		initialSorter?: (a: T, b: T) => number;
+		initialSorter?: TSorter<T>;
 	}
 ) => {
 	const { searchField, initialSorter } = args;
 	const [search, setSearch] = useState<string>("");
 	const [_filterFunction, setFilterFunction] = useState<Array<{ (a: T): boolean }>>([]);
-	const [sorter, setSorter] = useState<((a: T, b: T) => number) | undefined>(initialSorter);
+	const [sorter, setSorter] = useState<TSorter<T> | undefined>(initialSorter);
 
-	const updateSorter = (sorterFunction: any) => {
+	const updateSorter = (sorterFunction: TSorter<T>) => {
 		setSorter(() => sorterFunction);
 	};
 
