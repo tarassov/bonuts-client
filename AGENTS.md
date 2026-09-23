@@ -29,6 +29,8 @@ When making frontend decisions, prefer solutions that make the experience feel:
 
 ## Detailed Rules Live in Skills
 
+Repository-local skills are stored in `.claude/skills/<skill-name>/SKILL.md`. Resolve the skill names below from that directory and read the corresponding `SKILL.md` before doing the matching kind of work.
+
 Technical conventions are not repeated here. Load the matching skill before doing that kind of work:
 
 | Skill | Load it when |

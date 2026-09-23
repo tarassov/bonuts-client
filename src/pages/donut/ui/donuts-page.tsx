@@ -1,13 +1,14 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { InfiniteScrollTrigger } from "@/shared/ui/infinite-scroll-trigger";
 import { useLoader } from "@/shared/ui/loader";
 
+import type { DonutListSort } from "@/entities/donut";
 import { DonutCard, useDonutsFeed, useDonutUi } from "@/entities/donut";
 
 import { DonutPurchaseButton, DonutPurchaseConfirmation, useDonutPurchase } from "@/features/donut-purchase";
 
-import { DEFAULT_DONUT_SORTER, getVisibleDonuts } from "../model/donuts-page-presenter";
+import { DEFAULT_DONUT_SORT } from "../model/donuts-page-presenter";
 
 import { DonutsCatalogControls } from "./donuts-catalog-controls";
 import styles from "./donuts-page.module.scss";
@@ -17,11 +18,10 @@ import type { TDonut } from "@/types/model";
 export function DonutsPage() {
 	const [query, setQuery] = useState("");
 	const [confirmedDonutId, setConfirmedDonutId] = useState<number>();
-	const [sorter, setSorter] = useState<(firstDonut: TDonut, secondDonut: TDonut) => number>(() => DEFAULT_DONUT_SORTER);
-	const { donuts, fetchNext, hasNext, isFetching, isLoading, loadedPageCount } = useDonutsFeed();
+	const [sort, setSort] = useState<DonutListSort>(DEFAULT_DONUT_SORT);
+	const { donuts, fetchNext, hasNext, isFetching, isLoading, loadedPageCount } = useDonutsFeed({ searchText: query, sort });
 	const { showDonut } = useDonutUi();
 	const { canPurchase, isPurchasing, purchaseDonut } = useDonutPurchase();
-	const visibleDonuts = useMemo(() => getVisibleDonuts(donuts, query, sorter), [donuts, query, sorter]);
 
 	const handlePurchase = useCallback(
 		async (donut: TDonut) => {
@@ -39,9 +39,9 @@ export function DonutsPage() {
 
 	return (
 		<main className={styles.page}>
-			<DonutsCatalogControls onQueryChange={setQuery} onSorterChange={setSorter} />
+			<DonutsCatalogControls onQueryChange={setQuery} onSortChange={setSort} />
 			<div className={styles.grid}>
-				{visibleDonuts.map((donut) => (
+				{donuts.map((donut) => (
 					<DonutCard
 						donut={donut}
 						footer={canPurchase(donut) ? <DonutPurchaseButton donut={donut} isPurchasing={isPurchasing} isSubtle onPurchase={handlePurchase} /> : undefined}

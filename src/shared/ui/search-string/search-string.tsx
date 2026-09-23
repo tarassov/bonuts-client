@@ -6,22 +6,20 @@ import { InputAdornment, useMediaQuery, useTheme } from "@mui/material";
 import classnames from "classnames";
 import { useDebounceCallback } from "usehooks-ts";
 
-import { Dictionary } from "constants/dictionary";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { emptyFunction } from "utils/empty-function";
-
 import { BntRoundButton } from "@/shared/ui/buttons";
 import { FieldType } from "@/shared/ui/form";
 import { BntTextInput } from "@/shared/ui/input";
 import { BntStack } from "@/shared/ui/stack";
 
+import { Dictionary } from "@/constants/dictionary";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import type { TBaseModel } from "@/types/model";
-import type { TSorterButton } from "@/types/ui/sorter-button";
+import type { TSorter, TSorterButton } from "@/types/ui/sorter-button";
 
 type TSearchStringVariant = "default" | "surface";
 
-export type SearchStringProps<T extends TBaseModel = TBaseModel> = {
-	buttons?: Array<TSorterButton<T>>;
+export type SearchStringProps<T extends TBaseModel = TBaseModel, TSort = TSorter<T>> = {
+	buttons?: Array<TSorterButton<TSort>>;
 	className?: string;
 	debounceDelay?: number;
 	inputSx?: SxProps<Theme>;
@@ -30,7 +28,7 @@ export type SearchStringProps<T extends TBaseModel = TBaseModel> = {
 	placeholder?: string;
 	setFilter?: (filters: Array<{ (a: T): boolean }>) => void;
 	setSearch: (search: string) => void;
-	setSorter?: (sorter: (a: T, b: T) => number) => void;
+	setSorter?: (sorter: TSort) => void;
 	value?: string;
 	variant?: TSearchStringVariant;
 };
@@ -65,20 +63,8 @@ const searchInputSxByVariant: Record<TSearchStringVariant, SxProps<Theme>> = {
 	},
 };
 
-export function SearchString<T extends TBaseModel>(props: SearchStringProps<T>) {
-	const {
-		buttons,
-		className,
-		debounceDelay = 0,
-		inputSx,
-		mobilePlaceholder,
-		name = "search-string",
-		placeholder = Dictionary.SEARCH_STRING,
-		setSearch,
-		setSorter = emptyFunction,
-		value,
-		variant = "default",
-	} = props;
+export function SearchString<T extends TBaseModel, TSort = TSorter<T>>(props: SearchStringProps<T, TSort>) {
+	const { buttons, className, debounceDelay = 0, inputSx, mobilePlaceholder, name = "search-string", placeholder = Dictionary.SEARCH_STRING, setSearch, setSorter, value, variant = "default" } = props;
 	const { translate } = useBntTranslate();
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -146,7 +132,7 @@ export function SearchString<T extends TBaseModel>(props: SearchStringProps<T>) 
 								key={button.name}
 								onClick={(e: React.SyntheticEvent) => {
 									e.preventDefault();
-									setSorter(button.sorter);
+									setSorter?.(button.sorter);
 								}}
 								variant="outlined"
 							>
