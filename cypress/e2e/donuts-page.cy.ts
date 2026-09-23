@@ -105,14 +105,28 @@ function mockDonutsPageRequests() {
 	cy.intercept("GET", GET_SELF_ACCOUNT_URL, { body: SELF_ACCOUNT_RESPONSE, statusCode: 200 }).as("getSelfAccount");
 	cy.intercept("GET", GET_DONUTS_URL, (request) => {
 		const page = Number(request.query.page || 1);
-		const donuts = hasCoffeeVoucherBeenPurchased ? DONUTS_RESPONSE.data.map((donut) => (donut.id === 2 ? { ...donut, on_stock: 3 } : donut)) : DONUTS_RESPONSE.data;
+		const searchText = request.query.search_text?.toString().trim().toLowerCase() || "";
+		const sort = request.query.sort?.toString() || "alphabet";
+		if (searchText && page === 1) request.alias = "searchDonuts";
+		if (!searchText && page === 1 && sort === "price_desc") request.alias = "sortDonutsPriceDesc";
+		if (!searchText && page === 1 && sort === "price_asc") request.alias = "sortDonutsPriceAsc";
+
+		const donuts = (hasCoffeeVoucherBeenPurchased ? DONUTS_RESPONSE.data.map((donut) => (donut.id === 2 ? { ...donut, on_stock: 3 } : donut)) : DONUTS_RESPONSE.data)
+			.filter((donut) => typeof donut.name === "string" && donut.name.toLowerCase().includes(searchText))
+			.sort((firstDonut, secondDonut) => {
+				if (sort === "price_asc") return firstDonut.price - secondDonut.price;
+				if (sort === "price_desc") return secondDonut.price - firstDonut.price;
+				if (sort === "newest") return secondDonut.id - firstDonut.id;
+
+				return firstDonut.name.localeCompare(secondDonut.name);
+			});
 
 		request.reply({
 			body: { data: page === 1 ? donuts.slice(0, 2) : donuts.slice(2) },
 			headers: {
 				"Access-Control-Expose-Headers": "Per-Page, Total",
 				"Per-Page": "2",
-				Total: "4",
+				Total: donuts.length.toString(),
 			},
 			statusCode: 200,
 		});
@@ -124,7 +138,6 @@ function mockDonutsPageRequests() {
 	}).as("postRequest");
 	mockHeartbeatRequest();
 }
-
 describe("Donuts page", () => {
 	runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile], () => {
 		beforeEach(() => {
@@ -143,8 +156,21 @@ describe("Donuts page", () => {
 			cy.get("@getDonuts.all").should("have.length", 2);
 			cy.contains('[data-testid="donut-card"]', "Coffee voucher").should("contain.text", "80").and("contain.text", "4");
 
-			cy.get('input[name="donut-search"]').type("coffee");
+			cy.get('input[name="donut-search"]').type(" coffee ");
+			cy.wait("@searchDonuts").its("request.query").should("include", { page: "1", search_text: "coffee", sort: "alphabet" });
 			cy.get('[data-testid="donut-card"]').should("have.length", 1).and("contain.text", "Coffee voucher");
+		});
+
+		it("sorts rewards by price", () => {
+			cy.contains("button", "сначала самые дорогие", { matchCase: false }).click();
+			cy.wait("@sortDonutsPriceDesc").its("request.query").should("include", { page: "1", sort: "price_desc" });
+			cy.get('[data-testid="donut-card"]').eq(0).should("contain.text", "Hoodie Bonuts");
+			cy.get('[data-testid="donut-card"]').eq(1).should("contain.text", "Coffee voucher");
+
+			cy.contains("button", "сначала самые дешевые", { matchCase: false }).click();
+			cy.wait("@sortDonutsPriceAsc").its("request.query").should("include", { page: "1", sort: "price_asc" });
+			cy.get('[data-testid="donut-card"]').eq(0).should("contain.text", "Team mug");
+			cy.get('[data-testid="donut-card"]').eq(1).should("contain.text", "Coffee voucher");
 		});
 
 		it("opens the selected reward", () => {

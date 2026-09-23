@@ -11,7 +11,7 @@ import { getEmployeeSearchButtons } from "../model/get-employee-search-buttons";
 import { BntProfileButton } from "@/components/buttons/profile-button";
 import type { VoidResponseFunction } from "@/types/function-types";
 import type { TProfile } from "@/types/model";
-import type { TSorterButton } from "@/types/ui/sorter-button";
+import type { TSorter } from "@/types/ui/sorter-button";
 import { emptyFunction } from "@/utils/empty-function";
 
 type TEmployeeListCompactProps = {
@@ -21,12 +21,12 @@ type TEmployeeListCompactProps = {
 	subTitle?: string;
 	hideSearch?: boolean;
 	children?: JSX.Element;
-	setSorter?: (sorter: any) => void;
+	setSorter?: (sorter: TSorter<TProfile>) => void;
 	setSearch?: (searchText: string) => void;
 };
 
 export const EmployeeListCompact: FC<TEmployeeListCompactProps> = ({ title, onClick, profiles, setSorter, setSearch = emptyFunction, subTitle, children, hideSearch }) => {
-	const buttons: Array<TSorterButton<TProfile>> = getEmployeeSearchButtons();
+	const buttons = getEmployeeSearchButtons();
 
 	return (
 		<BntCard className="width-100 height-100">
