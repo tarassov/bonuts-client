@@ -58,6 +58,7 @@ export const ruLocale = {
 		[texts_a.add_reward]: "Добавить награду",
 		[texts_a.active]: "Активна",
 		[texts_a.availability]: "Наличие",
+		[texts_a.allowed_amount_range]: "Допустимая сумма: от {{min}} до {{max}}",
 		[texts_b.build_storefront_description]: "Собирайте понятную витрину наград, управляйте доступностью и поддерживайте каталог в актуальном состоянии.",
 		[texts_c.circle_actions]: "Действия с кругом",
 		[texts_c.circles_count]: "Кругов: {{count}}",
@@ -434,7 +435,7 @@ export const ruLocale = {
 		"Go to": "Перейти",
 		[texts_g.go_to]: "перейти",
 		[texts_g.give_donuts]: "Подарить пончики",
-		[texts_g.give_donut_delivery_title]: "Доставка поничков",
+		[texts_g.give_donut_delivery_title]: "Доставка пончиков",
 		Goods: "Товары",
 
 		// H
@@ -482,8 +483,8 @@ export const ruLocale = {
 		// M
 		Max: "Макс",
 		Min: "Мин",
-		[texts_m.max_amount_is]: "максимальное значение - ",
-		[texts_m.min_amount_is]: "минимальное значение - ",
+		[texts_m.max_amount_is]: "максимальное значение -",
+		[texts_m.min_amount_is]: "минимальное значение -",
 		"Max donuts": "Макисмальное количество пончиков",
 		message: "сообщение",
 		"My Requests": "Мои запросы",

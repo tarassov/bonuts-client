@@ -29,6 +29,7 @@ export function BntFormField({ field, id }: IBntFormFieldProps) {
 				id={id}
 				placeholder={field.placeholder}
 				label={field.label}
+				helperText={field.helperText}
 				value={value}
 				maxRows={field.maxRows}
 				minRows={field.minRows}
@@ -54,6 +55,7 @@ export function BntFormField({ field, id }: IBntFormFieldProps) {
 				id={id}
 				placeholder={field.placeholder}
 				label={field.label}
+				helperText={field.helperText}
 				type={field.type}
 				value={value}
 				rows={field.rows}

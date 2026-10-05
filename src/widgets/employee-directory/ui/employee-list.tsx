@@ -43,6 +43,7 @@ export function EmployeeList() {
 			employees={employees}
 			hasNext={hasNext}
 			isFetching={isFetching}
+			isLoading={isLoading}
 			loadedPageCount={loadedPageCount}
 			onlineCount={onlineCount}
 			query={query}
