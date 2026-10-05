@@ -75,7 +75,11 @@ export function ModalEmployeeView({ id, close, setModalLoading = emptyFunction }
 			return;
 		}
 
-		showTransfer(employee.id);
+		showTransfer({
+			id: employee.id,
+			name: employee.name || employee.user_name,
+			avatarUrl: employee.user_avatar?.preview?.url || employee.user_avatar?.url,
+		});
 		close();
 	};
 

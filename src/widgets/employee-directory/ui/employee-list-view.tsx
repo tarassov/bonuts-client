@@ -1,3 +1,5 @@
+import { CircularProgress } from "@mui/material";
+
 import { InfiniteScrollTrigger } from "@/shared/ui/infinite-scroll-trigger";
 import { BntTypography } from "@/shared/ui/typography";
 
@@ -12,6 +14,7 @@ interface IEmployeeListViewProps {
 	employees: Array<TProfile>;
 	hasNext: boolean;
 	isFetching: boolean;
+	isLoading: boolean;
 	loadedPageCount: number;
 	onlineCount: number;
 	query: string;
@@ -29,7 +32,7 @@ interface IEmployeeListViewProps {
 	onSortChange: (sort: EmployeeListSort) => void;
 }
 
-export function EmployeeListView({ employees, hasNext, isFetching, loadedPageCount, onlineCount, query, sort, texts, onLoadMore, onQueryChange, onSortChange }: IEmployeeListViewProps) {
+export function EmployeeListView({ employees, hasNext, isFetching, isLoading, loadedPageCount, onlineCount, query, sort, texts, onLoadMore, onQueryChange, onSortChange }: IEmployeeListViewProps) {
 	return (
 		<section className={styles.root}>
 			<header className={styles.header}>
@@ -50,7 +53,11 @@ export function EmployeeListView({ employees, hasNext, isFetching, loadedPageCou
 					{texts.onlineCount}
 				</BntTypography>
 			</div>
-			{employees.length ? (
+			{isLoading ? (
+				<div className={styles.loading}>
+					<CircularProgress size={28} />
+				</div>
+			) : employees.length ? (
 				<div className={styles.grid}>
 					{employees.map((employee) => (
 						<EmployeeCard key={employee.id} employee={employee} />

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Resolver, UseFormRegisterReturn } from "react-hook-form";
+import type { Mode, Resolver, UseFormRegisterReturn } from "react-hook-form";
 import { Theme } from "@mui/material/styles";
 import { SystemStyleObject } from "@mui/system/styleFunctionSx/styleFunctionSx";
 
@@ -76,6 +76,7 @@ export type TFormFieldSource = Array<TFormFieldSourceItem>;
 export type TFormField<T = Record<string, any>> = TSizeProps & {
 	name: keyof T;
 	label?: string;
+	helperText?: string;
 	// for switch type
 	disabledLabel?: string;
 	size: FieldSize;
@@ -126,6 +127,8 @@ export type TFormProps<T extends Record<string, any>> = {
 	keepDirtyOnInitialValuesChange?: boolean;
 	isSubmitAlwaysVisible?: boolean;
 	isSubmitDisabled?: boolean;
+	isSubmitDisabledWhenInvalid?: boolean;
 	isSubmitSticky?: boolean;
+	validationMode?: Mode;
 	resolver?: Resolver<any, any>;
 };

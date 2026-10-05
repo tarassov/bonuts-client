@@ -34,6 +34,7 @@ export function ModalGiveDonutColleagueList({ colleagues, onEmployeeSelect }: IM
 		onEmployeeSelect({
 			id: employee.id,
 			name: getEmployeeDisplayName(employee, noNameFallback),
+			avatarUrl: getEmployeeAvatarUrl(employee),
 		});
 	};
 

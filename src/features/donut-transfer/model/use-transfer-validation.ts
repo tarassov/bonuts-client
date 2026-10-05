@@ -1,5 +1,7 @@
 import * as Yup from "yup";
 
+import { present } from "@/shared/lib/type-guards";
+
 import type { TTransferForm } from "./use-transfer-form-fields";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { texts_c, texts_m } from "@/services/localization/texts";
@@ -7,7 +9,7 @@ import { texts_c, texts_m } from "@/services/localization/texts";
 export const useTransferValidation = (maxAmount?: number) => {
 	const { translate } = useBntTranslate();
 	const formSchema = Yup.object<TTransferForm>().shape({
-		amount: maxAmount
+		amount: present(maxAmount)
 			? Yup.number()
 					.transform((val, orig) => (orig === "" ? undefined : val))
 					.required(translate("Required"))

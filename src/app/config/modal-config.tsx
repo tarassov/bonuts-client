@@ -11,6 +11,7 @@ import { defineModal } from "@/shared/ui/dialog";
 
 import { ProfilePhotosAlbumModal, photosAlbumDialogPaperSx } from "@/entities/profile";
 
+import type { TTransferRecipient } from "@/features/donut-transfer";
 import { ModalEmployeeView } from "@/features/profile/modal";
 import { telegramModalConfig } from "@/features/profile/telegram";
 
@@ -87,8 +88,8 @@ export const modalConfig = {
 			preventCloseOnBackDropClick: true,
 			closeOnBack: true,
 		}),
-		TransferModal: defineModal<{ title?: string; id: number }>({
-			renderItem: (modal, props) => <ModalTransfer id={modal.data.id} {...props} />,
+		TransferModal: defineModal<{ title?: string; recipient: TTransferRecipient }>({
+			renderItem: (modal, props) => <ModalTransfer recipient={modal.data.recipient} {...props} />,
 			hasTopMenu: true,
 			title: titleFromData,
 			preventCloseOnBackDropClick: true,

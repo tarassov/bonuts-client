@@ -12,6 +12,7 @@ export function BntFormTextField(props: {
 	id?: string;
 	placeholder: string | undefined;
 	label?: string;
+	helperText?: string;
 	type: FieldType | undefined;
 	value: TFormValue;
 	rows?: number;
@@ -21,7 +22,7 @@ export function BntFormTextField(props: {
 	readOnly?: boolean;
 	required?: boolean;
 }) {
-	const { name, id, minValue, maxValue, placeholder, readOnly, label, type, value, rows, required, disabled } = props;
+	const { name, id, minValue, maxValue, placeholder, readOnly, label, helperText, type, value, rows, required, disabled } = props;
 	const { onChange } = useBntForm();
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = _.isNumber(e.target.value) ? Number(e.target.value) : e.target.value;
@@ -33,6 +34,7 @@ export function BntFormTextField(props: {
 			id={id}
 			placeholder={placeholder}
 			stringLabel={label}
+			helperText={helperText}
 			type={type}
 			value={value}
 			multiline={type === FieldType.text}

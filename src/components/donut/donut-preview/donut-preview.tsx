@@ -64,12 +64,16 @@ export function BntDonutPreview() {
 							<BntTypography sx={{ overflowWrap: "break-word" }} variant="h5" display="block">
 								{donut?.name}
 							</BntTypography>
-							<BntTypography className="mb-2 mt-2" variant="subtitle2">
-								{translate(Dictionary.Description)}
-							</BntTypography>
-							<BntTypography paragraph isPreformatted>
-								{donut?.description}
-							</BntTypography>
+							{donut?.description ? (
+								<>
+									<BntTypography className="mb-2 mt-2" variant="subtitle2">
+										{translate(Dictionary.Description)}
+									</BntTypography>
+									<BntTypography paragraph isPreformatted>
+										{donut.description}
+									</BntTypography>
+								</>
+							) : null}
 						</Grid>
 
 						<Grid item xs={12} sm={4} md={3} lg={2} order={{ xs: 2, md: 3 }}>

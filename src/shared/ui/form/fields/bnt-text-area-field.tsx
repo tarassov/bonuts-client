@@ -10,6 +10,7 @@ export const BntTextAreaField = (props: {
 	id?: string;
 	placeholder?: string | undefined;
 	label?: string;
+	helperText?: string;
 	value?: TFormValue;
 	maxRows?: number;
 	minRows?: number;
@@ -17,7 +18,7 @@ export const BntTextAreaField = (props: {
 	required?: boolean;
 	disabled?: boolean;
 }) => {
-	const { name, id, placeholder, label, maxRows, minRows, value, required, disabled, rows } = props;
+	const { name, id, placeholder, label, helperText, maxRows, minRows, value, required, disabled, rows } = props;
 	const { onChange } = useBntForm();
 
 	const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -29,6 +30,7 @@ export const BntTextAreaField = (props: {
 			id={id}
 			placeholder={placeholder}
 			stringLabel={label}
+			helperText={helperText}
 			value={value?.toString()}
 			onChange={handleChange}
 			required={required}

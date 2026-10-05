@@ -23,7 +23,9 @@ export function BntForm<T extends Record<string, any>>({
 	keepValuesOnSubmit,
 	isSubmitAlwaysVisible,
 	isSubmitDisabled,
+	isSubmitDisabledWhenInvalid,
 	isSubmitSticky,
+	validationMode,
 	resolver,
 }: TFormProps<T>) {
 	const [values, setValues] = useState<Record<string, TFormValue>>({});
@@ -84,7 +86,7 @@ export function BntForm<T extends Record<string, any>>({
 	return (
 		<div>
 			<DateFnsProvider adapterLocale={locale}>
-				<FormContainer defaultValues={initials} onSuccess={onSubmitForm} resolver={resolver}>
+				<FormContainer defaultValues={initials} mode={validationMode} onSuccess={onSubmitForm} resolver={resolver}>
 					<BntFormBody
 						fields={fields}
 						groups={groups}
@@ -96,6 +98,7 @@ export function BntForm<T extends Record<string, any>>({
 						keepDirtyOnInitialValuesChange={keepDirtyOnInitialValuesChange}
 						isSubmitAlwaysVisible={isSubmitAlwaysVisible}
 						isSubmitDisabled={isSubmitDisabled}
+						isSubmitDisabledWhenInvalid={isSubmitDisabledWhenInvalid}
 						isSubmitSticky={isSubmitSticky}
 						initialValues={initials}
 						submitCaption={submitCaption}

@@ -77,6 +77,7 @@ export const enLocale = {
 		[texts_a.add_reward]: "Add reward",
 		[texts_a.active]: "Active",
 		[texts_a.availability]: "Availability",
+		[texts_a.allowed_amount_range]: "Allowed amount: {{min}} to {{max}}",
 		[texts_b.build_storefront_description]: "Create a clear reward storefront, control availability, and keep the catalog up to date.",
 		[texts_c.circle_actions]: "Circle actions",
 		[texts_c.circles_count]: "Circles: {{count}}",

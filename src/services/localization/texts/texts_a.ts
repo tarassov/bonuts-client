@@ -33,4 +33,5 @@ export enum texts_a {
 	add_to_favorites = "add to favorites",
 	add_reward = "add reward",
 	availability = "availability",
+	allowed_amount_range = "allowed amount range",
 }

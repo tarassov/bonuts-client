@@ -33,7 +33,11 @@ export function EmployeePreview() {
 
 	const onTransferClick = () => {
 		if (employee) {
-			showTransfer(employee.id);
+			showTransfer({
+				id: employee.id,
+				name: employee.name || employee.user_name,
+				avatarUrl: employee.user_avatar?.preview?.url || employee.user_avatar?.url,
+			});
 		}
 	};
 

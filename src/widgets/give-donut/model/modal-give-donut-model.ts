@@ -9,6 +9,7 @@ export enum GiveDonutStep {
 export type TSelectedEmployee = {
 	id: number;
 	name: string;
+	avatarUrl?: string | null;
 };
 
 export const getEmployeeDisplayName = (employee: TProfile, noNameFallback: string) => {
