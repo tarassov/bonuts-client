@@ -31,13 +31,14 @@ export const BntFormBody: FC<
 	error,
 	isSubmitAlwaysVisible,
 	isSubmitDisabled,
+	isSubmitDisabledWhenInvalid,
 	isSubmitSticky,
 	keepDirtyOnInitialValuesChange,
 	keepValuesOnSubmit = true,
 }) => {
 	const { reset } = useFormContext();
 	const formState = useFormState();
-	const { isDirty, isSubmitting, isSubmitSuccessful } = formState;
+	const { isDirty, isSubmitting, isSubmitSuccessful, isValid } = formState;
 
 	useEffect(() => {
 		if (isSubmitSuccessful) {
@@ -69,7 +70,7 @@ export const BntFormBody: FC<
 				</BntFormContextProvider>
 			</Grid>
 			<BntFormSubmit
-				isDisabled={isSubmitDisabled || isSubmitting}
+				isDisabled={isSubmitDisabled || isSubmitting || (isSubmitDisabledWhenInvalid && !isValid)}
 				isSticky={isSubmitSticky}
 				visible={!!(isSubmitAlwaysVisible || isDirty || error)}
 				onCancelClick={onCancelClick}

@@ -5,7 +5,7 @@ import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
 const GET_DONUTS_URL = /\/api\/v1\/donuts(?:\?.*)?$/;
-const GET_DONUT_URL = /\/api\/v1\/donuts\/2(?:\?.*)?$/;
+const GET_DONUT_URL = /\/api\/v1\/donuts\/(?:2|3)(?:\?.*)?$/;
 const GET_SELF_ACCOUNT_URL = /\/api\/v1\/accounts\/10(?:\?.*)?$/;
 const GET_PROFILE_URL = /\/profile(?:\?.*)?$/;
 const GET_TENANTS_URL = /\/tenants(?:\?.*)?$/;
@@ -74,7 +74,7 @@ const DONUTS_RESPONSE = {
 		{
 			active: true,
 			available: false,
-			description: null,
+			description: "null",
 			expiration_date: null,
 			id: 3,
 			logo: null,
@@ -131,7 +131,10 @@ function mockDonutsPageRequests() {
 			statusCode: 200,
 		});
 	}).as("getDonuts");
-	cy.intercept("GET", GET_DONUT_URL, { body: { data: DONUTS_RESPONSE.data[1] }, statusCode: 200 }).as("getDonut");
+	cy.intercept("GET", GET_DONUT_URL, (request) => {
+		const donut = request.url.includes("/donuts/3") ? DONUTS_RESPONSE.data[2] : DONUTS_RESPONSE.data[1];
+		request.reply({ body: { data: donut }, statusCode: 200 });
+	}).as("getDonut");
 	cy.intercept("POST", POST_REQUEST_URL, (request) => {
 		hasCoffeeVoucherBeenPurchased = true;
 		request.reply({ body: { data: [] }, statusCode: 201 });
@@ -177,6 +180,15 @@ describe("Donuts page", () => {
 			cy.contains('[data-testid="donut-card"]', "Coffee voucher").click();
 			cy.location("pathname").should("eq", "/d/2");
 			cy.wait("@getDonut");
+		});
+
+		it("does not render a missing reward description as null", () => {
+			cy.get('[data-testid="infinite-scroll-trigger"]').scrollIntoView();
+			cy.wait("@getDonuts");
+			cy.contains('[data-testid="donut-card"]', "Team mug").click();
+			cy.location("pathname").should("eq", "/d/3");
+			cy.wait("@getDonut");
+			cy.contains("null", { matchCase: false }).should("not.exist");
 		});
 
 		it("purchases an affordable reward directly from its card", () => {

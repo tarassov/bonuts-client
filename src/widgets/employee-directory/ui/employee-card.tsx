@@ -45,7 +45,11 @@ export function EmployeeCard({ employee }: TEmployeeCardProps) {
 	const handleTransferClick = (event: MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
-		showTransfer(employee.id);
+		showTransfer({
+			id: employee.id,
+			name: employee.name || employee.user_name,
+			avatarUrl: employee.user_avatar?.preview?.url || employee.user_avatar?.url,
+		});
 	};
 
 	return (

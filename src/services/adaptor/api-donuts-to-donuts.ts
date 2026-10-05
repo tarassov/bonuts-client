@@ -6,11 +6,20 @@ type TApiDonut = GetDonutsApiResponse["data"][number];
 
 const hasValidName = (donut: TApiDonut) => typeof donut.name === "string" && Boolean(donut.name.trim());
 
+const normalizeDescription = (description: unknown) => {
+	if (typeof description !== "string") return undefined;
+
+	const normalizedDescription = description.trim();
+
+	return normalizedDescription && normalizedDescription.toLocaleLowerCase() !== "null" ? normalizedDescription : undefined;
+};
+
 const mapDonut = (donut: TApiDonut): TDonut => {
 	return {
 		...donut,
 		id: Number(donut.id),
 		name: donut.name.trim(),
+		description: normalizeDescription(donut.description),
 		expiration_date: donut.expiration_date ?? null,
 		comments: donut.comments || [],
 		liked: donut.liked ?? false,
