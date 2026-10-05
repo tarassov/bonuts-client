@@ -2,14 +2,13 @@ import { ArrowBackRounded } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
 import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography";
 
 import { TransferForm } from "@/features/donut-transfer";
 
 import type { TSelectedEmployee } from "../model/modal-give-donut-model";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { texts_b, texts_s } from "@/services/localization/texts";
+import { texts_b } from "@/services/localization/texts";
 
 interface IModalGiveDonutTransferStepProps {
 	employee: TSelectedEmployee;
@@ -23,15 +22,12 @@ export function ModalGiveDonutTransferStep({ employee, onBack, onError, onSucces
 
 	return (
 		<BntStack gap={2}>
-			<BntStack direction="row" alignItems="center" gap={1}>
+			<BntStack direction="row" alignItems="center">
 				<IconButton aria-label={t(texts_b.back, { capitalize: true })} onClick={onBack} size="small">
 					<ArrowBackRounded fontSize="small" />
 				</IconButton>
-				<BntTypography color="text.secondary" variant="body2">
-					{t(texts_s.sending_to, { capitalize: true })} <strong>{employee.name}</strong>
-				</BntTypography>
 			</BntStack>
-			<TransferForm id={employee.id} onSuccess={onSuccess} onError={onError} />
+			<TransferForm id={employee.id} recipient={employee} onSuccess={onSuccess} onError={onError} />
 		</BntStack>
 	);
 }

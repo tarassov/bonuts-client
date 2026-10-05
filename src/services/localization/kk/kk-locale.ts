@@ -70,6 +70,7 @@ export const kkLocale = {
 		[texts_a.add_reward]: "Сыйлық қосу",
 		[texts_a.active]: "Белсенді",
 		[texts_a.availability]: "Қолжетімділік",
+		[texts_a.allowed_amount_range]: "Рұқсат етілген сома: {{min}}-нен {{max}}-ге дейін",
 		[texts_b.build_storefront_description]: "Сыйлықтар витринасын құрыңыз, қолжетімділікті басқарыңыз және каталогты жаңартып отырыңыз.",
 		[texts_c.click_reward_to_edit]: "Параметрлерін өзгерту үшін сыйлықты ашыңыз",
 		[texts_c.change_avatar]: "Аватарды өзгерту",
@@ -382,8 +383,8 @@ export const kkLocale = {
 		// M
 		Max: "Макс",
 		Min: "Мин",
-		[texts_m.max_amount_is]: "максималды мән - ",
-		[texts_m.min_amount_is]: "минималды мән - ",
+		[texts_m.max_amount_is]: "максималды мән -",
+		[texts_m.min_amount_is]: "минималды мән -",
 		"Max donuts": "Макисмальное количество пончиков",
 		message: "сообщение",
 		"My Requests": "Мои запросы",

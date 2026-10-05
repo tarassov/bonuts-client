@@ -59,12 +59,13 @@
 	gap: 20px;
 }
 
-.empty {
+.empty,
+.loading {
 	display: grid;
 	place-items: center;
-	gap: 6px;
 	min-height: 260px;
 	padding: 32px;
+	gap: 6px;
 	text-align: center;
 }
 

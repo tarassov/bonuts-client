@@ -77,7 +77,12 @@ export function EventList() {
 							);
 						})}
 				</Grid>
-				{isEmpty ? (
+				{isLoading && isEmpty ? (
+					<BntStack alignItems="center" justifyContent="center" sx={{ height: matchesDownMd ? "300px" : "40%" }}>
+						<CircularProgress color="primary" />
+					</BntStack>
+				) : null}
+				{!isLoading && isEmpty ? (
 					<BntStack
 						alignItems="center"
 						justifyContent="center"
