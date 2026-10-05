@@ -13,7 +13,7 @@ function sendDonutsFromDashboard() {
 	mockGiveDonutsModalRequests();
 	cy.get('[data-testid="brand-gradient-action-button"]').click();
 
-	cy.contains(".MuiDialog-paper", "Доставка поничков").as("giveDonutsModal").should("be.visible");
+	cy.contains(".MuiDialog-paper", "Доставка пончиков").as("giveDonutsModal").should("be.visible");
 	cy.wait("@getProfiles");
 	cy.get("@giveDonutsModal").contains("Pepper Potts").should("be.visible").click();
 
