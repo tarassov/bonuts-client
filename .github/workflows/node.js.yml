@@ -45,6 +45,9 @@ jobs:
     - name: Run the tests
       run: yarn test
 
+    - name: Install Cypress binary
+      run: yarn cypress install
+
     - name: Run Cypress tests
       run: yarn cypress:run
 
