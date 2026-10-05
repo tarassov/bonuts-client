@@ -55,7 +55,7 @@ export const TransferForm: FC<TTransferFormProps> = ({ id, recipient, onSuccess,
 				submitButtonVariant={SubmitButtonVariant.brandGradient}
 				isSubmitDisabled={!account || account.balance < 1}
 				isSubmitDisabledWhenInvalid
-				validationMode="onBlur"
+				validationMode="all"
 				hasInitial
 				initialValues={initialValues}
 			/>

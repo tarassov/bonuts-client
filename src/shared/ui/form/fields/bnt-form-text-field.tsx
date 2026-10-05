@@ -7,6 +7,12 @@ import { BntTextInputElement } from "@/shared/ui/input";
 import { useBntForm } from "../hooks/use-bnt-form";
 import { FieldType, TFormValue } from "../types/bnt-form";
 
+// TextFieldElement must store the same raw value as handleChange: react-hook-form drops
+// the validation result of a change when the field value differs afterwards.
+const RAW_INPUT_VALUE_TRANSFORM = {
+	output: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => event.target.value,
+};
+
 export function BntFormTextField(props: {
 	name: string;
 	id?: string;
@@ -43,6 +49,7 @@ export function BntFormTextField(props: {
 			sx={{ width: "100%" }}
 			disabled={disabled}
 			onChange={handleChange}
+			transform={RAW_INPUT_VALUE_TRANSFORM}
 			InputProps={{ inputProps: { min: minValue, max: maxValue }, readOnly }}
 		/>
 	);

@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { FieldError, TextFieldElement } from "react-hook-form-mui";
+import { FieldError, TextFieldElement, TextFieldElementProps } from "react-hook-form-mui";
 import { TextFieldProps } from "@mui/material";
 
 import { EMPTY_FUNCTION } from "constants/functions";
@@ -11,7 +11,10 @@ import { getInputProps } from "./helpers/get-input-props";
  *@param  props: clearable - if true show close icons in the of the string
  *
  * */
-export const BntTextInputElement = forwardRef<HTMLDivElement, TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string }>((props, ref) => {
+export const BntTextInputElement = forwardRef<
+	HTMLDivElement,
+	TextFieldProps & { stringLabel?: string; clearable?: boolean; onClear?: () => void; name: string; transform?: TextFieldElementProps["transform"] }
+>((props, ref) => {
 	const { translate } = useBntTranslate();
 	const { stringLabel, onClear = EMPTY_FUNCTION, name, clearable = false, component, ...rest } = props;
 	const { InputProps = {}, slotProps, value, placeholder, label } = rest;

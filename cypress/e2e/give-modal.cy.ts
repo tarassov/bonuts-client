@@ -22,16 +22,16 @@ function sendDonutsFromDashboard() {
 	cy.get("@giveDonutsModal").find(".MuiAvatar-root").should("be.visible");
 	cy.get("@giveDonutsModal").contains("Допустимая сумма: от 1 до 12").should("be.visible");
 
-	cy.get("@giveDonutsModal").find('input[name="amount"]').clear().type("0").blur();
+	cy.get("@giveDonutsModal").find('input[name="amount"]').clear().type("0");
 	cy.get("@giveDonutsModal").contains("Минимальное значение - 1").should("be.visible");
 	cy.get("@giveDonutsModal").find('[data-testid="form-submit-button"]').should("be.disabled");
 
-	cy.get("@giveDonutsModal").find('input[name="amount"]').clear().type("13").blur();
+	cy.get("@giveDonutsModal").find('input[name="amount"]').clear().type("13");
 	cy.get("@giveDonutsModal").contains("Максимальное значение - 12").should("be.visible");
 	cy.get("@giveDonutsModal").find('[data-testid="form-submit-button"]').should("be.disabled");
 
-	cy.get("@giveDonutsModal").find('input[name="amount"]').clear().type("12").blur();
-	cy.get("@giveDonutsModal").find('textarea[name="comment"]').type("Thanks for keeping the team aligned.").blur();
+	cy.get("@giveDonutsModal").find('input[name="amount"]').clear().type("12");
+	cy.get("@giveDonutsModal").find('textarea[name="comment"]').type("Thanks for keeping the team aligned.");
 	cy.get("@giveDonutsModal").find('[data-testid="form-submit-button"]').should("be.enabled").click();
 
 	cy.wait("@postTransferDonuts");
