@@ -1,5 +1,7 @@
 import { alpha, styled } from "@mui/material/styles";
 
+import { present } from "@/shared/lib/type-guards";
+
 import { EVENT_CARD_CLASSES } from "./classes";
 import { EventCard, EventCardProps } from "./event-card";
 import { cl } from "themes/helper";
@@ -20,6 +22,7 @@ export const EventCardStyled = styled(EventCard, {
 	const cardBoxShadow = isNotification ? "none" : "0 8px 24px rgba(30,31,37,0.06)";
 	const cardHoverTransform = isNotification ? "none" : "translateY(-2px)";
 	const cardHoverShadow = isNotification ? "none" : "0 14px 34px rgba(30,31,37,0.12)";
+	const hasImages = present(post.images);
 
 	return {
 		width: "100%",
@@ -41,8 +44,8 @@ export const EventCardStyled = styled(EventCard, {
 			overflow: "hidden",
 		},
 		[cl(EVENT_CARD_CLASSES.cardContent)]: {
-			maxHeight: bodyMaxHeight,
-			overflow: "auto",
+			maxHeight: hasImages ? "none" : bodyMaxHeight,
+			overflow: hasImages ? "visible" : "auto",
 			padding: theme.spacing(2, 2.5, 1.5),
 		},
 		[cl(EVENT_CARD_CLASSES.cardEditForm)]: {
