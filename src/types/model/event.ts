@@ -1,5 +1,12 @@
-import { TBaseModel } from "./base-model";
-import { TComment } from "@/types/model/comment";
+import type { TBaseModel } from "./base-model";
+import type { TComment } from "@/types/model/comment";
+
+export type TEventImage = {
+	url?: string | null;
+	thumb?: {
+		url?: string | null;
+	} | null;
+};
 
 export type TEvent = TBaseModel & {
 	comments?: Array<TComment>;
@@ -9,4 +16,5 @@ export type TEvent = TBaseModel & {
 	date_string?: string;
 	date_string_utc?: string;
 	editable?: boolean;
+	images?: Array<TEventImage>;
 };
