@@ -586,6 +586,20 @@ const injectedRtkApi = api.injectEndpoints({
 		getVkMe: build.query<GetVkMeApiResponse, GetVkMeApiArg>({
 			query: () => ({ url: `/vk/me` }),
 		}),
+		getWeeklyRecognitionBadges: build.query<GetWeeklyRecognitionBadgesApiResponse, GetWeeklyRecognitionBadgesApiArg>({
+			query: (queryArg) => ({
+				url: `/weekly_recognition_badges`,
+				params: {
+					tenant: queryArg.tenant,
+					search: queryArg.search,
+					badge_type: queryArg.badgeType,
+					date_from: queryArg.dateFrom,
+					date_to: queryArg.dateTo,
+					page: queryArg.page,
+					per_page: queryArg.perPage,
+				},
+			}),
+		}),
 		getWeeklyRecognitionBadgesLatest: build.query<GetWeeklyRecognitionBadgesLatestApiResponse, GetWeeklyRecognitionBadgesLatestApiArg>({
 			query: (queryArg) => ({
 				url: `/weekly_recognition_badges/latest`,
@@ -1270,6 +1284,12 @@ export type GetEventsApiResponse = /** status 200 excludes notifications when ex
 			public: boolean;
 			is_notify: boolean;
 			position: string;
+			images: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			}[];
 			operation?: {
 				id: number;
 				direction?: number;
@@ -1375,6 +1395,12 @@ export type GetEventsByIdApiResponse = /** status 200 user can view own private 
 			public: boolean;
 			is_notify: boolean;
 			position: string;
+			images: {
+				url: string;
+				thumb: {
+					url: string;
+				};
+			}[];
 			operation?: {
 				id: number;
 				direction?: number;
@@ -1485,6 +1511,12 @@ export type PostEventsByIdLikeApiResponse = /** status 200 event unliked */ {
 				public: boolean;
 				is_notify: boolean;
 				position: string;
+				images: {
+					url: string;
+					thumb: {
+						url: string;
+					};
+				}[];
 				operation?: {
 					id: number;
 					direction?: number;
@@ -1590,6 +1622,12 @@ export type PostEventsByIdCommentsApiResponse = /** status 200 new comment creat
 				public: boolean;
 				is_notify: boolean;
 				position: string;
+				images: {
+					url: string;
+					thumb: {
+						url: string;
+					};
+				}[];
 				operation?: {
 					id: number;
 					direction?: number;
@@ -4884,6 +4922,38 @@ export type GetVkMeApiResponse = /** status 200 vk token not found will return e
 	message_link: string;
 };
 export type GetVkMeApiArg = void;
+export type GetWeeklyRecognitionBadgesApiResponse = /** status 200 success */ {
+	data: {
+		id: number;
+		week_start: string;
+		week_end: string;
+		badge_type: string;
+		title: string;
+		description: string;
+		score: number;
+		profile: {
+			id: number;
+			first_name: string;
+			last_name: string;
+			full_name: string;
+			avatar: string;
+		};
+		meta_json: object;
+	}[];
+};
+export type GetWeeklyRecognitionBadgesApiArg = {
+	tenant?: string;
+	/** Employee first name, last name or email (case-insensitive, partial match) */
+	search?: string;
+	/** Badge definition code, e.g. hidden_hero */
+	badgeType?: string;
+	/** Include weeks starting on or after the week that contains this date */
+	dateFrom?: string;
+	/** Include weeks starting on or before this date */
+	dateTo?: string;
+	page?: number;
+	perPage?: number;
+};
 export type GetWeeklyRecognitionBadgesLatestApiResponse = /** status 200 success */ {
 	week_start: string;
 	week_end: string;
@@ -5022,5 +5092,6 @@ export const {
 	useDeleteVkDisconnectMutation,
 	usePostVkLoginMutation,
 	useGetVkMeQuery,
+	useGetWeeklyRecognitionBadgesQuery,
 	useGetWeeklyRecognitionBadgesLatestQuery,
 } = injectedRtkApi;
