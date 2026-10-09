@@ -1,4 +1,4 @@
-import type { TBaseModel } from "./base-model";
+import type { TBaseModel } from "@/types/model/base-model";
 import type { TComment } from "@/types/model/comment";
 
 export type TEventImage = {
