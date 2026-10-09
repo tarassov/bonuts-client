@@ -151,6 +151,32 @@ const injectedRtkApi = api.injectEndpoints({
 		postEventsByIdComments: build.mutation<PostEventsByIdCommentsApiResponse, PostEventsByIdCommentsApiArg>({
 			query: (queryArg) => ({ url: `/events/${queryArg.id}/comments`, method: "POST", body: queryArg.body }),
 		}),
+		postHrSummaries: build.mutation<PostHrSummariesApiResponse, PostHrSummariesApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_summaries`,
+				method: "POST",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getHrSummaries: build.query<GetHrSummariesApiResponse, GetHrSummariesApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_summaries`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getHrSummariesById: build.query<GetHrSummariesByIdApiResponse, GetHrSummariesByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_summaries/${queryArg.id}`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
 		postInvitationsByIdClose: build.mutation<PostInvitationsByIdCloseApiResponse, PostInvitationsByIdCloseApiArg>({
 			query: (queryArg) => ({
 				url: `/invitations/${queryArg.id}/close`,
@@ -1661,6 +1687,29 @@ export type PostEventsByIdCommentsApiArg = {
 		text: string;
 		tenant: string;
 	};
+};
+export type PostHrSummariesApiResponse = /** status 201 summary queued */ {
+	data: object;
+};
+export type PostHrSummariesApiArg = {
+	tenant?: string;
+	body: {
+		date_from?: string;
+		date_to?: string;
+	};
+};
+export type GetHrSummariesApiResponse = /** status 200 private history */ {
+	data: object[];
+};
+export type GetHrSummariesApiArg = {
+	tenant?: string;
+};
+export type GetHrSummariesByIdApiResponse = /** status 200 own summary */ {
+	data: object;
+};
+export type GetHrSummariesByIdApiArg = {
+	tenant?: string;
+	id: number;
 };
 export type PostInvitationsByIdCloseApiResponse = /** status 200 success */ {
 	data?: {
@@ -5019,6 +5068,9 @@ export const {
 	usePutEventsByIdMutation,
 	usePostEventsByIdLikeMutation,
 	usePostEventsByIdCommentsMutation,
+	usePostHrSummariesMutation,
+	useGetHrSummariesQuery,
+	useGetHrSummariesByIdQuery,
 	usePostInvitationsByIdCloseMutation,
 	useGetInvitationsQuery,
 	usePostInvitationsMutation,
