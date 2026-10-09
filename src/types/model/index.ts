@@ -1,7 +1,6 @@
 export type { TBaseModel } from "./base-model";
 export type { TCircle } from "./circle";
 export type { TDonut } from "./donut";
-export type { TEvent } from "./event";
 export type { TLike } from "./like";
 export type { TPlugin } from "./plugin";
 export type { TProfile } from "./profile";

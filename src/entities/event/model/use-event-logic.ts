@@ -3,10 +3,10 @@ import { authTenantSelector } from "@/shared/model/auth";
 
 import { eventsApi, usePostEventsByIdLikeMutation } from "../api/events-api";
 
+import type { TEvent } from "./event.types";
 import { usePostEventsByIdCommentsMutation, usePutEventsByIdMutation } from "@/services/api/bonuts-api";
 import { useAppDispatch, useAppSelector } from "@/services/redux/store/store";
-import { TEvent } from "@/types/model";
-import { TLikeable } from "@/types/model/type-extension";
+import type { TLikeable } from "@/types/model/type-extension";
 
 type TEventUpdate = {
 	content: string;

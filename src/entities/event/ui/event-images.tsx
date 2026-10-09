@@ -1,7 +1,8 @@
 import classNames from "classnames";
 
+import type { TEventImage } from "../model/event.types";
+
 import styles from "./event-images.module.scss";
-import type { TEventImage } from "@/types/model/event";
 
 interface IEventImagesProps {
 	images?: Array<TEventImage>;
