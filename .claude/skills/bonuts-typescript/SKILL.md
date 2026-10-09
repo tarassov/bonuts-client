@@ -21,6 +21,7 @@ description: TypeScript conventions for the Bonuts client — type/interface/enu
 - Move non-props component-local types out of the component body, and out of the component file when it reduces visual noise.
 - Component props are the exception: keep props types/interfaces in the same file as the component.
 - In FSD, define non-trivial types in the `model` segment when they are shared beyond one component.
+- Prefer keeping related reusable slice types together in a domain-named `model/<domain>.types.ts` file instead of creating a separate file for each type. Export types used outside the slice through the slice's `index.ts` public interface.
 
 ## Generated API
 
