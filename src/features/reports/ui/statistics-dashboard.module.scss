@@ -1,0 +1,67 @@
+.root {
+	position: relative;
+	height: 100%;
+}
+
+.grid {
+	padding: 8px;
+}
+
+.desktopGrid {
+	height: 100%;
+}
+
+.desktopGridItem {
+	max-height: 45%;
+}
+
+.tile {
+	height: 100%;
+	overflow: hidden;
+	transition: opacity 0.3s ease;
+}
+
+.dimmedTile {
+	opacity: 0.2;
+}
+
+.mobileTile {
+	max-height: 100px;
+}
+
+.mobileFullscreenTile {
+	min-height: 200px;
+	max-height: none;
+}
+
+.backdrop {
+	position: absolute;
+	inset: 0;
+	z-index: 80;
+}
+
+.fullscreenTile {
+	position: absolute;
+	top: 8px;
+	bottom: 8px;
+	left: 5%;
+	z-index: 100;
+	width: 90%;
+	max-height: 100%;
+	overflow: hidden;
+	animation: fullscreen-tile-enter 0.32s ease-out;
+}
+
+@keyframes fullscreen-tile-enter {
+	from {
+		opacity: 0;
+		left: 50%;
+		width: 0;
+	}
+
+	to {
+		opacity: 1;
+		left: 5%;
+		width: 90%;
+	}
+}

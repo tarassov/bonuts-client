@@ -1,5 +1,7 @@
 export enum texts_b {
 	birthday = "date of birth",
+	birthday_on = "birthday on {{date}}",
+	birthday_soon = "birthday soon",
 	blocked = "blocked",
 	birthday_donuts = "birthday donuts",
 	birthday_points = "birthday points",
@@ -8,4 +10,5 @@ export enum texts_b {
 	back = "back",
 	by_name = "by name",
 	balance = "balance",
+	build_storefront_description = "build storefront description",
 }

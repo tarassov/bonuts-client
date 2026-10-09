@@ -1,0 +1,41 @@
+.root {
+  min-height: min(360px, 45vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.card {
+  width: min(420px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px; /* ~ MUI gap 1.5 */
+  border-radius: 16px;
+}
+
+.surface {
+  border: 1px solid; /* borderColor comes from sx (theme-connected) */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.noSurface {
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.primaryText {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.secondaryText {
+  font-size: 12px;
+  line-height: 1.4;
+  user-select: none;
+}

@@ -1,6 +1,12 @@
 export enum texts_m {
-	"more" = "more",
-	"my_teams" = "my teams",
-	"max_amount_is" = "max amount is",
-	"min_amount_is" = "min amount is",
+	main_reward_information = "main reward information",
+	main_information = "Main information",
+	moderator = "moderator",
+	more = "more",
+	my_invitations = "my invitations",
+	my_photos = "my photos",
+	my_requests = "my requests",
+	my_teams = "my teams",
+	max_amount_is = "max amount is",
+	min_amount_is = "min amount is",
 }

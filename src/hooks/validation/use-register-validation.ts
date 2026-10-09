@@ -1,8 +1,11 @@
 import * as Yup from "yup";
-import { texts_e, texts_f, texts_l, texts_p } from "services/localization/texts";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_e, texts_f, texts_l, texts_p } from "services/localization/texts";
+
+import { emailRegex } from "@/shared/lib/regex";
+
 import { RegisterFields } from "@/types/form/register";
-import { emailRegex } from "@/regex/email-regex";
 
 export const useRegisterValidation = () => {
 	const { translate } = useBntTranslate();
@@ -14,7 +17,7 @@ export const useRegisterValidation = () => {
 			.required(translate(texts_p.password_confirm_is_required, { capitalize: true }))
 			// .min(4, "Password length should be at least 4 characters")
 			// .max(12, "Password cannot exceed more than 12 characters")
-			.oneOf([Yup.ref("password")], translate(texts_p.passwords_do_not_math, { capitalize: true })),
+			.oneOf([Yup.ref("password")], translate(texts_p.passwords_do_not_match, { capitalize: true })),
 		first_name: Yup.string().required(translate(texts_f.first_name)),
 		last_name: Yup.string().required(translate(texts_l.last_name)),
 		email: Yup.string()

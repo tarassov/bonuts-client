@@ -4,9 +4,7 @@ export type TransferOptions = {
 	burnOld: boolean;
 	toSelfAccount: boolean;
 };
-export type TransferProps =
-	| (TransferOptions & { ids: Array<number>; forAll: false })
-	| (TransferOptions & { forAll: true; ids: [] | undefined });
+export type TransferProps = (TransferOptions & { ids: Array<number>; forAll: false }) | (TransferOptions & { forAll: true; ids: [] | undefined });
 
 export type AdminDepositProps = {
 	amount: number;

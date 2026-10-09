@@ -1,15 +1,20 @@
 import { FC } from "react";
+
+import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
+import { texts_c, texts_i, texts_t } from "services/localization/texts";
+
+import { BntBox } from "@/shared/ui/box";
+import { BntRoundButton } from "@/shared/ui/buttons";
+import { BntStack } from "@/shared/ui/stack";
+
+import { AccountType } from "@/entities/account";
+import { useDonutUi } from "@/entities/donut";
+
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
-import { texts_i, texts_t } from "services/localization/texts";
-import { AccountBalanceMainInfo } from "components/account-balance/account-balance-main-info";
-import { BntRoundButton } from "shared/buttons/round-button";
-import { useDonutUi } from "logic/ui/use-donut-ui";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
-import { BntBox } from "shared/box/bnt-box";
 import { TProfile } from "@/types/model";
-import { BntStack } from "@/shared/stack/stack";
 
 export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 	const { t } = useBntTranslate();
@@ -17,7 +22,7 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 	const accountId = profile?.self_account?.id;
 	const { account, isLoading } = useAccountBalanceLoader(accountId);
 	const { toStore } = useDonutUi();
-	const { toSelfBalanceHistory } = useEmployeeUi(profile);
+	const { toAccountOperations } = useEmployeeUi(profile);
 
 	return (
 		<BntStack gap={1}>
@@ -29,14 +34,14 @@ export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {
 						"..."
 					) : (
 						<>
-							{t("point", { count: account?.balance })}
+							{t(texts_c.coin, { count: account?.balance })}
 							(<BonutsCurrency />)
 						</>
 					)
 				}
-				name="point"
+				name={texts_c.coin}
 				lastOperation={account?.last_operation}
-				onClick={toSelfBalanceHistory}
+				onClick={() => toAccountOperations(AccountType.self)}
 			/>
 			<BntBox>
 				<BntRoundButton variant="contained" onClick={toStore}>

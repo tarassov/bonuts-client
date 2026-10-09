@@ -1,5 +1,5 @@
-import { TPicture } from "./picture";
 import { TBaseModel } from "./base-model";
+import { TPicture } from "./picture";
 import { TCircle } from "@/types/model/circle";
 
 export type TProfile = TBaseModel & {
@@ -19,8 +19,9 @@ export type TProfile = TBaseModel & {
 	circles?: Array<TCircle>;
 	birthdate?: string | null;
 	in_date?: string | null;
-	bio?: string;
-	contact?: string;
+	bio?: string | null;
+	contact?: string | null;
+	locale?: string;
 	score_total?: number;
 	self_account?: {
 		id?: number;
@@ -33,4 +34,8 @@ export type TProfile = TBaseModel & {
 		profile_id?: number;
 	};
 	created_at?: string;
+	tg_code?: string | null;
+	last_seen_at?: string | null;
+	is_online?: boolean;
+	photos?: Array<TPicture>;
 };

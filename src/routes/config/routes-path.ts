@@ -1,8 +1,8 @@
-import { BntRoutes } from "routes/config/routes";
+import { BntRoutes } from "@/shared/config/routes";
 
 export const routesPath: Record<BntRoutes, string> = {
 	Home: "/home",
-	AccountOperations: "/account/:id",
+	AccountOperations: "/account_operations/:id",
 	ActiveRequests: "active_requests",
 	ClosedRequests: "closed_request",
 	Dashboard: "/",
@@ -18,6 +18,7 @@ export const routesPath: Record<BntRoutes, string> = {
 	Event: "/event/:id",
 	Plugins: "/plugins",
 	Profile: "/my",
+	Photos: "/my/photos",
 	RequestRecover: "/recover_password",
 	Recover: "/recover_password/:token",
 	Registration: "/registration",
@@ -32,4 +33,7 @@ export const routesPath: Record<BntRoutes, string> = {
 	Circles: "/circles",
 	ConfirmEmail: "/confirm_email/:token",
 	Invitations: "/invitations",
+	InvitationsAll: "/invitations/all",
+	NewUser: "/welcome",
+	VkCallback: "/oauth/vk",
 };

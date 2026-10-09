@@ -1,10 +1,12 @@
-import { createContext, FC } from "react";
+import { createContext, FC, ReactNode } from "react";
+import { ThemeProvider as MuiThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 
-import { StyledEngineProvider, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { useCustomTheme } from "hooks/use-custom-theme";
+import { emptyFunction } from "utils/empty-function";
+
 import darkTheme from "./dark-theme";
 import lightTheme from "./light-theme";
-import { ThemeContextType } from "@/types/theme";
+import { EThemeName, ThemeContextType } from "@/types/theme";
 
 const themes = {
 	dark: darkTheme,
@@ -12,12 +14,14 @@ const themes = {
 };
 
 export const CustomThemeContext = createContext<ThemeContextType>({
-	setTheme: () => {},
-	toggleTheme: () => {},
+	setTheme: emptyFunction,
+	toggleTheme: emptyFunction,
+	themeName: EThemeName.System,
+	resolvedThemeName: EThemeName.Light,
 });
 
 type ThemeProviderProps = {
-	children?: React.ReactNode;
+	children?: ReactNode;
 };
 export const BntThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 	const [theme, changeThemeMethods] = useCustomTheme(themes);

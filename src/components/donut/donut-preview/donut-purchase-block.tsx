@@ -1,27 +1,26 @@
 import { FC } from "react";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntCard } from "shared/card/card";
+
 import { Dictionary } from "constants/dictionary";
-import { BntTypography } from "shared/typography/typography";
-import { BntRegularButton } from "shared/buttons/regular-button";
-import { useRequestLogic } from "logic/hooks/request/use-request-logic";
-import { texts_o } from "services/localization/texts/texts_o";
-import { BntStack } from "shared/stack/stack";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useBonutsIcon } from "hooks/use-bonuts-icon";
-import { DonutRemainGrey } from "./donut-remain-grey";
+import { texts_o } from "services/localization/texts/texts_o";
+
+import { BntCard } from "@/shared/ui/card";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography";
+
+import { DonutPurchaseButton, useDonutPurchase } from "@/features/donut-purchase";
+
 import { DonutPrice } from "./donut-price";
-import { TDonut } from "@/types/model";
+import { DonutRemainGrey } from "./donut-remain-grey";
+import type { TDonut } from "@/types/model";
 
 export const DonutPurchaseBlock: FC<{
 	donut: TDonut;
 }> = ({ donut }) => {
-	const { createRequest } = useRequestLogic();
+	const { canPurchase, isPurchasing, purchaseDonut } = useDonutPurchase();
 	const { t } = useBntTranslate();
 	const { BonutsCurrency } = useBonutsIcon();
-
-	const onCreateRequest = () => {
-		createRequest({ donut });
-	};
 
 	return (
 		<BntCard raised>
@@ -40,11 +39,9 @@ export const DonutPurchaseBlock: FC<{
 					{t(Dictionary.Delivery_days)}: {donut.supply_days}{" "}
 				</BntTypography>
 			) : null}
-			{donut?.has_remains && (
+			{canPurchase(donut) && (
 				<div className="m-5">
-					<BntRegularButton onClick={onCreateRequest} className="width-100">
-						{t(Dictionary.Buy)}
-					</BntRegularButton>
+					<DonutPurchaseButton donut={donut} isPurchasing={isPurchasing} onPurchase={purchaseDonut} />
 				</div>
 			)}
 		</BntCard>

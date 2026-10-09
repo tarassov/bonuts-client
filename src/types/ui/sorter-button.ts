@@ -1,7 +1,8 @@
-import { Sorting } from "constants/dictionary";
-import { TBaseModel } from "@/types/model";
+import type { Sorting } from "@/constants/dictionary";
 
-export type TSorterButton<T extends TBaseModel> = {
+export type TSorter<TValue> = (firstValue: TValue, secondValue: TValue) => number;
+
+export type TSorterButton<TSort> = {
 	name: Sorting;
-	sorter: (a: T, b: T) => number;
+	sorter: TSort;
 };

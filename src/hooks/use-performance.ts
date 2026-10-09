@@ -13,9 +13,7 @@ export const usePerformance = (measureName: string, limit: number = 1000) => {
 
 			if (t1 - t0 > limit) {
 				// eslint-disable-next-line no-console
-				console.info(
-					`It took ${Math.round((t1 - t0) / 10) / 100} seconds to perform ${measureName}`
-				);
+				console.info(`It took ${Math.round((t1 - t0) / 10) / 100} seconds to perform ${measureName}`);
 			}
 		}
 	};

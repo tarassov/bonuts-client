@@ -1,3 +1,8 @@
-# https://www.robotstxt.org/robotstxt.html
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
 User-agent: *
 Disallow:

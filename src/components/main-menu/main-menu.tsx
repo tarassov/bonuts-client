@@ -1,9 +1,9 @@
-import { IconButton, List, ListItem, ListItemButton, ListItemIcon, useTheme } from "@mui/material";
 import React, { FC, useContext } from "react";
-
 import { ChevronLeft, Menu } from "@mui/icons-material";
-import { AppContext } from "context/app-context";
+import { IconButton, List, ListItem, ListItemButton, ListItemIcon, useTheme } from "@mui/material";
+
 import { BntRoutesMenu } from "./routes-menu";
+import { AppContext } from "context/app-context";
 
 export const BntMainMenu: FC<BntRoutesMenuProps> = (props) => {
 	const { showFullName } = props;
@@ -32,13 +32,11 @@ export const BntMainMenu: FC<BntRoutesMenuProps> = (props) => {
 						}}
 					>
 						{!showFullName ? (
-							<IconButton onClick={toggleDrawer} sx={{ pt: 0.5, pb: 0.5 }}>
+							<IconButton sx={{ pt: 0.5, pb: 0.5 }}>
 								<Menu />
 							</IconButton>
 						) : (
-							<IconButton onClick={toggleDrawer} sx={{ mr: 0, pr: 0, pt: 0.5, pb: 0.5 }}>
-								{theme.direction === "rtl" ? <ChevronLeft /> : <ChevronLeft />}
-							</IconButton>
+							<IconButton sx={{ mr: 0, pr: 0, pt: 0.5, pb: 0.5 }}>{theme.direction === "rtl" ? <ChevronLeft /> : <ChevronLeft />}</IconButton>
 						)}
 					</ListItemIcon>
 				</ListItemButton>

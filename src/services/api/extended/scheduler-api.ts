@@ -1,9 +1,6 @@
 import { bonutsApi } from "services/api/bonuts-api";
-import {
-	cacheByIdArgProperty,
-	invalidatesList,
-	providesList,
-} from "services/redux/utils/rtk-cache-utils";
+
+import { cacheByIdArgProperty, invalidatesList, providesList } from "@/shared/lib/rtk";
 
 // noinspection TypeScriptValidateJSTypes
 export const schedulersApi = bonutsApi.enhanceEndpoints({
@@ -19,10 +16,5 @@ export const schedulersApi = bonutsApi.enhanceEndpoints({
 	},
 });
 
-export const {
-	useGetDonutsSchedulersByIdQuery,
-	useGetDonutsSchedulersQuery,
-	usePostDonutsSchedulersMutation,
-	useDeleteDonutsSchedulersByIdMutation,
-	usePatchDonutsSchedulersByIdMutation,
-} = schedulersApi;
+export const { useGetDonutsSchedulersByIdQuery, useGetDonutsSchedulersQuery, usePostDonutsSchedulersMutation, useDeleteDonutsSchedulersByIdMutation, usePatchDonutsSchedulersByIdMutation } =
+	schedulersApi;

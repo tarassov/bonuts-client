@@ -1,0 +1,70 @@
+import { useWatch } from "react-hook-form";
+
+import { BntDatePickerField } from "./fields/bnt-date-picker-field";
+import { BntFormTextField } from "./fields/bnt-form-text-field";
+import { BntImageUpload } from "./fields/bnt-image-upload";
+import { BntRadioField } from "./fields/bnt-radio-field";
+import { BntSwitchField } from "./fields/bnt-switch-field";
+import { BntTagAutocomplete } from "./fields/bnt-tag-autocomplete";
+import { BntTextAreaField } from "./fields/bnt-text-area-field";
+import { FieldType, TFormField } from "./types/bnt-form";
+
+interface IBntFormFieldProps {
+	field: TFormField<any>;
+	id: string;
+}
+
+export function BntFormField({ field, id }: IBntFormFieldProps) {
+	const value = useWatch({ name: field.name.toString() });
+	if (field.type === FieldType.tags) {
+		return <BntTagAutocomplete id={id} field={field} value={value} />;
+	}
+	if (field.type === FieldType.imageUpload) {
+		return <BntImageUpload field={field} value={value} />;
+	}
+	if (field.type === FieldType.textarea) {
+		return (
+			<BntTextAreaField
+				name={field.name.toString()}
+				id={id}
+				placeholder={field.placeholder}
+				label={field.label}
+				helperText={field.helperText}
+				value={value}
+				maxRows={field.maxRows}
+				minRows={field.minRows}
+				rows={field.rows}
+				disabled={field.disabled}
+				required={field.required}
+			/>
+		);
+	}
+	if (field.type === FieldType.date) {
+		return <BntDatePickerField name={field.name.toString()} disabled={field.disabled} required={field.required} label={field.label} />;
+	}
+	if (field.type === FieldType.switch) {
+		return <BntSwitchField name={field.name.toString()} disabled={field.disabled} label={field.label} disabledLabel={field.disabledLabel} />;
+	}
+	if (field.type === FieldType.radio) {
+		return <BntRadioField field={field} />;
+	}
+	return (
+		<>
+			<BntFormTextField
+				name={field.name.toString()}
+				id={id}
+				placeholder={field.placeholder}
+				label={field.label}
+				helperText={field.helperText}
+				type={field.type}
+				value={value}
+				rows={field.rows}
+				disabled={field.disabled}
+				readOnly={field.readOnly}
+				required={field.required}
+				maxValue={field.maxValue}
+				minValue={field.minValue}
+			/>
+		</>
+	);
+}

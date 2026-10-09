@@ -1,7 +1,8 @@
 import { RequestsList } from "components/request/request-list/request-list";
-import { useRequestLogic } from "logic/hooks/request/use-request-logic";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
+
+import { useRequestLogic } from "logic/hooks/request/use-request-logic";
 
 export const ProfileActiveRequestList = () => {
 	const { refundRequest } = useRequestLogic();

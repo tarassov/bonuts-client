@@ -1,0 +1,31 @@
+import React, { FC } from "react";
+import { ModeEditOutlineRounded } from "@mui/icons-material";
+import { Stack } from "@mui/material";
+
+import { Dictionary } from "constants/dictionary";
+
+import { BntBox } from "@/shared/ui/box";
+import { BntIconButton } from "@/shared/ui/icon-button";
+
+export const BntFormFileInput: FC<{
+	handleFileInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ handleFileInputChange }) => {
+	const inputRef = React.useRef<HTMLInputElement>(null);
+
+	const handleButtonClick = () => {
+		if (inputRef.current) {
+			inputRef.current.click();
+		}
+	};
+
+	return (
+		<Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
+			<input accept="image/*" style={{ display: "none" }} id="raised-button-file" name="uploaded_file" multiple type="file" ref={inputRef} onChange={handleFileInputChange} />
+			<BntBox sx={{ textAlign: "center", width: "100%" }} className="pr-2">
+				<BntIconButton onClick={handleButtonClick} tooltip={Dictionary.EDIT}>
+					<ModeEditOutlineRounded />
+				</BntIconButton>
+			</BntBox>
+		</Stack>
+	);
+};

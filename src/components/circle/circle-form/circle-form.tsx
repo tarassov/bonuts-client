@@ -1,7 +1,9 @@
-import { TFormProps, TFormValue } from "shared/form/types/bnt-form";
-import { BntForm } from "shared/form/bnt-form";
 import { FC } from "react";
+
 import { useCircleFormFields } from "components/circle/circle-form/use-circle-form-fields";
+
+import { BntForm, TFormProps, TFormValue } from "@/shared/ui/form";
+
 import { TCircle, TDonut } from "@/types/model";
 
 export const CircleForm: FC<{
@@ -17,12 +19,5 @@ export const CircleForm: FC<{
 		onSubmit(values);
 	};
 
-	return (
-		<BntForm
-			{...formProps}
-			onSubmit={handleSubmit}
-			initialValues={circle}
-			hasInitial={hasInitial}
-		/>
-	);
+	return <BntForm {...formProps} onSubmit={handleSubmit} initialValues={circle} hasInitial={hasInitial} />;
 };

@@ -1,10 +1,12 @@
-import { Stack } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
 import { ConstructionOutlined } from "@mui/icons-material";
+import { Stack } from "@mui/material";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_u } from "services/localization/texts/texts_u";
-import { BntTypography } from "shared/typography/typography";
 import { texts_s } from "services/localization/texts";
+import { texts_u } from "services/localization/texts/texts_u";
+
+import { BntBox } from "@/shared/ui/box";
+import { BntTypography } from "@/shared/ui/typography";
 
 export const UnderConstruct = () => {
 	const { t } = useBntTranslate();

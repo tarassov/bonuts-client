@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { IconButton, Stack, Tooltip } from "@mui/material";
 import { CheckCircleOutline, HighlightOffOutlined } from "@mui/icons-material";
+import { IconButton, Stack, Tooltip } from "@mui/material";
 
 export const RequestActionsCell: FC<{
 	onCheckClick: VoidFunction;
@@ -9,14 +9,7 @@ export const RequestActionsCell: FC<{
 	hideRollback?: boolean;
 	checkTooltip?: string;
 	rollbackTooltip?: string;
-}> = ({
-	onCheckClick,
-	onRollbackClick,
-	hideCheck,
-	hideRollback,
-	checkTooltip,
-	rollbackTooltip,
-}) => {
+}> = ({ onCheckClick, onRollbackClick, hideCheck, hideRollback, checkTooltip, rollbackTooltip }) => {
 	return (
 		<Stack direction="row">
 			{!hideCheck && (

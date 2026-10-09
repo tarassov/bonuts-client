@@ -1,12 +1,16 @@
-import { cleanup } from "@testing-library/react";
-import { GetProfileApiResponse } from "services/api/bonuts-api";
+import { afterAll, describe, expect, test } from "vitest";
+
 import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
+import type { GetProfileApiResponse } from "services/api/bonuts-api";
+
+import { cleanup } from "@testing-library/react";
 
 const mockResponse: GetProfileApiResponse = {
 	data: {
 		id: "1",
 		type: "profile",
 		attributes: {
+			is_online: false,
 			active: false,
 			admin: false,
 			department: null,
@@ -25,11 +29,13 @@ const mockResponse: GetProfileApiResponse = {
 			user_avatar: { url: "", thumb: { url: "" }, preview: { url: "" } },
 			logo: undefined,
 			score_total: 0,
+			last_seen_at: null,
 			contact: "12312",
 			circles: [],
 			bio: "",
 			birthdate: "2023-01-01",
 			in_date: "2023-01-01",
+			locale: "ru",
 		},
 	},
 };

@@ -1,8 +1,11 @@
-import { tiesApi } from "services/api/extended/ties-api";
-import { apiAdaptor } from "services/adaptor/api-adaptor";
 import { isValid } from "date-fns";
-import { formatISO } from "date-fns/fp";
+
+import { apiAdaptor } from "services/adaptor/api-adaptor";
+import { tiesApi } from "services/api/extended/ties-api";
+
 import { useListBase } from "../use-list-base";
+
+import { formatISO } from "date-fns/fp";
 
 export const useTiesList = (dateFrom?: string, dateTo?: string) => {
 	const from = dateFrom ? new Date(dateFrom) : undefined;

@@ -1,9 +1,8 @@
 import { GetAccountOperationsApiResponse } from "services/api/bonuts-api";
+
 import { TOperation } from "@/types/model/operation";
 
-export const apiOperationAdaptor = (
-	response: GetAccountOperationsApiResponse
-): Array<TOperation> => {
+export const apiOperationAdaptor = (response: GetAccountOperationsApiResponse): Array<TOperation> => {
 	const { data } = response || {};
 
 	if (!data) return [];

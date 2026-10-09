@@ -1,10 +1,13 @@
-import { DonutCreateForm } from "components/donut/donut-create-form/donut-create-form";
 import { FC } from "react";
-import { TFormValue } from "shared/form/types/bnt-form";
-import { BntBox } from "shared/box/bnt-box";
+
+import { DonutCreateForm } from "components/donut/donut-create-form/donut-create-form";
+
+import { BntBox } from "@/shared/ui/box";
+
+import { TPostDonutArgs } from "@/entities/donut";
 
 export const ModalCreateDonutPure: FC<{
-	onSubmit: (values: Record<string, TFormValue>) => void;
+	onSubmit: (values: TPostDonutArgs) => void;
 }> = ({ onSubmit }) => {
 	return (
 		<BntBox sx={{ m: 3, minHeight: "220px" }}>

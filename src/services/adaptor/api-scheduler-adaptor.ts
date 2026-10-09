@@ -1,9 +1,6 @@
-import {
-	GetDonutsSchedulersApiResponse,
-	GetDonutsSchedulersByIdApiResponse,
-} from "services/api/bonuts-api";
-
 import { dataToProfile } from "services/adaptor/api-profile-adaptor";
+import { GetDonutsSchedulersApiResponse, GetDonutsSchedulersByIdApiResponse } from "services/api/bonuts-api";
+
 import { TScheduler, TSchedulerType } from "@/types/model/scheduler";
 
 const extract = (args: GetDonutsSchedulersByIdApiResponse["data"]) => {
@@ -26,13 +23,11 @@ const extract = (args: GetDonutsSchedulersByIdApiResponse["data"]) => {
 						...attributes?.profile,
 					},
 					id: attributes?.profile?.id.toString(),
-			  })
+				})
 			: undefined,
 	};
 };
-export const apiSchedulersAdaptor = (
-	response: GetDonutsSchedulersApiResponse
-): Array<TScheduler> => {
+export const apiSchedulersAdaptor = (response: GetDonutsSchedulersApiResponse): Array<TScheduler> => {
 	const { data } = response;
 
 	if (!data) return [];
@@ -41,9 +36,7 @@ export const apiSchedulersAdaptor = (
 		return extract(target);
 	});
 };
-export const apiSchedulerAdaptor = (
-	response?: GetDonutsSchedulersByIdApiResponse
-): TScheduler | undefined => {
+export const apiSchedulerAdaptor = (response?: GetDonutsSchedulersByIdApiResponse): TScheduler | undefined => {
 	if (!response) return undefined;
 	const { data } = response;
 
