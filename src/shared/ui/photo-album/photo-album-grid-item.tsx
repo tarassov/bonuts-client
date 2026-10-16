@@ -13,7 +13,11 @@ interface IPhotoAlbumGridItemProps {
 
 export function PhotoAlbumGridItem({ index, isLoading = false, onPhotoClick, photo, photoLabel }: IPhotoAlbumGridItemProps) {
 	if (isLoading) {
-		return <div className={classNames(styles.photoTile, styles.loadingTile)} />;
+		return (
+			<div className={styles.albumItem}>
+				<div className={classNames(styles.photoTile, styles.loadingTile)} />
+			</div>
+		);
 	}
 
 	if (!photo || !photoLabel || !onPhotoClick) {
@@ -21,9 +25,11 @@ export function PhotoAlbumGridItem({ index, isLoading = false, onPhotoClick, pho
 	}
 
 	return (
-		<button data-testid={`photo-album-tile-${index}`} type="button" className={styles.photoTile} onClick={() => onPhotoClick(index)}>
-			<img className={styles.photoImage} src={photo.previewUrl} alt={`${photoLabel} ${index + 1}`} />
-			<span className={styles.photoOverlay} />
-		</button>
+		<div className={styles.albumItem}>
+			<button data-testid={`photo-album-tile-${index}`} type="button" className={styles.photoTile} onClick={() => onPhotoClick(index)}>
+				<img className={styles.photoImage} src={photo.previewUrl} alt={`${photoLabel} ${index + 1}`} decoding="async" />
+				<span className={styles.photoOverlay} />
+			</button>
+		</div>
 	);
 }

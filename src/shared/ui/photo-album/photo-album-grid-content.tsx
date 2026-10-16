@@ -1,6 +1,6 @@
-import styles from "./photo-album-grid.module.scss";
 import type { TPhotoAlbumItem } from "./photo-album-grid.types";
 import { PhotoAlbumGridItem } from "./photo-album-grid-item";
+import { PhotoAlbumMasonry } from "./photo-album-masonry";
 
 interface IPhotoAlbumGridContentProps {
 	photoLabel: string;
@@ -11,10 +11,10 @@ interface IPhotoAlbumGridContentProps {
 
 export function PhotoAlbumGridContent({ onPhotoClick, photoLabel, photos }: IPhotoAlbumGridContentProps) {
 	return (
-		<div className={styles.albumGrid} data-testid="photo-album-grid">
+		<PhotoAlbumMasonry testId="photo-album-grid">
 			{photos.map((photo, index) => (
 				<PhotoAlbumGridItem key={photo.id ?? photo.originalUrl} index={index} photo={photo} photoLabel={photoLabel} onPhotoClick={onPhotoClick} />
 			))}
-		</div>
+		</PhotoAlbumMasonry>
 	);
 }
