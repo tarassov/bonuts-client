@@ -24,6 +24,24 @@ const photoItems: Array<TPhotoAlbumItem> = [
 		previewUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
 		originalUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1600&q=80",
 	},
+	{
+		id: 4,
+		userId: 303,
+		previewUrl: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80",
+		originalUrl: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80",
+	},
+	{
+		id: 5,
+		userId: 202,
+		previewUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80",
+		originalUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+	},
+	{
+		id: 6,
+		userId: 303,
+		previewUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
+		originalUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80",
+	},
 ];
 
 function PhotoAlbumViewerStory() {
@@ -62,6 +80,14 @@ export const Empty = {
 	render: () => (
 		<Box sx={{ width: "min(860px, 100%)" }}>
 			<PhotoAlbumGrid emptyText="No photos yet" onPhotoClick={() => undefined} photoLabel="Photos" photos={[]} />
+		</Box>
+	),
+};
+
+export const Loading = {
+	render: () => (
+		<Box sx={{ width: "min(860px, 100%)" }}>
+			<PhotoAlbumGrid emptyText="No photos yet" isLoading onPhotoClick={() => undefined} photoLabel="Photos" photos={[]} />
 		</Box>
 	),
 };

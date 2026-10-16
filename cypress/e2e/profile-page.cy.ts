@@ -208,6 +208,16 @@ describe("Profile page", () => {
 			visitProfilePage();
 			openMyPhotosPage();
 
+			cy.get('[data-testid="photo-album-tile-0"]').then(($firstPhoto) => {
+				const firstPhotoLeft = $firstPhoto[0].getBoundingClientRect().left;
+
+				cy.get('[data-testid="photo-album-tile-1"]').should(($secondPhoto) => {
+					const secondPhotoLeft = $secondPhoto[0].getBoundingClientRect().left;
+
+					expect(secondPhotoLeft).to.be.greaterThan(firstPhotoLeft);
+				});
+			});
+
 			cy.get('[data-testid="photo-album-tile-0"]').scrollIntoView().should("be.visible").click();
 
 			cy.get('[data-testid="photo-album-viewer"]').should("be.visible");
