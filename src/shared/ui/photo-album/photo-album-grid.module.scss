@@ -20,16 +20,20 @@
 }
 
 .albumGrid {
-	columns: 2 140px;
-	column-gap: 12px;
+	padding: 0;
+	overflow: visible;
+}
+
+.albumItem {
+	min-width: 0;
 }
 
 .photoTile {
 	position: relative;
-	display: inline-block;
+	display: block;
 	width: fit-content;
 	max-width: 100%;
-	margin: 0 0 12px;
+	margin-inline: auto;
 	padding: 0;
 	border: 0;
 	background: color-mix(in srgb, var(--mui-palette-background-paper) 72%, var(--mui-palette-secondary-light) 28%);
@@ -71,7 +75,7 @@
 
 .loadingTile {
 	width: 100%;
-	min-height: 140px;
+	aspect-ratio: 4 / 5;
 	background: linear-gradient(
 		110deg,
 		color-mix(in srgb, var(--mui-palette-background-paper) 80%, var(--mui-palette-grey-200) 20%) 8%,
@@ -83,15 +87,26 @@
 	cursor: default;
 }
 
+.albumItem:nth-child(3n + 2) .loadingTile {
+	aspect-ratio: 1 / 1;
+}
+
+.albumItem:nth-child(3n) .loadingTile {
+	aspect-ratio: 5 / 4;
+}
+
 @keyframes shimmer {
 	to {
 		background-position-x: -200%;
 	}
 }
 
-@media (min-width: 900px) {
-	.albumGrid {
-		columns: 4 180px;
-		column-gap: 16px;
+@media (prefers-reduced-motion: reduce) {
+	.photoTile {
+		transition: none;
+	}
+
+	.loadingTile {
+		animation: none;
 	}
 }
