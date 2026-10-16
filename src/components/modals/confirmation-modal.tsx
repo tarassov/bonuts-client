@@ -1,19 +1,16 @@
 import { FC } from "react";
 
-import { BntStack } from "shared/stack/stack";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_c } from "services/localization/texts";
-import { TModalProps } from "shared/types/dialog-types";
-import { emptyFunction } from "utils/empty-function";
-import { BntTransparentButton } from "shared/buttons/transparent-button";
-import { BntBox } from "shared/box/bnt-box";
+
+import { BntBox } from "@/shared/ui/box";
+import { BntTransparentButton } from "@/shared/ui/buttons";
+import { TDialogProps } from "@/shared/ui/dialog";
+import { BntStack } from "@/shared/ui/stack";
+
 import { texts_y } from "@/services/localization/texts/texts_y";
 
-export const ConfirmationModal: FC<TModalProps & { text?: string; onSubmit: VoidFunction }> = ({
-	text,
-	onSubmit,
-	close = emptyFunction,
-}) => {
+export const ConfirmationModal: FC<TDialogProps & { text?: string; onSubmit: VoidFunction }> = ({ text, onSubmit, close }) => {
 	const { t } = useBntTranslate();
 	const handleSubmit = () => {
 		onSubmit();
@@ -24,13 +21,7 @@ export const ConfirmationModal: FC<TModalProps & { text?: string; onSubmit: Void
 		<BntBox sx={{ m: 1 }}>
 			<BntStack>
 				<div className="flex-grow pl-2">{text}</div>
-				<BntStack
-					alignItems="center"
-					justifyContent="center"
-					flexDirection="row"
-					gap={4}
-					className="mt-2"
-				>
+				<BntStack alignItems="center" justifyContent="center" flexDirection="row" gap={4} className="mt-2">
 					<BntTransparentButton color="error" onClick={() => close()}>
 						{t(texts_c.cancel)}
 					</BntTransparentButton>

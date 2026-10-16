@@ -1,0 +1,26 @@
+.catalogControls {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.catalogControls > div:first-child {
+  border: 0;
+  border-bottom: 1px solid var(--mui-palette-divider);
+  border-radius: 0;
+}
+.filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 12px;
+  padding: 16px;
+  align-items: center;
+}
+.sortControl :global(.MuiOutlinedInput-root) {
+  height: 40px;
+  background: var(--mui-palette-background-paper);
+}
+
+@media (max-width: 599px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}

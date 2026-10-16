@@ -1,8 +1,10 @@
-import { useBntTranslate } from "hooks/use-bnt-translate";
 import { useMemo } from "react";
-import { texts_h } from "services/localization/texts/texts_h";
-import { createColumnHelper } from "@tanstack/react-table";
+
 import { BntStyledOperationText } from "components/opearation-text/styled-operation-text";
+import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_h } from "services/localization/texts/texts_h";
+
+import { createColumnHelper } from "@tanstack/react-table";
 import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TOperation } from "@/types/model/operation";
 

@@ -1,0 +1,13 @@
+.shell {
+	display: grid;
+	gap: 20px;
+	margin: 0 auto;
+}
+
+.shellDefault {
+	max-width: 1180px;
+}
+
+.shellCompact {
+	max-width: 980px;
+}

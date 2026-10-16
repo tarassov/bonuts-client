@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+
 import _ from "lodash";
-import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
+
 import { usePerformance } from "hooks/use-performance";
+import { useAppSelector } from "services/redux/store/store";
+
+import { authTenantSelector } from "@/shared/model/auth";
+
+import { USE_POLLING_INTERVAL } from "@/app/config";
 import { GetArgsType, GetResultType, TEndpoint } from "@/types/api/api";
-import { USE_POLLING_INTERVAL } from "@/config";
 
 export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props: {
 	endpoint: Endpoint;
@@ -13,17 +17,8 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 	skip?: boolean;
 	translator?: (response: GetResultType<Endpoint>) => Array<TModel>;
 }) => {
-	const { profilerStart, profilerStop } = usePerformance(
-		`apiTransaltor for ${props.endpoint.name}`,
-		0
-	);
-	const {
-		endpoint,
-		args,
-		pollingInterval = 1000,
-		translator = (response: GetResultType<Endpoint>) => response as Array<TModel>,
-		skip,
-	} = props;
+	const { profilerStart, profilerStop } = usePerformance(`apiTranslator for ${props.endpoint.name}`, 0);
+	const { endpoint, args, pollingInterval = 1000, translator = (response: GetResultType<Endpoint>) => response as Array<TModel>, skip } = props;
 
 	const [objects, setObjects] = useState<Array<TModel>>([]);
 
@@ -36,11 +31,7 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 		},
 		{
 			// eslint-disable-next-line no-nested-ternary
-			pollingInterval: !USE_POLLING_INTERVAL
-				? 0
-				: pollingInterval !== undefined
-				? pollingInterval
-				: 5000,
+			pollingInterval: !USE_POLLING_INTERVAL ? 0 : pollingInterval !== undefined ? pollingInterval : 5000,
 			refetchOnMountOrArgChange: true,
 			skip,
 		}
@@ -48,14 +39,14 @@ export const useListBase = <Endpoint extends TEndpoint<Endpoint>, TModel>(props:
 
 	useEffect(() => {
 		if (!data) {
-			setObjects(() => []);
+			setObjects((prevObjects) => (_.isEqual(prevObjects, []) ? prevObjects : []));
 		} else {
 			profilerStart();
 			const translated = translator(data);
-			if (!_.isEqual(objects, translated)) setObjects(translated);
+			setObjects((prevObjects) => (_.isEqual(prevObjects, translated) ? prevObjects : translated));
 			profilerStop();
 		}
-	}, [data]);
+	}, [data, profilerStart, profilerStop, translator]);
 
 	return {
 		objects,

@@ -13,12 +13,14 @@ type TRoute<T, K = string> = {
 	redirect?: string;
 	modal?: boolean;
 	authenticatedRedirect?: string;
+	public?: boolean;
 	parentRoute?: TRoute<T>;
 	icon?: JSX.Element;
 	index?: number;
 	children?: { [name in T]?: TRoute<T> };
 	roles?: Array<K>;
 	tenantNotRequired?: boolean;
+	isRoot?: boolean;
 };
 
 type TRedirect = {
@@ -42,6 +44,7 @@ type BntRoutesMenuProps = {
 };
 
 type BntRouteMenuButtonProps = {
+	isActive: boolean;
 	route: TRoute;
 	showFullName: boolean;
 	showTooltip?: boolean;

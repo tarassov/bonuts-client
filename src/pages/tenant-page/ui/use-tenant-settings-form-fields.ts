@@ -1,0 +1,106 @@
+import type { TFormField } from "@/shared/ui/form";
+import { FieldSize, FieldType } from "@/shared/ui/form";
+
+import { texts_b, texts_d, texts_t, texts_w } from "@/services/localization/texts";
+import type { TTenant } from "@/types/model/tenant";
+
+export function useTenantSettingsFormFields() {
+	const fields: Array<TFormField<TTenant>> = [
+		{
+			image: false,
+			readOnly: true,
+			size: FieldSize.xs,
+			name: "name",
+			label: texts_t.team_identifier,
+			xs: 12,
+			required: true,
+			group: 12,
+		},
+		{
+			image: false,
+			size: FieldSize.xs,
+			name: "caption",
+			label: texts_t.team_name,
+			xs: 12,
+			required: true,
+			group: 12,
+		},
+		{
+			disabled: false,
+			image: false,
+			size: FieldSize.xs,
+			name: "domain",
+			label: texts_d.domain,
+			required: false,
+			xs: 12,
+			group: 12,
+		},
+		{
+			disabled: false,
+			type: FieldType.number,
+			image: false,
+			size: FieldSize.xs,
+			name: "welcome_donuts",
+			label: texts_w.welcome_donuts,
+			required: true,
+			xs: 12,
+			sm: 6,
+			lg: 6,
+			group: 2,
+		},
+		{
+			disabled: false,
+			type: FieldType.number,
+			image: false,
+			size: FieldSize.xs,
+			name: "welcome_points",
+			label: texts_w.welcome_points,
+			required: true,
+			xs: 12,
+			sm: 6,
+			lg: 6,
+			group: 2,
+		},
+		{
+			disabled: false,
+			type: FieldType.number,
+			image: false,
+			size: FieldSize.xs,
+			name: "birthday_donuts",
+			label: texts_b.birthday_donuts,
+			required: false,
+			xs: 12,
+			sm: 6,
+			lg: 6,
+			group: 3,
+		},
+		{
+			disabled: false,
+			type: FieldType.number,
+			image: false,
+			size: FieldSize.xs,
+			name: "birthday_points",
+			label: texts_b.birthday_points,
+			required: false,
+			xs: 12,
+			sm: 6,
+			lg: 6,
+			group: 3,
+		},
+		{
+			disabled: false,
+			type: FieldType.textarea,
+			image: false,
+			size: FieldSize.xs,
+			name: "birthday_message",
+			label: texts_b.birthday_message,
+			required: false,
+			xs: 12,
+			minRows: 3,
+			maxRows: 5,
+			group: 3,
+		},
+	];
+
+	return { fields };
+}

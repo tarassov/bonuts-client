@@ -1,0 +1,57 @@
+import { useCallback, useMemo } from "react";
+
+import { apiProfileAdaptor } from "services/adaptor/api-profile-adaptor";
+import { useGetProfileQuery } from "services/api/bonuts-api";
+import { accountsApi } from "services/api/extended/accounts-api";
+import { useAppDispatch } from "services/redux/store/store";
+
+import { ApiTags } from "@/shared/api";
+import { invalidateId } from "@/shared/lib/rtk";
+import { useCurrentProfile } from "@/shared/model/auth";
+import { useLoader } from "@/shared/ui/loader";
+
+import type { TUpdateProfileValues } from "./use-update-profile";
+import { useUpdateProfile } from "./use-update-profile";
+import type { TProfile } from "@/types/model";
+
+const OPERATION_NAME = "profileLogic";
+
+export const useProfile = () => {
+	const { authTenant } = useCurrentProfile();
+
+	const { updateProfile: update } = useUpdateProfile();
+	const { openLoader, closeLoader } = useLoader(OPERATION_NAME);
+	const dispatch = useAppDispatch();
+	const { data, error, isLoading } = useGetProfileQuery({ tenant: authTenant || undefined }, { skip: !authTenant });
+
+	const profile = useMemo(() => {
+		if (data) return apiProfileAdaptor(data);
+	}, [data]);
+
+	const updateProfile = async (newProfile: TProfile, values: TUpdateProfileValues) => {
+		openLoader();
+		try {
+			return await update(newProfile, values);
+		} finally {
+			closeLoader();
+		}
+	};
+
+	const invalidateDistribBalance = useCallback(() => {
+		dispatch(accountsApi.util.invalidateTags(invalidateId(ApiTags.Accounts, profile?.distrib_account?.id)));
+	}, [dispatch, profile?.distrib_account?.id]);
+
+	const invalidateSelfBalance = useCallback(() => {
+		dispatch(accountsApi.util.invalidateTags(invalidateId(ApiTags.Accounts, profile?.self_account?.id)));
+	}, [dispatch, profile?.self_account?.id]);
+
+	return {
+		profile,
+		isLoading,
+		error,
+		updateProfile,
+		authTenant,
+		invalidateSelfBalance,
+		invalidateDistribBalance,
+	};
+};

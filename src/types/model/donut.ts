@@ -1,6 +1,6 @@
-import { TCommentable, TLikeable } from "./type-extension";
-import { TPicture } from "./picture";
 import { TBaseModel } from "./base-model";
+import { TPicture } from "./picture";
+import { TCommentable, TLikeable } from "./type-extension";
 
 export type TDonut = TBaseModel &
 	TCommentable &
@@ -8,11 +8,12 @@ export type TDonut = TBaseModel &
 		name: string;
 		price: number;
 		active: boolean;
+		available: boolean;
 		logo?: TPicture;
 		description?: string;
-		has_remains?: boolean;
+		use_remains: boolean;
 		on_stock?: number;
 		supply_days?: number;
-		expiration_date?: string;
+		expiration_date?: string | null;
 		created_at?: string;
 	};

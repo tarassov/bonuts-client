@@ -1,8 +1,11 @@
 import * as Yup from "yup";
-import { texts_e } from "services/localization/texts";
+
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_e } from "services/localization/texts";
+
+import { emailRegex } from "@/shared/lib/regex";
+
 import { PasswordRestoreFields } from "@/types/form/password-restore";
-import { emailRegex } from "@/regex/email-regex";
 
 export const usePasswordRestoreValidation = () => {
 	const { translate } = useBntTranslate();

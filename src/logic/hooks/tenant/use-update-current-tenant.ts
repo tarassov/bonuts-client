@@ -1,30 +1,35 @@
-import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
-import { tenantsApi } from "services/api/extended/tenants-api";
-import { PutTenantCurrentApiResponse } from "services/api/bonuts-api";
-import { useNotification } from "services/notification";
+import type { PutTenantCurrentApiResponse } from "services/api/bonuts-api";
 import { texts_s } from "services/localization/texts";
-import { TTenant } from "@/types/model/tenant";
+import { useAppSelector } from "services/redux/store/store";
+
+import { authTenantSelector } from "@/shared/model/auth";
+import { useNotification } from "@/shared/ui/notification";
+
+import { tenantsApi } from "@/entities/tenant";
+
+import type { TTenant } from "@/types/model/tenant";
+
+export type TUpdateTenantValues = Omit<TTenant, "logo"> & {
+	logo: TTenant["logo"] | File;
+};
 
 export const useUpdateCurrentTenant = () => {
 	const authTenant = useAppSelector(authTenantSelector);
-	const [putTenant] = tenantsApi.useUpdateCurrentTenantFormDataMutation();
+	const [putTenant, { isLoading: isUpdating }] = tenantsApi.useUpdateCurrentTenantFormDataMutation();
 	const { showNotification } = useNotification();
 
 	const updateTenant = async (
-		tenant: TTenant,
+		tenant: TUpdateTenantValues,
 		options?: {
 			onSuccess?: (args?: PutTenantCurrentApiResponse) => void;
 		}
 	) => {
 		if (authTenant) {
-			const { logo } = tenant;
-			// @ts-ignore
-			const logoNew: File | undefined =
-				logo && !Object.getOwnPropertyDescriptor(logo, "url") ? logo : undefined;
+			const { logo, ...tenantValues } = tenant;
+			const logoNew = logo instanceof File ? logo : undefined;
 
 			const res = await putTenant({
-				body: { ...tenant, ...(logoNew && { logo: logoNew }), tenant: authTenant },
+				body: { ...tenantValues, ...(logoNew && { logo: logoNew }), tenant: authTenant },
 			});
 
 			const result = { data: undefined, ...res };
@@ -39,5 +44,5 @@ export const useUpdateCurrentTenant = () => {
 		return undefined;
 	};
 
-	return { updateTenant };
+	return { isUpdating, updateTenant };
 };

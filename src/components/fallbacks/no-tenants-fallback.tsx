@@ -6,14 +6,7 @@ export const NoTenantsFallback = () => {
 	const { objects: invitations, isLoading: isLoadingInvitations } = useInvitationLoaderList();
 	const { objects: accessible, isLoading: isLoadingAccessible } = useAccessibleTenantsLoaderList();
 	const { objects: userTenants, isLoading: isLoadingTenants } = useTenantsLoaderList();
-	if (
-		!isLoadingTenants &&
-		!isLoadingAccessible &&
-		!isLoadingInvitations &&
-		!invitations?.length &&
-		!accessible?.length &&
-		!userTenants?.length
-	) {
+	if (!isLoadingTenants && !isLoadingAccessible && !isLoadingInvitations && !invitations?.length && !accessible?.length && !userTenants?.length) {
 		return <div />;
 	}
 	return null;

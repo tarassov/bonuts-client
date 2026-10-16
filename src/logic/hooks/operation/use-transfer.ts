@@ -1,45 +1,38 @@
-import {
-	PostAccountOperationsApiResponse,
-	PostAdminDepositApiResponse,
-	usePostAccountOperationsMutation,
-	usePostAdminDepositMutation,
-} from "services/api/bonuts-api";
-import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
-import { useNotification } from "services/notification";
-import { useProfileLogic } from "logic/hooks/profile/use-profile-logic";
-import { texts_t } from "services/localization/texts/texts_t";
 import { CommonStrings } from "constants/dictionary";
-import { useLoader } from "shared/loader/hooks/use-loader";
-import { TransferProps } from "@/types/logic";
-import { AdminDepositProps } from "@/types/logic/transfer";
-import { TActionCallback } from "@/types/logic/action-callback";
+import { usePostAccountOperationsShareAllMutation, usePostAccountOperationsTransferMutation, usePostAdminDepositMutation } from "services/api/bonuts-api";
+import { texts_t } from "services/localization/texts/texts_t";
+
+import { useLoader } from "@/shared/ui/loader";
+import { useNotification } from "@/shared/ui/notification";
+
+import { useProfile } from "@/entities/profile";
+
+import { useCurrentTenant } from "logic/hooks/tenant/use-current-tenant";
+import type { PostAccountOperationsShareAllApiResponse, PostAccountOperationsTransferApiResponse, PostAdminDepositApiResponse } from "@/services/api/bonuts-api";
+import type { TransferProps } from "@/types/logic";
+import type { TActionCallback } from "@/types/logic/action-callback";
+import type { AdminDepositProps } from "@/types/logic/transfer";
 
 const OPERATION_NAME = "transferDonuts";
 export const useTransfer = () => {
-	const [postOperation] = usePostAccountOperationsMutation();
+	const [postTransfer] = usePostAccountOperationsTransferMutation();
+	const [postShareAll] = usePostAccountOperationsShareAllMutation();
 	const [postAdminDeposit] = usePostAdminDepositMutation();
 	const tenant = useCurrentTenant();
-	const { profile, invalidateDistribBalance } = useProfileLogic();
+	const { invalidateDistribBalance } = useProfile();
 	const { showNotification } = useNotification();
 	const { openLoader, closeLoader } = useLoader(OPERATION_NAME, false);
 
-	const transferMyDonuts = (
-		args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">,
-		options?: TActionCallback<PostAccountOperationsApiResponse>
-	) => {
+	const transferMyDonuts = (args: Omit<TransferProps, "burnOld" | "toSelfAccount" | "forAll">, options?: TActionCallback<PostAccountOperationsTransferApiResponse>) => {
 		const { amount, comment, ids } = args;
 		if (tenant) {
 			openLoader();
-			postOperation({
+			postTransfer({
 				body: {
 					tenant,
 					amount,
-					from_profile_id: profile?.id,
 					comment,
-					burn_old: false,
-					to_self_account: true,
 					to_profile_ids: ids || [],
-					share_for_all: false,
 				},
 			})
 				.unwrap()
@@ -54,10 +47,33 @@ export const useTransfer = () => {
 				});
 		}
 	};
-	const adminDeposit = (
-		args: AdminDepositProps,
-		options?: TActionCallback<PostAdminDepositApiResponse>
-	) => {
+
+	const shareAllDonuts = (args: Omit<AdminDepositProps, "ids">, options?: TActionCallback<PostAccountOperationsShareAllApiResponse>) => {
+		const { amount, comment = CommonStrings.EMPTY_STRING, toSelfAccount } = args;
+		if (tenant) {
+			openLoader();
+			postShareAll({
+				body: {
+					tenant,
+					amount,
+					comment,
+					to_self_account: toSelfAccount,
+				},
+			})
+				.unwrap()
+				.then((result) => {
+					options?.onSuccess?.(result);
+					invalidateDistribBalance();
+					showNotification(texts_t.transferred);
+				})
+				.catch((e) => options?.onError?.(e.data.message))
+				.finally(() => {
+					closeLoader();
+				});
+		}
+	};
+
+	const adminDeposit = (args: AdminDepositProps, options?: TActionCallback<PostAdminDepositApiResponse>) => {
 		const { amount, comment = CommonStrings.EMPTY_STRING, ids, toSelfAccount } = args;
 		if (tenant) {
 			openLoader();
@@ -80,5 +96,5 @@ export const useTransfer = () => {
 				});
 		}
 	};
-	return { transferMyDonuts, adminDeposit };
+	return { transferMyDonuts, shareAllDonuts, adminDeposit };
 };
