@@ -3,14 +3,12 @@ import { SyntheticEvent, useState } from "react";
 import { TieGraph } from "components/tie-graph/tie-graph";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 
-import { isAdmin } from "@/shared/lib/user";
-import { useCurrentProfile } from "@/shared/model/auth";
 import { BetaNotice } from "@/shared/ui/beta-notice";
 import { CardWrapper } from "@/shared/ui/card-wrapper";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTab, BntTabPanel, BntTabs } from "@/shared/ui/tab";
 
-import { HrSummaryChat, hrSummaryTexts } from "@/features/hr-summary";
+import { HrChatPage, hrChatTexts, useHrChatAccess } from "@/features/hr-chat";
 
 import reportsTexts from "../config/reports-texts";
 
@@ -19,14 +17,13 @@ import { StatisticsDashboard } from "./statistics-dashboard";
 enum ReportsTab {
 	Dashboard = 0,
 	NetworkConnections = 1,
-	AiSummary = 2,
+	AiChat = 2,
 }
 
 export function ReportsMain() {
 	const [value, setValue] = useState<ReportsTab>(ReportsTab.Dashboard);
 	const { translate } = useBntTranslate();
-	const { profile } = useCurrentProfile();
-	const canSeeAiSummary = isAdmin(profile);
+	const { isAvailable: canSeeAiChat } = useHrChatAccess();
 
 	const handleChange = (event: SyntheticEvent, newValue: ReportsTab) => {
 		setValue(newValue);
@@ -47,7 +44,7 @@ export function ReportsMain() {
 					}
 					tabValue={ReportsTab.NetworkConnections}
 				/>
-				{canSeeAiSummary ? <BntTab label={translate(hrSummaryTexts.ai_summary)} tabValue={ReportsTab.AiSummary} /> : null}
+				{canSeeAiChat ? <BntTab label={translate(hrChatTexts.ai_chat)} tabValue={ReportsTab.AiChat} /> : null}
 			</BntTabs>
 			<CardWrapper className="flex-grow scroll">
 				<BntTabPanel value={value} index={ReportsTab.Dashboard} className="height-100" boxClassName="height-100">
@@ -56,9 +53,9 @@ export function ReportsMain() {
 				<BntTabPanel value={value} index={ReportsTab.NetworkConnections} className="height-100" boxClassName="height-100">
 					<TieGraph />
 				</BntTabPanel>
-				{canSeeAiSummary ? (
-					<BntTabPanel value={value} index={ReportsTab.AiSummary} className="height-100" boxClassName="height-100">
-						<HrSummaryChat />
+				{canSeeAiChat ? (
+					<BntTabPanel value={value} index={ReportsTab.AiChat} className="height-100" boxClassName="height-100">
+						<HrChatPage />
 					</BntTabPanel>
 				) : null}
 			</CardWrapper>

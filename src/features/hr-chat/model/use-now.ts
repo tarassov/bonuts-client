@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-/** A clock that re-renders on an interval, so elapsed-time labels stay current without new data. */
+/** A clock that re-renders on an interval, so elapsed-time labels and the stale check stay current without new data. */
 export const useNow = (intervalMs: number): Date => {
 	const [now, setNow] = useState(() => new Date());
 

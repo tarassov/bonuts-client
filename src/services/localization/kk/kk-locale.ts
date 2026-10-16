@@ -1,4 +1,4 @@
-import { hrSummaryKk } from "@/features/hr-summary";
+import { hrChatKk } from "@/features/hr-chat";
 import { reportsKk } from "@/features/reports";
 
 import { timezonesKk } from "@/services/localization/kk/timezones-kk";
@@ -711,6 +711,6 @@ export const kkLocale = {
 		...timezonesKk,
 		...weekdaysKk,
 		...reportsKk.translations,
-		...hrSummaryKk.translations,
+		...hrChatKk.translations,
 	},
 };

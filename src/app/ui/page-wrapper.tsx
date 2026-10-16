@@ -7,6 +7,8 @@ import { BntStack } from "@/shared/ui/stack";
 
 import { useProfile } from "@/entities/profile";
 
+import { HrChatFab } from "@/features/hr-chat";
+
 import { AppHeaderWidget } from "@/widgets/header";
 
 import BntSidebar from "@/components/sidebar/sidebar";
@@ -25,6 +27,7 @@ export function PageWrapper({ children, isRoot }: IPageWrapperProps) {
 		<>
 			{isVisibleNavigation ? <AppHeaderWidget profile={profile} /> : null}
 			{isVisibleNavigation ? <BntSidebar /> : null}
+			{isVisibleNavigation ? <HrChatFab /> : null}
 			<BntBox component="main" sx={{ flexGrow: 1, maxWidth: "100%", height: "100%", overflow: "hidden" }}>
 				<BntStack direction="column" sx={{ height: "100%", p: 0, m: 0, overflow: "hidden" }}>
 					{isVisibleNavigation && <BntDrawerHeader />}

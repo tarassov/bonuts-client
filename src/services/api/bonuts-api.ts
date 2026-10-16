@@ -1,4 +1,4 @@
-import { emptySplitApi as api } from "./empty-api";
+import { emptySplitApi as api } from "/home/alex/bonuts/bonuts-client/src/services/api/empty-api";
 
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
@@ -151,9 +151,9 @@ const injectedRtkApi = api.injectEndpoints({
 		postEventsByIdComments: build.mutation<PostEventsByIdCommentsApiResponse, PostEventsByIdCommentsApiArg>({
 			query: (queryArg) => ({ url: `/events/${queryArg.id}/comments`, method: "POST", body: queryArg.body }),
 		}),
-		postHrSummaries: build.mutation<PostHrSummariesApiResponse, PostHrSummariesApiArg>({
+		postHrChatsByHrChatIdMessages: build.mutation<PostHrChatsByHrChatIdMessagesApiResponse, PostHrChatsByHrChatIdMessagesApiArg>({
 			query: (queryArg) => ({
-				url: `/hr_summaries`,
+				url: `/hr_chats/${queryArg.hrChatId}/messages`,
 				method: "POST",
 				body: queryArg.body,
 				params: {
@@ -161,17 +161,36 @@ const injectedRtkApi = api.injectEndpoints({
 				},
 			}),
 		}),
-		getHrSummaries: build.query<GetHrSummariesApiResponse, GetHrSummariesApiArg>({
+		postHrChats: build.mutation<PostHrChatsApiResponse, PostHrChatsApiArg>({
 			query: (queryArg) => ({
-				url: `/hr_summaries`,
+				url: `/hr_chats`,
+				method: "POST",
+				body: queryArg.body,
 				params: {
 					tenant: queryArg.tenant,
 				},
 			}),
 		}),
-		getHrSummariesById: build.query<GetHrSummariesByIdApiResponse, GetHrSummariesByIdApiArg>({
+		getHrChats: build.query<GetHrChatsApiResponse, GetHrChatsApiArg>({
 			query: (queryArg) => ({
-				url: `/hr_summaries/${queryArg.id}`,
+				url: `/hr_chats`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getHrChatsById: build.query<GetHrChatsByIdApiResponse, GetHrChatsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_chats/${queryArg.id}`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		deleteHrChatsById: build.mutation<DeleteHrChatsByIdApiResponse, DeleteHrChatsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_chats/${queryArg.id}`,
+				method: "DELETE",
 				params: {
 					tenant: queryArg.tenant,
 				},
@@ -1688,26 +1707,41 @@ export type PostEventsByIdCommentsApiArg = {
 		tenant: string;
 	};
 };
-export type PostHrSummariesApiResponse = /** status 201 summary queued */ {
+export type PostHrChatsByHrChatIdMessagesApiResponse = /** status 201 question queued */ {
 	data: object;
 };
-export type PostHrSummariesApiArg = {
+export type PostHrChatsByHrChatIdMessagesApiArg = {
 	tenant?: string;
+	hrChatId: number;
 	body: {
-		date_from?: string;
-		date_to?: string;
+		text: string;
 	};
 };
-export type GetHrSummariesApiResponse = /** status 200 private history */ {
-	data: object[];
-};
-export type GetHrSummariesApiArg = {
-	tenant?: string;
-};
-export type GetHrSummariesByIdApiResponse = /** status 200 own summary */ {
+export type PostHrChatsApiResponse = /** status 201 chat created and the first reply queued */ {
 	data: object;
 };
-export type GetHrSummariesByIdApiArg = {
+export type PostHrChatsApiArg = {
+	tenant?: string;
+	body: {
+		/** free-text question; the period is extracted from it */
+		text: string;
+	};
+};
+export type GetHrChatsApiResponse = /** status 200 own chats with a pending marker */ {
+	data: object[];
+};
+export type GetHrChatsApiArg = {
+	tenant?: string;
+};
+export type GetHrChatsByIdApiResponse = /** status 200 own chat */ {
+	data: object;
+};
+export type GetHrChatsByIdApiArg = {
+	tenant?: string;
+	id: number;
+};
+export type DeleteHrChatsByIdApiResponse = unknown;
+export type DeleteHrChatsByIdApiArg = {
 	tenant?: string;
 	id: number;
 };
@@ -4437,6 +4471,7 @@ export type GetTenantCurrentApiResponse = /** status 200 success */ {
 			join_to_company_points: number;
 			use_departments: boolean;
 			test?: boolean;
+			feature_flags?: string[];
 		};
 	};
 };
@@ -4476,6 +4511,7 @@ export type PutTenantCurrentApiResponse = /** status 200 success */ {
 			join_to_company_points: number;
 			use_departments: boolean;
 			test?: boolean;
+			feature_flags?: string[];
 		};
 	};
 };
@@ -4535,6 +4571,7 @@ export type GetTenantsAccessibleApiResponse = /** status 200 success */ {
 		join_to_company_points: number;
 		use_departments: boolean;
 		test?: boolean;
+		feature_flags?: string[];
 	}[];
 };
 export type GetTenantsAccessibleApiArg = void;
@@ -4568,6 +4605,7 @@ export type GetTenantsApiResponse = /** status 200 success */ {
 		join_to_company_points: number;
 		use_departments: boolean;
 		test?: boolean;
+		feature_flags?: string[];
 	}[];
 };
 export type GetTenantsApiArg = void;
@@ -5068,9 +5106,11 @@ export const {
 	usePutEventsByIdMutation,
 	usePostEventsByIdLikeMutation,
 	usePostEventsByIdCommentsMutation,
-	usePostHrSummariesMutation,
-	useGetHrSummariesQuery,
-	useGetHrSummariesByIdQuery,
+	usePostHrChatsByHrChatIdMessagesMutation,
+	usePostHrChatsMutation,
+	useGetHrChatsQuery,
+	useGetHrChatsByIdQuery,
+	useDeleteHrChatsByIdMutation,
 	usePostInvitationsByIdCloseMutation,
 	useGetInvitationsQuery,
 	usePostInvitationsMutation,

@@ -1,4 +1,4 @@
-import { hrSummaryRu } from "@/features/hr-summary";
+import { hrChatRu } from "@/features/hr-chat";
 import { reportsRu } from "@/features/reports";
 
 import { timezonesRu } from "@/services/localization/ru/timezones-ru";
@@ -712,6 +712,6 @@ export const ruLocale = {
 		...timezonesRu,
 		...weekdaysRu,
 		...reportsRu.translations,
-		...hrSummaryRu.translations,
+		...hrChatRu.translations,
 	},
 };
