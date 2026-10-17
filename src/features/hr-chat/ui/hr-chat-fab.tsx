@@ -1,12 +1,10 @@
 import type { FC } from "react";
 import { useState } from "react";
-import { AutoAwesomeOutlined, CloseOutlined } from "@mui/icons-material";
-import { Drawer, Fab, Tooltip } from "@mui/material";
+import { AutoAwesomeOutlined } from "@mui/icons-material";
+import { Fab, Tooltip } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { BntIconButton } from "@/shared/ui/icon-button";
-import { BntStack } from "@/shared/ui/stack";
-import { BntTypography } from "@/shared/ui/typography";
+import { BntSidePanel } from "@/shared/ui/drawer";
 
 import hrChatTexts from "../config/hr-chat-texts";
 import { useHrChatAccess } from "../model/hr-chat-access";
@@ -23,7 +21,7 @@ const AiFab = styled(Fab)(({ theme }) => ({
 	zIndex: theme.zIndex.speedDial,
 }));
 
-const DRAWER_WIDTH = 760;
+const CHAT_PANEL_WIDTH = 760;
 
 export const HrChatFab: FC = () => {
 	const { t } = useBntTranslate();
@@ -33,30 +31,18 @@ export const HrChatFab: FC = () => {
 
 	if (!isAvailable || isChatOnPage) return null;
 
-	const title = t(hrChatTexts.ai_chat, { capitalize: true });
+	const openLabel = t(hrChatTexts.open_ai_chat, { capitalize: true });
 
 	return (
 		<>
-			<Tooltip title={t(hrChatTexts.open_ai_chat, { capitalize: true })} placement="left">
-				<AiFab color="primary" aria-label={t(hrChatTexts.open_ai_chat, { capitalize: true })} onClick={() => setIsOpen(true)}>
+			<Tooltip title={openLabel} placement="left">
+				<AiFab color="primary" aria-label={openLabel} onClick={() => setIsOpen(true)}>
 					<AutoAwesomeOutlined />
 				</AiFab>
 			</Tooltip>
-			<Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)} slotProps={{ paper: { sx: { width: { xs: "100%", md: DRAWER_WIDTH }, maxWidth: "100%" } } }}>
-				<BntStack direction="column" sx={{ height: "100%", minHeight: 0 }}>
-					<BntStack direction="row" alignItems="center" justifyContent="space-between" sx={{ px: 2, py: 1, borderBottom: 1, borderColor: "divider" }}>
-						<BntTypography variant="subtitle1" fontWeight={600}>
-							{title}
-						</BntTypography>
-						<BntIconButton aria-label={t(hrChatTexts.ai_chat, { capitalize: true })} onClick={() => setIsOpen(false)}>
-							<CloseOutlined />
-						</BntIconButton>
-					</BntStack>
-					<BntStack direction="column" sx={{ flex: "1 1 auto", minHeight: 0 }}>
-						{isOpen ? <HrChatPage variant="drawer" /> : null}
-					</BntStack>
-				</BntStack>
-			</Drawer>
+			<BntSidePanel isOpen={isOpen} onClose={() => setIsOpen(false)} title={t(hrChatTexts.ai_chat, { capitalize: true })} width={CHAT_PANEL_WIDTH}>
+				{isOpen ? <HrChatPage variant="drawer" /> : null}
+			</BntSidePanel>
 		</>
 	);
 };
