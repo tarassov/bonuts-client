@@ -1,4 +1,4 @@
-import { emptySplitApi as api } from "/home/alex/bonuts/bonuts-client/src/services/api/empty-api";
+import { emptySplitApi as api } from "./empty-api";
 
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
