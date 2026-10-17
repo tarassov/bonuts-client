@@ -2,6 +2,7 @@
 
 import { mockHeartbeatRequest } from "../support/api";
 import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
+import { TENANT_RESPONSE } from "../support/fixtures/tenant-response";
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
 const GET_CIRCLES_URL = /\/api\/v1\/circles(?:\?.*)?$/;
@@ -15,38 +16,6 @@ const CIRCLES_RESPONSE = {
 		{ attributes: { active: true, id: 2, name: "Product launch" }, id: "2", type: "circles" },
 		{ attributes: { active: true, id: 3, name: "Culture crew" }, id: "3", type: "circles" },
 	],
-};
-
-const TENANT_RESPONSE = {
-	data: {
-		attributes: {
-			active: true,
-			attached: true,
-			birthday_donuts: 20,
-			birthday_message: "Happy birthday!",
-			birthday_points: 10,
-			caption: "Avengers",
-			created_at: "2026-01-01T00:00:00Z",
-			deactivated: false,
-			demo: false,
-			domain: "avengers.example",
-			email_notification: true,
-			id: 1,
-			join_to_company_donuts: 0,
-			join_to_company_points: 0,
-			join_to_project_donuts: 0,
-			join_to_project_points: 0,
-			logo: { thumb: { url: "" }, url: "" },
-			name: "test-tenant",
-			test: false,
-			updated_at: "2026-01-01T00:00:00Z",
-			use_departments: false,
-			welcome_donuts: 50,
-			welcome_points: 25,
-		},
-		id: "1",
-		type: "tenants",
-	},
 };
 
 function mockSettingsRequests() {

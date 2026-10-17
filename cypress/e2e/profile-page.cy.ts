@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress test */
 
-import { mockHeartbeatRequest } from "../support/api";
+import { mockCurrentTenantRequest, mockHeartbeatRequest } from "../support/api";
 import { PROFILE_RESPONSE } from "../support/fixtures/profile-response";
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
@@ -147,6 +147,7 @@ function mockProfilePageRequests() {
 		});
 	}).as("deleteProfilePicture");
 
+	mockCurrentTenantRequest();
 	mockHeartbeatRequest();
 }
 
