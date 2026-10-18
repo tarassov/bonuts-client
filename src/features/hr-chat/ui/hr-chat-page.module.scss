@@ -1,0 +1,115 @@
+.root {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 0;
+}
+
+.sidebar {
+	display: none;
+}
+
+.mobileBar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 8px 4px;
+	flex: 0 0 auto;
+}
+
+.mobileSelect {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
+.thread {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 12px 8px 16px;
+}
+
+.threadState {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	flex: 1 1 auto;
+	padding: 24px 16px;
+	text-align: center;
+}
+
+.message {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.markdown {
+	width: 100%;
+	min-width: 0;
+}
+
+.composer {
+	flex: 0 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 8px 8px 8px;
+}
+
+.chatList {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	height: 100%;
+}
+
+.chatListItems {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto;
+}
+
+.chatListHeader {
+	flex: 0 0 auto;
+	padding: 8px 8px 4px;
+}
+
+@media (min-width: 900px) {
+	.root {
+		display: grid;
+		grid-template-columns: 280px minmax(0, 1fr);
+		grid-template-rows: minmax(0, 1fr);
+	}
+
+	.sidebar {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		border-right: 1px solid var(--mui-palette-divider, rgba(0, 0, 0, 0.12));
+	}
+
+	.mobileBar {
+		display: none;
+	}
+
+	.thread {
+		padding: 16px 16px 20px;
+	}
+
+	.composer {
+		padding: 8px 16px 12px;
+	}
+}

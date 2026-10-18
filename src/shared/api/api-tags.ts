@@ -3,6 +3,8 @@ export enum ApiTags {
 	Balance = "Balance",
 	Donuts = "Donuts",
 	History = "History",
+	HrChats = "HrChats",
+	HrChat = "HrChat",
 	ProfilePhotos = "ProfilePhotos",
 	Reports = "Reports",
 }

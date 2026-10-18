@@ -24,4 +24,6 @@ export type TTenant = TBaseModel & {
 	deactivated?: boolean | null;
 	attached?: boolean | null;
 	birthday_message?: string | null;
+	/** Keys of the tenant feature flags that are switched on. */
+	feature_flags?: string[];
 };
