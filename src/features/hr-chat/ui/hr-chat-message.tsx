@@ -121,8 +121,8 @@ const ReadyReply: FC<{ message: THrChatMessage }> = ({ message }) => {
 		chips.push(t(hrChatTexts.period_chip, { from: getFormattedDate(message.period_from), to: getFormattedDate(message.period_to) }));
 	}
 	if (typeof message.metrics.transfers === "number") chips.push(t(hrChatTexts.transfers_chip, { count: message.metrics.transfers }));
-	if (message.metrics.feed_posts) chips.push(t(hrChatTexts.posts_chip, { count: message.metrics.feed_posts }));
-	if (message.metrics.comments) chips.push(t(hrChatTexts.comments_chip, { count: message.metrics.comments }));
+	if (typeof message.metrics.feed_posts === "number") chips.push(t(hrChatTexts.posts_chip, { count: message.metrics.feed_posts }));
+	if (typeof message.metrics.comments === "number") chips.push(t(hrChatTexts.comments_chip, { count: message.metrics.comments }));
 	if (message.usage.total_tokens) chips.push(t(hrChatTexts.tokens_chip, { tokens: message.usage.total_tokens.toLocaleString() }));
 
 	return (

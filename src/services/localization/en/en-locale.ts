@@ -1,3 +1,5 @@
+import { hrChatEn } from "@/features/hr-chat";
+
 import {
 	texts_a,
 	texts_b,
@@ -516,5 +518,6 @@ export const enLocale = {
 		[texts_y.yes]: "Yes",
 		[texts_a.add_to_favorites]: "Add to favorites",
 		[texts_s.submit]: "Submit",
+		...hrChatEn.translations,
 	},
 };
