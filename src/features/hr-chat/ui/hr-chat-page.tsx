@@ -41,7 +41,10 @@ export const HrChatPage: FC<IHrChatPageProps> = ({ variant = "page" }) => {
 	const { send } = chat;
 	const { create } = list;
 	const now = useNow(CLOCK_INTERVAL_MS);
-	const isComposerBlocked = activeChatId !== null && chat.hasPending;
+	const selectedListItem = list.chats.find((item) => item.id === activeChatId);
+	// Until the chat details arrive, the list marker is the best knowledge; a chat the list does not know yet (just created) is waiting for its first reply.
+	const hasPendingReply = chat.isLoaded ? chat.hasPending : (selectedListItem?.has_pending ?? true);
+	const isComposerBlocked = activeChatId !== null && hasPendingReply;
 	const isSending = chat.isSending || list.isCreating;
 
 	const handleSend = useCallback(

@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 
 import { useAppSelector } from "services/redux/store/store";
 
+import { present } from "@/shared/lib/type-guards";
 import { authTenantSelector } from "@/shared/model/auth";
 
 import { useGetHrChatsByIdQuery, usePostHrChatsByHrChatIdMessagesMutation } from "../api/hr-chat-api";
@@ -18,6 +19,8 @@ export const useHrChat = (chatId: number | null) => {
 	const { data, isLoading, currentData } = useGetHrChatsByIdQuery({ tenant: authTenant ?? "", id: chatId ?? 0 }, { skip, refetchOnFocus: true, pollingInterval: IDLE_POLL_INTERVAL_MS });
 	const chat = data?.data ?? null;
 	const currentChat = currentData?.data ?? null;
+	/** False while the details of the selected chat are still on their way (first load or a switch to another chat). */
+	const isLoaded = present(currentChat);
 	const hasPending = hasPendingMessage(currentChat);
 	// A second subscription with the fast interval only while a reply is pending; RTK Query polls at the shortest active interval.
 	useGetHrChatsByIdQuery({ tenant: authTenant ?? "", id: chatId ?? 0 }, { skip: skip || !hasPending, pollingInterval: PENDING_POLL_INTERVAL_MS });
@@ -44,6 +47,7 @@ export const useHrChat = (chatId: number | null) => {
 		chat,
 		messages,
 		isLoading,
+		isLoaded,
 		hasPending,
 		isSending,
 		send,
