@@ -7,5 +7,12 @@ export type TInvitation = TBaseModel & {
 	activated: boolean;
 	closed: boolean;
 	declined: boolean | null;
+	activeUsersCount?: number;
+	expirationDate?: string | null;
 	logo?: TPicture;
+	recipientEmail?: string;
+	recipientName?: string;
+	sentAt?: string;
+	sentByEmail?: string;
+	sentByName?: string;
 };

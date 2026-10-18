@@ -11,12 +11,17 @@
 # production
 /build
 /dist
+/storybook-static
+/app/*
 
 # misc
 .DS_Store
 .env.local
 .env.development.local
 .env.test.local
+
+.gradle/*
+
 .env.production.local
 
 npm-debug.log*
@@ -33,3 +38,15 @@ dev-dist
 signing.keystore
 signing-key-info.txt
 
+
+# cypress
+/cypress/videos
+*/cert.pem
+*/td.binlog
+/tqueue.binlog
+/webhooks_db.binlog
+/cypress/screenshots
+/.codex
+
+# Claude Code local settings
+/.claude/settings.local.json

@@ -1,24 +1,23 @@
-import { FC } from "react";
-import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
-import { BntCard } from "shared/card/card";
-import { CommentCardHeader } from "components/comment/comment-card/comment-card-header";
-import { Dictionary } from "constants/dictionary";
-import { useEmployeeLoader } from "logic/hooks/employee/use-employee-loader";
-import { BntCardContent } from "shared/card/card-content";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import classNames from "classnames";
+import type { FC } from "react";
 import { Android } from "@mui/icons-material";
-import { BntCardActions } from "shared/card/card-actions";
-import { EVENT_CARD_CLASSES } from "components/event/event-card/classes";
-import { BntStack } from "shared/stack/stack";
-import { formatStringDate } from "utils/format-string-date";
-import { BntTypography } from "shared/typography/typography";
-import { TComment } from "@/types/model/comment";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 
-export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
-	comment,
-	className,
-}) => {
+import classNames from "classnames";
+
+import { formatStringDate } from "@/shared/lib/date";
+import { BntCard, BntCardActions, BntCardContent } from "@/shared/ui/card";
+import { ProfileAvatar } from "@/shared/ui/profile-avatar";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTypography } from "@/shared/ui/typography";
+
+import { useEmployeeLoader } from "@/entities/profile";
+
+import { CommentCardHeader } from "./comment-card-header";
+import { Dictionary } from "@/constants/dictionary";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import type { TComment } from "@/types/model/comment";
+
+export const CommentCard: FC<{ comment: TComment; className?: string }> = ({ comment, className }) => {
 	const { profile, content, date_string_utc } = comment;
 	const { employee } = useEmployeeLoader(profile?.id);
 	const { t } = useBntTranslate();
@@ -27,17 +26,7 @@ export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
 			<CommentCardHeader
 				avatar={
 					<>
-						{profile?.user_avatar && (
-							<Avatar
-								src={profile?.user_avatar?.thumb?.url || undefined}
-								alt={profile.user_name || undefined}
-							/>
-						)}
-						{!profile?.user_avatar && (
-							<Avatar>
-								<Android />
-							</Avatar>
-						)}
+						<ProfileAvatar avatarUrl={profile?.user_avatar?.thumb?.url} name={profile?.user_name} fallback={<Android />} />
 					</>
 				}
 				action={
@@ -53,13 +42,9 @@ export const CommentCard: FC<{ comment: TComment; className?: string }> = ({
 					{content}
 				</BntTypography>
 			</BntCardContent>
-			<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
+			<BntCardActions disableSpacing>
 				<BntStack direction="row" justifyContent="flex-end" className="width-100">
-					<Typography
-						variant="caption"
-						component="div"
-						className={EVENT_CARD_CLASSES.cardDateCaption}
-					>
+					<Typography variant="caption" component="div">
 						{formatStringDate(date_string_utc, false, true)}
 					</Typography>
 				</BntStack>

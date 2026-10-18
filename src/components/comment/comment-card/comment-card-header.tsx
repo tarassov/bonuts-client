@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { CardHeader } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const CommentCardHeader = styled(
 	CardHeader,

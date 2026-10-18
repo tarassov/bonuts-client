@@ -1,14 +1,16 @@
-import { FC } from "react";
-import { TModalProps } from "shared/types/dialog-types";
-import { EventDetailed } from "components/event/event-card/event-detailed";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { BntBox } from "shared/box/bnt-box";
+
+import { BntBox } from "@/shared/ui/box";
+import { TDialogProps } from "@/shared/ui/dialog";
+
+import { EventDetailed } from "@/entities/event";
+
 import { TPost } from "@/types/model/post";
 
 export type ModalDetailedEventProps = {
 	post: TPost;
 };
-export const ModalDetailedEvent: FC<ModalDetailedEventProps & TModalProps> = ({ post }) => {
+export function ModalDetailedEvent({ post }: ModalDetailedEventProps & TDialogProps) {
 	const theme = useTheme();
 	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
 	return (
@@ -16,4 +18,4 @@ export const ModalDetailedEvent: FC<ModalDetailedEventProps & TModalProps> = ({ 
 			<EventDetailed postId={post.id} />
 		</BntBox>
 	);
-};
+}

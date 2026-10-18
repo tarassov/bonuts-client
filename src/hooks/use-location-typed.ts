@@ -11,7 +11,5 @@ export interface ILocationProps extends Location {
 }
 
 export function useLocationTyped() {
-	const location = useLocation() as unknown as ILocationProps;
-
-	return location;
+	return useLocation() as unknown as ILocationProps;
 }

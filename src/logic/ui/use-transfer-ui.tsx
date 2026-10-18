@@ -1,7 +1,10 @@
-import { texts_a } from "services/localization/texts";
-import { useModal } from "hooks/use-modal";
 import { useBntTranslate } from "hooks/use-bnt-translate";
+import { texts_a } from "services/localization/texts";
 import { texts_t } from "services/localization/texts/texts_t";
+
+import { useModal } from "@/shared/lib/modal";
+
+import type { TTransferRecipient } from "@/features/donut-transfer";
 
 export const useTransferUi = () => {
 	const { AdminDepositModal, TransferModal } = useModal();
@@ -12,9 +15,9 @@ export const useTransferUi = () => {
 			title: t(texts_a.admin_deposit, { capitalize: true }),
 		});
 	};
-	const showTransfer = (id: number) => {
+	const showTransfer = (recipient: TTransferRecipient) => {
 		TransferModal.show({
-			id,
+			recipient,
 			title: t(texts_t.transfer_donuts, { capitalize: true }),
 		});
 	};

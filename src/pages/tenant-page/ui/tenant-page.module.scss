@@ -1,0 +1,29 @@
+.page {
+	max-width: 1120px;
+	min-height: 100%;
+	margin: 0 auto;
+	padding: 24px;
+	color: var(--mui-palette-text-primary);
+}
+
+.pageHeader {
+	margin-bottom: 24px;
+
+	p {
+		max-width: 680px;
+		margin-top: 8px;
+	}
+}
+
+.pageTitle {
+	margin: 0 !important;
+	font-size: 1.75rem !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+}
+
+@media (max-width: 599px) {
+	.page {
+		padding: 16px 12px 32px;
+	}
+}

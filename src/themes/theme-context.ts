@@ -1,7 +1,12 @@
 import { createContext } from "react";
-import { ThemeContextType } from "@/types/theme";
+
+import { emptyFunction } from "utils/empty-function";
+
+import { EThemeName, ThemeContextType } from "@/types/theme";
 
 export const CustomThemeContext = createContext<ThemeContextType>({
-	setTheme: () => {},
-	toggleTheme: () => {},
+	setTheme: emptyFunction,
+	toggleTheme: emptyFunction,
+	themeName: EThemeName.System,
+	resolvedThemeName: EThemeName.Light,
 });

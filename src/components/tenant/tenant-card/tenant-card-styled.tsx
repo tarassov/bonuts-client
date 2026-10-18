@@ -1,7 +1,9 @@
 import { styled } from "@mui/material/styles";
-import { cl } from "themes/helper";
-import { TenantCardPure } from "components/tenant/tenant-card/tenant-card-pure";
+
 import { TENANT_CARD_CLASSES } from "components/tenant/tenant-card/classes";
+import { TenantCardPure } from "components/tenant/tenant-card/tenant-card-pure";
+
+import { cl } from "themes/helper";
 
 export const TenantCardStyled = styled(
 	TenantCardPure,

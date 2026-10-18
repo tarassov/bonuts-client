@@ -1,8 +1,10 @@
 import { FC } from "react";
-import { TFormValue } from "shared/form/types/bnt-form";
 
 import { CircleForm } from "components/circle/circle-form/circle-form";
-import { BntBox } from "shared/box/bnt-box";
+
+import { BntBox } from "@/shared/ui/box";
+import { TFormValue } from "@/shared/ui/form";
+
 import { TCircle } from "@/types/model";
 
 export const ModalEditCirclePure: FC<{

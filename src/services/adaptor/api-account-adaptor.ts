@@ -1,4 +1,5 @@
 import { GetAccountsByIdApiResponse } from "services/api/bonuts-api";
+
 import { TAccount } from "@/types/model/account";
 
 export const apiAccountAdaptor = (response?: GetAccountsByIdApiResponse): TAccount | undefined => {

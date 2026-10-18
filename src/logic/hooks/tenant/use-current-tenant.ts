@@ -1,7 +1,7 @@
 import { useAppSelector } from "services/redux/store/store";
-import { authTenantSelector } from "services/redux/selectors/auth-selector";
+
+import { authTenantSelector } from "@/shared/model/auth";
 
 export const useCurrentTenant = () => {
-	const authTenant = useAppSelector(authTenantSelector);
-	return authTenant;
+	return useAppSelector(authTenantSelector);
 };

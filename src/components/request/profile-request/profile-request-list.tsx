@@ -1,15 +1,15 @@
 import { SyntheticEvent, useState } from "react";
-import { BntTabs } from "shared/tab/bnt-tabs";
-import { BntTab } from "shared/tab/bnt-tab";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { BntTabPanel } from "shared/tab/bnt-tab-panel";
-import { CardWrapper } from "shared/card-wrapper/card-wrapper";
-import { BntStack } from "shared/stack/stack";
+
 import { ProfileActiveRequestList } from "components/request/profile-request/profile-active-request-list";
 import { ProfileClosedRequestList } from "components/request/profile-request/profile-closed-request-list";
+import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_c } from "services/localization/texts";
 
-export const ProfileRequestList = () => {
+import { CardWrapper } from "@/shared/ui/card-wrapper";
+import { BntStack } from "@/shared/ui/stack";
+import { BntTab, BntTabPanel, BntTabs } from "@/shared/ui/tab";
+
+export function ProfileRequestList() {
 	const { translate } = useBntTranslate();
 	const [value, setValue] = useState(0);
 
@@ -19,14 +19,7 @@ export const ProfileRequestList = () => {
 
 	return (
 		<BntStack direction="column" className="height-100">
-			<BntTabs
-				value={value}
-				onChange={handleChange}
-				indicatorColor="primary"
-				textColor="primary"
-				variant="fullWidth"
-				aria-label="requests tabs"
-			>
+			<BntTabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="fullWidth" aria-label="requests tabs">
 				<BntTab label={translate(texts_a.active_request)} tabValue={0} />
 				<BntTab label={translate(texts_c.closed_requests)} tabValue={1} />
 			</BntTabs>
@@ -40,4 +33,4 @@ export const ProfileRequestList = () => {
 			</CardWrapper>
 		</BntStack>
 	);
-};
+}

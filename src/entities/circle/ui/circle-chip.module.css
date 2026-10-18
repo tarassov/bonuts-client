@@ -1,0 +1,22 @@
+.chip {
+	--circle-chip-bg: #eaf2ff;
+	--circle-chip-border: #c7dbff;
+	--circle-chip-text: #1f2937;
+
+	max-width: 170px;
+	height: 28px;
+	border-radius: 999px !important;
+	border: 1px solid var(--circle-chip-border) !important;
+	background-color: var(--circle-chip-bg) !important;
+	color: var(--circle-chip-text) !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+	.chip {
+		--circle-chip-bg: #243247;
+		--circle-chip-border: #35507a;
+		--circle-chip-text: #dbe8ff;
+	}
+}

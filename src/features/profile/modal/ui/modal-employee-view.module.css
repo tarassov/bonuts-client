@@ -1,0 +1,215 @@
+.loadingContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 180px;
+	padding: 32px;
+}
+
+.container {
+	--modal-border-color: #d7dde6;
+	--modal-text-primary: #1f2937;
+	--modal-text-secondary: #667085;
+	--modal-meta-bg: #f5f7fa;
+	--modal-identity-bg: #f7f8fa;
+
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding: 32px;
+}
+
+.header {
+	padding: 16px;
+	border-radius: 12px;
+	background-color: var(--modal-identity-bg);
+	border-bottom: 1px solid var(--modal-border-color);
+}
+
+.headerColumn {
+	min-width: 0;
+}
+
+.headerRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.identityRow {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-width: 0;
+}
+
+.avatar {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.identityText {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 0;
+}
+
+.name {
+	color: var(--modal-text-primary);
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.position {
+	color: var(--modal-text-secondary);
+	font-size: 14px;
+	line-height: 1.3;
+}
+
+.closeButton {
+	flex-shrink: 0;
+	padding: 4px !important;
+}
+
+.metaCard {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 20px;
+	border-radius: 12px;
+	background-color: var(--modal-meta-bg);
+}
+
+.metaRow {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.metaLabel {
+	color: var(--modal-text-secondary);
+	font-size: 13px;
+}
+
+.metaValue {
+	color: var(--modal-text-primary);
+	font-size: 14px;
+	font-weight: 500;
+	text-align: right;
+}
+
+.circlesRow {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.moreIcon {
+	color: var(--modal-text-secondary);
+	font-size: 22px;
+}
+
+.footerActions {
+	padding-top: 8px;
+	margin-left: auto;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.recognitionBadge {
+	display: inline-flex;
+	align-items: center;
+	min-width: 0;
+	max-width: 100%;
+	gap: 6px;
+	padding: 6px 10px;
+	border-radius: 999px;
+	background-color: #fff4d6;
+	color: #8a5a00;
+}
+
+.recognitionBadgeIcon {
+	flex-shrink: 0;
+	font-size: 18px !important;
+}
+
+.recognitionBadgeTitle {
+	overflow: hidden;
+	color: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.25;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.goToButton {
+	padding: 10px 18px !important;
+	border-radius: 12px !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	border-color: var(--modal-border-color) !important;
+	color: var(--modal-text-primary) !important;
+}
+
+.goToButton:hover {
+	border-color: var(--modal-text-secondary) !important;
+	background-color: var(--modal-meta-bg) !important;
+}
+
+.transferButton {
+	padding: 10px 18px !important;
+	border-radius: 12px !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+}
+
+html[data-app-theme="dark"] .container {
+	--modal-border-color: #2a2e36;
+	--modal-text-primary: #e5e7eb;
+	--modal-text-secondary: #9ca3af;
+	--modal-meta-bg: #1a1d24;
+	--modal-identity-bg: #171b24;
+}
+
+html[data-app-theme="dark"] .recognitionBadge {
+	background-color: #3a2a12;
+	color: #f4c76f;
+}
+
+@media (max-width: 600px) {
+	.loadingContainer {
+		padding: 24px;
+	}
+
+	.container {
+		gap: 20px;
+		padding: 24px;
+	}
+
+	.name {
+		font-size: 20px;
+	}
+
+	.footerActions {
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.transferButton {
+		width: 100%;
+	}
+
+	.goToButton {
+		width: 100%;
+	}
+}
