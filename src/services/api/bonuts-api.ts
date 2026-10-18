@@ -151,6 +151,51 @@ const injectedRtkApi = api.injectEndpoints({
 		postEventsByIdComments: build.mutation<PostEventsByIdCommentsApiResponse, PostEventsByIdCommentsApiArg>({
 			query: (queryArg) => ({ url: `/events/${queryArg.id}/comments`, method: "POST", body: queryArg.body }),
 		}),
+		postHrChatsByHrChatIdMessages: build.mutation<PostHrChatsByHrChatIdMessagesApiResponse, PostHrChatsByHrChatIdMessagesApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_chats/${queryArg.hrChatId}/messages`,
+				method: "POST",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		postHrChats: build.mutation<PostHrChatsApiResponse, PostHrChatsApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_chats`,
+				method: "POST",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getHrChats: build.query<GetHrChatsApiResponse, GetHrChatsApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_chats`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getHrChatsById: build.query<GetHrChatsByIdApiResponse, GetHrChatsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_chats/${queryArg.id}`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		deleteHrChatsById: build.mutation<DeleteHrChatsByIdApiResponse, DeleteHrChatsByIdApiArg>({
+			query: (queryArg) => ({
+				url: `/hr_chats/${queryArg.id}`,
+				method: "DELETE",
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
 		postInvitationsByIdClose: build.mutation<PostInvitationsByIdCloseApiResponse, PostInvitationsByIdCloseApiArg>({
 			query: (queryArg) => ({
 				url: `/invitations/${queryArg.id}/close`,
@@ -1661,6 +1706,48 @@ export type PostEventsByIdCommentsApiArg = {
 		text: string;
 		tenant: string;
 	};
+};
+export type PostHrChatsByHrChatIdMessagesApiResponse = /** status 201 question queued */ {
+	data: HrChatMessage;
+};
+export type PostHrChatsByHrChatIdMessagesApiArg = {
+	tenant?: string;
+	hrChatId: number;
+	body: {
+		text: string;
+	};
+};
+export type PostHrChatsApiResponse = /** status 201 chat created and the first reply queued */ {
+	data: HrChat;
+};
+export type PostHrChatsApiArg = {
+	tenant?: string;
+	body: {
+		/** free-text question; the period is extracted from it */
+		text: string;
+	};
+};
+export type GetHrChatsApiResponse = /** status 200 own chats with a pending marker */ {
+	data: HrChatListItem[];
+};
+export type GetHrChatsApiArg = {
+	tenant?: string;
+};
+export type GetHrChatsByIdApiResponse = /** status 200 own chat */ {
+	data: HrChat;
+};
+export type GetHrChatsByIdApiArg = {
+	tenant?: string;
+	id: number;
+};
+export type DeleteHrChatsByIdApiResponse = /** status 200 chat hidden from its owner; its messages and token usage are kept */ {
+	data: {
+		id: number;
+	};
+};
+export type DeleteHrChatsByIdApiArg = {
+	tenant?: string;
+	id: number;
 };
 export type PostInvitationsByIdCloseApiResponse = /** status 200 success */ {
 	data?: {
@@ -4388,6 +4475,7 @@ export type GetTenantCurrentApiResponse = /** status 200 success */ {
 			join_to_company_points: number;
 			use_departments: boolean;
 			test?: boolean;
+			feature_flags?: string[];
 		};
 	};
 };
@@ -4427,6 +4515,7 @@ export type PutTenantCurrentApiResponse = /** status 200 success */ {
 			join_to_company_points: number;
 			use_departments: boolean;
 			test?: boolean;
+			feature_flags?: string[];
 		};
 	};
 };
@@ -4486,6 +4575,7 @@ export type GetTenantsAccessibleApiResponse = /** status 200 success */ {
 		join_to_company_points: number;
 		use_departments: boolean;
 		test?: boolean;
+		feature_flags?: string[];
 	}[];
 };
 export type GetTenantsAccessibleApiArg = void;
@@ -4519,6 +4609,7 @@ export type GetTenantsApiResponse = /** status 200 success */ {
 		join_to_company_points: number;
 		use_departments: boolean;
 		test?: boolean;
+		feature_flags?: string[];
 	}[];
 };
 export type GetTenantsApiArg = void;
@@ -4975,6 +5066,81 @@ export type GetWeeklyRecognitionBadgesLatestApiResponse = /** status 200 success
 export type GetWeeklyRecognitionBadgesLatestApiArg = {
 	tenant?: string;
 };
+export type HrChatResolvedQuery = {
+	/** Short topic of the question, inherited from the previous exchange for follow-ups. */
+	focus?: string | null;
+	/** Names mentioned in the question. */
+	people?: string[];
+	department?: string | null;
+	/** Where the period came from - named in the question, the previous exchange, or the default last month. */
+	period_source?: "request" | "inherited" | "default";
+	/** True when the requested period was cut to the last 12 months. */
+	period_clamped?: boolean;
+	/** Human-readable note on how the period was chosen; empty when it was named in the question. */
+	explanation?: string;
+	[key: string]: any;
+};
+export type HrChatMetrics = {
+	transfers?: number;
+	transfer_amount?: number;
+	transfers_with_comments?: number;
+	senders?: number;
+	receivers?: number;
+	participants?: number;
+	feed_posts?: number;
+	comments?: number;
+	admin_accruals?: number;
+	people?: number;
+	[key: string]: any;
+};
+export type HrChatUsage = {
+	prompt_tokens?: number;
+	completion_tokens?: number;
+	total_tokens?: number;
+	calls?: number;
+	[key: string]: any;
+};
+export type HrChatMessage = {
+	id: number;
+	/** The admin's question as submitted (trimmed). */
+	prompt: string;
+	/** Markdown reply; null until the message is ready. */
+	reply: string | null;
+	/** too_broad means the period held too many records and the reply asks to narrow the question. */
+	reply_kind: "answer" | "too_broad";
+	status: "pending" | "ready" | "failed";
+	/** First day of the period the reply covers; null until resolved. */
+	period_from: string | null;
+	period_to: string | null;
+	resolved_query: HrChatResolvedQuery;
+	metrics: HrChatMetrics;
+	usage: HrChatUsage;
+	/** Current step of the background job while pending; null once ready or failed. */
+	progress_step: ("understanding" | "collecting" | "analyzing" | "writing") | null;
+	/** Current batch while analyzing records; null otherwise. */
+	progress_current: number | null;
+	/** Total batches while analyzing records; null otherwise. */
+	progress_total: number | null;
+	started_at: string | null;
+	/** Last time the background job reported progress. */
+	heartbeat_at: string | null;
+	error_message: string | null;
+	created_at: string;
+};
+export type HrChat = {
+	id: number;
+	title: string;
+	last_message_at: string;
+	messages: HrChatMessage[];
+};
+export type HrChatListItem = {
+	id: number;
+	/** First question of the chat, squished and cut to 80 characters. */
+	title: string;
+	last_message_at: string;
+	/** True while a reply in this chat is still being generated. */
+	has_pending: boolean;
+};
 export type TenantPlugin = {
 	id: number;
 	name: string;
@@ -5019,6 +5185,11 @@ export const {
 	usePutEventsByIdMutation,
 	usePostEventsByIdLikeMutation,
 	usePostEventsByIdCommentsMutation,
+	usePostHrChatsByHrChatIdMessagesMutation,
+	usePostHrChatsMutation,
+	useGetHrChatsQuery,
+	useGetHrChatsByIdQuery,
+	useDeleteHrChatsByIdMutation,
 	usePostInvitationsByIdCloseMutation,
 	useGetInvitationsQuery,
 	usePostInvitationsMutation,
