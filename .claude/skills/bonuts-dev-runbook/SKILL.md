@@ -74,6 +74,8 @@ yarn generate-api   # @rtk-query/codegen-openapi with openapi-config.ts
 
 Never hand-edit `src/services/api/bonuts-api.ts`.
 
+The schema comes from the backend's rswag swagger (`openapi-config.ts` points at the local backend). If a regenerated endpoint is typed as `object` / `unknown`, the backend has not described that schema: report it to the user as a backend task instead of writing a hand-typed workaround slice. Full rule in `bonuts-typescript`.
+
 ## Build and deploy
 
 ```bash

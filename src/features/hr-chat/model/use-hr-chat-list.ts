@@ -3,9 +3,8 @@ import { useCallback } from "react";
 import { useAppSelector } from "services/redux/store/store";
 
 import { authTenantSelector } from "@/shared/model/auth";
-import { useNotification } from "@/shared/ui/notification";
 
-import { useCreateHrChatMutation, useDeleteHrChatMutation, useGetHrChatListQuery } from "../api/hr-chat-api";
+import { useDeleteHrChatsByIdMutation, useGetHrChatsQuery, usePostHrChatsMutation } from "../api/hr-chat-api";
 
 import type { THrChat } from "./hr-chat.types";
 
@@ -16,23 +15,24 @@ const isForbiddenError = (error: unknown): boolean => typeof error === "object" 
 
 export const useHrChatList = () => {
 	const authTenant = useAppSelector(authTenantSelector);
-	const { showResponseError } = useNotification();
-	const { data, isLoading, error } = useGetHrChatListQuery({ tenant: authTenant ?? "" }, { skip: !authTenant, pollingInterval: LIST_POLL_INTERVAL_MS, refetchOnFocus: true });
-	const [createChat, { isLoading: isCreating }] = useCreateHrChatMutation();
-	const [deleteChat] = useDeleteHrChatMutation();
+	const { data, isLoading, error } = useGetHrChatsQuery({ tenant: authTenant ?? "" }, { skip: !authTenant, pollingInterval: LIST_POLL_INTERVAL_MS, refetchOnFocus: true });
+	const [createChat, { isLoading: isCreating }] = usePostHrChatsMutation();
+	const [deleteChat] = useDeleteHrChatsByIdMutation();
 
 	const create = useCallback(
 		async (text: string): Promise<THrChat | null> => {
 			if (!authTenant) return null;
 
 			try {
-				return await createChat({ tenant: authTenant, text }).unwrap();
-			} catch (requestError) {
-				showResponseError(requestError);
+				const response = await createChat({ tenant: authTenant, body: { text } }).unwrap();
+
+				return response.data;
+			} catch {
+				// The rejected action is already reported by rtkErrorHandler; here we only turn it into a result.
 				return null;
 			}
 		},
-		[authTenant, createChat, showResponseError]
+		[authTenant, createChat]
 	);
 
 	const remove = useCallback(
@@ -42,16 +42,16 @@ export const useHrChatList = () => {
 			try {
 				await deleteChat({ tenant: authTenant, id }).unwrap();
 				return true;
-			} catch (requestError) {
-				showResponseError(requestError);
+			} catch {
+				// The rejected action is already reported by rtkErrorHandler; here we only turn it into a result.
 				return false;
 			}
 		},
-		[authTenant, deleteChat, showResponseError]
+		[authTenant, deleteChat]
 	);
 
 	return {
-		chats: data ?? [],
+		chats: data?.data ?? [],
 		isLoading,
 		isCreating,
 		isUnavailable: isForbiddenError(error),
