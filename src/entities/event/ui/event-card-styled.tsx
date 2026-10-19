@@ -35,9 +35,12 @@ export const EventCardStyled = styled(EventCard, {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
-		"&:hover": {
-			transform: cardHoverTransform,
-			boxShadow: cardHoverShadow,
+		// a touch screen applies :hover on the first tap, which would move the card under the finger
+		"@media (hover: hover)": {
+			"&:hover": {
+				transform: cardHoverTransform,
+				boxShadow: cardHoverShadow,
+			},
 		},
 		[cl(EVENT_CARD_CLASSES.cardRoot)]: {
 			borderRadius: 16,
@@ -47,6 +50,12 @@ export const EventCardStyled = styled(EventCard, {
 			maxHeight: hasImages ? "none" : bodyMaxHeight,
 			overflow: hasImages ? "visible" : "auto",
 			padding: theme.spacing(2, 2.5, 1.5),
+			// on touch screens a nested scroller captures the tap and slides the recognition line
+			// away under the finger, so the card simply grows with its text
+			[theme.breakpoints.down("md")]: {
+				maxHeight: "none",
+				overflow: "visible",
+			},
 		},
 		[cl(EVENT_CARD_CLASSES.cardEditForm)]: {
 			"& .MuiTextField-root": {

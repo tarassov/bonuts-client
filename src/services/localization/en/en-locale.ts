@@ -341,6 +341,7 @@ export const enLocale = {
 		[texts_f.filter]: "Filter",
 		[texts_g.give_donuts]: "Give donuts",
 		[texts_g.give_donut_delivery_title]: "Donut delivery",
+		[texts_g.gathering_appreciation]: "Gathering appreciation…",
 		[texts_c.current_week_statistics]: "Current week statistics",
 		[texts_l.likes_given]: "Likes given",
 		[texts_c.comments_written]: "Comments written",

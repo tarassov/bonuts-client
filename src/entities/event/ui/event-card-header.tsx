@@ -52,11 +52,13 @@ export const EventCardHeader = styled(CardHeader, {
 			color: theme.palette.neutral.dark,
 			opacity: 0.72,
 		},
-		"&:hover": isClickable
-			? {
-					backgroundColor: theme.palette.action.hover,
-				}
-			: undefined,
+		"@media (hover: hover)": {
+			"&:hover": isClickable
+				? {
+						backgroundColor: theme.palette.action.hover,
+					}
+				: undefined,
+		},
 
 		"&::after": {
 			content: '""',

@@ -443,6 +443,7 @@ export const ruLocale = {
 		[texts_g.go_to]: "перейти",
 		[texts_g.give_donuts]: "Подарить пончики",
 		[texts_g.give_donut_delivery_title]: "Доставка пончиков",
+		[texts_g.gathering_appreciation]: "Собираем благодарности…",
 		Goods: "Товары",
 
 		// H

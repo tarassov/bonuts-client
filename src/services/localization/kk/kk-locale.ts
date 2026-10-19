@@ -355,6 +355,7 @@ export const kkLocale = {
 		[texts_g.go_to]: "өту",
 		[texts_g.give_donuts]: "Пончик сыйлау",
 		[texts_g.give_donut_delivery_title]: "Пончик жеткізу",
+		[texts_g.gathering_appreciation]: "Алғыстарды жинап жатырмыз…",
 		Goods: "Товары",
 
 		// H
