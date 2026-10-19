@@ -3,3 +3,11 @@
 .scrollArea {
 	@include mixins.hide-scroll;
 }
+
+// on small screens the page itself scrolls, so the feed box must not become
+// its own scroll container (otherwise the pinned strip cannot stick)
+@media (max-width: 899px) {
+	.scrollArea:global(.scroll) {
+		overflow-y: visible;
+	}
+}

@@ -12,6 +12,7 @@ export enum texts_n {
 	no_weekly_leaders_yet = "no weekly leaders yet",
 	name_is_required = "name is required",
 	next = "next",
+	next_pinned = "next pinned",
 	next_status = "next status",
 	new_donut = "new donut",
 	not_found = "not found",

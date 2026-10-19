@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Comment, Edit, Favorite, Lock } from "@mui/icons-material";
+import { Comment, Edit, Favorite, Lock, PushPinOutlined } from "@mui/icons-material";
 import { Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
 
 import classNames from "classnames";
@@ -12,15 +12,17 @@ import { useNotification } from "@/shared/ui/notification";
 import { ProfileAvatar } from "@/shared/ui/profile-avatar";
 import { BntTypography } from "@/shared/ui/typography";
 
+import { useEmployeeUi } from "@/entities/profile";
+
 import { useEventLogic } from "../model/use-event-logic";
+import { useEventUi } from "../model/use-event-ui";
 
 import { EVENT_CARD_CLASSES } from "./classes";
 import { EventCardHeader } from "./event-card-header";
 import { EventImages } from "./event-images";
 import { EventOperationText } from "./event-operation-text";
+import { PinnedBadge } from "./pinned-events-strip-styled";
 import { Dictionary } from "@/constants/dictionary";
-import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
-import { useEventUi } from "@/logic/ui/use-event-ui";
 import { texts_a, texts_c, texts_e, texts_n, texts_p, texts_s } from "@/services/localization/texts";
 import type { TPost } from "@/types/model/post";
 import { emptyFunction } from "@/utils/empty-function";
@@ -29,7 +31,7 @@ import { focusInput } from "@/utils/focus-input";
 export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
 
 export function EventCard({ post, className, preventNewModal }: EventCardProps) {
-	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, liked, editable, date_string_utc, images } = post;
+	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, liked, editable, date_string_utc, images, pinned } = post;
 	const { user_name, user_avatar, position } = profile;
 	const { t } = useTranslation();
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -42,6 +44,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 	const commentsCount = comments_count || 0;
 	const notification = !isPublic;
 	const canOpenProfile = isPublic;
+	const isPinned = Boolean(pinned) && isPublic;
 
 	const handleSubmitEdit = async (e: any) => {
 		e.preventDefault();
@@ -110,6 +113,11 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 								<Lock />
 							</IconButton>
 						</Tooltip>
+					) : isPinned ? (
+						<PinnedBadge data-testid="event-card-pinned-badge">
+							<PushPinOutlined />
+							{t(texts_p.pinned, { capitalize: true })}
+						</PinnedBadge>
 					) : null
 				}
 				title={notification ? t(texts_n.notification, { capitalize: true }) : title}

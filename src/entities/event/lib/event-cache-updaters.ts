@@ -10,7 +10,9 @@ type TEventEntity = {
 	};
 };
 
-type TEventCacheName = "getEvents" | "getEventsFeed" | "getEventsById";
+type TEventCacheName = "getEvents" | "getEventsFeed" | "getEventsById" | "getEventsPinned";
+
+const EVENT_CACHE_NAMES: ReadonlyArray<TEventCacheName> = ["getEvents", "getEventsFeed", "getEventsById", "getEventsPinned"];
 
 type TEventCacheRef = {
 	endpointName: TEventCacheName;
@@ -25,7 +27,7 @@ const getEventCacheRefs = (eventsApi: any, state: RootState): Array<TEventCacheR
 
 	return invalidated
 		.filter((cache: any): cache is { endpointName: TEventCacheName; originalArgs: unknown } => {
-			return cache.endpointName === "getEvents" || cache.endpointName === "getEventsFeed" || cache.endpointName === "getEventsById";
+			return EVENT_CACHE_NAMES.includes(cache.endpointName);
 		})
 		.map((cache: { endpointName: TEventCacheName; originalArgs: unknown }) => ({ endpointName: cache.endpointName, originalArgs: cache.originalArgs }));
 };

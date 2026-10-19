@@ -11,9 +11,9 @@ import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { AccountType } from "@/entities/account";
+import { useEmployeeUi } from "@/entities/profile";
 
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 
 export const AccountBalanceSmall: FC<{ profile?: TProfile }> = ({ profile }) => {

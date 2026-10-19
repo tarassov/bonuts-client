@@ -18,10 +18,12 @@ import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useEventListLogic } from "../model/use-event-list-logic";
+import { usePinnedEvents } from "../model/use-pinned-events";
 
 import { EventCardStyled } from "./event-card-styled";
 import classes from "./event-list.module.scss";
 import { EventListHeader } from "./event-list-header";
+import { PinnedEventsStrip } from "./pinned-events-strip";
 
 export function EventList() {
 	const { translate } = useBntTranslate();
@@ -34,6 +36,8 @@ export function EventList() {
 		showMine,
 		searchText,
 	});
+
+	const { pinnedPosts } = usePinnedEvents();
 
 	useLoader(Modules.Events, isLoading);
 
@@ -61,6 +65,7 @@ export function EventList() {
 			<EventListHeader hasEvents={pages.length > 0} showMine={showMine} onGiveDonutClick={handleGiveDonutClick} onSearchTextChange={setSearchText} onShowMineToggle={handleShowMineToggle} />
 
 			<BntBox className={classnames("flex-grow pb-2 mt-2", classes.scrollArea, { scroll: !isEmpty })} sx={{ overflowY: matchesDownMd && isEmpty ? "hidden" : undefined }}>
+				{pinnedPosts.length > 0 ? <PinnedEventsStrip posts={pinnedPosts} /> : null}
 				{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
 				<Grid container rowSpacing={{ xs: 2 }} justifyContent="center">
 					{present(pages) &&

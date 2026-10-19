@@ -11,9 +11,10 @@ import type { TTableConfig } from "@/shared/ui/react-table";
 import { CellType, HeaderType, useTableConfig } from "@/shared/ui/react-table";
 import { BntStack } from "@/shared/ui/stack";
 
+import { useEmployeeUi } from "@/entities/profile";
+
 import reportsTexts from "../config/reports-texts";
 
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 
 export const useStatisticsTableConfig = (totalFieldName: string, currency?: Currency) => {

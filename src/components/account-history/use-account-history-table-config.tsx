@@ -4,8 +4,9 @@ import { BntStyledOperationText } from "components/opearation-text/styled-operat
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_h } from "services/localization/texts/texts_h";
 
+import { useEmployeeUi } from "@/entities/profile";
+
 import { createColumnHelper } from "@tanstack/react-table";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TOperation } from "@/types/model/operation";
 
 export const useAccountHistoryTableConfig = () => {

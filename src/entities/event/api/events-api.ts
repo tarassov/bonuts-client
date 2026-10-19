@@ -16,6 +16,7 @@ const eventsApiEnhanced = bonutsApi.enhanceEndpoints({
 			endpoint.providesTags = ["Event"];
 			endpoint.transformResponse = getTransformPageableResponse<GetEventsApiResponse>();
 		},
+		getEventsPinned: { providesTags: ["Event"] },
 		putEventsById: {
 			async onQueryStarted(arg, { dispatch, queryFulfilled, getState }) {
 				const typedArg = arg as PutEventsByIdApiArg;
@@ -77,4 +78,4 @@ export const eventsApi = eventsApiEnhanced.injectEndpoints({
 	overrideExisting: false,
 });
 
-export const { useGetEventsByIdQuery, usePostEventsByIdLikeMutation, useGetEventsFeedInfiniteQuery } = eventsApi;
+export const { useGetEventsByIdQuery, useGetEventsPinnedQuery, usePostEventsByIdLikeMutation, useGetEventsFeedInfiniteQuery } = eventsApi;
