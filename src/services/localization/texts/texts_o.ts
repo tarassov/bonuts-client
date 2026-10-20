@@ -6,6 +6,7 @@ export enum texts_o {
 	operations_history = "operations history",
 	operations_loading_error = "operations loading error",
 	open_profile = "open profile",
+	open_in_feed = "open in feed",
 	on_stock = "on stock",
 	oldest_first = "oldest first",
 	ok = "ok",

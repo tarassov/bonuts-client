@@ -32,7 +32,8 @@ export function BntLayout() {
 		// One dialog provider for the whole application: modals outlive route changes and are driven by history.
 		// A modal restored from history waits for the tenant, otherwise it would request data without one.
 		<BntDialogProvider config={modalConfig} isRestoreEnabled={isTenantAuthenticated}>
-			<BntBox sx={{ display: "flex", height: "100vh" }}>
+			{/* dvh follows the mobile browser toolbar, so the page does not shift when it shows or hides */}
+			<BntBox sx={{ display: "flex", height: "100vh", "@supports (height: 100dvh)": { height: "100dvh" } }}>
 				<CssBaseline />
 				<SwitchRoutes routes={routerRoutes} />
 			</BntBox>

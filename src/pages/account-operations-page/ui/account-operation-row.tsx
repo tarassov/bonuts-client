@@ -9,13 +9,13 @@ import { BntChip } from "@/shared/ui/chip";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useDonutUi } from "@/entities/donut";
+import { useEmployeeUi } from "@/entities/profile";
 
 import { AccountTypeFilter, type IAccountOperation, OperationTypeFilter, PurchaseRequestStatus } from "../model/account-operations-types";
 
 import styles from "./account-operations-page.module.scss";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useBonutsIcon } from "@/hooks/use-bonuts-icon";
-import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { texts_f, texts_p, texts_r, texts_s, texts_t } from "@/services/localization/texts";
 
 export function AccountOperationRow({ operation }: { operation: IAccountOperation }) {

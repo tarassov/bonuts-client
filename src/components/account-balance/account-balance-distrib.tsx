@@ -9,9 +9,9 @@ import { BntRoundButton } from "@/shared/ui/buttons";
 import { BntStack } from "@/shared/ui/stack";
 
 import { AccountType } from "@/entities/account";
+import { useEmployeeUi } from "@/entities/profile";
 
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import type { TProfile } from "@/types/model";
 
 export function AccountBalanceDistrib({ profile }: { profile: TProfile }) {

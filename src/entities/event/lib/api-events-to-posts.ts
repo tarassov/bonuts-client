@@ -1,5 +1,4 @@
-import { GetEventsApiResponse, GetEventsByIdApiResponse } from "../api/bonuts-api";
-
+import type { GetEventsApiResponse, GetEventsByIdApiResponse } from "@/services/api/bonuts-api";
 import { DealType } from "@/types/model/deal-type";
 import type { TPost } from "@/types/model/post";
 import type { TUser } from "@/types/model/user";

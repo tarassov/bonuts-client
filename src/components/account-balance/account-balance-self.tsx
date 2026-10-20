@@ -11,9 +11,9 @@ import { BntStack } from "@/shared/ui/stack";
 
 import { AccountType } from "@/entities/account";
 import { useDonutUi } from "@/entities/donut";
+import { useEmployeeUi } from "@/entities/profile";
 
 import { useAccountBalanceLoader } from "logic/hooks/account/use-account-balance-loader";
-import { useEmployeeUi } from "logic/ui/use-employee-ui";
 import { TProfile } from "@/types/model";
 
 export const AccountBalanceSelf: FC<{ profile: TProfile }> = ({ profile }) => {

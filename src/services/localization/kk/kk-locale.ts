@@ -269,6 +269,12 @@ export const kkLocale = {
 		[texts_p.points_to_next_status]: "{{status}} мәртебесіне дейін {{count}} ұпай қалды",
 		[texts_p.previous]: "Артқа",
 		[texts_p.photos]: "Фото",
+		[texts_p.pinned]: "Бекітілген",
+		[texts_p.pinned_position]: "Бекітілген · {{total}} ішінен {{current}}",
+		[texts_p.pinned_on]: "{{date}} бекітілген",
+		[texts_a.all_pinned]: "Барлық бекітілгендер",
+		[texts_o.open_in_feed]: "Таспада ашу",
+		[texts_n.next_pinned]: "Келесі бекітілген",
 		[texts_r.recognized_voice]: "Танымал дауыс",
 		[texts_s.service_bot]: "Сервис бот",
 		[texts_s.social_newcomer]: "Жаңа қатысушы",
@@ -349,6 +355,7 @@ export const kkLocale = {
 		[texts_g.go_to]: "өту",
 		[texts_g.give_donuts]: "Пончик сыйлау",
 		[texts_g.give_donut_delivery_title]: "Пончик жеткізу",
+		[texts_g.gathering_appreciation]: "Алғыстарды жинап жатырмыз…",
 		Goods: "Товары",
 
 		// H

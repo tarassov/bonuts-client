@@ -2,6 +2,7 @@ export enum texts_a {
 	account_operations_subtitle = "account operations subtitle",
 	account_type = "account type",
 	all = "all",
+	all_pinned = "all pinned",
 	all_time = "all time",
 	all_types = "all types",
 	author = "author",
