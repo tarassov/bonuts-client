@@ -9,6 +9,13 @@ import type { TPost } from "@/types/model/post";
 
 const showDetailedPost = vi.fn();
 
+vi.mock("react-i18next", () => ({
+	useTranslation: () => ({
+		i18n: { language: "en" },
+		t: (key: string, options?: Record<string, unknown>) => (key === "pinned on" ? `pinned ${String(options?.date ?? "")}` : key),
+	}),
+}));
+
 vi.mock("../model/use-event-ui", () => ({
 	useEventUi: () => ({ showDetailedPost }),
 }));
@@ -48,11 +55,13 @@ describe("PinnedEventsStrip", () => {
 		renderStrip([buildPost(1, "Mister Donut", "Congratulations to the team!"), buildPost(2, "Alex", "Friday party")]);
 
 		expect(screen.getAllByText("Mister Donut")).toHaveLength(1);
+		expect(screen.getByText("October 19")).toBeTruthy();
 		expect(screen.queryByTestId("pinned-events-panel")).toBeNull();
 
 		fireEvent.click(screen.getByTestId("pinned-events-strip-body"));
 
 		expect(screen.getByTestId("pinned-events-panel")).toBeTruthy();
+		expect(screen.getByText(/pinned October 19/)).toBeTruthy();
 
 		fireEvent.click(screen.getAllByTestId("pinned-events-dot")[1]);
 

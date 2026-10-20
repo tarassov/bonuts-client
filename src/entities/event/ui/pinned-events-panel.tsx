@@ -4,7 +4,7 @@ import { Button, IconButton, useTheme } from "@mui/material";
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { texts_a, texts_n, texts_o, texts_p } from "services/localization/texts";
 
-import { formatStringDate } from "@/shared/lib/date";
+import { useFormattedDate } from "@/shared/lib/date";
 import { BntBox } from "@/shared/ui/box";
 import { ProfileAvatar } from "@/shared/ui/profile-avatar";
 import { BntStack } from "@/shared/ui/stack";
@@ -29,12 +29,15 @@ type TPinnedEventsPanelProps = {
 
 export function PinnedEventsPanel({ posts, index, label, isListOpen, onClose, onSelect, onToggleList }: TPinnedEventsPanelProps) {
 	const { translate } = useBntTranslate();
+	const { getFormattedDate } = useFormattedDate();
 	const theme = useTheme();
 	const current = posts[index];
 	const { showDetailedPost } = useEventUi(current);
 	const { profile, content, images, pinned_at, date_string_utc } = current;
 	const hasMany = posts.length > 1;
-	const pinnedOnLabel = translate(texts_p.pinned_on, { date: formatStringDate(pinned_at || date_string_utc, true) });
+	const pinnedOnLabel = translate(texts_p.pinned_on, {
+		date: getFormattedDate(pinned_at || date_string_utc, { day: "2-digit", month: "long" }),
+	});
 	const mutedColor = { color: theme.palette.neutral.dark, opacity: 0.72 };
 
 	return (

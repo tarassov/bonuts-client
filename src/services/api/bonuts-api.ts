@@ -1,4 +1,4 @@
-import { emptySplitApi as api } from "/home/alex/bonuts/bonuts-client/src/services/api/empty-api";
+import { emptySplitApi as api } from "@/services/api/empty-api";
 
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
@@ -1381,110 +1381,7 @@ export type GetEventsApiArg = {
 	page?: number;
 };
 export type GetEventsPinnedApiResponse = /** status 200 returns pinned events readable by the profile, newest pin first */ {
-	data?: {
-		id: string;
-		type: string;
-		attributes: {
-			content: string;
-			event_name: string | null;
-			extra_content?: string | null;
-			id: number;
-			date_string: string;
-			date_string_utc?: string;
-			profile_id: number;
-			user_id: number;
-			user_name: string;
-			last_seen_at: (string | null) | null;
-			is_online: boolean;
-			comments: {
-				id: number;
-				content: string;
-				liked?: boolean;
-				likes: number;
-				public: boolean;
-				user_avatar: {
-					url: string | null;
-					thumb: {
-						url: string | null;
-					};
-					preview: {
-						url: string | null;
-					};
-				};
-				profile?: {
-					id: number;
-					name: string;
-					user_name?: string;
-					user_avatar?: {
-						url: string | null;
-						thumb: {
-							url: string | null;
-						};
-						preview: {
-							url: string | null;
-						};
-					};
-				};
-				user_name: string;
-				date_string: string;
-				date_string_utc?: string;
-			}[];
-			comments_count: number;
-			user_avatar: {
-				url: string | null;
-				thumb: {
-					url: string | null;
-				};
-				preview: {
-					url: string | null;
-				};
-			};
-			editable?: boolean;
-			liked: boolean;
-			likes: {
-				id: number;
-				profile_id: number;
-				created_at?: string;
-				likeable_type?: string;
-				likeable_id?: number;
-			}[];
-			public: boolean;
-			is_notify: boolean;
-			pinned: boolean;
-			pinned_at: (string | null) | null;
-			pinned_until: (string | null) | null;
-			position: string;
-			images: {
-				url: string;
-				thumb: {
-					url: string;
-				};
-			}[];
-			operation?: {
-				id: number;
-				direction?: number;
-				amount?: number;
-				deal_type?: string;
-				created_at: string;
-				created_at_utc?: string;
-				to_user_name?: string;
-				to_profile?: {
-					id: number;
-					user_name?: string;
-					user_avatar?: {
-						url: string | null;
-						thumb: {
-							url: string | null;
-						};
-						preview: {
-							url: string | null;
-						};
-					};
-					position?: string;
-				};
-			} | null;
-		};
-	}[];
+	data: Event[];
 };
 export type GetEventsPinnedApiArg = {
 	tenant?: string;
@@ -5194,6 +5091,94 @@ export type GetWeeklyRecognitionBadgesLatestApiResponse = /** status 200 success
 };
 export type GetWeeklyRecognitionBadgesLatestApiArg = {
 	tenant?: string;
+};
+export type EventAvatarVariant = {
+	url: string | null;
+};
+export type EventAvatar = {
+	url: string | null;
+	thumb: EventAvatarVariant;
+	preview: EventAvatarVariant;
+};
+export type EventCommentProfile = {
+	id: number;
+	name: string;
+	user_name?: string;
+	user_avatar?: EventAvatar;
+};
+export type EventComment = {
+	id: number;
+	content: string;
+	liked?: boolean;
+	likes: number;
+	public: boolean;
+	user_avatar: EventAvatar;
+	profile?: EventCommentProfile;
+	user_name: string;
+	date_string: string;
+	date_string_utc?: string;
+};
+export type EventLike = {
+	id: number;
+	profile_id: number;
+	created_at?: string;
+	likeable_type?: string;
+	likeable_id?: number;
+};
+export type EventImageVariant = {
+	url: string;
+};
+export type EventImage = {
+	url: string;
+	thumb: EventImageVariant;
+};
+export type EventOperationProfile = {
+	id: number;
+	user_name: string;
+	user_avatar?: EventAvatar;
+	position?: string;
+};
+export type EventOperation = {
+	id: number;
+	direction?: number;
+	amount?: number;
+	deal_type?: string;
+	created_at: string;
+	created_at_utc?: string;
+	to_user_name?: string;
+	to_profile?: EventOperationProfile;
+};
+export type EventAttributes = {
+	content: string;
+	event_name: string | null;
+	extra_content?: string | null;
+	id: number;
+	date_string: string;
+	date_string_utc?: string;
+	profile_id: number;
+	user_id: number;
+	user_name: string;
+	last_seen_at: string | null;
+	is_online: boolean;
+	comments: EventComment[];
+	comments_count: number;
+	user_avatar: EventAvatar;
+	editable?: boolean;
+	liked: boolean;
+	likes: EventLike[];
+	public: boolean;
+	is_notify: boolean;
+	pinned: boolean;
+	pinned_at: string | null;
+	pinned_until: string | null;
+	position: string;
+	images: EventImage[];
+	operation?: EventOperation | null;
+};
+export type Event = {
+	id: string;
+	type: "event";
+	attributes: EventAttributes;
 };
 export type HrChatResolvedQuery = {
 	/** Short topic of the question, inherited from the previous exchange for follow-ups. */
