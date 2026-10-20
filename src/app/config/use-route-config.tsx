@@ -9,6 +9,7 @@ import {
 	InboxOutlined,
 	LeaderboardOutlined,
 	LibraryAddOutlined,
+	LockOutlined,
 	LogoutOutlined,
 	PeopleAltOutlined,
 	PersonOutlined,
@@ -25,7 +26,13 @@ import { texts_p } from "services/localization/texts";
 
 import { BntRoutes } from "@/shared/config/routes";
 
+import { BLACK_BOX_FEATURE_FLAG, blackBoxTexts } from "@/entities/black-box";
+
 import { AccountOperationsPage } from "@/pages/account-operations-page";
+import { BlackBoxAnswersPage } from "@/pages/black-box-answers-page";
+import { BlackBoxPage } from "@/pages/black-box-page";
+import { BlackBoxQuestionPage } from "@/pages/black-box-question-page";
+import { BlackBoxSettingsPage } from "@/pages/black-box-settings-page";
 import { CirclesPage } from "@/pages/circles-page";
 import { ConfirmEmailPage } from "@/pages/confirm-email-page";
 import { DashboardPage } from "@/pages/dashboard-page";
@@ -65,6 +72,32 @@ export const useRouteConfig = (): TRouteConfig<BntRoutes> => {
 	const routes = useMemo(
 		() =>
 			({
+				BlackBox: {
+					path: routesPath[BntRoutes.BlackBox],
+					anonymous: false,
+					authenticated: true,
+					navbarName: blackBoxTexts.black_box,
+					hideInMenu: false,
+					component: <BlackBoxPage />,
+					icon: <LockOutlined />,
+					featureFlag: BLACK_BOX_FEATURE_FLAG,
+				},
+				BlackBoxAnswers: {
+					path: routesPath[BntRoutes.BlackBoxAnswers],
+					anonymous: false,
+					authenticated: true,
+					hideInMenu: true,
+					component: <BlackBoxAnswersPage />,
+					featureFlag: BLACK_BOX_FEATURE_FLAG,
+				},
+				BlackBoxQuestion: {
+					path: routesPath[BntRoutes.BlackBoxQuestion],
+					anonymous: false,
+					authenticated: true,
+					hideInMenu: true,
+					component: <BlackBoxQuestionPage />,
+					featureFlag: BLACK_BOX_FEATURE_FLAG,
+				},
 				AccountOperations: {
 					path: routesPath[BntRoutes.AccountOperations],
 					anonymous: false,
@@ -358,6 +391,18 @@ export const useRouteConfig = (): TRouteConfig<BntRoutes> => {
 							icon: <CalendarMonthOutlined />,
 							index: 0,
 							roles: groupAdmins,
+						},
+						BlackBoxSettings: {
+							path: routesPath[BntRoutes.BlackBoxSettings],
+							anonymous: false,
+							authenticated: true,
+							navbarName: blackBoxTexts.settings_title,
+							hideInMenu: false,
+							component: <BlackBoxSettingsPage />,
+							icon: <LockOutlined />,
+							index: 0,
+							roles: groupAdmins,
+							featureFlag: BLACK_BOX_FEATURE_FLAG,
 						},
 						Circles: {
 							path: routesPath[BntRoutes.Circles],

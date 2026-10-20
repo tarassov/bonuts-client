@@ -44,6 +44,13 @@ const darkTheme = {
 			veryLight: "#FFCF86",
 			contrastText: "#111318",
 		},
+		inverse: {
+			main: "#1A1D24",
+			dark: "#111318",
+			light: "#2A2E36",
+			veryLight: "#9CA3AF",
+			contrastText: "#FFFFFF",
+		},
 		error: {
 			veryLight: red.A100,
 			light: red.A200,

@@ -1,3 +1,5 @@
+import { blackBoxRu } from "@/entities/black-box";
+
 import { hrChatRu } from "@/features/hr-chat";
 import { reportsRu } from "@/features/reports";
 
@@ -720,5 +722,6 @@ export const ruLocale = {
 		...weekdaysRu,
 		...reportsRu.translations,
 		...hrChatRu.translations,
+		...blackBoxRu.translations,
 	},
 };

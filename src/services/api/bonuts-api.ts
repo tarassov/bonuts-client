@@ -60,6 +60,98 @@ const injectedRtkApi = api.injectEndpoints({
 		postAdminDeposit: build.mutation<PostAdminDepositApiResponse, PostAdminDepositApiArg>({
 			query: (queryArg) => ({ url: `/admin_deposit`, method: "POST", body: queryArg.body }),
 		}),
+		getBlackBoxInbox: build.query<GetBlackBoxInboxApiResponse, GetBlackBoxInboxApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/inbox`,
+				params: {
+					tenant: queryArg.tenant,
+					status: queryArg.status,
+				},
+			}),
+		}),
+		postBlackBoxInboxByIdAnswer: build.mutation<PostBlackBoxInboxByIdAnswerApiResponse, PostBlackBoxInboxByIdAnswerApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/inbox/${queryArg.id}/answer`,
+				method: "POST",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		putBlackBoxInboxByIdAnswer: build.mutation<PutBlackBoxInboxByIdAnswerApiResponse, PutBlackBoxInboxByIdAnswerApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/inbox/${queryArg.id}/answer`,
+				method: "PUT",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		postBlackBoxQuestions: build.mutation<PostBlackBoxQuestionsApiResponse, PostBlackBoxQuestionsApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/questions`,
+				method: "POST",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getBlackBoxQuestions: build.query<GetBlackBoxQuestionsApiResponse, GetBlackBoxQuestionsApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/questions`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		postBlackBoxQuestionsLookup: build.mutation<PostBlackBoxQuestionsLookupApiResponse, PostBlackBoxQuestionsLookupApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/questions/lookup`,
+				method: "POST",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getBlackBoxResponders: build.query<GetBlackBoxRespondersApiResponse, GetBlackBoxRespondersApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/responders`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		putBlackBoxResponders: build.mutation<PutBlackBoxRespondersApiResponse, PutBlackBoxRespondersApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/responders`,
+				method: "PUT",
+				body: queryArg.body,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		getBlackBoxStatus: build.query<GetBlackBoxStatusApiResponse, GetBlackBoxStatusApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/status`,
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
+		postBlackBoxReadMark: build.mutation<PostBlackBoxReadMarkApiResponse, PostBlackBoxReadMarkApiArg>({
+			query: (queryArg) => ({
+				url: `/black_box/read_mark`,
+				method: "POST",
+				params: {
+					tenant: queryArg.tenant,
+				},
+			}),
+		}),
 		getCircles: build.query<GetCirclesApiResponse, GetCirclesApiArg>({
 			query: (queryArg) => ({
 				url: `/circles`,
@@ -894,6 +986,90 @@ export type PostAdminDepositApiArg = {
 		to_profile_ids: number[];
 		comment: string;
 	};
+};
+export type GetBlackBoxInboxApiResponse = /** status 200 questions of the requested status */ {
+	data: BlackBoxQuestion[];
+	meta: {
+		counts: BlackBoxInboxCounts;
+	};
+};
+export type GetBlackBoxInboxApiArg = {
+	tenant?: string;
+	status?: "pending" | "published";
+};
+export type PostBlackBoxInboxByIdAnswerApiResponse = /** status 200 answered and published */ {
+	data: BlackBoxQuestion;
+};
+export type PostBlackBoxInboxByIdAnswerApiArg = {
+	tenant?: string;
+	id: string;
+	body: {
+		/** 8 to 2000 characters */
+		text: string;
+	};
+};
+export type PutBlackBoxInboxByIdAnswerApiResponse = /** status 200 answer rewritten */ {
+	data: BlackBoxQuestion;
+};
+export type PutBlackBoxInboxByIdAnswerApiArg = {
+	tenant?: string;
+	id: string;
+	body: {
+		/** 8 to 2000 characters */
+		text: string;
+	};
+};
+export type PostBlackBoxQuestionsApiResponse = /** status 201 question stored without any link to its author */ {
+	data: BlackBoxAccessLink;
+};
+export type PostBlackBoxQuestionsApiArg = {
+	tenant?: string;
+	body: {
+		/** 12 to 2000 characters */
+		text: string;
+	};
+};
+export type GetBlackBoxQuestionsApiResponse = /** status 200 the answer stays when its responder was deactivated */ {
+	data: BlackBoxQuestion[];
+};
+export type GetBlackBoxQuestionsApiArg = {
+	tenant?: string;
+};
+export type PostBlackBoxQuestionsLookupApiResponse = /** status 200 an answered question with its published answer */ {
+	data: BlackBoxQuestion;
+};
+export type PostBlackBoxQuestionsLookupApiArg = {
+	tenant?: string;
+	body: {
+		/** access_token returned when the question was asked */
+		token: string;
+	};
+};
+export type GetBlackBoxRespondersApiResponse = /** status 200 active responders with their answer counts, visible to every employee */ {
+	data: BlackBoxResponder[];
+};
+export type GetBlackBoxRespondersApiArg = {
+	tenant?: string;
+};
+export type PutBlackBoxRespondersApiResponse = /** status 200 responders replaced */ {
+	data: BlackBoxResponder[];
+};
+export type PutBlackBoxRespondersApiArg = {
+	tenant?: string;
+	body: {
+		/** active employees of the tenant */
+		profile_ids: number[];
+	};
+};
+export type GetBlackBoxStatusApiResponse = /** status 200 nothing new since the last visit */ {
+	data: BlackBoxStatus;
+};
+export type GetBlackBoxStatusApiArg = {
+	tenant?: string;
+};
+export type PostBlackBoxReadMarkApiResponse = unknown;
+export type PostBlackBoxReadMarkApiArg = {
+	tenant?: string;
 };
 export type GetCirclesApiResponse = /** status 200 success */ {
 	data?: {
@@ -5092,6 +5268,44 @@ export type GetWeeklyRecognitionBadgesLatestApiResponse = /** status 200 success
 export type GetWeeklyRecognitionBadgesLatestApiArg = {
 	tenant?: string;
 };
+export type BlackBoxProfile = {
+	id: number;
+	full_name: string;
+	position: string | null;
+	/** Avatar URL, null when the profile has none. */
+	avatar: string | null;
+};
+export type BlackBoxAnswer = {
+	text: string;
+	answered_at: string;
+	answered_by: BlackBoxProfile | null;
+};
+export type BlackBoxQuestion = {
+	id: string;
+	text: string;
+	asked_on: string;
+	/** pending - waits for an answer and is visible only to responders, published - answered and visible to the whole team. */
+	status: "pending" | "published";
+	/** Null while the question is pending. */
+	answer: BlackBoxAnswer | null;
+};
+export type BlackBoxInboxCounts = {
+	pending: number;
+	published: number;
+};
+export type BlackBoxAccessLink = {
+	access_token: string;
+};
+export type BlackBoxResponder = BlackBoxProfile & {
+	answers_count: number;
+};
+export type BlackBoxStatus = {
+	/** True when any question was answered or its answer edited after the profile last opened the black box. */
+	has_unread: boolean;
+	is_responder: boolean;
+	/** False while the tenant admin has picked nobody; asking is not possible then. */
+	has_responders: boolean;
+};
 export type EventAvatarVariant = {
 	url: string | null;
 };
@@ -5287,6 +5501,16 @@ export const {
 	usePostAccountOperationsShareAllMutation,
 	useGetAccountsByIdQuery,
 	usePostAdminDepositMutation,
+	useGetBlackBoxInboxQuery,
+	usePostBlackBoxInboxByIdAnswerMutation,
+	usePutBlackBoxInboxByIdAnswerMutation,
+	usePostBlackBoxQuestionsMutation,
+	useGetBlackBoxQuestionsQuery,
+	usePostBlackBoxQuestionsLookupMutation,
+	useGetBlackBoxRespondersQuery,
+	usePutBlackBoxRespondersMutation,
+	useGetBlackBoxStatusQuery,
+	usePostBlackBoxReadMarkMutation,
 	useGetCirclesQuery,
 	usePostCirclesMutation,
 	useGetCirclesByIdQuery,

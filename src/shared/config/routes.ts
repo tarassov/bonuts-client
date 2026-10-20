@@ -34,4 +34,8 @@ export enum BntRoutes {
 	InvitationsAll = "InvitationsAll",
 	NewUser = "NewUser",
 	VkCallback = "VkCallback",
+	BlackBox = "BlackBox",
+	BlackBoxAnswers = "BlackBoxAnswers",
+	BlackBoxQuestion = "BlackBoxQuestion",
+	BlackBoxSettings = "BlackBoxSettings",
 }

@@ -8,6 +8,8 @@ import { BntStack } from "@/shared/ui/stack";
 import { BntToolbar } from "@/shared/ui/toolbar";
 import { BntTypography } from "@/shared/ui/typography";
 
+import { BlackBoxHeaderButton } from "@/features/black-box/header-entry";
+
 import { useHeaderMenuAnchor } from "../model/use-header-menu-anchor";
 
 import { AppHeaderMenu } from "./app-header-menu";
@@ -51,6 +53,7 @@ export function AppHeaderWidget({ profile }: TAppHeaderWidgetProps) {
 						</BntTypography>
 					</BntStack>
 					<BntStack direction="row" alignItems="center" gap={2}>
+						{auth.isTenantAuthenticated ? <BlackBoxHeaderButton /> : null}
 						{auth.isTenantAuthenticated ? <AccountBalanceSmall profile={profile || undefined} /> : null}
 						<IconButton edge="start" color="inherit" aria-label={profileLabel} onClick={handleMenuOpen}>
 							<Avatar src={profile?.user_avatar?.thumb?.url || undefined} alt={profile?.user_name || profileLabel} />
