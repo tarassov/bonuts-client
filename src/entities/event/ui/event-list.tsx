@@ -43,6 +43,7 @@ export function EventList() {
 	const { generation, isLeaving, isAnimated } = useFeedEntrance(isLoading);
 
 	const isEmpty = !pages[0]?.length;
+	const hasScrollableContent = !isEmpty || pinnedPosts.length > 0;
 	const showLoader = (isLoading && isEmpty) || isLeaving;
 
 	const handleShowMineToggle = () => {
@@ -66,7 +67,7 @@ export function EventList() {
 		<BntStack direction="column" className={classnames("height-100")} data-testid="dashboard-event-list">
 			<EventListHeader hasEvents={pages.length > 0} showMine={showMine} onGiveDonutClick={handleGiveDonutClick} onSearchTextChange={setSearchText} onShowMineToggle={handleShowMineToggle} />
 
-			<BntBox className={classnames("flex-grow pb-2 mt-2", classes.scrollArea, { scroll: !isEmpty })} sx={{ overflowY: matchesDownMd && isEmpty ? "hidden" : undefined }}>
+			<BntBox className={classnames("flex-grow pb-2 mt-2", classes.scrollArea, { scroll: hasScrollableContent })} sx={{ overflowY: matchesDownMd && !hasScrollableContent ? "hidden" : undefined }}>
 				{pinnedPosts.length > 0 ? <PinnedEventsStrip posts={pinnedPosts} /> : null}
 				{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
 				<div className={classes.feedBody}>
