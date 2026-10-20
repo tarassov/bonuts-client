@@ -6,12 +6,8 @@ import { apiSchedulerAdaptor, apiSchedulersAdaptor } from "services/adaptor/api-
 import { apiTenantAdaptor } from "services/adaptor/api-tenant-adaptor";
 import { apiTiesAdaptor } from "services/adaptor/api-tie-adaptor";
 
-import { apiEventsToPosts, apiEventToPost } from "./api-events-to-posts";
-
 export const apiAdaptor = (() => {
 	return {
-		toPosts: apiEventsToPosts,
-		toPost: apiEventToPost,
 		toDonuts: apiDonutsToDonuts,
 		toDonut: apiDonutToDonut,
 		toRequests: apiRequestsAdaptor,

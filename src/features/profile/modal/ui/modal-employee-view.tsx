@@ -5,7 +5,7 @@ import { useCurrentProfile } from "@/shared/model/auth";
 import type { TDialogProps } from "@/shared/ui/dialog";
 import { BntStack } from "@/shared/ui/stack";
 
-import { useEmployeeLoader, useProfile } from "@/entities/profile";
+import { useEmployeeLoader, useEmployeeUi, useProfile } from "@/entities/profile";
 
 import { getTopEmployeeRecognitionBadge } from "../model/employee-recognition-badge-helper";
 
@@ -15,7 +15,6 @@ import { ModalEmployeeViewFooter } from "./modal-employee-view-footer";
 import { ModalEmployeeViewHeader } from "./modal-employee-view-header";
 import { ModalEmployeeViewMeta } from "./modal-employee-view-meta";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { useTransferUi } from "@/logic/ui/use-transfer-ui";
 import { useGetWeeklyRecognitionBadgesLatestQuery } from "@/services/api/bonuts-api";
 import { texts_c, texts_e, texts_g, texts_o, texts_p } from "@/services/localization/texts";

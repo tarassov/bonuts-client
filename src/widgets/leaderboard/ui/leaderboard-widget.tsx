@@ -9,14 +9,13 @@ import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
-import { useProfile } from "@/entities/profile";
+import { useEmployeeUi, useProfile } from "@/entities/profile";
 
 import { getLeaderMedalTone, getRandomWeeklyTitleKey, getRankedLeaderboardProfiles } from "../model/leaderboard-helper";
 
 import { LeaderButton } from "./leader-button";
 import { LeaderMedal } from "./leader-medal";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { useGetWeeklyRecognitionBadgesLatestQuery } from "@/services/api/bonuts-api";
 import { texts_n, texts_w } from "@/services/localization/texts";
 

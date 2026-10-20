@@ -2,6 +2,8 @@ import type { MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { CakeOutlined, ScheduleOutlined } from "@mui/icons-material";
 
+import { useEmployeeUi } from "@/entities/profile";
+
 import { getEmployeeInitials, getMonthsInTeam, getUpcomingBirthday, isNewTeammate } from "../model/employee-directory-helper";
 
 import {
@@ -18,7 +20,6 @@ import {
 	EmployeeTransferButton,
 } from "./employee-card.styled";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
-import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { useTransferUi } from "@/logic/ui/use-transfer-ui";
 import { texts_b, texts_g, texts_i, texts_n } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";

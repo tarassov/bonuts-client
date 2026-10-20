@@ -2,7 +2,7 @@ import type { ConfigFile } from "@rtk-query/codegen-openapi";
 
 const config: ConfigFile = {
 	schemaFile: "http://127.0.0.1:3003/api-docs/v1/swagger.json",
-	apiFile: "./src/services/api/empty-api.ts",
+	apiFile: "@/services/api/empty-api.ts",
 	apiImport: "emptySplitApi",
 	outputFile: "./src/services/api/bonuts-api.ts",
 	prettierConfigFile: "./.prettierrc.codegen.json",

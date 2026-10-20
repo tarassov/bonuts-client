@@ -1,4 +1,4 @@
-import { emptySplitApi as api } from "./empty-api";
+import { emptySplitApi as api } from "@/services/api/empty-api";
 
 const injectedRtkApi = api.injectEndpoints({
 	endpoints: (build) => ({
@@ -131,6 +131,14 @@ const injectedRtkApi = api.injectEndpoints({
 					exceptNotifications: queryArg.exceptNotifications,
 					searchText: queryArg.searchText,
 					page: queryArg.page,
+				},
+			}),
+		}),
+		getEventsPinned: build.query<GetEventsPinnedApiResponse, GetEventsPinnedApiArg>({
+			query: (queryArg) => ({
+				url: `/events/pinned`,
+				params: {
+					tenant: queryArg.tenant,
 				},
 			}),
 		}),
@@ -1328,6 +1336,9 @@ export type GetEventsApiResponse = /** status 200 excludes notifications when ex
 			}[];
 			public: boolean;
 			is_notify: boolean;
+			pinned: boolean;
+			pinned_at: (string | null) | null;
+			pinned_until: (string | null) | null;
 			position: string;
 			images: {
 				url: string;
@@ -1368,6 +1379,12 @@ export type GetEventsApiArg = {
 	exceptNotifications?: string;
 	searchText?: string;
 	page?: number;
+};
+export type GetEventsPinnedApiResponse = /** status 200 returns pinned events readable by the profile, newest pin first */ {
+	data: Event[];
+};
+export type GetEventsPinnedApiArg = {
+	tenant?: string;
 };
 export type GetEventsByIdApiResponse = /** status 200 user can view own private event */ {
 	data?: {
@@ -1439,6 +1456,9 @@ export type GetEventsByIdApiResponse = /** status 200 user can view own private 
 			}[];
 			public: boolean;
 			is_notify: boolean;
+			pinned: boolean;
+			pinned_at: (string | null) | null;
+			pinned_until: (string | null) | null;
 			position: string;
 			images: {
 				url: string;
@@ -1555,6 +1575,9 @@ export type PostEventsByIdLikeApiResponse = /** status 200 event unliked */ {
 				}[];
 				public: boolean;
 				is_notify: boolean;
+				pinned: boolean;
+				pinned_at: (string | null) | null;
+				pinned_until: (string | null) | null;
 				position: string;
 				images: {
 					url: string;
@@ -1666,6 +1689,9 @@ export type PostEventsByIdCommentsApiResponse = /** status 200 new comment creat
 				}[];
 				public: boolean;
 				is_notify: boolean;
+				pinned: boolean;
+				pinned_at: (string | null) | null;
+				pinned_until: (string | null) | null;
 				position: string;
 				images: {
 					url: string;
@@ -5066,12 +5092,103 @@ export type GetWeeklyRecognitionBadgesLatestApiResponse = /** status 200 success
 export type GetWeeklyRecognitionBadgesLatestApiArg = {
 	tenant?: string;
 };
+export type EventAvatarVariant = {
+	url: string | null;
+};
+export type EventAvatar = {
+	url: string | null;
+	thumb: EventAvatarVariant;
+	preview: EventAvatarVariant;
+};
+export type EventCommentProfile = {
+	id: number;
+	name: string;
+	user_name?: string;
+	user_avatar?: EventAvatar;
+};
+export type EventComment = {
+	id: number;
+	content: string;
+	liked?: boolean;
+	likes: number;
+	public: boolean;
+	user_avatar: EventAvatar;
+	profile?: EventCommentProfile;
+	user_name: string;
+	date_string: string;
+	date_string_utc?: string;
+};
+export type EventLike = {
+	id: number;
+	profile_id: number;
+	created_at?: string;
+	likeable_type?: string;
+	likeable_id?: number;
+};
+export type EventImageVariant = {
+	url: string;
+};
+export type EventImage = {
+	url: string;
+	thumb: EventImageVariant;
+};
+export type EventOperationProfile = {
+	id: number;
+	user_name: string;
+	user_avatar?: EventAvatar;
+	position?: string;
+};
+export type EventOperation = {
+	id: number;
+	direction?: number;
+	amount?: number;
+	deal_type?: string;
+	created_at: string;
+	created_at_utc?: string;
+	to_user_name?: string;
+	to_profile?: EventOperationProfile;
+};
+export type EventAttributes = {
+	content: string;
+	event_name: string | null;
+	extra_content?: string | null;
+	id: number;
+	date_string: string;
+	date_string_utc?: string;
+	profile_id: number;
+	user_id: number;
+	user_name: string;
+	last_seen_at: string | null;
+	is_online: boolean;
+	comments: EventComment[];
+	comments_count: number;
+	user_avatar: EventAvatar;
+	editable?: boolean;
+	liked: boolean;
+	likes: EventLike[];
+	public: boolean;
+	is_notify: boolean;
+	pinned: boolean;
+	pinned_at: string | null;
+	pinned_until: string | null;
+	position: string;
+	images: EventImage[];
+	operation?: EventOperation | null;
+};
+export type Event = {
+	id: string;
+	type: "event";
+	attributes: EventAttributes;
+};
 export type HrChatResolvedQuery = {
 	/** Short topic of the question, inherited from the previous exchange for follow-ups. */
 	focus?: string | null;
 	/** Names mentioned in the question. */
 	people?: string[];
+	/** Department named in the question; narrows the records to its people. */
 	department?: string | null;
+	/** Circle named in the question; narrows the records to its members. */
+	circle?: string | null;
 	/** Where the period came from - named in the question, the previous exchange, or the default last month. */
 	period_source?: "request" | "inherited" | "default";
 	/** True when the requested period was cut to the last 12 months. */
@@ -5181,6 +5298,7 @@ export const {
 	useGetDonutsByIdQuery,
 	usePutDonutsByIdMutation,
 	useGetEventsQuery,
+	useGetEventsPinnedQuery,
 	useGetEventsByIdQuery,
 	usePutEventsByIdMutation,
 	usePostEventsByIdLikeMutation,

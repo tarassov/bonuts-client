@@ -6,9 +6,10 @@ import { BntTransparentButton } from "@/shared/ui/buttons";
 import { ProfileAvatar } from "@/shared/ui/profile-avatar";
 import { BntTypography } from "@/shared/ui/typography";
 
+import { useEmployeeUi } from "@/entities/profile";
+
 import { getRequestDisplayName, getRequestEmail, getRequestInitials, getRequestPosition } from "../model/request-feed-helpers";
 
-import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import type { TRequest } from "@/types/model/request";
 
 type RequestFeedProfileCellProps = {

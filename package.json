@@ -26,7 +26,7 @@
 		"history": "^5.3.0",
 		"i18next": "^22.4.5",
 		"i18next-browser-languagedetector": "^7.0.1",
-		"i18next-http-backend": "^2.0.1",
+		"i18next-http-backend": "4.0.2",
 		"lodash": "4.17.23",
 		"match-sorter": "^6.3.1",
 		"notistack": "^3.0.1",
@@ -39,7 +39,7 @@
 		"react-intersection-observer": "^9.13.0",
 		"react-markdown": "^10.1.0",
 		"react-redux": "^9.2.0",
-		"react-router-dom": "^6.22.3",
+		"react-router-dom": "6.30.6",
 		"react-svg": "^16.1.33",
 		"reagraph": "^4.32.0",
 		"redux": "^5.0.1",
@@ -71,7 +71,7 @@
 		"fsd:check:working-tree": "node scripts/check-fsd-boundaries.mjs --working-tree",
 		"fsd:check:ci": "node scripts/check-fsd-boundaries.mjs --ci-changed",
 		"fsd:check:staged": "node scripts/check-fsd-boundaries.mjs --staged",
-		"generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts",
+		"generate-api": "npx @rtk-query/codegen-openapi openapi-config.ts && biome check --write src/services/api/bonuts-api.ts",
 		"lint": "yarn typecheck && biome check src && yarn fsd:check:working-tree",
 		"lint:fix": "yarn typecheck && biome check --write src && yarn fsd:check:working-tree",
 		"biome": "biome check src --diagnostic-level=error",
@@ -85,16 +85,8 @@
 		"cypress:run:raw": "npx cypress run"
 	},
 	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+		"production": [">0.2%", "not dead", "not op_mini all"],
+		"development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.14",
@@ -126,7 +118,7 @@
 		"vite-plugin-pwa": "^1.3.0",
 		"vite-plugin-svgr": "^5.2.0",
 		"vite-tsconfig-paths": "^4.3.2",
-		"vitest": "^4.0.16"
+		"vitest": "5.0.0-rc.2"
 	},
 	"packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }

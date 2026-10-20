@@ -3,4 +3,5 @@ export enum texts_g {
 	generate_code = "generate code",
 	give_donuts = "give donuts",
 	give_donut_delivery_title = "donut delivery",
+	gathering_appreciation = "gathering appreciation",
 }

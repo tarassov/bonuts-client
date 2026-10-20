@@ -59,6 +59,13 @@ const postWithImages: TPost = {
 	],
 };
 
+const pinnedPost: TPost = {
+	...postWithImages,
+	id: 4,
+	pinned: true,
+	pinned_at: "2026-10-19T08:00:00.000Z",
+};
+
 const meta = {
 	title: "Entities/Event/Event Card",
 	component: EventCardStyled,
@@ -84,5 +91,11 @@ export const PrivateNotification = {
 export const WithImages = {
 	args: {
 		post: postWithImages,
+	},
+};
+
+export const Pinned = {
+	args: {
+		post: pinnedPost,
 	},
 };

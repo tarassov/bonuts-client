@@ -17,4 +17,7 @@ export type TEvent = TBaseModel & {
 	date_string_utc?: string;
 	editable?: boolean;
 	images?: Array<TEventImage>;
+	pinned?: boolean;
+	pinned_at?: string | null;
+	pinned_until?: string | null;
 };
