@@ -6,11 +6,10 @@ import { DashboardWidgetCard } from "@/shared/ui/dashboard-widget-card";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
-import { useProfile } from "@/entities/profile";
+import { useEmployeeUi, useProfile } from "@/entities/profile";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { useAccountBalanceLoader } from "@/logic/hooks/account/use-account-balance-loader";
-import { useEmployeeUi } from "@/logic/ui/use-employee-ui";
 import { texts_b, texts_c, texts_d, texts_i, texts_o } from "@/services/localization/texts";
 
 export function BalanceOverviewWidget({ columns = 1 }: IDashboardWidgetSizingProps) {

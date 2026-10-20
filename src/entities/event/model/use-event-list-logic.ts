@@ -3,9 +3,9 @@ import { useCallback, useMemo } from "react";
 import { authTenantSelector } from "@/shared/model/auth";
 
 import { eventsApi } from "../api/events-api";
+import { apiEventsToPosts } from "../lib/api-events-to-posts";
 
 import { USE_POLLING_INTERVAL } from "@/app/config";
-import { apiAdaptor } from "@/services/adaptor/api-adaptor";
 import { useAppSelector } from "@/services/redux/store/store";
 
 export const useEventListLogic = ({ showMine = false, searchText = undefined }: { showMine: boolean; searchText?: string }) => {
@@ -28,7 +28,7 @@ export const useEventListLogic = ({ showMine = false, searchText = undefined }: 
 	const pages = useMemo(() => {
 		if (!data?.pages?.length) return [];
 
-		return data.pages.map((page) => apiAdaptor.toPosts(page));
+		return data.pages.map((page) => apiEventsToPosts(page));
 	}, [data?.pages]);
 
 	const fetchNext = useCallback(() => {

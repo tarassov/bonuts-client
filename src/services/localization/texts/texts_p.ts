@@ -26,4 +26,7 @@ export enum texts_p {
 	process_team_join_requests = "process team join requests",
 	picture = "picture",
 	photos = "photos",
+	pinned = "pinned",
+	pinned_position = "pinned position",
+	pinned_on = "pinned on",
 }

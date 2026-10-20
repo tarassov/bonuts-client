@@ -4,6 +4,7 @@ export { EmployeeListSort } from "./model/employee-list-sort";
 export { useEmployee } from "./model/use-employee";
 export { useEmployeeList } from "./model/use-employee-list";
 export { useEmployeeLoader } from "./model/use-employee-loader";
+export { useEmployeeUi } from "./model/use-employee-ui";
 export { useProfile } from "./model/use-profile";
 export { useProfileNotification } from "./model/use-profile-notification";
 export { useProfilePhotos } from "./model/use-profile-photos";

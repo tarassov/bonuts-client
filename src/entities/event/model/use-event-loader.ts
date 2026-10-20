@@ -1,9 +1,9 @@
-import { apiAdaptor } from "services/adaptor/api-adaptor";
 import { useAppSelector } from "services/redux/store/store";
 
 import { authTenantSelector } from "@/shared/model/auth";
 
 import { useGetEventsByIdQuery } from "../api/events-api";
+import { apiEventToPost } from "../lib/api-events-to-posts";
 
 export const useEventLoader = (id?: number | string | null) => {
 	const authTenant = useAppSelector(authTenantSelector);
@@ -15,6 +15,6 @@ export const useEventLoader = (id?: number | string | null) => {
 		{ skip: !id, refetchOnMountOrArgChange: true }
 	);
 
-	const post = data ? apiAdaptor.toPost(data) : undefined;
+	const post = data ? apiEventToPost(data) : undefined;
 	return { post, isLoading, error };
 };
