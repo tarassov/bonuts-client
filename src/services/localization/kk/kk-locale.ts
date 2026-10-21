@@ -1,3 +1,5 @@
+import { blackBoxKk } from "@/entities/black-box";
+
 import { hrChatKk } from "@/features/hr-chat";
 import { reportsKk } from "@/features/reports";
 
@@ -719,5 +721,6 @@ export const kkLocale = {
 		...weekdaysKk,
 		...reportsKk.translations,
 		...hrChatKk.translations,
+		...blackBoxKk.translations,
 	},
 };

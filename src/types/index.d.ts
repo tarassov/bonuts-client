@@ -21,6 +21,8 @@ type TRoute<T, K = string> = {
 	roles?: Array<K>;
 	tenantNotRequired?: boolean;
 	isRoot?: boolean;
+	/** Tenant feature flag the route belongs to; the route is hidden from menus while the flag is off. */
+	featureFlag?: string;
 };
 
 type TRedirect = {

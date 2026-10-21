@@ -1,3 +1,4 @@
+export { isRouteFeatureEnabled } from "./is-route-feature-enabled";
 export * from "./router-context";
 export { RouterContext, type TRouterContextType } from "./router-context";
 export * from "./use-bnt-routes";

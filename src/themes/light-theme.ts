@@ -79,6 +79,13 @@ const lightTheme = {
 			veryLight: "#FFCF86",
 			contrastText: "#575555",
 		},
+		inverse: {
+			main: colors.dark.bgApp,
+			dark: colors.dark.bgSurface,
+			light: colors.dark.border,
+			veryLight: colors.dark.textSecondary,
+			contrastText: colors.neutral[0],
+		},
 		error: {
 			veryLight: red.A100,
 			light: red.A200,

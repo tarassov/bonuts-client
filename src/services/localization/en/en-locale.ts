@@ -1,3 +1,5 @@
+import { blackBoxEn } from "@/entities/black-box";
+
 import { hrChatEn } from "@/features/hr-chat";
 
 import {
@@ -526,5 +528,6 @@ export const enLocale = {
 		[texts_a.add_to_favorites]: "Add to favorites",
 		[texts_s.submit]: "Submit",
 		...hrChatEn.translations,
+		...blackBoxEn.translations,
 	},
 };

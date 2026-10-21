@@ -21,6 +21,8 @@ declare module "@mui/material/styles" {
 	interface Palette {
 		accent: Palette["primary"];
 		neutral: Palette["primary"];
+		/** Dark "inverse" surface for emphasized blocks on light pages (main: surface, light: border, contrastText: text). */
+		inverse: Palette["primary"];
 	}
 	interface SimplePaletteColorOptions {
 		veryLight?: string;
@@ -29,6 +31,7 @@ declare module "@mui/material/styles" {
 	interface PaletteOptions {
 		accent: PaletteOptions["primary"];
 		neutral: PaletteOptions["primary"];
+		inverse: PaletteOptions["primary"];
 	}
 }
 

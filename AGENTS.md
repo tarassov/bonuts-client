@@ -201,6 +201,9 @@ For UI tasks, also mention:
 - Prefer one component per file as a general rule. Small internal helpers are acceptable only when extraction would clearly hurt readability.
 - Use this heuristic: if a file grows beyond 10 lines, treat it as likely needing refactor and check whether logic or styling should be extracted.
 - Move non-UI helpers (sorting, mapping, formatting, ranking, presenter-style transformations) out of component files into dedicated helper/presenter files (for example `LeaderboardHelper.ts`) and export the required methods from there.
+- Keep code readable: one file must not be overloaded — split a growing component, hook or helper by responsibility instead of piling logic into it.
+- Follow SOLID: one reason to change per component/hook/module, depend on small collaborators, no god objects, god components or god hooks.
+- Keep clean levels of abstraction: a component or function reads at one level (composition calls named parts, details live in those parts or lower-level helpers); do not mix high-level flow with low-level detail in the same place.
 
 ---
 

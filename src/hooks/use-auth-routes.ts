@@ -3,11 +3,11 @@ import { useContext, useMemo } from "react";
 import _ from "lodash";
 
 import { BntRoutes } from "@/shared/config/routes";
-import { RouterContext } from "@/shared/lib/router";
+import { isRouteFeatureEnabled, RouterContext } from "@/shared/lib/router";
 import { isBlank } from "@/shared/lib/type-guards";
 import { useAuth, useCurrentProfile } from "@/shared/model/auth";
 
-import { tenantsApi } from "@/entities/tenant";
+import { tenantsApi, useTenantFeatureFlags } from "@/entities/tenant";
 
 import { routesPath } from "@/routes/config/routes-path";
 
@@ -15,6 +15,7 @@ export const useAuthRoutes = () => {
 	const { menuRoutes: routes } = useContext(RouterContext);
 	const { auth } = useAuth();
 	const { currentRoles } = useCurrentProfile();
+	const { featureFlags } = useTenantFeatureFlags();
 	const { data: tenantsData } = tenantsApi.endpoints.getTenants.useQuery(undefined, {
 		skip: !auth.isAuthenticated,
 	});
@@ -27,8 +28,9 @@ export const useAuthRoutes = () => {
 			.filter((x) => x.tenantNotRequired || auth.tenant)
 			.filter((x) => (auth.tenant ? x.path !== routesPath[BntRoutes.NewUser] : x.path !== routesPath[BntRoutes.Dashboard]))
 			.filter((x) => !hasOneOrZeroTenant || x.path !== routesPath[BntRoutes.TenantList])
-			.filter((x) => !x.roles?.length || _.intersection(x.roles, currentRoles).length);
-	}, [routes, auth.tenant, currentRoles, hasOneOrZeroTenant]);
+			.filter((x) => !x.roles?.length || _.intersection(x.roles, currentRoles).length)
+			.filter((x) => isRouteFeatureEnabled(x, featureFlags));
+	}, [routes, auth.tenant, currentRoles, hasOneOrZeroTenant, featureFlags]);
 
 	return { menuRoutes };
 };

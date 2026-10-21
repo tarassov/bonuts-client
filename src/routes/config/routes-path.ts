@@ -36,4 +36,9 @@ export const routesPath: Record<BntRoutes, string> = {
 	InvitationsAll: "/invitations/all",
 	NewUser: "/welcome",
 	VkCallback: "/oauth/vk",
+	BlackBox: "/black-box",
+	BlackBoxAnswers: "/black-box/answers",
+	// the secret of the author's link travels in the URL hash, which never reaches a server
+	BlackBoxQuestion: "/black-box/question",
+	BlackBoxSettings: "/black-box-settings",
 };
