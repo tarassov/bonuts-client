@@ -30,6 +30,7 @@ import {
 
 export const ruLocale = {
 	translations: {
+		[texts_b.become_user]: "Войти как сотрудник",
 		[texts_b.birthday_on]: "День рождения {{date}}",
 		[texts_b.birthday_soon]: "Скоро ДР",
 		[texts_c.colleagues]: "Коллеги",

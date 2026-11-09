@@ -13,6 +13,7 @@ const mockResponse: GetProfileApiResponse = {
 			is_online: false,
 			active: false,
 			admin: false,
+			system_admin: false,
 			department: null,
 			position: null,
 			store_admin: undefined,

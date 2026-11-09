@@ -60,6 +60,9 @@ const injectedRtkApi = api.injectEndpoints({
 		postAdminDeposit: build.mutation<PostAdminDepositApiResponse, PostAdminDepositApiArg>({
 			query: (queryArg) => ({ url: `/admin_deposit`, method: "POST", body: queryArg.body }),
 		}),
+		postBecome: build.mutation<PostBecomeApiResponse, PostBecomeApiArg>({
+			query: (queryArg) => ({ url: `/become`, method: "POST", body: queryArg.body }),
+		}),
 		getCircles: build.query<GetCirclesApiResponse, GetCirclesApiArg>({
 			query: (queryArg) => ({
 				url: `/circles`,
@@ -893,6 +896,12 @@ export type PostAdminDepositApiArg = {
 		account_type?: "self" | "distrib";
 		to_profile_ids: number[];
 		comment: string;
+	};
+};
+export type PostBecomeApiResponse = /** status 200 Signed in as the target user */ BecomeResponse;
+export type PostBecomeApiArg = {
+	body: {
+		user_id: number;
 	};
 };
 export type GetCirclesApiResponse = /** status 200 success */ {
@@ -2447,7 +2456,7 @@ export type GetProfileApiResponse = /** status 200 success */ {
 				tenant_id?: number;
 				profile_id?: number;
 			};
-		};
+		} & CurrentProfilePermissions;
 		relationships?: {
 			user?: {
 				data: {
@@ -5092,6 +5101,21 @@ export type GetWeeklyRecognitionBadgesLatestApiResponse = /** status 200 success
 export type GetWeeklyRecognitionBadgesLatestApiArg = {
 	tenant?: string;
 };
+export type BecomeTenant = {
+	id: number;
+	name: string;
+	active: boolean;
+};
+export type BecomeResponse = {
+	auth_token: string;
+	username: string;
+	currentTenant: string | null;
+	tenants: BecomeTenant[];
+};
+export type BecomeError = {
+	error: string | null;
+	errorText?: string;
+};
 export type EventAvatarVariant = {
 	url: string | null;
 };
@@ -5278,6 +5302,10 @@ export type ProfileNotification = {
 	active: boolean;
 	disabled: boolean;
 };
+export type CurrentProfilePermissions = {
+	/** Whether the current user is a platform system administrator and can become another user. */
+	system_admin: boolean;
+};
 export const {
 	useGetAccountOperationsHistoryQuery,
 	useGetAccountOperationsSummaryQuery,
@@ -5287,6 +5315,7 @@ export const {
 	usePostAccountOperationsShareAllMutation,
 	useGetAccountsByIdQuery,
 	usePostAdminDepositMutation,
+	usePostBecomeMutation,
 	useGetCirclesQuery,
 	usePostCirclesMutation,
 	useGetCirclesByIdQuery,

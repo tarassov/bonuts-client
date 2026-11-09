@@ -1,4 +1,5 @@
 export enum texts_b {
+	become_user = "become user",
 	birthday = "date of birth",
 	birthday_on = "birthday on {{date}}",
 	birthday_soon = "birthday soon",
