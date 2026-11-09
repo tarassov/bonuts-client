@@ -1,10 +1,10 @@
-import type { GetProfileApiResponse, GetReportsProfilesApiResponse } from "../api/bonuts-api";
+import type { GetProfilesByIdApiResponse, GetReportsProfilesApiResponse } from "../api/bonuts-api";
 
 import type { TProfile } from "@/types/model";
 import { getProfilePhotos } from "@/types/model";
 import type { TProfilePhotoSource } from "@/types/model/profile-photo";
 
-export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
+export const dataToProfile = (data: Partial<GetProfilesByIdApiResponse["data"]>) => {
 	if (!data) return undefined;
 	const res: TProfile = {
 		id: Number(data.id),
@@ -34,7 +34,7 @@ export const dataToProfile = (data: Partial<GetProfileApiResponse["data"]>) => {
 
 	return res;
 };
-export const apiProfileAdaptor = (response?: GetProfileApiResponse): TProfile | undefined => {
+export const apiProfileAdaptor = (response?: GetProfilesByIdApiResponse): TProfile | undefined => {
 	if (!response?.data || !response?.data?.id) return undefined;
 	return dataToProfile(response.data);
 };

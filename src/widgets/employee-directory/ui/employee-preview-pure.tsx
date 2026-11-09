@@ -13,6 +13,7 @@ import { BntTypography } from "@/shared/ui/typography";
 import { CircleChip } from "@/entities/circle";
 import { ProfilePhotos, ProfileStatusChips } from "@/entities/profile";
 
+import { BecomeButton } from "@/features/auth/become";
 import { EmployeeActions } from "@/features/employee/actions";
 import { EmployeeEdit } from "@/features/employee/edit";
 
@@ -111,6 +112,7 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 										</BntTypography>
 										<Stack direction={{ sm: "column", md: "row", xs: "column" }} spacing={2}>
 											<ProfileStatusChips profile={employee} />
+											<BecomeButton userId={employee?.user_id} />
 										</Stack>
 									</Stack>
 									<BntTypography variant="h5" display="block">

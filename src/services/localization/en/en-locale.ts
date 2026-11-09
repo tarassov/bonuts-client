@@ -27,6 +27,7 @@ import {
 
 export const enLocale = {
 	translations: {
+		[texts_b.become_user]: "Sign in as employee",
 		[texts_b.birthday_on]: "Birthday on {{date}}",
 		[texts_b.birthday_soon]: "Birthday soon",
 		[texts_c.colleagues]: "Colleagues",
