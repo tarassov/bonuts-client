@@ -30,6 +30,7 @@ import {
 
 export const kkLocale = {
 	translations: {
+		[texts_b.become_user]: "Қызметкер ретінде кіру",
 		[texts_b.birthday_on]: "Туған күні: {{date}}",
 		[texts_b.birthday_soon]: "Жақында туған күні",
 		[texts_c.colleagues]: "Әріптестер",
