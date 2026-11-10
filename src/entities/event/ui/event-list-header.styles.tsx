@@ -19,7 +19,7 @@ export const FeedGiveButton = styled(BntButton)(({ theme }) => ({
 		transition: "none",
 		"&:hover, &:active": { transform: "none" },
 	},
-	[theme.breakpoints.down("sm")]: {
+	"@container event-feed-header (max-width: 599px)": {
 		padding: theme.spacing(0, 1),
 		"& .MuiButton-startIcon": { display: "none" },
 	},

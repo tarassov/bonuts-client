@@ -20,7 +20,7 @@ export const FeedSearchInput = styled(BntTextInput)(({ theme }) => ({
 		borderRadius: 10,
 		fontSize: 14,
 	},
-	[theme.breakpoints.down("sm")]: { maxWidth: "none" },
+	"@container event-feed-header (max-width: 599px)": { maxWidth: "none" },
 }));
 
 export const FeedSearchButton = styled(IconButton)(({ theme }) => ({

@@ -38,5 +38,5 @@ export const FeedFilterOption = styled(ToggleButton)(({ theme }) => ({
 		fontWeight: 500,
 	},
 	"&.Mui-focusVisible": { outline: `2px solid ${theme.palette.primary.main}`, outlineOffset: -2 },
-	[theme.breakpoints.down("sm")]: { fontSize: 12, whiteSpace: "normal", padding: theme.spacing(0.5) },
+	"@container event-feed-header (max-width: 599px)": { fontSize: 12, whiteSpace: "normal", padding: theme.spacing(0.5) },
 }));
