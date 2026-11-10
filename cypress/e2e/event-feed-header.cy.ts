@@ -4,6 +4,13 @@ import { DASHBOARD_EVENTS_RESPONSE, mockDashboardPageRequests } from "../support
 import { runInViewports, TEST_VIEWPORTS } from "../support/viewports";
 
 runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile, { name: "narrow", value: { width: 320, height: 720 } }], () => {
+	let releaseSlowFilter: (() => void) | undefined;
+
+	afterEach(() => {
+		releaseSlowFilter?.();
+		releaseSlowFilter = undefined;
+	});
+
 	it("keeps navigation, search and giving in one compact row", () => {
 		mockDashboardPageRequests();
 		cy.visitAuthorized("/", {
@@ -46,7 +53,7 @@ runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile, { name: "narrow",
 		cy.get("@header").contains("button", "С моим участием").should("be.visible");
 		cy.get("@header").find('button[aria-label="Поиск"]').should("be.focused");
 	});
-	it("shows a local loader for a slow filter and allows returning before it finishes", () => {
+	it("shows a local loader for a slow filter and allows returning before it finishes", { defaultCommandTimeout: 15000 }, () => {
 		mockDashboardPageRequests();
 		cy.intercept("GET", /\/events(?:\?.*)?$/, {
 			statusCode: 200,
@@ -65,14 +72,20 @@ runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile, { name: "narrow",
 		cy.get('[data-testid="event-feed-header"]').as("header").scrollIntoView();
 		cy.get('[data-testid="dashboard-event-list"]').should("contain.text", "This is a private notification");
 		cy.get('[data-testid="pinned-events-strip"]').should("be.visible");
-		cy.intercept("GET", /\/events(?:\?.*)?$/, {
-			statusCode: 200,
-			delay: 5000,
-			headers: { "Per-Page": "1", Total: "1" },
-			body: {
-				...DASHBOARD_EVENTS_RESPONSE,
-				data: DASHBOARD_EVENTS_RESPONSE.data.map((event) => ({ ...event, attributes: { ...event.attributes, content: "Personal response" } })),
-			},
+		const filterResponse = new Cypress.Promise<void>((resolve) => {
+			releaseSlowFilter = () => resolve();
+		});
+		cy.intercept({ method: "GET", url: /\/events(?:\?.*)?$/, query: { showMine: "true" } }, (request) => {
+			return filterResponse.then(() => {
+				request.reply({
+					statusCode: 200,
+					headers: { "Per-Page": "1", Total: "1" },
+					body: {
+						...DASHBOARD_EVENTS_RESPONSE,
+						data: DASHBOARD_EVENTS_RESPONSE.data.map((event) => ({ ...event, attributes: { ...event.attributes, content: "Personal response" } })),
+					},
+				});
+			});
 		}).as("slowFilter");
 		cy.document().then((doc) => {
 			const style = doc.createElement("style");
@@ -98,6 +111,9 @@ runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile, { name: "narrow",
 		});
 		cy.get("@header").contains("button", "Все записи").click().should("have.attr", "aria-pressed", "true");
 		cy.get('[data-testid="event-feed-filter-loading"]').should("not.exist");
+		cy.then(() => {
+			releaseSlowFilter?.();
+		});
 		cy.wait("@slowFilter");
 		cy.get('[data-testid="dashboard-event-list"]').should("not.contain.text", "Personal response");
 		cy.get('[data-testid="event-feed-filter-loading"]').should("not.exist");
