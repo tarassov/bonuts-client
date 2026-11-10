@@ -30,6 +30,10 @@ import {
 
 export const kkLocale = {
 	translations: {
+		[texts_c.close_search]: "Іздеуді жабу",
+		[texts_g.give]: "Сыйлау",
+		[texts_a.all_posts]: "Барлық жазбалар",
+		[texts_i.involving_me]: "Мен қатысқан жазбалар",
 		[texts_b.become_user]: "Қызметкер ретінде кіру",
 		[texts_b.birthday_on]: "Туған күні: {{date}}",
 		[texts_b.birthday_soon]: "Жақында туған күні",
@@ -522,7 +526,7 @@ export const kkLocale = {
 		"Self account": "Могу потратить",
 		Search: "Поиск",
 		"Search string": "Строка поиска...",
-		search: "поиск",
+		[texts_s.search]: "Іздеу",
 		[texts_s.search_by_name_email_or_position]: "Аты, email немесе лауазымы бойынша іздеу",
 		[texts_s.set_password]: "құпиясөз орнату",
 		[texts_s.set_password_description]: "Тіркелгіңіз үшін жаңа құпиясөз ойлап табыңыз.",

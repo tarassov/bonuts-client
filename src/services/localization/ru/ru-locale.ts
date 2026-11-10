@@ -30,6 +30,10 @@ import {
 
 export const ruLocale = {
 	translations: {
+		[texts_c.close_search]: "Закрыть поиск",
+		[texts_g.give]: "Подарить",
+		[texts_a.all_posts]: "Все записи",
+		[texts_i.involving_me]: "С моим участием",
 		[texts_b.become_user]: "Войти как сотрудник",
 		[texts_b.birthday_on]: "День рождения {{date}}",
 		[texts_b.birthday_soon]: "Скоро ДР",
@@ -620,7 +624,7 @@ export const ruLocale = {
 		"Self account": "Могу потратить",
 		Search: "Поиск",
 		"Search string": "Строка поиска...",
-		search: "поиск",
+		[texts_s.search]: "Поиск",
 		[texts_s.search_by_name_email_or_position]: "Поиск по имени, email или должности",
 		[texts_s.set_password]: "установить пароль",
 		[texts_s.set_password_description]: "Придумайте новый пароль для своей учётной записи.",

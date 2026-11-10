@@ -17,3 +17,34 @@
 		overflow-y: visible;
 	}
 }
+
+.feedResults {
+	transition: opacity 120ms ease;
+}
+
+.isRefreshing {
+	opacity: 0.45;
+}
+
+.refreshIndicator {
+	position: sticky;
+	top: 24px;
+	width: 30px;
+	height: 30px;
+	margin: 0 auto -30px;
+	z-index: 6;
+	visibility: hidden;
+	animation: revealRefresh 0s 250ms forwards;
+}
+
+@keyframes revealRefresh {
+	to {
+		visibility: visible;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.feedResults {
+		transition: none;
+	}
+}

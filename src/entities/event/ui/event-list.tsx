@@ -17,6 +17,7 @@ import { BntTypography } from "@/shared/ui/typography";
 
 import { useEventListLogic } from "../model/use-event-list-logic";
 import { useFeedEntrance } from "../model/use-feed-entrance";
+import { useFeedScrollReset } from "../model/use-feed-scroll-reset";
 import { usePinnedEvents } from "../model/use-pinned-events";
 
 import { EventCardStyled } from "./event-card-styled";
@@ -33,7 +34,8 @@ export function EventList() {
 	const { GiveDonut } = useModal();
 	const [searchText, setSearchText] = useState<string>();
 	const [showMine, setShowMine] = useState<boolean>(false);
-	const { hasNext, pages, isLoading, fetchNext, hasNew, applyUpdates } = useEventListLogic({
+	const { feedRef, scrollAreaRef } = useFeedScrollReset(showMine, searchText, matchesDownMd);
+	const { hasNext, pages, isLoading, isChangingFilter, fetchNext, hasNew, applyUpdates } = useEventListLogic({
 		showMine,
 		searchText,
 	});
@@ -45,10 +47,6 @@ export function EventList() {
 	const isEmpty = !pages[0]?.length;
 	const hasScrollableContent = !isEmpty || pinnedPosts.length > 0;
 	const showLoader = (isLoading && isEmpty) || isLeaving;
-
-	const handleShowMineToggle = () => {
-		setShowMine((prev) => !prev);
-	};
 
 	const handleGiveDonutClick = () => {
 		GiveDonut.show({
@@ -64,44 +62,55 @@ export function EventList() {
 	);
 
 	return (
-		<BntStack direction="column" className={classnames("height-100")} data-testid="dashboard-event-list">
-			<EventListHeader hasEvents={pages.length > 0} showMine={showMine} onGiveDonutClick={handleGiveDonutClick} onSearchTextChange={setSearchText} onShowMineToggle={handleShowMineToggle} />
+		<BntStack ref={feedRef} direction="column" className={classnames("height-100")} data-testid="dashboard-event-list">
+			<EventListHeader showMine={showMine} onGiveDonutClick={handleGiveDonutClick} onSearchTextChange={setSearchText} onShowMineChange={setShowMine} />
 
-			<BntBox className={classnames("flex-grow pb-2 mt-2", classes.scrollArea, { scroll: hasScrollableContent })} sx={{ overflowY: matchesDownMd && !hasScrollableContent ? "hidden" : undefined }}>
+			<BntBox
+				ref={scrollAreaRef}
+				className={classnames("flex-grow pb-2 mt-3", classes.scrollArea, { scroll: hasScrollableContent })}
+				sx={{ overflowY: matchesDownMd && !hasScrollableContent ? "hidden" : undefined }}
+			>
+				{isChangingFilter ? (
+					<div className={classes.refreshIndicator} role="status" aria-label={translate(texts_l.loading, { capitalize: true })} data-testid="event-feed-filter-loading">
+						<FeedDonutSpinner aria-hidden />
+					</div>
+				) : null}
 				{pinnedPosts.length > 0 ? <PinnedEventsStrip posts={pinnedPosts} /> : null}
 				{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
-				<div className={classes.feedBody}>
-					{showLoader ? <EventFeedLoading isLeaving={!isLoading && isLeaving} /> : null}
-					<Grid key={generation} container rowSpacing={{ xs: 2 }} justifyContent="center">
-						{present(pages) &&
-							Object.values(pages).map((page, pageIndex) => {
-								return (
-									page &&
-									page.map((post, postIndex) => {
-										return (
-											<Grid key={post.id} size={{ xs: 12 }}>
-												<FeedCardEntrance index={postIndex} isAnimated={isAnimated && pageIndex === 0}>
-													<EventCardStyled post={post} maxWidth={760} />
-												</FeedCardEntrance>
-											</Grid>
-										);
-									})
-								);
-							})}
-					</Grid>
-					{!isLoading && isEmpty ? (
-						<BntStack
-							alignItems="center"
-							justifyContent="center"
-							sx={{
-								height: matchesDownMd ? "300px" : "40%",
-								overflowY: matchesDownMd ? "hidden" : undefined,
-							}}
-						>
-							<LightbulbCircleOutlined sx={{ height: "100px", width: "100px" }} />
-							<BntTypography>{translate(texts_e.empty_events_placeholder, { capitalize: true })}</BntTypography>
-						</BntStack>
-					) : null}
+				<div className={classes.feedBody} aria-busy={isLoading || isChangingFilter}>
+					<div className={classnames(classes.feedResults, { [classes.isRefreshing]: isChangingFilter })} inert={isChangingFilter}>
+						{showLoader ? <EventFeedLoading isLeaving={!isLoading && isLeaving} /> : null}
+						<Grid key={generation} container rowSpacing={{ xs: 2 }} justifyContent="center">
+							{present(pages) &&
+								Object.values(pages).map((page, pageIndex) => {
+									return (
+										page &&
+										page.map((post, postIndex) => {
+											return (
+												<Grid key={post.id} size={{ xs: 12 }}>
+													<FeedCardEntrance index={postIndex} isAnimated={isAnimated && pageIndex === 0}>
+														<EventCardStyled post={post} maxWidth={760} />
+													</FeedCardEntrance>
+												</Grid>
+											);
+										})
+									);
+								})}
+						</Grid>
+						{!isLoading && isEmpty ? (
+							<BntStack
+								alignItems="center"
+								justifyContent="center"
+								sx={{
+									height: matchesDownMd ? "300px" : "40%",
+									overflowY: matchesDownMd ? "hidden" : undefined,
+								}}
+							>
+								<LightbulbCircleOutlined sx={{ height: "100px", width: "100px" }} />
+								<BntTypography>{translate(texts_e.empty_events_placeholder, { capitalize: true })}</BntTypography>
+							</BntStack>
+						) : null}
+					</div>
 				</div>
 				{hasNext && pages.length > 0 && (
 					<BntStack alignItems="center" justifyContent="center" className="pt-2 overflow-hidden">

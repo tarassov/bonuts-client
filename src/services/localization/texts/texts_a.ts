@@ -1,4 +1,5 @@
 export enum texts_a {
+	all_posts = "all posts",
 	account_operations_subtitle = "account operations subtitle",
 	account_type = "account type",
 	all = "all",
