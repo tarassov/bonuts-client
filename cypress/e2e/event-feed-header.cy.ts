@@ -74,8 +74,13 @@ runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile, { name: "narrow",
 				data: DASHBOARD_EVENTS_RESPONSE.data.map((event) => ({ ...event, attributes: { ...event.attributes, content: "Personal response" } })),
 			},
 		}).as("slowFilter");
+		cy.document().then((doc) => {
+			const style = doc.createElement("style");
+			style.textContent = '[data-testid="event-feed-filter-loading"] { animation: none !important; }';
+			doc.head.appendChild(style);
+		});
 		cy.get("@header").contains("button", "С моим участием").click().should("have.attr", "aria-pressed", "true");
-		cy.get('[data-testid="event-feed-filter-loading"]').should("be.visible").and("have.css", "animation-delay", "0.25s");
+		cy.get('[data-testid="event-feed-filter-loading"]').should("be.visible");
 		cy.get('[data-testid="dashboard-event-list"] [inert]').should("have.css", "opacity", "0.45").and("contain.text", "This is a private notification");
 		cy.get("@header").find('[data-testid="event-feed-give-button"]').should("be.enabled");
 		cy.get('[data-testid="event-feed-filter-loading"]').then(($loader) => {

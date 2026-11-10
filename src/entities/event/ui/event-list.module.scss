@@ -33,14 +33,6 @@
 	height: 30px;
 	margin: 0 auto -30px;
 	z-index: 6;
-	visibility: hidden;
-	animation: revealRefresh 0s 250ms forwards;
-}
-
-@keyframes revealRefresh {
-	to {
-		visibility: visible;
-	}
 }
 
 @media (prefers-reduced-motion: reduce) {

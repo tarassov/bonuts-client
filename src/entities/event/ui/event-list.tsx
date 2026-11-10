@@ -21,6 +21,7 @@ import { useFeedScrollReset } from "../model/use-feed-scroll-reset";
 import { usePinnedEvents } from "../model/use-pinned-events";
 
 import { EventCardStyled } from "./event-card-styled";
+import { EventFeedFilterLoading } from "./event-feed-filter-loading";
 import { EventFeedLoading } from "./event-feed-loading";
 import { FeedCardEntrance, FeedDonutSpinner } from "./event-feed-loading.styles";
 import classes from "./event-list.module.scss";
@@ -70,11 +71,7 @@ export function EventList() {
 				className={classnames("flex-grow pb-2 mt-3", classes.scrollArea, { scroll: hasScrollableContent })}
 				sx={{ overflowY: matchesDownMd && !hasScrollableContent ? "hidden" : undefined }}
 			>
-				{isChangingFilter ? (
-					<div className={classes.refreshIndicator} role="status" aria-label={translate(texts_l.loading, { capitalize: true })} data-testid="event-feed-filter-loading">
-						<FeedDonutSpinner aria-hidden />
-					</div>
-				) : null}
+				{isChangingFilter ? <EventFeedFilterLoading /> : null}
 				{pinnedPosts.length > 0 ? <PinnedEventsStrip posts={pinnedPosts} /> : null}
 				{hasNew && <Button onClick={applyUpdates}>{Dictionary.REFRESH}</Button>}
 				<div className={classes.feedBody} aria-busy={isLoading || isChangingFilter}>
