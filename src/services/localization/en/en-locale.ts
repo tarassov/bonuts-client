@@ -27,6 +27,10 @@ import {
 
 export const enLocale = {
 	translations: {
+		[texts_c.close_search]: "Close search",
+		[texts_g.give]: "Give",
+		[texts_a.all_posts]: "All posts",
+		[texts_i.involving_me]: "Involving me",
 		[texts_b.become_user]: "Sign in as employee",
 		[texts_b.birthday_on]: "Birthday on {{date}}",
 		[texts_b.birthday_soon]: "Birthday soon",

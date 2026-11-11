@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress helper */
 
-import { mockHeartbeatRequest } from "./api";
+import { mockCurrentTenantRequest, mockHeartbeatRequest } from "./api";
 import { PROFILE_RESPONSE } from "./fixtures/profile-response";
 
 export const DASHBOARD_PROFILE_RESPONSE = {
@@ -187,6 +187,8 @@ export const DASHBOARD_TENANTS_RESPONSE = {
 };
 
 export function mockDashboardPageRequests() {
+	mockCurrentTenantRequest();
+	cy.intercept("GET", /\/events\/pinned(?:\?.*)?$/, { statusCode: 200, body: { data: [] } }).as("getPinnedEvents");
 	cy.intercept("GET", /\/profile(?:\?.*)?$/, {
 		statusCode: 200,
 		body: DASHBOARD_PROFILE_RESPONSE,

@@ -9,9 +9,9 @@ function sendDonutsFromDashboard() {
 	cy.get("#root", { timeout: 12000 }).should(($root) => {
 		expect($root.children().length).to.be.greaterThan(0);
 	});
-	cy.get('[data-testid="brand-gradient-action-button"]', { timeout: 12000 }).scrollIntoView().should("be.visible").and("contain.text", "Подарить пончики");
+	cy.get('[data-testid="event-feed-give-button"]', { timeout: 12000 }).scrollIntoView().should("be.visible").and("have.attr", "aria-label", "Подарить пончики");
 	mockGiveDonutsModalRequests();
-	cy.get('[data-testid="brand-gradient-action-button"]').click();
+	cy.get('[data-testid="event-feed-give-button"]').click();
 
 	cy.contains(".MuiDialog-paper", "Доставка пончиков").as("giveDonutsModal").should("be.visible");
 	cy.wait("@getProfiles");

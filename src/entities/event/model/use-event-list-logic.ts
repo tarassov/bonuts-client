@@ -19,7 +19,7 @@ export const useEventListLogic = ({ showMine = false, searchText = undefined }: 
 		[authTenant, searchText, showMine]
 	);
 
-	const { data, isLoading, isFetching, fetchNextPage, hasNextPage } = eventsApi.useGetEventsFeedInfiniteQuery(queryArg, {
+	const { data, currentData, isLoading, isFetching, fetchNextPage, hasNextPage } = eventsApi.useGetEventsFeedInfiniteQuery(queryArg, {
 		skip: !authTenant,
 		pollingInterval: USE_POLLING_INTERVAL ? 10000 : 0,
 		refetchOnMountOrArgChange: true,
@@ -44,6 +44,7 @@ export const useEventListLogic = ({ showMine = false, searchText = undefined }: 
 		hasNext: Boolean(hasNextPage),
 		pages,
 		isLoading,
+		isChangingFilter: isFetching && data !== currentData,
 		fetchNext,
 		hasNew: false,
 		applyUpdates,
