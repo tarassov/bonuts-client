@@ -1,48 +1,41 @@
 import { RedeemOutlined } from "@mui/icons-material";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_g } from "services/localization/texts";
-
-import { BntBox } from "@/shared/ui/box";
-import { BntActionButton, BntActionButtonVariant } from "@/shared/ui/buttons";
-import { SearchString } from "@/shared/ui/search-string";
-import { BntStack, BntStackVariant } from "@/shared/ui/stack";
-
-import { EventFilterMenu } from "./event-filter-menu";
+import { EventFeedFilter } from "./event-feed-filter";
+import { EventFeedSearch } from "./event-feed-search";
+import classes from "./event-list-header.module.scss";
+import { FeedGiveButton } from "./event-list-header.styles";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_g } from "@/services/localization/texts";
 
 type TEventListHeaderProps = {
-	hasEvents: boolean;
 	showMine: boolean;
 	onGiveDonutClick: VoidFunction;
 	onSearchTextChange: (search: string) => void;
-	onShowMineToggle: VoidFunction;
+	onShowMineChange: (isMine: boolean) => void;
 };
 
-export function EventListHeader({ hasEvents, showMine, onGiveDonutClick, onSearchTextChange, onShowMineToggle }: TEventListHeaderProps) {
+export function EventListHeader({ showMine, onGiveDonutClick, onSearchTextChange, onShowMineChange }: TEventListHeaderProps) {
 	const { translate } = useBntTranslate();
 
 	return (
-		<BntStack
-			direction={{ xs: "column", sm: "row" }}
-			gap={1.5}
-			alignItems={{ xs: "stretch", sm: "center" }}
-			variant={BntStackVariant.surface}
-			sx={{
-				p: 1,
-				maxWidth: 760,
-				width: "100%",
-				alignSelf: "center",
-			}}
-		>
-			<BntActionButton icon={<RedeemOutlined />} onClick={onGiveDonutClick} text={translate(texts_g.give_donuts, { capitalize: true })} variant={BntActionButtonVariant.brandGradient} />
-			{hasEvents ? (
-				<>
-					<BntBox sx={{ flex: 1, minWidth: 0 }}>
-						<SearchString setSearch={onSearchTextChange} debounceDelay={500} className="flex-grow" variant="surface" />
-					</BntBox>
-					<EventFilterMenu showMine={showMine} onShowMineToggle={onShowMineToggle} />
-				</>
-			) : null}
-		</BntStack>
+		<div className={classes.container}>
+			<div className={classes.header} data-testid="event-feed-header">
+				<div className={classes.filters}>
+					<EventFeedFilter showMine={showMine} onShowMineChange={onShowMineChange} />
+				</div>
+				<EventFeedSearch onSearchTextChange={onSearchTextChange} />
+				<FeedGiveButton
+					data-testid="event-feed-give-button"
+					variant="contained"
+					disableElevation
+					onClick={onGiveDonutClick}
+					startIcon={<RedeemOutlined />}
+					aria-label={translate(texts_g.give_donuts, { capitalize: true })}
+				>
+					<span className={classes.compactGiveLabel}>{translate(texts_g.give, { capitalize: true })}</span>
+					<span className={classes.fullGiveLabel}>{translate(texts_g.give_donuts, { capitalize: true })}</span>
+				</FeedGiveButton>
+			</div>
+		</div>
 	);
 }

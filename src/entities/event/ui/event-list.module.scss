@@ -17,3 +17,26 @@
 		overflow-y: visible;
 	}
 }
+
+.feedResults {
+	transition: opacity 120ms ease;
+}
+
+.isRefreshing {
+	opacity: 0.45;
+}
+
+.refreshIndicator {
+	position: sticky;
+	top: 24px;
+	width: 30px;
+	height: 30px;
+	margin: 0 auto -30px;
+	z-index: 6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.feedResults {
+		transition: none;
+	}
+}
