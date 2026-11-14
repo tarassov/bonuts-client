@@ -366,7 +366,7 @@ export const ruLocale = {
 		[texts_p.pinned_position]: "Закреплено · {{current}} из {{total}}",
 		[texts_p.pinned_on]: "закреплено {{date}}",
 		[texts_a.all_pinned]: "Все закреплённые",
-		[texts_o.open_in_feed]: "Открыть в ленте",
+		[texts_o.open_post]: "Открыть сообщение",
 		[texts_n.next_pinned]: "Следующее закреплённое",
 		[texts_r.recognized_voice]: "Заметный голос",
 		[texts_s.service_bot]: "Сервис бот",

@@ -1,9 +1,8 @@
 import { styled } from "@mui/material/styles";
 
-import { OPERATION_CLASSES } from "components/opearation-text/classes";
-import { BntOperationText } from "components/opearation-text/operation-text";
-
-import { cl } from "themes/helper";
+import { OPERATION_CLASSES } from "@/components/opearation-text/classes";
+import { BntOperationText } from "@/components/opearation-text/operation-text";
+import { cl } from "@/themes/helper";
 
 export const EventOperationText = styled(BntOperationText)(({ theme }) => ({
 	[cl(OPERATION_CLASSES.operationText)]: {
@@ -15,7 +14,7 @@ export const EventOperationText = styled(BntOperationText)(({ theme }) => ({
 		alignItems: "center",
 	},
 	[cl(OPERATION_CLASSES.amountText)]: {
-		fontSize: 26,
+		fontSize: 15,
 		fontWeight: 700,
 		lineHeight: 1.1,
 	},
@@ -26,13 +25,13 @@ export const EventOperationText = styled(BntOperationText)(({ theme }) => ({
 		color: theme.palette.error.main,
 	},
 	[cl(OPERATION_CLASSES.emojiText)]: {
-		fontSize: 20,
+		fontSize: 16,
 		lineHeight: 1,
 		marginLeft: theme.spacing(0.5),
 		marginRight: theme.spacing(0.5),
 	},
 	[cl(OPERATION_CLASSES.eventArrow)]: {
-		fontSize: 22,
+		fontSize: 18,
 		fontWeight: 700,
 		lineHeight: 1,
 		marginLeft: theme.spacing(0.5),
@@ -42,7 +41,7 @@ export const EventOperationText = styled(BntOperationText)(({ theme }) => ({
 	},
 	[cl(OPERATION_CLASSES.operationContainer)]: {
 		padding: 0,
-		margin: 0,
+		margin: theme.spacing(0, 0, 1.5),
 		alignItems: "center",
 		columnGap: theme.spacing(0.25),
 		rowGap: theme.spacing(0.75),

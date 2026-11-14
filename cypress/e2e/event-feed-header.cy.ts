@@ -25,9 +25,10 @@ runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile, { name: "narrow",
 		cy.get('[data-testid="event-feed-header"]').as("header").scrollIntoView().should("be.visible");
 		cy.get("@header").should(($header) => {
 			const rect = $header[0].getBoundingClientRect();
-			expect(rect.height).to.be.at.most(50);
+			expect(rect.height).to.be.at.most(64);
 			expect($header[0].scrollWidth).to.be.at.most($header[0].clientWidth);
 			for (const button of $header[0].querySelectorAll("button")) {
+				if (!button.getClientRects().length) continue;
 				const buttonRect = button.getBoundingClientRect();
 				expect(buttonRect.left).to.be.at.least(rect.left);
 				expect(buttonRect.right).to.be.at.most(rect.right + 1);
@@ -40,18 +41,27 @@ runInViewports([TEST_VIEWPORTS.desktop, TEST_VIEWPORTS.mobile, { name: "narrow",
 		cy.get("@header").contains("button", "С моим участием").blur();
 		cy.screenshot("feed-header-closed");
 
-		cy.get("@header").find('button[aria-label="Поиск"]').click();
+		cy.get("@header").then(($header) => {
+			if ($header[0].getBoundingClientRect().width < 660) cy.wrap($header).find('button[aria-label="Поиск"]').click();
+			else cy.wrap($header).find("input").focus();
+		});
 		cy.get("@header").find('input[aria-label="Поиск"]').should("be.focused").type("Спасибо");
 		cy.get("@header").should(($header) => {
 			expect($header[0].scrollWidth).to.be.at.most($header[0].clientWidth);
-			expect($header[0].getBoundingClientRect().height).to.be.at.most(50);
+			expect($header[0].getBoundingClientRect().height).to.be.at.most(64);
 		});
 		cy.get("@header").find('[data-testid="event-feed-give-button"]').should("be.visible");
 		cy.screenshot("feed-header-search");
 		cy.get("@header").find("input").type("{esc}");
-		cy.get("@header").find("input").should("not.exist");
+		cy.get("@header").then(($header) => {
+			const isWide = $header[0].getBoundingClientRect().width >= 660;
+			cy.wrap($header)
+				.find("input")
+				.should(isWide ? "be.visible" : "not.be.visible")
+				.and("have.value", "");
+			if (!isWide) cy.wrap($header).find('button[aria-label="Поиск"]').should("be.focused");
+		});
 		cy.get("@header").contains("button", "С моим участием").should("be.visible");
-		cy.get("@header").find('button[aria-label="Поиск"]').should("be.focused");
 	});
 	it("shows a local loader for a slow filter and allows returning before it finishes", { defaultCommandTimeout: 15000 }, () => {
 		mockDashboardPageRequests();

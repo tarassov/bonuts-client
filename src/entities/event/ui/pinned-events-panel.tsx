@@ -1,20 +1,21 @@
-import { Close, PushPinOutlined } from "@mui/icons-material";
+import { Close, Comment, Favorite, PushPinOutlined } from "@mui/icons-material";
 import { Button, IconButton, useTheme } from "@mui/material";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_a, texts_n, texts_o, texts_p } from "services/localization/texts";
 
 import { useFormattedDate } from "@/shared/lib/date";
 import { BntBox } from "@/shared/ui/box";
+import { useNotification } from "@/shared/ui/notification";
 import { ProfileAvatar } from "@/shared/ui/profile-avatar";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
+import { useEventLogic } from "../model/use-event-logic";
 import { useEventUi } from "../model/use-event-ui";
 
 import { EventImages } from "./event-images";
 import { PinnedEventsList } from "./pinned-events-list";
 import { PinnedChip, PinnedDotButton, PinnedPanel, PinnedPanelText } from "./pinned-events-strip-styled";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_a, texts_c, texts_n, texts_o, texts_p } from "@/services/localization/texts";
 import type { TPost } from "@/types/model/post";
 
 type TPinnedEventsPanelProps = {
@@ -33,6 +34,15 @@ export function PinnedEventsPanel({ posts, index, label, isListOpen, onClose, on
 	const theme = useTheme();
 	const current = posts[index];
 	const { showDetailedPost } = useEventUi(current);
+	const { toggleLike } = useEventLogic();
+	const { showResponseError } = useNotification();
+	const handleLike = async () => {
+		try {
+			await toggleLike(current);
+		} catch (error) {
+			showResponseError(error);
+		}
+	};
 	const { profile, content, images, pinned_at, date_string_utc } = current;
 	const hasMany = posts.length > 1;
 	const pinnedOnLabel = translate(texts_p.pinned_on, {
@@ -68,8 +78,25 @@ export function PinnedEventsPanel({ posts, index, label, isListOpen, onClose, on
 			<EventImages images={images} imageLabel={translate(texts_p.photos)} />
 
 			<BntStack direction="row" alignItems="center" gap={1} flexWrap="wrap" sx={{ mt: 1.75 }}>
+				{current.likeable && (
+					<Button
+						size="small"
+						color={current.liked ? "primary" : "inherit"}
+						startIcon={<Favorite />}
+						aria-label={translate(texts_a.add_to_favorites)}
+						aria-pressed={current.liked}
+						onClick={handleLike}
+					>
+						{current.likes.length}
+					</Button>
+				)}
+				{current.commentable && (
+					<Button size="small" color="inherit" startIcon={<Comment />} aria-label={translate(texts_c.comment)} onClick={showDetailedPost}>
+						{current.comments_count || 0}
+					</Button>
+				)}
 				<Button variant="contained" color="primary" size="small" disableElevation onClick={showDetailedPost} sx={{ borderRadius: "12px", textTransform: "none", fontWeight: 700 }}>
-					{translate(texts_o.open_in_feed, { capitalize: true })}
+					{translate(texts_o.open_post, { capitalize: true })}
 				</Button>
 				{hasMany ? (
 					<Button variant="text" color="inherit" size="small" onClick={onToggleList} sx={{ borderRadius: "12px", textTransform: "none", fontWeight: 600, ...mutedColor, opacity: 0.8 }}>

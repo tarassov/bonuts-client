@@ -86,6 +86,14 @@ Do NOT:
 - Do not force styling rewrites only for consistency; migrate the styling approach when touching the code or when duplication clearly appears.
 - If the styling choice is non-obvious for the file, briefly note the reason in the PR/task response.
 
+## Explicit styling dependencies
+
+- Avoid hidden dependencies between components: a child's appearance or behavior should not silently require a particular parent, DOM structure, or ancestor state attribute.
+- Keep responsive composition in the component that owns the layout. Children should not hardcode the name or breakpoints of a parent's container; declaring a container in a different file is fine when both files belong to the same layout owner.
+- Prefer typed props for component state, filtering styling-only props with `shouldForwardProp`. For parent-controlled layout, use explicit slots/classes or a small, documented CSS custom-property contract with sensible standalone defaults.
+- Avoid styling component state through `data-*` selectors when a typed prop can express it directly: prefer `isExpanded` in a `styled()` callback over `[data-search-open="true"]`. Keep `data-*` attributes when they serve a separate DOM integration or tooling need; do not add them solely as a substitute for styling props.
+- Do not replace one hidden dependency with another: avoid selectors such as `> button` or `.MuiFormControl-root` to identify a child's layout role. Keep intentional MUI visual overrides in the styled component that owns them.
+
 ## Design system and tokens
 
 - Prefer existing design tokens and theme values over hardcoded values.

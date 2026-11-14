@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { RedeemOutlined } from "@mui/icons-material";
+
+import cn from "classnames";
 
 import { EventFeedFilter } from "./event-feed-filter";
 import { EventFeedSearch } from "./event-feed-search";
@@ -16,14 +19,15 @@ type TEventListHeaderProps = {
 
 export function EventListHeader({ showMine, onGiveDonutClick, onSearchTextChange, onShowMineChange }: TEventListHeaderProps) {
 	const { translate } = useBntTranslate();
+	const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
 	return (
 		<div className={classes.container}>
-			<div className={classes.header} data-testid="event-feed-header">
+			<div className={cn(classes.header, { [classes.isSearchExpanded]: isSearchExpanded })} data-testid="event-feed-header">
 				<div className={classes.filters}>
 					<EventFeedFilter showMine={showMine} onShowMineChange={onShowMineChange} />
 				</div>
-				<EventFeedSearch onSearchTextChange={onSearchTextChange} />
+				<EventFeedSearch isExpanded={isSearchExpanded} onExpandedChange={setIsSearchExpanded} onSearchTextChange={onSearchTextChange} />
 				<FeedGiveButton
 					data-testid="event-feed-give-button"
 					variant="contained"

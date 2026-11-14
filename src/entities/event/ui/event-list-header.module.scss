@@ -14,6 +14,11 @@
 	gap: 4px;
 	min-height: 48px;
 	width: 100%;
+	padding: 6px;
+	border: 1px solid var(--mui-palette-divider);
+	border-radius: 16px;
+	background: var(--mui-palette-background-paper);
+	box-shadow: 0 2px 8px rgb(0 0 0 / 3%);
 }
 
 .filters {
@@ -26,15 +31,16 @@
 }
 
 @container event-feed-header (max-width: 599px) {
-	.header:has([data-search-open="true"]) {
+	.header {
+		--feed-search-max-width: none;
+	}
+
+	.header.isSearchExpanded {
+		--feed-search-column: 1 / 3;
 		grid-template-columns: minmax(0, 1fr) 44px auto;
 
 		.filters {
 			display: none;
-		}
-
-		> [data-search-open] {
-			grid-column: 1 / 3;
 		}
 	}
 }
@@ -55,5 +61,12 @@
 	.header {
 		grid-template-columns: auto minmax(44px, 1fr) auto;
 		gap: 8px;
+	}
+}
+
+@container event-feed-header (min-width: 660px) {
+	.header {
+		--feed-search-input-display: inline-flex;
+		--feed-search-button-display: none;
 	}
 }

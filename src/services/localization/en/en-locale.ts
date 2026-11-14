@@ -376,7 +376,7 @@ export const enLocale = {
 		[texts_p.pinned_position]: "Pinned · {{current}} of {{total}}",
 		[texts_p.pinned_on]: "pinned {{date}}",
 		[texts_a.all_pinned]: "All pinned",
-		[texts_o.open_in_feed]: "Open in feed",
+		[texts_o.open_post]: "Open message",
 		[texts_n.next_pinned]: "Next pinned",
 		[texts_r.recognized_voice]: "Recognized voice",
 		[texts_s.search_colleagues]: "Search colleagues",
