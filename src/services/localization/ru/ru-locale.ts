@@ -35,6 +35,7 @@ export const ruLocale = {
 		[texts_y.yesterday]: "Вчера",
 
 		[texts_c.close_search]: "Закрыть поиск",
+		[texts_g.go_to_store]: "В магазин",
 		[texts_g.give]: "Подарить",
 		[texts_a.all_posts]: "Все записи",
 		[texts_i.involving_me]: "С моим участием",

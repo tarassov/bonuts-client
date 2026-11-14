@@ -12,10 +12,23 @@
 	overflow: hidden;
 }
 
+.layout {
+	display: grid;
+	grid-template-columns: minmax(0, 760px) minmax(0, 380px);
+	gap: 16px;
+	max-width: 1156px;
+	margin-inline: auto;
+}
+
+.sidebarColumn {
+	width: 100%;
+	max-width: 380px;
+}
+
 .sidebar {
 	width: 100%;
 	height: 100%;
-	padding-left: 16px;
+	overflow-y: auto;
 }
 
 @media (max-width: 899px) {
@@ -34,11 +47,17 @@
 	}
 
 	.layout {
+		display: flex;
 		flex-direction: column-reverse;
 		gap: 16px;
 	}
 
-	.sidebar {
-		padding-left: 0;
-	}
+}
+
+.widgetGrid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-content: start;
+	gap: 12px;
 }

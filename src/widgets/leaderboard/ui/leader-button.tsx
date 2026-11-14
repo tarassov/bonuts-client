@@ -1,4 +1,4 @@
-import { ButtonBase } from "@mui/material";
+import { Box, ButtonBase } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 
 export const LeaderButton = styled(ButtonBase)(({ theme }) => ({
@@ -7,7 +7,9 @@ export const LeaderButton = styled(ButtonBase)(({ theme }) => ({
 	display: "flex",
 	alignItems: "center",
 	gap: theme.spacing(1.25),
-	padding: theme.spacing(0.5),
+	padding: theme.spacing(0.5, 1),
+	border: `1px solid ${theme.palette.divider}`,
+	backgroundColor: theme.palette.action.hover,
 	borderRadius: theme.spacing(1.5),
 	textAlign: "left",
 	justifyContent: "flex-start",
@@ -16,4 +18,14 @@ export const LeaderButton = styled(ButtonBase)(({ theme }) => ({
 		backgroundColor: "var(--leader-button-hover-background)",
 		transform: "translateX(2px)",
 	},
+}));
+
+export const LeaderDetails = styled(Box)(({ theme }) => ({
+	minWidth: 0,
+	flex: 1,
+	display: "flex",
+	flexWrap: "wrap",
+	alignItems: "center",
+	justifyContent: "space-between",
+	gap: theme.spacing(0.75),
 }));

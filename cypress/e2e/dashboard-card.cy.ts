@@ -66,7 +66,7 @@ describe("Dashboard notification card", () => {
 		visitDashboard("light");
 		cy.wait("@getProfile");
 
-		cy.get('[data-testid="dashboard-widget-balance-overview"]', { timeout: 12000 }).click();
+		cy.get('[data-testid="dashboard-widget-balance-overview"] button', { timeout: 12000 }).first().click();
 
 		cy.location("pathname").should("eq", "/account_operations/1");
 		cy.location("search").should("eq", "");

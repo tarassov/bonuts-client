@@ -1,14 +1,15 @@
 import type { ComponentType } from "react";
-import { Box, styled } from "@mui/material";
 
 import type { IDashboardWidgetSizingProps, TDashboardWidgetColumns } from "@/shared/ui/dashboard-widget-card";
 
 import { useProfile } from "@/entities/profile";
 
-import { BalanceOverviewWidget } from "@/widgets/balance-overview";
 import { CurrentWeekStatisticsWidget } from "@/widgets/current-week-statistics";
 import { LeaderboardWidget } from "@/widgets/leaderboard";
 import { YourStatusWidget } from "@/widgets/your-status";
+
+import { DashboardBalanceWidget } from "./dashboard-balance-widget";
+import styles from "./dashboard-page.module.scss";
 
 type TDashboardSocialWidgetId = "leaderboard" | "your_status" | "balance_overview" | "current_week_statistics";
 
@@ -23,37 +24,18 @@ export interface IDashboardSocialSidebarWidgetConfig {
 	isEnabled?: (context: IDashboardSocialWidgetContext) => boolean;
 }
 
-const SidebarGrid = styled(Box)(({ theme }) => ({
-	width: "100%",
-	display: "grid",
-	gridTemplateColumns: "1fr",
-	gap: theme.spacing(2),
-	[theme.breakpoints.up("md")]: {
-		alignSelf: "flex-start",
-		alignContent: "start",
-	},
-	[theme.breakpoints.up("lg")]: {
-		gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-		alignItems: "stretch",
-	},
-}));
-
 const WIDGET_COMPONENTS: Record<TDashboardSocialWidgetId, ComponentType<IDashboardWidgetSizingProps>> = {
 	leaderboard: LeaderboardWidget,
 	your_status: YourStatusWidget,
-	balance_overview: BalanceOverviewWidget,
+	balance_overview: DashboardBalanceWidget,
 	current_week_statistics: CurrentWeekStatisticsWidget,
 };
 
 const DEFAULT_WIDGET_CONFIG: IDashboardSocialSidebarWidgetConfig[] = [
-	{ id: "leaderboard", columns: 1 },
-	{ id: "your_status", columns: 1 },
-	{ id: "current_week_statistics", columns: 1 },
-	{
-		id: "balance_overview",
-		columns: 1,
-		isEnabled: ({ hasDistribAccount, hasSelfAccount }) => hasDistribAccount || hasSelfAccount,
-	},
+	{ id: "leaderboard" },
+	{ id: "balance_overview", isEnabled: ({ hasDistribAccount, hasSelfAccount }) => hasDistribAccount || hasSelfAccount },
+	{ id: "your_status", isEnabled: ({ hasDistribAccount, hasSelfAccount }) => !hasDistribAccount && !hasSelfAccount },
+	{ id: "current_week_statistics" },
 ];
 
 interface IDashboardSocialSidebarProps {
@@ -69,7 +51,7 @@ export function DashboardSocialSidebar({ widgets = DEFAULT_WIDGET_CONFIG }: IDas
 	};
 
 	return (
-		<SidebarGrid data-testid="dashboard-social-sidebar">
+		<div className={styles.widgetGrid} data-testid="dashboard-social-sidebar">
 			{widgets
 				.filter((widget) => (widget.isEnabled ? widget.isEnabled(widgetContext) : true))
 				.map((widget) => {
@@ -77,6 +59,6 @@ export function DashboardSocialSidebar({ widgets = DEFAULT_WIDGET_CONFIG }: IDas
 
 					return <Widget key={widget.id} columns={widget.columns || 1} />;
 				})}
-		</SidebarGrid>
+		</div>
 	);
 }

@@ -32,6 +32,7 @@ export const enLocale = {
 		[texts_y.yesterday]: "Yesterday",
 
 		[texts_c.close_search]: "Close search",
+		[texts_g.go_to_store]: "Shop",
 		[texts_g.give]: "Give",
 		[texts_a.all_posts]: "All posts",
 		[texts_i.involving_me]: "Involving me",

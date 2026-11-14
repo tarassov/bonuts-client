@@ -99,6 +99,8 @@ export const DASHBOARD_CURRENT_WEEK_RESPONSE = {
 };
 
 export const DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE = {
+	week_start: "2026-04-07",
+	week_end: "2026-04-13",
 	likes_given_count: 4,
 	comments_given_count: 3,
 	sent_donuts_count: 2,

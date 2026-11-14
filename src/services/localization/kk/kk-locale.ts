@@ -35,6 +35,7 @@ export const kkLocale = {
 		[texts_y.yesterday]: "Кеше",
 
 		[texts_c.close_search]: "Іздеуді жабу",
+		[texts_g.go_to_store]: "Дүкенге",
 		[texts_g.give]: "Сыйлау",
 		[texts_a.all_posts]: "Барлық жазбалар",
 		[texts_i.involving_me]: "Мен қатысқан жазбалар",
