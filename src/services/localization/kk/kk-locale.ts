@@ -30,6 +30,10 @@ import {
 
 export const kkLocale = {
 	translations: {
+		[texts_b.back_to_top]: "Жоғары",
+		[texts_t.today]: "Бүгін",
+		[texts_y.yesterday]: "Кеше",
+
 		[texts_c.close_search]: "Іздеуді жабу",
 		[texts_g.give]: "Сыйлау",
 		[texts_a.all_posts]: "Барлық жазбалар",

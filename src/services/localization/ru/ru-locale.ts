@@ -30,6 +30,10 @@ import {
 
 export const ruLocale = {
 	translations: {
+		[texts_b.back_to_top]: "Наверх",
+		[texts_t.today]: "Сегодня",
+		[texts_y.yesterday]: "Вчера",
+
 		[texts_c.close_search]: "Закрыть поиск",
 		[texts_g.give]: "Подарить",
 		[texts_a.all_posts]: "Все записи",

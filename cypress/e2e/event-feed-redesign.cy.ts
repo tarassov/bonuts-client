@@ -17,6 +17,7 @@ runInViewports([TEST_VIEWPORTS.desktop, { name: "narrow", value: { width: 320, h
 						attributes: {
 							...DASHBOARD_EVENTS_RESPONSE.data[0].attributes,
 							id: 200 + index,
+							date_string_utc: index < 6 ? "2026-11-14T10:00:00Z" : "2026-11-13T10:00:00Z",
 							public: true,
 							user_name: "Александра Константинопольская",
 							position: "Поддержка команды",
@@ -37,6 +38,7 @@ runInViewports([TEST_VIEWPORTS.desktop, { name: "narrow", value: { width: 320, h
 				visitOptions: { onBeforeLoad: (win) => win.localStorage.setItem("theme", theme) },
 			});
 			cy.wait(["@getProfile", "@getPinnedEvents", "@getCurrentTenant", "@getEvents"]);
+			cy.get('button[aria-label="Наверх"]').should("not.exist");
 			cy.get('[data-testid="event-card-public"]').first().as("card").scrollIntoView().should("be.visible");
 			cy.get("@card").find('[data-testid="event-recognition-header"]').should("contain.text", "+5");
 			cy.get("@card").contains("button", "Александра Константинопольская").should("be.visible");
@@ -46,6 +48,25 @@ runInViewports([TEST_VIEWPORTS.desktop, { name: "narrow", value: { width: 320, h
 					expect(element.scrollWidth).to.be.at.most(element.clientWidth + 1);
 				}
 			});
+			cy.get('[data-testid="feed-day-marker"]').should("have.length", 2);
+			cy.window().then((win) => {
+				if (win.innerWidth < 900) return;
+				cy.get('[data-testid="feed-day-marker"]').first().then(($marker) => {
+					const top = $marker[0].getBoundingClientRect().top;
+					cy.get('[data-testid="dashboard-event-list"] .scroll').scrollTo(0, 200);
+					cy.get('[data-testid="feed-day-marker"]').first().should(($after) => {
+						expect($after[0].getBoundingClientRect().top).to.be.lessThan(top - 100);
+					});
+				});
+				cy.get('[data-testid="dashboard-event-list"] .scroll').scrollTo(0, 0);
+			});
+			cy.get('[data-testid="event-card-public"]').last().scrollIntoView();
+			cy.window().then((win) => {
+				if (win.innerWidth >= 900) return;
+				cy.get('[data-testid="feed-day-marker"]').last().should("have.css", "justify-content", "center");
+			});
+			cy.get('button[aria-label="Наверх"]').should("be.visible").click();
+			cy.get('button[aria-label="Наверх"]').should("not.exist");
 			cy.screenshot(`recognition-${theme}`);
 			cy.window().then((win) => {
 				if (win.innerWidth < 900) return;

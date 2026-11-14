@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_p } from "services/localization/texts";
-
 import { usePinnedStripState } from "../model/use-pinned-strip-state";
 
 import { PinnedEventsPanel } from "./pinned-events-panel";
 import { PinnedEventsStripCollapsed } from "./pinned-events-strip-collapsed";
 import { PinnedArea } from "./pinned-events-strip-styled";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_p } from "@/services/localization/texts";
 import type { TPost } from "@/types/model/post";
 
 type TPinnedEventsStripProps = {

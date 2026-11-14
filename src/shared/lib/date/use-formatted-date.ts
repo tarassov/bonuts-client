@@ -21,13 +21,18 @@ export const useFormattedDate = () => {
 	const { i18n } = useTranslation();
 
 	const getFormattedDate = useCallback(
-		(isoDate?: string, formatOptions: TFormattedDateOptions = DEFAULT_DATE_FORMAT_OPTIONS): string => {
-			if (!isoDate) {
+		(value?: string | Date, formatOptions: TFormattedDateOptions = DEFAULT_DATE_FORMAT_OPTIONS): string => {
+			if (!value) {
 				return "";
 			}
 
-			const dateOnlyMatch = isoDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-			const date = dateOnlyMatch ? parse(isoDate, "yyyy-MM-dd", new Date()) : parseISO(isoDate);
+			let date: Date;
+			if (typeof value === "string") {
+				const dateOnlyMatch = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+				date = dateOnlyMatch ? parse(value, "yyyy-MM-dd", new Date()) : parseISO(value);
+			} else {
+				date = value;
+			}
 
 			if (Number.isNaN(date.getTime())) {
 				return "";
