@@ -1,4 +1,5 @@
 export enum texts_t {
+	today = "today",
 	this_year = "this year",
 	team_star = "team star",
 	team_birthday_description = "team birthday description",

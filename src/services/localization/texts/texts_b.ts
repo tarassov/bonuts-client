@@ -1,4 +1,5 @@
 export enum texts_b {
+	back_to_top = "back to top",
 	become_user = "become user",
 	birthday = "date of birth",
 	birthday_on = "birthday on {{date}}",

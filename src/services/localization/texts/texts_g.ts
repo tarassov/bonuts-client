@@ -1,4 +1,5 @@
 export enum texts_g {
+	go_to_store = "go to store",
 	give = "give",
 	go_to = "go to",
 	generate_code = "generate code",

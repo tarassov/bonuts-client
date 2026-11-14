@@ -1,29 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Comment, Edit, Favorite, Lock, PushPinOutlined } from "@mui/icons-material";
-import { Box, Button, IconButton, TextField, Tooltip } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import classNames from "classnames";
 
-import { formatStringDate } from "@/shared/lib/date";
-import { BntBox } from "@/shared/ui/box";
-import { BntCard, BntCardActions, BntCardContent } from "@/shared/ui/card";
+import { BntCard, BntCardContent } from "@/shared/ui/card";
 import { useNotification } from "@/shared/ui/notification";
-import { ProfileAvatar } from "@/shared/ui/profile-avatar";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useEmployeeUi } from "@/entities/profile";
 
+import { getEventCardRecipient } from "../lib/get-event-card-recipient";
 import { useEventLogic } from "../model/use-event-logic";
 import { useEventUi } from "../model/use-event-ui";
 
 import { EVENT_CARD_CLASSES } from "./classes";
+import { EventCardActions } from "./event-card-actions";
 import { EventCardHeader } from "./event-card-header";
 import { EventImages } from "./event-images";
 import { EventOperationText } from "./event-operation-text";
-import { PinnedBadge } from "./pinned-events-strip-styled";
-import { Dictionary } from "@/constants/dictionary";
-import { texts_a, texts_c, texts_e, texts_n, texts_p, texts_s } from "@/services/localization/texts";
+import { EventRecognitionHeader } from "./event-recognition-header";
+import { texts_p, texts_s } from "@/services/localization/texts";
 import type { TPost } from "@/types/model/post";
 import { emptyFunction } from "@/utils/empty-function";
 import { focusInput } from "@/utils/focus-input";
@@ -31,8 +28,7 @@ import { focusInput } from "@/utils/focus-input";
 export type EventCardProps = { post: TPost; className?: string; preventNewModal?: boolean };
 
 export function EventCard({ post, className, preventNewModal }: EventCardProps) {
-	const { profile, public: isPublic, title, content, commentable, likeable, comments_count, likes, liked, editable, date_string_utc, images, pinned } = post;
-	const { user_name, user_avatar, position } = profile;
+	const { public: isPublic, content, images } = post;
 	const { t } = useTranslation();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [edit, setEdit] = useState(false);
@@ -40,11 +36,8 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 	const { showResponseError } = useNotification();
 	const { showEmployeeModal } = useEmployeeUi();
 	const { showDetailedPost } = useEventUi(post);
-	const likesCount = likes.length;
-	const commentsCount = comments_count || 0;
 	const notification = !isPublic;
-	const canOpenProfile = isPublic;
-	const isPinned = Boolean(pinned) && isPublic;
+	const recipient = getEventCardRecipient(post);
 
 	const handleSubmitEdit = async (e: any) => {
 		e.preventDefault();
@@ -64,11 +57,6 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 		}
 	};
 	const handleComment = !preventNewModal ? showDetailedPost : emptyFunction;
-	const handleHeaderClick = () => {
-		if (!canOpenProfile) return;
-
-		showEmployeeModal(profile.id);
-	};
 	const handleEdit = (e: any) => {
 		e.preventDefault();
 		setEdit(() => !edit);
@@ -89,43 +77,10 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 
 	return (
 		<BntCard className={classNames(className, EVENT_CARD_CLASSES.cardRoot)} data-testid={notification ? "event-card-notification" : "event-card-public"}>
-			<EventCardHeader
-				notification={notification}
-				isClickable={canOpenProfile}
-				onClick={canOpenProfile ? handleHeaderClick : undefined}
-				role={canOpenProfile ? "button" : undefined}
-				tabIndex={canOpenProfile ? 0 : undefined}
-				onKeyDown={
-					canOpenProfile
-						? (e) => {
-								if (e.key === "Enter" || e.key === " ") {
-									e.preventDefault();
-									handleHeaderClick();
-								}
-							}
-						: undefined
-				}
-				avatar={isPublic ? <ProfileAvatar avatarUrl={user_avatar?.thumb?.url} name={user_name} hasOnlineBadge isOnline={Boolean(profile.is_online)} /> : undefined}
-				action={
-					notification ? (
-						<Tooltip title={t(Dictionary.ONLY_YOU_CAN_SEE_IT)}>
-							<IconButton aria-label={t(Dictionary.ONLY_YOU_CAN_SEE_IT) || Dictionary.ONLY_YOU_CAN_SEE_IT}>
-								<Lock />
-							</IconButton>
-						</Tooltip>
-					) : isPinned ? (
-						<PinnedBadge data-testid="event-card-pinned-badge">
-							<PushPinOutlined />
-							{t(texts_p.pinned, { capitalize: true })}
-						</PinnedBadge>
-					) : null
-				}
-				title={notification ? t(texts_n.notification, { capitalize: true }) : title}
-				subheader={isPublic && position}
-			/>
+			{recipient ? <EventRecognitionHeader post={post} recipient={recipient} /> : <EventCardHeader post={post} />}
 
 			<BntCardContent className={EVENT_CARD_CLASSES.cardContent}>
-				{post.operation && (
+				{post.operation && !recipient && (
 					<EventOperationText
 						variant="event"
 						operation={post.operation}
@@ -160,43 +115,7 @@ export function EventCard({ post, className, preventNewModal }: EventCardProps) 
 				<EventImages images={images} imageLabel={t(texts_p.photos)} />
 			</BntCardContent>
 
-			{!notification ? (
-				<BntCardActions disableSpacing className={EVENT_CARD_CLASSES.cardActions}>
-					{likeable && (
-						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
-							<IconButton
-								aria-label={t(texts_a.add_to_favorites) || texts_a.add_to_favorites}
-								onClick={handleLike}
-								className={classNames(EVENT_CARD_CLASSES.cardActionButton, {
-									[EVENT_CARD_CLASSES.liked]: liked,
-								})}
-							>
-								<Favorite />
-							</IconButton>
-							<BntBox className={EVENT_CARD_CLASSES.iconCaption}>{likesCount > 0 && likesCount}</BntBox>
-						</BntBox>
-					)}
-					{commentable && (
-						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
-							<IconButton aria-label={t(texts_c.comment) || texts_c.comment} onClick={handleComment} className={EVENT_CARD_CLASSES.cardActionButton}>
-								<Comment />
-							</IconButton>
-							<BntBox className={EVENT_CARD_CLASSES.iconCaption}>{commentsCount > 0 && commentsCount}</BntBox>
-						</BntBox>
-					)}
-					{editable && (
-						<BntBox className={EVENT_CARD_CLASSES.cardActionGroup}>
-							<IconButton onClick={handleEdit} aria-label={t(texts_e.edit) || texts_e.edit} className={EVENT_CARD_CLASSES.cardActionButton}>
-								<Edit />
-							</IconButton>
-						</BntBox>
-					)}
-
-					<BntTypography variant="caption" className={EVENT_CARD_CLASSES.cardDateCaption}>
-						{formatStringDate(date_string_utc, false, true)}
-					</BntTypography>
-				</BntCardActions>
-			) : null}
+			{!notification ? <EventCardActions post={post} onLike={handleLike} onComment={handleComment} onEdit={handleEdit} /> : null}
 		</BntCard>
 	);
 }

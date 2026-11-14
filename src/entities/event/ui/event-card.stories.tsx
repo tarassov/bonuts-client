@@ -1,6 +1,7 @@
 import { DefaultProfilePng } from "@/shared/ui/icons";
 
 import { EventCardStyled } from "./event-card-styled";
+import { DealType } from "@/types/model/deal-type";
 import type { TPost } from "@/types/model/post";
 
 const publicPost: TPost = {
@@ -98,4 +99,26 @@ export const Pinned = {
 	args: {
 		post: pinnedPost,
 	},
+};
+
+export const DonutRecognition = {
+	args: {
+		post: {
+			...publicPost,
+			operation: {
+				id: 5,
+				deal_type: DealType.Share,
+				amount: 5,
+				direction: 1,
+				to_profile: { id: 13, name: "Alex Petrov", position: "Engineer" },
+				created_at: "2026-05-15T09:30:00.000Z",
+				created_at_utc: "2026-05-15T09:30:00.000Z",
+			},
+		},
+	},
+};
+
+export const NarrowRecognition = {
+	...DonutRecognition,
+	args: { ...DonutRecognition.args, maxWidth: 320 },
 };

@@ -1,22 +1,19 @@
 import { useCallback, useState } from "react";
 import { InView } from "react-intersection-observer";
-import { LightbulbCircleOutlined } from "@mui/icons-material";
-import { Button, Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
+import { KeyboardArrowUp, LightbulbCircleOutlined } from "@mui/icons-material";
+import { Button, useMediaQuery, useTheme } from "@mui/material";
 
 import classnames from "classnames";
 
-import { Dictionary } from "constants/dictionary";
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_e, texts_g, texts_l } from "services/localization/texts";
-
 import { useModal } from "@/shared/lib/modal";
-import { present } from "@/shared/lib/type-guards";
 import { BntBox } from "@/shared/ui/box";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
+import { groupFeedByDay } from "../lib/group-feed-by-day";
 import { useEventListLogic } from "../model/use-event-list-logic";
 import { useFeedEntrance } from "../model/use-feed-entrance";
+import { useFeedNavigation } from "../model/use-feed-navigation";
 import { useFeedScrollReset } from "../model/use-feed-scroll-reset";
 import { usePinnedEvents } from "../model/use-pinned-events";
 
@@ -26,7 +23,12 @@ import { EventFeedLoading } from "./event-feed-loading";
 import { FeedCardEntrance, FeedDonutSpinner } from "./event-feed-loading.styles";
 import classes from "./event-list.module.scss";
 import { EventListHeader } from "./event-list-header";
+import { FeedDayMarker } from "./feed-day-marker";
+import { BackToTopButton } from "./feed-navigation.styles";
 import { PinnedEventsStrip } from "./pinned-events-strip";
+import { Dictionary } from "@/constants/dictionary";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_b, texts_e, texts_g, texts_l } from "@/services/localization/texts";
 
 export function EventList() {
 	const { translate } = useBntTranslate();
@@ -42,6 +44,8 @@ export function EventList() {
 	});
 
 	const { pinnedPosts } = usePinnedEvents();
+	const { hasDeepScroll, scrollToTop } = useFeedNavigation(scrollAreaRef, matchesDownMd);
+	const dayGroups = groupFeedByDay(pages);
 	// Only the feed column loads: the header, the pinned strip and the sidebar stay in place.
 	const { generation, isLeaving, isAnimated } = useFeedEntrance(isLoading);
 
@@ -63,7 +67,7 @@ export function EventList() {
 	);
 
 	return (
-		<BntStack ref={feedRef} direction="column" className={classnames("height-100")} data-testid="dashboard-event-list">
+		<BntStack ref={feedRef} direction="column" className={classnames("height-100", classes.feed)} data-testid="dashboard-event-list">
 			<EventListHeader showMine={showMine} onGiveDonutClick={handleGiveDonutClick} onSearchTextChange={setSearchText} onShowMineChange={setShowMine} />
 
 			<BntBox
@@ -77,23 +81,20 @@ export function EventList() {
 				<div className={classes.feedBody} aria-busy={isLoading || isChangingFilter}>
 					<div className={classnames(classes.feedResults, { [classes.isRefreshing]: isChangingFilter })} inert={isChangingFilter}>
 						{showLoader ? <EventFeedLoading isLeaving={!isLoading && isLeaving} /> : null}
-						<Grid key={generation} container rowSpacing={{ xs: 2 }} justifyContent="center">
-							{present(pages) &&
-								Object.values(pages).map((page, pageIndex) => {
-									return (
-										page &&
-										page.map((post, postIndex) => {
-											return (
-												<Grid key={post.id} size={{ xs: 12 }}>
-													<FeedCardEntrance index={postIndex} isAnimated={isAnimated && pageIndex === 0}>
-														<EventCardStyled post={post} maxWidth={760} />
-													</FeedCardEntrance>
-												</Grid>
-											);
-										})
-									);
-								})}
-						</Grid>
+						<div key={generation} className={classes.days}>
+							{dayGroups.map((group) => (
+								<section key={group.key + group.posts[0].post.id} className={classes.daySection}>
+									{group.date ? <FeedDayMarker date={group.date} /> : null}
+									<div className={classes.dayPosts}>
+										{group.posts.map(({ post, index, isFirstPage }) => (
+											<FeedCardEntrance key={post.id} index={index} isAnimated={isAnimated && isFirstPage}>
+												<EventCardStyled post={post} maxWidth={760} />
+											</FeedCardEntrance>
+										))}
+									</div>
+								</section>
+							))}
+						</div>
 						{!isLoading && isEmpty ? (
 							<BntStack
 								alignItems="center"
@@ -117,6 +118,13 @@ export function EventList() {
 					</BntStack>
 				)}
 			</BntBox>
+			{hasDeepScroll ? (
+				<div className={classes.backToTop}>
+					<BackToTopButton color="primary" onClick={scrollToTop} aria-label={translate(texts_b.back_to_top)} title={translate(texts_b.back_to_top)}>
+						<KeyboardArrowUp />
+					</BackToTopButton>
+				</div>
+			) : null}
 		</BntStack>
 	);
 }

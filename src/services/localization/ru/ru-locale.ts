@@ -30,7 +30,12 @@ import {
 
 export const ruLocale = {
 	translations: {
+		[texts_b.back_to_top]: "Наверх",
+		[texts_t.today]: "Сегодня",
+		[texts_y.yesterday]: "Вчера",
+
 		[texts_c.close_search]: "Закрыть поиск",
+		[texts_g.go_to_store]: "В магазин",
 		[texts_g.give]: "Подарить",
 		[texts_a.all_posts]: "Все записи",
 		[texts_i.involving_me]: "С моим участием",
@@ -366,7 +371,7 @@ export const ruLocale = {
 		[texts_p.pinned_position]: "Закреплено · {{current}} из {{total}}",
 		[texts_p.pinned_on]: "закреплено {{date}}",
 		[texts_a.all_pinned]: "Все закреплённые",
-		[texts_o.open_in_feed]: "Открыть в ленте",
+		[texts_o.open_post]: "Открыть сообщение",
 		[texts_n.next_pinned]: "Следующее закреплённое",
 		[texts_r.recognized_voice]: "Заметный голос",
 		[texts_s.service_bot]: "Сервис бот",
