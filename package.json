@@ -27,7 +27,7 @@
 		"i18next": "^26.7.2",
 		"i18next-browser-languagedetector": "^7.0.1",
 		"i18next-http-backend": "4.0.10",
-		"lodash": "4.17.23",
+		"lodash": "4.18.1",
 		"match-sorter": "^6.3.1",
 		"notistack": "^3.0.1",
 		"ramda": "^0.32.0",
@@ -85,16 +85,8 @@
 		"e2e:typecheck": "tsc --project e2e/tsconfig.json"
 	},
 	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+		"production": [">0.2%", "not dead", "not op_mini all"],
+		"development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.14",
@@ -129,6 +121,11 @@
 	},
 	"packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447",
 	"resolutions": {
-		"form-data": "^4.0.6"
+		"form-data": "^4.0.6",
+		"@babel/runtime": "^7.29.14",
+		"**/lint-staged/micromatch": "^4.0.8",
+		"**/lint-staged/yaml": "^2.8.3",
+		"**/workbox-build/glob": "^14.0.6",
+		"**/@joshwooding/vite-plugin-react-docgen-typescript/glob": "^14.0.6"
 	}
 }
