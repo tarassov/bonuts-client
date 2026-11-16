@@ -31,6 +31,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install dependencies
+      env:
+        CYPRESS_INSTALL_BINARY: '0'
       run: yarn install
 
     - name: Run lint
@@ -46,7 +48,18 @@ jobs:
       run: yarn test
 
     - name: Install Cypress binary
-      run: yarn cypress install
+      timeout-minutes: 10
+      run: |
+        for attempt in 1 2 3; do
+          if yarn cypress install; then
+            exit 0
+          fi
+          echo "Cypress binary installation failed (attempt ${attempt}/3)."
+          if [ "$attempt" -lt 3 ]; then
+            sleep 5
+          fi
+        done
+        exit 1
 
     - name: Run Cypress tests
       run: yarn cypress:run
@@ -69,6 +82,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install dependencies
+      env:
+        CYPRESS_INSTALL_BINARY: '0'
       run: yarn install
 
     - name: Build
