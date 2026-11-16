@@ -106,14 +106,11 @@ Runs tests once without watch mode.
 ### `yarn generate-api`
 Generates API code from OpenAPI specification.
 
-### `yarn cypress:open`
-Opens Cypress Test Runner for interactive end-to-end testing.
+### `yarn e2e`
+Runs Playwright e2e tests and manages the local e2e server on port 4173.
+Use `yarn e2e:ui` for the interactive runner, `yarn e2e login.spec.ts` for a single file,
+and `yarn e2e:report` to inspect failures and traces.
 
-### `yarn cypress:run`
-Runs all Cypress end-to-end tests in headless mode. Starts and stops the dedicated e2e dev server (`yarn dev:e2e`, port 4173) automatically.
-
-### `yarn cypress:run:login`
-Runs only the login page Cypress test.
 
 ### `yarn lint`
 Runs the full gate: `yarn typecheck` (tsc --noEmit), Biome checks, and the FSD boundary checker.
@@ -133,24 +130,12 @@ Validates Feature-Sliced Design import boundaries. See `scripts/fsd-boundaries/R
 ### `yarn deploy`
 Builds and deploys the application to GitHub Pages (`gh-pages -d dist -t`). The target is the `homepage` set in `package.json`.
 
-## Running Cypress tests
-
-For headless tests, run:
+## Running Playwright tests
 
 ```bash
-yarn cypress:run
+yarn playwright install chromium
+yarn e2e
 ```
 
-For interactive mode, start the normal development server in a separate terminal:
-
-```bash
-yarn dev:e2e
-```
-
-Then open Cypress:
-
-```bash
-yarn cypress:open
-```
-
-The first test is located at `cypress/e2e/login.cy.ts` and verifies that the login page renders email/password fields and a submit button.
+Tests live in `e2e/*.spec.ts`. Unknown API requests fail immediately with their method,
+URL and body. See [the e2e guide](docs/playwright-e2e.md) for mocks and debugging.

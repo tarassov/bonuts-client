@@ -1,6 +1,3 @@
-/** biome-ignore-all lint/correctness/noUndeclaredVariables: Cypress helper */
-
-import { mockCurrentTenantRequest, mockHeartbeatRequest } from "./api";
 import { PROFILE_RESPONSE } from "./fixtures/profile-response";
 
 export const DASHBOARD_PROFILE_RESPONSE = {
@@ -188,103 +185,19 @@ export const DASHBOARD_TENANTS_RESPONSE = {
 	],
 };
 
-export function mockDashboardPageRequests() {
-	mockCurrentTenantRequest();
-	cy.intercept("GET", /\/events\/pinned(?:\?.*)?$/, { statusCode: 200, body: { data: [] } }).as("getPinnedEvents");
-	cy.intercept("GET", /\/profile(?:\?.*)?$/, {
-		statusCode: 200,
-		body: DASHBOARD_PROFILE_RESPONSE,
-	}).as("getProfile");
+import type { ApiMock } from "./api-mock";
 
-	cy.intercept("GET", /\/events(?:\?.*)?$/, {
-		statusCode: 200,
-		headers: {
-			"Per-Page": "1",
-			Total: "1",
-		},
-		body: DASHBOARD_EVENTS_RESPONSE,
-	}).as("getEvents");
-
-	cy.intercept("GET", /\/weekly_recognition_badges\/latest(?:\?.*)?$/, {
-		statusCode: 200,
-		body: DASHBOARD_WEEKLY_BADGES_RESPONSE,
-	}).as("getWeeklyBadges");
-
-	cy.intercept("GET", /\/participation\/current_week(?:\?.*)?$/, {
-		statusCode: 200,
-		body: DASHBOARD_CURRENT_WEEK_RESPONSE,
-	}).as("getParticipationCurrentWeek");
-
-	cy.intercept("GET", /\/participation\/weekly_recognition_current(?:\?.*)?$/, {
-		statusCode: 200,
-		body: DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE,
-	}).as("getParticipationWeeklyRecognitionCurrent");
-
-	cy.intercept("GET", /\/accounts\/10(?:\?.*)?$/, {
-		statusCode: 200,
-		body: DASHBOARD_DISTRIB_ACCOUNT_RESPONSE,
-	}).as("getDistribAccount");
-
-	cy.intercept("GET", /\/tenants(?:\?.*)?$/, {
-		statusCode: 200,
-		body: DASHBOARD_TENANTS_RESPONSE,
-	}).as("getTenants");
-
-	mockHeartbeatRequest();
+export function mockDashboard(api: ApiMock): void {
+	api.mock("GET", "/profile", { body: DASHBOARD_PROFILE_RESPONSE });
+	api.mock("GET", "/events/pinned", { body: { data: [] } });
+	api.mock("GET", "/events", { body: DASHBOARD_EVENTS_RESPONSE, headers: { "Per-Page": "1", Total: "1" } });
+	api.mock("GET", "/weekly_recognition_badges/latest", { body: DASHBOARD_WEEKLY_BADGES_RESPONSE });
+	api.mock("GET", "/participation/current_week", { body: DASHBOARD_CURRENT_WEEK_RESPONSE });
+	api.mock("GET", "/participation/weekly_recognition_current", { body: DASHBOARD_WEEKLY_RECOGNITION_CURRENT_RESPONSE });
+	api.mock("GET", "/accounts/10", { body: DASHBOARD_DISTRIB_ACCOUNT_RESPONSE });
 }
 
-export function mockGiveDonutsModalRequests() {
-	cy.intercept("GET", "**/profiles*", {
-		statusCode: 200,
-		headers: {
-			"Per-Page": "24",
-			Total: "1",
-		},
-		body: DASHBOARD_COLLEAGUES_RESPONSE,
-	}).as("getProfiles");
-
-	cy.intercept("GET", "**/accounts/10*", {
-		statusCode: 200,
-		body: DASHBOARD_DISTRIB_ACCOUNT_RESPONSE,
-	}).as("getDistribAccount");
-
-	cy.intercept("POST", "**/account_operations/transfer*", {
-		statusCode: 200,
-		body: {
-			error: false,
-			message: "Transferred",
-		},
-	}).as("postTransferDonuts");
-}
-
-export function signInToDashboard() {
-	cy.intercept("POST", "**/authenticate", {
-		statusCode: 200,
-		body: {
-			auth_token: "test-auth-token",
-			currentTenant: "test-tenant",
-			tenants: [{ name: "test-tenant" }],
-		},
-	}).as("loginRequest");
-
-	cy.visit("/login");
-	cy.get("#email").type("test@example.com");
-	cy.get("#password").type("password123");
-	mockDashboardPageRequests();
-	cy.get('button[type="submit"]').click();
-
-	cy.wait("@loginRequest");
-	cy.url().should("eq", `${Cypress.config("baseUrl")}/`);
-}
-
-export function visitDashboard(theme: "light" | "dark") {
-	mockDashboardPageRequests();
-
-	cy.visitAuthorized("/", {
-		visitOptions: {
-			onBeforeLoad(win) {
-				win.localStorage.setItem("theme", theme);
-			},
-		},
-	});
+export function mockGiveDonuts(api: ApiMock): void {
+	api.mock("GET", "/profiles", { body: DASHBOARD_COLLEAGUES_RESPONSE, headers: { "Per-Page": "24", Total: "1" } });
+	api.mock("POST", "/account_operations/transfer", { body: { error: false, message: "Transferred" } });
 }

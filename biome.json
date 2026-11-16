@@ -204,6 +204,7 @@
 	},
 	"html": { "formatter": { "indentScriptAndStyle": false, "selfCloseVoidElements": "always" } },
 	"overrides": [
+		{ "includes": ["e2e/**/*.ts"], "linter": { "rules": { "performance": { "noAwaitInLoops": "off" } } } },
 		{ "includes": ["*slice.ts", "*api.ts"], "linter": { "rules": { "style": { "noParameterAssign": "off" } } } },
 		{ "includes": ["*modal.tsx"], "linter": { "rules": {} } },
 		{ "includes": ["bonuts-api.ts"], "linter": { "rules": { "complexity": { "useLiteralKeys": "off" } } } },
