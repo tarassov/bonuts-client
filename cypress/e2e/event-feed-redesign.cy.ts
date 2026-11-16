@@ -65,7 +65,8 @@ runInViewports([TEST_VIEWPORTS.desktop, { name: "narrow", value: { width: 320, h
 				if (win.innerWidth >= 900) return;
 				cy.get('[data-testid="feed-day-marker"]').last().should("have.css", "justify-content", "center");
 			});
-			cy.get('button[aria-label="Наверх"]').should("be.visible").click();
+			// The floating button is already visible; Cypress scrolling can interfere with the feed's smooth scroll.
+			cy.get('button[aria-label="Наверх"]').should("be.visible").click({ scrollBehavior: false });
 			cy.get('button[aria-label="Наверх"]').should("not.exist");
 			cy.screenshot(`recognition-${theme}`);
 			cy.window().then((win) => {
