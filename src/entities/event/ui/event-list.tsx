@@ -83,7 +83,7 @@ export function EventList() {
 						{showLoader ? <EventFeedLoading isLeaving={!isLoading && isLeaving} /> : null}
 						<div key={generation} className={classes.days}>
 							{dayGroups.map((group) => (
-								<section key={group.key + group.posts[0].post.id} className={classes.daySection}>
+								<section key={group.key} className={classes.daySection}>
 									{group.date ? <FeedDayMarker date={group.date} /> : null}
 									<div className={classes.dayPosts}>
 										{group.posts.map(({ post, index, isFirstPage }) => (
