@@ -30,7 +30,12 @@ import {
 
 export const kkLocale = {
 	translations: {
+		[texts_b.back_to_top]: "Жоғары",
+		[texts_t.today]: "Бүгін",
+		[texts_y.yesterday]: "Кеше",
+
 		[texts_c.close_search]: "Іздеуді жабу",
+		[texts_g.go_to_store]: "Дүкенге",
 		[texts_g.give]: "Сыйлау",
 		[texts_a.all_posts]: "Барлық жазбалар",
 		[texts_i.involving_me]: "Мен қатысқан жазбалар",
@@ -278,7 +283,7 @@ export const kkLocale = {
 		[texts_p.pinned_position]: "Бекітілген · {{total}} ішінен {{current}}",
 		[texts_p.pinned_on]: "{{date}} бекітілген",
 		[texts_a.all_pinned]: "Барлық бекітілгендер",
-		[texts_o.open_in_feed]: "Таспада ашу",
+		[texts_o.open_post]: "Хабарламаны ашу",
 		[texts_n.next_pinned]: "Келесі бекітілген",
 		[texts_r.recognized_voice]: "Танымал дауыс",
 		[texts_s.service_bot]: "Сервис бот",

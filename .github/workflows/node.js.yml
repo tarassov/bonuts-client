@@ -43,13 +43,26 @@ jobs:
       run: yarn fsd:check:ci
 
     - name: Run the tests
-      run: yarn test
+      run: yarn test:withoutWatch
 
-    - name: Install Cypress binary
-      run: yarn cypress install
+    - name: Check e2e types
+      run: yarn e2e:typecheck
 
-    - name: Run Cypress tests
-      run: yarn cypress:run
+    - name: Install Playwright Chromium
+      run: yarn playwright install --with-deps chromium
+
+    - name: Run Playwright tests
+      run: yarn e2e
+
+    - name: Upload Playwright report and traces
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: |
+          playwright-report/
+          test-results/
+        retention-days: 14
 
   build:
     runs-on: ubuntu-latest

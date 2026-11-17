@@ -1,0 +1,37 @@
+export const DONUTS_RESPONSE = {
+	data: [
+		{
+			active: true,
+			available: true,
+			expiration_date: null,
+			id: 1,
+			logo: null,
+			name: "Hoodie Bonuts",
+			on_stock: null,
+			price: 120,
+			use_remains: false,
+		},
+		{
+			active: true,
+			available: true,
+			expiration_date: "2026-08-10",
+			id: 2,
+			logo: null,
+			name: "Coffee voucher",
+			on_stock: 4,
+			price: 80,
+			use_remains: true,
+		},
+		{
+			active: false,
+			available: false,
+			expiration_date: null,
+			id: 3,
+			logo: null,
+			name: "Team mug",
+			on_stock: 0,
+			price: 40,
+			use_remains: true,
+		},
+	],
+};

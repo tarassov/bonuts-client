@@ -3,10 +3,11 @@ import { alpha, styled } from "@mui/material/styles";
 import { present } from "@/shared/lib/type-guards";
 
 import { EVENT_CARD_CLASSES } from "./classes";
-import { EventCard, EventCardProps } from "./event-card";
-import { cl } from "themes/helper";
+import type { EventCardProps } from "./event-card";
+import { EventCard } from "./event-card";
+import { cl } from "@/themes/helper";
 
-const iconFontSize = "16px";
+const iconFontSize = "13px";
 
 type TEventCardStyledProps = EventCardProps & {
 	bodyMaxHeight?: string | number;
@@ -17,29 +18,24 @@ export const EventCardStyled = styled(EventCard, {
 	shouldForwardProp: (prop) => prop !== "bodyMaxHeight" && prop !== "maxWidth",
 })<TEventCardStyledProps>(({ theme, bodyMaxHeight = 300, maxWidth = 700, post }) => {
 	const isNotification = !post.public;
-	const notificationSurface = theme.palette.mode === "dark" ? alpha(theme.palette.background.paper, 0.6) : alpha(theme.palette.background.paper, 0.95);
-	const notificationBorder = alpha(theme.palette.divider, theme.palette.mode === "dark" ? 0.7 : 0.85);
-	const cardBoxShadow = isNotification ? "none" : "0 8px 24px rgba(30,31,37,0.06)";
-	const cardHoverTransform = isNotification ? "none" : "translateY(-2px)";
-	const cardHoverShadow = isNotification ? "none" : "0 14px 34px rgba(30,31,37,0.12)";
 	const hasImages = present(post.images);
 
 	return {
+		container: "event-card / inline-size",
 		width: "100%",
-		backgroundColor: isNotification ? "transparent" : theme.palette.background.paper,
-		color: theme.palette.getContrastText(theme.palette.background.default),
+		backgroundColor: isNotification ? alpha(theme.palette.accent.main, 0.05) : theme.palette.background.paper,
+		border: `1px solid ${theme.palette.divider}`,
+		color: theme.palette.text.primary,
 		maxWidth,
 		borderRadius: 16,
-		boxShadow: cardBoxShadow,
-		transition: theme.transitions.create(["width", "margin", "transform", "box-shadow"], {
+		boxShadow: isNotification ? "none" : "0 2px 10px rgba(0,0,0,0.04)",
+		transition: theme.transitions.create(["border-color", "box-shadow"], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
-		// a touch screen applies :hover on the first tap, which would move the card under the finger
 		"@media (hover: hover)": {
 			"&:hover": {
-				transform: cardHoverTransform,
-				boxShadow: cardHoverShadow,
+				borderColor: alpha(theme.palette.primary.main, 0.3),
 			},
 		},
 		[cl(EVENT_CARD_CLASSES.cardRoot)]: {
@@ -49,7 +45,8 @@ export const EventCardStyled = styled(EventCard, {
 		[cl(EVENT_CARD_CLASSES.cardContent)]: {
 			maxHeight: hasImages ? "none" : bodyMaxHeight,
 			overflow: hasImages ? "visible" : "auto",
-			padding: theme.spacing(2, 2.5, 1.5),
+			padding: theme.spacing(1.5, 2, 2),
+			[theme.breakpoints.up("sm")]: { padding: theme.spacing(1.5, 2.5, 2) },
 			// on touch screens a nested scroller captures the tap and slides the recognition line
 			// away under the finger, so the card simply grows with its text
 			[theme.breakpoints.down("md")]: {
@@ -63,30 +60,25 @@ export const EventCardStyled = styled(EventCard, {
 				width: "90%",
 			},
 		},
-		...(isNotification
-			? {
-					background: `linear-gradient(180deg, ${alpha(theme.palette.accent.main, theme.palette.mode === "dark" ? 0.08 : 0.06)} 0%, ${alpha(theme.palette.accent.main, theme.palette.mode === "dark" ? 0.03 : 0.02)} 52%, ${notificationSurface} 100%)`,
-					border: `1px solid ${notificationBorder}`,
-				}
-			: null),
 		[cl(EVENT_CARD_CLASSES.iconCaption)]: {
 			minWidth: "10px",
 			fontSize: iconFontSize,
 			fontWeight: 600,
-			color: theme.palette.neutral.dark,
-			opacity: 0.72,
+			color: theme.palette.text.secondary,
 		},
 		[cl(EVENT_CARD_CLASSES.cardActions)]: {
 			display: "flex",
 			alignItems: "center",
-			gap: theme.spacing(1.5),
-			padding: theme.spacing(0, 2.5, 2),
+			flexWrap: "wrap",
+			gap: theme.spacing(0.75),
+			padding: theme.spacing(1, 2, 1.5),
+			borderTop: `1px solid ${theme.palette.divider}`,
+			[theme.breakpoints.up("sm")]: { padding: theme.spacing(1, 2.5, 1.5) },
 			marginRight: 0,
 		},
 		[cl(EVENT_CARD_CLASSES.cardDateCaption)]: {
 			marginLeft: "auto",
-			color: theme.palette.neutral.dark,
-			opacity: 0.72,
+			color: theme.palette.text.secondary,
 		},
 		[cl(EVENT_CARD_CLASSES.cardActionGroup)]: {
 			display: "inline-flex",
@@ -94,28 +86,35 @@ export const EventCardStyled = styled(EventCard, {
 			gap: theme.spacing(0.75),
 		},
 		[cl(EVENT_CARD_CLASSES.cardActionButton)]: {
-			padding: 6,
-			color: theme.palette.neutral.dark,
-			opacity: 0.72,
+			minWidth: 40,
+			minHeight: 40,
+			padding: theme.spacing(0.75, 1),
+			gap: theme.spacing(0.75),
+			borderRadius: 20,
+			backgroundColor: theme.palette.action.hover,
+			"& svg": { fontSize: 18 },
+			color: theme.palette.text.secondary,
 			transition: theme.transitions.create(["color", "opacity", "background-color"]),
 			"&:hover": {
-				color: theme.palette.primary.light,
+				color: theme.palette.primary.dark,
 				opacity: 1,
 			},
 		},
 		[cl(EVENT_CARD_CLASSES.liked)]: {
-			color: theme.palette.primary.main,
-			opacity: 1,
+			color: theme.palette.primary.dark,
+			backgroundColor: alpha(theme.palette.primary.main, 0.1),
+			"& .icon-caption": { color: "inherit" },
 			"&:hover": {
 				color: theme.palette.primary.main,
 				opacity: 1,
 			},
 		},
 		[cl(EVENT_CARD_CLASSES.cardBodyText)]: {
-			maxWidth: "46ch",
-			lineHeight: 1.7,
+			overflowWrap: "anywhere",
+			lineHeight: 1.65,
 			color: theme.palette.text.primary,
 		},
+		"@media (prefers-reduced-motion: reduce)": { transition: "none" },
 		[cl(EVENT_CARD_CLASSES.expand)]: {
 			transform: "rotate(0deg)",
 			transition: theme.transitions.create("transform", {
