@@ -48,7 +48,15 @@ for (const viewport of viewports)
 			const first = page.getByTestId("photo-album-tile-0");
 			const second = page.getByTestId("photo-album-tile-1");
 			await expect(second).toBeVisible();
-			expect((await second.boundingBox())!.x).toBeGreaterThan((await first.boundingBox())!.x);
+			// Masonry positions tiles asynchronously after they become visible.
+			await expect
+				.poll(async () => {
+					const firstBounds = await first.boundingBox();
+					const secondBounds = await second.boundingBox();
+
+					return firstBounds && secondBounds ? secondBounds.x - firstBounds.x : 0;
+				})
+				.toBeGreaterThan(0);
 			await first.click();
 			await expect(page.getByTestId("photo-album-viewer")).toBeVisible();
 			await page.getByTestId("profile-photo-delete").click();
