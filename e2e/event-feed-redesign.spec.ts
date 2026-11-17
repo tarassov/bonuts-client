@@ -9,6 +9,7 @@ for (const viewport of [
 		test.use({ viewport });
 		for (const theme of ["light", "dark"])
 			test(`keeps recognition readable and sidebar stationary in ${theme}`, async ({ page, api }) => {
+				await page.clock.setFixedTime(new Date("2026-11-17T12:00:00Z"));
 				mockDashboard(api);
 				api.mock("GET", "/events", {
 					body: {
@@ -18,6 +19,7 @@ for (const viewport of [
 							attributes: {
 								...DASHBOARD_EVENTS_RESPONSE.data[0].attributes,
 								id: 200 + index,
+								// Different calendar days in the same period must share one marker.
 								date_string_utc: index < 6 ? "2026-11-14T10:00:00Z" : "2026-11-13T10:00:00Z",
 								public: true,
 								user_name: "Александра Константинопольская",
@@ -39,7 +41,7 @@ for (const viewport of [
 				await expect(card.getByRole("button", { name: /Константин Александровский/ })).toBeVisible();
 				expect(await card.evaluate((el) => [el, ...el.querySelectorAll("button")].every((item) => item.scrollWidth <= item.clientWidth + 1))).toBe(true);
 				const markers = page.getByTestId("feed-day-marker");
-				await expect(markers).toHaveCount(2);
+				await expect(markers).toHaveText(["На прошлой неделе"]);
 				const scroll = page.getByTestId("dashboard-event-list").locator(".scroll");
 				if (viewport.name === "desktop") {
 					const top = await markers.first().evaluate((el) => el.getBoundingClientRect().top);

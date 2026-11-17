@@ -22,4 +22,5 @@ export enum texts_i {
 	in_storefront = "in storefront",
 	in_team_months = "in team months",
 	in_team_years = "in team years",
+	in_year = "in year",
 }
