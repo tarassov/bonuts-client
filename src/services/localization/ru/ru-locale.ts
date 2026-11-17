@@ -30,6 +30,13 @@ import {
 
 export const ruLocale = {
 	translations: {
+		[texts_e.earlier_this_week]: "Ранее на неделе",
+		[texts_e.earlier_this_month]: "Ранее в этом месяце",
+		[texts_e.earlier_this_year]: "Ранее в этом году",
+		[texts_l.last_week]: "На прошлой неделе",
+		[texts_l.last_month]: "В прошлом месяце",
+		[texts_l.last_year]: "В прошлом году",
+		[texts_i.in_year]: "В {{year}} году",
 		[texts_b.back_to_top]: "Наверх",
 		[texts_t.today]: "Сегодня",
 		[texts_y.yesterday]: "Вчера",

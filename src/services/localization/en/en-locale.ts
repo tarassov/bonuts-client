@@ -27,6 +27,13 @@ import {
 
 export const enLocale = {
 	translations: {
+		[texts_e.earlier_this_week]: "Earlier this week",
+		[texts_e.earlier_this_month]: "Earlier this month",
+		[texts_e.earlier_this_year]: "Earlier this year",
+		[texts_l.last_week]: "Last week",
+		[texts_l.last_month]: "Last month",
+		[texts_l.last_year]: "Last year",
+		[texts_i.in_year]: "In {{year}}",
 		[texts_b.back_to_top]: "Back to top",
 		[texts_t.today]: "Today",
 		[texts_y.yesterday]: "Yesterday",
