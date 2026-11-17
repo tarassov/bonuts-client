@@ -1,3 +1,4 @@
+import { ArrowForwardRounded } from "@mui/icons-material";
 import { ButtonBase, styled } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
@@ -8,15 +9,24 @@ export const RecognitionHeader = styled("div")(({ theme }) => ({
 	gap: theme.spacing(1),
 	padding: theme.spacing(2),
 	borderBottom: `1px solid ${theme.palette.divider}`,
-	"& > button": { gridColumn: 1 },
-	"& > svg": { gridColumn: 2, transform: "rotate(90deg)", color: theme.palette.primary.dark, fontSize: 20 },
 	[theme.breakpoints.up("sm")]: { padding: theme.spacing(2, 2.5) },
 	"@container event-card (min-width: 420px)": {
 		gridTemplateColumns: "minmax(0, 1fr) auto minmax(0, 1fr)",
-		"& > button": { gridColumn: "auto" },
-		"& > svg": { gridColumn: "auto", transform: "none" },
 	},
 	"@container event-card (min-width: 540px)": { gridTemplateColumns: "minmax(0, 1fr) auto minmax(0, 1fr) auto" },
+}));
+
+export const RecognitionArrow = styled(ArrowForwardRounded)(({ theme }) => ({
+	gridColumn: "1 / -1",
+	marginInlineStart: "10px",
+	transform: "rotate(90deg)",
+	color: theme.palette.primary.dark,
+	fontSize: 20,
+	"@container event-card (min-width: 420px)": {
+		gridColumn: "auto",
+		marginInlineStart: 0,
+		transform: "none",
+	},
 }));
 
 export const RecognitionPerson = styled(ButtonBase)(({ theme }) => ({
@@ -35,7 +45,7 @@ export const RecognitionAmount = styled("span")(({ theme }) => ({
 	display: "inline-flex",
 	alignItems: "center",
 	gap: theme.spacing(0.5),
-	gridColumn: "1 / -1",
+	gridColumn: 2,
 	justifySelf: "end",
 	padding: theme.spacing(0.5, 1),
 	borderRadius: 12,
@@ -45,6 +55,6 @@ export const RecognitionAmount = styled("span")(({ theme }) => ({
 	fontSize: 13,
 	fontWeight: 700,
 	whiteSpace: "nowrap",
-	"@container event-card (min-width: 420px)": { gridColumn: 3 },
+	"@container event-card (min-width: 420px)": { gridColumn: 3, order: 1 },
 	"@container event-card (min-width: 540px)": { gridColumn: 4 },
 }));

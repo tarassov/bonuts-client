@@ -2,6 +2,9 @@
 
 .scrollArea {
 	@include mixins.hide-scroll;
+	grid-area: cards;
+	min-width: 0;
+	min-height: 0;
 }
 
 // the leaving loader floats over the arriving cards, so the feed body is their shared frame
@@ -41,10 +44,43 @@
 	}
 }
 
-.feed { position: relative; }
-.days { display: flex; flex-direction: column; gap: 16px; padding-bottom: 72px; }
-.daySection { width: 100%; max-width: 760px; margin: 0 auto; }
-.dayPosts { display: flex; flex-direction: column; gap: 12px; }
+.feed {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	min-height: 0;
+}
+
+.feedHeader {
+	grid-area: filters;
+}
+
+@media (min-width: 900px) {
+	.feed {
+		display: grid;
+		grid-template: "filters ." auto "cards timeline" minmax(0, 1fr) / minmax(0, 1fr) 28px;
+		column-gap: 4px;
+	}
+
+	.scrollArea {
+		container-type: size;
+	}
+
+	// Allow the final month heading to reach the top of the scroll area.
+	.completeMonths > .monthSection:last-child {
+		min-block-size: calc(100cqh - var(--feed-end-space));
+	}
+}
+.months {
+	--feed-end-space: 72px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding-bottom: var(--feed-end-space);
+}
+.monthSection { width: 100%; max-width: 760px; margin: 0 auto; }
+.monthPosts { display: flex; flex-direction: column; gap: 12px; }
 .backToTop {
 	position: absolute;
 	bottom: 16px;
@@ -59,5 +95,127 @@
 	.backToTop {
 		position: fixed;
 		bottom: calc(16px + env(safe-area-inset-bottom));
+	}
+}
+
+.monthHeading {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 14px;
+	padding-inline: 4px;
+	color: var(--mui-palette-text-primary);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 24px;
+
+	&::before {
+		flex: 0 0 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--feed-month-dot-color);
+		content: "";
+	}
+
+	&[aria-current="true"]::before {
+		background: var(--mui-palette-primary-main);
+	}
+
+	&::after {
+		flex: 1;
+		height: 1px;
+		background: var(--feed-month-line-color);
+		content: "";
+	}
+}
+
+@media (max-width: 899px) {
+	.monthHeading {
+		padding-inline: 2px;
+	}
+}
+
+.monthRail {
+	@include mixins.hide-scroll;
+	grid-area: timeline;
+	min-height: 0;
+	overflow-y: auto;
+	margin-top: 12px;
+
+	background: repeating-linear-gradient(to bottom, var(--mui-palette-divider) 0 3px, transparent 3px 7px) center / 1px 100% no-repeat;
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	button {
+		position: relative;
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 28px;
+		padding: 0;
+		appearance: none;
+		border: 0;
+		border-radius: 0;
+		outline: none;
+		background: transparent;
+		-webkit-tap-highlight-color: transparent;
+		cursor: pointer;
+
+		&::before {
+			width: 4px;
+			height: 4px;
+			opacity: 0.45;
+			border-radius: 50%;
+			background: var(--mui-palette-text-secondary);
+			content: "";
+		}
+
+		&:enabled:hover::before,
+		&:focus-visible::before {
+			transform: scale(1.5);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--mui-palette-text-secondary);
+			outline-offset: -2px;
+			border-radius: 8px;
+		}
+
+		&[aria-current="true"]::before {
+			width: 6px;
+			height: 6px;
+			opacity: 0.7;
+			background: var(--mui-palette-primary-main);
+		}
+
+		&:disabled {
+			cursor: default;
+		}
+	}
+}
+
+.monthPicker {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 8px;
+
+	select {
+		max-width: 100%;
+		min-height: 36px;
+		padding-inline: 8px;
+		border: 1px solid var(--mui-palette-divider);
+		border-radius: 8px;
+		background: var(--mui-palette-background-paper);
+		color: var(--mui-palette-text-primary);
+		font: inherit;
+		font-size: 13px;
 	}
 }
