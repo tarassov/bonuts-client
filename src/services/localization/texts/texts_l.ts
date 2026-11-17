@@ -29,4 +29,7 @@ export enum texts_l {
 	nominees_of_the_week = "nominees of the week",
 	recognition_podium = "recognition podium",
 	recognition_spotlight = "recognition spotlight",
+	last_week = "last week",
+	last_month = "last month",
+	last_year = "last year",
 }

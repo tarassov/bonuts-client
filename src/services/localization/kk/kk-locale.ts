@@ -30,6 +30,13 @@ import {
 
 export const kkLocale = {
 	translations: {
+		[texts_e.earlier_this_week]: "Осы аптаның басында",
+		[texts_e.earlier_this_month]: "Осы айдың басында",
+		[texts_e.earlier_this_year]: "Осы жылдың басында",
+		[texts_l.last_week]: "Өткен аптада",
+		[texts_l.last_month]: "Өткен айда",
+		[texts_l.last_year]: "Өткен жылы",
+		[texts_i.in_year]: "{{year}} жылы",
 		[texts_b.back_to_top]: "Жоғары",
 		[texts_t.today]: "Бүгін",
 		[texts_y.yesterday]: "Кеше",
