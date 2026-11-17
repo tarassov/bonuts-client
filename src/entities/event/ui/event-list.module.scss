@@ -40,3 +40,24 @@
 		transition: none;
 	}
 }
+
+.feed { position: relative; }
+.days { display: flex; flex-direction: column; gap: 16px; padding-bottom: 72px; }
+.daySection { width: 100%; max-width: 760px; margin: 0 auto; }
+.dayPosts { display: flex; flex-direction: column; gap: 12px; }
+.backToTop {
+	position: absolute;
+	bottom: 16px;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	z-index: 6;
+	pointer-events: none;
+}
+@media (max-width: 899px) {
+	.backToTop {
+		position: fixed;
+		bottom: calc(16px + env(safe-area-inset-bottom));
+	}
+}

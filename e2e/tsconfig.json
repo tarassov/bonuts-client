@@ -1,0 +1,6 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": { "types": ["node"], "lib": ["dom", "dom.iterable", "esnext"] },
+	"include": ["./**/*.ts", "../playwright.config.ts"],
+	"references": []
+}

@@ -5,7 +5,7 @@ description: How to run, check, build, and deploy the Bonuts client — yarn scr
 
 # Bonuts Dev Runbook
 
-React 18 + TypeScript + Vite + MUI. State: Redux Toolkit / RTK Query. Lint/format: **Biome** (not ESLint/Prettier — README and `.junie/guidelines.md` are stale on this). Tests: Vitest + Cypress. Hooks: Husky + lint-staged.
+React 18 + TypeScript + Vite + MUI. State: Redux Toolkit / RTK Query. Lint/format: **Biome** (not ESLint/Prettier — README and `.junie/guidelines.md` are stale on this). Tests: Vitest + Playwright. Hooks: Husky + lint-staged.
 
 ## Environment
 
@@ -52,9 +52,12 @@ yarn test:withoutWatch
 ```bash
 yarn test               # vitest watch
 yarn test:withoutWatch  # vitest run
-yarn cypress:run        # boots yarn dev:e2e on :4173, runs all specs, tears down
-yarn cypress:run:login  # single spec
-yarn cypress:open       # interactive; start `yarn dev:e2e` yourself first
+yarn playwright install chromium # first run
+yarn e2e                         # starts/stops dev:e2e on :4173
+yarn e2e login.spec.ts            # single spec
+yarn e2e:ui                      # interactive runner
+yarn e2e:typecheck               # check test types
+yarn e2e:report                  # HTML report and traces
 ```
 
 ## Storybook

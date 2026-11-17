@@ -1,6 +1,6 @@
 ---
 name: bonuts-testing
-description: Test conventions for the Bonuts client — Vitest unit test placement and naming, and the Cypress e2e viewport/behavior patterns. Use when writing or changing unit tests or Cypress specs, or when deciding what to assert for a UI change.
+description: Test conventions for the Bonuts client — Vitest unit test placement and naming, and the Playwright e2e viewport/behavior patterns. Use when writing or changing unit tests or Playwright specs, or when deciding what to assert for a UI change.
 ---
 
 # Bonuts Testing
@@ -16,14 +16,17 @@ yarn test               # watch
 yarn test:withoutWatch  # single run, CI-friendly
 ```
 
-## Cypress
+## Playwright
 
-Specs live in `cypress/e2e/*.cy.ts`.
+Specs live in `e2e/*.spec.ts`. Import `test` and `expect` from `./support/fixtures` so the strict API guard is always active.
 
 ```bash
-yarn cypress:run        # boots yarn dev:e2e on :4173, runs all specs, tears down
-yarn cypress:run:login  # single spec
-yarn cypress:open       # interactive; start `yarn dev:e2e` in another terminal first
+yarn playwright install chromium # first run
+yarn e2e                         # starts/stops dev:e2e on :4173
+yarn e2e login.spec.ts            # single spec
+yarn e2e:ui                      # interactive runner
+yarn e2e:typecheck               # check test infrastructure types
+yarn e2e:report                  # report and traces
 ```
 
 Conventions:
@@ -32,4 +35,13 @@ Conventions:
 - Reuse shared helpers to run the same assertions on desktop and mobile when behavior should match on both.
 - Keep viewport-specific assertions in separate tests or branches only when the behavior is intentionally different.
 
-Performance and structure background: `docs/cypress-optimization-plan.md`.
+API mocks:
+- Register exact methods and paths with `api.mock("GET", "/events", { body: response })`.
+- Shared fixture mocks only the app shell: profile, tenants, current tenant and heartbeat.
+- Page helpers explicitly add page endpoints; later registrations override earlier ones.
+- Every unmocked `/api/` request aborts the test with method, URL and body. Never add blanket empty responses or forward unknown API requests to a backend.
+- Use `api.calls(method, path)` and `expect.poll` to assert requests without racing listeners.
+- Use controlled promises for loading tests, releasing them in `finally`.
+- Service workers are blocked so they cannot bypass interception.
+
+Details: `docs/playwright-e2e.md`.
