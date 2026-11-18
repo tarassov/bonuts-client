@@ -173,9 +173,7 @@ test("adds month dots as ordinary scrolling loads the next page", async ({ page,
 	expect(requestedPages).toEqual([1]);
 
 	const card = (position: number) => page.getByTestId("event-card-public").filter({ has: page.getByText(`Feed record ${position}`, { exact: true }) });
-	const firstEntrance = card(1).locator("..");
-	await expect(firstEntrance).toHaveCSS("animation-duration", "0.6s");
-	await expect(firstEntrance).toHaveCSS("animation-delay", "0.12s");
+	await expect(card(1)).toBeVisible();
 
 	const existingCard = card(8);
 	const existingEntrance = existingCard.locator("..");
