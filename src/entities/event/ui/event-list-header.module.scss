@@ -9,7 +9,7 @@
 
 .header {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 44px auto;
+	grid-template-columns: minmax(0, 1fr) 44px max-content;
 	align-items: center;
 	gap: 4px;
 	min-height: 48px;
@@ -37,7 +37,7 @@
 
 	.header.isSearchExpanded {
 		--feed-search-column: 1 / 3;
-		grid-template-columns: minmax(0, 1fr) 44px auto;
+		grid-template-columns: minmax(0, 1fr) 44px max-content;
 
 		.filters {
 			display: none;
@@ -59,7 +59,7 @@
 	}
 
 	.header {
-		grid-template-columns: auto minmax(44px, 1fr) auto;
+		grid-template-columns: auto minmax(44px, 1fr) max-content;
 		gap: 8px;
 	}
 }

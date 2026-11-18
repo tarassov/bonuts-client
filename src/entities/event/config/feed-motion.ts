@@ -1,4 +1,4 @@
-// Timing of the feed loading sequence: the donuts leave upwards while the first cards drop in behind them.
+// Timing for the loader exit and card appearance.
 export const FEED_LOADER_EXIT_MS = 220;
 export const FEED_CARD_ENTER_DELAY_MS = 120;
 export const FEED_CARD_STAGGER_MS = 90;

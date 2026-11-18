@@ -38,6 +38,7 @@ export const kkLocale = {
 		[texts_l.last_year]: "Өткен жылы",
 		[texts_i.in_year]: "{{year}} жылы",
 		[texts_b.back_to_top]: "Жоғары",
+		[texts_m.month_of_publication]: "Жарияланған ай",
 		[texts_t.today]: "Бүгін",
 		[texts_y.yesterday]: "Кеше",
 

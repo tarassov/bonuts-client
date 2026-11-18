@@ -38,6 +38,7 @@ export const ruLocale = {
 		[texts_l.last_year]: "В прошлом году",
 		[texts_i.in_year]: "В {{year}} году",
 		[texts_b.back_to_top]: "Наверх",
+		[texts_m.month_of_publication]: "Месяц публикации",
 		[texts_t.today]: "Сегодня",
 		[texts_y.yesterday]: "Вчера",
 

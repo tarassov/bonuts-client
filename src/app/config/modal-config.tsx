@@ -107,6 +107,14 @@ export const modalConfig = {
 		DetailedEvent: defineModal<{ post: TPost }>({
 			renderItem: (modal, props) => <ModalDetailedEvent post={modal.data.post} {...props} />,
 			hasTopMenu: true,
+			dialogPaperSx: {
+				m: { xs: "12px", sm: "32px" },
+				width: { xs: "100%", sm: "auto" },
+				maxWidth: { xs: "calc(100% - 24px)", sm: "min(600px, calc(100% - 64px))" },
+				height: { xs: "100%", sm: "auto" },
+				maxHeight: { xs: "calc(100% - 24px)", sm: "calc(100% - 64px)" },
+				"--bnt-dialog-header-padding-block": { xs: "16px", sm: "initial" },
+			},
 			title: (data) => data.post.title,
 			getPath: (data) => `event/${data.post.id}`,
 			isTop: true,

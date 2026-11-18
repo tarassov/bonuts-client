@@ -56,7 +56,7 @@ export function PinnedEventsStrip({ posts, className }: TPinnedEventsStripProps)
 	const label = total > 1 ? translate(texts_p.pinned_position, { current: index + 1, total }) : translate(texts_p.pinned, { capitalize: true });
 
 	return (
-		<PinnedArea ref={setAreaRef} isExpanded={isOpen} className={className} data-testid="pinned-events-strip">
+		<PinnedArea ref={setAreaRef} isExpanded={isOpen} className={className} data-feed-pinned data-testid="pinned-events-strip">
 			{isOpen ? (
 				<PinnedEventsPanel posts={posts} index={index} label={label} isListOpen={isListOpen} onClose={toggleOpen} onSelect={select} onToggleList={toggleList} />
 			) : (
