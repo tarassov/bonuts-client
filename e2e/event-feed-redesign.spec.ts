@@ -207,41 +207,50 @@ test("adds month dots as ordinary scrolling loads the next page", async ({ page,
 	expect(requestedPages).toEqual([1, 2]);
 });
 
-test("aligns short months near the end of the feed when their timeline dots are clicked", async ({ page, api }) => {
-	mockDashboard(api);
-	api.mock("GET", "/events/pinned", { body: DASHBOARD_EVENTS_RESPONSE });
-	api.mock("GET", "/events", {
-		body: {
-			data: Array.from({ length: 14 }, (_, index) => {
-				const source = DASHBOARD_EVENTS_RESPONSE.data[0];
-				const date = index < 12 ? "2026-11-10T10:00:00Z" : index === 12 ? "2026-10-01T10:00:00Z" : "2026-09-01T10:00:00Z";
+for (const width of [1280, 390, 320])
+	test(`aligns short months near the end of the feed at ${width}px`, async ({ page, api }) => {
+		await page.setViewportSize({ width, height: 720 });
+		mockDashboard(api);
+		api.mock("GET", "/events/pinned", { body: DASHBOARD_EVENTS_RESPONSE });
+		api.mock("GET", "/events", {
+			body: {
+				data: Array.from({ length: 14 }, (_, index) => {
+					const source = DASHBOARD_EVENTS_RESPONSE.data[0];
+					const date = index < 12 ? "2026-11-10T10:00:00Z" : index === 12 ? "2026-10-01T10:00:00Z" : "2026-09-01T10:00:00Z";
 
-				return {
-					...source,
-					id: String(index + 1),
-					attributes: { ...source.attributes, id: index + 1, public: true, date_string_utc: date },
-				};
-			}),
-		},
-		headers: { "Per-Page": "14", Total: "14" },
+					return {
+						...source,
+						id: String(index + 1),
+						attributes: { ...source.attributes, id: index + 1, public: true, date_string_utc: date },
+					};
+				}),
+			},
+			headers: { "Per-Page": "14", Total: "14" },
+		});
+
+		await visitAuthorized(page, "/", { locale: "ru" });
+		const navigationName = "Месяц публикации";
+		const rail = page.getByRole("navigation", { name: navigationName });
+		const picker = page.getByRole("combobox", { name: navigationName });
+		const pinned = page.getByTestId("pinned-events-strip");
+		await expect(pinned).toBeVisible();
+
+		for (const name of ["Сентябрь 2026", "Октябрь 2026", "Ноябрь 2026"]) {
+			const dot = rail.getByRole("button", { name });
+			const marker = page.getByTestId("feed-month-marker").filter({ hasText: name });
+			if (width >= 900) {
+				await dot.click();
+				await expect(dot).toHaveAttribute("aria-current", "true");
+			} else {
+				await picker.selectOption({ label: name });
+			}
+			await expect(marker).toHaveAttribute("aria-current", "true");
+			await expect
+				.poll(async () => {
+					const markerBounds = await marker.boundingBox();
+					const pinnedBounds = await pinned.boundingBox();
+					return markerBounds && pinnedBounds ? Math.abs(markerBounds.y - pinnedBounds.y - pinnedBounds.height) : Infinity;
+				})
+				.toBeLessThanOrEqual(2);
+		}
 	});
-
-	await visitAuthorized(page, "/", { locale: "ru" });
-	const rail = page.getByRole("navigation", { name: "Месяц публикации" });
-	const pinned = page.getByTestId("pinned-events-strip");
-	await expect(pinned).toBeVisible();
-
-	for (const name of ["Сентябрь 2026", "Октябрь 2026", "Ноябрь 2026"]) {
-		const dot = rail.getByRole("button", { name });
-		const marker = page.getByTestId("feed-month-marker").filter({ hasText: name });
-		await dot.click();
-		await expect(dot).toHaveAttribute("aria-current", "true");
-		await expect
-			.poll(async () => {
-				const markerBounds = await marker.boundingBox();
-				const pinnedBounds = await pinned.boundingBox();
-				return markerBounds && pinnedBounds ? Math.abs(markerBounds.y - pinnedBounds.y - pinnedBounds.height) : Infinity;
-			})
-			.toBeLessThanOrEqual(2);
-	}
-});

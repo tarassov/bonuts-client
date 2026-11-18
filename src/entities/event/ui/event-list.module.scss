@@ -56,6 +56,11 @@
 	grid-area: filters;
 }
 
+// Leave enough space to align a short final month when the page scrolls on mobile.
+.completeMonths > .monthSection:last-child {
+	min-block-size: calc(100dvh - var(--feed-end-space));
+}
+
 @media (min-width: 900px) {
 	.feed {
 		display: grid;
