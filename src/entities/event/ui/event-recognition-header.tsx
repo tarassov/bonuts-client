@@ -1,8 +1,8 @@
-import { ArrowForwardRounded, PushPinOutlined } from "@mui/icons-material";
+import { PushPinOutlined } from "@mui/icons-material";
 
 import { present } from "@/shared/lib/type-guards";
 
-import { RecognitionAmount, RecognitionHeader } from "./event-recognition-header.styles";
+import { RecognitionAmount, RecognitionArrow, RecognitionHeader } from "./event-recognition-header.styles";
 import { EventRecognitionPerson } from "./event-recognition-person";
 import { PinnedBadge } from "./pinned-events-strip-styled";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
@@ -24,8 +24,6 @@ export function EventRecognitionHeader({ post, recipient }: { post: TPost; recip
 				</PinnedBadge>
 			) : null}
 			<EventRecognitionPerson profile={post.profile} />
-			<ArrowForwardRounded aria-hidden />
-			<EventRecognitionPerson profile={recipient} />
 			{present(amount) ? (
 				<RecognitionAmount>
 					{operation?.direction === 1 ? "+" : ""}
@@ -35,6 +33,8 @@ export function EventRecognitionHeader({ post, recipient }: { post: TPost; recip
 					</span>
 				</RecognitionAmount>
 			) : null}
+			<RecognitionArrow aria-hidden />
+			<EventRecognitionPerson profile={recipient} />
 		</RecognitionHeader>
 	);
 }

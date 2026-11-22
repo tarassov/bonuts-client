@@ -2,6 +2,7 @@ export enum texts_m {
 	main_reward_information = "main reward information",
 	main_information = "Main information",
 	moderator = "moderator",
+	month_of_publication = "month of publication",
 	more = "more",
 	my_invitations = "my invitations",
 	my_photos = "my photos",

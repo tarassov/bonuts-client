@@ -30,5 +30,19 @@ export function useFeedNavigation(scrollAreaRef: RefObject<HTMLDivElement | null
 		scrollTargetRef.current.scrollTo({ top: 0, behavior });
 	};
 
-	return { hasDeepScroll, scrollToTop };
+	const scrollToMonth = (section: Element) => {
+		const area = scrollAreaRef.current;
+		if (!area?.contains(section)) return;
+
+		const target = scrollTargetRef.current;
+		const pinned = area.querySelector<HTMLElement>("[data-feed-pinned]");
+		const pinnedHeight = pinned && getComputedStyle(pinned).position === "sticky" ? pinned.getBoundingClientRect().height : 0;
+		const stickyInset = isMobile && pinnedHeight && target instanceof HTMLElement ? Number.parseFloat(getComputedStyle(target).paddingTop) : 0;
+		const sectionTop = section.getBoundingClientRect().top;
+		const top = target instanceof HTMLElement ? target.scrollTop + sectionTop - target.getBoundingClientRect().top - target.clientTop : window.scrollY + sectionTop;
+		const behavior = isMobile || window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
+		target.scrollTo({ top: top - pinnedHeight - stickyInset, behavior });
+	};
+
+	return { hasDeepScroll, scrollToTop, scrollToMonth, scrollTargetRef };
 }
