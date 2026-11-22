@@ -43,5 +43,5 @@ export function useFeedNavigation(scrollAreaRef: RefObject<HTMLDivElement | null
 		target.scrollTo({ top: top - pinnedHeight, behavior });
 	};
 
-	return { hasDeepScroll, scrollToTop, scrollToMonth };
+	return { hasDeepScroll, scrollToTop, scrollToMonth, scrollTargetRef };
 }

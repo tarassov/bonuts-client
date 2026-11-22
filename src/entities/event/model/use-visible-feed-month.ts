@@ -7,6 +7,7 @@ export function useVisibleFeedMonth(
 	monthList: HTMLDivElement | null,
 	months: ReturnType<typeof groupFeedByMonth>,
 	scrollAreaRef: RefObject<HTMLDivElement | null>,
+	scrollTargetRef: RefObject<HTMLElement | Window>,
 	isMobile: boolean,
 	hasPinnedPosts: boolean
 ) {
@@ -27,6 +28,7 @@ export function useVisibleFeedMonth(
 		const observe = () => {
 			observer?.disconnect();
 			const pinnedHeight = pinned && getComputedStyle(pinned).position === "sticky" ? pinned.offsetHeight : 0;
+			const scrollTarget = scrollTargetRef.current;
 			const visibleSections = new Set<Element>();
 			observer = new IntersectionObserver(
 				(entries) => {
@@ -37,7 +39,7 @@ export function useVisibleFeedMonth(
 
 					setVisible(sections.find(({ element }) => visibleSections.has(element))?.key);
 				},
-				{ root: isMobile ? null : area, rootMargin: `-${pinnedHeight}px 0px 0px 0px`, threshold: [0, 0.001] }
+				{ root: scrollTarget instanceof HTMLElement ? scrollTarget : null, rootMargin: `-${pinnedHeight}px 0px 0px 0px`, threshold: [0, 0.001] }
 			);
 			for (const { element } of sections) observer.observe(element);
 		};
@@ -50,7 +52,7 @@ export function useVisibleFeedMonth(
 			resizeObserver?.disconnect();
 			observer?.disconnect();
 		};
-	}, [monthList, months, scrollAreaRef, isMobile, hasPinnedPosts]);
+	}, [monthList, months, scrollAreaRef, scrollTargetRef, isMobile, hasPinnedPosts]);
 
 	return visible;
 }

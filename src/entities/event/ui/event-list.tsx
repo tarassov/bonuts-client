@@ -45,10 +45,10 @@ export function EventList() {
 	});
 
 	const { pinnedPosts } = usePinnedEvents();
-	const { hasDeepScroll, scrollToTop, scrollToMonth } = useFeedNavigation(scrollAreaRef, matchesDownMd);
+	const { hasDeepScroll, scrollToTop, scrollToMonth, scrollTargetRef } = useFeedNavigation(scrollAreaRef, matchesDownMd);
 	const months = useMemo(() => groupFeedByMonth(pages), [pages]);
 	const [monthList, setMonthList] = useState<HTMLDivElement | null>(null);
-	const visibleMonth = useVisibleFeedMonth(monthList, months, scrollAreaRef, matchesDownMd, pinnedPosts.length > 0);
+	const visibleMonth = useVisibleFeedMonth(monthList, months, scrollAreaRef, scrollTargetRef, matchesDownMd, pinnedPosts.length > 0);
 	// Only the feed column loads: the header, the pinned strip and the sidebar stay in place.
 	const { isLeaving } = useFeedEntrance(isLoading);
 
