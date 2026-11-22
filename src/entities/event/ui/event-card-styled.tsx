@@ -29,13 +29,15 @@ export const EventCardStyled = styled(EventCard, {
 		maxWidth,
 		borderRadius: 16,
 		boxShadow: isNotification ? "none" : "0 2px 10px rgba(0,0,0,0.04)",
-		transition: theme.transitions.create(["border-color", "box-shadow"], {
+		transition: theme.transitions.create(["border-color", "transform", "box-shadow"], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 		"@media (hover: hover)": {
 			"&:hover": {
 				borderColor: alpha(theme.palette.primary.main, 0.3),
+				transform: isNotification ? "none" : "translateY(-2px)",
+				boxShadow: isNotification ? "none" : "0 14px 34px rgba(30,31,37,0.12)",
 			},
 		},
 		[cl(EVENT_CARD_CLASSES.cardRoot)]: {
@@ -114,7 +116,10 @@ export const EventCardStyled = styled(EventCard, {
 			lineHeight: 1.65,
 			color: theme.palette.text.primary,
 		},
-		"@media (prefers-reduced-motion: reduce)": { transition: "none" },
+		"@media (prefers-reduced-motion: reduce)": {
+			transition: "none",
+			"&:hover": { transform: "none" },
+		},
 		[cl(EVENT_CARD_CLASSES.expand)]: {
 			transform: "rotate(0deg)",
 			transition: theme.transitions.create("transform", {

@@ -27,7 +27,8 @@ type TDialogItemProps = {
 };
 
 const DialogHeader = styled(BntStack)(({ theme }) => ({
-	padding: theme.spacing(2.5, 3),
+	paddingBlock: `var(--bnt-dialog-header-padding-block, ${theme.spacing(2.5)})`,
+	paddingInline: theme.spacing(3),
 	color: theme.palette.text.primary,
 }));
 

@@ -35,6 +35,7 @@ export const enLocale = {
 		[texts_l.last_year]: "Last year",
 		[texts_i.in_year]: "In {{year}}",
 		[texts_b.back_to_top]: "Back to top",
+		[texts_m.month_of_publication]: "Publication month",
 		[texts_t.today]: "Today",
 		[texts_y.yesterday]: "Yesterday",
 

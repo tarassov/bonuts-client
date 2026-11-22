@@ -11,18 +11,19 @@ import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { texts_g } from "@/services/localization/texts";
 
 type TEventListHeaderProps = {
+	className?: string;
 	showMine: boolean;
 	onGiveDonutClick: VoidFunction;
 	onSearchTextChange: (search: string) => void;
 	onShowMineChange: (isMine: boolean) => void;
 };
 
-export function EventListHeader({ showMine, onGiveDonutClick, onSearchTextChange, onShowMineChange }: TEventListHeaderProps) {
+export function EventListHeader({ className, showMine, onGiveDonutClick, onSearchTextChange, onShowMineChange }: TEventListHeaderProps) {
 	const { translate } = useBntTranslate();
 	const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
 	return (
-		<div className={classes.container}>
+		<div className={cn(classes.container, className)}>
 			<div className={cn(classes.header, { [classes.isSearchExpanded]: isSearchExpanded })} data-testid="event-feed-header">
 				<div className={classes.filters}>
 					<EventFeedFilter showMine={showMine} onShowMineChange={onShowMineChange} />
