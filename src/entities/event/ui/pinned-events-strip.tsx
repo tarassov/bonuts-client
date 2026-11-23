@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { useBntTranslate } from "hooks/use-bnt-translate";
-import { texts_p } from "services/localization/texts";
-
 import { usePinnedStripState } from "../model/use-pinned-strip-state";
 
 import { PinnedEventsPanel } from "./pinned-events-panel";
 import { PinnedEventsStripCollapsed } from "./pinned-events-strip-collapsed";
 import { PinnedArea } from "./pinned-events-strip-styled";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
+import { texts_p } from "@/services/localization/texts";
 import type { TPost } from "@/types/model/post";
 
 type TPinnedEventsStripProps = {
@@ -57,7 +56,7 @@ export function PinnedEventsStrip({ posts, className }: TPinnedEventsStripProps)
 	const label = total > 1 ? translate(texts_p.pinned_position, { current: index + 1, total }) : translate(texts_p.pinned, { capitalize: true });
 
 	return (
-		<PinnedArea ref={setAreaRef} isExpanded={isOpen} className={className} data-testid="pinned-events-strip">
+		<PinnedArea ref={setAreaRef} isExpanded={isOpen} className={className} data-feed-pinned data-testid="pinned-events-strip">
 			{isOpen ? (
 				<PinnedEventsPanel posts={posts} index={index} label={label} isListOpen={isListOpen} onClose={toggleOpen} onSelect={select} onToggleList={toggleList} />
 			) : (

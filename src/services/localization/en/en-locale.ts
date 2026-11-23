@@ -27,7 +27,20 @@ import {
 
 export const enLocale = {
 	translations: {
+		[texts_e.earlier_this_week]: "Earlier this week",
+		[texts_e.earlier_this_month]: "Earlier this month",
+		[texts_e.earlier_this_year]: "Earlier this year",
+		[texts_l.last_week]: "Last week",
+		[texts_l.last_month]: "Last month",
+		[texts_l.last_year]: "Last year",
+		[texts_i.in_year]: "In {{year}}",
+		[texts_b.back_to_top]: "Back to top",
+		[texts_m.month_of_publication]: "Publication month",
+		[texts_t.today]: "Today",
+		[texts_y.yesterday]: "Yesterday",
+
 		[texts_c.close_search]: "Close search",
+		[texts_g.go_to_store]: "Shop",
 		[texts_g.give]: "Give",
 		[texts_a.all_posts]: "All posts",
 		[texts_i.involving_me]: "Involving me",
@@ -376,7 +389,7 @@ export const enLocale = {
 		[texts_p.pinned_position]: "Pinned · {{current}} of {{total}}",
 		[texts_p.pinned_on]: "pinned {{date}}",
 		[texts_a.all_pinned]: "All pinned",
-		[texts_o.open_in_feed]: "Open in feed",
+		[texts_o.open_post]: "Open message",
 		[texts_n.next_pinned]: "Next pinned",
 		[texts_r.recognized_voice]: "Recognized voice",
 		[texts_s.search_colleagues]: "Search colleagues",

@@ -39,14 +39,18 @@ signing.keystore
 signing-key-info.txt
 
 
-# cypress
-/cypress/videos
+# Playwright
+/test-results
+/playwright-report
+/blob-report
 */cert.pem
 */td.binlog
 /tqueue.binlog
 /webhooks_db.binlog
-/cypress/screenshots
 /.codex
 
 # Claude Code local settings
 /.claude/settings.local.json
+
+# Historical local Cypress screenshots
+/cypress/screenshots

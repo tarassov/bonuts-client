@@ -153,21 +153,24 @@ export const FeedLoadingCaption = styled(Typography)(({ theme }) => ({
 	},
 }));
 
-// Wraps a freshly loaded card: it drops from above and lands softly, one after another.
 export const FeedCardEntrance = styled("div", {
-	shouldForwardProp: (prop) => prop !== "index" && prop !== "isAnimated",
-})<{ index: number; isAnimated: boolean }>(({ index, isAnimated }) => ({
+	shouldForwardProp: (prop) => prop !== "index" && prop !== "hasInitialDrop" && prop !== "isInView",
+})<{ index: number; hasInitialDrop: boolean; isInView: boolean }>(({ index, hasInitialDrop, isInView }) => ({
 	display: "flex",
 	justifyContent: "center",
 	width: "100%",
-	...(isAnimated
+	opacity: isInView ? 1 : 0.92,
+	transition: "opacity 140ms ease-out",
+	...(hasInitialDrop
 		? {
-				animation: `${dropIn} .6s cubic-bezier(.3,.8,.3,1) both`,
+				animation: `${dropIn} .6s cubic-bezier(.3,.8,.3,1) backwards`,
 				animationDelay: `${FEED_CARD_ENTER_DELAY_MS + index * FEED_CARD_STAGGER_MS}ms`,
 			}
 		: null),
 	[REDUCED_MOTION]: {
 		animation: "none",
+		opacity: 1,
+		transition: "none",
 	},
 }));
 

@@ -21,4 +21,7 @@ export enum texts_e {
 	every_month = "every month",
 	edit_reward = "edit reward",
 	edit_reward_description = "edit reward description",
+	earlier_this_week = "earlier this week",
+	earlier_this_month = "earlier this month",
+	earlier_this_year = "earlier this year",
 }
