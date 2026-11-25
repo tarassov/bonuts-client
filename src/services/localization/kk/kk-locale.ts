@@ -232,6 +232,7 @@ export const kkLocale = {
 		"Connect to space": "Присоединиться к пространству",
 		[texts_c.confirm]: "растау",
 		[texts_c.comment_is_required]: "пікір енгізіңіз",
+		[texts_c.comment_min_length]: "Кемінде {{min}} таңба енгізіңіз",
 		[texts_c.confirmed]: "расталды",
 		[texts_c.choose_type]: "түрін таңдаңыз",
 		[texts_c.choose_day]: "күнді таңдаңыз",

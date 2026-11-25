@@ -436,6 +436,7 @@ export const enLocale = {
 		[texts_c.coin]: "Coin",
 		[texts_c.comment]: "Comment",
 		[texts_c.comment_is_required]: "A comment is required",
+		[texts_c.comment_min_length]: "Enter at least {{min}} characters",
 		[texts_c.confirm]: "Confirm",
 		[texts_c.confirmation]: "Confirmation",
 		[texts_c.confirmation_email_was_sent_to]: "A confirmation email was sent to",
