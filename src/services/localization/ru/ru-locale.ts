@@ -241,6 +241,7 @@ export const ruLocale = {
 		"Connect to space": "Присоединиться к пространству",
 		[texts_c.confirm]: "подтвердить",
 		[texts_c.comment_is_required]: "введите комментарий",
+		[texts_c.comment_min_length]: "Минимум {{min}} символов",
 		[texts_c.confirmed]: "подтверждено",
 		[texts_c.choose_type]: "выберите тип",
 		[texts_c.choose_day]: "выберите день",
