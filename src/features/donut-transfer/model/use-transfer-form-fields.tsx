@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { present } from "@/shared/lib/type-guards";
 import { FieldSize, FieldType, type TFormField } from "@/shared/ui/form";
 
-import { useTransferValidation } from "./use-transfer-validation";
+import { MIN_TRANSFER_COMMENT_LENGTH, useTransferValidation } from "./use-transfer-validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { texts_a, texts_c } from "@/services/localization/texts";
@@ -44,6 +44,7 @@ export const useTransferFormFields = (args: { maxAmount?: number }) => {
 				name: "comment",
 				label: texts_c.comment,
 				placeholder: texts_c.comment,
+				helperText: t(texts_c.comment_min_length, { min: MIN_TRANSFER_COMMENT_LENGTH }),
 				type: FieldType.textarea,
 				required: true,
 				xs: 12,

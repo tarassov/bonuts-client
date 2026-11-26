@@ -13,6 +13,7 @@ export enum texts_c {
 	contacts = "Contacts",
 	comment = "comment",
 	comment_is_required = "comment is required",
+	comment_min_length = "comment minimum length",
 	confirmation = "confirmation",
 	confirm = "confirm",
 	confirmed = "confirmed",
