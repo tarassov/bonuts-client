@@ -1,36 +1,37 @@
 import type { FC } from "react";
 import { useState } from "react";
-import { Grid2 as Grid, Stack, useMediaQuery, useTheme } from "@mui/material";
-
-import { useBntTranslate } from "hooks/use-bnt-translate";
+import { Stack } from "@mui/material";
 
 import { formatStringDate } from "@/shared/lib/date";
-import { BntDivider } from "@/shared/ui/divider";
-import { ImagePreview } from "@/shared/ui/image";
 import { BntStack } from "@/shared/ui/stack";
 import { BntTypography } from "@/shared/ui/typography";
 
 import { CircleChip } from "@/entities/circle";
 import { ProfilePhotos, ProfileStatusChips } from "@/entities/profile";
 
-import { BecomeButton } from "@/features/auth/become";
+import { useBecome } from "@/features/auth/become";
 import { EmployeeActions } from "@/features/employee/actions";
 import { EmployeeEdit } from "@/features/employee/edit";
+
+import { getEmployeePreviewInitials } from "../model/employee-directory-helper";
 
 import { EmployeeLabel } from "./employee-label";
 import { EmployeePreviewBreadcrumbs } from "./employee-preview-breadcrumbs";
 import {
 	EmployeePreviewActionsCard,
-	EmployeePreviewAvatarColumn,
-	EmployeePreviewAvatarWrap,
+	EmployeePreviewAvatar,
+	EmployeePreviewAvatarButton,
 	EmployeePreviewBio,
-	EmployeePreviewCircles,
 	EmployeePreviewContentBody,
 	EmployeePreviewContentCard,
+	EmployeePreviewDetails,
+	EmployeePreviewGallery,
 	EmployeePreviewIdentity,
+	EmployeePreviewLayout,
+	EmployeePreviewPortrait,
 	EmployeePreviewRoot,
 } from "./employee-preview-styled";
-import { DEFAULT_AVATAR } from "@/constants/images";
+import { useBntTranslate } from "@/hooks/use-bnt-translate";
 import { texts_b, texts_c, texts_i, texts_n } from "@/services/localization/texts";
 import type { TProfile } from "@/types/model";
 import { emptyFunction } from "@/utils/empty-function";
@@ -63,11 +64,19 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 	allowEdit,
 }) => {
 	const { translate } = useBntTranslate();
-	const theme = useTheme();
-	const matchesDownSm = useMediaQuery(theme.breakpoints.down("sm"));
+	const { canBecome, isLoading: isBecoming, become } = useBecome(employee?.user_id);
 	const [isEditMode, setIsEditMode] = useState(false);
 	const isBioEmpty = !employee?.bio?.trim();
 	const bio = isBioEmpty ? translate(texts_n.nothing_to_tell_here_yet) : employee?.bio;
+
+	const name = employee?.user_name || employee?.name || "";
+	const avatarUrl = employee?.user_avatar?.url;
+	const initials = getEmployeePreviewInitials(name);
+	const avatar = (
+		<EmployeePreviewAvatar src={avatarUrl || undefined} alt="" aria-hidden>
+			{initials || undefined}
+		</EmployeePreviewAvatar>
+	);
 
 	return (
 		<EmployeePreviewRoot direction="column" className={className}>
@@ -84,6 +93,8 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 						onEditClick={() => setIsEditMode(true)}
 						onDisableClick={onDisableClick}
 						onActivateClick={onActivateClick}
+						onBecomeClick={canBecome ? become : undefined}
+						isBecoming={isBecoming}
 					/>
 				</EmployeePreviewActionsCard>
 			</BntStack>
@@ -93,45 +104,47 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 					{isEditMode ? (
 						<EmployeeEdit profile={employee} onClose={() => setIsEditMode(false)} />
 					) : (
-						<Grid container justifyItems="flex-start" spacing={4}>
-							<EmployeePreviewAvatarColumn size={{ xs: 12, sm: 8, md: 4, lg: 4, xl: 3 }}>
-								<EmployeePreviewAvatarWrap>
-									<ImagePreview defaultImage={DEFAULT_AVATAR} image={employee?.user_avatar?.url} onClick={onImageClick} />
-								</EmployeePreviewAvatarWrap>
-								<EmployeePreviewCircles direction="row" justifyContent="center" alignItems={{ sm: "center", xs: "center" }} flexWrap="wrap" spacing={1} gap={1}>
-									{employee?.circles?.map((circle) => {
-										return <CircleChip key={circle.id} label={circle.name || ""} />;
-									})}
-								</EmployeePreviewCircles>
-							</EmployeePreviewAvatarColumn>
-							<Grid size={{ xs: 12, sm: 12, md: 5, lg: 6 }} order={{ xs: 3, md: 2 }}>
-								<EmployeePreviewIdentity>
-									<Stack direction={{ sm: "row", xs: "column" }} alignItems={{ sm: "center", xs: "flex-start" }} spacing={2}>
-										<BntTypography variant="h4" display="block">
-											{employee?.user_name}
-										</BntTypography>
-										<Stack direction={{ sm: "column", md: "row", xs: "column" }} spacing={2}>
-											<ProfileStatusChips profile={employee} />
-											<BecomeButton userId={employee?.user_id} />
-										</Stack>
+						<EmployeePreviewLayout>
+							<EmployeePreviewPortrait>
+								{avatarUrl ? (
+									<EmployeePreviewAvatarButton aria-label={name} onClick={onImageClick}>
+										{avatar}
+									</EmployeePreviewAvatarButton>
+								) : (
+									avatar
+								)}
+							</EmployeePreviewPortrait>
+							<EmployeePreviewIdentity>
+								<BntTypography variant="h4" variantMapping={{ h4: "h1" }}>
+									{name}
+								</BntTypography>
+								<BntTypography variant="body1" color="text.secondary">
+									{employee?.position}
+								</BntTypography>
+								{employee?.circles?.length ? (
+									<Stack direction="row" flexWrap="wrap" gap={0.5}>
+										{employee.circles.map((circle) => (
+											<CircleChip key={circle.id} label={circle.name || ""} />
+										))}
 									</Stack>
-									<BntTypography variant="h5" display="block">
-										{employee?.position}
-									</BntTypography>
-									<EmployeeLabel name="email" value={employee?.email} />
-									<EmployeeLabel name={texts_c.contact} value={employee?.contact || undefined} />
-									<EmployeeLabel name={texts_b.birthday} value={formatStringDate(employee?.birthdate, true)} />
-									<EmployeeLabel name={texts_i.in_date} value={formatStringDate(employee?.in_date)} />
-								</EmployeePreviewIdentity>
-								<BntDivider sx={{ my: matchesDownSm ? 1.5 : 2 }} />
+								) : null}
+							</EmployeePreviewIdentity>
+							<EmployeePreviewDetails>
+								<Stack direction="row" gap={0.5} flexWrap="wrap">
+									<ProfileStatusChips profile={employee} subdued />
+								</Stack>
+								<EmployeeLabel name="email" value={employee?.email} />
+								<EmployeeLabel name={texts_c.contact} value={employee?.contact || undefined} />
+								<EmployeeLabel name={texts_b.birthday} value={formatStringDate(employee?.birthdate, true)} />
+								<EmployeeLabel name={texts_i.in_date} value={formatStringDate(employee?.in_date)} />
 								<EmployeePreviewBio isPlaceholder={isBioEmpty}>
 									<BntTypography isPreformatted>{bio}</BntTypography>
 								</EmployeePreviewBio>
-							</Grid>
-							<Grid size={{ xs: 12 }} order={{ xs: 4, md: 4 }}>
+							</EmployeePreviewDetails>
+							<EmployeePreviewGallery>
 								<ProfilePhotos profile={employee} />
-							</Grid>
-						</Grid>
+							</EmployeePreviewGallery>
+						</EmployeePreviewLayout>
 					)}
 				</EmployeePreviewContentBody>
 			</EmployeePreviewContentCard>

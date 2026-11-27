@@ -11,6 +11,7 @@ export { useProfilePhotos } from "./model/use-profile-photos";
 export { useUpdateAvatar } from "./model/use-update-avatar";
 export { useUpdateProfile } from "./model/use-update-profile";
 export { useUpdateProfilePhotos } from "./model/use-update-profile-photos";
+export { EmployeeDeactivationModal } from "./ui/employee-deactivation-modal";
 export { ProfileEdit } from "./ui/profile-edit";
 export { BntProfileForm } from "./ui/profile-form";
 export { ProfileHeader } from "./ui/profile-header";

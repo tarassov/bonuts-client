@@ -11,13 +11,19 @@ export const FeedGiveButton = styled(BntButton)(({ theme }) => ({
 	fontWeight: 500,
 	textTransform: "none",
 	background: theme.palette.primary.main,
+	color: theme.palette.common.black,
 	boxShadow: "none",
-	transition: theme.transitions.create(["transform", "background-color"], { duration: 200 }),
-	"&:hover": { background: theme.palette.primary.dark, boxShadow: "none", transform: "translateY(-2px)" },
-	"&:active": { transform: "translateY(0)" },
+	transition: theme.transitions.create(["background-color", "transform"], { duration: 200 }),
+	"&:hover": { background: theme.palette.primary.dark, boxShadow: "none" },
+	"@media (hover: hover) and (prefers-reduced-motion: no-preference)": {
+		"&:hover": { transform: "translateY(-2px)" },
+	},
+	"@media (prefers-reduced-motion: no-preference)": {
+		"&:active": { transform: "scale(0.98)" },
+	},
+	"&.Mui-focusVisible": { outline: `2px solid ${theme.palette.text.primary}`, outlineOffset: 2 },
 	"@media (prefers-reduced-motion: reduce)": {
 		transition: "none",
-		"&:hover, &:active": { transform: "none" },
 	},
 	"@container event-feed-header (max-width: 599px)": {
 		padding: theme.spacing(0, 1),

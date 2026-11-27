@@ -1,6 +1,6 @@
 import { useBntTranslate } from "hooks/use-bnt-translate";
 import { PostProfilesByIdSetActivityApiResponse } from "services/api/bonuts-api";
-import { texts_a, texts_c, texts_d } from "services/localization/texts";
+import { texts_a, texts_d } from "services/localization/texts";
 
 import { useModal } from "@/shared/lib/modal";
 import { useNotification } from "@/shared/ui/notification";
@@ -16,7 +16,7 @@ export const useEmployee = () => {
 	const [postEmployeeActivity] = usePostProfilesByIdSetActivityMutation();
 	const { authTenant } = useProfile();
 	const { showNotification } = useNotification();
-	const { ConfirmationModal } = useModal();
+	const { EmployeeDeactivation } = useModal();
 	const { t } = useBntTranslate();
 
 	const setActivity = (args: { id: number; active: boolean }, options?: TActionCallback<PostProfilesByIdSetActivityApiResponse>) => {
@@ -32,18 +32,18 @@ export const useEmployee = () => {
 				.unwrap()
 				.then((result) => {
 					options?.onSuccess?.(result);
-					showNotification(texts_d.disabled);
+					showNotification(active ? texts_a.activated : texts_d.disabled);
 				})
 				.catch((e) => options?.onError?.(e.data.message));
 		}
 	};
-	const setActivityWithConfirmation = (args: { id: number; active: boolean }, options?: TActionCallback<PostProfilesByIdSetActivityApiResponse>) => {
-		ConfirmationModal.show({
-			text: t(texts_a.are_you_sure, { capitalize: true }),
-			title: t(texts_c.confirmation, { capitalize: true }),
-			onSubmit: () => setActivity(args, options),
+	const deactivateWithConfirmation = (id: number, name?: string) => {
+		EmployeeDeactivation.show({
+			name,
+			title: t(texts_d.disable_account, { capitalize: true }),
+			onSubmit: () => setActivity({ id, active: false }),
 		});
 	};
 
-	return { setActivity, setActivityWithConfirmation };
+	return { setActivity, deactivateWithConfirmation };
 };

@@ -7,9 +7,7 @@
 	box-sizing: border-box;
 	overflow: hidden;
 	padding: 20px;
-	background:
-		radial-gradient(circle at top, color-mix(in srgb, var(--mui-palette-secondary-light) 18%, transparent) 0%, transparent 48%),
-		var(--mui-palette-background-paper);
+	background: var(--mui-palette-background-paper);
 }
 
 .singlePhotoStage {
@@ -33,7 +31,7 @@
 
 .meta {
 	display: grid;
-	gap: 6px;
+	gap: 4px;
 	min-width: 0;
 }
 
@@ -62,10 +60,9 @@
 	height: 100%;
 	box-sizing: border-box;
 	overflow: hidden;
-	padding: 12px;
-	border-radius: 24px;
-	background: color-mix(in srgb, var(--mui-palette-background-default) 78%, var(--mui-palette-secondary-light) 22%);
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mui-palette-divider) 78%, transparent);
+	padding: 8px;
+	border-radius: 12px;
+	background: var(--mui-palette-background-default);
 }
 
 .image {
@@ -74,52 +71,57 @@
 	height: 100%;
 	object-fit: scale-down;
 	overflow: hidden;
-	border-radius: 18px;
+}
+
+.pendingOriginal {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
 }
 
 .navButton {
 	align-self: center;
-	background: color-mix(in srgb, var(--mui-palette-background-paper) 86%, var(--mui-palette-secondary-light) 14%) !important;
-	box-shadow: 0 10px 24px color-mix(in srgb, var(--mui-palette-common-black) 16%, transparent);
+	background: var(--mui-palette-background-paper);
+	border: 1px solid var(--mui-palette-divider);
+}
+
+.stage .navButton:hover {
+	background: var(--mui-palette-background-paper);
+	color: var(--mui-palette-text-primary);
 }
 
 .thumbnailRail {
 	display: grid;
 	grid-auto-flow: column;
 	grid-auto-columns: minmax(72px, 88px);
-	gap: 10px;
+	gap: 8px;
 	overflow-x: auto;
 	padding-bottom: 4px;
 }
 
 .thumbnailButton {
 	padding: 0;
-	border: 0;
-	border-radius: 16px;
+	border: 2px solid transparent;
+	border-radius: 8px;
 	overflow: hidden;
 	background: transparent;
 	opacity: 0.68;
 	cursor: pointer;
-	box-shadow: inset 0 0 0 1px transparent;
-	transition:
-		opacity 0.2s ease,
-		transform 0.2s ease,
-		box-shadow 0.2s ease;
+	transition: opacity 160ms ease-out;
 }
 
 .thumbnailButton:hover {
 	opacity: 0.92;
-	transform: translateY(-1px);
 }
 
 .thumbnailButton:focus-visible {
-	outline: 2px solid var(--mui-palette-secondary-main);
-	outline-offset: 3px;
+	outline: 2px solid var(--mui-palette-text-primary);
+	outline-offset: -2px;
 }
 
 .thumbnailButtonActive {
 	opacity: 1;
-	box-shadow: inset 0 0 0 2px var(--mui-palette-secondary-main);
+	border-color: var(--mui-palette-primary-main);
 }
 
 .thumbnailImage {
@@ -145,9 +147,6 @@
 
 	.imageFrame {
 		order: 1;
-		min-height: 240px;
-		padding: 8px;
-		border-radius: 20px;
 	}
 
 	.navButton {
@@ -168,4 +167,8 @@
 	.thumbnailRail {
 		grid-auto-columns: minmax(64px, 72px);
 	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.thumbnailButton { transition: none; }
 }

@@ -17,7 +17,7 @@ export const WidgetContainer = styled(Box, {
 export const SidebarCard = styled(BntCard)(({ theme }) => ({
 	borderRadius: theme.spacing(2),
 	border: `1px solid ${theme.palette.divider}`,
-	boxShadow: "0 2px 10px rgba(15, 23, 42, 0.04)",
+	boxShadow: "none",
 	overflow: "hidden",
 }));
 
@@ -41,24 +41,20 @@ export const WidgetHeader = styled(Box)(({ theme }) => ({
 	borderBottom: `1px solid ${theme.palette.divider}`,
 }));
 
-export const MobileHeader = styled(Box)({
-	display: "flex",
-	flexDirection: "column",
-	alignItems: "stretch",
-});
-
 export const MobileHeaderAction = styled(Box)(({ theme }) => ({
-	padding: theme.spacing(0, 2, 1),
+	padding: theme.spacing(1, 2, 0),
 }));
 
 export const MobileWidgetHeader = styled(BntCardActionArea)(({ theme }) => ({
-	flex: 1,
+	width: "100%",
+	minHeight: 44,
 	minWidth: 0,
 	display: "flex",
 	alignItems: "center",
 	justifyContent: "space-between",
 	gap: theme.spacing(1),
-	padding: theme.spacing(1.5, 2),
+	padding: theme.spacing(1, 2),
+	"&.Mui-focusVisible": { outline: `2px solid ${theme.palette.text.secondary}`, outlineOffset: -2 },
 	textAlign: "left",
 }));
 

@@ -9,7 +9,7 @@ import { CommonStrings } from "constants/dictionary";
 
 import { defineModal } from "@/shared/ui/dialog";
 
-import { ProfilePhotosAlbumModal, photosAlbumDialogPaperSx } from "@/entities/profile";
+import { EmployeeDeactivationModal, ProfilePhotosAlbumModal, photosAlbumDialogPaperSx } from "@/entities/profile";
 
 import type { TTransferRecipient } from "@/features/donut-transfer";
 import { ModalEmployeeView } from "@/features/profile/modal";
@@ -34,6 +34,13 @@ export const modalConfig = {
 			title: titleFromData,
 			hasTopMenu: true,
 			closeOnBack: true,
+		}),
+		EmployeeDeactivation: defineModal<{ name?: string; onSubmit: VoidFunction; title: string }>({
+			renderItem: (modal, props) => <EmployeeDeactivationModal {...modal.data} {...props} />,
+			title: titleFromData,
+			hasTopMenu: true,
+			closeOnBack: true,
+			dialogPaperSx: { borderRadius: "20px", width: "calc(100% - 24px)", maxWidth: "440px" },
 		}),
 		ImageModal: defineModal<{ url: string; title?: string }>({
 			renderItem: (modal) => <ModalImage url={modal.data.url} />,

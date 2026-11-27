@@ -3,18 +3,7 @@ import { Collapse, useMediaQuery, useTheme } from "@mui/material";
 
 import { BntTypography } from "@/shared/ui/typography";
 
-import {
-	ExpandIcon,
-	MobileHeader,
-	MobileHeaderAction,
-	MobileWidgetHeader,
-	SidebarCard,
-	WidgetActionArea,
-	WidgetContainer,
-	WidgetContent,
-	WidgetFooter,
-	WidgetHeader,
-} from "./dashboard-widget-card.styles";
+import { ExpandIcon, MobileHeaderAction, MobileWidgetHeader, SidebarCard, WidgetActionArea, WidgetContainer, WidgetContent, WidgetFooter, WidgetHeader } from "./dashboard-widget-card.styles";
 import type { IDashboardWidgetSizingProps } from "./types";
 
 interface IDashboardWidgetCardProps extends IDashboardWidgetSizingProps {
@@ -35,7 +24,7 @@ export function DashboardWidgetCard({ ariaLabel, children, columns = 1, footer, 
 		<WidgetContent>
 			{!isMobile ? (
 				<WidgetHeader>
-					<BntTypography variant="subtitle2" fontWeight={700}>
+					<BntTypography variant="subtitle2" fontWeight={600}>
 						{title}
 					</BntTypography>
 					{headerAction}
@@ -57,16 +46,14 @@ export function DashboardWidgetCard({ ariaLabel, children, columns = 1, footer, 
 			<SidebarCard>
 				{isMobile ? (
 					<>
-						<MobileHeader>
-							<MobileWidgetHeader aria-controls={contentId} aria-expanded={isExpanded} onClick={() => setIsExpanded((expanded) => !expanded)}>
-								<BntTypography variant="subtitle2" fontWeight={700}>
-									{title}
-								</BntTypography>
-								<ExpandIcon isExpanded={isExpanded} />
-							</MobileWidgetHeader>
-							{headerAction ? <MobileHeaderAction>{headerAction}</MobileHeaderAction> : null}
-						</MobileHeader>
+						<MobileWidgetHeader aria-controls={contentId} aria-expanded={isExpanded} onClick={() => setIsExpanded((expanded) => !expanded)}>
+							<BntTypography variant="subtitle2" fontWeight={600}>
+								{title}
+							</BntTypography>
+							<ExpandIcon isExpanded={isExpanded} />
+						</MobileWidgetHeader>
 						<Collapse id={contentId} in={isExpanded} timeout="auto" unmountOnExit>
+							{headerAction ? <MobileHeaderAction>{headerAction}</MobileHeaderAction> : null}
 							{interactiveContent}
 							{footer ? <WidgetFooter>{footer}</WidgetFooter> : null}
 						</Collapse>

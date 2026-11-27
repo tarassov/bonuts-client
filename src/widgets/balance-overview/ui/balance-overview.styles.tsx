@@ -19,8 +19,9 @@ export const BalanceAction = styled(ButtonBase)(({ theme }) => ({
 	flex: 1,
 	minWidth: 0,
 	minHeight: 40,
-	padding: theme.spacing(1, 1.25),
+	padding: theme.spacing(1, 1.5),
 	borderRadius: "inherit",
 	textAlign: "left",
 	justifyContent: "flex-start",
+	"&.Mui-focusVisible": { outline: `2px solid ${theme.palette.text.secondary}`, outlineOffset: -2 },
 }));
