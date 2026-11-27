@@ -9,6 +9,7 @@ export enum texts_d {
 	decline = "decline",
 	declined = "declined",
 	deactivate = "deactivate",
+	deactivate_account_description = "deactivate account description",
 	description = "description",
 	disable_account = "disable account",
 	disabled = "disabled",

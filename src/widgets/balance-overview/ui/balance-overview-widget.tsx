@@ -33,12 +33,12 @@ export function BalanceOverviewWidget({ columns = 1, children }: IDashboardWidge
 			<BntStack gap={1} data-testid="dashboard-widget-balance-overview">
 				<BalanceRow>
 					<BalanceAction aria-label={t(texts_o.operations_history, { capitalize: true })} onClick={handleOpenAccountOperations}>
-						<DonutSmallOutlined color="primary" sx={{ width: "20px", height: "20px" }} />
-						<Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", columnGap: 0.75 }}>
+						<DonutSmallOutlined color="primary" sx={{ fontSize: 20 }} />
+						<Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", columnGap: 0.5 }}>
 							<BntTypography variant="caption" color="text.secondary">
 								{t(texts_i.i_can_share, { capitalize: true })}
 							</BntTypography>
-							<BntTypography variant="caption" fontWeight={700} color="primary.main">
+							<BntTypography variant="caption" fontWeight={600} sx={{ fontVariantNumeric: "tabular-nums" }}>
 								{isDistribBalanceLoading ? "..." : `${distribAccount?.balance || 0} ${t(texts_d.donut, { count: distribAccount?.balance })}`}
 							</BntTypography>
 						</Box>
@@ -47,16 +47,16 @@ export function BalanceOverviewWidget({ columns = 1, children }: IDashboardWidge
 				<BalanceRow tone="secondary">
 					<BalanceAction aria-label={t(texts_o.operations_history, { capitalize: true })} onClick={handleOpenAccountOperations}>
 						<BonutsCurrency />
-						<Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", columnGap: 0.75 }}>
+						<Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", columnGap: 0.5 }}>
 							<BntTypography variant="caption" color="text.secondary">
 								{t(texts_i.i_can_spend, { capitalize: true })}
 							</BntTypography>
-							<BntTypography variant="caption" fontWeight={700} color="secondary.main">
+							<BntTypography variant="caption" fontWeight={600} sx={{ fontVariantNumeric: "tabular-nums" }}>
 								{isSelfBalanceLoading ? "..." : `${selfAccount?.balance || 0} ${t(texts_c.coin, { count: selfAccount?.balance })}`}
 							</BntTypography>
 						</Box>
 					</BalanceAction>
-					<Link component={RouterLink} to={routesPath[BntRoutes.Donuts]} variant="caption" color="secondary.main" sx={{ flexShrink: 0, mr: 1.25 }}>
+					<Link component={RouterLink} to={routesPath[BntRoutes.Donuts]} variant="caption" color="text.secondary" sx={{ flexShrink: 0, mr: 1.5 }}>
 						{t(texts_g.go_to_store, { capitalize: true })} →
 					</Link>
 				</BalanceRow>

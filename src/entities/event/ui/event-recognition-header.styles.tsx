@@ -18,7 +18,7 @@ export const RecognitionHeader = styled("div")(({ theme }) => ({
 
 export const RecognitionArrow = styled(ArrowForwardRounded)(({ theme }) => ({
 	gridColumn: "1 / -1",
-	marginInlineStart: "10px",
+	marginInlineStart: 12,
 	transform: "rotate(90deg)",
 	color: theme.palette.primary.dark,
 	fontSize: 20,
@@ -32,7 +32,7 @@ export const RecognitionArrow = styled(ArrowForwardRounded)(({ theme }) => ({
 export const RecognitionPerson = styled(ButtonBase)(({ theme }) => ({
 	minWidth: 0,
 	justifyContent: "flex-start",
-	gap: theme.spacing(1.25),
+	gap: theme.spacing(1),
 	borderRadius: 10,
 	textAlign: "left",
 	"& .MuiAvatar-root": { width: 40, height: 40, borderRadius: 12 },
@@ -49,11 +49,12 @@ export const RecognitionAmount = styled("span")(({ theme }) => ({
 	justifySelf: "end",
 	padding: theme.spacing(0.5, 1),
 	borderRadius: 12,
-	border: `1px solid ${alpha(theme.palette.secondary.main, 0.2)}`,
-	backgroundColor: alpha(theme.palette.secondary.main, 0.08),
+	border: `1px solid ${alpha(theme.palette.primary.main, 0.24)}`,
+	backgroundColor: alpha(theme.palette.primary.main, 0.1),
 	color: theme.palette.text.primary,
 	fontSize: 13,
-	fontWeight: 700,
+	fontWeight: 600,
+	fontVariantNumeric: "tabular-nums",
 	whiteSpace: "nowrap",
 	"@container event-card (min-width: 420px)": { gridColumn: 3, order: 1 },
 	"@container event-card (min-width: 540px)": { gridColumn: 4 },

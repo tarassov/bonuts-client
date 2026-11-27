@@ -28,17 +28,15 @@ export const EventCardStyled = styled(EventCard, {
 		color: theme.palette.text.primary,
 		maxWidth,
 		borderRadius: 16,
-		boxShadow: isNotification ? "none" : "0 2px 10px rgba(0,0,0,0.04)",
-		transition: theme.transitions.create(["border-color", "transform", "box-shadow"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
+		boxShadow: "none",
 		"@media (hover: hover)": {
 			"&:hover": {
-				borderColor: alpha(theme.palette.primary.main, 0.3),
-				transform: isNotification ? "none" : "translateY(-2px)",
-				boxShadow: isNotification ? "none" : "0 14px 34px rgba(30,31,37,0.12)",
+				borderColor: alpha(theme.palette.primary.main, 0.32),
 			},
+		},
+		"@media (hover: hover) and (prefers-reduced-motion: no-preference)": {
+			transition: theme.transitions.create(["border-color", "transform"], { duration: theme.transitions.duration.shorter }),
+			"&:hover": { transform: isNotification ? "none" : "translateY(-2px)" },
 		},
 		[cl(EVENT_CARD_CLASSES.cardRoot)]: {
 			borderRadius: 16,
@@ -65,14 +63,15 @@ export const EventCardStyled = styled(EventCard, {
 		[cl(EVENT_CARD_CLASSES.iconCaption)]: {
 			minWidth: "10px",
 			fontSize: iconFontSize,
-			fontWeight: 600,
+			fontWeight: 500,
+			fontVariantNumeric: "tabular-nums",
 			color: theme.palette.text.secondary,
 		},
 		[cl(EVENT_CARD_CLASSES.cardActions)]: {
 			display: "flex",
 			alignItems: "center",
 			flexWrap: "wrap",
-			gap: theme.spacing(0.75),
+			gap: theme.spacing(0.5),
 			padding: theme.spacing(1, 2, 1.5),
 			borderTop: `1px solid ${theme.palette.divider}`,
 			[theme.breakpoints.up("sm")]: { padding: theme.spacing(1, 2.5, 1.5) },
@@ -85,40 +84,34 @@ export const EventCardStyled = styled(EventCard, {
 		[cl(EVENT_CARD_CLASSES.cardActionGroup)]: {
 			display: "inline-flex",
 			alignItems: "center",
-			gap: theme.spacing(0.75),
+			gap: theme.spacing(0.5),
 		},
 		[cl(EVENT_CARD_CLASSES.cardActionButton)]: {
 			minWidth: 40,
 			minHeight: 40,
-			padding: theme.spacing(0.75, 1),
-			gap: theme.spacing(0.75),
+			padding: theme.spacing(0.5, 1),
+			gap: theme.spacing(0.5),
 			borderRadius: 20,
 			backgroundColor: theme.palette.action.hover,
+			"&.Mui-focusVisible": { outline: `2px solid ${theme.palette.text.secondary}`, outlineOffset: -2 },
 			"& svg": { fontSize: 18 },
 			color: theme.palette.text.secondary,
 			transition: theme.transitions.create(["color", "opacity", "background-color"]),
 			"&:hover": {
-				color: theme.palette.primary.dark,
+				color: theme.palette.text.primary,
 				opacity: 1,
 			},
 		},
 		[cl(EVENT_CARD_CLASSES.liked)]: {
 			color: theme.palette.primary.dark,
-			backgroundColor: alpha(theme.palette.primary.main, 0.1),
-			"& .icon-caption": { color: "inherit" },
-			"&:hover": {
-				color: theme.palette.primary.main,
-				opacity: 1,
-			},
+			backgroundColor: alpha(theme.palette.primary.main, 0.14),
+			"& .icon-caption": { color: theme.palette.text.primary },
+			"&:hover": { backgroundColor: alpha(theme.palette.primary.main, 0.2) },
 		},
 		[cl(EVENT_CARD_CLASSES.cardBodyText)]: {
 			overflowWrap: "anywhere",
 			lineHeight: 1.65,
 			color: theme.palette.text.primary,
-		},
-		"@media (prefers-reduced-motion: reduce)": {
-			transition: "none",
-			"&:hover": { transform: "none" },
 		},
 		[cl(EVENT_CARD_CLASSES.expand)]: {
 			transform: "rotate(0deg)",

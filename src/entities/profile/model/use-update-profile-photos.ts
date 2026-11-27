@@ -16,7 +16,7 @@ export const useUpdateProfilePhotos = () => {
 		const { id, file } = args;
 
 		if (!authTenant) {
-			return undefined;
+			return false;
 		}
 
 		const optimisticPreviewUrl = URL.createObjectURL(file);
@@ -28,8 +28,9 @@ export const useUpdateProfilePhotos = () => {
 				optimisticPreviewUrl,
 			}).unwrap();
 			showNotification(texts_u.updated);
+			return true;
 		} catch {
-			// The mutation lifecycle removes the optimistic photo after a failed upload.
+			return false;
 		}
 	};
 

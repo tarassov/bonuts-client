@@ -28,6 +28,16 @@ export function getEmployeeInitials(employee: TProfile) {
 		.join("");
 }
 
+export function getEmployeePreviewInitials(name: string) {
+	return name
+		.trim()
+		.split(/\s+/)
+		.slice(0, 2)
+		.map((part) => Array.from(part)[0])
+		.join("")
+		.toLocaleUpperCase();
+}
+
 export function getMonthsInTeam(employee: TProfile, now = new Date()) {
 	const startDateValue = employee.in_date || employee.created_at;
 

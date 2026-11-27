@@ -61,3 +61,9 @@
 	align-content: start;
 	gap: 12px;
 }
+
+@media (max-width: 899px) {
+	.widgetGrid {
+		gap: 8px;
+	}
+}

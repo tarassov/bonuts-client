@@ -1,4 +1,7 @@
 export enum texts_u {
+	uploading_photo = "uploading photo",
+	upload_photo_failed = "upload photo failed",
+	upload_photo_retry = "upload photo retry",
 	under_construct = "under construct",
 	updated = "updated",
 	user_appears_in_employees_step_description = "user appears in employees step description",

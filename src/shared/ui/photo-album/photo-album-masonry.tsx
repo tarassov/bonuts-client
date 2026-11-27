@@ -10,8 +10,9 @@ interface IPhotoAlbumMasonryProps {
 }
 
 export function PhotoAlbumMasonry({ ariaHidden, children, testId }: IPhotoAlbumMasonryProps) {
+	// Masonry needs spacing at each column breakpoint to subtract it from the tile width.
 	return (
-		<Masonry aria-hidden={ariaHidden} className={styles.albumGrid} columns={{ xs: 2, sm: 3, md: 4 }} data-testid={testId} spacing={{ xs: 1.5, sm: 2 }}>
+		<Masonry aria-hidden={ariaHidden} className={styles.albumGrid} columns={{ xs: 2, sm: 3, md: 4 }} data-testid={testId} spacing={{ xs: 1.5, sm: 2, md: 2 }}>
 			{children}
 		</Masonry>
 	);

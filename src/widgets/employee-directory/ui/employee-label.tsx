@@ -1,8 +1,6 @@
 import type { FC } from "react";
 import { Stack } from "@mui/material";
 
-import classNames from "classnames";
-
 import { BntTypography } from "@/shared/ui/typography";
 
 import { useBntTranslate } from "@/hooks/use-bnt-translate";
@@ -17,11 +15,11 @@ export const EmployeeLabel: FC<TEmployeeLabelProps> = ({ name, value, className 
 	const { translate } = useBntTranslate();
 
 	return (
-		<Stack direction="row" alignItems="baseline" className={classNames(className, "mt-2")}>
-			<BntTypography display="block" color="neutral.main">
+		<Stack direction="row" alignItems="baseline" gap={1} flexWrap="wrap" className={className}>
+			<BntTypography display="block" color="text.secondary">
 				{translate(name).toLowerCase()}:
 			</BntTypography>
-			<BntTypography display="block" className="ml-4">
+			<BntTypography display="block" sx={{ overflowWrap: "anywhere", minWidth: 0 }}>
 				{value}
 			</BntTypography>
 		</Stack>
