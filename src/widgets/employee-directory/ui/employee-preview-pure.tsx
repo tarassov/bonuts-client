@@ -13,6 +13,8 @@ import { useBecome } from "@/features/auth/become";
 import { EmployeeActions } from "@/features/employee/actions";
 import { EmployeeEdit } from "@/features/employee/edit";
 
+import { getEmployeePreviewInitials } from "../model/employee-directory-helper";
+
 import { EmployeeLabel } from "./employee-label";
 import { EmployeePreviewBreadcrumbs } from "./employee-preview-breadcrumbs";
 import {
@@ -69,13 +71,7 @@ export const EmployeePreviewView: FC<TEmployeePreviewViewProps> = ({
 
 	const name = employee?.user_name || employee?.name || "";
 	const avatarUrl = employee?.user_avatar?.url;
-	const initials = name
-		.trim()
-		.split(/\s+/)
-		.slice(0, 2)
-		.map((part) => Array.from(part)[0])
-		.join("")
-		.toLocaleUpperCase();
+	const initials = getEmployeePreviewInitials(name);
 	const avatar = (
 		<EmployeePreviewAvatar src={avatarUrl || undefined} alt="" aria-hidden>
 			{initials || undefined}
