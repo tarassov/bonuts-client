@@ -4,10 +4,10 @@
 
 .header {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
-	margin-bottom: 20px;
+	margin-bottom: 16px;
 }
 
 .titleWrap {
@@ -18,12 +18,12 @@
 .titleRow {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 8px;
 	flex-wrap: wrap;
 }
 
-.countChip {
-	font-weight: 700;
+.count {
+	font-variant-numeric: tabular-nums;
 }
 
 .uploadButton {
@@ -47,4 +47,28 @@
 	.uploadButton {
 		width: 100%;
 	}
+}
+
+.card.embedded {
+	padding: 16px 0 0;
+	border-top: 1px solid var(--mui-palette-divider);
+	border-radius: 0;
+	background: transparent;
+}
+
+.embedded .header {
+	margin-bottom: 8px;
+}
+
+.uploadError {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 4px 8px;
+	padding: 8px 12px;
+	margin-bottom: 8px;
+	border: 1px solid var(--mui-palette-divider);
+	border-radius: 8px;
+	overflow-wrap: anywhere;
 }

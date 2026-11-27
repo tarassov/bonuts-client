@@ -30,7 +30,7 @@ function adaptProfilePictures(response: GetProfilesByProfileIdProfilePicturesApi
 }
 
 async function preloadProfilePhoto(photo: TPicture) {
-	const url = photo.preview?.url || photo.url || photo.thumb?.url;
+	const url = photo.preview?.url || photo.thumb?.url || photo.url;
 
 	if (!url) {
 		return;

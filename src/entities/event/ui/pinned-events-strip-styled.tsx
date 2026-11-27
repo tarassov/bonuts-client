@@ -16,10 +16,7 @@ export const PINNED_STRIP_CLASSES = {
 
 const cl = (className: string) => `& .${className}`;
 
-const surfaceShadow = (isDark: boolean) => (isDark ? "0 4px 14px rgba(0,0,0,0.28)" : "0 4px 14px rgba(30,31,37,0.06)");
-const panelShadow = (isDark: boolean, accent: string) => (isDark ? "0 14px 34px rgba(0,0,0,0.4)" : `0 14px 34px ${alpha(accent, 0.18)}`);
-
-// Sticky wrapper inside the feed scroll area. Collapsed it sticks to the top with a soft
+// Sticky wrapper inside the feed scroll area. Collapsed it sticks to the top with an opaque
 // backdrop; expanded it joins the feed flow so a long pinned post scrolls with the feed.
 export const PinnedArea = styled("div", {
 	shouldForwardProp: (prop) => prop !== "isExpanded",
@@ -31,12 +28,12 @@ export const PinnedArea = styled("div", {
 	maxWidth: 760,
 	margin: theme.spacing(0, "auto", 1.5),
 	paddingBottom: isExpanded ? 0 : theme.spacing(1),
-	background: isExpanded ? "none" : `linear-gradient(180deg, ${theme.palette.background.default} 75%, transparent)`,
+	background: isExpanded ? "none" : theme.palette.background.default,
 }));
 
 export const PinnedStripRoot = styled("div")(({ theme }) => {
 	const isDark = theme.palette.mode === "dark";
-	const borderColor = isDark ? theme.palette.divider : theme.palette.neutral.light;
+	const borderColor = theme.palette.divider;
 
 	return {
 		display: "flex",
@@ -45,24 +42,20 @@ export const PinnedStripRoot = styled("div")(({ theme }) => {
 		borderRadius: 14,
 		border: `1px solid ${borderColor}`,
 		backgroundColor: isDark ? theme.palette.background.paper : theme.palette.common.white,
-		boxShadow: surfaceShadow(isDark),
-		transition: theme.transitions.create(["border-color", "box-shadow"], { duration: theme.transitions.duration.shorter }),
-		"&:hover": {
-			borderColor: theme.palette.secondary.veryLight,
-		},
+
 		[cl(PINNED_STRIP_CLASSES.body)]: {
 			flex: 1,
 			minWidth: 0,
 			display: "flex",
 			flexDirection: "column",
 			gap: 2,
-			padding: theme.spacing(1.125, 1.25, 1.125, 1.5),
+			padding: theme.spacing(1, 1.5),
 			textAlign: "left",
 			justifyContent: "center",
 			[theme.breakpoints.up("sm")]: {
 				flexDirection: "row",
 				alignItems: "center",
-				gap: theme.spacing(1.75),
+				gap: theme.spacing(1.5),
 			},
 		},
 		[cl(PINNED_STRIP_CLASSES.dots)]: {
@@ -86,12 +79,12 @@ export const PinnedStripRoot = styled("div")(({ theme }) => {
 		[cl(PINNED_STRIP_CLASSES.label)]: {
 			display: "inline-flex",
 			alignItems: "center",
-			gap: 6,
+			gap: 4,
 			fontSize: 12,
-			fontWeight: 700,
+			fontWeight: 600,
 			lineHeight: 1.3,
 			whiteSpace: "nowrap",
-			color: theme.palette.primary.dark,
+			color: theme.palette.text.secondary,
 			"& svg": { fontSize: 15 },
 		},
 		[cl(PINNED_STRIP_CLASSES.preview)]: {
@@ -112,8 +105,7 @@ export const PinnedStripRoot = styled("div")(({ theme }) => {
 			display: "none",
 			fontSize: 12,
 			whiteSpace: "nowrap",
-			color: theme.palette.neutral.dark,
-			opacity: 0.72,
+			color: theme.palette.text.secondary,
 			[theme.breakpoints.up("sm")]: { display: "block" },
 		},
 		[cl(PINNED_STRIP_CLASSES.toggle)]: {
@@ -121,8 +113,7 @@ export const PinnedStripRoot = styled("div")(({ theme }) => {
 			flexShrink: 0,
 			borderLeft: `1px solid ${isDark ? theme.palette.divider : alpha(theme.palette.neutral.light, 0.6)}`,
 			borderRadius: 0,
-			color: theme.palette.neutral.dark,
-			opacity: 0.72,
+			color: theme.palette.text.secondary,
 			"&:hover": {
 				opacity: 1,
 				color: theme.palette.primary.main,
@@ -132,44 +123,34 @@ export const PinnedStripRoot = styled("div")(({ theme }) => {
 	};
 });
 
-export const PinnedStripBody = styled(ButtonBase)({
+export const PinnedStripBody = styled(ButtonBase)(({ theme }) => ({
 	display: "flex",
 	alignItems: "stretch",
 	flex: 1,
 	minWidth: 0,
 	textAlign: "left",
 	justifyContent: "flex-start",
-});
+	"&.Mui-focusVisible": { outline: `2px solid ${theme.palette.text.secondary}`, outlineOffset: -2 },
+}));
 
-export const PinnedPanel = styled("div")(({ theme }) => {
-	const isDark = theme.palette.mode === "dark";
-	const surface = isDark ? theme.palette.background.paper : theme.palette.common.white;
-
-	return {
-		padding: theme.spacing(1.5, 2, 1.75),
-		borderRadius: 16,
-		border: `1.5px solid ${theme.palette.primary.main}`,
-		background: `linear-gradient(180deg, ${alpha(theme.palette.primary.main, isDark ? 0.14 : 0.1)}, ${surface} 70%)`,
-		boxShadow: panelShadow(isDark, theme.palette.primary.main),
-		[theme.breakpoints.up("sm")]: {
-			padding: theme.spacing(1.75, 2.25, 2),
-		},
-	};
-});
+export const PinnedPanel = styled("div")(({ theme }) => ({
+	padding: theme.spacing(2),
+	borderRadius: 16,
+	border: `1px solid ${theme.palette.divider}`,
+	backgroundColor: theme.palette.background.paper,
+	[theme.breakpoints.up("sm")]: { padding: theme.spacing(2, 2.5) },
+}));
 
 export const PinnedChip = styled("span")(({ theme }) => ({
 	display: "inline-flex",
 	alignItems: "center",
 	gap: 4,
-	height: 22,
-	padding: theme.spacing(0, 1.25),
-	borderRadius: 999,
+	minHeight: 24,
 	fontSize: 12,
-	fontWeight: 700,
+	fontWeight: 600,
 	lineHeight: 1,
 	whiteSpace: "nowrap",
-	color: theme.palette.common.white,
-	backgroundColor: theme.palette.primary.main,
+	color: theme.palette.text.secondary,
 	"& svg": { fontSize: 14 },
 }));
 
@@ -222,12 +203,9 @@ export const PinnedBadge = styled("span")(({ theme }) => ({
 	alignItems: "center",
 	gap: 4,
 	fontSize: 12,
-	fontWeight: 700,
+	fontWeight: 600,
 	lineHeight: 1,
-	padding: theme.spacing(0.5, 1),
-	borderRadius: 999,
-	color: theme.palette.primary.dark,
-	backgroundColor: theme.palette.primary.light,
+	color: theme.palette.text.secondary,
 	whiteSpace: "nowrap",
 	"& svg": { fontSize: 14 },
 }));

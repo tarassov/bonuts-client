@@ -78,7 +78,7 @@ for (const viewport of [
 				if (viewport.width >= 900) {
 					await card.hover();
 					await expect(card).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, -2)");
-					await expect(card).toHaveCSS("box-shadow", /0px 14px 34px/);
+					await expect(card).toHaveCSS("box-shadow", "none");
 					await rail.hover();
 					await expect(card).toHaveCSS("transform", "none");
 					await expect(rail).toHaveCSS("width", "28px");

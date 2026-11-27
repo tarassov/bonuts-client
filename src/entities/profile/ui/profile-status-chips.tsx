@@ -8,7 +8,7 @@ import { BntChip } from "@/shared/ui/chip";
 import { texts_a, texts_n, texts_s } from "@/services/localization/texts";
 import { TProfile } from "@/types/model";
 
-export function ProfileStatusChips({ profile, adminSx }: { profile?: TProfile; adminSx?: SxProps<Theme> }) {
+export function ProfileStatusChips({ profile, adminSx, subdued = false }: { profile?: TProfile; adminSx?: SxProps<Theme>; subdued?: boolean }) {
 	const { translate } = useBntTranslate();
 
 	if (!profile?.admin && profile?.active !== false && !profile?.store_admin) {
@@ -17,9 +17,9 @@ export function ProfileStatusChips({ profile, adminSx }: { profile?: TProfile; a
 
 	return (
 		<>
-			{profile?.admin ? <BntChip color="primary" icon={<ShieldOutlined />} label={translate(texts_a.admin)} sx={adminSx} /> : null}
+			{profile?.admin ? <BntChip color={subdued ? "default" : "primary"} variant={subdued ? "outlined" : "filled"} icon={<ShieldOutlined />} label={translate(texts_a.admin)} sx={adminSx} /> : null}
 			{profile?.active === false ? <BntChip color="error" icon={<ErrorOutline />} label={translate(texts_n.not_active)} /> : null}
-			{profile?.store_admin ? <BntChip color="warning" icon={<StorefrontOutlined />} label={translate(texts_s.store_admin)} /> : null}
+			{profile?.store_admin ? <BntChip color={subdued ? "default" : "warning"} variant={subdued ? "outlined" : "filled"} icon={<StorefrontOutlined />} label={translate(texts_s.store_admin)} /> : null}
 		</>
 	);
 }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowBackIosNewOutlined, ArrowForwardIosOutlined } from "@mui/icons-material";
 
 import classNames from "classnames";
@@ -19,6 +20,9 @@ interface IPhotoAlbumViewerStageProps {
 }
 
 export function PhotoAlbumViewerStage({ activeIndex, canNavigate, currentPhoto, nextLabel, onNext, onPrevious, photoLabel, previousLabel }: IPhotoAlbumViewerStageProps) {
+	const [loadedOriginal, setLoadedOriginal] = useState<string>();
+	const showPreview = currentPhoto.previewUrl !== currentPhoto.originalUrl && loadedOriginal !== currentPhoto.originalUrl;
+
 	return (
 		<div className={classNames(styles.stage, { [styles.singlePhotoStage]: !canNavigate })}>
 			{canNavigate ? (
@@ -27,7 +31,15 @@ export function PhotoAlbumViewerStage({ activeIndex, canNavigate, currentPhoto, 
 				</BntIconButton>
 			) : null}
 			<div className={styles.imageFrame}>
-				<img className={styles.image} src={currentPhoto.originalUrl} alt={`${photoLabel} ${activeIndex + 1}`} />
+				{showPreview ? <img className={styles.image} src={currentPhoto.previewUrl} alt={`${photoLabel} ${activeIndex + 1}`} /> : null}
+				<img
+					key={currentPhoto.originalUrl}
+					className={classNames(styles.image, { [styles.pendingOriginal]: showPreview })}
+					src={currentPhoto.originalUrl}
+					alt={showPreview ? "" : `${photoLabel} ${activeIndex + 1}`}
+					aria-hidden={showPreview || undefined}
+					onLoad={() => setLoadedOriginal(currentPhoto.originalUrl)}
+				/>
 			</div>
 			{canNavigate ? (
 				<BntIconButton aria-label={nextLabel} data-testid="photo-album-next" className={styles.navButton} onClick={onNext}>

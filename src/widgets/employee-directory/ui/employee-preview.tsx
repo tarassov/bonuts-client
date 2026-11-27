@@ -15,7 +15,7 @@ export function EmployeePreview() {
 	const { ImageModal } = useModal();
 	const { profile } = useProfile();
 	const { showAdminDeposit, showTransfer } = useTransferUi();
-	const { setActivityWithConfirmation, setActivity } = useEmployee();
+	const { deactivateWithConfirmation, setActivity } = useEmployee();
 
 	useLoader(Modules.EmployeePreview, isLoading && !error);
 
@@ -42,14 +42,14 @@ export function EmployeePreview() {
 	};
 
 	const onActivateClick = () => {
-		if (employee) {
+		if (employee?.active === false) {
 			setActivity({ id: employee.id, active: true });
 		}
 	};
 
 	const onDisableClick = () => {
-		if (employee) {
-			setActivityWithConfirmation({ id: employee.id, active: false });
+		if (employee?.active === true) {
+			deactivateWithConfirmation(employee.id, employee.user_name || employee.name);
 		}
 	};
 
@@ -58,9 +58,9 @@ export function EmployeePreview() {
 			employee={employee}
 			onImageClick={onImageClick}
 			allowAdminDeposit={profile?.admin}
-			allowDisable={profile?.admin}
+			allowDisable={Boolean(profile?.admin && employee?.active === true)}
 			allowEdit={profile?.admin}
-			allowActivate={profile?.admin}
+			allowActivate={Boolean(profile?.admin && employee?.active === false)}
 			onAdminDepositClick={onAdminDepositClick}
 			onTransferClick={onTransferClick}
 			onActivateClick={onActivateClick}

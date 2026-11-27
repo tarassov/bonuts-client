@@ -20,7 +20,7 @@ interface IProfilePhotosAlbumModalProps extends TDialogProps {
 }
 
 function getAlbumPhoto(photo: TPicture): TPhotoAlbumItem | undefined {
-	const previewUrl = photo.preview?.url || photo.url || photo.thumb?.url;
+	const previewUrl = photo.preview?.url || photo.thumb?.url || photo.url;
 	const originalUrl = photo.url || photo.preview?.url || photo.thumb?.url;
 
 	if (!previewUrl || !originalUrl) {
